@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "new": "tsx scripts/new.ts",
     "admin": "tsx scripts/admin.ts",
-    "deploy": "tsx scripts/deploy.ts",
+    "ship": "tsx scripts/ship.ts",
     "format": "prettier --write .",
     "check": "astro check"
   },

@@ -493,7 +493,7 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, HOST, () => {
   console.log(`\n  ✓ Admin GUI running at http://${HOST}:${PORT}/\n`)
   console.log(`  · 仅监听 127.0.0.1，其他设备无法访问`)
-  console.log(`  · 编辑后用 \`pnpm deploy\` 发布\n`)
+  console.log(`  · 编辑后用 \`pnpm ship\` 发布\n`)
 })
 
 process.on("SIGINT", () => {

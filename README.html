@@ -38,7 +38,7 @@
 <ul>
   <li><strong>你的 HTML 即真相</strong>：详情页直接打开你扔进 <code>posts/</code> 的原文件，构建时只在 <code>&lt;/body&gt;</code> 前注入一个浮动的「← 返回列表」按钮，不改你的样式、不改你的结构。</li>
   <li><strong>零元数据维护</strong>：标题、描述、日期、分类、关键词，全部从 HTML 的 <code>&lt;title&gt;</code> / <code>&lt;meta&gt;</code> / 文件名 / 目录名自动提取。</li>
-  <li><strong>本地一键发布</strong>：<code>pnpm deploy</code> 交互确认后 commit + push，GitHub Actions 自动构建并发布，无需登录服务器。</li>
+  <li><strong>本地一键发布</strong>：<code>pnpm ship</code> 交互确认后 commit + push，GitHub Actions 自动构建并发布，无需登录服务器。</li>
 </ul>
 
 <h2>快速开始</h2>
@@ -61,7 +61,7 @@ pnpm admin
 pnpm build &amp;&amp; pnpm preview
 
 # 6. 一键发布
-pnpm deploy</code></pre>
+pnpm ship</code></pre>
 
 <h2>仓库结构</h2>
 <pre><code>reports-site/
@@ -77,7 +77,7 @@ pnpm deploy</code></pre>
 │   ├── build-posts.ts         ← 预构建：扫 posts、提取元数据、生成索引
 │   ├── new.ts                 ← pnpm new
 │   ├── admin.ts               ← pnpm admin（本地元数据编辑 GUI）
-│   └── deploy.ts              ← pnpm deploy
+│   └── ship.ts                ← pnpm ship
 ├── .github/workflows/deploy.yml
 ├── astro.config.mjs
 └── package.json</code></pre>
@@ -121,7 +121,7 @@ pnpm deploy</code></pre>
   <li><strong>搜索索引不打进 JS bundle</strong>：把 <code>search-index.json</code> 放在 <code>public/</code> 而不是 <code>import</code> 进客户端 bundle。这样首页打开很快，索引按需 fetch。</li>
   <li><strong>posts/ 是源、public/posts/ 是产物</strong>：<code>public/posts/</code> 和 <code>search-index.json</code> 都在 <code>.gitignore</code> 里，由 build 现成产出，不进 git 历史。</li>
   <li><strong>预构建钩子</strong>：用 npm 的 <code>predev</code> / <code>prebuild</code> 钩子串联，而不是写 Astro 插件，避免引入额外抽象。</li>
-  <li><strong>提交前确认</strong>：<code>pnpm deploy</code> 默认会列出 diff 让你按 y 才提交，避免误推；CI/批处理场景可加 <code>-y</code> 跳过。</li>
+  <li><strong>提交前确认</strong>：<code>pnpm ship</code> 默认会列出 diff 让你按 y 才提交，避免误推；CI/批处理场景可加 <code>-y</code> 跳过。</li>
 </ul>
 
 <h2>使用方法</h2>
@@ -147,12 +147,12 @@ pnpm new "LLM 评测" --category research
   <li>支持删除文章。</li>
 </ul>
 <p><strong>为什么只有你能用</strong>：服务仅监听 <code>127.0.0.1</code>（loopback），网络上其他设备无法访问；同时校验 <code>Host</code> / <code>Origin</code> 请求头，挡住 DNS rebinding 类攻击。你的另一台电脑、手机、同事，都进不来。</p>
-<p>编辑完后照常 <code>pnpm deploy</code> 发布。</p>
+<p>编辑完后照常 <code>pnpm ship</code> 发布。</p>
 
 <h3>发布</h3>
-<pre><code>pnpm deploy             # 默认会列出变更，输入 y 确认后提交并 push
-pnpm deploy -y          # 跳过确认（脚本里用）
-pnpm deploy -m "msg"    # 自定义 commit 信息</code></pre>
+<pre><code>pnpm ship             # 默认会列出变更，输入 y 确认后提交并 push
+pnpm ship -y          # 跳过确认（脚本里用）
+pnpm ship -m "msg"    # 自定义 commit 信息</code></pre>
 
 <h2>首次设置 GitHub Pages</h2>
 <ol>
@@ -161,7 +161,7 @@ pnpm deploy -m "msg"    # 自定义 commit 信息</code></pre>
 git branch -M main
 git push -u origin main</code></pre></li>
   <li>到仓库 <strong>Settings → Pages</strong>，<em>Source</em> 选 <strong>GitHub Actions</strong>。</li>
-  <li>之后每次 <code>pnpm deploy</code> 即自动构建发布，地址：<br /><a href="https://kid551.github.io/reports-site/" target="_blank" rel="noopener">https://kid551.github.io/reports-site/</a></li>
+  <li>之后每次 <code>pnpm ship</code> 即自动构建发布，地址：<br /><a href="https://kid551.github.io/reports-site/" target="_blank" rel="noopener">https://kid551.github.io/reports-site/</a></li>
 </ol>
 
 <h2>常见问题</h2>
