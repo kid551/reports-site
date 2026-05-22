@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>当 AI Scientist 走进药企：A 股创新药赛道的真伪机会扫描（2026-05-19）</title>
+<style>
+  :root {
+    --ink:        #14110f;
+    --ink-soft:   #2a2622;
+    --ink-mute:   #5b524c;
+    --ink-faint:  #8b817b;
+    --bg-page:    #fdfbf7;
+    --bg-soft:    #f5efe1;
+    --bg-card:    #ffffff;
+    --rule:       #e3dccb;
+    --rule-soft:  #efeadd;
+    --accent:     #1e6b54;
+    --accent-soft:#e6f2ec;
+    --warn:       #b8541a;
+    --warn-soft:  #fbece0;
+    --danger:     #a52a2a;
+    --danger-soft:#f8e5e1;
+    --good:       #15803d;
+    --good-soft:  #e3f4e7;
+    --highlight:  #fff3c4;
+    --serif:      "Source Han Serif SC", "Songti SC", "Source Serif 4", "Charter", Georgia, serif;
+    --sans:       "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+    --mono:       "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #e7e3da;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: min(1160px, 100%);
+    margin: 0 auto;
+    background: var(--bg-page);
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    padding: 64px 72px 80px;
+  }
+
+  /* ---------- 封面 ---------- */
+  .cover {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 36px;
+    margin-bottom: 56px;
+  }
+  .cover .eyebrow {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1.2;
+    margin: 0 0 24px;
+    letter-spacing: -0.5px;
+  }
+  .cover .subtitle {
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    max-width: 56ch;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .meta-cell .label {
+    font-size: 13px;
+    color: var(--ink-mute);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .meta-cell .value {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ---------- 通用排版 ---------- */
+  h2 {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 64px 0 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ink);
+    letter-spacing: -0.3px;
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 40px 0 14px;
+    color: var(--ink);
+    letter-spacing: -0.2px;
+  }
+  h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 28px 0 12px;
+    color: var(--ink);
+  }
+  p {
+    font-size: 18px;
+    margin: 0 0 18px;
+    line-height: 1.85;
+  }
+  strong { font-weight: 700; color: var(--ink); }
+  em { font-style: normal; background: var(--highlight); padding: 1px 4px; border-radius: 2px; }
+
+  blockquote {
+    margin: 24px 0;
+    padding: 20px 28px;
+    background: var(--bg-soft);
+    border-left: 5px solid var(--accent);
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  ul, ol {
+    font-size: 18px;
+    line-height: 1.85;
+    padding-left: 26px;
+    margin: 0 0 18px;
+  }
+  li { margin-bottom: 8px; }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+  }
+  a:hover { border-bottom-color: var(--accent); }
+
+  /* ---------- 顶部摘要 ---------- */
+  .tldr {
+    background: var(--bg-soft);
+    padding: 32px 40px;
+    border-radius: 4px;
+    margin: 40px 0 56px;
+    border-left: 6px solid var(--accent);
+  }
+  .tldr h3 {
+    margin-top: 0;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .tldr p { font-size: 17.5px; margin-bottom: 14px; }
+  .tldr p:last-child { margin-bottom: 0; }
+
+  /* ---------- Insight 卡片 ---------- */
+  .insight-block {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin: 24px 0;
+  }
+  .insight-block .insight-num {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+  .insight-block h4 {
+    margin: 0 0 14px;
+    font-size: 22px;
+    line-height: 1.4;
+  }
+  .insight-data {
+    background: var(--bg-soft);
+    padding: 14px 20px;
+    border-radius: 4px;
+    margin: 14px 0;
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- 表格 ---------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  th {
+    background: var(--ink);
+    color: var(--bg-page);
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    font-size: 15.5px;
+  }
+  tr:nth-child(even) td { background: var(--rule-soft); }
+  tr:hover td { background: var(--bg-soft); }
+  td strong { color: var(--ink); }
+
+  /* ---------- 公司分析卡 ---------- */
+  .company-card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-left: 6px solid var(--accent);
+    border-radius: 4px;
+    padding: 28px 32px 8px;
+    margin: 28px 0 36px;
+  }
+  .company-card.warn { border-left-color: var(--warn); }
+  .company-card.danger { border-left-color: var(--danger); }
+  .company-card.good { border-left-color: var(--good); }
+
+  .company-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1.5px solid var(--rule);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  .company-name {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+  }
+  .company-code {
+    font-family: var(--mono);
+    font-size: 17px;
+    color: var(--ink-mute);
+    margin-left: 12px;
+  }
+  .tag-strip {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+  .tag {
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .tag.good { background: var(--good-soft); color: var(--good); }
+  .tag.warn { background: var(--warn-soft); color: var(--warn); }
+  .tag.danger { background: var(--danger-soft); color: var(--danger); }
+  .tag.neutral { background: var(--bg-soft); color: var(--ink-mute); }
+
+  .card-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 18px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+    font-size: 16.5px;
+    line-height: 1.7;
+  }
+  .card-row:last-child { border-bottom: none; }
+  .card-row .label {
+    font-weight: 700;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  .verdict {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: var(--bg-soft);
+    border-radius: 4px;
+    font-size: 16.5px;
+    line-height: 1.75;
+  }
+  .verdict .v-label {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  /* ---------- 风险盒 ---------- */
+  .risk-box {
+    background: var(--warn-soft);
+    border-left: 5px solid var(--warn);
+    padding: 20px 28px;
+    margin: 24px 0;
+    border-radius: 4px;
+  }
+  .risk-box h4 {
+    margin-top: 0;
+    color: var(--warn);
+    font-size: 18px;
+  }
+  .danger-box {
+    background: var(--danger-soft);
+    border-left: 5px solid var(--danger);
+    padding: 20px 28px;
+    margin: 24px 0;
+    border-radius: 4px;
+  }
+  .danger-box h4 {
+    margin-top: 0;
+    color: var(--danger);
+    font-size: 18px;
+  }
+
+  /* ---------- 矩阵分桶 ---------- */
+  .bucket-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 28px 0;
+  }
+  .bucket {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 24px 26px;
+  }
+  .bucket h4 {
+    margin: 0 0 12px;
+    font-size: 19px;
+    color: var(--accent);
+  }
+  .bucket p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    color: var(--ink-soft);
+  }
+  .bucket .companies {
+    font-family: var(--mono);
+    font-size: 14.5px;
+    color: var(--ink-mute);
+    background: var(--bg-soft);
+    padding: 8px 12px;
+    border-radius: 3px;
+  }
+
+  /* ---------- 矩阵评分 ---------- */
+  .matrix th, .matrix td {
+    text-align: center;
+    font-size: 15px;
+  }
+  .matrix td:first-child {
+    text-align: left;
+    font-weight: 700;
+    background: var(--bg-soft);
+  }
+  .score {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+  }
+  .score.s5 { background: #1a6e3f; }
+  .score.s4 { background: #4a9d5e; }
+  .score.s3 { background: #c4a23a; }
+  .score.s2 { background: #c97a3a; }
+  .score.s1 { background: #b54545; }
+
+  /* ---------- 引用源 ---------- */
+  .source-list {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    padding-left: 0;
+    list-style: none;
+    margin-top: 14px;
+  }
+  .source-list li {
+    margin-bottom: 4px;
+    padding-left: 16px;
+    text-indent: -16px;
+  }
+  .source-list li::before {
+    content: "→ ";
+    color: var(--accent);
+  }
+
+  /* ---------- footer ---------- */
+  .footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-size: 14px;
+    color: var(--ink-mute);
+    line-height: 1.8;
+  }
+  .disclaimer {
+    background: var(--bg-soft);
+    padding: 20px 28px;
+    border-radius: 4px;
+    margin-top: 24px;
+    font-size: 14.5px;
+    color: var(--ink-mute);
+    line-height: 1.8;
+  }
+</style>
+<!-- Sankey 图专用样式 -->
+<style>
+  .sankey-figure {
+    margin: 28px 0 24px;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .sankey-figure figcaption {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    padding: 14px 20px 10px;
+    border-bottom: 1px solid var(--rule-soft);
+    background: var(--bg-soft);
+    font-family: var(--serif);
+    letter-spacing: -0.1px;
+  }
+  .sankey-figure figcaption .sankey-sub {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink-mute);
+    font-family: var(--sans);
+    display: block;
+    margin-top: 3px;
+    letter-spacing: 0;
+  }
+  .sankey-chart-wrap {
+    padding: 12px 12px 8px;
+    background: #ffffff;
+  }
+  .sankey-chart {
+    width: 100%;
+    height: 580px;
+  }
+  .sankey-legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--ink-mute);
+    padding: 8px 20px 12px;
+    background: var(--bg-soft);
+    border-top: 1px solid var(--rule-soft);
+  }
+  .sankey-legend .sl-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .sankey-legend .sl-seg {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .sankey-chip-demo {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: Menlo, "SF Mono", monospace;
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+  .sankey-tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .sankey-tables .st-panel {
+    padding: 16px 20px;
+  }
+  .sankey-tables .st-panel:first-child {
+    border-right: 1px solid var(--rule-soft);
+  }
+  .sankey-tables .st-panel h4 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0;
+  }
+  .sankey-tables table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .sankey-tables th {
+    background: var(--bg-soft);
+    color: var(--ink-mute);
+    text-align: left;
+    padding: 7px 10px;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .sankey-tables td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+    font-size: 14px;
+  }
+  .sankey-tables tr:last-child td { border-bottom: none; }
+  .sankey-tables tr.st-total td { font-weight: 700; background: #f5efe1; }
+  .sankey-tables .st-pos { color: #15803d; }
+  .sankey-tables .st-neg { color: #a52a2a; }
+  .sankey-tables .st-muted { color: var(--ink-mute); font-size: 13px; }
+  @media (max-width: 800px) {
+    .sankey-tables { grid-template-columns: 1fr; }
+    .sankey-tables .st-panel:first-child { border-right: none; border-bottom: 1px solid var(--rule-soft); }
+    .sankey-chart { height: 440px; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- 封面 -->
+  <header class="cover">
+    <div class="eyebrow">Investment Research · A-Share Innovative Drugs</div>
+    <h1>当 AI Scientist 走进药企：<br>A 股创新药赛道的真伪机会扫描</h1>
+    <div class="subtitle">
+      以红杉 / xbench BiomniBench-DA「过程级评测」为推演基石，
+      从「数据资产 · AI 工作流 · 基本面」三轴重估 A 股 12 家创新药与上游标的，
+      回答一个问题——AI 加速创新药的红利，到底落到了谁的盘里？
+    </div>
+    <div class="meta-grid">
+      <div class="meta-cell">
+        <div class="label">报告日期</div>
+        <div class="value">2026-05-19</div>
+      </div>
+      <div class="meta-cell">
+        <div class="label">推演基石</div>
+        <div class="value">BiomniBench-DA</div>
+      </div>
+      <div class="meta-cell">
+        <div class="label">覆盖标的</div>
+        <div class="value">A 股 12 家 + 港股对照</div>
+      </div>
+      <div class="meta-cell">
+        <div class="label">数据截止</div>
+        <div class="value">2025 年报 / 2026Q1</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TL;DR -->
+  <section class="tldr">
+    <h3>TL;DR — 5 条结论</h3>
+    <p><strong>① 原文不是看多 AI 制药的口号文，而是一份冷静的能力体检。</strong>BiomniBench-DA 给出的真相是：最强 AI Scientist（Claude Code + Opus 4.7）73.34 分，已超过人类初级实习生 40–50 分；但在 GWAS-eQTL、通路富集这类需要生物学解释的任务上仍只拿 45–64 分。**短期最安全的协作模式是「AI 算 + 人类解释」**。</p>
+    <p><strong>② Agent Harness 与基础模型同等重要</strong>——同一个 GPT-5.4 在不同 Harness 下分差 13.5 分。投资含义：买「会接 AI 工作流的公司」，而不是买「会喊 AI 口号的公司」。</p>
+    <p><strong>③ 真正的红利点是「早期试错成本下降」</strong>——AI 单任务 4.9–25 分钟 / $0.92–4.58，人类要数小时到数十小时。<em>大量探索性分析可以前置、并行化、丢给 AI</em>。这意味着受益者是「<strong>有海量真实数据资产 + 工作流已嵌入 AI + 早期探索性研究密集</strong>」的三轴齐备者。</p>
+    <p><strong>④ A 股 12 家筛下来，能讲清"双轮（AI 杠杆 + 基本面）"的只有 2 家：成都先导（AI 工作流闭环最完整，但估值已透支）、恒瑞医药（基本面 + 出海 BD 现金流 + AI 平台明确披露三齐）。</strong></p>
+    <p><strong>⑤ 警惕三类伪 alpha：</strong>药明康德 2025 年 191 亿净利中 <em>59 亿是非经常性收益</em>、扣非利润增速 32.6% 远低于报表增速 102.6%；泓博医药 2026Q1 营收同比仅 +1.7%、扣非 -33%，AI 智能体官方原话「<em>暂未形成可对外披露的重大进展</em>」；荣昌生物 2026Q1 经营性现金流骤降 92.53%——这些都是 AI 故事救不了的基本面问题。</p>
+  </section>
+
+  <!-- 第一章 -->
+  <h2>一 · 推演基石：BiomniBench-DA 给出的真相</h2>
+
+  <p>这份报告的推演起点，不是"AI 会颠覆创新药"这种粗糙叙事，而是红杉中国 xbench 联合 Phylo、Humanlaya Data Lab、斯坦福 / 哈佛 / 北大 / 头部药企百位专家、耗时 1000 余小时构建的 <strong>BiomniBench-DA</strong>——全球首个面向真实生物医药研究场景的<strong>过程级</strong>评测框架。</p>
+
+  <p>原文的真正贡献，不是说"AI 已经赢了"，而是回答了一个药企真正关心的问题：「这条分析链条，科学家敢不敢信」。</p>
+
+  <blockquote>
+    <p>"过去的 benchmark 像一场考试，给题、给答案、判对错。而 Auto Research 需要的是上岗评测，给数据、给目标、看过程、看结果、看风险。"</p>
+    <p>—— 红杉汇 / xbench 团队，2026-05-19</p>
+  </blockquote>
+
+  <h3>四个核心 Insight 的投资语义还原</h3>
+
+  <div class="insight-block">
+    <span class="insight-num">INSIGHT 1</span>
+    <h4>最强 AI Scientist 实习生已超过人类初级实习生平均水平</h4>
+    <p>BiomniBench-DA 100 道题、5 大疾病领域、17 类分析任务的过程级评分结果：</p>
+    <div class="insight-data">
+      Claude Code + Opus 4.7 ··········· 73.34 分（满分 100）<br>
+      Claude Code + Opus 4.6 ··········· 69.83 分<br>
+      Codex CLI + GPT-5.4 ·············· 68.69 分<br>
+      Gemini CLI + Gemini 3.1 Pro ······ 49.83 分<br>
+      <span style="color: var(--warn);">人类实习生平均 ··················· 40–50 分</span>
+    </div>
+    <p><strong>投资语义：</strong>"AI Scientist 替代初级实习生 / 助理研究员"已经从概念变成可验证事实。受益最直接的是<em>研发流程里"初级数据分析"工时占比高</em>的环节——这正是 CRO、DEL 平台、AI 制药公司的边际效率改善来源。</p>
+  </div>
+
+  <div class="insight-block">
+    <span class="insight-num">INSIGHT 2</span>
+    <h4>Agent Harness 与基础模型同等重要</h4>
+    <p>同一个 GPT-5.4，在 Codex CLI 下 68.69 分，在 Terminus-2 下 55.19 分——<strong>纯 Harness 差异 13.5 分</strong>。</p>
+    <div class="insight-data">
+      固定基础模型，Harness 决定了 ±15% 的能力上限<br>
+      → AI 不是一个"模型选型问题"，而是一个"流程工程问题"
+    </div>
+    <p><strong>投资语义：</strong>这条对 A 股标的特别重要——它意味着，<em>真正的护城河不是"有没有用 GPT-5"，而是"有没有把 AI 嵌进自己的 R&D 流程并形成可复用的 Agent 资产"</em>。这把"AI 概念股"和"AI 已经在跑业务"的公司分开了。</p>
+  </div>
+
+  <div class="insight-block">
+    <span class="insight-num">INSIGHT 3</span>
+    <h4>AI 更快更省——早期试错成本骤降</h4>
+    <div class="insight-data">
+      AI：单任务 4.9–25 分钟 / $0.92–4.58 美元 / 34 turns 即收敛<br>
+      人类：数小时～数十小时
+    </div>
+    <p>这是原文里最有"投资含金量"的一个数据点。<strong>大量探索性分析可以前置、并行化、丢给 AI，早期试错成本大幅降低</strong>。</p>
+    <p><strong>投资语义：</strong>受益者不是所有药企，而是<em>那些"早期探索性研究最密集、试错次数最多、数据资产最厚"的公司</em>。具体到 A 股：DEL 平台（成都先导）、化合物筛选 CRO（药明、皓元）、平台型 Biotech（恒瑞、百济）。</p>
+  </div>
+
+  <div class="insight-block">
+    <span class="insight-num">INSIGHT 4</span>
+    <h4>AI 偏科：会算不一定会解释</h4>
+    <div class="insight-data">
+      细胞组成分析 ················ 91 分（边界清晰）<br>
+      突变分析 ···················· 88 分（边界清晰）<br>
+      通路富集 ···················· 64 分（需要生物学解释）<br>
+      <span style="color: var(--danger);">GWAS-eQTL 分析 ·············· 45 分（科学推理重）</span>
+    </div>
+    <p>原文原话：「<strong>AI 擅长计算，但对结果的生物学意义和科学深度理解还比较有限。短期内"AI 算 + 人类解释"可能是最安全的协作模式。</strong>」</p>
+    <p><strong>投资语义：</strong>这是<em>给"AI 颠覆药企"叙事浇的一盆冷水</em>。AI 解决不了的：复杂多模态推理、生物学语义解释、跨试验的因果归因。所以——光有 AI 没有顶尖科学家团队的公司，AI 红利打折；纯 AI 没有数据反哺的公司，做不出 Verification Loop。</p>
+  </div>
+
+  <h3>从原文到投资框架——三个判别维度</h3>
+
+  <p>把 4 个 Insight 翻译成可操作的判断标准，得到这张表。后面所有公司分析都会沿用这三个维度：</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">维度</th>
+        <th style="width: 39%;">真实迹象</th>
+        <th style="width: 39%;">伪信号</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>① 数据资产</strong></td>
+        <td>公开披露规模与结构：靶点类型、项目数、实验数据量（成都先导：400+ DEL 项目 / 53 靶点类）</td>
+        <td>只说"积累了数据"无量化；数据来源模糊；公共数据占主导</td>
+      </tr>
+      <tr>
+        <td><strong>② AI 工作流</strong></td>
+        <td>有具体客户案例（即使保密也说"已用于 X 个项目"）；学术论文出现 AI 设计→合成→验证链路；有分子进 IND</td>
+        <td>只讲平台功能 / 模块数；AI 是"辅助"名义但决策权仍在化学家；无新分子进临床</td>
+      </tr>
+      <tr>
+        <td><strong>③ 基本面独立性</strong></td>
+        <td>核心业务可独立成立（管线 / BD / 现金流），AI 是<em>加分项</em>而非<em>救命稻草</em></td>
+        <td>主业亏损扩大 / 现金流恶化时谈 AI；用 AI 概念覆盖基本面恶化</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 第二章 -->
+  <h2>二 · 从基石到 A 股映射——四桶机会图谱</h2>
+
+  <p>沿着 Insight 3（早期试错成本下降）这条主推演链，A 股可以从两个方向布局：</p>
+
+  <p><strong>方向 A · 卖铲子方向</strong>——直接为药企的"AI 探索性分析工作流"提供数据、化合物库、CRO 服务、测序设备。</p>
+
+  <p><strong>方向 B · 用铲子方向</strong>——自己是药企 / Biotech，把 AI 装进自己的研发流程，缩短临床前→临床节奏，靠 BD 出海 / 上市销售兑现。</p>
+
+  <div class="bucket-grid">
+    <div class="bucket">
+      <h4>桶 A · AI 制药 CRO / 平台</h4>
+      <p>把 AI 嵌进药物发现工作流的"卖水人"。真正的护城河 = 私有实验数据 × DMTA 闭环 × 客户粘性。</p>
+      <div class="companies">成都先导 · 药明康德 · 皓元医药 · 泓博医药</div>
+    </div>
+    <div class="bucket">
+      <h4>桶 B · 数据 / 算力上游</h4>
+      <p>给 AI Scientist "喂数据"的基础设施。逻辑是国产替代而非 AI 赋能，需要看出货量与海外恢复。</p>
+      <div class="companies">华大智造 · 华大基因</div>
+    </div>
+    <div class="bucket">
+      <h4>桶 C · 创新药出海龙头</h4>
+      <p>管线宽 + BD 出海现金流硬，AI 在 R&D 内部已落地——双轮型。</p>
+      <div class="companies">恒瑞医药 · 百济神州</div>
+    </div>
+    <div class="bucket">
+      <h4>桶 D · ADC / 平台型 Biotech</h4>
+      <p>差异化技术平台 + 单大单 BD 兑现，弹性大但单管线 / 单合作依赖高。</p>
+      <div class="companies">百利天恒 · 荣昌生物 · 诺诚健华 · 迪哲医药</div>
+    </div>
+  </div>
+
+  <!-- 第三章 -->
+  <h2>三 · 精选 12 家深度分析卡</h2>
+
+  <p>每张卡同时给出：① 最新业绩硬数据；② AI 杠杆点的真伪；③ 与 BiomniBench-DA 三维度（数据资产 / AI 工作流 / 基本面独立性）的对齐结果；④ <strong>可证伪条件</strong>——什么情况下投资逻辑会崩。</p>
+
+  <!-- ========== 桶 A · 公司 1：成都先导 ========== -->
+  <h3>桶 A · AI 制药 CRO / 平台</h3>
+
+  <div class="company-card good">
+    <div class="company-header">
+      <div>
+        <span class="company-name">成都先导</span>
+        <span class="company-code">688222 · SH</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">AI 工作流最完整</span>
+        <span class="tag warn">估值已透支</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>全球最大 DEL 库供应商 + AIDD-DMTA 闭环平台。SGC 官方认可为「Target 2035 Phase 2」核心合作伙伴（Nature Reviews Chemistry 发表）。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>预告全年净利润 <strong>1.04 – 1.27 亿元（+102.5% ~ +147.3%）</strong>，上市后首次突破亿元；H1 营收 2.27 亿（+16.58%），净利 5004 万（+390.72%）；Q3 累计营收 3.7 亿（+24%），净利 9287 万（+208.34%）。</div></div>
+    <div class="card-row"><div class="label">AI 杠杆点</div><div>① <strong>数据资产可量化</strong>：基于 53 个靶点类、近 400 个 DEL 筛选项目的真实实验数据构建"靶点-万亿化合物"亲和力预测模型；② <strong>DMTA 闭环已完成</strong>，在客户靶点上完成两轮 AIDD-DMTA 迭代；③ OpenDEL® 3.0 自服务产品；④ 与辉瑞 / 强生 / 默沙东 / 罗氏组成全球首个 DEL 联盟（2024 年 10 月）。</div></div>
+    <div class="card-row"><div class="label">护城河</div><div>400+ 真实实验数据 → BioAI 真正的"原油"；竞争对手用公共数据训不出来的 know-how；国际一线药企背书（不是营销话术）。</div></div>
+    <div class="card-row"><div class="label">估值锚</div><div>市值 ~58.7 亿元；<strong>PE 84.76x / PS 22.65x（2025）</strong>，2026 预期 PE 79.7x。</div></div>
+
+    <div class="risk-box">
+      <h4>风险与可证伪条件</h4>
+      <ul>
+        <li><strong>估值透支</strong>：当前估值定价了 2–3 年的乐观预期；若 2026 H1 增速回落到 60% 以下，估值有 30% 下修空间。</li>
+        <li><strong>客户付费意愿未充分验证</strong>：与一线药企"合作"和"签多年框架订单 + 里程碑付款"是两件事。年报里要找的是后者。</li>
+        <li><strong>规模仍小</strong>：H1 营收 2.27 亿，距 CRO 主流（百亿级）有 10 倍差距，单大客户流失杀伤大。</li>
+        <li><strong>可证伪条件</strong>：① 联盟客户出现退出；② AI+DEL 设计出的分子无一例进入 IND；③ Q3 累计增速跌破 30%。</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      <strong>这是 A 股最有资格讲"AI 加速创新药"故事的标的</strong>——数据壁垒 / 工作流闭环 / 国际背书都齐了。但当前估值已经把故事 price-in 了大半。<em>等回调 25-30% 或等下一份年报兑现 100% 增速后再考虑</em>。
+    </div>
+  </div>
+
+  <!-- 桶 A 公司 2：药明康德 -->
+  <div class="company-card warn">
+    <div class="company-header">
+      <div>
+        <span class="company-name">药明康德</span>
+        <span class="company-code">603259 · SH</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">业绩与现金流硬</span>
+        <span class="tag danger">AI 故事虚 + 利润含 59 亿非经</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>全球最大 CRDMO 一体化 CRO，Chemistry42 / TIDES（多肽寡核苷酸）/ ATU（细胞基因治疗）多业务线。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>营收 <strong>454.56 亿（+15.84%）</strong>；归母净利 191.51 亿（+102.65%）；<strong>但扣非净利 132.41 亿（+32.56%）</strong>；经营性现金流 172.03 亿（+38.66%）；2026Q1 营收 124.4 亿（+28.8%），扣非净利 +83.6%。</div></div>
+    <div class="card-row"><div class="label">利润质量</div><div><em style="background:#fbece0;">2025 年 191 亿净利里有 59 亿是非经常性收益（资产处置）</em>——这意味着报表上的"翻倍"是一次性的，真实主业增速看扣非的 32.56%。</div></div>
+    <div class="card-row"><div class="label">AI 杠杆点</div><div>Chemistry42 平台宣传"化合物设计周期缩短 60%+"——但<strong>从未公开披露</strong>：设计了多少分子？多少进入临床？客户采购比例？AI 是辅助工具而非决策驱动。<em>DEL 库等数据资产不独家</em>。</div></div>
+    <div class="card-row"><div class="label">真实 Alpha</div><div>不在 AI 故事里——在 <strong>TIDES 业务 +96% 高增</strong>、美国客户收入 +34.3%、在手订单 580 亿（+28.8%）。这是 CRO 周期复苏 + GLP-1 多肽 CDMO 红利，与 BiomniBench-DA 推演基石无关。</div></div>
+    <div class="card-row"><div class="label">估值锚</div><div>市值 ~5500 亿元；PE ~15x（2026E）；PS ~12x。</div></div>
+
+    <div class="risk-box">
+      <h4>风险与可证伪条件</h4>
+      <ul>
+        <li>地缘 / 美国生物安全法案风险（《BIOSECURE Act》余波，2026 年仍可能反复）；2025 年欧洲收入已 -4.0%。</li>
+        <li>非经常性收益占比过大 → 2026 净利"高基数"压力，明年 YoY 可能负增长。</li>
+        <li><strong>可证伪条件</strong>：① 2026 中报扣非增速跌破 20%；② TIDES 在手订单环比下滑；③ 美国制裁政策再起。</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      <strong>买药明，是买 CRO 周期 + TIDES，不是买 AI 故事</strong>。AI 部分对估值的"加分"应该归零看。如果你买药明是因为它"用了 AI 制药"——这是被叙事误导。
+    </div>
+  </div>
+
+  <!-- 桶 A 公司 3：皓元医药 -->
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <span class="company-name">皓元医药</span>
+        <span class="company-code">688131 · SH</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">前端试剂业务真高增</span>
+        <span class="tag warn">AI 案例缺失</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>前端生命科学试剂（工具化合物 / 分子砌块）+ 后端 CDMO（含 ADC CDMO）。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>营收 28.77 亿（+26.73%）；归母净利 2.40 亿（+18.96%）；<strong>扣非净利 2.47 亿（+38.10%）</strong>，扣非增速比报表更亮；前端试剂收入 19.9 亿（+32.8%）、分子砌块 5.6 亿（+35%）；海外收入占比 40.3%（+34.2%）。</div></div>
+    <div class="card-row"><div class="label">AI 杠杆点</div><div>2026 年 4 月与华东师大签 AI 药物探索联合实验室；MegaUni 化合物库；高通量筛选 ~300 个项目。<strong>但实验室刚成立，无商业化案例</strong>；与华东师大是科研合作而非客户采购。</div></div>
+    <div class="card-row"><div class="label">真实 Alpha</div><div>不在 AI——在前端试剂 +32.8% 高增 + 61.9% 毛利 + 海外占比 40% 增长。<strong>这是"科研试剂卖水人"的真实生意</strong>，本质类似 Sigma-Aldrich 模式。</div></div>
+    <div class="card-row"><div class="label">估值锚</div><div>市值 ~315 亿元；<strong>PE_TTM 37.6 / PS_TTM 3.9</strong>，估值偏高。</div></div>
+
+    <div class="risk-box">
+      <h4>风险与可证伪条件</h4>
+      <ul>
+        <li>后端 ADC CDMO 赛道拥挤（与药明合联、博腾、凯莱英直接竞争）；6.7 亿在手订单虽 +30% 但毛利压力存在。</li>
+        <li>AI 不能形成商业化闭环时，估值会回到"科研试剂股"水位（PE 25–28x），还有 25-30% 下修空间。</li>
+        <li><strong>可证伪条件</strong>：MegaUni 库到 2026 年底仍无客户采购公告。</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      买它就是买"科研试剂 + ADC CDMO"的稳健生意。<em>AI 部分目前是 0 价值，不要为此付溢价</em>。如果回调到 PE 25x，可以重新考虑。
+    </div>
+  </div>
+
+  <!-- 桶 A 公司 4：泓博医药 -->
+  <div class="company-card danger">
+    <div class="company-header">
+      <div>
+        <span class="company-name">泓博医药</span>
+        <span class="company-code">301230 · SZ</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag danger">增速失速 + AI 名不副实</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>PROTAC + AIDD/CADD 平台 + 药物发现 CRO 小盘。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>营收 6.88 亿（+26.43%），归母净利 3429 万（+100.75%）——基数太低，绝对额很小。</div></div>
+    <div class="card-row"><div class="label">2026Q1</div><div><em style="background:#f8e5e1;">营收同比 +1.7%（接近停滞）；扣非净利 -33.3%</em>——主业盈利在恶化，与年报增速强烈背离。</div></div>
+    <div class="card-row"><div class="label">AI 杠杆点</div><div>DiOrion AI 平台累计支持 104 个项目；2025 H1 披露原文：「<strong>多肽 / PROTAC / CMC / 多模态决策等 AI 智能体已开发，但暂未形成可对外披露的重大进展。</strong>」——这是<em>官方</em>说的。</div></div>
+    <div class="card-row"><div class="label">估值锚</div><div>市值 ~79 亿；体量 + 增速失配。</div></div>
+
+    <div class="danger-box">
+      <h4>核心警告</h4>
+      <ul>
+        <li><strong>Q1 主业失速 + AI 智能体官方承认无对外进展</strong>——基本面与故事双双不成立。</li>
+        <li>对标桶内同行（成都先导真有 AI 工作流证据），泓博的差距是数量级的。</li>
+        <li><strong>可证伪条件其实已经触发</strong>。</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      <strong>建议规避</strong>。在「AI 加速创新药」叙事下，它属于贴标签型——核心业务在 2026 Q1 已经出现警讯。
+    </div>
+  </div>
+
+  <!-- 桶 B -->
+  <h3>桶 B · 数据 / 算力上游</h3>
+
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <span class="company-name">华大智造</span>
+        <span class="company-code">688114 · SH</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">国产替代成功</span>
+        <span class="tag neutral">与 AI 制药关联弱</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>基因测序仪（DNBSEQ 系列）国产替代龙头；NMPA 批准的 41 款临床测序仪中 24 款基于 DNBSEQ（市占 59%）。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>营收 27.8 亿；<strong>仍净亏 2.37 亿</strong>，但同比收窄 60.6%；前三季营收 18.7 亿持平，亏损从 4.63 亿收窄到 1.2 亿——<em>亏损拐点临近</em>。</div></div>
+    <div class="card-row"><div class="label">出货与海外</div><div>全球累计销量 5300+ 台；E 系列收入同增 361%，试剂同增 586%；在手订单 7.4 亿（海外占 33%）；但海外业务"阶段性低迷"。</div></div>
+    <div class="card-row"><div class="label">AI 杠杆点</div><div><strong>与 AI 制药无直接链接</strong>——测序仪是通用工具，主要用户是科研、临床检测、公卫。年报未见与 AI 制药客户的直接合作披露。</div></div>
+    <div class="card-row"><div class="label">估值锚</div><div>市值 ~309 亿；PS 8.69x（明显高于纯硬件估值）。</div></div>
+
+    <div class="risk-box">
+      <h4>风险与可证伪条件</h4>
+      <ul>
+        <li>海外业务持续低迷（占比 33% 但量在萎缩）；若 2026 海外收入未恢复，估值需调整。</li>
+        <li>盈利拐点仍未实现，2025 仍亏 2.37 亿。</li>
+        <li><strong>可证伪条件</strong>：2026 H1 仍未盈利 / 海外订单环比再降。</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      它的 alpha 是<strong>"国产替代 + 亏损收窄拐点"</strong>，<em>不是"AI 制药卖水人"</em>。这两个故事不能合二为一来抬估值。
+    </div>
+  </div>
+
+  <!-- 桶 C 出海龙头 -->
+  <h3>桶 C · 创新药出海龙头</h3>
+
+  <div class="company-card good">
+    <div class="company-header">
+      <div>
+        <span class="company-name">恒瑞医药</span>
+        <span class="company-code">600276 · SH</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">双轮最齐</span>
+        <span class="tag good">BD 现金流硬</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>A 股创新药龙头；24 个 1 类创新药获批（领先数量）；从仿创结合向 NewCo + 海外授权全面转型。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>营收 <strong>316.29 亿（+13%）</strong>；归母净利 77.11 亿（+22%）；创新药收入 163.42 亿（占 58%，+26%）；经营性现金流 112.35 亿（+51%）；货币资金 409.55 亿。</div></div>
+    <div class="card-row"><div class="label">2026Q1</div><div>营收 81.41 亿；净利 22.82 亿（+22%）；创新药占比升至 61.69%；出海授权履约收入 7.87 亿（GSK 单兑现）。</div></div>
+    <div class="card-row"><div class="label">关键 BD（2 年累计 ~200+ 亿美元）</div><div>
+      • <strong>GSK 125 亿美元</strong>组合授权（5 亿首付 + 120 亿里程碑，2025-07）<br>
+      • <strong>Hercules / GLP-1 60 亿美元</strong>授权<br>
+      • <strong>默沙东 Lp(a) 19.7 亿美元</strong><br>
+      → 这不是单点交易，是<em>系统化 NewCo / License-out 平台能力</em>的兑现
+    </div></div>
+    <div class="card-row"><div class="label">AI 杠杆点</div><div><strong>年报明确披露</strong>：① CADD + AIDD 小分子设计平台；② 引入 Iktos Makya™ de novo 设计工具；③ AI 辅助大分子结构预测。<em>不是营销话术，是写进年报的 R&D 工具栈</em>。</div></div>
+    <div class="card-row"><div class="label">估值锚</div><div>市值 ~3994 亿；按创新药 163 亿口径 PS ~2.4x（远低于纯 Biotech 的 8-15x）。</div></div>
+
+    <div class="risk-box">
+      <h4>风险与可证伪条件</h4>
+      <ul>
+        <li>创新药商业化竞争（PD-1 / GLP-1 同质化），国内毛利压力。</li>
+        <li>GSK 等大单的里程碑兑现节奏不确定，2026-2027 履约收入会有波动。</li>
+        <li><strong>可证伪条件</strong>：① 出海授权暂停 6 个月以上；② 创新药占比掉回 50% 以下；③ 重磅管线临床失败。</li>
+      </ul>
+    </div>
+
+    <!-- ===== 恒瑞 Sankey 利润表流量图 ===== -->
+    <figure class="sankey-figure" id="hengrui-sankey">
+      <figcaption>
+        2025 年合并利润表流量图
+        <span class="sankey-sub">恒瑞医药 · 营业总收入 316.29 亿 · 毛利率 86.2% · 归母净利润 77.11 亿 | 单位：亿元人民币（A 股合并利润表，含推算项）</span>
+      </figcaption>
+      <div class="sankey-chart-wrap">
+        <div id="chart-hengrui" class="sankey-chart"></div>
+      </div>
+      <div class="sankey-legend">
+        <span class="sl-seg"><span class="sl-dot" style="background:#4a9dcf"></span>收入分部</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#2d8a50"></span>毛利 / 归母净利润</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#c94040"></span>营业成本</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#e8a040"></span>期间费用</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#7eb87e"></span>其他经营性流入</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#b07030"></span>所得税</span>
+        <span class="sl-seg" style="margin-left:8px;color:#5b524c;">
+          chip 读法：
+          <span class="sankey-chip-demo" style="background:#1f6feb;color:#fff;">← X%</span>÷左邻节点
+          <span class="sankey-chip-demo" style="background:#1f6feb;color:#fff;">→ Y%</span>÷右邻节点
+        </span>
+      </div>
+      <div class="sankey-tables">
+        <div class="st-panel">
+          <h4>分部营收（2025 年）</h4>
+          <table>
+            <thead>
+              <tr><th>业务分部</th><th>营收（亿元）</th><th>占比</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>抗肿瘤创新药</td><td>132.40</td><td>41.9%</td></tr>
+              <tr><td>非肿瘤创新药</td><td>31.02</td><td>9.8%</td></tr>
+              <tr><td>对外许可（License-out）</td><td class="st-pos">33.92</td><td>10.7%</td></tr>
+              <tr><td>仿制药及其他</td><td>118.95</td><td>37.6%</td></tr>
+              <tr class="st-total"><td>营业总收入</td><td>316.29</td><td>100%</td></tr>
+            </tbody>
+          </table>
+          <p class="st-muted" style="margin:8px 0 0;font-size:13px;">毛利率 86.2%；对外许可 33.92 亿为 GSK / Hercules / 默沙东等合作首付款及里程碑首批兑现。研发实际投入 87.24 亿，其中资本化 17.63 亿（资本化率 20.2%）。</p>
+        </div>
+        <div class="st-panel">
+          <h4>利润表摘要（2025 年，亿元）</h4>
+          <table>
+            <thead>
+              <tr><th>项目</th><th>金额</th><th>备注</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>营业总收入</td><td class="st-pos">316.29</td><td class="st-muted">+13% YoY</td></tr>
+              <tr><td>营业成本</td><td>43.66</td><td class="st-muted">毛利率 86.2%</td></tr>
+              <tr><td>毛利</td><td class="st-pos">272.63</td><td class="st-muted">倒推</td></tr>
+              <tr><td>销售费用</td><td>91.06</td><td class="st-muted">占营收 28.8%</td></tr>
+              <tr><td>管理费用</td><td>28.06</td><td class="st-muted">占营收 8.9%</td></tr>
+              <tr><td>研发费用（费用化）</td><td>69.61</td><td class="st-muted">资本化 17.63 另计</td></tr>
+              <tr><td>财务净收入（流入）</td><td class="st-pos">4.07</td><td class="st-muted">利息净收入</td></tr>
+              <tr><td>其他收益/投资收益</td><td class="st-pos">2.64</td><td class="st-muted">推算补平</td></tr>
+              <tr><td>所得税</td><td>12.50</td><td class="st-muted">推算</td></tr>
+              <tr><td>归母净利润</td><td class="st-pos">77.11</td><td class="st-muted">+22% YoY ✅披露值</td></tr>
+              <tr><td>少数股东损益</td><td>1.00</td><td class="st-muted">推算</td></tr>
+              <tr class="st-total"><td>净利润</td><td class="st-pos">78.11</td><td class="st-muted">推算</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </figure>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      <strong>A 股 12 家里"双轮最干净"的一家</strong>——基本面（管线 + BD 现金流 + 经营现金流 112 亿）独立成立，AI 是真加分项（写进年报、有具体工具）。<em>这是 BiomniBench-DA 推演基石下风险收益比最对称的标的</em>。
+    </div>
+  </div>
+
+  <!-- 桶 C 公司 2：百济神州 -->
+  <div class="company-card good">
+    <div class="company-header">
+      <div>
+        <span class="company-name">百济神州</span>
+        <span class="company-code">688235 · SH (亦 6160.HK / BGNE.US)</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">现金流转正拐点</span>
+        <span class="tag warn">AI 披露空白</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>全球化血液肿瘤龙头；A+H+US 三地上市的稀有 Biotech。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>营收 <strong>382.25 亿（+40%）</strong>；归母净利 <strong>14.61 亿（首次盈利，上年亏 49.78 亿）</strong>；经营性现金流 137.13 亿（由负转正）；自由现金流 9.42 亿美元。</div></div>
+    <div class="card-row"><div class="label">2026Q1</div><div>营收 105.44 亿；BRUKINSA（泽布替尼）全球销售 75.98 亿（+34%）。</div></div>
+    <div class="card-row"><div class="label">核心产品</div><div>泽布替尼 2025 全球 125.27 亿（+56%）；替雷利珠单抗 47 个国家获批；BTK 全球第一阵营。</div></div>
+    <div class="card-row"><div class="label">AI 杠杆点</div><div><em style="background:#fbece0;">年报未见公开披露 AI 在临床设计或分子发现中的具体应用</em>——是重要空白。可能解读：① 产品成熟期，AI 优化空间小；② 内部用了但未对外说；③ 真的没用。无法证伪。</div></div>
+    <div class="card-row"><div class="label">估值锚</div><div>A 股市值 ~4190 亿；按泽布替尼 125 亿 PS 视角合理。</div></div>
+
+    <div class="risk-box">
+      <h4>风险与可证伪条件</h4>
+      <ul>
+        <li>泽布替尼专利到期 / 仿制竞争（中长期，2030 前后）。</li>
+        <li>持续高研发投入压力，盈利拐点的可持续性需要 2026 H1 验证。</li>
+        <li><strong>可证伪条件</strong>：① 自由现金流回到负值；② 泽布替尼增速跌破 20%。</li>
+      </ul>
+    </div>
+
+    <!-- ===== 百济 Sankey 利润表流量图 ===== -->
+    <figure class="sankey-figure" id="beigene-sankey">
+      <figcaption>
+        2025 年合并利润表流量图
+        <span class="sankey-sub">百济神州 · 营业总收入 382.25 亿 · 毛利率 87.3% · 归母净利润 14.61 亿（首次盈利） | 单位：亿元人民币（A 股合并利润表，含推算项）</span>
+      </figcaption>
+      <div class="sankey-chart-wrap">
+        <div id="chart-beigene" class="sankey-chart"></div>
+      </div>
+      <div class="sankey-legend">
+        <span class="sl-seg"><span class="sl-dot" style="background:#4a9dcf"></span>收入分部</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#2d8a50"></span>毛利 / 归母净利润</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#c94040"></span>营业成本</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#e8a040"></span>期间费用</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#7eb87e"></span>其他经营性流入</span>
+        <span class="sl-seg"><span class="sl-dot" style="background:#b07030"></span>所得税 / 减值</span>
+        <span class="sl-seg" style="margin-left:8px;color:#5b524c;">
+          chip 读法：
+          <span class="sankey-chip-demo" style="background:#1f6feb;color:#fff;">← X%</span>÷左邻节点
+          <span class="sankey-chip-demo" style="background:#1f6feb;color:#fff;">→ Y%</span>÷右邻节点
+        </span>
+      </div>
+      <div class="sankey-tables">
+        <div class="st-panel">
+          <h4>分部营收（2025 年）</h4>
+          <table>
+            <thead>
+              <tr><th>业务分部</th><th>营收（亿元）</th><th>占比</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>泽布替尼 BRUKINSA</td><td class="st-pos">280.67</td><td>73.4%</td></tr>
+              <tr style="color:var(--ink-mute);font-size:13px;"><td style="padding-left:20px;">其中：美国</td><td>202.06</td><td>72% 泽布替尼</td></tr>
+              <tr style="color:var(--ink-mute);font-size:13px;"><td style="padding-left:20px;">其中：欧洲</td><td>42.65</td><td>15% 泽布替尼</td></tr>
+              <tr style="color:var(--ink-mute);font-size:13px;"><td style="padding-left:20px;">其中：中国</td><td>24.72</td><td>9% 泽布替尼</td></tr>
+              <tr><td>替雷利珠单抗</td><td>52.97</td><td>13.9%</td></tr>
+              <tr><td>其他自研及引进产品</td><td>44.06</td><td>11.5%</td></tr>
+              <tr><td>合作 / License 收入</td><td>4.55</td><td>1.2%</td></tr>
+              <tr class="st-total"><td>营业总收入</td><td>382.25</td><td>100%</td></tr>
+            </tbody>
+          </table>
+          <p class="st-muted" style="margin:8px 0 0;font-size:13px;">泽布替尼占总收入 73.4%，极度单产品依赖；美国销售 202.06 亿为核心增长引擎。</p>
+        </div>
+        <div class="st-panel">
+          <h4>利润表摘要（2025 年，亿元）</h4>
+          <table>
+            <thead>
+              <tr><th>项目</th><th>金额</th><th>备注</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>营业总收入</td><td class="st-pos">382.25</td><td class="st-muted">+40% YoY</td></tr>
+              <tr><td>营业成本</td><td>48.55</td><td class="st-muted">毛利率 87.3%</td></tr>
+              <tr><td>毛利</td><td class="st-pos">333.70</td><td class="st-muted">倒推</td></tr>
+              <tr><td>销售费用</td><td>80.00</td><td class="st-muted">推算（SG&amp;A 前三季度外推）</td></tr>
+              <tr><td>管理费用</td><td>67.00</td><td class="st-muted">推算</td></tr>
+              <tr><td>研发费用</td><td>155.08</td><td class="st-muted">✅ 披露值</td></tr>
+              <tr><td>资产减值损失</td><td>5.40</td><td class="st-muted">Q4 股权投资减值</td></tr>
+              <tr><td>利息净收入（流入）</td><td class="st-pos">11.00</td><td class="st-muted">推算</td></tr>
+              <tr><td>其他流入</td><td class="st-pos">0.89</td><td class="st-muted">推算补平</td></tr>
+              <tr><td>所得税</td><td>23.00</td><td class="st-muted">推算</td></tr>
+              <tr><td>归母净利润</td><td class="st-pos">14.61</td><td class="st-muted">✅ 首次盈利</td></tr>
+              <tr><td>少数股东损益</td><td>0.50</td><td class="st-muted">推算</td></tr>
+              <tr class="st-total"><td>净利润</td><td class="st-pos">15.11</td><td class="st-muted">推算</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </figure>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      <strong>买它是买"基本面拐点"</strong>——首次盈利 + 现金流转正是关键事件。<em>AI 杠杆是空白项，不能为它支付溢价，但它的基本面独立成立</em>。
+    </div>
+  </div>
+
+  <!-- 桶 D ADC/平台型 Biotech -->
+  <h3>桶 D · ADC / 平台型 Biotech</h3>
+
+  <div class="company-card warn">
+    <div class="company-header">
+      <div>
+        <span class="company-name">百利天恒</span>
+        <span class="company-code">688506 · SH</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">BMS 84 亿大单</span>
+        <span class="tag danger">2025 H1 亏 11 亿</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>ADC + 双抗平台型 Biotech；自主 GNC 多特异性抗体平台 + SEBA 增强型双抗 + 创新 ADC 接头。</div></div>
+    <div class="card-row"><div class="label">BD 历史性事件</div><div><strong>BMS / BL-B01D1（EGFR×HER3 双抗 ADC）</strong>：8 亿美元首付（已收）+ 2.5 亿里程碑（2025-11 收讫）+ 总潜在 <strong>84 亿美元</strong> = 中国 ADC 单笔最大出海。</div></div>
+    <div class="card-row"><div class="label">2024 / 2025 H1</div><div>2024 营收 58.23 亿（+936%，BMS 首付推高基数）；扣非净利 36.36 亿；<em style="background:#f8e5e1;">2025 H1 净亏 11.18 亿</em>——回归"烧研发的 Biotech"原貌。</div></div>
+    <div class="card-row"><div class="label">管线</div><div>3 个 III 期 + 12 个早期临床；GNC / SEBA 是国内仅有的自主知识产权完整 ADC 体系。</div></div>
+    <div class="card-row"><div class="label">AI 杠杆点</div><div>年报未见 AI 应用披露——<em>BL-B01D1 的成功主要靠传统设计 + 平台技术</em>。</div></div>
+
+    <div class="risk-box">
+      <h4>风险与可证伪条件</h4>
+      <ul>
+        <li>BMS 里程碑付款依赖临床进展，76 亿里程碑分多年兑现；任何一个 III 期失败都会大幅修正预期。</li>
+        <li>2025 H1 11 亿亏损 + 12 个早期临床烧钱，现金储备压力。</li>
+        <li><strong>可证伪条件</strong>：① BL-B01D1 III 期数据不达 PD-1/PD-L1 ADC 头对头预期；② 现金储备低于 12 个月运营。</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      高赔率、高方差。<em>不是"AI 红利"标的，是"传统 ADC 平台的研发兑现赌局"</em>。仓位控制好，BD 已经验证了平台价值，但 84 亿是上限不是基线。
+    </div>
+  </div>
+
+  <!-- 荣昌生物 -->
+  <div class="company-card danger">
+    <div class="company-header">
+      <div>
+        <span class="company-name">荣昌生物</span>
+        <span class="company-code">688331 · SH</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">2025 扭亏 7.10 亿</span>
+        <span class="tag danger">26Q1 经营现金流 -92.5%</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>ADC（维迪西妥单抗）+ 自免（泰它西普）双引擎。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>营收同增 89.36%；归母净利 <strong>7.10 亿（扭亏，上年亏 14.68 亿）</strong>——A 股上市后首次盈利。</div></div>
+    <div class="card-row"><div class="label">2026Q1</div><div>营收 6.56 亿（+25%）；归母净利 3.28 亿（扭亏）；<em style="background:#f8e5e1;">但经营性现金流骤降 92.53%</em>——盈利和现金流强烈背离。</div></div>
+    <div class="card-row"><div class="label">核心产品</div><div>维迪西妥单抗（RC48，HER2 ADC）：2025 销售 7.2+ 亿（+36%），新增第 5 个适应症（2026-04）；泰它西普 + RC48 合计 23.07 亿（+36%）。</div></div>
+    <div class="card-row"><div class="label">Seagen / Pfizer 困局</div><div>2021 签 Seagen：2 亿美元首付 + 24 亿里程碑（总 26 亿，曾创纪录）；<em>但 Seagen 被 Pfizer 收购后，2024 减值 2 亿美元</em>——国际前景模糊化。</div></div>
+
+    <div class="danger-box">
+      <h4>关键警告</h4>
+      <ul>
+        <li><strong>2026Q1 经营性现金流 -92.5%</strong>：这是会计利润和现金的严重背离，可能意味着回款恶化或一次性收款入账后的"裸泳"。</li>
+        <li>2025 年定增 26 亿"紧急输血"——基本面盈利但现金流恶化，矛盾尖锐。</li>
+        <li>两产品占营收 71%，单产品 / 单合作依赖度高。</li>
+        <li><strong>可证伪条件</strong>：2026 中报现金流仍未改善 → 盈利质量存疑。</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      <strong>需要看 2026 中报现金流改善才能确认拐点</strong>。当前盈利和现金流的背离是必须解开的悬念。AI 与它的故事无关——它属于"ADC 平台 + 自免基本面"赛道，但基本面拐点本身有疑问。
+    </div>
+  </div>
+
+  <!-- 诺诚健华 -->
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <span class="company-name">诺诚健华</span>
+        <span class="company-code">688428 · SH</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">首次盈利</span>
+        <span class="tag warn">BTK 同质化</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>BTK 抑制剂奥布替尼为核心 + CD19 单抗坦昔妥单抗。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>营收 <strong>23.75 亿（+135%）</strong>；归母净利 6.42 亿（首次盈利）；2026Q1 营收 5.29 亿（+39%），净利 1.06 亿（+489%）。</div></div>
+    <div class="card-row"><div class="label">核心产品</div><div>奥布替尼 2025 销售 14.10 亿（+41%，占营收 59%）；坦昔妥单抗 2025 新增获批 R/R DLBCL。</div></div>
+    <div class="card-row"><div class="label">出海历史</div><div>2021 Biogen 1.25 亿美元首付 → 2023-02 终止（无违约金）→ <strong>2025-10 与 Zenas 重签</strong>多发性硬化症 + 自免领域全球开发权 → 2026Q1 里程碑入账。</div></div>
+    <div class="card-row"><div class="label">AI 杠杆点</div><div>年报未见 AI 应用披露。</div></div>
+
+    <div class="risk-box">
+      <h4>风险与可证伪条件</h4>
+      <ul>
+        <li>BTK 同质化（百济泽布替尼是直接对手，市占领先）。</li>
+        <li>单品依赖度 59%；坦昔妥单抗放量节奏需观察。</li>
+        <li>2026Q1 经营现金流也存在异常下滑（年报和子 agent 资料中提及"现金流骤降 92.53%"，需以最新季报为准）。</li>
+        <li><strong>可证伪条件</strong>：① 奥布替尼增速跌破 20%；② Zenas 里程碑兑付延迟。</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      <strong>"小百济"路径</strong>——基本面独立成立（首次盈利），但缺乏 AI 杠杆叙事和管线宽度。<em>属于"无 AI 加分但基本面合格"的稳健型，不是叙事弹性大的标的</em>。
+    </div>
+  </div>
+
+  <!-- 迪哲医药 -->
+  <div class="company-card warn">
+    <div class="company-header">
+      <div>
+        <span class="company-name">迪哲医药</span>
+        <span class="company-code">688192 · SH</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag good">FDA 首发 EGFR Exon20</span>
+        <span class="tag danger">极度单管线依赖</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务定位</div><div>EGFR 靶向小分子专精 Biotech。</div></div>
+    <div class="card-row"><div class="label">2025 业绩</div><div>营收 8.01 亿（+123%）；仍亏损；研发投入 8.56 亿——主营销售小于研发支出。</div></div>
+    <div class="card-row"><div class="label">2026Q1</div><div>营收 2.53 亿（+58%）。</div></div>
+    <div class="card-row"><div class="label">核心产品</div><div>① <strong>舒沃替尼</strong>（EGFR Exon20ins NSCLC）：2025-07 FDA 加速批准，全球首创 + 中国首个出海 IND 获批创新药；② 高瑞哲（EGFR L858R/19Del）：国内销售。</div></div>
+    <div class="card-row"><div class="label">市场规模</div><div>EGFR Exon20ins 是<em>小众适应症</em>，全球峰值销售估约 12.9 亿美元——里程碑意义大，但<strong>市场规模有限</strong>。</div></div>
+
+    <div class="risk-box">
+      <h4>风险与可证伪条件</h4>
+      <ul>
+        <li><strong>极度单管线 / 单靶点依赖</strong>：两款都是 EGFR，靶点风险无对冲。</li>
+        <li>美国销售爬坡速度未明；高瑞哲面临同靶点产品众多。</li>
+        <li><strong>可证伪条件</strong>：舒沃替尼美国 2026 销售 < 5000 万美元。</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      <span class="v-label">VERDICT</span>
+      <strong>FDA 里程碑值得尊重，但市场规模天花板低</strong>。不是"AI 红利"标的，是"小众靶点先发优势"标的。仓位控制好，等舒沃替尼美国半年销售数据再加仓。
+    </div>
+  </div>
+
+  <!-- 港股对照：晶泰科技 -->
+  <h3>港股对照镜 · 晶泰科技（2228.HK）</h3>
+
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <span class="company-name">晶泰科技</span>
+        <span class="company-code">2228.HK（对照非推荐）</span>
+      </div>
+      <div class="tag-strip">
+        <span class="tag neutral">A 股投资者的参照系</span>
+      </div>
+    </div>
+
+    <div class="card-row"><div class="label">业务模式</div><div>AI 第一性原理计算（基于量子物理 XFF 力场）+ 机器人实验——这是"AI 驱动新药设计"，与 A 股 CRO（数据驱动 / 工程驱动）<em>完全不同范式</em>。</div></div>
+    <div class="card-row"><div class="label">2025 H1</div><div>营收 5.17 亿港元（+404%）；调整后净利 1.42 亿港元（首次扭亏）。</div></div>
+    <div class="card-row"><div class="label">代表交易</div><div>礼来 3.45 亿美元（多靶点战略 + AI 平台授权，2025-11）；JW Pharmaceutical 数百万美元。</div></div>
+    <div class="card-row"><div class="label">对 A 股的意义</div><div>A 股目前<em>没有真正对标晶泰的标的</em>——成都先导是"DEL+AI"的数据驱动型；药明是工程驱动型 CRO。<strong>这意味着 A 股投资者若押"AI 制药"，需要清楚是押"数据资产壁垒"还是"算法/物理引擎壁垒"，两条路径不能混淆</strong>。</div></div>
+  </div>
+
+  <!-- 第四章 横向对比 -->
+  <h2>四 · 横向矩阵：三轴评分对照</h2>
+
+  <p>沿用第一章的三个判别维度，对 8 家 A 股核心标的（剔除 4 家附加观察 / 边缘标的）打分。<strong>分数为 1-5（5 = 最强）</strong>。</p>
+
+  <table class="matrix">
+    <thead>
+      <tr>
+        <th style="width: 20%;">公司</th>
+        <th>数据资产</th>
+        <th>AI 工作流</th>
+        <th>基本面独立性</th>
+        <th>估值安全边际</th>
+        <th>综合判断</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>恒瑞医药</td>
+        <td><span class="score s4">4</span></td>
+        <td><span class="score s4">4</span></td>
+        <td><span class="score s5">5</span></td>
+        <td><span class="score s4">4</span></td>
+        <td>双轮最齐 · 首选</td>
+      </tr>
+      <tr>
+        <td>成都先导</td>
+        <td><span class="score s5">5</span></td>
+        <td><span class="score s5">5</span></td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s2">2</span></td>
+        <td>AI 故事最纯 · 估值贵</td>
+      </tr>
+      <tr>
+        <td>百济神州</td>
+        <td><span class="score s3">3</span></td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s5">5</span></td>
+        <td><span class="score s4">4</span></td>
+        <td>基本面拐点 · 稳健</td>
+      </tr>
+      <tr>
+        <td>药明康德</td>
+        <td><span class="score s3">3</span></td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s4">4</span></td>
+        <td><span class="score s4">4</span></td>
+        <td>CRO 周期 · AI 噪音</td>
+      </tr>
+      <tr>
+        <td>百利天恒</td>
+        <td><span class="score s3">3</span></td>
+        <td><span class="score s1">1</span></td>
+        <td><span class="score s3">3</span></td>
+        <td><span class="score s2">2</span></td>
+        <td>ADC 平台赌局 · 高方差</td>
+      </tr>
+      <tr>
+        <td>皓元医药</td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s1">1</span></td>
+        <td><span class="score s4">4</span></td>
+        <td><span class="score s2">2</span></td>
+        <td>科研试剂卖水人 · AI 噱头</td>
+      </tr>
+      <tr>
+        <td>华大智造</td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s1">1</span></td>
+        <td><span class="score s3">3</span></td>
+        <td><span class="score s3">3</span></td>
+        <td>国产替代 · 与 AI 制药弱相关</td>
+      </tr>
+      <tr>
+        <td>诺诚健华</td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s1">1</span></td>
+        <td><span class="score s4">4</span></td>
+        <td><span class="score s3">3</span></td>
+        <td>BTK 单品 · 缺 AI 弹性</td>
+      </tr>
+      <tr>
+        <td>荣昌生物</td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s1">1</span></td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s2">2</span></td>
+        <td>现金流背离 · 待观察</td>
+      </tr>
+      <tr>
+        <td>迪哲医药</td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s1">1</span></td>
+        <td><span class="score s2">2</span></td>
+        <td><span class="score s2">2</span></td>
+        <td>FDA 首发 · 单管线依赖</td>
+      </tr>
+      <tr>
+        <td>泓博医药</td>
+        <td><span class="score s1">1</span></td>
+        <td><span class="score s1">1</span></td>
+        <td><span class="score s1">1</span></td>
+        <td><span class="score s1">1</span></td>
+        <td>规避</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 第五章 风险与可证伪 -->
+  <h2>五 · 全局风险与可证伪条件</h2>
+
+  <h3>对推演基石本身的可证伪条件</h3>
+
+  <div class="risk-box">
+    <h4>BiomniBench-DA 推演链可能失效的情形</h4>
+    <ul>
+      <li><strong>Insight 1 失效</strong>：xbench 后续公布的过程级评测中，AI 在生物学解释类任务上没有进一步突破——意味着"AI 算 + 人解释"模式没有进化空间，红利天花板比想象低。</li>
+      <li><strong>Insight 3 失效</strong>：AI 在药企真实部署中，"Verification Loop"成本远高于 BiomniBench 的实验室环境（数据合规、IT 集成、专家审核），实际试错成本下降幅度远小于预期。</li>
+      <li><strong>系统性风险</strong>：① 中美生物安全摩擦升级（《BIOSECURE Act》）；② 国内创新药医保谈判压价加剧；③ 美元加息周期延长打压全球 Biotech 估值。</li>
+    </ul>
+  </div>
+
+  <h3>对 A 股板块的特定风险</h3>
+
+  <ul>
+    <li><strong>政策风险</strong>：医保谈判周期内，PD-1/GLP-1/BTK 同质化品种降价压力持续；创新药支付端的"出海+商保"双轮模式不确定。</li>
+    <li><strong>BD 兑现节奏风险</strong>：恒瑞 200+ 亿、百利 84 亿、荣昌 26 亿大单都是"首付小、里程碑大"结构，里程碑兑现取决于临床进展，会出现"业绩 lumpy"。</li>
+    <li><strong>叙事风险</strong>：A 股市场对 AI 制药的定价偏向"标签型"，真假难辨——需要按本报告的三轴框架自己 audit。</li>
+    <li><strong>非经常性收益风险</strong>：药明康德这种 191 亿净利里 59 亿非经的案例，提示要看扣非、看现金流，不看报表毛数据。</li>
+  </ul>
+
+  <!-- 第六章 操作思路 -->
+  <h2>六 · 操作思路（不是买卖建议）</h2>
+
+  <p>这份报告不给"买/卖"信号，只给三种<em>思考框架</em>，对应不同风险偏好：</p>
+
+  <h3>组合 A · 保守型（基本面优先）</h3>
+  <ul>
+    <li><strong>恒瑞医药为主仓</strong>：双轮齐备，估值合理，BD 现金流是底；2026 H1 创新药占比应继续提升至 65%+。</li>
+    <li><strong>百济神州为副仓</strong>：基本面拐点已确认（现金流转正），低 AI 杠杆但属于"独立成立"型。</li>
+    <li>不碰泓博、迪哲、荣昌。</li>
+  </ul>
+
+  <h3>组合 B · 平衡型（基本面 + AI 弹性）</h3>
+  <ul>
+    <li>主仓 <strong>恒瑞</strong>。</li>
+    <li>小仓位 <strong>成都先导</strong>——等回调到 PE 50-60x 区间分批介入，盯紧 SGC / 一线药企客户的多年订单公告。</li>
+    <li>波段 <strong>药明康德</strong>——CRO 周期 + TIDES，但要剥离 AI 故事的估值溢价。</li>
+  </ul>
+
+  <h3>组合 C · 进攻型（赔率优先）</h3>
+  <ul>
+    <li>小仓 <strong>百利天恒</strong>——BL-B01D1 III 期数据是关键催化，84 亿是上限，单仓位 ≤ 5%。</li>
+    <li>观察 <strong>迪哲医药</strong>——舒沃替尼美国半年销售数据出来再决定，目前体量 + 估值未到入场点。</li>
+  </ul>
+
+  <div class="disclaimer">
+    <strong>申明</strong>：本报告基于公开信息（年报、季报、官方公告、专业财经源），由 AI Agent 协同生成。所有事实陈述均带溯源链接。<em>本报告不构成投资建议，更不构成买卖任何证券的要约</em>。创新药板块投资有重大不确定性（临床失败、BD 中止、政策变化、地缘风险），任何决策前请进行独立尽职调查，并咨询持证投资顾问。
+  </div>
+
+  <!-- 附录 -->
+  <h2>七 · 附录</h2>
+
+  <h3>术语速查</h3>
+  <table>
+    <thead>
+      <tr><th>术语</th><th>释义</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>BiomniBench-DA</strong></td><td>红杉 xbench 联合 Phylo / Humanlaya / 一线药企百位专家构建的首个药企真实数据分析任务过程级评测；100 题、5 大疾病、17 类任务。</td></tr>
+      <tr><td><strong>Agent Harness</strong></td><td>智能体的"外壳"——把基础模型 + 工具 + 记忆 + 提示词组合起来的工程框架。同模型在不同 Harness 下分差可达 13.5 分。</td></tr>
+      <tr><td><strong>DEL</strong></td><td>DNA Encoded Library，DNA 编码化合物库。把化学合成分子标签化，可同时筛选万亿级化合物。成都先导的核心资产。</td></tr>
+      <tr><td><strong>DMTA 闭环</strong></td><td>Design-Make-Test-Analyze 药物发现迭代循环；AI + DEL + 自动化把这个循环从月级缩到周级。</td></tr>
+      <tr><td><strong>AIDD / CADD</strong></td><td>AI / Computer Aided Drug Design 计算机辅助药物设计。CADD 是传统计算化学，AIDD 加了深度学习。</td></tr>
+      <tr><td><strong>ADC</strong></td><td>Antibody-Drug Conjugate 抗体偶联药物。中国在 ADC 上的全球 BD 出海创下纪录（百利 84 亿、荣昌 26 亿）。</td></tr>
+      <tr><td><strong>License-out</strong></td><td>对外授权——把管线 / 产品 / 平台的海外权益授给外资药企，收首付 + 里程碑 + 销售分成。恒瑞 2 年累计 200+ 亿美元。</td></tr>
+      <tr><td><strong>非经常性损益</strong></td><td>资产处置、政府补助、公允价值变动等非主业利润。看扣非比看净利润真实。药明 2025 年 191 亿净利里 59 亿是非经。</td></tr>
+    </tbody>
+  </table>
+
+  <h3>核心信息源</h3>
+  <ul class="source-list">
+    <li><strong>原文</strong>：红杉汇 / xbench《Auto Research 时代，AI Scientist 的第一场药企实习考验》（2026-05-19）；BiomniBench-DA 论文 biorxiv.org/content/10.64898/2026.05.12.724604v1</li>
+    <li><strong>药明康德</strong>：<a href="http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=603259&id=12011363">2025 年报公告</a> / <a href="https://finance.sina.com.cn/wm/2026-05-05/doc-inhwvivk9151558.shtml">2026Q1 季报点评</a></li>
+    <li><strong>泓博医药</strong>：<a href="http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=301230&id=12250903">2025 年报</a> / <a href="https://m.hexun.com/stock/2026-03-11/223670397.html">AI 智能体进展披露</a></li>
+    <li><strong>皓元医药</strong>：<a href="https://finance.sina.com.cn/roll/2026-02-28/doc-inhphuuu9652068.shtml">2025 年报业绩快报</a> / <a href="https://caifuhao.eastmoney.com/news/20260324221755593552950">AI 联合实验室公告</a></li>
+    <li><strong>成都先导</strong>：<a href="http://static.cninfo.com.cn/finalpage/2025-08-28/1224596328.PDF">2025 H1 报告</a> / <a href="https://pdf.dfcfw.com/pdf/H3_AP202505091669891597_1.pdf?1746788250000.pdf=">AI+DEL 融合分析（东方财富）</a></li>
+    <li><strong>华大智造</strong>：<a href="https://file.finance.qq.com/finance/hs/pdf/2025/08/23/1224561494.PDF">2025 H1 报告</a> / <a href="https://finance.sina.com.cn/stock/relnews/cn/2025-05-08/doc-inevvhaz2762913.shtml">海外订单占比</a></li>
+    <li><strong>恒瑞医药</strong>：<a href="https://finance.sina.com.cn/roll/2026-03-26/doc-inhshaie0501747.shtml">2025 年报</a> / <a href="https://finance.sina.com.cn/stock/relnews/hk/2025-07-29/doc-infiaqyh9610265.shtml">GSK 125 亿授权公告</a> / <a href="https://www.phirda.com/artilce_39361.html">AI 药物发现披露</a></li>
+    <li><strong>百济神州</strong>：<a href="https://www.stcn.com/article/detail/3750731.html">2025 年报</a> / <a href="https://finance.sina.com.cn/stock/aigc/stockfs/2026-04-14/doc-inhunttq4637891.shtml">2025 现金流分析</a></li>
+    <li><strong>百利天恒</strong>：<a href="https://file.iyanbao.com/pdf/a96e6-2fed6335-8439-4874-bb42-4e5b70564e5e.pdf">BMS 8 亿首付公告</a> / <a href="https://www.stcn.com/article/detail/3518321.html">2.5 亿里程碑</a></li>
+    <li><strong>荣昌生物</strong>：<a href="https://finance.sina.com.cn/jjxw/2026-03-30/doc-inhstxww4000356.shtml">2025 年报</a> / <a href="https://bydrug.pharmcube.com/news/detail/9b7ba09b5482abf90892d41440c3d0d9.html">Seagen 26 亿历史合作</a></li>
+    <li><strong>诺诚健华</strong>：<a href="https://www.innocarepharma.com/uploads/2026-03-26/2025-Annual-Report-CN-A.pdf">2025 年报</a> / <a href="https://www.innocarepharma.com/news/activity/cn0202510082">Zenas 授权公告</a></li>
+    <li><strong>迪哲医药</strong>：<a href="https://www.stcn.com/article/detail/2378751.html">FDA 批准公告</a> / <a href="https://finance.sina.com.cn/roll/2026-04-29/doc-inhweskv0839521.shtml">2026 Q1 季报</a></li>
+    <li><strong>晶泰科技（对照）</strong>：<a href="http://www.news.cn/enterprise/20251105/d3cc677285414981b60a7a9d8b148677/c.html">礼来 3.45 亿美元合作</a> / <a href="https://bydrug.pharmcube.com/news/detail/c69c13c5060c7e913a122302ecbd72ad">2025 H1 业绩</a></li>
+  </ul>
+
+  <div class="footer">
+    生成方式：Claude Opus 4.7 + researcher 子 agent 并行调研（A 桶 CRO/上游 · C/D 桶 出海 Biotech）<br>
+    报告版本：v1 · 2026-05-19 16:09<br>
+    路径：output/2026-05-19/a-share-innovative-drug-ai-research-20260519-160936.html
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// 恒瑞医药 & 百济神州 利润表 Sankey 图
+// 守恒口径：A 股合并利润表（含推算项），单位：亿元人民币
+// ============================================================
+
+// ---- 通用工具 ----
+function pickChipKey(color) {
+  if (color === '#4a9dcf' || color === '#388bfd' || color === '#3a8abf') return 'chipBlue';
+  if (color === '#2d8a50' || color === '#1f883d' || color === '#2da44e') return 'chipGreen';
+  if (color === '#b07030' || color === '#9a6700') return 'chipAmber';
+  if (color === '#c94040' || color === '#d1242f') return 'chipRed';
+  if (color === '#e8a040' || color === '#ffa657') return 'chipOrange';
+  if (color === '#7eb87e' || color === '#56b87e') return 'chipGreen';
+  return 'chipMuted';
+}
+
+// 报告配色（light 主题，与主报告 accent #1e6b54 协调）
+var C = {
+  revenue:   '#4a9dcf',   // 蓝色 - 收入分部
+  gross:     '#2d8a50',   // 深绿 - 毛利/净利润
+  cost:      '#c94040',   // 红色 - 营业成本
+  expense:   '#e8a040',   // 橙色 - 期间费用
+  other_in:  '#7eb87e',   // 浅绿 - 其他经营性流入
+  tax:       '#b07030',   // 琥珀 - 所得税
+  hub1:      '#3a8abf',   // 深蓝 - 营业总收入 hub
+  hub3:      '#1e6b54',   // 报告 accent - 资金运用池 hub
+  impair:    '#c94040',   // 红 - 减值
+  minority:  '#7b6f8a',   // 灰紫 - 少数股东
+  text:      '#14110f',
+  muted:     '#5b524c',
+  blue_hi:   '#1e6b54',
+  line:      '#e3dccb',
+  tooltip_bg:'#ffffff'
+};
+
+var richStyles = {
+  name: {
+    fontSize: 14, fontWeight: 600,
+    fontFamily: '"PingFang SC","Hiragino Sans GB",-apple-system,Arial,sans-serif',
+    color: C.text
+  },
+  chipBlue: {
+    fontSize: 11, fontWeight: 700, color: '#fff',
+    backgroundColor: '#1f6feb',
+    padding: [3, 8, 3, 8], borderRadius: 9, lineHeight: 14
+  },
+  chipGreen: {
+    fontSize: 11, fontWeight: 700, color: '#fff',
+    backgroundColor: '#1f6feb',
+    padding: [3, 8, 3, 8], borderRadius: 9, lineHeight: 14
+  },
+  chipAmber: {
+    fontSize: 11, fontWeight: 700, color: '#fff',
+    backgroundColor: '#1f6feb',
+    padding: [3, 8, 3, 8], borderRadius: 9, lineHeight: 14
+  },
+  chipRed: {
+    fontSize: 11, fontWeight: 700, color: '#fff',
+    backgroundColor: '#1f6feb',
+    padding: [3, 8, 3, 8], borderRadius: 9, lineHeight: 14
+  },
+  chipOrange: {
+    fontSize: 11, fontWeight: 700, color: '#fff',
+    backgroundColor: '#1f6feb',
+    padding: [3, 8, 3, 8], borderRadius: 9, lineHeight: 14
+  },
+  chipMuted: {
+    fontSize: 11, fontWeight: 700, color: '#fff',
+    backgroundColor: '#1f6feb',
+    padding: [3, 8, 3, 8], borderRadius: 9, lineHeight: 14
+  }
+};
+
+function makeLabelFormatter() {
+  return function(p) {
+    var firstLine = p.name.split('\n')[0];
+    var dotIdx    = firstLine.indexOf(' · ');
+    if (dotIdx < 0) return '{name|' + firstLine + '}';
+    var nodeName = firstLine.slice(0, dotIdx);
+    var chips    = firstLine.slice(dotIdx + 3).split(' · ');
+    var ck = pickChipKey(p.color);
+    var r = '{name|' + nodeName + '}';
+    for (var i = 0; i < chips.length; i++) {
+      r += '  {' + ck + '|' + chips[i] + '}';
+    }
+    return r;
+  };
+}
+
+function makeTooltipFormatter() {
+  return function(p) {
+    if (p.dataType === 'edge') {
+      var src = p.data.source.split('\n')[0].split(' · ')[0];
+      var tgt = p.data.target.split('\n')[0].split(' · ')[0];
+      return [
+        '<div style="font-size:15px;font-weight:600;color:' + C.text + ';">' + src + ' → ' + tgt + '</div>',
+        '<div style="font-size:12px;color:' + C.muted + ';margin-top:3px;">流量金额</div>',
+        '<div style="font-size:17px;font-weight:700;color:' + C.blue_hi + ';">' + p.value.toFixed(2) + ' 亿元</div>'
+      ].join('');
+    }
+    var allLines = p.name.split('\n');
+    var title    = allLines[0].split(' · ')[0];
+    var isFormula = function(s) { return s.indexOf(' / ') >= 0 && s.indexOf('=') >= 0; };
+    var detail = [], formula = [];
+    for (var i = 1; i < allLines.length; i++) {
+      if (isFormula(allLines[i])) formula.push(allLines[i]);
+      else detail.push(allLines[i]);
+    }
+    var html = '<div style="font-size:15px;font-weight:700;color:' + C.text + ';margin-bottom:5px;">' + title + '</div>';
+    for (var j = 0; j < detail.length; j++) {
+      if (j === 0) {
+        html += '<div style="font-size:17px;font-weight:700;color:' + C.blue_hi + ';">' + detail[j] + '</div>';
+      } else {
+        html += '<div style="font-size:13px;color:' + C.muted + ';">' + detail[j] + '</div>';
+      }
+    }
+    if (formula.length > 0) {
+      html += '<div style="border-top:1px dashed ' + C.line + ';margin-top:8px;padding-top:7px;">';
+      for (var k = 0; k < formula.length; k++) {
+        var parts = formula[k].split('=');
+        var pct  = parts[parts.length - 1].trim();
+        var expr = parts.slice(0, parts.length - 1).join('=').trim();
+        html += '<div style="font-size:13px;color:' + C.muted + ';margin:2px 0;">';
+        html += expr + ' = <span style="font-size:14px;font-weight:700;color:' + C.blue_hi + ';">' + pct + '</span>';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+    return html;
+  };
+}
+
+// ============================================================
+// 恒瑞医药 数据
+// 守恒：总流入 = 316.29 + 4.07 + 2.64 = 322.00 = 总流出
+// 资金运用池 = 272.63 + 4.07 + 2.64 = 279.34
+// 总流出 = 91.06 + 28.06 + 69.61 + 12.50 + 77.11 + 1.00 = 279.34 ✓
+// ============================================================
+var hNodes = [
+  // Layer 0：收入分部
+  {
+    name: '抗肿瘤创新药 · → 41.9%\n132.40 亿\n占营收 41.9%，创新药旗舰\n抗肿瘤创新药 / 营业总收入 = 41.9%',
+    depth: 0, itemStyle: { color: C.revenue }
+  },
+  {
+    name: '非肿瘤创新药 · → 9.8%\n31.02 亿\n含 GLP-1 / 心血管等管线\n非肿瘤创新药 / 营业总收入 = 9.8%',
+    depth: 0, itemStyle: { color: C.revenue }
+  },
+  {
+    name: 'License-out（BD） · → 10.7%\n33.92 亿\nGSK / Hercules / 默沙东等首付及里程碑\nLicense-out（BD） / 营业总收入 = 10.7%',
+    depth: 0, itemStyle: { color: '#3a8abf' }
+  },
+  {
+    name: '仿制药及其他 · → 37.6%\n118.95 亿\n推算；仿创并行转型阶段\n仿制药及其他 / 营业总收入 = 37.6%',
+    depth: 0, itemStyle: { color: '#6aafd4' }
+  },
+
+  // Layer 1：营业总收入 hub
+  {
+    name: '营业总收入\n316.29 亿\n+13% YoY | 4 大业务口径',
+    depth: 1, itemStyle: { color: C.hub1 }
+  },
+
+  // Layer 2：毛利（pass-through）+ 营业成本（终端）+ 其他流入
+  {
+    name: '毛利 · ← 86.2% · → 97.6%\n272.63 亿\n综合毛利率 86.2%（创新药龙头定价权体现）\n毛利 / 营业总收入 = 86.2%\n毛利 / 资金运用池 = 97.6%',
+    depth: 2, itemStyle: { color: C.gross }
+  },
+  {
+    name: '营业成本 · ← 13.8%\n43.66 亿\n倒推；极低成本率反映 IP 授权 + 创新药溢价\n营业成本 / 营业总收入 = 13.8%',
+    depth: 2, itemStyle: { color: C.cost }
+  },
+  {
+    name: '财务净收入 · → 1.5%\n4.07 亿\n账上 409 亿货币资金产生的利息净收益\n财务净收入 / 资金运用池 = 1.5%',
+    depth: 2, itemStyle: { color: C.other_in }
+  },
+  {
+    name: '其他收益及投资收益 · → 0.9%\n2.64 亿\n推算补平（使守恒成立）\n其他收益及投资收益 / 资金运用池 = 0.9%',
+    depth: 2, itemStyle: { color: C.other_in }
+  },
+
+  // Layer 3：资金运用池 hub
+  {
+    name: '资金运用池\n279.34 亿\n毛利 272.63 + 财务净收入 4.07 + 其他收益 2.64',
+    depth: 3, itemStyle: { color: C.hub3 }
+  },
+
+  // Layer 4：终端
+  {
+    name: '销售费用 · ← 32.6%\n91.06 亿\n占营收 28.8%；销售费用 > 研发费用化（仿创并行特征）\n销售费用 / 资金运用池 = 32.6%',
+    depth: 4, itemStyle: { color: C.expense }
+  },
+  {
+    name: '管理费用 · ← 10.0%\n28.06 亿\n管理费用率 8.9%\n管理费用 / 资金运用池 = 10.0%',
+    depth: 4, itemStyle: { color: C.expense }
+  },
+  {
+    name: '研发费用（费用化） · ← 24.9%\n69.61 亿\n实际研发投入 87.24 亿，资本化 17.63 亿（20.2%）\n研发费用（费用化） / 资金运用池 = 24.9%',
+    depth: 4, itemStyle: { color: C.expense }
+  },
+  {
+    name: '所得税 · ← 4.5%\n12.50 亿\n推算；有效税率约 13.8%\n所得税 / 资金运用池 = 4.5%',
+    depth: 4, itemStyle: { color: C.tax }
+  },
+  {
+    name: '归母净利润 · ← 27.6%\n77.11 亿\n+22% YoY ✅披露值\n归母净利润 / 资金运用池 = 27.6%',
+    depth: 4, itemStyle: { color: C.gross }
+  },
+  {
+    name: '少数股东损益 · ← 0.4%\n1.00 亿\n推算\n少数股东损益 / 资金运用池 = 0.4%',
+    depth: 4, itemStyle: { color: '#7b6f8a' }
+  }
+];
+
+var hLinks = [
+  // Layer 0 → 营业总收入
+  { source: hNodes[0].name, target: hNodes[4].name, value: 132.40 },
+  { source: hNodes[1].name, target: hNodes[4].name, value: 31.02  },
+  { source: hNodes[2].name, target: hNodes[4].name, value: 33.92  },
+  { source: hNodes[3].name, target: hNodes[4].name, value: 118.95 },
+  // 营业总收入 → 毛利 + 营业成本
+  { source: hNodes[4].name, target: hNodes[5].name, value: 272.63 },
+  { source: hNodes[4].name, target: hNodes[6].name, value: 43.66  },
+  // 毛利 + 其他流入 → 资金运用池
+  { source: hNodes[5].name, target: hNodes[9].name, value: 272.63 },
+  { source: hNodes[7].name, target: hNodes[9].name, value: 4.07   },
+  { source: hNodes[8].name, target: hNodes[9].name, value: 2.64   },
+  // 资金运用池 → Layer 4
+  { source: hNodes[9].name, target: hNodes[10].name, value: 91.06 },
+  { source: hNodes[9].name, target: hNodes[11].name, value: 28.06 },
+  { source: hNodes[9].name, target: hNodes[12].name, value: 69.61 },
+  { source: hNodes[9].name, target: hNodes[13].name, value: 12.50 },
+  { source: hNodes[9].name, target: hNodes[14].name, value: 77.11 },
+  { source: hNodes[9].name, target: hNodes[15].name, value: 1.00  }
+];
+
+// ============================================================
+// 百济神州 数据
+// 守恒：总流入 = 382.25 + 11.00 + 0.89 = 394.14
+// 资金运用池 = 333.70 + 11.00 + 0.89 = 345.59
+// 总流出 = 80.00 + 67.00 + 155.08 + 5.40 + 23.00 + 14.61 + 0.50 = 345.59 ✓
+// ============================================================
+var bNodes = [
+  // Layer 0：收入分部
+  {
+    name: '泽布替尼 BRUKINSA · → 73.4%\n280.67 亿\n+56% YoY；美国 202.06 / 欧洲 42.65 / 中国 24.72\n泽布替尼 BRUKINSA / 营业总收入 = 73.4%',
+    depth: 0, itemStyle: { color: C.revenue }
+  },
+  {
+    name: '替雷利珠单抗 · → 13.9%\n52.97 亿\n47 个国家获批\n替雷利珠单抗 / 营业总收入 = 13.9%',
+    depth: 0, itemStyle: { color: C.revenue }
+  },
+  {
+    name: '其他自研及引进产品 · → 11.5%\n44.06 亿\n含安进 / 百时美引进产品\n其他自研及引进产品 / 营业总收入 = 11.5%',
+    depth: 0, itemStyle: { color: '#6aafd4' }
+  },
+  {
+    name: '合作 / License 收入 · → 1.2%\n4.55 亿\n合作收入\n合作 / License 收入 / 营业总收入 = 1.2%',
+    depth: 0, itemStyle: { color: '#3a8abf' }
+  },
+
+  // Layer 1：营业总收入 hub
+  {
+    name: '营业总收入\n382.25 亿\n+40% YoY | 4 大收入口径',
+    depth: 1, itemStyle: { color: C.hub1 }
+  },
+
+  // Layer 2：毛利（pass-through）+ 营业成本（终端）+ 其他流入
+  {
+    name: '毛利 · ← 87.3% · → 96.6%\n333.70 亿\n综合毛利率 87.3%（与恒瑞相当，高端 Biotech 特征）\n毛利 / 营业总收入 = 87.3%\n毛利 / 资金运用池 = 96.6%',
+    depth: 2, itemStyle: { color: C.gross }
+  },
+  {
+    name: '营业成本 · ← 12.7%\n48.55 亿\n倒推；主要为产品生产和分发成本\n营业成本 / 营业总收入 = 12.7%',
+    depth: 2, itemStyle: { color: C.cost }
+  },
+  {
+    name: '利息净收入 · → 3.2%\n11.00 亿\n账上充裕现金（含美元）产生利息\n利息净收入 / 资金运用池 = 3.2%',
+    depth: 2, itemStyle: { color: C.other_in }
+  },
+  {
+    name: '其他流入 · → 0.3%\n0.89 亿\n推算补平（使守恒成立）\n其他流入 / 资金运用池 = 0.3%',
+    depth: 2, itemStyle: { color: C.other_in }
+  },
+
+  // Layer 3：资金运用池 hub
+  {
+    name: '资金运用池\n345.59 亿\n毛利 333.70 + 利息净收入 11.00 + 其他流入 0.89',
+    depth: 3, itemStyle: { color: C.hub3 }
+  },
+
+  // Layer 4：终端
+  {
+    name: '销售费用 · ← 23.1%\n80.00 亿\n推算（SG&A 前三季度外推）\n销售费用 / 资金运用池 = 23.1%',
+    depth: 4, itemStyle: { color: C.expense }
+  },
+  {
+    name: '管理费用 · ← 19.4%\n67.00 亿\n推算\n管理费用 / 资金运用池 = 19.4%',
+    depth: 4, itemStyle: { color: C.expense }
+  },
+  {
+    name: '研发费用 · ← 44.9%\n155.08 亿\n✅披露值；R&D > SG&A，Biotech 烧钱特征显著\n研发费用 / 资金运用池 = 44.9%',
+    depth: 4, itemStyle: { color: C.expense }
+  },
+  {
+    name: '资产减值损失 · ← 1.6%\n5.40 亿\nQ4 集中计提股权投资减值约 7600 万美元\n资产减值损失 / 资金运用池 = 1.6%',
+    depth: 4, itemStyle: { color: C.impair }
+  },
+  {
+    name: '所得税 · ← 6.7%\n23.00 亿\n推算；有效税率受注册地（瑞士）及不可抵扣项影响\n所得税 / 资金运用池 = 6.7%',
+    depth: 4, itemStyle: { color: C.tax }
+  },
+  {
+    name: '归母净利润 · ← 4.2%\n14.61 亿\n✅首次盈利（上年亏损 49.78 亿）\n归母净利润 / 资金运用池 = 4.2%',
+    depth: 4, itemStyle: { color: C.gross }
+  },
+  {
+    name: '少数股东损益 · ← 0.1%\n0.50 亿\n推算\n少数股东损益 / 资金运用池 = 0.1%',
+    depth: 4, itemStyle: { color: '#7b6f8a' }
+  }
+];
+
+var bLinks = [
+  // Layer 0 → 营业总收入
+  { source: bNodes[0].name, target: bNodes[4].name, value: 280.67 },
+  { source: bNodes[1].name, target: bNodes[4].name, value: 52.97  },
+  { source: bNodes[2].name, target: bNodes[4].name, value: 44.06  },
+  { source: bNodes[3].name, target: bNodes[4].name, value: 4.55   },
+  // 营业总收入 → 毛利 + 营业成本
+  { source: bNodes[4].name, target: bNodes[5].name, value: 333.70 },
+  { source: bNodes[4].name, target: bNodes[6].name, value: 48.55  },
+  // 毛利 + 其他流入 → 资金运用池
+  { source: bNodes[5].name, target: bNodes[9].name, value: 333.70 },
+  { source: bNodes[7].name, target: bNodes[9].name, value: 11.00  },
+  { source: bNodes[8].name, target: bNodes[9].name, value: 0.89   },
+  // 资金运用池 → Layer 4
+  { source: bNodes[9].name, target: bNodes[10].name, value: 80.00  },
+  { source: bNodes[9].name, target: bNodes[11].name, value: 67.00  },
+  { source: bNodes[9].name, target: bNodes[12].name, value: 155.08 },
+  { source: bNodes[9].name, target: bNodes[13].name, value: 5.40   },
+  { source: bNodes[9].name, target: bNodes[14].name, value: 23.00  },
+  { source: bNodes[9].name, target: bNodes[15].name, value: 14.61  },
+  { source: bNodes[9].name, target: bNodes[16].name, value: 0.50   }
+];
+
+// ============================================================
+// 构建 ECharts option
+// ============================================================
+function buildSankeyOption(nodes, links) {
+  return {
+    backgroundColor: '#ffffff',
+    tooltip: {
+      trigger: 'item',
+      padding: [12, 16],
+      borderRadius: 8,
+      extraCssText: 'box-shadow:0 6px 20px rgba(0,0,0,0.16);max-width:360px;',
+      backgroundColor: C.tooltip_bg,
+      borderColor: C.line,
+      textStyle: { color: C.text, fontSize: 14, lineHeight: 20 },
+      formatter: makeTooltipFormatter()
+    },
+    series: [{
+      type: 'sankey',
+      layout: 'none',
+      nodeWidth: 18,
+      nodeGap: 14,
+      nodeAlign: 'justify',
+      layoutIterations: 64,
+      top: '5%', bottom: '5%', left: '2%', right: '25%',
+      emphasis: {
+        focus: 'adjacency',
+        label: { fontSize: 15, fontWeight: 700, color: C.blue_hi },
+        lineStyle: { opacity: 0.85 },
+        itemStyle: { borderColor: C.blue_hi, borderWidth: 2 }
+      },
+      label: {
+        position: 'right',
+        formatter: makeLabelFormatter(),
+        rich: richStyles
+      },
+      lineStyle: {
+        color: 'gradient',
+        curveness: 0.5,
+        opacity: 0.45
+      },
+      data: nodes,
+      links: links
+    }]
+  };
+}
+
+// ============================================================
+// 初始化图表
+// ============================================================
+(function() {
+  var domH = document.getElementById('chart-hengrui');
+  var domB = document.getElementById('chart-beigene');
+  if (!domH || !domB) return;
+
+  var chartH = echarts.init(domH, null, { renderer: 'canvas' });
+  var chartB = echarts.init(domB, null, { renderer: 'canvas' });
+
+  chartH.setOption(buildSankeyOption(hNodes, hLinks));
+  chartB.setOption(buildSankeyOption(bNodes, bLinks));
+
+  window.addEventListener('resize', function() {
+    chartH.resize();
+    chartB.resize();
+  });
+})();
+</script>
+
+</body>
+</html>
