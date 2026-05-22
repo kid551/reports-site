@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex CLI 橙皮书：从入门到精通</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<style>
+  /* ====== Reset & Base ====== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange-50: #fff7ed;
+    --orange-100: #ffedd5;
+    --orange-200: #fed7aa;
+    --orange-300: #fdba74;
+    --orange-400: #fb923c;
+    --orange-500: #f97316;
+    --orange-600: #ea580c;
+    --orange-700: #c2410c;
+    --orange-800: #9a3412;
+    --orange-900: #7c2d12;
+
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-300: #d4d4d4;
+    --gray-400: #a3a3a3;
+    --gray-500: #737373;
+    --gray-600: #525252;
+    --gray-700: #404040;
+    --gray-800: #262626;
+    --gray-900: #171717;
+
+    --font-sans: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace;
+
+    --content-width: 820px;
+    --sidebar-width: 280px;
+  }
+
+  html { scroll-behavior: smooth; font-size: 18px; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--gray-800);
+    background: var(--gray-50);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ====== Sidebar Navigation ====== */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid var(--gray-200);
+    overflow-y: auto;
+    z-index: 100;
+    padding: 32px 0;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-logo {
+    padding: 0 24px 24px;
+    border-bottom: 1px solid var(--gray-100);
+    margin-bottom: 16px;
+  }
+
+  .sidebar-logo h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-900);
+    letter-spacing: -0.02em;
+  }
+
+  .sidebar-logo span {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange-600);
+    background: var(--orange-50);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .sidebar nav { padding: 0 12px; }
+
+  .sidebar .nav-group {
+    margin-bottom: 8px;
+  }
+
+  .sidebar .nav-group-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 12px 12px 6px;
+  }
+
+  .sidebar a {
+    display: block;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: var(--gray-600);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    line-height: 1.5;
+  }
+
+  .sidebar a:hover {
+    color: var(--orange-700);
+    background: var(--orange-50);
+  }
+
+  .sidebar a.active {
+    color: var(--orange-700);
+    background: var(--orange-100);
+    font-weight: 600;
+  }
+
+  /* ====== Mobile menu toggle ====== */
+  .menu-toggle {
+    display: none;
+    position: fixed;
+    top: 16px; left: 16px;
+    z-index: 200;
+    width: 40px; height: 40px;
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .menu-toggle svg { width: 20px; height: 20px; color: var(--gray-700); }
+
+  /* ====== Main Content ====== */
+  .main {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--orange-600) 0%, var(--orange-500) 40%, var(--orange-400) 100%);
+    color: #fff;
+    padding: 80px 48px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%; left: -5%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    font-size: 17px;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 560px;
+  }
+
+  .hero-meta {
+    margin-top: 28px;
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+    opacity: 0.75;
+  }
+
+  .hero-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Content area */
+  .content {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 48px;
+  }
+
+  /* ====== Typography ====== */
+  .content h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gray-900);
+    letter-spacing: -0.03em;
+    margin: 72px 0 12px;
+    padding-top: 24px;
+  }
+
+  .content h1:first-child { margin-top: 0; }
+
+  .part-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange-600);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  .content h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gray-900);
+    letter-spacing: -0.02em;
+    margin: 56px 0 8px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .content h2:first-child { border-top: none; margin-top: 0; }
+
+  .content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin: 36px 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .content p {
+    margin: 12px 0;
+    color: var(--gray-700);
+  }
+
+  .content ul, .content ol {
+    margin: 12px 0;
+    padding-left: 24px;
+    color: var(--gray-700);
+  }
+
+  .content li { margin: 6px 0; }
+  .content li strong { color: var(--gray-800); }
+
+  .content > hr {
+    border: none;
+    height: 1px;
+    background: var(--gray-200);
+    margin: 48px 0;
+  }
+
+  /* ====== Blockquote / Callout ====== */
+  .callout {
+    background: var(--orange-50);
+    border-left: 3px solid var(--orange-400);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 15px;
+    color: var(--orange-800);
+    line-height: 1.6;
+  }
+
+  .callout strong { color: var(--orange-900); }
+
+  .callout.info {
+    background: #eff6ff;
+    border-left-color: #3b82f6;
+    color: #1e3a5f;
+  }
+
+  .callout.info strong { color: #1e3a5f; }
+
+  /* ====== Code Blocks ====== */
+  pre {
+    background: var(--gray-900);
+    color: #e5e5e5;
+    padding: 20px 24px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 16px 0;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  pre::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: 8px; right: 48px;
+    font-size: 11px;
+    color: var(--gray-500);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+  }
+
+  :not(pre) > code {
+    background: var(--gray-100);
+    color: var(--orange-700);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    border: 1px solid var(--gray-200);
+  }
+
+  /* Copy button */
+  pre {
+    position: relative;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s ease, background 0.15s ease;
+    z-index: 2;
+  }
+
+  pre:hover .copy-btn { opacity: 1; }
+
+  .copy-btn:hover { background: rgba(255,255,255,0.18); }
+
+  .copy-btn svg { width: 16px; height: 16px; color: var(--gray-400); }
+
+  .copy-btn.copied { background: rgba(34,197,94,0.2); border-color: rgba(34,197,94,0.3); }
+  .copy-btn.copied svg { color: #22c55e; }
+
+  /* highlight.js overrides */
+  pre code.hljs {
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    border: none;
+  }
+
+  /* ====== Tables ====== */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+
+  thead {
+    background: var(--gray-100);
+  }
+
+  th {
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 600;
+    color: var(--gray-700);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-700);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tbody tr:hover { background: var(--gray-50); }
+
+  /* ====== Divider with label ====== */
+  .part-divider {
+    margin: 72px 0 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .part-divider::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--orange-300), transparent);
+  }
+
+  .part-divider span {
+    position: relative;
+    background: var(--gray-50);
+    padding: 0 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange-600);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ====== Q&A / FAQ ====== */
+  .faq-item {
+    margin: 20px 0;
+    padding: 20px 24px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+  }
+
+  .faq-item .q {
+    font-weight: 700;
+    color: var(--gray-900);
+    font-size: 15px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .faq-item .q::before {
+    content: 'Q';
+    flex-shrink: 0;
+    display: inline-flex;
+    width: 22px; height: 22px;
+    align-items: center;
+    justify-content: center;
+    background: var(--orange-500);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    border-radius: 5px;
+  }
+
+  .faq-item .a {
+    color: var(--gray-600);
+    font-size: 15px;
+    padding-left: 30px;
+  }
+
+  /* ====== Glossary ====== */
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .glossary-item {
+    padding: 14px 18px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+  }
+
+  .glossary-item dt {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--gray-900);
+    font-family: var(--font-mono);
+    margin-bottom: 4px;
+  }
+
+  .glossary-item dd {
+    font-size: 13px;
+    color: var(--gray-500);
+    line-height: 1.5;
+  }
+
+  /* ====== Footer ====== */
+  .footer {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 48px 48px 64px;
+    border-top: 1px solid var(--gray-200);
+    text-align: center;
+    color: var(--gray-400);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .footer strong { color: var(--gray-600); }
+  .footer a { color: var(--orange-600); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* ====== Back to top ====== */
+  .back-to-top {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    width: 40px; height: 40px;
+    background: var(--orange-500);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(249,115,22,0.3);
+    z-index: 90;
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .back-to-top:hover { background: var(--orange-600); }
+
+  /* ====== Responsive ====== */
+  @media (max-width: 1024px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.1); }
+    .menu-toggle { display: flex; }
+    .main { margin-left: 0; }
+    .hero { padding: 64px 24px 56px; }
+    .hero h1 { font-size: 32px; }
+    .content { padding: 32px 24px; }
+    .footer { padding: 32px 24px 48px; }
+    .glossary-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 15px; }
+    .hero-meta { flex-direction: column; gap: 8px; }
+    .content h1 { font-size: 26px; }
+    .content h2 { font-size: 22px; }
+    pre { font-size: 12.5px; padding: 16px; }
+  }
+
+  /* ====== Print ====== */
+  @media print {
+    .sidebar, .menu-toggle, .back-to-top { display: none !important; }
+    .main { margin-left: 0; }
+    .hero { padding: 40px 0; }
+    .content { padding: 24px 0; }
+    pre { white-space: pre-wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Mobile Menu Toggle -->
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="Toggle menu">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+</button>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <h2>Codex CLI 橙皮书</h2>
+    <span>v2.0 · 完全指南</span>
+  </div>
+  <nav>
+    <div class="nav-group">
+      <div class="nav-group-title">入门篇</div>
+      <a href="#ch1">1. 为什么是 Codex CLI</a>
+      <a href="#ch2">2. 安装与认证</a>
+      <a href="#ch3">3. 你的第一个项目</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">核心技能</div>
+      <a href="#ch4">4. 审批模式、会话管理与避坑</a>
+      <a href="#ch5">5. AGENTS.md：给 AI 写规则</a>
+      <a href="#ch6">6. 提示词工程与上下文控制</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">进阶实战</div>
+      <a href="#ch7">7. 沙盒机制与安全模型</a>
+      <a href="#ch8">8. 配置系统深度解析</a>
+      <a href="#ch9">9. 非交互模式与自动化</a>
+      <a href="#ch10">10. MCP 集成与工具扩展</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">扩展与协作</div>
+      <a href="#ch11">11. Skills、Hooks 与扩展</a>
+      <a href="#ch12">12. 多 Agent 协作</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">实战案例</div>
+      <a href="#ch13">13. 用 Codex 做代码审查</a>
+      <a href="#ch14">14. CI/CD 集成实战</a>
+      <a href="#ch15">15. 多会话工作流</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">产品与心智</div>
+      <a href="#ch16">16. 从零构建一个完整产品</a>
+      <a href="#ch17">17. 心智模型与持续进化</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">附录</div>
+      <a href="#appendix-a">A. 命令速查表</a>
+      <a href="#appendix-b">B. config.toml 完整参考</a>
+      <a href="#appendix-c">C. 常见问题</a>
+      <a href="#appendix-d">D. 术语表</a>
+    </div>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<div class="main">
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">OpenAI Codex CLI 完全指南</div>
+      <h1>Codex CLI 橙皮书<br>从入门到精通</h1>
+      <p>基于 Codex CLI v0.121+ 编写，所有命令均经官方文档验证。涵盖安装、配置、沙盒、Skills/Hooks 扩展、多 Agent 协作、MCP 集成、CI/CD 实战到完整产品构建的全方位知识体系。</p>
+      <div class="hero-meta">
+        <span>📖 版本 2.0</span>
+        <span>📅 2026 年 4 月</span>
+        <span>📐 17 章 + 4 附录</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ======================== PART 1 ======================== -->
+    <div class="part-divider"><span>第一部分 · 入门篇</span></div>
+
+    <!-- Chapter 1 -->
+    <h2 id="ch1">第 1 章 &nbsp;为什么是 Codex CLI</h2>
+
+    <h3>1.1 什么是 Codex CLI</h3>
+    <p>Codex 是 OpenAI 推出的终端编程代理（coding agent），能在本地终端中读取、修改和运行代码。它是开源项目，使用 Rust 构建，运行速度快，安全性强。</p>
+    <p>核心能力：</p>
+    <ul>
+      <li><strong>理解代码库</strong> — 自动分析项目结构、依赖关系和代码逻辑</li>
+      <li><strong>编辑代码</strong> — 根据自然语言指令修改文件</li>
+      <li><strong>执行命令</strong> — 运行测试、构建、部署等终端命令</li>
+      <li><strong>沙盒隔离</strong> — 通过 OS 级沙盒（macOS Seatbelt / Linux bubblewrap）限制代理权限</li>
+    </ul>
+
+    <h3>1.2 Codex CLI vs 其他编程助手</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>特性</th><th>Codex CLI</th><th>ChatGPT 网页</th><th>IDE 插件</th></tr></thead>
+        <tbody>
+          <tr><td>本地代码访问</td><td>直接读写文件系统</td><td>需要复制粘贴</td><td>通过 IDE API</td></tr>
+          <tr><td>命令执行</td><td>终端原生执行</td><td>不支持</td><td>有限支持</td></tr>
+          <tr><td>沙盒安全</td><td>OS 级隔离</td><td>N/A</td><td>依赖 IDE</td></tr>
+          <tr><td>自动化</td><td><code>codex exec</code> 非交互模式</td><td>不支持</td><td>有限</td></tr>
+          <tr><td>离线使用</td><td>需要 API 连接</td><td>需要网络</td><td>需要网络</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>1.3 适合谁</h3>
+    <ul>
+      <li><strong>工程师</strong> — 加速日常开发、调试、代码审查</li>
+      <li><strong>产品经理</strong> — 快速原型验证、独立完成 MVP</li>
+      <li><strong>独立开发者</strong> — 一人撑起全栈开发</li>
+    </ul>
+
+    <!-- Chapter 2 -->
+    <h2 id="ch2">第 2 章 &nbsp;安装与认证</h2>
+
+    <h3>2.1 安装方式</h3>
+    <p><strong>方式一：npm（推荐）</strong></p>
+    <pre data-lang="bash">npm install -g @openai/codex</pre>
+
+    <p><strong>方式二：Homebrew（macOS）</strong></p>
+    <pre data-lang="bash">brew install --cask codex</pre>
+
+    <p><strong>方式三：直接下载二进制文件</strong></p>
+    <p>前往 GitHub Releases 页面下载对应平台的二进制文件：</p>
+    <ul>
+      <li>macOS Apple Silicon: <code>codex-aarch64-apple-darwin.tar.gz</code></li>
+      <li>macOS Intel: <code>codex-x86_64-apple-darwin.tar.gz</code></li>
+      <li>Linux x86_64: <code>codex-x86_64-unknown-linux-musl.tar.gz</code></li>
+      <li>Linux ARM64: <code>codex-aarch64-unknown-linux-musl.tar.gz</code></li>
+    </ul>
+
+    <p><strong>升级到最新版本：</strong></p>
+    <pre data-lang="bash">npm i -g @openai/codex@latest</pre>
+
+    <h3>2.2 系统要求</h3>
+    <ul>
+      <li>macOS 和 Linux 完全支持</li>
+      <li>Windows 需要 WSL2（实验性支持）</li>
+      <li>需要 ChatGPT Plus / Pro / Business / Edu / Enterprise 订阅，或 OpenAI API Key</li>
+    </ul>
+
+    <h3>2.3 认证</h3>
+    <p><strong>方式一：ChatGPT 账号登录（推荐）</strong></p>
+    <pre data-lang="bash">codex login</pre>
+    <p>启动后选择 "Sign in with ChatGPT"，浏览器会自动打开完成 OAuth 认证。</p>
+
+    <p><strong>方式二：环境变量（CI/CD 场景）</strong></p>
+    <pre data-lang="bash"><span class="token-keyword">export</span> <span class="token-var">OPENAI_API_KEY</span>=sk-xxxx</pre>
+
+    <p><strong>登出：</strong></p>
+    <pre data-lang="bash">codex logout</pre>
+
+    <h3>2.4 Linux 额外依赖</h3>
+    <p>Linux 上沙盒功能依赖 <code>bubblewrap</code>：</p>
+    <pre data-lang="bash"><span class="token-comment"># Ubuntu/Debian</span>
+sudo apt install bubblewrap
+
+<span class="token-comment"># Fedora</span>
+sudo dnf install bubblewrap</pre>
+    <p>如果遇到权限警告：</p>
+    <pre data-lang="bash">sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0</pre>
+
+    <!-- Chapter 3 -->
+    <h2 id="ch3">第 3 章 &nbsp;你的第一个项目</h2>
+
+    <h3>3.1 启动 Codex</h3>
+    <p>进入项目目录，直接运行：</p>
+    <pre data-lang="bash">codex</pre>
+    <p>这会启动全屏终端 UI（TUI），你可以在其中输入自然语言指令。也可以直接带上指令：</p>
+    <pre data-lang="bash">codex <span class="token-string">"告诉我这个项目的结构"</span></pre>
+
+    <h3>3.2 TUI 基本操作</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>操作</th><th>快捷键/命令</th></tr></thead>
+        <tbody>
+          <tr><td>输入提示词</td><td>直接打字</td></tr>
+          <tr><td>提交指令</td><td><code>Enter</code></td></tr>
+          <tr><td>文件引用</td><td>在编辑器中输入 <code>@</code></td></tr>
+          <tr><td>清除对话</td><td><code>/clear</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>3.3 第一个任务示例</h3>
+    <p>假设你有一个 Node.js 项目，试试这些指令：</p>
+    <pre>分析这个项目的依赖关系，列出可能需要升级的包</pre>
+    <pre>找到所有没有错误处理的 async 函数，并添加 try-catch</pre>
+    <pre>写一个 README.md，描述项目结构和使用方法</pre>
+
+    <h3>3.4 审批流程</h3>
+    <p>默认模式下（Auto），Codex 可以：</p>
+    <ul>
+      <li>自动读取文件</li>
+      <li>自动编辑工作区内的文件</li>
+      <li>自动运行常规本地命令</li>
+    </ul>
+    <p>当操作超出工作区范围时，Codex 会暂停并请求你的批准。</p>
+
+    <!-- ======================== PART 2 ======================== -->
+    <div class="part-divider"><span>第二部分 · 核心技能</span></div>
+
+    <!-- Chapter 4 -->
+    <h2 id="ch4">第 4 章 &nbsp;审批模式与会话管理</h2>
+
+    <h3>4.1 四种审批模式</h3>
+    <p>Codex 提供四种审批策略，控制代理的自主程度：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>模式</th><th>标志</th><th>行为</th></tr></thead>
+        <tbody>
+          <tr><td>Read-only</td><td><code>-a untrusted</code></td><td>只能浏览代码，所有修改需审批</td></tr>
+          <tr><td>On-failure</td><td><code>-a on-failure</code></td><td>自主执行，仅在命令失败时请求审批</td></tr>
+          <tr><td>On-request（默认）</td><td><code>-a on-request</code></td><td>在沙盒内自主工作，超出边界时请求审批</td></tr>
+          <tr><td>Never</td><td><code>-a never</code></td><td>完全自主，不请求审批</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>命令行使用：</strong></p>
+    <pre data-lang="bash"><span class="token-comment"># 只读模式 —— 适合代码审查</span>
+codex <span class="token-flag">-a</span> untrusted <span class="token-string">"审查最近的提交"</span>
+
+<span class="token-comment"># 自动模式（默认）</span>
+codex <span class="token-string">"修复这个 bug"</span>
+
+<span class="token-comment"># 完全自动 —— 合并了 auto-edit 审批 + workspace-write 沙盒</span>
+codex <span class="token-flag">--full-auto</span> <span class="token-string">"运行测试并修复失败的用例"</span></pre>
+
+    <p><strong>会话中切换：</strong>在 TUI 中使用 <code>/permissions</code> 命令实时切换模式。</p>
+
+    <h3>4.2 --full-auto 快捷方式</h3>
+    <p><code>--full-auto</code> 等价于同时设置：</p>
+    <ul>
+      <li><code>approval_policy = "auto-edit"</code></li>
+      <li><code>sandbox_mode = "workspace-write"</code></li>
+    </ul>
+    <pre data-lang="bash">codex <span class="token-flag">--full-auto</span> <span class="token-string">"重构所有测试文件，使用 describe/it 结构"</span></pre>
+
+    <div class="callout">
+      <strong>安全提示：</strong>切勿将 <code>--full-auto</code> 与 <code>--dangerously-bypass-approvals-and-sandbox</code> 组合使用，除非在专用的沙盒虚拟机中。
+    </div>
+
+    <h3>4.3 Plan 模式：先想清楚再动手</h3>
+    <p>很多人一启动 Codex 就直接让它改代码。但对于复杂任务，<strong>先规划再执行</strong>是效率最高的方式。</p>
+    <p>在 TUI 中输入 <code>/plan</code> 进入规划模式。此时 Codex 的行为会改变：</p>
+    <ul>
+      <li>它可以读取文件来理解代码，但<strong>不会修改任何文件</strong></li>
+      <li>它会给出详细的实现方案，包括要改哪些文件、怎么改</li>
+      <li>你可以反复讨论、修改方案</li>
+    </ul>
+
+    <p><strong>Plan 模式的黄金工作流</strong></p>
+    <ol>
+      <li><strong>Plan 模式下描述需求，来回讨论</strong> — 用 <code>/plan</code> 进入规划模式，描述你的需求。Codex 给出方案后，你可以说「第三步换个方式」「这里的库用 XXX 替换」，反复调整。</li>
+      <li><strong>用一份详细的执行指令</strong> — 方案大致满意后，写一份完整的执行指令，把讨论中确认的方案细节、约束条件都写进去。</li>
+      <li><strong>切换到执行模式</strong> — 计划确认后，退出规划模式。因为计划已经讨论充分，你可以放心地让 Codex 一次性执行完成。</li>
+    </ol>
+    <p>这个流程的精髓在于：<strong>把纠结放在 Plan 阶段解决完，执行阶段一气呵成</strong>。边做边改、反复返工是最浪费 tokens 的用法。</p>
+
+    <p><strong>什么时候该用 Plan 模式</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>用 Plan 模式</th><th>跳过 Plan，直接做</th></tr></thead>
+        <tbody>
+          <tr><td>你不确定实现方案</td><td>改一行代码、修个 typo</td></tr>
+          <tr><td>需要改动多个文件</td><td>加一行 console.log 调试</td></tr>
+          <tr><td>你对这块代码不熟悉</td><td>你很清楚要改什么</td></tr>
+          <tr><td>重构或架构级别的变更</td><td>跑个测试、装个包</td></tr>
+          <tr><td>第一次接触一个新项目</td><td>重复性的日常操作</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><strong>一条实用判断标准：</strong>如果你需要跟同事解释才能让他做的任务，就值得用 Plan 模式。如果你能用一句话说清的任务，直接做就行。</div>
+
+    <h3>4.4 Git 操作：Codex 天然就懂</h3>
+    <p>Codex 对 Git 的理解不只是帮你跑 <code>git</code> 命令。它真的知道你项目当前的版本控制状态，知道你改了哪些文件、在哪个分支上。</p>
+
+    <p><strong>一句话 commit 和 PR</strong></p>
+    <p>最常用的操作：</p>
+    <pre data-lang="bash"># 让 Codex 自己看看改了什么，写一个 commit message
+提交当前的改动，写一个有意义的 commit message
+
+# 或者更具体一点
+commit 这些变更，描述清楚我们添加了 RSS 抓取功能
+
+# 直接创建 PR
+创建一个 PR，标题和描述写清楚这个功能的作用</pre>
+    <p>Codex 会分析你的代码变更，生成一个描述性的 commit message，然后执行 <code>git add</code> + <code>git commit</code>。创建 PR 时它还会自动生成 PR 描述，包括改了什么、为什么改。</p>
+
+    <p><strong>多实例并行：隔离的工作目录</strong></p>
+    <p>如果你同时修一个 bug 的同时，想让 Codex 在另一个分支做一个新功能，可以利用不同的工作目录。Codex 在一个目录工作不会影响另一个，两件事互不干扰。</p>
+    <pre data-lang="bash"># 在一个终端窗口
+cd ~/project && git checkout -b fix/login-bug
+codex "修复登录页面的 token 过期问题"
+
+# 在另一个终端窗口
+cd ~/project-feature && git checkout -b feat/dashboard
+codex "实现新的 dashboard 页面"</pre>
+    <p>多个 Codex 实例可以同时跑不同的任务，每个在自己的目录和分支上工作。这就是 Agent 式工作的威力：你不需要自己做所有事，你管理一群 Agent 帮你做事。</p>
+
+    <h3>4.5 --dangerously-bypass-approvals-and-sandbox</h3>
+    <p>完全跳过所有安全限制，仅用于隔离环境（如 CI 容器）：</p>
+    <pre data-lang="bash"><span class="token-comment"># 仅在 CI 环境中使用！</span>
+codex <span class="token-flag">--dangerously-bypass-approvals-and-sandbox</span> <span class="token-string">"部署到测试环境"</span></pre>
+
+    <h3>4.6 --full-auto 的安全考量</h3>
+    <p>用了一阵 Codex 之后，你大概已经体会到那种「烦躁感」了。每次写文件要确认、运行命令要确认、装个依赖也要确认。频繁审批容易导致审批疲劳，让安全机制形同虚设。</p>
+    <p><code>--full-auto</code> 就是为了解决这个问题。它在沙盒保护（<code>workspace-write</code>）下让 Codex 自主工作，通过 OS 级沙盒（macOS Seatbelt / Linux bubblewrap）限制文件系统和网络访问，而不是依赖逐个操作的人工审批。</p>
+
+    <p><strong>沙盒保护了什么</strong></p>
+    <p>在 <code>--full-auto</code> 模式下，沙盒会限制：</p>
+    <ul>
+      <li><strong>文件系统</strong> — Codex 只能写入工作目录内的文件，无法修改系统文件或其他项目</li>
+      <li><strong>网络</strong> — 默认阻止网络访问，防止数据外泄或未授权的外部请求</li>
+      <li><strong>子进程</strong> — 所有由 Codex 启动的子进程（git、npm、测试运行器）都继承相同的沙盒限制</li>
+    </ul>
+
+    <div class="callout warn">
+      <strong>注意：</strong>沙盒限制的是文件系统和网络层面的操作，但无法阻止所有类型的风险行为。操作生产数据库、管理云基础设施这类事情，还是用 <code>-a untrusted</code> 手动确认比较踏实。<code>--full-auto</code> 最适合日常开发：写代码、跑测试、Git 操作。
+    </div>
+
+    <h3>4.7 Computer Use：AI 长了眼睛和手（桌面应用功能）</h3>
+    <div class="callout info">
+      <strong>注意：</strong>Computer Use 是 Codex <strong>桌面应用</strong>（通过 <code>codex app</code> 启动）的功能，不是 CLI 的功能。CLI 支持通过 <code>-i</code> 参数附加图片进行分析，但不具备鼠标键盘控制能力。
+    </div>
+    <p>前面讲的所有工作流，Codex 都是在文本世界里操作的：读代码、写代码、跑命令行。文字处理这块它确实强，但你桌面上那个 Figma 窗口、那个 Photoshop、那个只有 GUI 没有 API 的老旧管理后台，它碰不到。</p>
+    <p>Codex 桌面应用的 Computer Use 功能让 Codex 直接看到屏幕截图，然后操控鼠标和键盘。</p>
+
+    <p><strong>怎么用</strong></p>
+    <p>通过 <code>codex app</code> 启动桌面应用后，Computer Use 功能可用。Codex 在工作过程中如果判断需要操作 GUI，它会截一张屏幕截图来「看」当前画面，然后决定下一步该点哪里、该输入什么。</p>
+    <pre>
+# 让 Codex 看看当前屏幕上的东西
+看一下我屏幕上的这个页面，告诉我布局有什么问题
+
+# 让它操作一个 GUI 应用
+打开系统偏好设置，把暗色模式关掉
+
+# 测试你正在开发的 Web 应用
+在浏览器里打开 localhost:3000，走一遍注册流程，看看有没有 bug</pre>
+
+    <p><strong>当前的限制</strong></p>
+    <ul>
+      <li><strong>慢。</strong>每一步操作都需要截图→分析→决定→执行，一个人类 0.5 秒完成的点击，Codex 可能需要几秒钟</li>
+      <li><strong>精细操作不靠谱。</strong>拖拽一个滑块到精确位置、在一个密密麻麻的表格里选中某个特定单元格，这类操作它经常偏</li>
+      <li><strong>不适合需要快速反应的场景。</strong>动画、实时交互、游戏测试，Codex 的反应速度跟不上</li>
+    </ul>
+    <div class="callout">
+      <strong>核心建议：</strong>Computer Use 现阶段最好的定位是：把它当成一个耐心但手速慢的测试员。给它那些「按照固定流程重复操作」的任务，它做得很好。需要灵活判断和快速反应的，还是自己来。
+    </div>
+
+    <h3>4.8 Voice Mode：开口说话就能编程（桌面应用功能）</h3>
+    <div class="callout info">
+      <strong>注意：</strong>Voice Mode 是 Codex <strong>桌面应用</strong>的功能，不是 CLI 的功能。
+    </div>
+    <p>在 Codex 桌面应用中，可以使用语音模式。Codex 会把语音转成文字，然后像正常输入一样处理。</p>
+
+    <p><strong>什么时候用语音比打字好</strong></p>
+    <ul>
+      <li><strong>手不方便的时候。</strong>走路想到一个 bug 的修复思路、做饭时突然想起一个需求。掏出手机说一嘴，比找键盘快</li>
+      <li><strong>脑暴的时候。</strong>想法咋咋地冒，打字速度跟不上大脑。语音可以一口气把一段混乱的思路倒给 Codex，让它帮你理成结构化的需求</li>
+      <li><strong>描述空间和视觉概念的时候。</strong>「我想要一个左边是侧边栏、右边分上下两栏、上面是图表下面是表格」，话说出来比画 ASCII 图快多了</li>
+    </ul>
+    <div class="callout">
+      <strong>一个实用的组合：</strong>语音快速启动任务（「帮我做个 XXX」），然后切回键盘输入精确的细节和约束条件。两种交互方式混着用，比纯用一种效率高。
+    </div>
+
+    <h3>4.9 会话管理：别让上下文变成垃圾场</h3>
+    <p>Codex 有上下文限制。对话越长，Codex 对当前任务的注意力越分散。会话管理比你想象的重要得多。</p>
+
+    <h3>核心命令速查</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>操作</th><th>命令/快捷键</th><th>什么时候用</th></tr></thead>
+        <tbody>
+          <tr><td>清空当前会话</td><td><code>/clear</code></td><td>切换到完全不相关的任务时</td></tr>
+          <tr><td>压缩上下文</td><td><code>/compact</code></td><td>会话太长、Codex 开始变慢或遗忘</td></tr>
+          <tr><td>恢复上次会话</td><td><code>codex resume --last</code></td><td>终端不小心关了，想继续</td></tr>
+          <tr><td>分叉会话</td><td><code>/fork</code></td><td>想在当前上下文基础上尝试不同方向</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong><code>/clear</code> 的使用时机</strong></p>
+    <p><code>/clear</code> 会清空当前会话的所有对话历史，回到一个干净的起点。AGENTS.md 和项目文件不受影响。什么时候该用？<strong>当你要开始一个和之前对话完全不同的任务时。</strong></p>
+    <p>比如你刚才在修一个 API 的 bug，现在想让 Codex 帮你写一个新的前端组件。如果不 clear，Codex 的上下文里还残留着大量关于那个 API bug 的信息，会干扰它对新任务的理解。</p>
+
+    <p><strong><code>/compact</code> 的妙用</strong></p>
+    <p><code>/compact</code> 不是清空对话，而是让 Codex 把当前对话压缩成一个摘要。适合在一个长会话中途使用：你和 Codex 已经讨论了很多，上下文太长影响了性能，但你不想丢掉讨论的结论。<code>/compact</code> 会保留关键信息，释放上下文空间。</p>
+
+    <div class="callout"><strong>实用经验：</strong>不要过度依赖 <code>/compact</code>（自动压缩）。它是不透明的、容易出错的。需要重启时用 <code>/clear</code>，不要用 <code>/compact</code>。</div>
+
+    <h3>4.10 六个坑，你大概率会踩</h3>
+    <p>使用 Codex 时最常见的错误。这些坑不管用什么 AI 编程工具都一样。</p>
+
+    <p><strong>坑 1：一个会话什么都塞</strong></p>
+    <p>修 bug、加功能、重构代码、写文档，全在一个会话里做。上下文被塞满，Codex 对每个任务的理解都很浅。</p>
+    <p>一个会话聚焦一个任务。做完就 <code>/clear</code>，或者开新终端窗口。</p>
+
+    <p><strong>坑 2：反复纠正，越改越偏</strong></p>
+    <p>Codex 做错了一步，你纠正；改了又错另一个地方，再纠正；第三次还是不对。你花在纠正上的时间比自己动手还多。</p>
+    <p>纠正两次不行，果断 <code>/clear</code> 重来。重新描述需求，这次说得更具体。在一个已经跑偏的对话上修补，远不如推倒重来。</p>
+
+    <p><strong>坑 3：看着像对的就接受了</strong></p>
+    <p>Codex 写了一大堆代码，输出看着挺合理，你就接受了，没实际跑一下。过几天发现边界情况的 bug。</p>
+    <p>每一轮改动都实际运行一次。「代码看起来对」和「代码是对的」差距可能很大。给 Codex 一种验证工作的方式。你自己也一样。</p>
+
+    <p><strong>坑 4：过度微操</strong></p>
+    <p>Codex 每写一个文件你都要看、每改一行代码你都要评论。结果你和 Codex 都很慢，而且你其实在用 Codex 做传统编程。</p>
+    <p>关注结果。让 Codex 把一个完整任务做完，看最终输出是否符合预期。中间过程除非明显跑偏，不用管。</p>
+
+    <p><strong>坑 5：需求模糊，然后怪 Codex 不懂你</strong></p>
+    <p>「帮我优化一下这个代码」「让这个页面好看点」。Codex 只能猜，而它猜的方向很可能不是你想要的。</p>
+    <p>给具体的、可验证的需求：「把这个 API 的响应时间从 2 秒优化到 500ms 以内，瓶颈在数据库查询，考虑加缓存或优化 SQL」。越具体，输出越接近预期。</p>
+
+    <p><strong>坑 6：不写 AGENTS.md</strong></p>
+    <p>项目根目录没有 AGENTS.md，或者有但从不更新。每次新会话都要重新解释项目背景、代码规范、技术选型。</p>
+    <p>这个太重要了，整整一章来讲。翻到 §05。</p>
+
+    <div class="callout"><strong>这一章的核心：</strong>四种审批模式选对安全等级，会话管理保持上下文干净。这些工作流覆盖 90% 的日常场景。</div>
+
+    <!-- Chapter 5 -->
+    <h2 id="ch5">第 5 章 &nbsp;AGENTS.md：给 AI 写规则</h2>
+
+    <h3>5.1 什么是 AGENTS.md</h3>
+    <p><code>AGENTS.md</code> 是给 Codex 的项目指令文件，类似于给人类写的 README，但读者是 AI。Codex 在每次启动时自动读取这些文件，用于理解项目规范和约束。</p>
+    <p>AGENTS.md 已经成为由 Agentic AI Foundation（AAIF，隶属于 Linux Foundation）管理的开放格式，被超过 60,000 个开源项目采用。</p>
+
+    <h3>5.2 文件发现机制</h3>
+    <p>Codex 按以下优先级查找指令文件：</p>
+    <p><strong>全局级别（<code>~/.codex/</code>）：</strong></p>
+    <ol>
+      <li><code>AGENTS.override.md</code>（如果存在）</li>
+      <li><code>AGENTS.md</code></li>
+    </ol>
+    <p>每个目录级别只使用第一个非空文件。</p>
+    <p><strong>项目级别（从 Git 根目录到当前工作目录）：</strong></p>
+    <p>逐级向下查找，每级检查：</p>
+    <ol>
+      <li><code>AGENTS.override.md</code></li>
+      <li><code>AGENTS.md</code></li>
+      <li><code>project_doc_fallback_filenames</code> 中配置的备选文件名</li>
+    </ol>
+    <pre data-lang="text">my-project/
+├── AGENTS.md                    <span class="token-comment"># 项目全局规则</span>
+├── src/
+│   └── AGENTS.md                <span class="token-comment"># src 目录的补充规则</span>
+└── services/
+    └── payments/
+        ├── AGENTS.override.md   <span class="token-comment"># 支付模块的覆盖规则</span>
+        └── AGENTS.md            <span class="token-comment"># 被 override 文件覆盖，不会读取</span></pre>
+
+    <h3>5.3 合并规则</h3>
+    <ul>
+      <li>文件从根目录向下拼接，用空行分隔</li>
+      <li>离工作目录越近的文件，优先级越高（因为出现在后面）</li>
+      <li>跳过空文件</li>
+      <li>合并大小上限由 <code>project_doc_max_bytes</code> 控制（默认 64 KiB）</li>
+    </ul>
+
+    <h3>5.4 配置选项</h3>
+    <p>在 <code>~/.codex/config.toml</code> 中自定义：</p>
+    <pre data-lang="toml"><span class="token-comment"># 添加备选文件名</span>
+project_doc_fallback_filenames = [<span class="token-string">"TEAM_GUIDE.md"</span>, <span class="token-string">".agents.md"</span>]
+
+<span class="token-comment"># 调整大小上限</span>
+project_doc_max_bytes = 65536</pre>
+
+    <h3>5.5 编写最佳实践</h3>
+    <p><strong>全局 AGENTS.md（<code>~/.codex/AGENTS.md</code>）：</strong></p>
+    <pre data-lang="markdown"><span class="token-comment"># 通用规范</span>
+
+- 使用中文回复
+- 代码注释用英文
+- 提交信息使用 Conventional Commits 格式
+- 优先使用 pnpm，不用 npm</pre>
+
+    <p><strong>项目 AGENTS.md：</strong></p>
+    <pre data-lang="markdown"><span class="token-comment"># 项目：我的电商平台</span>
+
+<span class="token-comment">## 技术栈</span>
+- TypeScript + React 19
+- Tailwind CSS v4
+- PostgreSQL + Prisma
+
+<span class="token-comment">## 代码规范</span>
+- 组件使用函数式写法
+- 状态管理使用 Zustand
+- API 层使用 tRPC
+
+<span class="token-comment">## 测试要求</span>
+- 新功能必须写单元测试
+- 覆盖率目标 > 80%
+- 使用 vitest
+
+<span class="token-comment">## 禁止事项</span>
+- 不要修改 migrations/ 目录下的已有迁移文件
+- 不要在前端硬编码 API URL</pre>
+
+    <h3>5.6 验证 AGENTS.md 是否生效</h3>
+    <pre data-lang="bash">codex <span class="token-flag">--ask-for-approval</span> never <span class="token-string">"总结当前加载的指令"</span></pre>
+    <p>也可以检查日志：<code>~/.codex/log/codex-tui.log</code></p>
+
+    <h3>5.7 使用 /init 快速生成</h3>
+    <p>在 TUI 中输入 <code>/init</code>，Codex 会分析项目结构并生成一个 AGENTS.md 脚手架。</p>
+
+    <h3>5.8 Memories：Codex 自己记住的东西</h3>
+    <p>除了你手写的 AGENTS.md，Codex 还有一个自动记忆系统。</p>
+    <p>当你在对话中纠正 Codex 的行为，比如「以后 commit message 都用英文」「测试文件放在 <code>__tests__</code> 目录」，Codex 可以自动把这些偏好保存下来。下次对话它就记住了，不需要你再说一遍，也不需要你手动写进 AGENTS.md。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>手写 AGENTS.md</th><th>自动 Memories</th></tr></thead>
+        <tbody>
+          <tr><td>适合团队共享的规则</td><td>适合个人偏好</td></tr>
+          <tr><td>检入 git</td><td>存在本地</td></tr>
+          <tr><td>你主动维护</td><td>Codex 自动维护</td></tr>
+          <tr><td>结构化、有组织</td><td>零散、按时间累积</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>两者配合使用效果最好。团队规则写在项目 AGENTS.md 里，个人习惯让 Memories 自动处理。</p>
+
+    <h3>5.9 迭代飞轮：越用越好的系统</h3>
+    <p>AGENTS.md 不是一次性文档。它是一个活的系统，每一条规则背后都是一次真实踩过的坑。</p>
+    <p>这个过程是这样的：</p>
+    <ol>
+      <li><strong>第一周：空文件</strong> — 你只写了基本的项目架构和开发命令。Codex 犯很多错。</li>
+      <li><strong>第二周：护栏初现</strong> — 你把 Codex 犯过的错一条条记下来。「不要在这个文件里用相对路径」「跑完迁移记得重新生成类型」。错误率开始下降。</li>
+      <li><strong>第一个月：飞轮启动</strong> — AGENTS.md 有了 20-30 条规则，都是真实的坑。Codex 的输出质量明显提升，你需要纠正的次数越来越少。</li>
+      <li><strong>之后：持续迭代</strong> — 偶尔加新规则，偶尔删掉过时的。文件保持精简但高度定制。</li>
+    </ol>
+    <div class="callout"><strong>核心逻辑：</strong>Codex 犯错 → 记录到 AGENTS.md → 下次不再犯 → 错误率持续降低。每一条规则都对应一个真实踩过的坑，文件也天然保持精简——因为你只记录真正出过问题的地方。</div>
+    <p>这就是为什么说 AGENTS.md 是最重要的文件。用三个月养出来的那个文件，是你最有价值的 AI 资产。</p>
+
+    <!-- Chapter 6 -->
+    <h2 id="ch6">第 6 章 &nbsp;提示词工程与上下文控制</h2>
+
+    <h3>6.1 有效提示词的原则</h3>
+    <p><strong>具体 &gt; 模糊</strong></p>
+    <pre><span class="token-comment"># 差</span>
+修复 bug
+
+<span class="token-comment"># 好</span>
+修复 src/api/auth.ts 中的 JWT 过期检查逻辑，
+当前 token 过期后仍然返回 200，应该返回 401</pre>
+
+    <p><strong>给背景 &gt; 直接下命令</strong></p>
+    <pre><span class="token-comment"># 差</span>
+加个缓存
+
+<span class="token-comment"># 好</span>
+用户反馈列表页加载慢（P95 > 3s），
+主要瓶颈在数据库查询。请在 getProducts() 添加 Redis 缓存，
+TTL 5 分钟，缓存键基于查询参数</pre>
+
+    <h3>6.2 图片输入</h3>
+    <pre data-lang="bash"><span class="token-comment"># 单张图片</span>
+codex <span class="token-flag">-i</span> screenshot.png <span class="token-string">"修复这个 UI 问题"</span>
+
+<span class="token-comment"># 多张图片</span>
+codex <span class="token-flag">--image</span> design.png,current.png <span class="token-string">"按照设计稿调整当前页面"</span></pre>
+    <p>在 TUI 中，也可以直接粘贴图片。</p>
+
+    <h3>6.3 文件引用</h3>
+    <p>在 TUI 编辑器中输入 <code>@</code> 触发文件模糊搜索，选择文件将其内容注入上下文。</p>
+
+    <h3>6.4 Web 搜索</h3>
+    <pre data-lang="bash"><span class="token-comment"># 使用缓存搜索（默认）</span>
+codex <span class="token-string">"用最新的 React 19 API 重写这个组件"</span>
+
+<span class="token-comment"># 强制实时搜索</span>
+codex <span class="token-flag">--search</span> <span class="token-string">"查看 Next.js 最新版本的变更"</span></pre>
+
+    <h3>6.5 模型选择</h3>
+    <pre data-lang="bash">codex <span class="token-flag">-m</span> gpt-5.4 <span class="token-string">"分析这段复杂的算法"</span></pre>
+    <p>在 TUI 中使用 <code>/model</code> 命令切换。在 <code>config.toml</code> 中设置默认模型：</p>
+    <pre data-lang="toml">model = <span class="token-string">"gpt-5.4"</span></pre>
+
+    <h3>6.6 推理强度：别省这个钱</h3>
+    <p>Codex 支持调整模型的推理深度，控制执行任务时投入多少推理资源。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>级别</th><th>适合场景</th><th>特点</th></tr></thead>
+        <tbody>
+          <tr><td>low</td><td>简单格式化、重命名</td><td>快，但容易犯低级错误</td></tr>
+          <tr><td>medium</td><td>日常开发任务</td><td>默认级别，平衡速度和质量</td></tr>
+          <tr><td>high</td><td>复杂功能开发、调试</td><td>想得更深，需要返工的次数更少</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <pre data-lang="toml">model_reasoning_effort = <span class="token-string">"high"</span>   <span class="token-comment"># 复杂任务</span>
+<span class="token-comment"># model_reasoning_effort = "medium" # 默认</span>
+<span class="token-comment"># model_reasoning_effort = "low"    # 简单任务</span></pre>
+    <p>很多人觉得「这个任务简单，调到 low 省点时间」。但 low 做错了，你纠正它花的时间可能比直接用 high 做对还长。</p>
+    <div class="callout"><strong>实用建议：</strong>默认用 medium 就好，不需要额外调整。<strong>别为了省几秒钟把推理强度调低，修低级错误花的时间远不止几秒。</strong></div>
+
+    <h3>6.7 Context Engineering：信息不是越多越好</h3>
+    <p>Context 不只是你打的那句话。AGENTS.md 的内容、Codex 读过的文件、你粘贴的截图、对话历史，全部加起来都是 Context。</p>
+    <p>直觉上你可能觉得：给 Codex 的信息越多越好吧？</p>
+    <p>恰恰相反。<strong>上下文太多，模型表现反而变差。</strong>它会在海量信息中迷失，做出混乱的决策。建议定期检查上下文窗口的使用情况。</p>
+    <div class="callout"><strong>上下文管理的核心原则：不是给所有信息，而是给对的信息。</strong>让 Codex 看到它解决当前问题需要的上下文，而不是整个项目的百科全书。</div>
+    <p>你可以通过几种方式主动管理上下文：</p>
+    <ul>
+      <li><strong><code>@</code> 引用文件</strong>：在编辑器中用 <code>@</code> 告诉 Codex 去读某个特定文件</li>
+      <li><strong>粘贴截图</strong>：UI 问题直接截图粘贴，比文字描述准确 10 倍</li>
+      <li><strong>Pipe 数据</strong>：<code>cat error.log | codex exec "分析这个日志"</code> 直接把日志喂给 Codex</li>
+      <li><strong>给图片</strong>：<code>codex -i screenshot.png "修复这个 UI 问题"</code></li>
+    </ul>
+
+    <h3>6.8 让 Codex 采访你</h3>
+    <p>当你要做一个比较大的功能（比如从零搭建一个支付系统），不要一上来就写需求文档。先对 Codex 说：</p>
+    <pre>我想做一个支付功能，在动手之前，先采访我，
+问清楚所有你需要知道的事情。</pre>
+    <p>Codex 会开始问你一系列问题：支持哪些支付方式？需要处理退款吗？并发量预估多少？需要支持 webhook 回调吗？用什么货币？</p>
+    <p>这些问题中，至少有一半是你自己没考虑过的。Codex 帮你做了需求分析师的工作。</p>
+    <p>采访结束后，让 Codex 把答案整理成一份 Spec（规格文档）。然后关键来了：<strong>开一个全新的会话</strong>，把 Spec 喂给新的 Codex，让它执行。</p>
+    <p>为什么要开新会话？因为采访过程中积累的对话历史已经很长了，占了大量上下文。新会话从一份干净的 Spec 开始，Codex 能更专注地执行，不会被中间讨论过程干扰。</p>
+
+    <h3>6.9 把 Codex 当高级工程师提问</h3>
+    <p>很多人只把 Codex 当写代码的工具。其实它同样是一个极好的代码库导航员。</p>
+    <p>你可以直接问它：</p>
+    <ul>
+      <li>「项目里的 logging 怎么工作的？」</li>
+      <li>「怎么新建一个 API endpoint？」</li>
+      <li>「<code>src/lib/db.ts</code> 和 <code>src/utils/database.ts</code> 有什么区别？为什么有两个？」</li>
+    </ul>
+    <p>Codex 会读相关代码，然后给你一个结构化的解释。比读文档快，比问同事方便，尤其是刚接手一个新项目的时候。</p>
+    <div class="callout info"><strong>Onboarding 加速器：</strong>加入一个新项目后，先花 10 分钟问 Codex：「这个项目的架构是什么？核心模块有哪些？数据流是怎么走的？」你会省下至少半天翻文档的时间。</div>
+
+    <h3>6.10 多轮对话策略</h3>
+    <p>和 Codex 的对话不是一次性的。你经常需要在多轮对话中逐步推进一个任务。这里有几个经过实战验证的策略：</p>
+
+    <p><strong>紧密反馈循环</strong></p>
+    <p>别等 Codex 写完 500 行代码再看结果。发现方向偏了，立刻纠正。越早纠正成本越低。Codex 写了 10 行时你说「不对，换个方式」，成本几乎为零。写完整个功能再推倒重来，浪费的是 tokens 和时间。</p>
+
+    <p><strong>两次纠正不行，换条路</strong></p>
+    <p>纠正了两次 Codex 还是不按你的意思来？别继续纠正了。<code>/clear</code> 清掉上下文，用一个更好的初始 prompt 重新开始。在一个已经跑偏的对话里纠缠，往往越绕越远。</p>
+
+    <p><strong>换任务就清上下文</strong></p>
+    <p>写完一个组件后要去改数据库 schema？<code>/clear</code>。不同任务有不同的上下文需求，把前一个任务的对话历史带进新任务只会增加噪音。</p>
+
+    <h3>6.11 三个提问原则</h3>
+    <p>和 Codex 对话的核心其实就三个字。</p>
+    <p><strong>具体。</strong>文件名、行号、函数名、期望行为，能给就给。越具体的指令，越精确的输出。</p>
+    <p><strong>指向。</strong>你代码库里一定有写得好的部分。把它们当参考范本指给 Codex 看。「像那个一样做」比「做一个漂亮的」有效 100 倍。</p>
+    <p><strong>克制。</strong>一次只做一件事。任务大就分步来，每步确认结果后再下一步。一条消息里塞三个不相关的需求，Codex 大概率只做好其中一个。</p>
+
+    <div class="callout"><strong>这一章的核心：</strong>好的对话靠的不是花哨的 prompt，而是精准的上下文。具体化需求，让 Codex 采访你来补盲点，用 <code>/clear</code> 保持干净，别把 effort 调低。说到底，最有效的进阶是在实践中积累和 Codex 协作的直觉，不是学更多 prompt 技巧。</div>
+
+    <!-- ======================== PART 3 ======================== -->
+    <div class="part-divider"><span>第三部分 · 进阶实战</span></div>
+
+    <!-- Chapter 7 -->
+    <h2 id="ch7">第 7 章 &nbsp;沙盒机制与安全模型</h2>
+
+    <h3>7.1 沙盒原理</h3>
+    <p>沙盒不仅约束 Codex 本身，还约束它产生的所有子进程 —— <code>git</code>、包管理器、测试运行器等都继承相同的限制。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>平台</th><th>沙盒技术</th></tr></thead>
+        <tbody>
+          <tr><td>macOS</td><td>Seatbelt 框架</td></tr>
+          <tr><td>Linux / WSL2</td><td>bubblewrap (bwrap)</td></tr>
+          <tr><td>Windows</td><td>原生 Windows Sandbox 或 WSL2</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>7.2 三种沙盒模式</h3>
+    <pre data-lang="bash"><span class="token-comment"># 只读 —— 不能修改任何文件</span>
+codex <span class="token-flag">-s</span> read-only <span class="token-string">"审查代码安全性"</span>
+
+<span class="token-comment"># 工作区写入（默认）—— 只能修改工作目录内的文件</span>
+codex <span class="token-flag">-s</span> workspace-write <span class="token-string">"重构这个模块"</span>
+
+<span class="token-comment"># 完全访问 —— 无文件系统和网络限制（谨慎使用）</span>
+codex <span class="token-flag">-s</span> danger-full-access <span class="token-string">"运行 gh 命令"</span></pre>
+
+    <h3>7.3 扩展可写目录</h3>
+    <p>不要为了一个例外就切换到 <code>danger-full-access</code>，可以在 <code>config.toml</code> 中精确授权额外的可写目录：</p>
+    <pre data-lang="toml">sandbox_mode = <span class="token-string">"workspace-write"</span>
+
+[sandbox_workspace_write]
+writable_roots = [<span class="token-string">"/tmp/codex-output"</span>, <span class="token-string">"/var/log/app"</span>]</pre>
+
+    <h3>7.4 网络访问</h3>
+    <p><code>workspace-write</code> 模式下网络默认被阻止。需要网络时：</p>
+    <pre data-lang="bash">codex <span class="token-flag">-c</span> <span class="token-string">'sandbox_workspace_write.network_access=true'</span> <span class="token-string">"安装依赖包"</span></pre>
+
+    <h3>7.5 Rules（规则）</h3>
+    <p>使用规则对特定命令前缀设置策略，比粗粒度的沙盒模式更精确：</p>
+    <ul>
+      <li>允许特定命令自动执行</li>
+      <li>对危险命令要求审批</li>
+      <li>完全禁止某些命令</li>
+    </ul>
+
+    <!-- Chapter 8 -->
+    <h2 id="ch8">第 8 章 &nbsp;配置系统深度解析</h2>
+
+    <h3>8.1 配置文件层级</h3>
+    <p>Codex 按以下优先级读取配置（从高到低）：</p>
+    <ol>
+      <li><strong>CLI 标志和 <code>--config</code> 覆盖</strong></li>
+      <li><strong>项目配置</strong>（<code>.codex/config.toml</code>，离工作目录最近的优先）</li>
+      <li><strong>用户配置</strong>（<code>~/.codex/config.toml</code>）</li>
+      <li><strong>内置默认值</strong></li>
+    </ol>
+
+    <h3>8.2 一次性覆盖</h3>
+    <pre data-lang="bash"><span class="token-comment"># 通过专用标志</span>
+codex <span class="token-flag">--model</span> gpt-5.4
+
+<span class="token-comment"># 通过 -c 参数（值使用 TOML 语法）</span>
+codex <span class="token-flag">-c</span> <span class="token-string">'model="gpt-5.4"'</span>
+codex <span class="token-flag">-c</span> <span class="token-string">'sandbox_workspace_write.network_access=true'</span> <span class="token-string">"安装依赖"</span></pre>
+
+    <h3>8.3 Shell 环境策略</h3>
+    <pre data-lang="toml">[shell_environment_policy]
+exclude = [<span class="token-string">"AWS_*"</span>, <span class="token-string">"AZURE_*"</span>, <span class="token-string">"SECRET_*"</span>]</pre>
+
+    <h3>8.4 CODEX_HOME</h3>
+    <pre data-lang="bash"><span class="token-keyword">export</span> <span class="token-var">CODEX_HOME</span>=/path/to/custom/codex-home</pre>
+    <p>默认为 <code>~/.codex</code>。</p>
+
+    <!-- Chapter 9 -->
+    <h2 id="ch9">第 9 章 &nbsp;非交互模式与自动化</h2>
+
+    <h3>9.1 codex exec 基础</h3>
+    <p><code>codex exec</code> 是非交互执行的核心命令，无 TUI 界面，结果输出到 stdout：</p>
+    <pre data-lang="bash">codex exec <span class="token-string">"总结仓库结构，列出前 5 个风险点"</span></pre>
+
+    <h3>9.2 管道操作</h3>
+    <pre data-lang="bash"><span class="token-comment"># 生成发布说明到文件</span>
+codex exec <span class="token-string">"生成最近 10 次提交的发布说明"</span> | tee release-notes.md
+
+<span class="token-comment"># 将外部数据传入 Codex 处理</span>
+curl -s https://api.example.com/data.json \
+  | codex exec <span class="token-string">"将前 20 条格式化为 Markdown 表格"</span> \
+  > table.md
+
+<span class="token-comment"># 从 stdin 读取完整提示</span>
+cat prompt.txt | codex exec -</pre>
+
+    <h3>9.3 JSON Lines 输出</h3>
+    <pre data-lang="bash">codex exec <span class="token-flag">--json</span> <span class="token-string">"分析代码质量"</span> | jq</pre>
+    <p>输出事件类型包括：</p>
+    <ul>
+      <li><code>thread.started</code> / <code>turn.started</code> / <code>turn.completed</code> / <code>turn.failed</code></li>
+      <li><code>item.*</code>（代理消息、推理、命令执行、文件变更等）</li>
+      <li><code>error</code></li>
+    </ul>
+
+    <h3>9.4 结构化输出</h3>
+    <p>定义 JSON Schema 约束输出格式：</p>
+    <pre data-lang="json">{
+  <span class="token-flag">"type"</span>: <span class="token-string">"object"</span>,
+  <span class="token-flag">"properties"</span>: {
+    <span class="token-flag">"project_name"</span>: { <span class="token-flag">"type"</span>: <span class="token-string">"string"</span> },
+    <span class="token-flag">"risk_level"</span>: { <span class="token-flag">"type"</span>: <span class="token-string">"string"</span>, <span class="token-flag">"enum"</span>: [<span class="token-string">"low"</span>, <span class="token-string">"medium"</span>, <span class="token-string">"high"</span>] },
+    <span class="token-flag">"issues"</span>: {
+      <span class="token-flag">"type"</span>: <span class="token-string">"array"</span>,
+      <span class="token-flag">"items"</span>: { <span class="token-flag">"type"</span>: <span class="token-string">"string"</span> }
+    }
+  },
+  <span class="token-flag">"required"</span>: [<span class="token-string">"project_name"</span>, <span class="token-string">"risk_level"</span>, <span class="token-string">"issues"</span>]
+}</pre>
+    <pre data-lang="bash">codex exec <span class="token-string">"分析项目风险"</span> \
+  <span class="token-flag">--output-schema</span> ./schema.json \
+  <span class="token-flag">-o</span> ./report.json</pre>
+
+    <h3>9.5 会话续接</h3>
+    <pre data-lang="bash"><span class="token-comment"># 第一步：分析</span>
+codex exec <span class="token-string">"审查最近的代码变更是否有竞态条件"</span>
+
+<span class="token-comment"># 第二步：基于上一次结果继续</span>
+codex exec resume <span class="token-flag">--last</span> <span class="token-string">"修复你发现的竞态条件"</span>
+
+<span class="token-comment"># 指定会话 ID 续接</span>
+codex exec resume &lt;SESSION_ID&gt;</pre>
+
+    <h3>9.6 临时模式</h3>
+    <pre data-lang="bash">codex exec <span class="token-flag">--ephemeral</span> <span class="token-string">"快速检查代码风格"</span></pre>
+
+    <h3>9.7 权限控制</h3>
+    <p><code>codex exec</code> 默认运行在只读沙盒中。提升权限：</p>
+    <pre data-lang="bash"><span class="token-comment"># 允许修改文件</span>
+codex exec <span class="token-flag">--full-auto</span> <span class="token-string">"修复所有 lint 错误"</span>
+
+<span class="token-comment"># 最高权限（仅 CI 环境）</span>
+codex exec <span class="token-flag">--sandbox</span> danger-full-access <span class="token-string">"运行完整构建流程"</span></pre>
+
+    <h3>9.8 跳过 Git 仓库检查</h3>
+    <pre data-lang="bash">codex exec <span class="token-flag">--skip-git-repo-check</span> <span class="token-string">"分析这个目录"</span></pre>
+
+    <!-- Chapter 10 -->
+    <h2 id="ch10">第 10 章 &nbsp;MCP 集成与工具扩展</h2>
+
+    <h3>10.1 什么是 MCP</h3>
+    <p>MCP（Model Context Protocol）允许 Codex 连接外部工具和数据源。配置 MCP 服务器后，Codex 自动发现并使用其提供的工具。</p>
+
+    <h3>10.2 配置 MCP 服务器</h3>
+    <pre data-lang="toml">[mcp_servers.my-database]
+command = <span class="token-string">"/path/to/mcp-server"</span>
+env = { DB_URL = <span class="token-string">"postgresql://localhost/mydb"</span> }
+
+[mcp_servers.slack]
+command = <span class="token-string">"npx"</span>
+args = [<span class="token-string">"-y"</span>, <span class="token-string">"@anthropic/mcp-server-slack"</span>]
+env = { SLACK_TOKEN = <span class="token-string">"${SLACK_TOKEN}"</span> }</pre>
+
+    <h3>10.3 管理 MCP 服务器</h3>
+    <pre data-lang="bash"><span class="token-comment"># 添加服务器</span>
+codex mcp add my-server /path/to/server
+
+<span class="token-comment"># 列出已配置的服务器</span>
+codex mcp list
+
+<span class="token-comment"># 查看服务器详情</span>
+codex mcp get my-server
+
+<span class="token-comment"># 删除服务器</span>
+codex mcp remove my-server</pre>
+
+    <h3>10.4 在 TUI 中使用</h3>
+    <ul>
+      <li><code>/mcp</code> —— 列出已连接的 MCP 工具</li>
+    </ul>
+
+    <h3>10.5 Subagents（子代理）</h3>
+    <p>用子代理并行化复杂任务。在 <code>config.toml</code> 中定义角色后，Codex 可以同时调度多个独立的子代理工作。</p>
+
+    <!-- ======================== PART 4 ======================== -->
+    <div class="part-divider"><span>第四部分 · 扩展与协作</span></div>
+
+    <!-- Chapter 11 -->
+    <h2 id="ch11">第 11 章 &nbsp;扩展能力：Skills、Hooks 与工具集成</h2>
+
+    <p>用到后面你会发现，Codex 真正的价值不是它本身有多强，而是你能在它身上接多少东西。Skills、Hooks、MCP 三种扩展机制，让它从一个终端工具变成一个可以无限生长的工作台。</p>
+
+    <h3>11.1 为什么需要扩展</h3>
+    <p>你可能以为 Codex 装好就完事了。后来发现自己总在重复同样的话：每次提交代码前念叨一遍「先跑个 lint」、每次新建组件要交代一遍项目规范、每次查数据要手动复制 SQL 结果贴给 Codex。</p>
+    <p>这种重复一旦超过三次，就该想办法自动化了。Codex 提供了三种扩展机制，各自解决不同层面的问题：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>机制</th><th>本质</th><th>确定性</th><th>适用场景</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Skills</strong></td><td>Markdown 指令包</td><td>高但非 100%（advisory）</td><td>领域知识、可复用工作流</td></tr>
+          <tr><td><strong>Hooks</strong></td><td>Shell 脚本钩子</td><td>100% 确定执行</td><td>格式化、lint、安全检查</td></tr>
+          <tr><td><strong>MCP</strong></td><td>外部工具协议</td><td>100%</td><td>连接数据库、Slack 等外部服务</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>三者的关系：<strong>Skills 教 Codex 怎么做事，Hooks 在关键节点自动执行检查，MCP 连接外部工具和数据源。</strong></p>
+
+    <h3>11.2 Skills：最值得先学的</h3>
+    <p>Skills 是最容易上手的扩展方式。原理简单到有点不像话：在 <code>.agents/skills/</code>（项目级）或 <code>~/.codex/skills/</code>（全局）目录下创建一个文件夹，放一个 <code>SKILL.md</code> 文件，Codex 就会根据上下文自动加载里面的指令。</p>
+    <pre data-lang="text">.agents/skills/              # 项目级 skills（提交到 git）
+├── react-component/
+│   └── SKILL.md    # 创建 React 组件的规范和步骤
+├── fix-issue/
+│   └── SKILL.md    # 修 bug 的标准流程
+└── deploy-preview/
+    └── SKILL.md    # 部署预览环境的步骤</pre>
+    <p>用 <code>/skill-name</code> 可以手动调用某个 skill，Codex 也会根据对话内容自动判断要不要加载。比如你说「帮我创建一个新的 React 组件」，Codex 会自动加载 <code>react-component</code> skill 里的规范。</p>
+
+    <p><strong>两种类型的 Skills</strong></p>
+    <p><strong>知识型：</strong>告诉 Codex「这个项目里的事情应该怎么做」。比如 API 规范、编码风格、项目约定。这类 skill 更像文档，Codex 读完会按里面的规则办事。</p>
+    <p><strong>工作流型：</strong>告诉 Codex「遇到这种任务按什么步骤执行」。比如 <code>/fix-issue</code>（修 bug 的标准流程）、<code>/review-pr</code>（代码审查流程）。这类 skill 更像 SOP，有明确的步骤和检查点。</p>
+    <p>一个挺实用的判断标准：<strong>如果一件事你每天做超过一次，就应该把它变成 skill 或 command。</strong>超过两次你就写了。</p>
+
+    <div class="callout info">
+      <strong>实际案例：创建 /techdebt 命令</strong><br>
+      把「发现技术债 → 评估影响 → 创建 issue → 关联到 sprint」这个流程写成 skill。以后发现技术债时，直接输入 <code>/techdebt</code>，Codex 会自动走完整个流程，包括评估优先级、创建 GitHub issue、加上正确的标签。
+    </div>
+
+    <p><strong>工作流型 skill 的关键配置</strong></p>
+    <p>工作流型 skill 通常会执行有副作用的操作（比如创建 issue、发消息、部署）。SKILL.md 的 front matter 支持 <code>name</code> 和 <code>description</code> 字段，用于定义 skill 的名称和触发条件。通过精确设置 <code>description</code>，可以控制 Codex 何时自动加载该 skill。</p>
+    <pre data-lang="text">---
+name: deploy-preview
+description: Deploy a preview environment for the current branch
+---</pre>
+    <p>手动调用时，使用 <code>/skill-name</code> 即可。</p>
+
+    <p><strong>安装别人的 skill</strong></p>
+    <p>Skills 可以共享。社区有不断增长的 skill 集合，你可以手动下载安装到全局 skills 目录：</p>
+    <pre data-lang="bash">mkdir -p ~/.codex/skills/community && \
+curl -L -o ~/.codex/skills/community/SKILL.md \
+  https://example.com/skills/api/install</pre>
+    <p>安装后你就拥有了社区贡献的工作流，包括 commit 规范、PR 模板、代码审查标准等。</p>
+
+    <div class="callout">
+      <strong>核心建议：</strong>写 skill 的最佳实践：从你最常对 Codex 说的那句话开始。如果你总是在提交前说「先跑一下测试，格式化一下代码，然后 commit」，那这就是一个 skill 的雏形。把这些步骤写进 SKILL.md，下次一个斜杠命令就搞定。
+    </div>
+
+    <h3>11.3 Hooks：不是建议，是强制</h3>
+    <p>Skills 有一个天然的局限：它本质上是对 Codex 的「建议」。Codex 会尽量遵守，但遵从率不是 100%，尤其在长对话后期，它可能就忘了。大多数场景下够用，但有些事情你需要 100% 的确定性。</p>
+
+    <p><strong>Hooks vs AGENTS.md：本质区别</strong></p>
+    <p>很多人会把规则写在 AGENTS.md 里：「每次修改文件后请运行 <code>npx eslint --fix</code>」。这在大多数时候有效，但 Codex 偶尔会忘记，尤其在长对话、上下文被压缩之后。</p>
+    <p><strong>AGENTS.md 是建议，Hooks 是强制执行。</strong>AGENTS.md 通过自然语言影响 Codex 的行为；Hooks 是 Codex 平台层面的机制，在特定生命周期节点触发 Shell 脚本，Codex 无法跳过或忽略。</p>
+
+    <p><strong>生命周期钩子</strong></p>
+    <p>Hooks 支持多个触发时机：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>钩子</th><th>触发时机</th><th>典型用途</th></tr></thead>
+        <tbody>
+          <tr><td><strong>SessionStart</strong></td><td>会话启动时</td><td>初始化环境、设置变量</td></tr>
+          <tr><td><strong>PreToolUse</strong></td><td>Codex 调用工具之前</td><td>拦截危险操作</td></tr>
+          <tr><td><strong>PostToolUse</strong></td><td>Codex 调用工具之后</td><td>自动格式化、自动测试</td></tr>
+          <tr><td><strong>UserPromptSubmit</strong></td><td>用户提交提示词时</td><td>预处理输入、注入上下文</td></tr>
+          <tr><td><strong>Stop</strong></td><td>Codex 完成回合时</td><td>推动继续执行</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>实用案例</strong></p>
+    <p><strong>案例 1：自动格式化。</strong>每次 Codex 编辑文件后自动跑 eslint，不依赖 Codex「记住」要格式化。</p>
+    <pre data-lang="json">// .codex/hooks.json
+[
+  {
+    "event": "PostToolUse",
+    "matcher": "Edit|Write",
+    "command": "npx eslint --fix $CODEX_FILE_PATH"
+  }
+]</pre>
+    <p><strong>案例 2：推动 Codex 继续。</strong>有时候 Codex 会在一个复杂任务中途停下来问「要继续吗？」。Stop hook 可以检测这种情况，自动让 Codex 继续执行，适合无人值守的批处理场景。</p>
+    <p><strong>案例 3：拦截危险操作。</strong>用 PreToolUse hook 在命令执行前进行检查，比如拦截 <code>rm -rf</code> 或 <code>git push --force</code> 等危险命令。</p>
+
+    <div class="callout">
+      <strong>核心建议：</strong>你不需要自己从零写 hooks。直接告诉 Codex：「Write a hook that runs eslint after every file edit」，它会帮你生成配置并写入 <code>.codex/hooks.json</code>。Hooks 配置文件可以放在 <code>~/.codex/hooks.json</code>（全局）或 <code>&lt;repo&gt;/.codex/hooks.json</code>（项目级别）。
+    </div>
+
+    <h3>11.4 Slash Commands：自定义快捷操作</h3>
+    <p>除了 <code>/skill-name</code> 调用 skill，你还可以通过 Skills 机制创建类似「命令」的工作流。在 SKILL.md 中定义多步骤的执行流程，就能将复杂操作封装成一键命令。</p>
+    <p>下面是一个工作流型 Skill 的例子，将 commit → push → PR 封装成一个命令：</p>
+    <pre data-lang="markdown"># .agents/skills/commit-push-pr/SKILL.md
+
+帮我完成以下操作：
+
+1. 查看当前的 git diff:
+```bash
+git diff --stat
+```
+
+2. 生成 commit message 并提交
+3. 推送到远程分支
+4. 创建 Pull Request，标题基于 commit 内容
+
+注意：PR 描述要包含变更摘要。</pre>
+    <p>输入 <code>/commit-push-pr</code>，Codex 就会按照这个流程自动执行。因为 skill 文件存在 <code>.agents/skills/</code> 里，它会随 Git 一起提交，团队成员都能用。</p>
+
+    <div class="callout info">
+      <strong>知识型 vs 工作流型 Skill</strong><br>
+      两者都是 Skill，但定位不同。知识型 Skill 更像「规范文档」，Codex 根据上下文自动应用；工作流型 Skill 更像「宏」，强调执行流程和步骤。经验法则：如果需要 Codex「知道什么」，写知识型 skill；如果需要 Codex「做一串事」，写工作流型 skill。
+    </div>
+
+    <h3>11.5 组合使用：Skills + Hooks + MCP</h3>
+    <p>Skills、Hooks、MCP 可以各自独立使用，但组合起来才真正厉害。</p>
+    <p>比如一个「代码智能」的扩展组合，可能同时包含：</p>
+    <ul>
+      <li>一个 skill：告诉 Codex 如何利用符号导航理解代码结构</li>
+      <li>一个 hook：编辑后自动运行类型检查</li>
+      <li>一个 MCP：连接语言服务器获取精确的符号信息</li>
+    </ul>
+    <p>这三者配合，让 Codex 在理解和修改代码时更准确，而你只需要一次安装。</p>
+
+    <h3>11.6 三种扩展机制的协作</h3>
+    <p>实际项目中，三种机制经常协同工作。一个完整的例子：</p>
+    <p>假设你的团队有这样一个工作流：收到 bug 报告 → 定位问题 → 修复 → 跑测试 → 提交 PR → 通知相关人。</p>
+    <ul>
+      <li><strong>MCP</strong>（Slack）让 Codex 收到 bug 报告并能回复修复结果</li>
+      <li><strong>Skill</strong>（fix-issue）指导 Codex 按标准流程定位和修复问题</li>
+      <li><strong>Hook</strong>（PostToolUse）确保每次修改后都自动跑测试和格式化</li>
+    </ul>
+    <p>单独用任何一个都有价值，组合起来就是一条完整的自动化 bug 修复流水线。</p>
+    <div class="callout"><strong>核心建议：</strong>不要想着一上来就搭一套完整的扩展体系。从你最痛的那个重复操作开始：总在口述规则？写个 skill。总忘记跑 lint？加个 hook。总在手动倒腾数据？接个 MCP。一个一个加，慢慢的你的 Codex 就变成了一个为你量身定制的工作台。</div>
+
+    <!-- Chapter 12 -->
+    <h2 id="ch12">第 12 章 &nbsp;多 Agent 协作</h2>
+
+    <p>Codex 最被低估的不是它写代码有多快，而是它可以同时跑很多个。学会并行之后，你的工作模式会从「一个人配一个 AI」变成「一个人指挥一支 AI 团队」。</p>
+
+    <h3>12.1 一个人为什么要开那么多窗口</h3>
+    <p>高效的 Codex 用户通常会同时开多个实例（独立的 git checkout），每个跑不同的任务。一个写新功能，一个修 bug，一个写测试，一个重构，一个做代码审查。同时进行。</p>
+    <p>原因很直接：Codex 的工作模式是「你给任务 → Codex 花几分钟执行 → 你 review 结果 → 给下一个任务」。中间有大量等待时间。只开一个 session，大部分时间你在等 Codex 干活。开多个 session，你 review 第一个的时候其他几个还在跑，等待时间大幅降低。</p>
+    <p>关键前提是：<strong>每个 session 需要在独立的代码环境中运行</strong>，否则它们会互相覆盖文件，制造冲突。这就是 Git Worktrees 要解决的问题。</p>
+
+    <h3>12.2 Git Worktrees：并行的基础设施</h3>
+    <p>Git Worktree 允许你从同一个仓库创建多个工作目录，每个工作目录在不同的分支上，文件系统完全隔离。你可以手动创建 worktree，然后在每个 worktree 中分别启动 Codex：</p>
+    <pre data-lang="bash"># 手动创建 worktree 并在其中启动 Codex
+git worktree add ../project-fix fix/login-bug
+cd ../project-fix && codex "修复登录问题"
+
+# 另一个终端窗口
+git worktree add ../project-feat feat/dashboard
+cd ../project-feat && codex "实现 dashboard"</pre>
+    <p>每个 worktree 是完全独立的文件系统，多个 Codex 实例不会互相干扰。完成后你可以把分支合并回主分支，然后清理 worktree。</p>
+
+    <p><strong>配合 Tmux 使用</strong></p>
+    <p>用 Tmux 管理多个 Codex session，可以用快捷键在不同 session 之间切换：</p>
+    <pre data-lang="bash"># ~/.zshrc 中添加
+alias za="tmux select-window -t codex:0"
+alias zb="tmux select-window -t codex:1"
+alias zc="tmux select-window -t codex:2"</pre>
+    <p><code>za</code> 跳到第一个 session，<code>zb</code> 跳到第二个，以此类推。</p>
+
+    <h3>12.3 Subagents：给主 session 叫个帮手</h3>
+    <p>并行 session 适合处理互不相关的独立任务。但有时候你要的不是开一个新窗口，而是在当前任务中调一个「专家」来处理特定环节，比如让一个安全审查专家 review 你刚写的认证代码。这就是 Subagents 干的事。</p>
+    <p>Subagents 让主 session 可以调用具有独立上下文的子代理来处理特定环节。比如安全审查 agent 可以配置为只有读权限（不能改代码），专注于 review 任务。</p>
+
+    <p><strong>Subagents 的核心价值</strong></p>
+    <p>Subagents 最重要的特性不是「专业分工」，而是<strong>独立上下文</strong>。</p>
+    <p>每个 subagent 运行在自己的上下文窗口中，不消耗主 session 的上下文空间。当主 session 的对话已经很长、上下文快要满了的时候，调用一个 subagent 来处理子任务，相当于开了一个新的「思考空间」，不会挤压主 session 的容量。</p>
+
+    <div class="callout">
+      <strong>核心建议：</strong>实用的 subagent 组合：<strong>security-reviewer</strong>（每次涉及认证、权限、数据存储时自动调用）+ <strong>verify-app</strong>（修改完成后自动启动应用并验证功能是否正常）。这两个覆盖了「写得对不对」和「跑得起来吗」两个最常见的验证需求。
+    </div>
+
+    <h3>12.4 Agent Teams：让它们自己协调</h3>
+    <p>Worktrees 让你手动管理多个并行 session。Subagents 让主 session 调一个专家。Agent Teams 更进一步：多个 session 之间能互相通信、协调分工。</p>
+
+    <p><strong>Writer/Reviewer 模式</strong></p>
+    <p>最经典的用法是一个写代码、另一个审代码：</p>
+    <ol>
+      <li><strong>Writer Agent 写代码</strong> — 负责实现功能，按照需求写代码、跑测试</li>
+      <li><strong>Reviewer Agent 审代码</strong> — review Writer 的输出，指出问题、建议改进</li>
+      <li><strong>Writer 根据反馈修改</strong> — 收到 review 意见后改进代码，形成迭代循环</li>
+    </ol>
+    <p>这个模式比单个 agent 写代码好不少。原因和人类团队一样：写代码的人容易陷入自己的思路，审代码的人能从不同角度发现问题。两个 agent 互相盯着，产出质量肉眼可见地提升。</p>
+
+    <p><strong>测试驱动模式</strong></p>
+    <p>另一个高效的模式：一个 agent 写测试，另一个写实现。写测试的 agent 先根据需求定义「什么是正确行为」，写出测试。然后写实现的 agent 再去满足这些测试。这就是 AI 版的 TDD（Test-Driven Development）。</p>
+
+    <h3>12.5 Fan-out 批处理：人海战术的 AI 版</h3>
+    <p>前面都是几个 agent 配合做一件事。Fan-out 模式解决的是另一类问题：同一个操作需要对大量文件重复执行。</p>
+
+    <p><strong>非交互模式</strong></p>
+    <p>Codex 支持非交互模式，用 <code>codex exec</code> 命令传入 prompt，适合在脚本中调用：</p>
+    <pre data-lang="bash"># 非交互模式执行单个任务
+codex exec "把这个文件从 JavaScript 迁移到 TypeScript"</pre>
+    <p>配合 shell 循环，你可以批量处理：</p>
+    <pre data-lang="bash"># 批量迁移一批文件
+for file in $(cat files-to-migrate.txt); do
+  codex exec --full-auto "Migrate $file from JS to TS" &
+done</pre>
+    <p>注意末尾的 <code>&</code>：这让每个 Codex 实例在后台并行运行。如果有 50 个文件要迁移，50 个 Codex 同时跑，可能几分钟就完成了原本需要一整天的迁移工作。</p>
+
+    <p><strong>批量脚本模式</strong></p>
+    <p>你可以写一个简单的 shell 脚本来管理批量任务：</p>
+    <ol>
+      <li><strong>规划阶段</strong> — 先用 Codex 交互模式分析项目，列出需要处理的文件清单</li>
+      <li><strong>批量执行</strong> — 用 shell 循环配合 <code>codex exec</code> 并行执行</li>
+      <li><strong>汇总结果</strong> — 检查各实例的退出码和输出，处理失败的 case</li>
+    </ol>
+
+    <h3>12.6 不一定要盯着电脑</h3>
+    <p>前面说的都是本地终端操作。但 Codex 也支持远程和异步执行，不用一直守在终端前面。</p>
+
+    <p><strong>非交互批量任务</strong></p>
+    <p>对于需要定期执行的任务（依赖更新、安全扫描），可以通过 <code>codex exec</code> 配合系统的 cron 或 CI/CD 调度来实现自动化，无需一直守在终端前面。</p>
+
+    <div class="callout"><strong>核心建议：</strong>从 2 个 session 开始就好。不用一上来就开 10 个。先习惯在两个之间切换：一个做主任务，另一个做辅助的（写测试、做 code review）。等觉得游刃有余了再加。<br><br>每个 session 给一个明确的角色。用 git 分支隔离一切。并行不等于不管 — 每隔 15-20 分钟看看各个 session 的进度，及时纠偏。</div>
+
+    <!-- ======================== PART 5 ======================== -->
+    <div class="part-divider"><span>第五部分 · 实战案例</span></div>
+
+    <!-- Chapter 13 -->
+    <h2 id="ch13">第 13 章 &nbsp;用 Codex 做代码审查</h2>
+
+    <h3>13.1 内置 /review 命令</h3>
+    <p>在 TUI 中直接使用：</p>
+    <pre>/review</pre>
+    <p>这会分析工作区的 diff，不修改任何文件。</p>
+
+    <h3>13.2 自动化审查</h3>
+    <pre data-lang="bash"><span class="token-comment"># 在 CI 中自动审查 PR</span>
+codex exec <span class="token-flag">-a</span> untrusted <span class="token-string">"审查当前分支相对于 main 的所有变更，\
+  关注安全漏洞、性能问题和代码风格"</span></pre>
+
+    <!-- Chapter 14 -->
+    <h2 id="ch14">第 14 章 &nbsp;CI/CD 集成实战</h2>
+
+    <h3>14.1 GitHub Actions 集成</h3>
+    <p><strong>自动修复 CI 失败：</strong></p>
+    <pre data-lang="yaml"><span class="token-flag">name</span>: Codex auto-fix on CI failure
+
+<span class="token-flag">on</span>:
+  <span class="token-flag">workflow_run</span>:
+    <span class="token-flag">workflows</span>: [<span class="token-string">"CI"</span>]
+    <span class="token-flag">types</span>: [completed]
+
+<span class="token-flag">jobs</span>:
+  <span class="token-flag">auto-fix</span>:
+    <span class="token-keyword">if</span>: ${{ github.event.workflow_run.conclusion == <span class="token-string">'failure'</span> }}
+    <span class="token-flag">runs-on</span>: ubuntu-latest
+    <span class="token-flag">env</span>:
+      <span class="token-var">OPENAI_API_KEY</span>: ${{ secrets.OPENAI_API_KEY }}
+    <span class="token-flag">steps</span>:
+      - <span class="token-flag">uses</span>: actions/checkout@v4
+      - <span class="token-flag">run</span>: npm i -g @openai/codex
+      - <span class="token-flag">run</span>: printenv OPENAI_API_KEY | codex login --with-api-key
+      - <span class="token-flag">run</span>: |
+          codex exec --full-auto --sandbox workspace-write \
+            <span class="token-string">"运行测试，找出失败原因，实施最小修复"</span></pre>
+
+    <h3>14.2 使用 Codex GitHub Action</h3>
+    <pre data-lang="yaml">- <span class="token-flag">uses</span>: openai/codex-action@v1
+  <span class="token-flag">with</span>:
+    <span class="token-flag">openai-api-key</span>: ${{ secrets.OPENAI_API_KEY }}
+    <span class="token-flag">prompt</span>: <span class="token-string">"分析这个 PR 的变更并生成审查报告"</span></pre>
+
+    <h3>14.3 认证最佳实践</h3>
+    <p>CI/CD 中推荐使用 API Key（更容易配置和轮换）：</p>
+    <pre data-lang="bash"><span class="token-var">OPENAI_API_KEY</span>=&lt;api-key&gt; codex exec <span class="token-flag">--json</span> <span class="token-string">"执行任务"</span></pre>
+
+    <!-- Chapter 15 -->
+    <h2 id="ch15">第 15 章 &nbsp;多会话工作流</h2>
+
+    <h3>15.1 会话管理</h3>
+    <pre data-lang="bash"><span class="token-comment"># 恢复上一次会话</span>
+codex resume <span class="token-flag">--last</span>
+
+<span class="token-comment"># 恢复特定会话</span>
+codex resume &lt;SESSION_ID&gt;</pre>
+
+    <h3>15.2 Fork 会话</h3>
+    <pre data-lang="bash"><span class="token-comment"># 从特定会话 fork</span>
+codex fork &lt;SESSION_ID&gt;</pre>
+
+    <h3>15.3 TUI 中的会话命令</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>命令</th><th>功能</th></tr></thead>
+        <tbody>
+          <tr><td><code>/resume</code></td><td>恢复之前的会话</td></tr>
+          <tr><td><code>/fork</code></td><td>从当前会话分叉</td></tr>
+          <tr><td><code>/compact</code></td><td>压缩上下文</td></tr>
+          <tr><td><code>/status</code></td><td>查看当前状态</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>15.4 会话续接工作流示例</h3>
+    <pre data-lang="bash"><span class="token-comment"># 阶段一：调研</span>
+codex exec <span class="token-string">"分析项目中所有 API 端点的错误处理模式"</span>
+
+<span class="token-comment"># 阶段二：基于调研结果修复</span>
+codex exec resume <span class="token-flag">--last</span> <span class="token-flag">--full-auto</span> \
+  <span class="token-string">"基于你的分析，统一所有 API 的错误处理为标准模式"</span></pre>
+
+    <!-- ======================== PART 6 ======================== -->
+    <div class="part-divider"><span>第六部分 · 产品与心智</span></div>
+
+    <!-- Chapter 16 -->
+    <h2 id="ch16">第 16 章 &nbsp;从零构建一个完整产品</h2>
+
+    <p>前面所有章节讲零件，这一章组装。用一个真实项目把前面学的东西全串起来，你会发现 Codex 真正的威力不在于某个单一功能，而在于它们连起来之后的化学反应。</p>
+
+    <h3>16.1 Phase 0：先别急着写代码</h3>
+    <p>很多人一开始做产品时犯过一个错：想到什么就立刻让 Codex 开始写代码。结果做到一半发现需求没想清楚，只能推翻重来。</p>
+    <p>后来养成了一个习惯：先让 Codex 采访你。它其实很擅长这个。</p>
+    <pre>我想做一个周报工具，在动手之前，先采访我，
+问清楚所有你需要知道的事情。一次问一个问题。</pre>
+    <p>Codex 会开始像产品经理一样采访你：</p>
+    <ul>
+      <li>目标用户是谁？（个人开发者？还是团队？）</li>
+      <li>核心功能有哪些？（只生成周报？还是也需要分享？）</li>
+      <li>技术偏好？（部署到哪里？用什么框架？）</li>
+      <li>有没有设计参考？（周报长什么样？）</li>
+    </ul>
+    <p>回答完这些问题后，让 Codex 把结论整理成一份规格文档（SPEC.md）。然后关键来了：<strong>开一个全新的会话</strong>，把 SPEC 喂给新的 Codex，让它执行。</p>
+    <p>为什么要开新会话？因为采访过程中积累的对话历史已经很长了，占了大量上下文。新会话从一份干净的 SPEC 开始，Codex 能更专注地执行。</p>
+
+    <h3>16.2 Phase 1：项目初始化</h3>
+    <p>新 session，干净的开始。一句话创建项目骨架：</p>
+    <pre>Create a Next.js project called weekly-report with Tailwind CSS.
+Set up the basic folder structure following SPEC.md requirements.
+Include TypeScript, and configure ESLint.</pre>
+    <p>Codex 会执行一连串操作：运行 <code>npx create-next-app</code>、安装依赖、配置 Tailwind、创建基础目录结构。</p>
+    <p>接下来是关键一步：配置 AGENTS.md。这是 §05 整章的核心，现在是实战：</p>
+    <pre data-lang="markdown"># WeeklyReport
+
+## Project Overview
+AI-powered weekly report generator. Connects to GitHub,
+summarizes commits with AI, generates shareable report pages.
+
+## Tech Stack
+- Next.js 15 (App Router) + TypeScript
+- Tailwind CSS for styling
+- NextAuth.js for GitHub OAuth
+
+## Code Style
+- Use server components by default, 'use client' only when needed
+- API routes in app/api/, use Route Handlers
+- Prefer named exports
+
+## Testing
+- Run `npm run lint` before committing
+- Test API routes with curl before building UI</pre>
+
+    <h3>16.3 Phase 2：正式开发</h3>
+    <p>到这里才真正开始写代码。先用 Plan 模式聊一轮架构，不急着动手。在终端里输入 <code>/plan</code> 切换到 Plan 模式：</p>
+    <pre>"I need to implement the core flow: GitHub OAuth login → fetch this
+week's commits → send to API for summarization → display the report.
+Let's discuss the architecture before coding."</pre>
+    <p>Codex 会给出一个完整的技术方案：API 路由如何设计、数据流怎么走、组件怎么拆分。你可以在这个阶段提出疑问、调整方案。</p>
+    <p>确认方案后，退出 Plan 模式，让 Codex 开始实现。<strong>每完成一个模块，做一次验证</strong>：</p>
+    <ol>
+      <li><strong>GitHub OAuth</strong> — 让 Codex 跑 <code>npm run dev</code>，打开浏览器点登录按钮，看能不能跳转到 GitHub 授权页面</li>
+      <li><strong>数据获取</strong> — 登录成功后，用 curl 测试 API 路由，看返回的数据是否正确</li>
+      <li><strong>AI 总结</strong> — 拿真实的数据调用总结接口，检查 AI 生成的周报内容是否合理</li>
+    </ol>
+    <div class="callout warn"><strong>注意：</strong>每做完一步就验证，这是踩过最多坑之后总结出来的最重要的习惯。不要让 Codex 一口气写完所有代码再测。问题越早发现越容易修。</div>
+
+    <h3>16.4 Phase 3：让它好看起来</h3>
+    <p>功能跑通了，但界面大概率很丑。正常。先让功能跑起来，再管好不好看。</p>
+    <p>Codex 支持图片输入。最直接的方式：截一张当前页面的图，粘贴给 Codex：</p>
+    <pre>看一下当前报告页面的截图。
+问题：1) 标题区域太拥挤 2) 列表需要更好的间距
+3) 右上角加一个分享按钮</pre>
+    <p>Codex 会看到你的截图，理解当前的视觉问题，然后精准修改对应的 CSS 和组件代码。</p>
+    <div class="callout"><strong>核心建议：</strong>UI 打磨阶段最高效的做法是：先把所有问题一次性列出来，让 Codex 批量修改，而不是改一个看一个。批量反馈能让 Codex 更好地理解整体设计意图。</div>
+
+    <h3>16.5 Phase 4：扩展能力实战</h3>
+    <p>核心产品已经能用了。现在是 §11 内容的实战时间：给项目加上 Skills、MCP 和 Hooks。</p>
+    <p><strong>创建一个 Skill</strong> — 每次想生成周报，都要打开项目、执行一串操作。能不能一句话搞定？可以，用 Skill。</p>
+    <p>在项目根目录创建 <code>.agents/skills/generate-report/SKILL.md</code>：</p>
+    <pre data-lang="markdown"># /weekly-report
+
+Generate this week's report.
+
+## Steps
+1. Run the dev server if not running
+2. Call /api/github to fetch commits since last Monday
+3. Call /api/summarize to generate the report
+4. Open the report page in browser
+5. Show the shareable URL</pre>
+    <p>配置完成后，在任何 Codex session 中输入 <code>/weekly-report</code>，它就会自动执行以上所有步骤。一个命令，10 秒出周报。</p>
+    <p><strong>添加 MCP：连接 Slack</strong> — 周报生成了，手动发到 Slack 频道太麻烦。用 MCP 把两者打通。</p>
+    <p><strong>设置 Hook：自动 Lint</strong> — 每次 Codex 执行 <code>git commit</code> 时，都会先确保代码质量。这是 §11 里 Hook 的典型用法：在关键节点注入自动检查。</p>
+
+    <h3>16.6 Phase 5：部署上线</h3>
+    <p>产品在本地跑得好好的，该让全世界都能访问了。</p>
+    <pre>Deploy this project to Vercel. Set up the environment
+variables for GitHub OAuth and API key.
+Also create a GitHub Actions workflow that runs lint
+and type check on every PR.</pre>
+    <p>Codex 会执行部署命令、配置环境变量、创建 CI/CD 配置文件。整个过程你不需要手动打开 Vercel 的 dashboard，也不需要手写 GitHub Actions 的 YAML。</p>
+
+    <h3>16.7 回顾：这个项目用到了什么</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Phase</th><th>做了什么</th><th>对应章节</th></tr></thead>
+        <tbody>
+          <tr><td>Phase 0</td><td>用 Codex 采访自己，生成 SPEC.md</td><td>§06 对话技巧</td></tr>
+          <tr><td>Phase 1</td><td>项目初始化 + AGENTS.md 配置</td><td>§02 安装 + §05 AGENTS.md</td></tr>
+          <tr><td>Phase 2</td><td>Plan 模式讨论 + Auto 模式实现</td><td>§04 核心工作流</td></tr>
+          <tr><td>Phase 3</td><td>截图反馈 + UI 迭代</td><td>§04 Computer Use</td></tr>
+          <tr><td>Phase 4</td><td>Skills + MCP + Hooks</td><td>§11 扩展能力</td></tr>
+          <tr><td>Phase 5</td><td>Vercel 部署 + CI/CD</td><td>§14 CI/CD</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>如果从头到尾比较顺利，整个过程大概需要 5-8 个小时。其中最耗时的是 Phase 2（核心功能开发），OAuth 配置和 API 调试需要反复验证。</p>
+
+    <div class="callout"><strong>我踩出来的几条经验：</strong><br>
+    <strong>一、需求拆小，每次只给一步。</strong>先做登录，确认能跑。再做数据存储，确认能存能取。然后是核心业务逻辑，然后才是 UI。每一步验证通过，再进下一步。<br>
+    <strong>二、先跑通最小功能，再一步步加。</strong>第一个版本只有一个功能：打开 App，屏幕变白，亮度拉满。就这么简单。确认补光效果还行，才开始加色温调节、亮度滑块这些功能。<br>
+    <strong>三、验证比开发更重要。</strong>AI 生成的代码需要验证，就像人写的代码需要测试一样。每完成一个功能模块，立刻打开浏览器或跑测试。发现问题立刻修，不要积累。<br>
+    <strong>四、不要在一个 session 里做太多不相关的事。</strong>我通常这样分 session：项目初始化 + 基础架构 / 核心后端逻辑 / 前端页面和交互 / 测试和 bug 修复 / 部署和 CI/CD。<br>
+    <strong>五、产品感知才是你最大的杠杆。</strong>Codex 能帮你写代码、调 UI、配部署、修 bug。但它帮不了你决定：这个产品到底应该解决什么问题？目标用户是谁？什么功能该做什么功能该砍？这些是产品判断。</div>
+
+    <!-- Chapter 17 -->
+    <h2 id="ch17">第 17 章 &nbsp;心智模型与持续进化</h2>
+
+    <p>工具会过时，功能会更新。但好的思维方式不会贬值。最后一章退后一步，聊几个比具体操作更重要的东西。</p>
+
+    <h3>17.1 三层模型：你的时间该花在哪</h3>
+    <p>讲了这么多具体操作，现在值得建立一个全局视角。Codex 的所有能力，其实可以归入三个层次：</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>层次</th><th>投入方式</th><th>回报特征</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Prompt 层</strong></td><td>每次对话都要重新投入</td><td>一次性回报</td></tr>
+          <tr><td><strong>Context 层</strong></td><td>写一次 AGENTS.md，持续生效</td><td>复利回报</td></tr>
+          <tr><td><strong>Harness 层</strong></td><td>搭一次自动化流程，永久运行</td><td>指数回报</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Prompt 层</strong>是你在终端里输入的每一句话。「帮我加一个登录页面」「这个 bug 修一下」。大多数初学者的全部交互都停留在这一层。它有效，但每次都需要你开口，每次都从零开始。</p>
+    <p><strong>Context 层</strong>是 Codex 在回答你之前已经「看到」的所有信息。AGENTS.md 文件、项目的文件结构、git 提交历史、package.json 里的依赖列表。这些信息不需要你每次重复，Codex 会自动读取。§05 讲的 AGENTS.md，本质上就是在优化这一层。</p>
+    <p><strong>Harness 层</strong>是你构建的自动化环境。Skills 让你把常用工作流封装成可复用的指令；Hooks 让特定事件自动触发操作；MCP 连接外部服务；Agent Teams 让多个 Codex 实例并行协作。这一层的特点是：一旦搭好，它就一直在工作，不需要你每次手动触发。</p>
+
+    <p>一个比喻：Prompt 是你开口说话，Context 是你提前准备好的 PPT，Harness 是你搭建的整个舞台。观众（Codex）的表现，取决于这三层的综合质量。</p>
+    <p>初学者把所有精力都花在 Prompt 层，反复琢磨措辞、研究提示词技巧。这没有错，但天花板很低。高手的做法是：<strong>尽量把信息沉淀到 Context 层，把重复劳动交给 Harness 层，只在 Prompt 层处理真正需要临时决策的事情。</strong></p>
+
+    <div class="callout"><strong>如果你读完这本手册只记住一件事，就记住这个：把时间花在构建 Context 和 Harness 上，而不是优化 Prompt。</strong></div>
+
+    <h3>17.2 引擎盖下的 Codex</h3>
+    <p>用了这么久 Codex，你有没有好奇过：当你按下回车之后，到底发生了什么？</p>
+
+    <p><strong>核心循环：Think → Act → Observe → Repeat</strong></p>
+    <p>Codex 的核心是一个典型的 Agent 循环。你在终端里输入一句话后发生的所有事情，都是这个循环在驱动：</p>
+    <ol>
+      <li><strong>Think</strong> — 分析当前状态，决定下一步做什么</li>
+      <li><strong>Act</strong> — 调用一个工具执行操作（比如读一个文件、运行一条命令）</li>
+      <li><strong>Observe</strong> — 读取返回的结果，判断任务是否完成</li>
+      <li><strong>Repeat</strong> — 未完成就回到 Think 继续循环</li>
+    </ol>
+    <p>先思考当前状态、决定下一步做什么；然后调用一个工具执行操作；观察返回的结果，判断任务是不是完成了；没完成就回到 Think 继续循环。整个过程可能转几十圈才停下来。</p>
+    <p>这就解释了为什么 Codex 有时候看起来「绕弯路」。它不是一个从输入到输出的直线程序，它是一个不断试探和调整的循环体。每一步都在根据新的观察做决策。有时候它试了一个方案发现不行，回退换另一条路，这其实是设计的一部分，不是 bug。</p>
+    <p>也正因如此，<strong>给 Codex 明确的验证标准特别重要</strong>。循环需要一个停止条件。如果你的需求描述模糊，它不知道什么时候算「做完了」，就会不停地循环下去，改来改去。告诉它「测试通过就停」或「生成文件就行」，它收敛的速度会快很多。</p>
+
+    <p><strong>40+ 工具，4 个能力原语</strong></p>
+    <p>Codex 内部有 40 多个工具，每个都有独立的权限控制。但如果你退后一步看，所有能力其实归结为 4 个原语：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>原语</th><th>做什么</th><th>典型工具</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Read</strong></td><td>读文件、读代码、搜索内容</td><td>Read、Grep、Glob</td></tr>
+          <tr><td><strong>Write</strong></td><td>写文件、编辑代码</td><td>Write、Edit</td></tr>
+          <tr><td><strong>Execute</strong></td><td>运行命令、执行脚本</td><td>Bash</td></tr>
+          <tr><td><strong>Connect</strong></td><td>连接外部服务</td><td>MCP 工具、WebFetch</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>这个设计挺巧妙的，关键在 Bash 工具。它是一个万能适配器，让 Codex 能使用人类开发者的一切命令行工具。不需要给每种编程语言做专门集成，通过 Execute + Bash 就能操作一切。这也是 Codex 能在几乎任何技术栈的项目里工作的原因。</p>
+
+    <h3>17.3 身份在变：从写代码到构建产品</h3>
+    <p>这个变化比大多数人预期的要快。</p>
+    <p>越来越多的工程师公开表示，自己超过 90% 的代码都由 AI 生成。他们的日常更多是：描述需求、审查输出、做架构决策。有人总结得挺精辟：「我现在的工作更像是一个有技术判断力的产品经理。」</p>
+    <p>这意味着关键能力正在发生转移：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>旧能力（重要性下降）</th><th>新能力（重要性上升）</th></tr></thead>
+        <tbody>
+          <tr><td>语法熟练度</td><td>需求拆解能力</td></tr>
+          <tr><td>框架 API 记忆</td><td>架构判断力</td></tr>
+          <tr><td>手动调试技巧</td><td>输出质量评审</td></tr>
+          <tr><td>代码模板积累</td><td>产品品味</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>注意，说的是「重要性下降」而不是「没用」。理解代码仍然有价值，它能帮你更好地描述需求、更准确地评审输出。但你不再需要能从零手写一个完整应用，你需要的是能判断一个应用写得好不好。</p>
+    <p>这个转变的核心问题是：<strong>从「怎么写」到「写什么」。</strong></p>
+    <p>以前，你可能花 80% 的时间在「怎么实现这个功能」上，20% 在「应该做什么功能」上。现在比例倒过来了。Codex 解决了「怎么写」的问题，但「写什么」这个问题，它帮不了你太多。你需要自己想清楚：这个产品解决什么问题？目标用户是谁？核心体验是什么？哪些功能必须有，哪些可以砍掉？</p>
+
+    <div class="callout"><strong>核心建议：</strong>如果你正在焦虑「AI 会不会取代我」，可以换个角度想：学会定义需求、设计交互、评审质量。这些能力不会因为 AI 变强而贬值。</div>
+
+    <h3>17.4 迭代这么快，怎么跟</h3>
+    <p>真正该关注的不是具体功能变化，而是方向。过去一年半的演进，有三条线索始终没变：</p>
+    <ol>
+      <li><strong>自主性持续增强。</strong>从需要你逐步指令，到能自主规划和执行。</li>
+      <li><strong>上下文窗口持续扩大。</strong>从 8K 到 200K 到 1M，Codex 能「看到」的项目规模越来越大。</li>
+      <li><strong>协作模式持续丰富。</strong>从单 Agent 到 SubAgents 到 Agent Teams，多 Agent 协作越来越自然。</li>
+    </ol>
+    <p>这意味着你今天学的「怎么和 AI 协作」不会过时。具体命令可能变，但「描述需求→审查输出→迭代改进」这个核心循环，在可预见的未来不会变。</p>
+
+    <div class="callout"><strong>最后一条建议：</strong>别花太多时间研究工具，去构建东西。找一个你真正想解决的问题，打开终端，开始和 Codex 对话。遇到卡住的地方翻翻这本手册，翻完继续做。<br><br>从想法到产品的距离，现在短到你可能还不太适应。</div>
+
+    <!-- ======================== APPENDIX ======================== -->
+    <div class="part-divider"><span>附录</span></div>
+
+    <!-- Appendix A -->
+    <h2 id="appendix-a">附录 A &nbsp;命令速查表</h2>
+
+    <h3>核心命令</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>命令</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><code>codex</code></td><td>启动交互式 TUI</td></tr>
+          <tr><td><code>codex "prompt"</code></td><td>带指令启动 TUI</td></tr>
+          <tr><td><code>codex exec "prompt"</code></td><td>非交互执行</td></tr>
+          <tr><td><code>codex app</code></td><td>启动桌面应用（macOS）</td></tr>
+          <tr><td><code>codex login</code></td><td>认证登录</td></tr>
+          <tr><td><code>codex logout</code></td><td>登出</td></tr>
+          <tr><td><code>codex resume</code></td><td>恢复会话</td></tr>
+          <tr><td><code>codex fork</code></td><td>分叉会话</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>常用标志</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>标志</th><th>短写</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><code>--model</code></td><td><code>-m</code></td><td>指定模型</td></tr>
+          <tr><td><code>--sandbox</code></td><td><code>-s</code></td><td>沙盒模式</td></tr>
+          <tr><td><code>--ask-for-approval</code></td><td><code>-a</code></td><td>审批策略</td></tr>
+          <tr><td><code>--full-auto</code></td><td></td><td>自动模式快捷方式</td></tr>
+          <tr><td><code>--image</code></td><td><code>-i</code></td><td>附加图片</td></tr>
+          <tr><td><code>--config</code></td><td><code>-c</code></td><td>一次性配置覆盖</td></tr>
+          <tr><td><code>--json</code></td><td></td><td>JSON Lines 输出</td></tr>
+          <tr><td><code>--search</code></td><td></td><td>启用实时搜索</td></tr>
+          <tr><td><code>--oss</code></td><td></td><td>使用本地开源模型</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>TUI 斜杠命令</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>命令</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><code>/clear</code></td><td>清除对话</td></tr>
+          <tr><td><code>/resume</code></td><td>恢复会话</td></tr>
+          <tr><td><code>/fork</code></td><td>分叉会话</td></tr>
+          <tr><td><code>/model</code></td><td>切换模型</td></tr>
+          <tr><td><code>/permissions</code></td><td>修改权限</td></tr>
+          <tr><td><code>/review</code></td><td>代码审查</td></tr>
+          <tr><td><code>/diff</code></td><td>查看 diff</td></tr>
+          <tr><td><code>/init</code></td><td>生成 AGENTS.md</td></tr>
+          <tr><td><code>/compact</code></td><td>压缩上下文</td></tr>
+          <tr><td><code>/status</code></td><td>查看状态</td></tr>
+          <tr><td><code>/plan</code></td><td>规划模式</td></tr>
+          <tr><td><code>/mcp</code></td><td>管理 MCP 工具</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Appendix B -->
+    <h2 id="appendix-b">附录 B &nbsp;config.toml 完整参考</h2>
+
+    <pre data-lang="toml"><span class="token-comment"># ============================================</span>
+<span class="token-comment"># Codex CLI 配置文件参考</span>
+<span class="token-comment"># 位置：~/.codex/config.toml</span>
+<span class="token-comment"># ============================================</span>
+
+<span class="token-comment"># 默认模型</span>
+model = <span class="token-string">"gpt-5.4"</span>
+
+<span class="token-comment"># 审批策略: untrusted | on-failure | on-request | auto-edit | never</span>
+approval_policy = <span class="token-string">"on-request"</span>
+
+<span class="token-comment"># 沙盒模式: read-only | workspace-write | danger-full-access</span>
+sandbox_mode = <span class="token-string">"workspace-write"</span>
+
+<span class="token-comment"># 推理强度: low | medium | high</span>
+model_reasoning_effort = <span class="token-string">"medium"</span>
+
+<span class="token-comment"># AGENTS.md 配置</span>
+project_doc_max_bytes = 65536
+project_doc_fallback_filenames = [<span class="token-string">"AGENTS.md"</span>]
+
+<span class="token-comment"># 项目根标记</span>
+project_root_markers = [<span class="token-string">".git"</span>, <span class="token-string">".hg"</span>, <span class="token-string">".sl"</span>]
+
+<span class="token-comment"># ---- 沙盒写入配置 ----</span>
+[sandbox_workspace_write]
+writable_roots = []
+network_access = <span class="token-keyword">false</span>
+
+<span class="token-comment"># ---- Shell 环境 ----</span>
+[shell_environment_policy]
+exclude = [<span class="token-string">"AWS_*"</span>, <span class="token-string">"SECRET_*"</span>, <span class="token-string">"TOKEN_*"</span>]
+
+<span class="token-comment"># ---- MCP 服务器 ----</span>
+<span class="token-comment"># [mcp_servers.example]</span>
+<span class="token-comment"># command = "/path/to/server"</span>
+<span class="token-comment"># env = { KEY = "value" }</span></pre>
+
+    <!-- Appendix C -->
+    <h2 id="appendix-c">附录 C &nbsp;常见问题</h2>
+
+    <div class="faq-item">
+      <div class="q">Codex CLI 免费吗？</div>
+      <div class="a">ChatGPT Plus/Pro/Business/Edu/Enterprise 订阅用户可以免费使用。也可以使用 OpenAI API Key 按量付费。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">支持哪些操作系统？</div>
+      <div class="a">macOS 和 Linux 完全支持。Windows 需要 WSL2，目前为实验性支持。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">如何使用本地开源模型？</div>
+      <div class="a">安装 Ollama 后，使用 <code>codex --oss</code> 即可使用本地模型。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">AGENTS.md 和 CLAUDE.md 有什么区别？</div>
+      <div class="a">AGENTS.md 是 Codex（OpenAI）使用的项目指令格式，CLAUDE.md 是 Claude Code（Anthropic）使用的。两者功能类似，都是给 AI 编程代理提供项目规范。AGENTS.md 已成为由 Agentic AI Foundation（隶属 Linux Foundation）管理的跨工具开放标准。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">沙盒会影响性能吗？</div>
+      <div class="a">沙盒使用 OS 原生机制（macOS Seatbelt / Linux bubblewrap），性能开销极小。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">如何在团队中共享配置？</div>
+      <div class="a">将 <code>.codex/config.toml</code> 和 <code>AGENTS.md</code> 提交到代码仓库中。项目级配置在团队成员间自动共享。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">codex exec 输出到哪里？</div>
+      <div class="a">进度信息输出到 stderr，最终代理消息输出到 stdout，方便管道操作和重定向。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">如何回退 Codex 的修改？</div>
+      <div class="a">建议在使用前创建 Git checkpoint。使用 <code>git diff</code> 查看变更，<code>git checkout .</code> 回退。</div>
+    </div>
+
+    <!-- Appendix D -->
+    <h2 id="appendix-d">附录 D &nbsp;术语表</h2>
+
+    <div class="glossary-grid">
+      <div class="glossary-item"><dt>TUI</dt><dd>Terminal User Interface，终端用户界面</dd></div>
+      <div class="glossary-item"><dt>Seatbelt</dt><dd>macOS 内置的沙盒框架</dd></div>
+      <div class="glossary-item"><dt>bubblewrap</dt><dd>Linux 沙盒工具，用于非特权容器隔离</dd></div>
+      <div class="glossary-item"><dt>MCP</dt><dd>Model Context Protocol，模型上下文协议</dd></div>
+      <div class="glossary-item"><dt>AGENTS.md</dt><dd>AI 代理的项目指令文件</dd></div>
+      <div class="glossary-item"><dt>Approval Policy</dt><dd>审批策略，控制代理自主程度</dd></div>
+      <div class="glossary-item"><dt>Sandbox Mode</dt><dd>沙盒模式，控制文件系统和网络访问</dd></div>
+      <div class="glossary-item"><dt>Feature Flag</dt><dd>功能开关，控制实验性功能</dd></div>
+      <div class="glossary-item"><dt>Subagent</dt><dd>子代理，用于并行化任务</dd></div>
+      <div class="glossary-item"><dt>exec</dt><dd>非交互执行模式</dd></div>
+      <div class="glossary-item"><dt>CODEX_HOME</dt><dd>Codex 配置和状态的根目录</dd></div>
+      <div class="glossary-item"><dt>Skill</dt><dd>Markdown 指令包，用于封装可复用的工作流和领域知识</dd></div>
+      <div class="glossary-item"><dt>Hook</dt><dd>生命周期钩子，在特定事件节点自动执行 Shell 脚本</dd></div>
+      <div class="glossary-item"><dt>Slash Command</dt><dd>TUI 内的快捷命令，如 /clear、/compact、/review 等</dd></div>
+      <div class="glossary-item"><dt>Agent Teams</dt><dd>多 Agent 协作模式，多个 session 互相通信、协调分工</dd></div>
+      <div class="glossary-item"><dt>Worktree</dt><dd>Git 工作树，允许同一仓库同时 checkout 多个分支</dd></div>
+      <div class="glossary-item"><dt>Fan-out</dt><dd>批量并行处理模式，同一操作对大量文件重复执行</dd></div>
+      <div class="glossary-item"><dt>Agent Loop</dt><dd>Think-Act-Observe-Repeat，Agent 核心工作循环模式</dd></div>
+      <div class="glossary-item"><dt>Computer Use</dt><dd>让 AI 直接看到屏幕截图并操控鼠标键盘的功能</dd></div>
+    </div>
+
+
+
+  </div><!-- /.content -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>Codex CLI 橙皮书 v2.0</strong></p>
+    <p>所有命令和配置基于 Codex CLI v0.121+ 官方文档验证。</p>
+    <p>
+      参考来源：
+      <a href="https://developers.openai.com/codex">OpenAI Codex CLI 官方文档</a> ·
+      <a href="https://github.com/openai/codex">GitHub 仓库</a> ·
+      <a href="https://agents.md">AGENTS.md 开放标准</a>
+    </p>
+  </footer>
+
+</div><!-- /.main -->
+
+<!-- Back to Top -->
+<button class="back-to-top" onclick="window.scrollTo({top:0})" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/toml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/markdown.min.js"></script>
+<script>
+  // Map data-lang to highlight.js language names
+  const langMap = {
+    bash: 'bash', sh: 'bash', shell: 'bash',
+    toml: 'toml', yaml: 'yaml', yml: 'yaml',
+    json: 'json', markdown: 'markdown', md: 'markdown',
+    text: 'plaintext', '': 'plaintext'
+  }
+
+  // Convert <pre data-lang> to <pre><code class="language-xxx"> and strip manual token spans
+  document.querySelectorAll('pre[data-lang]').forEach(pre => {
+    const lang = langMap[pre.dataset.lang] || pre.dataset.lang || 'plaintext'
+    const code = document.createElement('code')
+    code.className = `language-${lang}`
+    // Get plain text content (strips all manual <span> tags)
+    code.textContent = pre.textContent
+    pre.textContent = ''
+    pre.appendChild(code)
+    hljs.highlightElement(code)
+  })
+
+  // Also handle <pre> without data-lang (plain text blocks)
+  document.querySelectorAll('pre:not([data-lang])').forEach(pre => {
+    if (pre.querySelector('code')) return
+    const code = document.createElement('code')
+    code.className = 'language-plaintext'
+    code.textContent = pre.textContent
+    pre.textContent = ''
+    pre.appendChild(code)
+  })
+
+  // Inject copy buttons into all <pre> blocks
+  document.querySelectorAll('pre').forEach(pre => {
+    const btn = document.createElement('button')
+    btn.className = 'copy-btn'
+    btn.setAttribute('aria-label', 'Copy code')
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>'
+    btn.addEventListener('click', () => {
+      const text = pre.textContent
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied')
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+        setTimeout(() => {
+          btn.classList.remove('copied')
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>'
+        }, 1500)
+      })
+    })
+    pre.appendChild(btn)
+  })
+
+  // Back-to-top visibility
+  const btn = document.querySelector('.back-to-top')
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400)
+  })
+
+  // Active nav link tracking
+  const sections = document.querySelectorAll('h2[id]')
+  const navLinks = document.querySelectorAll('.sidebar a')
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'))
+        const active = document.querySelector(`.sidebar a[href="#${entry.target.id}"]`)
+        if (active) active.classList.add('active')
+      }
+    })
+  }, { rootMargin: '-80px 0px -60% 0px' })
+
+  sections.forEach(s => observer.observe(s))
+
+  // Close sidebar on mobile when clicking a link
+  document.querySelectorAll('.sidebar a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        document.querySelector('.sidebar').classList.remove('open')
+      }
+    })
+  })
+</script>
+
+</body>
+</html>
