@@ -1,0 +1,37 @@
+{
+  "name": "reports-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prebuild": "tsx scripts/build-posts.ts",
+    "predev": "tsx scripts/build-posts.ts",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "new": "tsx scripts/new.ts",
+    "admin": "tsx scripts/admin.ts",
+    "deploy": "tsx scripts/deploy.ts",
+    "format": "prettier --write .",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "flexsearch": "^0.7.43"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.2",
+    "@types/node": "^22.7.0",
+    "linkedom": "^0.18.5",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "tailwindcss": "^3.4.13",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

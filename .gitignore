@@ -1,0 +1,11 @@
+node_modules
+dist
+.astro
+.generated
+public/posts
+public/search-index.json
+.DS_Store
+.env*
+!.env.example
+.claude/
+history_record.md

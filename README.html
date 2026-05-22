@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>reports-site — 把 HTML 放进 posts/，git push 即发布</title>
+<style>
+  body { max-width: 920px; margin: 48px auto; padding: 0 28px; font: 18px/1.75 ui-sans-serif, -apple-system, "PingFang SC", "Hiragino Sans GB", sans-serif; color: #1e293b; }
+  h1 { font-size: 36px; margin: 0 0 10px; letter-spacing: -0.01em; }
+  h2 { font-size: 24px; margin-top: 40px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; }
+  h3 { font-size: 19px; margin-top: 28px; color: #0f172a; }
+  p, li { color: #334155; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 0.92em; }
+  pre { background: #0f172a; color: #e2e8f0; padding: 18px; border-radius: 8px; overflow-x: auto; font-size: 15px; line-height: 1.6; }
+  pre code { background: transparent; padding: 0; color: inherit; }
+  .lede { color: #64748b; font-size: 19px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; }
+  th, td { border: 1px solid #e2e8f0; padding: 10px 14px; text-align: left; font-size: 16px; vertical-align: top; }
+  th { background: #f8fafc; }
+  ul { padding-left: 24px; }
+  .tag { display: inline-block; padding: 3px 10px; background: #ecfeff; color: #0e7490; border-radius: 999px; font-size: 13px; margin-right: 6px; }
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+</style>
+</head>
+<body>
+
+<h1>reports-site</h1>
+<p class="lede">一个托管在 GitHub Pages 上的极简报告归档站。把任意完整的 HTML 文件放进 <code>posts/</code>，<code>git push</code> 后自动渲染到列表里，原样式 100% 保留。</p>
+
+<p>
+  <span class="tag">Astro</span>
+  <span class="tag">GitHub Pages</span>
+  <span class="tag">FlexSearch</span>
+  <span class="tag">Tailwind</span>
+</p>
+
+<h2>核心理念</h2>
+<ul>
+  <li><strong>你的 HTML 即真相</strong>：详情页直接打开你扔进 <code>posts/</code> 的原文件，构建时只在 <code>&lt;/body&gt;</code> 前注入一个浮动的「← 返回列表」按钮，不改你的样式、不改你的结构。</li>
+  <li><strong>零元数据维护</strong>：标题、描述、日期、分类、关键词，全部从 HTML 的 <code>&lt;title&gt;</code> / <code>&lt;meta&gt;</code> / 文件名 / 目录名自动提取。</li>
+  <li><strong>本地一键发布</strong>：<code>pnpm deploy</code> 交互确认后 commit + push，GitHub Actions 自动构建并发布，无需登录服务器。</li>
+</ul>
+
+<h2>快速开始</h2>
+<pre><code># 1. 安装依赖（首次）
+pnpm install
+
+# 2. 本地预览
+pnpm dev
+#    → http://localhost:4321/reports-site/
+
+# 3. 新增一篇文章（可选）
+pnpm new "我的报告标题"
+#    → 生成 posts/YYYY-MM-DD-我的报告标题.html 骨架
+
+# 4. 编辑元数据（可视化，仅本地）
+pnpm admin
+#    → http://127.0.0.1:4322/  改 title/description/date/category/keywords
+
+# 5. 本地构建预览
+pnpm build &amp;&amp; pnpm preview
+
+# 6. 一键发布
+pnpm deploy</code></pre>
+
+<h2>仓库结构</h2>
+<pre><code>reports-site/
+├── posts/                     ← ⭐ 你的 HTML 放在这里（可分子目录作为分类）
+│   └── 2026-05-22-foo.html
+├── src/
+│   ├── pages/index.astro      ← 列表 / 搜索首页
+│   ├── lib/
+│   │   ├── search-client.ts   ← 浏览器端 FlexSearch
+│   │   └── types.ts
+│   └── styles/global.css      ← Tailwind 全局样式
+├── scripts/
+│   ├── build-posts.ts         ← 预构建：扫 posts、提取元数据、生成索引
+│   ├── new.ts                 ← pnpm new
+│   ├── admin.ts               ← pnpm admin（本地元数据编辑 GUI）
+│   └── deploy.ts              ← pnpm deploy
+├── .github/workflows/deploy.yml
+├── astro.config.mjs
+└── package.json</code></pre>
+
+<h2>机制原理</h2>
+
+<h3>1. 构建流程</h3>
+<p>每次执行 <code>pnpm dev</code> 或 <code>pnpm build</code>，Astro 的 <code>predev</code> / <code>prebuild</code> 钩子都会先跑 <code>scripts/build-posts.ts</code>。这个脚本完成三件事：</p>
+<ol>
+  <li>用 <a href="https://github.com/WebReflection/linkedom">linkedom</a> 解析 <code>posts/</code> 下每一个 <code>*.html</code>，抽出标题、描述、纯文本正文等。</li>
+  <li>把原 HTML <strong>原样复制</strong>到 <code>public/posts/</code>，只在 <code>&lt;/body&gt;</code> 前插入一个固定定位的浮动返回按钮（用 inline style，避免和你的 CSS 冲突）。</li>
+  <li>输出两个工件：
+    <ul>
+      <li><code>.generated/posts.json</code> ← 给 Astro 首页在构建时读，渲染成列表。</li>
+      <li><code>public/search-index.json</code> ← 浏览器端 FlexSearch 在用户聚焦搜索框时按需下载。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3>2. 元数据提取规则</h3>
+<table>
+  <thead><tr><th>字段</th><th>提取来源（按优先级）</th></tr></thead>
+  <tbody>
+    <tr><td>title</td><td><code>&lt;title&gt;</code> → <code>&lt;h1&gt;</code> → 文件名</td></tr>
+    <tr><td>description</td><td><code>&lt;meta name="description"&gt;</code> → 首个非空 <code>&lt;p&gt;</code>（截断 200 字）</td></tr>
+    <tr><td>date</td><td>文件名前缀 <code>YYYY-MM-DD-</code> 或 <code>YYYYMMDD-</code> → 文件 mtime</td></tr>
+    <tr><td>category</td><td>所在子目录名（直接位于 <code>posts/</code> 下则归入 <em>未分类</em>）</td></tr>
+    <tr><td>keywords</td><td><code>&lt;meta name="keywords"&gt;</code>（逗号分隔）</td></tr>
+  </tbody>
+</table>
+
+<h3>3. 搜索</h3>
+<p>客户端用 <a href="https://github.com/nextapps-de/flexsearch">FlexSearch</a> 的 Document 索引，对 <code>title / description / keywords / body</code> 四个字段做前缀分词。索引文件懒加载，搜索匹配片段会在结果里高亮。正文为节省体积截断在 <code>20000</code> 字符（可改 <code>scripts/build-posts.ts</code> 顶部的 <code>MAX_BODY_CHARS</code>）。</p>
+
+<h3>4. 部署</h3>
+<p>workflow <code>.github/workflows/deploy.yml</code> 监听 <code>main</code> 的 push，跑 <code>pnpm build</code> 后通过 <code>actions/deploy-pages</code> 发布到 GitHub Pages 的原生通道（不需要 gh-pages 分支）。</p>
+
+<h2>微妙处的考虑</h2>
+<ul>
+  <li><strong>样式 100% 隔离 vs 用户体验</strong>：考虑过用 iframe 隔离，但 iframe 会破坏滚动行为、键盘焦点和外链锚点。最终选择直接打开原 HTML（不同页面 = 天然隔离），构建时只注入一个 <code>z-index: 2147483647</code> 的浮动按钮回到列表。inline style 避免与原文档样式冲突。</li>
+  <li><strong>搜索索引不打进 JS bundle</strong>：把 <code>search-index.json</code> 放在 <code>public/</code> 而不是 <code>import</code> 进客户端 bundle。这样首页打开很快，索引按需 fetch。</li>
+  <li><strong>posts/ 是源、public/posts/ 是产物</strong>：<code>public/posts/</code> 和 <code>search-index.json</code> 都在 <code>.gitignore</code> 里，由 build 现成产出，不进 git 历史。</li>
+  <li><strong>预构建钩子</strong>：用 npm 的 <code>predev</code> / <code>prebuild</code> 钩子串联，而不是写 Astro 插件，避免引入额外抽象。</li>
+  <li><strong>提交前确认</strong>：<code>pnpm deploy</code> 默认会列出 diff 让你按 y 才提交，避免误推；CI/批处理场景可加 <code>-y</code> 跳过。</li>
+</ul>
+
+<h2>使用方法</h2>
+
+<h3>添加一篇文章（手写）</h3>
+<p>直接把任意 HTML 文件放进 <code>posts/</code>。命名建议带日期前缀，例如：</p>
+<pre><code>posts/2026-05-22-q2-review.html
+posts/research/2026-05-22-llm-eval.html   # 子目录 = 分类</code></pre>
+
+<h3>添加一篇文章（用脚手架）</h3>
+<pre><code>pnpm new "Q2 复盘"
+#  → posts/2026-05-22-q2-复盘.html
+
+pnpm new "LLM 评测" --category research
+#  → posts/research/2026-05-22-llm-评测.html</code></pre>
+
+<h3>编辑元数据（仅本地，不需要服务器）</h3>
+<p><code>pnpm admin</code> 启动一个绑定在 <code>127.0.0.1:4322</code> 的本地服务，浏览器打开 <code>http://127.0.0.1:4322/</code> 即可可视化编辑每篇文章的元数据：</p>
+<ul>
+  <li><strong>title / description / keywords</strong>：直接重写原 HTML 文件的 <code>&lt;title&gt;</code> 和 <code>&lt;meta&gt;</code>，不改正文。</li>
+  <li><strong>date</strong>：改动后自动按 <code>YYYY-MM-DD-slug.html</code> 规则重命名文件。</li>
+  <li><strong>category</strong>：改动后自动把文件移动到对应子目录（<em>未分类</em> = 放回 <code>posts/</code> 根目录）。</li>
+  <li>支持删除文章。</li>
+</ul>
+<p><strong>为什么只有你能用</strong>：服务仅监听 <code>127.0.0.1</code>（loopback），网络上其他设备无法访问；同时校验 <code>Host</code> / <code>Origin</code> 请求头，挡住 DNS rebinding 类攻击。你的另一台电脑、手机、同事，都进不来。</p>
+<p>编辑完后照常 <code>pnpm deploy</code> 发布。</p>
+
+<h3>发布</h3>
+<pre><code>pnpm deploy             # 默认会列出变更，输入 y 确认后提交并 push
+pnpm deploy -y          # 跳过确认（脚本里用）
+pnpm deploy -m "msg"    # 自定义 commit 信息</code></pre>
+
+<h2>首次设置 GitHub Pages</h2>
+<ol>
+  <li>在 GitHub 上创建公开仓库 <code>reports-site</code>（仓库名需匹配 <code>astro.config.mjs</code> 里的 <code>base</code>）。</li>
+  <li>本地：<pre><code>git remote add origin git@github.com:TerenceXie/reports-site.git
+git branch -M main
+git push -u origin main</code></pre></li>
+  <li>到仓库 <strong>Settings → Pages</strong>，<em>Source</em> 选 <strong>GitHub Actions</strong>。</li>
+  <li>之后每次 <code>pnpm deploy</code> 即自动构建发布，地址：<br /><code>https://terencexie.github.io/reports-site/</code></li>
+</ol>
+
+<h2>常见问题</h2>
+
+<h3>列表里看不到我刚加的 HTML？</h3>
+<p>预构建钩子只在 <code>pnpm dev</code> 启动时跑一次。新增/修改文件后重启 <code>pnpm dev</code>，或运行 <code>pnpm prebuild</code> 后刷新页面。</p>
+
+<h3>我的 HTML 里有 fixed 定位的元素，被「返回列表」按钮挡住？</h3>
+<p>按钮的 <code>z-index</code> 是最大值，确实会盖住。如果某篇文章不希望被注入，可以在 <code>scripts/build-posts.ts</code> 的 <code>injectBackButton</code> 里加判定（例如检测 <code>&lt;meta name="no-back-button"&gt;</code> 跳过）。</p>
+
+<h3>需要换仓库名或加自定义域名？</h3>
+<ul>
+  <li>换名：修改 <code>astro.config.mjs</code> 的 <code>base</code>，以及 <code>scripts/build-posts.ts</code> 顶部的 <code>BASE</code>。</li>
+  <li>自定义域名：在 <code>public/</code> 下放一个 <code>CNAME</code> 文件，内容写你的域名；同时把 <code>base</code> 改成 <code>"/"</code>。</li>
+</ul>
+
+<hr />
+<p style="text-align:center;color:#94a3b8;font-size:14px;">用 Astro · Tailwind · FlexSearch 搭建。源代码托管于 GitHub。</p>
+
+</body>
+</html>

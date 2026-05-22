@@ -1,0 +1,137 @@
+---
+import { promises as fs } from "node:fs"
+import path from "node:path"
+import "../styles/global.css"
+import type { PostMeta } from "../lib/types"
+
+const generatedPath = path.resolve(process.cwd(), ".generated/posts.json")
+let posts: PostMeta[] = []
+try {
+  posts = JSON.parse(await fs.readFile(generatedPath, "utf8")) as PostMeta[]
+} catch {
+  posts = []
+}
+
+const categories = Array.from(new Set(posts.map((p) => p.category))).sort()
+
+const grouped = posts.reduce<Record<string, PostMeta[]>>((acc, p) => {
+  const ym = p.date.slice(0, 7)
+  ;(acc[ym] ||= []).push(p)
+  return acc
+}, {})
+const ymKeys = Object.keys(grouped).sort().reverse()
+
+const baseUrl = import.meta.env.BASE_URL
+const siteTitle = "Reports"
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{siteTitle}</title>
+    <meta name="description" content="本地撰写、自动发布的报告归档站。" />
+  </head>
+  <body class="min-h-screen">
+    <div class="mx-auto max-w-3xl px-5 py-10 sm:py-14">
+      <header class="mb-8">
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900">{siteTitle}</h1>
+        <p class="mt-2 text-sm text-slate-500">
+          共 <span data-total>{posts.length}</span> 篇 · 支持标题与正文全文搜索
+        </p>
+      </header>
+
+      <div class="mb-6">
+        <input
+          id="search-input"
+          type="search"
+          autocomplete="off"
+          placeholder="搜索标题、描述、正文..."
+          class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+        />
+        <p id="search-status" class="mt-2 text-xs text-slate-400" aria-live="polite"></p>
+      </div>
+
+      {
+        categories.length > 1 && (
+          <nav class="mb-6 flex flex-wrap gap-2 text-xs" id="category-nav">
+            <button
+              type="button"
+              data-cat="__all"
+              class="rounded-full bg-slate-900 px-3 py-1 text-white"
+            >
+              全部
+            </button>
+            {categories.map((c) => (
+              <button
+                type="button"
+                data-cat={c}
+                class="rounded-full bg-slate-100 px-3 py-1 text-slate-700 hover:bg-slate-200"
+              >
+                {c}
+              </button>
+            ))}
+          </nav>
+        )
+      }
+
+      <section id="list-default">
+        {
+          posts.length === 0 ? (
+            <div class="rounded-lg border border-dashed border-slate-300 bg-white p-8 text-center text-sm text-slate-500">
+              还没有文章。把 HTML 放进 <code class="rounded bg-slate-100 px-1.5 py-0.5">posts/</code>{" "}
+              目录后运行 <code class="rounded bg-slate-100 px-1.5 py-0.5">pnpm dev</code>。
+            </div>
+          ) : (
+            ymKeys.map((ym) => (
+              <div class="mb-8" data-month={ym}>
+                <h2 class="mb-3 text-xs font-medium uppercase tracking-wider text-slate-400">
+                  {ym}
+                </h2>
+                <ul class="space-y-2">
+                  {grouped[ym].map((p) => (
+                    <li data-category={p.category}>
+                      <a
+                        href={p.href}
+                        class="block rounded-lg border border-slate-200 bg-white p-4 transition hover:border-slate-300 hover:shadow-sm"
+                      >
+                        <div class="flex items-baseline justify-between gap-3">
+                          <h3 class="font-medium text-slate-900">{p.title}</h3>
+                          <time class="shrink-0 text-xs text-slate-400">{p.date}</time>
+                        </div>
+                        {p.description && (
+                          <p class="mt-1 line-clamp-2 text-sm text-slate-500">{p.description}</p>
+                        )}
+                        <div class="mt-2 flex items-center gap-2 text-xs text-slate-400">
+                          <span class="rounded bg-slate-100 px-1.5 py-0.5">{p.category}</span>
+                        </div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          )
+        }
+      </section>
+
+      <section id="list-search" class="hidden"></section>
+
+      <footer class="mt-16 border-t border-slate-200 pt-6 text-xs text-slate-400">
+        <p>
+          源代码托管于 GitHub · 把 HTML 文件放进 <code class="rounded bg-slate-100 px-1 py-0.5">posts/</code>{" "}
+          目录即可发布
+        </p>
+      </footer>
+    </div>
+
+    <script define:vars={{ baseUrl }}>
+      window.__BASE_URL = baseUrl
+    </script>
+    <script>
+      import { initSearch } from "../lib/search-client"
+      initSearch()
+    </script>
+  </body>
+</html>
