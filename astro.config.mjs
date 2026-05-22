@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config"
 import tailwind from "@astrojs/tailwind"
 
 const repo = "reports-site"
-const user = "TerenceXie"
+const user = "kid551"
 
 export default defineConfig({
   site: `https://${user}.github.io`,
