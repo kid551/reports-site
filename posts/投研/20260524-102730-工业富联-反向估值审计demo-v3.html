@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<!--
+  工业富联 (601138.SH) — 反向估值审计 Demo v3
+  v3 新增：Tushare MCP 真实数据（daily_basic / bak_daily / income）
+  任务A：同业PE三档锚用Tushare daily_basic 2026-05-21真数据
+  任务B：同业净利润CAGR分布用Tushare income API年报序列真数据
+  任务C：拉到2026Q1季报，更新TTM净利润及PE
+  数据基准日：2026-05-24  生成时间：10:27:30
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工业富联(601138) — 反向估值审计 v3 · 2026-05-24</title>
+<style>
+/* ============================================================
+   CSS 直接复制自 pdf-report-ostep-rewrite/templates/skeleton.html
+   不瘦身、不重新发明。所有字号均符合 2026-05 上调硬规则。
+   ============================================================ */
+:root {
+  --bg: #fbfaf7;
+  --bg-card: #ffffff;
+  --ink: #1f2328;
+  --ink-2: #3b4248;
+  --ink-3: #6a737d;
+  --accent: #8b3a3a;
+  --accent-2: #2c5282;
+  --gold: #b58900;
+  --tip-bg: #fff8e1;
+  --tip-bd: #f0c674;
+  --aside-bg: #eef4fb;
+  --aside-bd: #79a6d2;
+  --crux-bg: #fdecec;
+  --crux-bd: #b04040;
+  --maodun-bg: #f3eef9;
+  --maodun-bd: #7c539c;
+  --term-bg: #f5f1e8;
+  --term-bd: #c8b88a;
+  --rule: #e3ddd0;
+  --code: #f6f1e6;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  font-size: 20px;
+  line-height: 1.9;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 60px 36px 120px;
+}
+
+h1 {
+  font-size: 44px;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+h1 .sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 34px;
+  margin: 80px 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 3px double var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.4;
+}
+h2 .num {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 23px;
+  margin-right: 14px;
+  vertical-align: middle;
+  font-family: Georgia, serif;
+}
+h3 {
+  font-size: 27px;
+  margin: 48px 0 14px;
+  color: var(--accent-2);
+  font-weight: 700;
+  border-left: 6px solid var(--accent-2);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+h4 {
+  font-size: 22px;
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+p { margin: 12px 0; }
+strong { color: var(--accent); font-weight: 700; }
+em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+
+.crux {
+  background: var(--crux-bg);
+  border-left: 8px solid var(--crux-bd);
+  border-radius: 4px;
+  padding: 22px 28px;
+  margin: 28px 0;
+  position: relative;
+}
+.crux::before {
+  content: "THE CRUX OF THE PROBLEM — 核心问题";
+  display: block;
+  font-size: 13.5px;
+  letter-spacing: 2px;
+  color: var(--crux-bd);
+  font-weight: 800;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 10px;
+}
+.crux p { margin: 4px 0; font-size: 21px; line-height: 1.75; }
+
+.maodun {
+  background: var(--maodun-bg);
+  border: 2px solid var(--maodun-bd);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin: 24px 0;
+}
+.maodun .label {
+  display: inline-block;
+  background: var(--maodun-bd);
+  color: #fff;
+  font-size: 13.5px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+.maodun h5 {
+  margin: 10px 0 4px;
+  font-size: 19px;
+  color: var(--maodun-bd);
+  font-weight: 700;
+}
+.maodun p { margin: 4px 0; font-size: 19px; }
+.maodun ul { padding-left: 22px; margin: 4px 0; }
+.maodun li { margin: 4px 0; font-size: 19px; }
+
+.tip {
+  background: var(--tip-bg);
+  border: 1px dashed var(--tip-bd);
+  border-radius: 4px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 18.5px;
+}
+.tip::before {
+  content: "TIP — 小贴士";
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13.5px;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tip p { display: inline; margin: 0; }
+
+.aside {
+  background: var(--aside-bg);
+  border-left: 5px solid var(--aside-bd);
+  padding: 18px 24px;
+  margin: 22px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 18.5px;
+}
+.aside::before {
+  content: "ASIDE — 旁注";
+  display: block;
+  font-size: 13.5px;
+  letter-spacing: 1.5px;
+  color: var(--aside-bd);
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 6px;
+}
+.aside p { margin: 4px 0; }
+.aside strong { color: var(--aside-bd); }
+
+.term {
+  background: var(--term-bg);
+  border: 1px solid var(--term-bd);
+  border-radius: 6px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 18.5px;
+}
+.term::before {
+  content: attr(data-name);
+  display: block;
+  background: var(--term-bd);
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 14px;
+  margin: -16px -22px 12px;
+  border-radius: 6px 6px 0 0;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 17.5px;
+  background: var(--bg-card);
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.65;
+}
+th {
+  background: #f0e8d8;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 17.5px;
+}
+tr:nth-child(even) td { background: #fbf7ee; }
+.td-num { font-family: Georgia, "Times New Roman", serif; text-align: right; }
+.td-center { text-align: center; }
+.highlight-row td {
+  background: #fff3cd !important;
+  font-weight: 700;
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+
+pre {
+  background: var(--code);
+  border: 1px solid var(--term-bd);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font-size: 16px;
+  line-height: 1.6;
+}
+code {
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 16px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 32px 0;
+}
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.kpi-card .k-label {
+  font-size: 13.5px;
+  color: var(--ink-3);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 6px;
+}
+.kpi-card .k-val {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.1;
+  font-family: Georgia, serif;
+}
+.kpi-card .k-sub {
+  font-size: 14px;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+.k-up { color: #2a7a4e; }
+.k-down { color: #c0392b; }
+
+.toc {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px 30px;
+  margin: 32px 0 54px;
+  font-size: 18.5px;
+}
+.toc h4 { margin-top: 0; color: var(--accent); font-size: 21px; }
+.toc ol { padding-left: 22px; }
+.toc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-2);
+}
+.toc a:hover { color: var(--accent); border-bottom-style: solid; }
+
+.meta {
+  color: var(--ink-3);
+  font-size: 17px;
+  line-height: 1.85;
+  margin: 22px 0 38px;
+  padding: 16px 20px;
+  background: #f3eee2;
+  border-radius: 4px;
+  font-style: italic;
+}
+.meta b { color: var(--ink); font-style: normal; }
+
+sup a {
+  font-size: 11.5px;
+  color: var(--accent-2);
+  text-decoration: none;
+  font-weight: 700;
+}
+sup a:hover { text-decoration: underline; }
+
+ol.sources {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.7;
+  padding-left: 20px;
+}
+ol.sources li { margin-bottom: 7px; }
+ol.sources a { color: var(--accent-2); }
+
+hr.div {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 50px 0;
+}
+
+.num-hl {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+.risk-list { list-style: none; padding: 0; }
+.risk-item {
+  background: var(--bg-card);
+  border-left: 5px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: 16px 20px;
+  margin-bottom: 14px;
+  font-size: 18.5px;
+  line-height: 1.7;
+}
+.risk-item strong { color: var(--accent); }
+
+.check-item {
+  background: var(--bg-card);
+  border: 1px solid var(--maodun-bd);
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin-bottom: 18px;
+  font-size: 18.5px;
+}
+.check-item .ci-label {
+  display: inline-block;
+  background: var(--maodun-bd);
+  color: #fff;
+  font-size: 13.5px;
+  padding: 2px 12px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+.check-ok { color: #2a7a4e; font-weight: 700; }
+.check-partial { color: var(--gold); font-weight: 700; }
+.check-fail { color: var(--accent); font-weight: 700; }
+
+/* v3 新增：数据来源 badge */
+.src-badge {
+  display: inline-block;
+  background: var(--accent-2);
+  color: #fff;
+  font-size: 12px;
+  padding: 1px 8px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-left: 6px;
+  vertical-align: middle;
+  letter-spacing: 0.5px;
+}
+.src-badge.ts { background: #2a7a4e; }
+
+@media (max-width: 720px) {
+  body { font-size: 18.5px; }
+  .wrap { padding: 30px 20px 80px; }
+  h1 { font-size: 33px; }
+  h2 { font-size: 27px; }
+  h3 { font-size: 22px; }
+  h4 { font-size: 19px; }
+  table { font-size: 16px; }
+  th, td { padding: 9px 10px; }
+  .crux p { font-size: 19px; }
+  .maodun h5, .maodun p, .maodun li { font-size: 17.5px; }
+  .kpi-card .k-val { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ 主标题 ============ -->
+<h1>工业富联 (601138.SH)
+<span class="sub">反向估值审计 v3 — Tushare MCP 真实数据验证 · 2026-05-24</span>
+</h1>
+
+<div class="meta">
+<b>标的</b>：工业富联（富士康工业互联网，FII），601138.SH，上交所主板<br>
+<b>数据基准日</b>：2026-05-24；股价基准：2026-05-21 收盘价 65.50 元<br>
+<b>v3 新增</b>：Tushare MCP（<code>daily_basic</code> / <code>bak_daily</code> / <code>income</code>）全量拉取，替换 v2 的"经验估算"PE 锚与"信息不足跳过"CAGR；更新 2026Q1 季报数据<br>
+<b>免责声明</b>：本文档为投研 skill 工程验证，不构成任何投资建议。<br>
+<b>Tushare token</b>：环境变量 TUSHARE_TOKEN，API 端点 https://api.tushare.pro（HTTP 直接调用，非 MCP 工具名格式——详见 v3 自检段）
+</div>
+
+<!-- ============ 目录 ============ -->
+<div class="toc">
+<h4>章节目录</h4>
+<ol>
+  <li><a href="#kpi">头部 KPI 卡（含 2026Q1 更新）</a></li>
+  <li><a href="#overview">公司概述与主次矛盾</a></li>
+  <li><a href="#peer">同业可比组（7 家，Tushare 统一口径）</a></li>
+  <li><a href="#reverse-valuation">反向估值审计（核心章节）</a></li>
+  <li><a href="#bear-case">反方观点与风险清单</a></li>
+  <li><a href="#sources">数据来源</a></li>
+  <li><a href="#self-check-v3">v3 自检段（任务 A/B/C 逐项验证）</a></li>
+</ol>
+</div>
+
+<!-- ============ KPI 卡 ============ -->
+<h2 id="kpi"><span class="num">1</span>头部 KPI（含 2026Q1 更新）</h2>
+
+<div class="aside">
+<p><strong>任务 C 更新说明：</strong>Tushare <code>income</code> API 于 2026-04-29 披露 2026Q1 季报，<strong>本次已拉取并更新 TTM 数据</strong>。PE TTM = 31.98×（Tushare <code>daily_basic</code> 2026-05-21），隐含 TTM 净利润 406.49 亿元，较 FY2025 年报 352.86 亿元提升 15.2%。</p>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="k-label">当前股价</div>
+    <div class="k-val">65.50<span style="font-size:18px;font-weight:500"> 元</span></div>
+    <div class="k-sub">2026-05-21 收盘 <sup><a href="#src-1">[1]</a></sup></div>
+  </div>
+  <div class="kpi-card">
+    <div class="k-label">总市值</div>
+    <div class="k-val">1.30<span style="font-size:18px;font-weight:500"> 万亿</span></div>
+    <div class="k-sub">198.44 亿股 × 65.50 元 = 12,997.82 亿 <sup><a href="#src-2">[2]</a></sup></div>
+  </div>
+  <div class="kpi-card">
+    <div class="k-label">PE TTM（Tushare）</div>
+    <div class="k-val">32.0<span style="font-size:18px;font-weight:500"> ×</span></div>
+    <div class="k-sub"><span class="src-badge ts">Tushare</span> daily_basic 2026-05-21；v2 用年报 PE = 36.84×</div>
+  </div>
+  <div class="kpi-card">
+    <div class="k-label">FY2025 营收</div>
+    <div class="k-val">9,029<span style="font-size:18px;font-weight:500"> 亿</span></div>
+    <div class="k-sub k-up">+48.2% YoY <sup><a href="#src-3">[3]</a></sup></div>
+  </div>
+  <div class="kpi-card">
+    <div class="k-label">FY2025 归母净利润</div>
+    <div class="k-val">352.9<span style="font-size:18px;font-weight:500"> 亿</span></div>
+    <div class="k-sub k-up">+52.0% YoY <sup><a href="#src-3">[3]</a></sup> <span class="src-badge ts">Tushare ✓</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="k-label">2026Q1 归母净利润</div>
+    <div class="k-val">105.9<span style="font-size:18px;font-weight:500"> 亿</span></div>
+    <div class="k-sub k-up"><span class="src-badge ts">Tushare income 2026-04-29</span> 2026Q1 营收 2510.78 亿</div>
+  </div>
+  <div class="kpi-card">
+    <div class="k-label">TTM 净利润（估）</div>
+    <div class="k-val">406.5<span style="font-size:18px;font-weight:500"> 亿</span></div>
+    <div class="k-sub">市值 12,997.82 / PE 31.98×，反推 TTM；较 FY2025 年报升 15.2%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="k-label">FY2025 毛利率</div>
+    <div class="k-val">6.98<span style="font-size:18px;font-weight:500"> %</span></div>
+    <div class="k-sub k-down">vs FY2023 毛利率 8.06%</div>
+  </div>
+</div>
+
+<!-- ============ 概述 + 主次矛盾 ============ -->
+<h2 id="overview"><span class="num">2</span>公司概述与主次矛盾</h2>
+
+<p>
+  工业富联（FII）是台湾鸿海精密旗下的大陆制造子集团，全球最大服务器 ODM 之一。FY2025 云计算板块营收 6,026.79 亿元（占总营收 66.7%），AI 服务器营收同比增长超 300%<sup><a href="#src-3">[3]</a></sup>。公司净利率仅 3.9%，是典型的高营收、超低利润率代工厂。Tushare 拉取的 PE TTM（2026-05-21）= <strong>32.0×</strong>，较 v2 使用的年报静态 PE 36.84× 已有明显压缩——主因 2026Q1 盈利大幅提升（105.95 亿，同比估算约 +77%）使 TTM 分母扩大。
+</p>
+
+<div class="maodun">
+  <span class="label">主次矛盾结构</span>
+  <h5>主要矛盾</h5>
+  <p><strong>AI 基础设施成长叙事</strong> ↔ <strong>代工厂超低利润率现实</strong></p>
+  <p>当前 PE TTM 32.0× 对应同业 P50=38.74×，已低于同业中位数——说明市场正在消化"代工厂溢价衰减"，而非继续定价 AI 成长溢价。这是 v2→v3 的关键变化。</p>
+  <h5>次要矛盾</h5>
+  <ul>
+    <li>毛利率持续下行（FY2023 8.06% → FY2025 6.98%）<sup><a href="#src-3">[3]</a></sup></li>
+    <li>大客户 CapEx 周期与工业富联业绩节奏的高度相关性</li>
+  </ul>
+  <h5>矛盾转化的可观测指标</h5>
+  <p>季度毛利率是否突破 8%（向上）；大客户 CapEx 指引是否下调（向下）；PE 是否进一步压缩至历史低谷 29.0-31.0× 区间（叙事切换锚点）。</p>
+</div>
+
+<!-- ============ 同业可比组 ============ -->
+<h2 id="peer"><span class="num">3</span>同业可比组（7 家，Tushare 统一口径）</h2>
+
+<p>
+  v3 从 v2 的 4 家扩展至 <strong>7 家</strong>（含工业富联本身），PE TTM 全部来自 Tushare <code>daily_basic</code> API，trade_date = 20260521，<strong>同一交易日口径</strong>，消除了 v2 中来源混杂、日期不一的问题。<span class="src-badge ts">Tushare daily_basic 2026-05-21</span>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>公司</th>
+      <th>代码</th>
+      <th>定位</th>
+      <th>PE TTM（Tushare 2026-05-21）</th>
+      <th>总市值（亿元）</th>
+      <th>v2 PE（经验值）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>华勤技术</strong></td>
+      <td class="td-num">603296.SH</td>
+      <td>ODM，服务器+手机</td>
+      <td class="td-num">26.41×</td>
+      <td class="td-num">1128</td>
+      <td class="td-num">22×（v2 经验）</td>
+    </tr>
+    <tr>
+      <td><strong>立讯精密</strong></td>
+      <td class="td-num">002475.SZ</td>
+      <td>电子代工升级，AI 叙事可比</td>
+      <td class="td-num">28.72×</td>
+      <td class="td-num">4945</td>
+      <td class="td-num">32×（v2 经验）</td>
+    </tr>
+    <tr>
+      <td><strong>浪潮信息</strong></td>
+      <td class="td-num">000977.SZ</td>
+      <td>国内最大服务器品牌商</td>
+      <td class="td-num">38.11×</td>
+      <td class="td-num">974</td>
+      <td class="td-num">37×（v2 经验，接近）</td>
+    </tr>
+    <tr>
+      <td><strong>紫光股份</strong></td>
+      <td class="td-num">000938.SZ</td>
+      <td>网络设备+服务器，国产算力</td>
+      <td class="td-num">39.37×</td>
+      <td class="td-num">837</td>
+      <td class="td-num">未列入 v2</td>
+    </tr>
+    <tr>
+      <td><strong>神州数码</strong></td>
+      <td class="td-num">000034.SZ</td>
+      <td>IT 分销+算力服务</td>
+      <td class="td-num">52.58×</td>
+      <td class="td-num">285</td>
+      <td class="td-num">未列入 v2</td>
+    </tr>
+    <tr>
+      <td><strong>中科曙光</strong></td>
+      <td class="td-num">603019.SH</td>
+      <td>国产算力服务器代表</td>
+      <td class="td-num">61.52×</td>
+      <td class="td-num">1364</td>
+      <td class="td-num">62×（v2 经验，接近）</td>
+    </tr>
+    <tr class="highlight-row">
+      <td><strong>工业富联</strong></td>
+      <td class="td-num">601138.SH</td>
+      <td>本标的</td>
+      <td class="td-num">31.98×</td>
+      <td class="td-num">12,998</td>
+      <td class="td-num">36.84×（v2 年报静态）</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="aside">
+<p><strong>v2 vs v3 PE 数据差异说明：</strong>v2 的 PE 来自多个搜索结果，截止日不统一，且使用年报静态 PE（工业富联 36.84×）。v3 统一用 Tushare daily_basic 2026-05-21，基于 TTM 口径，同日同口径比较。工业富联 PE 从 36.84× 降至 31.98×，华勤从 22× 升至 26.41×，立讯从 32× 降至 28.72×——说明 v2 经验值存在系统性偏差。</p>
+<p><strong>同业 6 家 PE 分位（Tushare 真数据，线性插值）：</strong></p>
+<p>排序：26.41 / 28.72 / 38.11 / 39.37 / 52.58 / 61.52</p>
+<p><strong>P25 = 31.07×  P50 = 38.74×  P75 = 49.28×</strong>（Python 脚本计算，见下节）</p>
+<p>工业富联当前 PE 31.98× 已跌破同业 P25 边界（31.07×），处于同业偏低估值区间。</p>
+</div>
+
+<!-- ============ 反向估值审计（核心章节）============ -->
+<h2 id="reverse-valuation"><span class="num">4</span>反向估值审计：当前价格隐含了什么</h2>
+
+<div class="crux">
+<p>工业富联 PE TTM = <strong>31.98×</strong>（Tushare 2026-05-21），市值约 <strong>1.30 万亿</strong>元。</p>
+<p style="font-size:21px;line-height:1.7;margin-top:14px;"><em>"这个价位已经定价进去了什么样的未来？历史让这种未来发生过几次？"</em></p>
+<p style="margin-top:14px;">v3 关键变化：PE 锚从 v2 的"经验估算（27/34.5/49.5×）"更新为 Tushare 真实数据（<strong>31.07/38.74/49.28×</strong>）；基期盈利从年报静态 352.86 亿更新为 TTM <strong>406.49 亿</strong>；CAGR 现实性检验从"信息不足跳过"更新为 Tushare income 拉取的<strong>真实 5 年 CAGR 分布</strong>。</p>
+</div>
+
+<!-- === 术语速查 === -->
+<div class="term" data-name="Reverse DCF — 反向折现现金流">
+通常的 DCF 是"给出增速假设，算出目标价"；Reverse DCF 反过来：固定当前市值，用二分法求解"市场已经定价进去的增速 g_explicit"，再问这个增速在历史上出现过几次。
+</div>
+
+<div class="term" data-name="EDS — Earnings Decades to Payback（盈利回本年限）">
+把 PE 翻译成时间语言：当前市值 / TTM 净利润 = 若盈利不增长，需要多少年累计利润才能等于投入的市值。PE 31.98× 即 31.98 年回本。
+</div>
+
+<div class="term" data-name="永续增长率 g_terminal">
+DCF 模型中，显性预测期结束后假设公司以固定增速永续经营。本报告取 3%，对齐中国长期名义 GDP 增长中枢。
+</div>
+
+<!-- === 4.1 锚定参数 === -->
+<h3>4.1 锚定参数（v3 全部 Tushare 来源）</h3>
+
+<div class="aside">
+<p><strong>PE 锚取法（Tushare 真数据，规则 8.2）：</strong>本次使用 Tushare MCP <code>daily_basic</code> API 拉取 6 家同业 2026-05-21 PE TTM，Python 线性插值算分位，<strong>不再依赖经验估算</strong>。</p>
+<p>乐观锚 = max(当前 PE 31.98×，同业 P75 49.28×) = <strong>49.28×</strong><br>
+中性锚 = 同业 P50 = <strong>38.74×</strong><br>
+悲观锚 = 同业 P25 = <strong>31.07×</strong></p>
+<p>辅助校验：<code>bak_daily</code> 5 年历史数据显示，3 家核心同业（浪潮/曙光/立讯）5 年历史 PE P25 分别为 29.2/29.0/31.5×，中位数约 29.2×——与当日 P25=31.07× 接近，印证悲观锚合理。</p>
+<p><strong>本次 PE 锚使用 Tushare daily_basic（trade_date=20260521，TTM口径）算出的同业 P75/P50/P25 = 49.28/38.74/31.07×，如需调整请反馈具体数值。</strong></p>
+</div>
+
+<table>
+  <thead>
+    <tr><th>参数</th><th>取值</th><th>来源与依据</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>当前市值 M_now</strong></td>
+      <td class="td-num">12,997.82 亿元</td>
+      <td>65.50 元 × 198.44 亿股 <sup><a href="#src-1">[1]</a><a href="#src-2">[2]</a></sup></td>
+    </tr>
+    <tr>
+      <td><strong>E₀（基期，TTM 净利润）</strong></td>
+      <td class="td-num">406.49 亿元</td>
+      <td>市值 12,997.82 / Tushare PE TTM 31.98×；含 2026Q1 季报贡献 <span class="src-badge ts">Tushare daily_basic + income</span></td>
+    </tr>
+    <tr>
+      <td><strong>E₀（参考：FY2025 年报）</strong></td>
+      <td class="td-num">352.86 亿元</td>
+      <td>FY2025 归母净利润，年报 2026-03-10 披露；Tushare income 核验一致 <sup><a href="#src-3">[3]</a></sup></td>
+    </tr>
+    <tr>
+      <td><strong>2026Q1 归母净利润</strong></td>
+      <td class="td-num">105.95 亿元</td>
+      <td>Tushare income, ann_date=20260429, end_date=20260331 <span class="src-badge ts">Tushare income</span></td>
+    </tr>
+    <tr>
+      <td><strong>PE 锚：乐观</strong></td>
+      <td class="td-num">49.28×</td>
+      <td>max(当前 PE 31.98×, 同业 P75 49.28×)；Tushare daily_basic 2026-05-21（Python 脚本）</td>
+    </tr>
+    <tr>
+      <td><strong>PE 锚：中性</strong></td>
+      <td class="td-num">38.74×</td>
+      <td>同业 P50；Tushare daily_basic 2026-05-21（Python 脚本）</td>
+    </tr>
+    <tr>
+      <td><strong>PE 锚：悲观</strong></td>
+      <td class="td-num">31.07×</td>
+      <td>同业 P25；Tushare daily_basic 2026-05-21（Python 脚本）</td>
+    </tr>
+    <tr>
+      <td><strong>持有年限 T</strong></td>
+      <td class="td-num">5 年</td>
+      <td>视角 A 默认期限</td>
+    </tr>
+    <tr>
+      <td><strong>期望年化回报</strong></td>
+      <td class="td-num">10%</td>
+      <td>投资者通常合理预期</td>
+    </tr>
+    <tr>
+      <td><strong>折现率 r</strong></td>
+      <td class="td-num">8.25%</td>
+      <td>10 年国债 1.744%（2026-04-29）<sup><a href="#src-8">[8]</a></sup> + ERP 6.5%</td>
+    </tr>
+    <tr>
+      <td><strong>永续增长率 g_terminal</strong></td>
+      <td class="td-num">3.0%</td>
+      <td>中国长期名义 GDP 增长中枢</td>
+    </tr>
+    <tr>
+      <td><strong>FCF₀（视角 B）</strong></td>
+      <td class="td-num">345.52 亿元</td>
+      <td>TTM 净利润 406.49 × 85% 保守转化率 <sup><a href="#src-9">[9]</a></sup></td>
+    </tr>
+    <tr>
+      <td><strong>工业富联 5年 CAGR</strong></td>
+      <td class="td-num">15.15%</td>
+      <td>FY2020（174.31 亿）→FY2025（352.86 亿）；Tushare income 核验 <span class="src-badge ts">Tushare income</span></td>
+    </tr>
+    <tr>
+      <td><strong>工业富联 10年 CAGR</strong></td>
+      <td class="td-num">9.41%</td>
+      <td>FY2015（143.50 亿）→FY2025（352.86 亿）；Tushare income 拉取 <span class="src-badge ts">Tushare income</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- === 4.2 计算脚本 === -->
+<h3>4.2 计算脚本（v3 真实运行，结果可复用）</h3>
+
+<div class="tip">
+<p>所有反推数字均由下方 Python 脚本用 Bash 工具真实求解，正文数字 = 脚本 <code>print()</code> 输出。Tushare 数据已在脚本注释中标注来源字段与 API 名称。</p>
+</div>
+
+<pre><code class="python"># ============================================================
+# 反向估值审计 v3 — 工业富联 601138.SH
+# 视角 A（盈利反推） + 视角 B（Reverse DCF） + EDS + 下行测算
+# 单位：亿元人民币；g 用小数；t = 年
+# 数据基准日：2026-05-24
+#
+# Tushare 数据来源（HTTP API https://api.tushare.pro）：
+#   PE TTM  → daily_basic, trade_date=20260521
+#   历史PE  → bak_daily, 2021-01~2026-05
+#   净利润  → income, report_type=1（年报）+ 2026Q1 季报
+# ============================================================
+
+import math
+
+def percentile(lst, pct):
+    """线性插值分位数"""
+    sorted_lst = sorted(lst)
+    n = len(sorted_lst)
+    if n == 0: return None
+    idx = pct / 100 * (n - 1)
+    lo = int(idx)
+    hi = min(lo + 1, n - 1)
+    return sorted_lst[lo] + (sorted_lst[hi] - sorted_lst[lo]) * (idx - lo)
+
+# ---- 基础参数 ----
+shares     = 198.44   # 总股本（亿股）
+price_now  = 65.50    # 当前股价（元，2026-05-21 收盘）
+M_now      = price_now * shares  # = 12,997.82 亿元
+r_target   = 0.10     # 买入期望年化回报（10%）
+T_A        = 5        # 视角 A 持有年限（年）
+
+# ---- 任务A：Tushare daily_basic 2026-05-21 同业 PE TTM ----
+# 来源：mcp__tushareMcp__daily_basic → HTTP API daily_basic
+peer_pe_raw = {
+    "603296.SH 华勤技术": 26.4089,
+    "002475.SZ 立讯精密": 28.7235,
+    "000977.SZ 浪潮信息": 38.1103,
+    "000938.SZ 紫光股份": 39.3703,
+    "000034.SZ 神州数码": 52.5768,
+    "603019.SH 中科曙光": 61.5222,
+}
+fii_pe_ttm = 31.9754  # 601138.SH Tushare daily_basic
+
+pe_vals = sorted(peer_pe_raw.values())
+pe_p25 = percentile(pe_vals, 25)   # = 31.07
+pe_p50 = percentile(pe_vals, 50)   # = 38.74
+pe_p75 = percentile(pe_vals, 75)   # = 49.28
+print(f"同业PE TTM: P25={pe_p25:.2f}× P50={pe_p50:.2f}× P75={pe_p75:.2f}×")
+
+pe_bull = max(fii_pe_ttm, pe_p75)  # = 49.28
+pe_mid  = pe_p50                   # = 38.74
+pe_bear = pe_p25                   # = 31.07
+print(f"PE锚: 乐观={pe_bull:.2f}× 中性={pe_mid:.2f}× 悲观={pe_bear:.2f}×")
+
+# ---- 任务C：基期盈利用 TTM（含 2026Q1 更新）----
+# Tushare income: 2026Q1净利105.95亿(ann:20260429); FY2025净利352.86亿
+E0 = M_now / fii_pe_ttm            # TTM净利润 = 406.49亿（更精准，含Q1改善）
+print(f"E0(TTM) = {E0:.2f}亿  FY2025年报 = 352.86亿  差值 = {E0-352.86:.2f}亿")
+
+# ============================================================
+# 视角 A：盈利反推 —— 5年年化10%需要多少净利润？
+# ============================================================
+M_req = M_now * (1 + r_target) ** T_A
+print(f"\n期末目标市值 = {M_req:.2f}亿")
+for name, pe_anchor in [("乐观", pe_bull), ("中性", pe_mid), ("悲观", pe_bear)]:
+    E_req = M_req / pe_anchor
+    g_req = (E_req / E0) ** (1 / T_A) - 1
+    print(f"[{name}] PE锚={pe_anchor:.2f}× E_req={E_req:.2f}亿 g_req={g_req*100:.2f}%/年")
+
+# 历史 CAGR（Tushare income 核验）
+E_2020   = 174.31   # Tushare income FY2020 年报
+E_2025   = 352.86   # Tushare income FY2025 年报
+hist_cagr_5  = (E_2025 / E_2020) ** (1/5) - 1   # = 15.15%
+E_2015 = 143.50
+hist_cagr_10 = (E_2025 / E_2015) ** (1/10) - 1  # = 9.41%
+print(f"工业富联5年CAGR(2020→2025)={hist_cagr_5*100:.2f}%  10年CAGR(2015→2025)={hist_cagr_10*100:.2f}%")
+
+# ============================================================
+# 任务B：同业 5 年 CAGR 分布（Tushare income，年报，单位=元）
+# ============================================================
+# income API 返回单位：元；换算→亿元
+peer_cagr_5y = {
+    "浪潮信息 000977":  1466448647.76 / 2412866308.76,   # FY2020/FY2025 比值开方
+    "华勤技术 603296":  2191495466.30 / 4054292460.55,
+    "工业富联 601138": 17430783000.00 / 35285561000.00,
+    "立讯精密 002475":  7225462752.58 / 16599769785.64,
+    "中科曙光 603019":   822381760.28 / 2176292865.25,
+}
+# 正确计算CAGR = (FY2025/FY2020)^(1/5)-1
+cagr_data = {
+    "浪潮信息 000977": (2412866308.76 / 1466448647.76) ** (1/5) - 1,
+    "华勤技术 603296": (4054292460.55 / 2191495466.30) ** (1/5) - 1,
+    "工业富联 601138": (35285561000.00 / 17430783000.00) ** (1/5) - 1,
+    "立讯精密 002475": (16599769785.64 /  7225462752.58) ** (1/5) - 1,
+    "中科曙光 603019": (2176292865.25 /   822381760.28) ** (1/5) - 1,
+}
+print("\n同业5年CAGR(2020→2025) Tushare income:")
+for name, c in sorted(cagr_data.items(), key=lambda x: x[1]):
+    print(f"  {name}: {c*100:.2f}%")
+cagr_vals = sorted(cagr_data.values())
+c_p25 = percentile(cagr_vals, 25)
+c_p50 = percentile(cagr_vals, 50)
+c_p75 = percentile(cagr_vals, 75)
+print(f"CAGR分布 P25={c_p25*100:.2f}% P50={c_p50*100:.2f}% P75={c_p75*100:.2f}%")
+
+# 中性档 g_req 在分布中的位置
+E_req_mid = M_req / pe_mid
+g_req_mid = (E_req_mid / E0) ** (1/5) - 1
+rank = sum(1 for x in cagr_vals if x < g_req_mid)
+pct_rank = rank / len(cagr_vals) * 100
+print(f"中性档g_req={g_req_mid*100:.2f}% 落在同业5年CAGR分布 ~P{pct_rank:.0f}分位")
+
+# ============================================================
+# 视角 B：Reverse DCF（二分法，收敛精度 1e-7）
+# ============================================================
+FCF0   = E0 * 0.85   # = 345.52亿
+r_dcf  = 0.0825
+g_term = 0.03
+T_dcf  = 10
+
+def pv_dcf(FCF0, g, r, g_term, T):
+    pv = sum(FCF0 * (1+g)**t / (1+r)**t for t in range(1, T+1))
+    FCF_T = FCF0 * (1+g)**T
+    TV = FCF_T * (1+g_term) / (r - g_term)
+    pv += TV / (1+r)**T
+    return pv
+
+lo, hi = 0.0, 0.50
+while hi - lo > 1e-7:
+    mid = (lo + hi) / 2
+    if pv_dcf(FCF0, mid, r_dcf, g_term, T_dcf) &lt; M_now: lo = mid
+    else: hi = mid
+g_explicit = mid
+print(f"\ng_explicit = {g_explicit*100:.2f}%  (验证PV={pv_dcf(FCF0,g_explicit,r_dcf,g_term,T_dcf):.2f}亿)")
+
+g_half = g_explicit / 2
+pv_half = pv_dcf(FCF0, g_half, r_dcf, g_term, T_dcf)
+print(f"g减半({g_half*100:.2f}%): PV={pv_half:.0f}亿 跌幅={(pv_half-M_now)/M_now*100:.1f}%")
+
+# ============================================================
+# EDS 式回本年限
+# ============================================================
+eds = M_now / E0
+print(f"\nEDS回本年限 = {eds:.2f}年  静态年化={1/eds*100:.2f}%")
+
+# ============================================================
+# 下行测算
+# ============================================================
+print("\n下行测算：")
+for label, pe_t in [
+    ("同业P50回归PE38.74×", pe_mid),
+    ("悲观P25 PE31.07×",    pe_bear),
+    ("历史低谷锚 PE29.0×",  29.0),
+    ("极端 PE10×",          10.0)]:
+    M_t = E0 * pe_t
+    P_t = M_t / shares
+    dd = (P_t - price_now) / price_now * 100
+    sign = "+" if dd >= 0 else ""
+    print(f"  [{label}] 市值={M_t:.0f}亿 股价={P_t:.2f}元 ({sign}{dd:.1f}%)")
+
+P_half = pv_half / shares
+dd_half = (P_half - price_now) / price_now * 100
+print(f"  [DCF g减半] 市值={pv_half:.0f}亿 股价={P_half:.2f}元 ({dd_half:.1f}%)")
+</code></pre>
+
+<p><strong>脚本实际输出（Bash 真实运行）：</strong></p>
+<pre><code>同业PE TTM: P25=31.07× P50=38.74× P75=49.28×
+PE锚: 乐观=49.28× 中性=38.74× 悲观=31.07×
+E0(TTM) = 406.49亿  FY2025年报 = 352.86亿  差值 = 53.63亿
+
+期末目标市值 = 20933.12亿
+[乐观] PE锚=49.28× E_req=424.82亿  g_req=0.89%/年
+[中性] PE锚=38.74× E_req=540.34亿  g_req=5.86%/年
+[悲观] PE锚=31.07× E_req=673.74亿  g_req=10.63%/年
+工业富联5年CAGR(2020→2025)=15.15%  10年CAGR(2015→2025)=9.41%
+
+同业5年CAGR(2020→2025) Tushare income:
+  浪潮信息 000977: 10.47%
+  华勤技术 603296: 13.09%
+  工业富联 601138: 15.15%
+  立讯精密 002475: 18.10%
+  中科曙光 603019: 21.49%
+CAGR分布 P25=13.09% P50=15.15% P75=18.10%
+中性档g_req=5.86% 落在同业5年CAGR分布 ~P0分位
+
+g_explicit = 11.31%  (验证PV=12997.82亿)
+g减半(5.65%): PV=8349亿 跌幅=-35.8%
+
+EDS回本年限 = 31.98年  静态年化=3.13%
+
+下行测算：
+  [同业P50回归PE38.74×] 市值=15748亿 股价=79.36元 (+21.2%)
+  [悲观P25 PE31.07×] 市值=12629亿 股价=63.65元 (-2.8%)
+  [历史低谷锚 PE29.0×] 市值=11788亿 股价=59.41元 (-9.3%)
+  [极端 PE10×] 市值=4065亿 股价=20.48元 (-68.7%)
+  [DCF g减半] 市值=8349亿 股价=42.07元 (-35.8%)
+</code></pre>
+
+<!-- === 4.3 视角 A：盈利反推 === -->
+<h3>4.3 视角 A：盈利反推（Earnings-Implied）</h3>
+
+<p>
+  逻辑：买入价 65.50 元（市值 12,997.82 亿元），5 年后获得年化 10% 回报，期末目标市值 = <span class="num-hl">20,933.12 亿元</span>。以 TTM 净利润 E₀ = 406.49 亿元为基期，在各档 PE 退出锚下，反推届时所需净利润及年化 CAGR。
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>情景</th>
+      <th>PE 退出锚（Tushare）</th>
+      <th>所需 E_required（亿元）</th>
+      <th>隐含 g_required（/年）</th>
+      <th>vs 历史 5yr CAGR 15.15%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>乐观</strong>（AI 叙事持续，PE 升至同业 P75）</td>
+      <td class="td-num">49.28×</td>
+      <td class="td-num"><strong>424.82</strong></td>
+      <td class="td-num"><strong>0.89%</strong></td>
+      <td class="td-num k-up">+14.3 pct 余量</td>
+    </tr>
+    <tr>
+      <td><strong>中性</strong>（PE 回归同业 P50）</td>
+      <td class="td-num">38.74×</td>
+      <td class="td-num"><strong>540.34</strong></td>
+      <td class="td-num"><strong>5.86%</strong></td>
+      <td class="td-num k-up">+9.3 pct 余量</td>
+    </tr>
+    <tr>
+      <td><strong>悲观</strong>（叙事切换，PE 压缩至同业 P25）</td>
+      <td class="td-num">31.07×</td>
+      <td class="td-num"><strong>673.74</strong></td>
+      <td class="td-num"><strong>10.63%</strong></td>
+      <td class="td-num">+4.5 pct 余量</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="aside">
+<p><strong>v2 vs v3 比较（关键变化）：</strong></p>
+<p>v2 悲观情景要求 g = 17.05%，<em>超过</em>历史 CAGR 15.15%，存在"缺口 1.9 pct"的下行风险信号。</p>
+<p>v3 用 TTM 净利润 E₀ = 406.49 亿（而非年报 352.86 亿），+53.63 亿的改善使三档情景 g_req 均大幅下降：</p>
+<ul>
+  <li>中性档：v2 需要 11.45% → v3 只需 <strong>5.86%</strong></li>
+  <li>悲观档：v2 需要 17.05% → v3 只需 <strong>10.63%</strong>（低于历史 CAGR 15.15%）</li>
+</ul>
+<p>结论改变：v2 认为"悲观情景已超历史上限"，v3 修正为"三档情景均在历史 CAGR 能力范围内"——前提是 2026Q1 的高速增长可持续。</p>
+</div>
+
+<h4>现实性检验（视角 A）—— Tushare 真实 CAGR 分布</h4>
+
+<p>
+  <strong>任务 B 关键成果：</strong>本次用 Tushare <code>income</code> API 拉取 5 家同业 FY2020/FY2025 年报净利润（单位：元，已核验口径），Python 计算 5 年 CAGR，不再标注"信息不足"。<span class="src-badge ts">Tushare income</span>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>公司</th>
+      <th>FY2020 净利（亿元）</th>
+      <th>FY2025 净利（亿元）</th>
+      <th>5年 CAGR（2020→2025）</th>
+      <th>数据来源</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>浪潮信息 000977</td>
+      <td class="td-num">14.66</td>
+      <td class="td-num">24.13</td>
+      <td class="td-num">10.47%</td>
+      <td><span class="src-badge ts">Tushare income</span></td>
+    </tr>
+    <tr>
+      <td>华勤技术 603296</td>
+      <td class="td-num">21.91</td>
+      <td class="td-num">40.54</td>
+      <td class="td-num">13.09%</td>
+      <td><span class="src-badge ts">Tushare income</span></td>
+    </tr>
+    <tr class="highlight-row">
+      <td><strong>工业富联 601138</strong></td>
+      <td class="td-num"><strong>174.31</strong></td>
+      <td class="td-num"><strong>352.86</strong></td>
+      <td class="td-num"><strong>15.15%</strong>（P50）</td>
+      <td><span class="src-badge ts">Tushare income ✓</span></td>
+    </tr>
+    <tr>
+      <td>立讯精密 002475</td>
+      <td class="td-num">72.25</td>
+      <td class="td-num">166.00</td>
+      <td class="td-num">18.10%</td>
+      <td><span class="src-badge ts">Tushare income</span></td>
+    </tr>
+    <tr>
+      <td>中科曙光 603019</td>
+      <td class="td-num">8.22</td>
+      <td class="td-num">21.76</td>
+      <td class="td-num">21.49%</td>
+      <td><span class="src-badge ts">Tushare income</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="maodun">
+  <span class="label">CAGR 现实性检验（任务 B 核心结论）</span>
+  <h5>分布统计（5家，Tushare 真实数据）</h5>
+  <p>P25 = 13.09%  /  P50 = 15.15%  /  P75 = 18.10%  /  max = 21.49%</p>
+  <h5>中性档 g_req = 5.86% 的历史分位</h5>
+  <p>5.86% 低于所有 5 家样本的历史 CAGR（最低浪潮信息 10.47%），落在分布 <strong>P0 以下</strong>。换言之：即使以同业中最低历史增速（10.47%）运行，工业富联中性情景所需的 5.86% 也能轻松满足。</p>
+  <h5>关键约束：工业富联历史 CAGR 恰在分布 P50</h5>
+  <p>工业富联自身 5 年 CAGR = 15.15%，恰是同业 P50。本公司的历史增速与同业中位数完全吻合——说明过去 5 年表现"中等偏上"，不是极端成长，也不是落后者。</p>
+  <h5>高基数问题（关键风险）</h5>
+  <p>工业富联 FY2025 净利基数 352.86 亿，约为同业平均净利 62 亿的 5.7 倍。浪潮/曙光/华勤均是小基数高增速，与工业富联完全不在同一量级。<strong>5 家 CAGR 样本全部有基数偏差，无法直接类比"352 亿基数下维持 X% 增速 5 年"的历史先例</strong>——这是无法用 Tushare 解决的结构性信息缺口。</p>
+</div>
+
+<p>
+  <strong>10 年 CAGR 分布（4 家有 2015 年数据）：</strong>浪潮 18.31% / 曙光 28.53% / 立讯 31.44%，工业富联 10 年 CAGR 仅 <span class="num-hl">9.41%</span>——在同业中最低，因其 2015 年基数已高达 143.50 亿。10 年口径更能反映大基数企业的真实可持续增速约束。
+</p>
+
+<!-- === 4.4 视角 B：Reverse DCF === -->
+<h3>4.4 视角 B：Reverse DCF（增长率反推）</h3>
+
+<p>
+  参数：FCF₀ = 345.52 亿元（TTM 净利润 406.49 × 85%），r = 8.25%，g_terminal = 3%，显性期 T = 10 年，目标 PV = 12,997.82 亿元（当前市值）。
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>假设 FCF CAGR（显性期 10 年）</th>
+      <th>对应 PV（亿元）</th>
+      <th>vs 当前市值 12,998 亿</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>8.0%</td>
+      <td class="td-num">9,777</td>
+      <td class="td-num k-down">低估 −24.8%</td>
+    </tr>
+    <tr>
+      <td>10.0%</td>
+      <td class="td-num">11,212</td>
+      <td class="td-num k-down">低估 −13.7%</td>
+    </tr>
+    <tr class="highlight-row">
+      <td><strong>11.31%（隐含 g_explicit，脚本二分法求解）</strong></td>
+      <td class="td-num"><strong>12,998</strong></td>
+      <td class="td-num"><strong>= 当前市值（验证误差 &lt; 0.01 亿）</strong></td>
+    </tr>
+    <tr>
+      <td>15.0%</td>
+      <td class="td-num">17,180</td>
+      <td class="td-num k-up">高估 +32.2%</td>
+    </tr>
+    <tr>
+      <td>20.0%</td>
+      <td class="td-num">25,154</td>
+      <td class="td-num k-up">高估 +93.5%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <strong>结论：当前市值隐含 FCF CAGR = 11.31%，维持 10 年。</strong>若 g_explicit 减半（11.31% → 5.65%），DCF 公允市值降至 <span class="num-hl">8,349 亿元</span>，对应股价 <span class="num-hl">42.07 元</span>，跌幅 <span class="num-hl">−35.8%</span>。
+</p>
+
+<div class="aside">
+<p><strong>物理约束检验：</strong>若维持 11.31% × 10 年，FY2035 FCF 需达约（345.52 × 1.1131¹⁰）≈ 1,012 亿元，对应净利润约 1,190 亿元。在 3.9% 净利率下，对应营收超 3 万亿——约为 FY2025 的 3.3 倍。A 股极少有净利润超过 1,000 亿的科技/制造企业（参考：茅台约 857 亿、宁德约 507 亿、工商银行约 3,700 亿为金融业）。这条路径并非不可能，但需要 AI 服务器市场维持指数级扩张，且工业富联份额不下降。</p>
+<p><strong>与 v2 的差异：</strong>v2 隐含 g_explicit = 13.13%（基于年报 FCF₀ = 300 亿），v3 = 11.31%（基于 TTM FCF₀ = 345.52 亿）。2026Q1 盈利改善使隐含增速要求降低了 1.82 pct，风险敞口略有收窄。</p>
+</div>
+
+<!-- === 4.5 EDS === -->
+<h3>4.5 EDS 式回本年限</h3>
+
+<div class="aside">
+<p><strong>当前 PE TTM = 31.98×（Tushare daily_basic 2026-05-21）</strong></p>
+<p>若盈利水平不变，累计利润等于当前市值需 <strong>31.98 年</strong>（v2 为 36.84 年，因 TTM 净利润更高）。</p>
+<p>静态年化收益率 = 1/31.98 = <strong>3.13%</strong>，高于 10 年期国债 1.744%<sup><a href="#src-8">[8]</a></sup>（对应 57.3 年回本），股权风险溢价约 1.39 pct。</p>
+<p>v2 EDS = 36.84 年（3.13% vs v2 的 2.71%），v3 改善的原因：2026Q1 强劲盈利推高 TTM 净利润，PE 压缩，静态收益率上升。</p>
+</div>
+
+<!-- === 4.6 下行测算 === -->
+<h3>4.6 下行测算：PE 压缩时的跌幅（脚本输出，基于 TTM E₀）</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>情景</th>
+      <th>PE 压缩至</th>
+      <th>目标市值（亿元）</th>
+      <th>对应股价（元）</th>
+      <th>涨跌幅（vs 65.50 元）</th>
+      <th>触发条件</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>同业 P50 回归</td>
+      <td class="td-center">38.74×</td>
+      <td class="td-num">15,748</td>
+      <td class="td-num">79.36</td>
+      <td class="td-num k-up">+21.2%</td>
+      <td>叙事升级，PE 向同业中位靠拢</td>
+    </tr>
+    <tr>
+      <td>悲观锚（同业 P25）</td>
+      <td class="td-center">31.07×</td>
+      <td class="td-num">12,629</td>
+      <td class="td-num">63.65</td>
+      <td class="td-num">−2.8%</td>
+      <td>AI 叙事降温，PE 向低端压缩</td>
+    </tr>
+    <tr>
+      <td>历史低谷锚（同业历史 P25 = 29×）</td>
+      <td class="td-center">29.0×</td>
+      <td class="td-num">11,788</td>
+      <td class="td-num">59.41</td>
+      <td class="td-num">−9.3%</td>
+      <td>PE 向5年历史低端靠拢（bak_daily 实证）</td>
+    </tr>
+    <tr class="highlight-row">
+      <td><strong>DCF g 减半（11.31%→5.65%）</strong></td>
+      <td class="td-center">—</td>
+      <td class="td-num">8,349</td>
+      <td class="td-num">42.07</td>
+      <td class="td-num k-down"><strong>−35.8%</strong></td>
+      <td>FCF 增速实际只达隐含 g 的一半</td>
+    </tr>
+    <tr>
+      <td>极端压缩</td>
+      <td class="td-center">10×</td>
+      <td class="td-num">4,065</td>
+      <td class="td-num">20.48</td>
+      <td class="td-num k-down">−68.7%</td>
+      <td>代工厂叙事崩塌，历史极端值</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="maodun">
+  <span class="label">v3 核心结论</span>
+  <h5>当前价格隐含的情景（Tushare 数据修正后）</h5>
+  <p>当前股价 65.50 元，PE TTM = 31.98×（Tushare），<strong>已低于同业 P50（38.74×），处于同业 P25（31.07×）附近</strong>：</p>
+  <ul>
+    <li>乐观情景（PE 升至 49.28×）：g_req 仅 0.89%，几乎无门槛，但需 PE 从当前 32× 升至 49×。</li>
+    <li>中性情景（PE 回归同业 P50 = 38.74×）：<strong>g_req = 5.86%，对应 +21.2% 上行空间</strong>，历史上浪潮/华勤/工业富联均曾超越该 CAGR。</li>
+    <li>悲观情景（PE 维持当前 31.07×）：g_req = 10.63%，仍低于历史 CAGR 15.15%，下行空间仅 −2.8%。</li>
+    <li>Reverse DCF：市场隐含 10 年 FCF CAGR = <strong>11.31%</strong>，落在同业5年CAGR分布 P25-P50 之间，历史样本（均为更小基数企业）可参照但不可直接比对。</li>
+  </ul>
+  <h5>关键矛盾转化信号</h5>
+  <p><strong>v2 的结论是"已定价偏乐观，下行风险大"；v3 修正为"当前 PE 已处同业低位，PE 本身的下行压缩空间有限（最多 −9.3% 至历史低谷），主要风险来自盈利增速大幅低于隐含 11.31%"。</strong>即：不是 PE 崩塌风险，而是 FCF 增长不达预期的风险。</p>
+</div>
+
+<!-- ============ 反方观点 ============ -->
+<h2 id="bear-case"><span class="num">5</span>反方观点与风险清单</h2>
+
+<ul class="risk-list">
+  <li class="risk-item">
+    <strong>风险 1：毛利率结构性下行。</strong>FY2025 毛利率 6.98%，较 FY2023 的 8.06% 下降逾 1 pct，与"AI 升值"叙事矛盾。AI 服务器价格竞争加剧将进一步压缩利润空间。<sup><a href="#src-3">[3]</a></sup>
+  </li>
+  <li class="risk-item">
+    <strong>风险 2：大客户资本支出周期风险。</strong>高度依赖超大规模云厂商 CapEx 节奏。2026Q1 强劲增长（净利 105.95 亿）本身就是大客户集中采购的体现，一旦 CapEx 指引下调，季度净利可能快速回落。
+  </li>
+  <li class="risk-item">
+    <strong>风险 3：出口管制升级。</strong>美国对华 AI 芯片限制若扩展至更多型号，工业富联中国算力业务将直接承压；此为二元风险，无法对冲。
+  </li>
+  <li class="risk-item">
+    <strong>风险 4：2026Q1 基数效应。</strong>2026Q1 净利 105.95 亿，若为一次性集中采购驱动，后续季度可能均值回归至 70-80 亿/季区间，导致 TTM 净利润重回 300-320 亿，PE TTM 将从 32× 反弹至 40-43×，重现估值压力。
+  </li>
+  <li class="risk-item">
+    <strong>风险 5：Tushare 数据局限性。</strong>同业 CAGR 样本（5 家）基数均远低于工业富联（最大立讯精密 FY2025 = 166 亿 vs 工业富联 352.86 亿），CAGR 分布无法代表"350 亿基数的代工企业维持 11% 增速"的真实概率分布。本报告仅能用 Tushare 解决"是否有真实数字"，但无法解决"样本适配性"问题。
+  </li>
+</ul>
+
+<!-- ============ 数据来源 ============ -->
+<h2 id="sources"><span class="num">6</span>数据来源</h2>
+
+<ol class="sources">
+  <li id="src-1">工业富联（601138）股价行情，2026-05-21 收盘价 65.50 元；来源：Tushare daily_basic API（close 字段），trade_date=20260521，访问日期 2026-05-24。</li>
+  <li id="src-2">工业富联总股本 198.44 亿股；来源：搜狐证券股本结构页（<a href="https://q.stock.sohu.com/cn/601138/index.shtml">q.stock.sohu.com</a>），访问日期 2026-05-24。</li>
+  <li id="src-3">工业富联 2025 年年度报告，2026-03-10 披露；营收 9,028.87 亿元、归母净利润 352.86 亿元、毛利率 6.98%、AI 服务器 YoY &gt;300%；云计算板块 6,026.79 亿元。媒体报道：<a href="https://news.qq.com/rain/a/20260312A01S6C00">腾讯新闻 2026-03-12</a>；<a href="https://mtz.china.com/touzi/2026/0311/221181.html">中华网财经 2026-03-11</a>。Tushare income API 核验：n_income_attr_p = 35,285,561,000 元 ≈ 352.86 亿元，ann_date=20260311，一致。</li>
+  <li id="src-4">同业 PE TTM 7 家数据，来源：Tushare daily_basic API，trade_date=20260521，字段 pe_ttm；直接调用结果如下：601138=31.97、000977=38.11、603019=61.52、603296=26.41、002475=28.72、000938=39.37、000034=52.58。访问日期 2026-05-24。</li>
+  <li id="src-5">5 家同业历史 PE 分位（5 年），来源：Tushare bak_daily API，start_date=20210101，end_date=20260522；601138 P25=11.7/P50=17.4/P75=23.9，000977 P25=29.2/P50=35.9/P75=49.1，603019 P25=29.0/P50=39.1/P75=65.5，603296 P25=66.4/P50=75.9/P75=86.7，002475 P25=31.5/P50=35.9/P75=42.3。访问日期 2026-05-24。</li>
+  <li id="src-6">5 家同业历年归母净利润（年报），来源：Tushare income API，report_type=1，start_date=20150101，end_date=20260601；字段 n_income_attr_p（单位：元）；已核验口径（601138 FY2025 = 35,285,561,000 元 = 352.86 亿元，与年报一致）。访问日期 2026-05-24。</li>
+  <li id="src-7">工业富联 2026Q1 季报，来源：Tushare income API，ann_date=20260429，end_date=20260331；n_income_attr_p=10,594,857,000 元 = 105.95 亿元；total_revenue=251,078,078,000 元 = 2,510.78 亿元。访问日期 2026-05-24。</li>
+  <li id="src-8">中国 10 年期国债收益率 1.744%（2026-04-29）；来源：中国货币网 / CEIC，via 搜索结果，访问日期 2026-05-24。</li>
+  <li id="src-9">工业富联 FY2024 经营现金流 238 亿元，同比下降 44%；来源：<a href="https://wallstreetcn.com/articles/3746230">华尔街见闻 2025-04-29</a>。FCF 转化率保守取 85%（FY2025 存货增加拖累，FY2026Q1 趋势待观察）。</li>
+  <li id="src-10">工业富联历年归母净利润数据：FY2015=143.50亿、FY2020=174.31亿，均来自 Tushare income API 核验（FY2015: n_income_attr_p=14,350,344,000元；FY2020: 17,430,783,000元）。</li>
+</ol>
+
+<!-- ============ 自检段 v3 ============ -->
+<h2 id="self-check-v3"><span class="num">7</span>v3 自检段：任务 A/B/C 逐项验证</h2>
+
+<div class="crux">
+<p>本节对照 v3 任务要求（三件事），逐一给出「成功 / 部分成功 / 失败 + 关键证据」，并反馈 Tushare MCP 工具使用情况。</p>
+</div>
+
+<div class="check-item">
+  <div class="ci-label">任务 A — 用真 Tushare 数据算同业 PE 三档锚</div>
+  <p class="check-ok">成功</p>
+  <p><strong>同业扩展：</strong>从 v2 的 4 家扩展至 6 家同业（排除工业富联本身），新增紫光股份（000938）、神州数码（000034）。</p>
+  <p><strong>关键证据数字（Tushare daily_basic 2026-05-21）：</strong></p>
+  <table>
+    <thead><tr><th>公司</th><th>PE TTM（Tushare）</th><th>v2 经验值</th><th>差异</th></tr></thead>
+    <tbody>
+      <tr><td>华勤技术 603296</td><td class="td-num">26.41×</td><td class="td-num">22×</td><td class="td-num k-down">+4.4</td></tr>
+      <tr><td>立讯精密 002475</td><td class="td-num">28.72×</td><td class="td-num">32×</td><td class="td-num k-up">−3.3</td></tr>
+      <tr><td>浪潮信息 000977</td><td class="td-num">38.11×</td><td class="td-num">37×</td><td class="td-num">+1.1</td></tr>
+      <tr><td>中科曙光 603019</td><td class="td-num">61.52×</td><td class="td-num">62×</td><td class="td-num">−0.5</td></tr>
+      <tr><td>紫光股份 000938</td><td class="td-num">39.37×</td><td class="td-num">未列入</td><td class="td-num">—</td></tr>
+      <tr><td>神州数码 000034</td><td class="td-num">52.58×</td><td class="td-num">未列入</td><td class="td-num">—</td></tr>
+    </tbody>
+  </table>
+  <p><strong>PE 锚（Python 线性插值）：</strong>P25 = 31.07×  P50 = 38.74×  P75 = 49.28×</p>
+  <p><strong>工业富联当前 PE TTM（Tushare）= 31.98×</strong>（v2 用年报静态 36.84×，差 4.86 pct）</p>
+  <p><strong>5 年历史 PE 分位（bak_daily，1,299 条有效记录/家）：</strong>工业富联历史 P25=11.7×、P50=17.4×，当前 31.98× 处于自身历史高位；同业历史 P25 中位约 29-31×，与当日 P25 接近——悲观锚合理性双重验证。</p>
+  <p><strong>v2 vs v3 PE 锚对比：</strong></p>
+  <table>
+    <thead><tr><th>档位</th><th>v2（经验）</th><th>v3（Tushare）</th><th>变化</th></tr></thead>
+    <tbody>
+      <tr><td>乐观</td><td class="td-num">49.5×</td><td class="td-num">49.28×</td><td>−0.2，基本一致</td></tr>
+      <tr><td>中性</td><td class="td-num">34.5×</td><td class="td-num">38.74×</td><td class="td-num k-down">+4.2，中性档 PE 上移</td></tr>
+      <tr><td>悲观</td><td class="td-num">27.0×</td><td class="td-num">31.07×</td><td class="td-num k-down">+4.1，悲观档 PE 上移</td></tr>
+    </tbody>
+  </table>
+  <p>PE 锚整体上移（特别是中性和悲观档），反映 AI 算力板块当前市场估值溢价高于 v2 的经验判断。</p>
+</div>
+
+<div class="check-item">
+  <div class="ci-label">任务 B — 用真 Tushare 数据算同业 5/10 年净利润 CAGR 分布</div>
+  <p class="check-ok">成功（5 年 CAGR）/ <span class="check-partial">部分成功（10 年 CAGR，华勤技术 2019 年才上市，仅 4 家有完整 10 年数据）</span></p>
+  <p><strong>关键证据：</strong></p>
+  <table>
+    <thead><tr><th>公司</th><th>FY2020 净利（亿）</th><th>FY2025 净利（亿）</th><th>5年CAGR</th><th>10年CAGR</th></tr></thead>
+    <tbody>
+      <tr><td>浪潮信息</td><td class="td-num">14.66</td><td class="td-num">24.13</td><td class="td-num">10.47%</td><td class="td-num">18.31%</td></tr>
+      <tr><td>华勤技术</td><td class="td-num">21.91</td><td class="td-num">40.54</td><td class="td-num">13.09%</td><td class="td-num">N/A（2019上市）</td></tr>
+      <tr><td>工业富联</td><td class="td-num">174.31</td><td class="td-num">352.86</td><td class="td-num">15.15%（P50）</td><td class="td-num">9.41%（P25）</td></tr>
+      <tr><td>立讯精密</td><td class="td-num">72.25</td><td class="td-num">166.00</td><td class="td-num">18.10%</td><td class="td-num">31.44%</td></tr>
+      <tr><td>中科曙光</td><td class="td-num">8.22</td><td class="td-num">21.76</td><td class="td-num">21.49%</td><td class="td-num">28.53%</td></tr>
+    </tbody>
+  </table>
+  <p><strong>5年CAGR分布：P25=13.09% P50=15.15% P75=18.10%</strong></p>
+  <p><strong>现实性检验结论：</strong>中性档 g_req=5.86%（用TTM E₀），落在同业5年CAGR分布 P0 以下。即：哪怕是同业中增速最慢的浪潮信息（10.47%），也超过了工业富联中性情景所需的 5.86% CAGR。中性情景在历史 CAGR 能力范围内有较大余量。</p>
+  <p><strong>v2 "信息不足跳过"的位置现在有了真实数据，结论发生实质性改变：</strong>v2 认为"无法验证"，v3 用 Tushare 数据得出"中性情景 CAGR 要求极低，历史上完全可实现"。</p>
+  <p><strong>单位验证：</strong>Tushare income API 返回 n_income_attr_p 单位为元（不是万元）。交叉验证：601138 FY2024 = 23,216,469,000 元 = 232.16 亿元，与年报 232.16 亿一致（误差 &lt; 0.01%）。</p>
+</div>
+
+<div class="check-item">
+  <div class="ci-label">任务 C — Tushare 最新季度数据更新 KPI 与基期 E₀</div>
+  <p class="check-ok">成功</p>
+  <p><strong>关键证据：</strong></p>
+  <ul>
+    <li>Tushare income API 返回 2026Q1 数据：ann_date=20260429, end_date=20260331</li>
+    <li>2026Q1 归母净利润 = 10,594,857,000 元 = <strong>105.95 亿元</strong></li>
+    <li>2026Q1 营收 = 251,078,078,000 元 = <strong>2,510.78 亿元</strong></li>
+    <li>Tushare daily_basic 2026-05-21: PE_TTM = 31.98×（已反映 2026Q1 数据）</li>
+    <li>隐含 TTM 净利润 = 12,997.82 / 31.98 = <strong>406.49 亿元</strong>（比 FY2025 年报多 53.63 亿）</li>
+  </ul>
+  <p>本次 v3 将视角 A 的基期盈利从年报静态 352.86 亿更新为 TTM 406.49 亿，导致三档 g_req 均大幅下降，结论从"悲观情景已超历史上限"修正为"三档情景均在历史能力范围内"。</p>
+</div>
+
+<div class="check-item">
+  <div class="ci-label">MCP 工具使用反馈（SKILL.md 规则 7 工具速查表迭代输入）</div>
+  <p><strong>工具调用过程：</strong></p>
+  <table>
+    <thead><tr><th>工具名</th><th>调用方式</th><th>结果</th><th>反馈</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>mcp__tushareMcp__daily_basic</td>
+        <td>工具调用格式</td>
+        <td class="check-fail">失败：No such tool available</td>
+        <td>MCP 配置为 HTTP 类型（type:http, url: https://api.tushare.pro/mcp/...），工具名称不是标准 MCP 工具格式，无法用 mcp__ 前缀调用。</td>
+      </tr>
+      <tr>
+        <td>Tushare HTTP API</td>
+        <td>Bash + python3 + urllib.request，直接 POST 到 https://api.tushare.pro</td>
+        <td class="check-ok">成功：全部 3 个接口正常返回</td>
+        <td>token 通过环境变量 TUSHARE_TOKEN 获取。API 格式：{api_name, token, params, fields}。限速：未遇到，5 只股票逐个拉 bak_daily 约 10 秒内完成。</td>
+      </tr>
+      <tr>
+        <td>daily_basic（PE 当日）</td>
+        <td>HTTP API</td>
+        <td class="check-ok">成功</td>
+        <td>多只股票同时传 ts_code（逗号分隔）返回空，需逐只拉取。字段 pe_ttm（TTM口径）和 pe（静态口径）均有，本次用 pe_ttm。总市值字段 total_mv 单位为元（需÷1e8换算）。</td>
+      </tr>
+      <tr>
+        <td>bak_daily（历史 PE）</td>
+        <td>HTTP API</td>
+        <td class="check-ok">成功</td>
+        <td>返回字段为 [ts_code, trade_date, pe, pe_ttm, close]（按 fields 指定顺序）。bak_daily 返回的 pe_ttm 是 index=2（第3列），需按实际返回字段顺序取值，不能硬编码列名。5 年数据约 1,299 条/家。</td>
+      </tr>
+      <tr>
+        <td>income（年报净利润）</td>
+        <td>HTTP API</td>
+        <td class="check-ok">成功</td>
+        <td>n_income_attr_p 字段单位为<strong>元</strong>（非万元，踩坑点）。第一次计算 CAGR 出现 80%+ 异常值，经交叉验证发现单位错误，用已知年报数据核验后确认。report_type=1 为年报口径，返回数据有重复行（同一 end_date 出现两次），需去重或取最新 ann_date。</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>工程结论：</strong>Tushare MCP 配置为 HTTP 类型（非 stdio 工具），无法用 <code>mcp__tushareMcp__*</code> 工具调用格式。需用 Bash + Python HTTP 请求替代。环境变量 TUSHARE_TOKEN 可用，API 正常。主要踩坑点：(1) 多 ts_code 并发查询 daily_basic 返回空，需逐只；(2) income n_income_attr_p 单位是元不是万元；(3) 年报数据有重复行需去重。</p>
+</div>
+
+<div class="check-item">
+  <div class="ci-label">字号自检（CSS 合规验证）</div>
+  <p class="check-ok">全部合规</p>
+  <table>
+    <thead><tr><th>元素</th><th>v3 字号</th><th>硬下限</th><th>合规</th></tr></thead>
+    <tbody>
+      <tr><td>body</td><td>20px</td><td>20px</td><td class="check-ok">合规</td></tr>
+      <tr><td>h1</td><td>44px</td><td>38px</td><td class="check-ok">合规</td></tr>
+      <tr><td>h2</td><td>34px</td><td>32px</td><td class="check-ok">合规</td></tr>
+      <tr><td>h3</td><td>27px</td><td>24px</td><td class="check-ok">合规</td></tr>
+      <tr><td>h4</td><td>22px</td><td>20px</td><td class="check-ok">合规</td></tr>
+      <tr><td>table th/td</td><td>17.5px</td><td>17px</td><td class="check-ok">合规</td></tr>
+      <tr><td>.kpi-card .k-val</td><td>36px</td><td>32px</td><td class="check-ok">合规（v2 仅 26px，本次提升）</td></tr>
+      <tr><td>.crux p</td><td>21px</td><td>21px</td><td class="check-ok">合规</td></tr>
+      <tr><td>.maodun p/li/h5</td><td>19px</td><td>19px</td><td class="check-ok">合规</td></tr>
+      <tr><td>.tip/.aside/.term</td><td>18.5px</td><td>18.5px</td><td class="check-ok">合规</td></tr>
+      <tr><td>pre/code（脚本）</td><td>16px</td><td>16px</td><td class="check-ok">合规</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="div">
+
+<div class="tip">
+<p>v3 Python 脚本可直接在本地重跑（需将 HTML 实体 <code>&amp;lt;</code> 改回 <code>&lt;</code>）。Tushare 数据已内嵌为常量，无需重新请求 API，离线可用。如需实时拉取，将常量替换为 HTTP API 调用即可（参考文档顶部注释）。</p>
+</div>
+
+<div class="meta" style="margin-top:40px;">
+<b>v3 生成时间</b>：2026-05-24 10:27:30<br>
+<b>v3 关键改进</b>：任务A PE锚从经验值→Tushare真数据 / 任务B CAGR分布从"信息不足"→5家Tushare年报序列 / 任务C更新2026Q1季报 / MCP工具踩坑记录全部写入自检<br>
+<b>v3 遗留问题</b>：(1) Tushare MCP HTTP类型无法用工具调用格式，用Bash HTTP替代；(2) 同业CAGR样本基数偏差无法用数据量解决，需更大基数（300亿+净利）的电子制造企业历史数据<br>
+<b>免责声明</b>：本文档为投研 skill 工程验证，不构成任何投资建议。
+</div>
+
+</div><!-- .wrap -->
+</body>
+</html>
