@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国商品期货品种 · 产业逻辑与供需矛盾速查</title>
+<style>
+  :root{
+    --bg:#f6f5f1;
+    --paper:#ffffff;
+    --ink:#1c1d22;
+    --ink-soft:#3a3d45;
+    --muted:#6b6f78;
+    --line:#e3e1da;
+    --shfe:#b8860b;   /* 上期所 金属金 */
+    --ine:#1f6f8b;    /* 能源中心 海蓝 */
+    --dce:#2e7d4f;    /* 大商所 农绿 */
+    --czce:#b5532a;   /* 郑商所 砖红 */
+    --gfex:#5b4b8a;   /* 广期所 新能源紫 */
+    --cffex:#444a57;  /* 中金所 钢灰 */
+    --warn:#a8320f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:20px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:56px 28px 96px;}
+  header.title{margin-bottom:18px;}
+  h1{
+    font-size:40px;
+    line-height:1.25;
+    margin:0 0 14px;
+    letter-spacing:-0.5px;
+    font-weight:800;
+  }
+  .subtitle{font-size:21px;color:var(--muted);margin:0 0 6px;font-weight:500;}
+  .meta{font-size:17px;color:var(--muted);margin:0;}
+  .lead{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:5px solid var(--ink);
+    border-radius:10px;
+    padding:22px 26px;
+    margin:30px 0 14px;
+    font-size:18.5px;
+    color:var(--ink-soft);
+  }
+  .lead b{color:var(--ink);}
+  .legend{
+    display:flex;flex-wrap:wrap;gap:10px 18px;
+    margin:18px 0 10px;font-size:16.5px;color:var(--muted);
+  }
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .dot{width:13px;height:13px;border-radius:50%;display:inline-block;}
+
+  section.exch{margin-top:54px;}
+  .exch-head{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    border-bottom:3px solid var(--accent);
+    padding-bottom:10px;margin-bottom:6px;
+  }
+  h2{
+    font-size:33px;line-height:1.2;margin:0;font-weight:800;
+    color:var(--accent);
+  }
+  .exch-code{font-size:19px;color:var(--muted);font-weight:600;letter-spacing:.5px;}
+  .exch-pos{
+    font-size:18px;color:var(--ink-soft);margin:10px 0 22px;
+    background:var(--paper);border:1px dashed var(--line);
+    border-radius:8px;padding:12px 18px;
+  }
+  .exch-pos b{color:var(--accent);}
+
+  h3.cat{
+    font-size:23px;font-weight:700;margin:30px 0 12px;
+    color:var(--ink);display:flex;align-items:center;gap:10px;
+  }
+  h3.cat::before{
+    content:"";width:8px;height:22px;border-radius:3px;
+    background:var(--accent);display:inline-block;
+  }
+
+  .tbl-scroll{overflow-x:auto;border-radius:10px;border:1px solid var(--line);background:var(--paper);}
+  table{border-collapse:collapse;width:100%;min-width:860px;font-size:17px;}
+  thead th{
+    background:var(--accent);color:#fff;font-weight:700;
+    text-align:left;padding:12px 16px;font-size:17px;
+    position:sticky;top:0;
+  }
+  tbody td{
+    padding:13px 16px;vertical-align:top;border-top:1px solid var(--line);
+    line-height:1.62;color:var(--ink-soft);
+  }
+  tbody tr:nth-child(even){background:#faf9f6;}
+  .pname{font-weight:700;color:var(--ink);white-space:nowrap;font-size:18px;}
+  .pcode{
+    display:inline-block;margin-left:2px;font-size:14.5px;color:#fff;
+    background:var(--accent);border-radius:5px;padding:1px 7px;font-weight:700;
+    vertical-align:middle;
+  }
+  .ptag-new{
+    display:inline-block;font-size:13px;color:var(--warn);border:1px solid var(--warn);
+    border-radius:5px;padding:0 6px;margin-top:6px;font-weight:700;
+  }
+  td.col-logic{width:24%;}
+  td.col-chain{width:30%;}
+  td.col-conflict{width:34%;}
+  th.col-name{width:12%;}
+  .hi{color:var(--warn);font-weight:700;}
+  .arrow{color:var(--muted);font-weight:700;padding:0 2px;}
+
+  .note{
+    font-size:16.5px;color:var(--muted);margin:10px 2px 0;font-style:italic;
+  }
+
+  /* 收尾：产业脉络 */
+  .closing{margin-top:64px;}
+  .closing h2{color:var(--ink);border:0;}
+  .chain-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:12px;
+    padding:22px 26px;margin:16px 0;font-size:18.5px;color:var(--ink-soft);
+  }
+  .chain-card h4{font-size:21px;margin:0 0 8px;color:var(--ink);}
+  .flow{
+    font-size:17px;color:var(--ink);background:#f1efe9;border-radius:8px;
+    padding:10px 14px;margin:10px 0;font-weight:600;line-height:1.9;
+  }
+  footer{
+    margin-top:64px;padding-top:22px;border-top:1px solid var(--line);
+    font-size:16px;color:var(--muted);line-height:1.7;
+  }
+  @media (max-width:680px){
+    body{font-size:18px;}
+    h1{font-size:31px;}
+    h2{font-size:26px;}
+    .wrap{padding:36px 16px 70px;}
+  }
+
+  /* ===================== 第二/三部分 共享作用域 .rv ===================== */
+  .rv{--red:#9e2b25;--red-soft:#c5544c;--supply:#2d6a8e;--demand:#b5532a;--gold:#a9802f;
+      --chain1:#2d6a8e;--chain2:#566270;--chain3:#5b4b8a;--chain4:#2e7d4f;}
+  .part-divider{margin:90px 0 10px;border-top:3px solid var(--ink);padding-top:26px;}
+  .part-divider .ptag{font-size:17px;letter-spacing:3px;color:var(--red);font-weight:800;margin:0 0 8px;}
+  .part-divider h2.part{font-size:36px;line-height:1.2;margin:0 0 12px;color:var(--ink);font-weight:800;border:0;}
+  .part-divider p.part-desc{font-size:19px;color:var(--ink-soft);margin:0;max-width:820px;}
+
+  .rv .quote{border-left:5px solid var(--red);background:#fbf4f3;padding:18px 24px;margin:22px 0;
+      font-size:19px;color:var(--ink-soft);border-radius:0 10px 10px 0;}
+  .rv .quote b{color:var(--red);}
+  .rv .quote .src{display:block;font-size:16px;color:var(--muted);margin-top:8px;font-style:italic;}
+  .rv h2.main{font-size:34px;font-weight:800;margin:54px 0 6px;line-height:1.25;border-bottom:3px solid var(--red);padding-bottom:10px;color:var(--red);}
+  .rv p{margin:14px 0;}
+  .rv .concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0;}
+  .rv .concept{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:18px 20px;}
+  .rv .concept h4{font-size:20px;margin:0 0 6px;color:var(--ink);display:flex;gap:8px;align-items:baseline;}
+  .rv .concept h4 span{font-size:15px;color:var(--red);font-weight:700;border:1px solid var(--red);border-radius:6px;padding:0 7px;}
+  .rv .concept p{font-size:17.5px;color:var(--ink-soft);margin:0;line-height:1.65;}
+
+  .rv .chain{margin-top:70px;scroll-margin-top:20px;}
+  .rv .chain-banner{background:var(--c);color:#fff;border-radius:14px 14px 0 0;padding:26px 30px;}
+  .rv .chain-banner .no{font-size:17px;letter-spacing:2px;opacity:.85;font-weight:700;}
+  .rv .chain-banner h2{font-size:33px;margin:6px 0 12px;font-weight:800;line-height:1.2;color:#fff;}
+  .rv .chain-flow{font-size:17.5px;background:rgba(255,255,255,.16);border-radius:9px;padding:11px 16px;font-weight:600;line-height:1.85;}
+  .rv .chain-body{background:var(--paper);border:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px;padding:30px 32px 34px;}
+  .rv h3.sec{font-size:24px;font-weight:800;margin:32px 0 12px;color:var(--c);display:flex;align-items:center;gap:11px;line-height:1.3;}
+  .rv h3.sec .idx{font-size:17px;color:#fff;background:var(--c);border-radius:50%;width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 32px;font-weight:800;}
+  .rv h3.sec:first-child{margin-top:0;}
+
+  .rv .duality{display:grid;grid-template-columns:1fr 56px 1fr;align-items:stretch;gap:0;margin:18px 0;}
+  .rv .pole{border-radius:11px;padding:16px 20px;font-size:17.5px;line-height:1.6;}
+  .rv .pole.sup{background:#eaf1f5;border:1px solid #cfe0ea;}
+  .rv .pole.dem{background:#f9efe8;border:1px solid #ecdac9;}
+  .rv .pole h5{margin:0 0 7px;font-size:18.5px;font-weight:800;}
+  .rv .pole.sup h5{color:var(--supply);}
+  .rv .pole.dem h5{color:var(--demand);}
+  .rv .vs{display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:var(--red);}
+
+  .rv .keycard{border:2px solid var(--red);border-radius:12px;background:#fbf4f3;padding:20px 24px;margin:18px 0;}
+  .rv .keycard .label{font-size:15px;font-weight:800;letter-spacing:1.5px;color:var(--red);margin:0 0 8px;}
+  .rv .keycard p{margin:0;font-size:19px;color:var(--ink);line-height:1.66;}
+  .rv .keycard b{color:var(--red);}
+
+  .rv .yin-yang{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+  .rv .yy{border-radius:11px;padding:16px 20px;font-size:17.5px;line-height:1.62;}
+  .rv .yy.inner{background:#f1efe7;border:1px solid var(--line);}
+  .rv .yy.outer{background:#fff;border:1px dashed var(--muted);}
+  .rv .yy h5{margin:0 0 7px;font-size:18.5px;font-weight:800;}
+  .rv .yy.inner h5{color:var(--ink);}
+  .rv .yy.outer h5{color:var(--muted);}
+
+  /* 表格在 .rv 内重定义，覆盖第一部分的全局 table/thead 规则 */
+  .rv table{border-collapse:collapse;width:100%;min-width:680px;font-size:17px;background:#fff;}
+  .rv thead th{background:var(--c,var(--red));color:#fff;text-align:left;padding:11px 15px;font-weight:700;font-size:17px;position:static;}
+  .rv tbody td{padding:12px 15px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink-soft);line-height:1.6;}
+  .rv tbody tr:nth-child(even){background:#faf8f3;}
+  .rv .pn{font-weight:700;color:var(--ink);white-space:nowrap;}
+  .rv .hi{color:var(--red);font-weight:700;}
+
+  .rv .transform{margin:16px 0;}
+  .rv .tf-row{display:grid;grid-template-columns:1fr 44px 1fr;align-items:center;gap:0;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0;}
+  .rv .tf-from{font-size:17.5px;color:var(--ink-soft);}
+  .rv .tf-arrow{text-align:center;font-size:22px;color:var(--red);font-weight:900;}
+  .rv .tf-to{font-size:17.5px;color:var(--ink);font-weight:600;}
+  .rv .tf-cond{font-size:16px;color:var(--muted);font-style:italic;margin-top:4px;display:block;}
+
+  .rv .verdict{background:var(--ink);color:#f4f2ec;border-radius:12px;padding:22px 26px;margin:22px 0 4px;}
+  .rv .verdict h5{margin:0 0 8px;font-size:18px;color:var(--gold);letter-spacing:1px;font-weight:800;}
+  .rv .verdict p{margin:0;font-size:18.5px;line-height:1.7;color:#ece9e0;}
+  .rv .verdict b{color:#fff;}
+
+  .rv nav.toc{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 24px;margin:24px 0 0;font-size:18px;}
+  .rv nav.toc b{display:block;margin-bottom:8px;font-size:16px;color:var(--muted);letter-spacing:1px;}
+  .rv nav.toc a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;padding:2px 0;margin-right:22px;font-weight:600;display:inline-block;}
+  .rv nav.toc a:hover{border-color:var(--red);color:var(--red);}
+
+  /* ---- 第三部分：反向估值压力测试 ---- */
+  .rv .crux{border:2px solid var(--red);background:#fbf4f3;border-radius:12px;padding:20px 26px;margin:20px 0;}
+  .rv .crux p{margin:6px 0;font-size:18.5px;color:var(--ink-soft);}
+  .rv .crux em{font-size:21px;color:var(--red);font-style:italic;font-weight:700;display:block;margin:10px 0;}
+  .rv .tip{background:#fdf6e3;border-left:5px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 20px;margin:18px 0;font-size:18.5px;color:#5b4a1a;}
+  .rv .aside{background:#eef4fb;border-left:5px solid var(--supply);border-radius:0 10px 10px 0;padding:14px 20px;margin:18px 0;font-size:18.5px;color:#22425e;}
+  .rv pre{background:#1d1f24;color:#e6e3da;border-radius:11px;padding:18px 20px;overflow-x:auto;font-size:15.5px;line-height:1.6;margin:16px 0;}
+  .rv pre code{font-family:"SF Mono",Menlo,Consolas,monospace;white-space:pre;}
+  .rv pre .t-com{color:#7c8a72;font-style:italic;}
+  .rv pre .t-str{color:#a8cf6e;}
+  .rv pre .t-kw{color:#c678dd;}
+  .rv pre .t-fn{color:#61afef;}
+  .rv pre .t-num{color:#d19a66;}
+  .rv .audit{margin-top:64px;}
+  .rv .audit-head{background:var(--c);color:#fff;border-radius:12px;padding:18px 24px;margin-bottom:6px;}
+  .rv .audit-head h3{margin:0;font-size:25px;font-weight:800;color:#fff;}
+  .rv .audit-head .anchor{font-size:16.5px;opacity:.9;margin-top:5px;}
+
+  /* 分位条 */
+  .rv .pbar-wrap{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px 22px 14px;margin:14px 0;}
+  .rv .pbar-name{font-size:17.5px;font-weight:700;color:var(--ink);margin-bottom:30px;}
+  .rv .pbar-name .badge{float:right;font-size:15px;font-weight:800;color:#fff;border-radius:6px;padding:2px 10px;}
+  .rv .pbar{position:relative;height:52px;}
+  .rv .pbar .track{position:absolute;top:8px;left:0;right:0;height:9px;border-radius:5px;
+      background:linear-gradient(90deg,#3a7d44 0%,#c9b53e 50%,#b0402f 100%);}
+  .rv .pbar .tick{position:absolute;top:4px;width:2px;height:17px;background:#9a978c;transform:translateX(-50%);}
+  .rv .pbar .tlab{position:absolute;top:23px;font-size:13px;color:var(--muted);transform:translateX(-50%);white-space:nowrap;}
+  .rv .pbar .mark{position:absolute;top:0;width:3px;height:25px;background:#111;transform:translateX(-50%);z-index:2;}
+  .rv .pbar .cur{position:absolute;top:-20px;transform:translateX(-50%);font-size:13.5px;font-weight:800;color:#111;background:#fff;border:1.5px solid #111;border-radius:5px;padding:0 6px;white-space:nowrap;z-index:3;}
+  .rv .src-note{font-size:14.5px;color:var(--muted);margin:6px 2px 0;font-style:italic;}
+
+  .rv .maodun{border:2px solid var(--chain3);background:#f4f0f8;border-radius:12px;padding:20px 26px;margin:22px 0 4px;}
+  .rv .maodun .label{font-size:14.5px;font-weight:800;letter-spacing:1.5px;color:var(--chain3);}
+  .rv .maodun h5{margin:10px 0 4px;font-size:19px;color:var(--chain3);font-weight:800;}
+  .rv .maodun p{margin:0 0 6px;font-size:18.5px;line-height:1.66;color:var(--ink-soft);}
+  .rv .maodun b{color:var(--chain3);}
+
+  @media (max-width:720px){
+    .rv .concept-grid,.rv .yin-yang{grid-template-columns:1fr;}
+    .rv .duality{grid-template-columns:1fr;gap:8px;}
+    .rv .vs{transform:rotate(90deg);padding:4px 0;}
+    .rv .tf-row{grid-template-columns:1fr 30px 1fr;}
+    .part-divider h2.part{font-size:27px;}
+    .rv h2.main,.rv .chain-banner h2{font-size:25px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="title">
+    <h1>中国商品期货品种全景 · 产业逻辑与供需矛盾速查</h1>
+    <p class="subtitle">三部分：① 逐品种速查（产业逻辑·上下游·矛盾点）｜② 四条链《矛盾论》深度解剖｜③ 主要矛盾的反向估值压力测试（Tushare 真实数据）</p>
+    <p class="meta">截至 2026 年 5 月 · 覆盖 SHFE / INE / DCE / CZCE / GFEX 五大商品所，附 CFFEX 金融期货 · 生成于 2026-05-24</p>
+  </header>
+
+  <div class="lead">
+    本表是一份<b>「品种 → 矛盾」的横向对照速查</b>。每个品种只抓三件事：①靠什么逻辑定价（金融/商品/政策），②卡在产业链哪个位置（上游成本、下游需求），③<b>当前最值得盯的那一对矛盾</b>（通常是"供给的某种刚性/扩张" 撞上 "需求的某种弹性/萎缩"，再叠加一项成本或政策变量）。读法：先看<b>矛盾点</b>一栏，那是交易与研究的发力处。
+  </div>
+
+  <div class="legend">
+    <span><i class="dot" style="background:var(--shfe)"></i>上期所 SHFE</span>
+    <span><i class="dot" style="background:var(--ine)"></i>能源中心 INE</span>
+    <span><i class="dot" style="background:var(--dce)"></i>大商所 DCE</span>
+    <span><i class="dot" style="background:var(--czce)"></i>郑商所 CZCE</span>
+    <span><i class="dot" style="background:var(--gfex)"></i>广期所 GFEX</span>
+    <span><i class="dot" style="background:var(--cffex)"></i>中金所 CFFEX</span>
+  </div>
+
+  <!-- ============ SHFE ============ -->
+  <section class="exch" style="--accent:var(--shfe)">
+    <div class="exch-head">
+      <h2>一、上海期货交易所</h2><span class="exch-code">SHFE</span>
+    </div>
+    <p class="exch-pos">定位：<b>金属定价主战场</b>。沪铜、沪铝、沪金在亚洲乃至全球都有重要影响力，是"金融属性 + 工业属性"叠加最典型的市场。</p>
+
+    <h3 class="cat">贵金属</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">黄金</span><span class="pcode">AU</span></td>
+          <td class="col-logic">金融属性 ≫ 商品属性。本质是"无息抗通胀货币"，对标实际利率与信用。</td>
+          <td class="col-chain">金矿/再生金 <span class="arrow">→</span> 冶炼 <span class="arrow">→</span> 首饰、工业、央行储备、投资。</td>
+          <td class="col-conflict"><span class="hi">实际利率 vs 避险</span>：美债实际利率↑→金价承压；地缘风险、央行购金、美元信用走弱→支撑。矿产供给刚性，基本面退居次要，<b>美联储货币政策主导定价</b>。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">白银</span><span class="pcode">AG</span></td>
+          <td class="col-logic">半金融半工业，弹性大于黄金。涨跟黄金、跌看工业。</td>
+          <td class="col-chain">银矿(多为铜铅锌伴生) <span class="arrow">→</span> 冶炼 <span class="arrow">→</span> 光伏银浆、电子、首饰、投资。</td>
+          <td class="col-conflict"><span class="hi">伴生供给刚性 vs 光伏需求爆发</span>：银矿难独立增产，而光伏银浆消耗逐年攀升；金融端跟随黄金，<b>金银比</b>是核心观测，库存持续去化时弹性最大。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">有色金属</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">铜</span><span class="pcode">CU</span></td>
+          <td class="col-logic">"铜博士"，经济晴雨表。强金融 + 强工业双属性。</td>
+          <td class="col-chain">铜精矿(智利/秘鲁) <span class="arrow">→</span> 冶炼(TC/RC加工费) <span class="arrow">→</span> 电力、家电、新能源、建筑。</td>
+          <td class="col-conflict"><span class="hi">矿端增速放缓 vs 新能源需求增量</span>：老矿品位下降、资本开支不足，新增供给乏力；电网/光伏/EV 带来长期增量。<b>TC/RC 加工费</b>反映矿紧张程度，叠加宏观流动性定价。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">铝</span><span class="pcode">AL</span></td>
+          <td class="col-logic">高耗能金属，受 4500 万吨产能天花板与电力成本双重约束。</td>
+          <td class="col-chain">铝土矿 <span class="arrow">→</span> 氧化铝 <span class="arrow">→</span> 电解铝(耗电) <span class="arrow">→</span> 汽车、建筑、光伏。</td>
+          <td class="col-conflict"><span class="hi">产能红线下供给刚性 vs 轻量化/光伏需求</span>：国内产能见顶，需求仍有增量。<b>电力成本</b>是核心成本变量，云南丰枯水期电价波动直接引发限产/复产预期。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">氧化铝</span><span class="pcode">AO</span></td>
+          <td class="col-logic">电解铝的直接原料，产能弹性大、易过剩，价格波动剧烈。</td>
+          <td class="col-chain">铝土矿(几内亚/国产) <span class="arrow">→</span> 氧化铝 <span class="arrow">→</span> 电解铝。</td>
+          <td class="col-conflict"><span class="hi">铝土矿扰动 vs 氧化铝产能过剩</span>：几内亚矿端政策风险是上行催化，但自身产能充裕，一旦矿端缓和价格快速回落。成本端 = 铝土矿 + 烧碱 + 能源。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">铸造铝合金</span><span class="pcode">AD</span><div class="ptag-new">2025-06 新上市 · 首个再生品种</div></td>
+          <td class="col-logic">再生铝，循环经济首个期货品种，绿色低碳叙事。</td>
+          <td class="col-chain">废铝回收 <span class="arrow">→</span> 再生铝合金锭 <span class="arrow">→</span> 汽车压铸件(一体化压铸)。</td>
+          <td class="col-conflict"><span class="hi">废铝回收体系不成熟 vs 压铸需求增长</span>：废铝供给分散、回收率受政策与价差影响；新能源车一体化压铸打开需求。核心观测 <b>废铝-精铝价差</b>及与电解铝(AD-AL)价差。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">锌</span><span class="pcode">ZN</span></td>
+          <td class="col-logic">镀锌为主，地产基建后周期金属。</td>
+          <td class="col-chain">锌矿 <span class="arrow">→</span> 冶炼(加工费) <span class="arrow">→</span> 镀锌板、压铸合金、地产基建。</td>
+          <td class="col-conflict"><span class="hi">矿端加工费 vs 地产基建需求走弱</span>：矿紧时冶炼加工费(TC)下行压制供给；下游受地产拖累。库存周期与升贴水是节奏指标。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">铅</span><span class="pcode">PB</span></td>
+          <td class="col-logic">蓄电池为主，再生铅占比高，价格波动相对温和。</td>
+          <td class="col-chain">铅锌矿/再生铅 <span class="arrow">→</span> 精铅 <span class="arrow">→</span> 铅酸蓄电池(汽车启停、电动两轮车)。</td>
+          <td class="col-conflict"><span class="hi">再生铅供给 vs 锂电替代的长期需求萎缩</span>：原生铅与再生铅竞争压价；锂电对铅酸的替代构成长期利空，短期看电动两轮车存量换电与消费旺季。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">镍</span><span class="pcode">NI</span></td>
+          <td class="col-logic">不锈钢 + 新能源(三元电池)双驱动，结构复杂。</td>
+          <td class="col-chain">镍矿(印尼/菲律宾) <span class="arrow">→</span> 镍铁/硫酸镍/电解纯镍 <span class="arrow">→</span> 不锈钢、三元前驱体。</td>
+          <td class="col-conflict"><span class="hi">印尼供给大爆发(过剩) vs 不锈钢+电池需求</span>：印尼镍铁/MHP 产能扩张压制全球价格；纯镍与镍铁存在结构性矛盾。<b>印尼资源政策</b>是最大变量。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">锡</span><span class="pcode">SN</span></td>
+          <td class="col-logic">小金属，焊料(电子)为主，供给高度集中、弹性大。</td>
+          <td class="col-chain">锡矿(缅甸佤邦/印尼) <span class="arrow">→</span> 精锡 <span class="arrow">→</span> 电子焊料、锡化工、镀锡。</td>
+          <td class="col-conflict"><span class="hi">缅甸供给扰动+资源枯竭 vs 半导体需求</span>：佤邦停复产消息可瞬间改变供需平衡；矿端枯竭使供给刚性强。需求随半导体/消费电子周期波动。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">黑色金属（成材）</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">螺纹钢</span><span class="pcode">RB</span></td>
+          <td class="col-logic">建筑钢材，地产+基建核心晴雨表，黑色系定价锚。</td>
+          <td class="col-chain">铁矿+焦炭 <span class="arrow">→</span> 钢厂 <span class="arrow">→</span> 地产、基建工程。</td>
+          <td class="col-conflict"><span class="hi">地产需求萎缩 vs 粗钢产量调控</span>：需求端长期下台阶；供给端靠政策"压减粗钢"托底。核心是 <b>钢厂吨钢利润</b>——利润扩→复产增产→反噬利润。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">热轧卷板</span><span class="pcode">HC</span></td>
+          <td class="col-logic">工业用钢，对应制造业/汽车/家电/出口，比螺纹更"工业"。</td>
+          <td class="col-chain">铁矿+焦炭 <span class="arrow">→</span> 钢厂 <span class="arrow">→</span> 汽车、家电、机械、出口。</td>
+          <td class="col-conflict"><span class="hi">制造业/出口需求 vs 产量</span>：需求比螺纹有韧性。<b>卷螺差(HC-RB)</b>是判断"制造业 vs 地产"强弱的经典指标。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">不锈钢</span><span class="pcode">SS</span></td>
+          <td class="col-logic">镍铬铁合金钢，耐腐蚀，兼具消费与工业属性。</td>
+          <td class="col-chain">镍铁+铬铁+废钢 <span class="arrow">→</span> 不锈钢 <span class="arrow">→</span> 家电、厨具、工业管材。</td>
+          <td class="col-conflict"><span class="hi">镍铁成本+过剩 vs 需求</span>：成本驱动极强(印尼镍铁价格直接传导)；自身产能过剩使利润长期被压缩。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">线材</span><span class="pcode">WR</span></td>
+          <td class="col-logic">建筑/拉丝用钢，与螺纹高度同源，流动性低、近休眠。</td>
+          <td class="col-chain">同螺纹链条。</td>
+          <td class="col-conflict">矛盾与螺纹一致，但<span class="hi">流动性极差</span>，多作产业参考而非主力交易。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">能源化工</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">燃料油</span><span class="pcode">FU</span></td>
+          <td class="col-logic">高硫燃油，船燃+炼厂原料，紧跟原油。</td>
+          <td class="col-chain">原油 <span class="arrow">→</span> 燃料油 <span class="arrow">→</span> 船舶燃料、炼厂调和/二次加工。</td>
+          <td class="col-conflict"><span class="hi">IMO 限硫后船用萎缩 vs 炼厂/发电需求</span>：高硫油船用场景受限；与原油的<b>裂解价差</b>、与低硫油 LU 的高低硫价差是核心。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">沥青</span><span class="pcode">BU</span></td>
+          <td class="col-logic">道路基建材料，原油下游，季节性(Q3旺季)明显。</td>
+          <td class="col-chain">原油/稀释沥青(委内瑞拉) <span class="arrow">→</span> 沥青 <span class="arrow">→</span> 公路、市政基建。</td>
+          <td class="col-conflict"><span class="hi">基建资金(财政/专项债) vs 炼厂开工</span>：需求看基建强度与天气；成本看原油与委油供应。利润差驱动炼厂排产。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">天然橡胶</span><span class="pcode">RU</span></td>
+          <td class="col-logic">轮胎为主，兼具农产品属性(割胶有季节)。</td>
+          <td class="col-chain">橡胶树(东南亚/海南云南) <span class="arrow">→</span> 天然橡胶 <span class="arrow">→</span> 轮胎、工业制品。</td>
+          <td class="col-conflict"><span class="hi">种植/割胶刚性 vs 轮胎需求</span>：树龄周期长、停割期供给收缩；需求看汽车与重卡。<b>产区天气、原料价</b>是高频扰动。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">丁二烯橡胶</span><span class="pcode">BR</span></td>
+          <td class="col-logic">合成橡胶(顺丁)，轮胎用，石油化工下游。</td>
+          <td class="col-chain">原油 <span class="arrow">→</span> 丁二烯 <span class="arrow">→</span> 顺丁橡胶 <span class="arrow">→</span> 轮胎。</td>
+          <td class="col-conflict"><span class="hi">丁二烯成本 vs 合成-天然替代</span>：上游丁二烯价格波动大，决定成本；与天然橡胶比价决定轮胎厂的配方替代。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">纸浆</span><span class="pcode">SP</span></td>
+          <td class="col-logic">造纸原料(漂针浆)，进口依赖度极高。</td>
+          <td class="col-chain">木材 <span class="arrow">→</span> 木浆(进口为主) <span class="arrow">→</span> 文化纸、生活用纸。</td>
+          <td class="col-conflict"><span class="hi">海外浆厂投产周期 vs 国内纸厂需求</span>：供给由海外大浆厂检修/投产主导；成本受<b>汇率+海运+进口报价</b>影响，国内需求偏刚性。</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============ INE ============ -->
+  <section class="exch" style="--accent:var(--ine)">
+    <div class="exch-head">
+      <h2>二、上海国际能源交易中心</h2><span class="exch-code">INE</span>
+    </div>
+    <p class="exch-pos">定位：上期所子公司，承担<b>国际化品种</b>、对境外交易者开放，是中国争夺国际定价权的核心平台。</p>
+
+    <h3 class="cat">国际化商品期货</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">原油</span><span class="pcode">SC</span></td>
+          <td class="col-logic">"大宗之母"，能源定价基准，供需+金融+地缘三重属性。</td>
+          <td class="col-chain">上游油田 <span class="arrow">→</span> 原油 <span class="arrow">→</span> 炼厂(成品油、化工全产业链起点)。</td>
+          <td class="col-conflict"><span class="hi">OPEC+减产 vs 美页岩增产</span>，叠加地缘溢价(中东/俄乌) vs 全球需求(经济周期)。SC 还多一层<b>内外价差与中质含硫定价</b>。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">20号胶</span><span class="pcode">NR</span></td>
+          <td class="col-logic">轮胎用标准胶，国际化合约，更贴近轮胎厂实际原料。</td>
+          <td class="col-chain">同天然橡胶，但对应标胶现货。</td>
+          <td class="col-conflict">矛盾同 RU(产区天气、割胶季、轮胎需求)；核心额外看 <span class="hi">RU-NR 价差</span>(全乳胶 vs 标胶)。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">低硫燃料油</span><span class="pcode">LU</span></td>
+          <td class="col-logic">IMO2020 后的合规船用燃料。</td>
+          <td class="col-chain">原油 <span class="arrow">→</span> 低硫燃油 <span class="arrow">→</span> 国际航运船燃。</td>
+          <td class="col-conflict"><span class="hi">船用合规需求 vs 炼厂供给</span>：核心是 <b>LU-FU 高低硫价差</b>，反映合规油溢价与航运景气。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">国际铜</span><span class="pcode">BC</span></td>
+          <td class="col-logic">保税交割、人民币计价的国际铜，对标 LME。</td>
+          <td class="col-chain">同铜产业链，定价在保税环节。</td>
+          <td class="col-conflict"><span class="hi">内外盘价差(沪伦比) vs 保税区供需</span>：是进口盈亏与跨市套利的工具，矛盾本质同 CU 但多一层汇率与关税。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">航运指数（独立类别）</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">集运指数(欧线)</span><span class="pcode">EC</span></td>
+          <td class="col-logic">全球首个集装箱航运指数期货，服务外贸企业运价套保。</td>
+          <td class="col-chain">出口货量 <span class="arrow">→</span> 集装箱运力(船公司) <span class="arrow">→</span> 中欧航线运价。</td>
+          <td class="col-conflict"><span class="hi">运力供给 vs 外贸出口需求</span>：船舶交付节奏、<b>红海绕行好望角</b>(等效抽走运力)、联盟挺价 vs 货量旺淡季。地缘事件使其弹性极大，是商品中最"事件驱动"的品种之一。</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============ DCE ============ -->
+  <section class="exch" style="--accent:var(--dce)">
+    <div class="exch-head">
+      <h2>三、大连商品交易所</h2><span class="exch-code">DCE</span>
+    </div>
+    <p class="exch-pos">定位：<b>农产品与能化双轮驱动</b>。是铁矿石、豆粕产业链定价权的主战场。</p>
+
+    <h3 class="cat">农产品（含养殖）</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">黄大豆1号</span><span class="pcode">A</span></td>
+          <td class="col-logic">国产非转基因大豆，主要用于食品/豆制品。</td>
+          <td class="col-chain">国产大豆(东北) <span class="arrow">→</span> 食品、蛋白、豆制品。</td>
+          <td class="col-conflict"><span class="hi">国产种植面积(政策补贴) vs 进口替代</span>：受种植补贴与收储政策影响，食用需求平稳，价格相对独立于国际盘。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">黄大豆2号</span><span class="pcode">B</span></td>
+          <td class="col-logic">进口转基因大豆，主要用于压榨。</td>
+          <td class="col-chain">进口大豆(美/巴) <span class="arrow">→</span> 压榨 <span class="arrow">→</span> 豆粕+豆油。</td>
+          <td class="col-conflict"><span class="hi">进口成本 vs 压榨需求</span>：紧跟 <b>CBOT 大豆 + 汇率 + 升贴水</b>，是进口大豆到港成本的定价工具。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">豆粕</span><span class="pcode">M</span></td>
+          <td class="col-logic">最核心的蛋白饲料原料，农产品主力合约之一。</td>
+          <td class="col-chain">大豆 <span class="arrow">→</span> 压榨 <span class="arrow">→</span> 豆粕 <span class="arrow">→</span> 饲料(生猪/家禽)。</td>
+          <td class="col-conflict"><span class="hi">进口成本+南美天气 vs 养殖需求</span>：上游看南美/北美产量与中美贸易，成本端是 CBOT；下游看生猪存栏。<b>油粕比</b>决定压榨利润在油与粕间的分配。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">豆油</span><span class="pcode">Y</span></td>
+          <td class="col-logic">主流食用油，大豆压榨副产品。</td>
+          <td class="col-chain">大豆 <span class="arrow">→</span> 压榨 <span class="arrow">→</span> 豆油 <span class="arrow">→</span> 食用油、餐饮。</td>
+          <td class="col-conflict"><span class="hi">油粕比争产出 vs 三大油脂替代</span>：与豆粕争压榨产出；与棕榈油、菜油强联动(<b>豆棕价差</b>决定消费替代)。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">棕榈油</span><span class="pcode">P</span></td>
+          <td class="col-logic">全球产量最大食用油，进口为主，食用+生物柴油双需求。</td>
+          <td class="col-chain">油棕(马/印) <span class="arrow">→</span> 棕榈油(进口) <span class="arrow">→</span> 食用、生物柴油。</td>
+          <td class="col-conflict"><span class="hi">马印产量/库存 vs 生柴政策</span>：供给看 MPOB 库存与天气(厄尔尼诺减产)；需求受印尼 <b>B35/B40 生柴掺混政策</b>强驱动，是油脂板块的领涨/领跌者。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">玉米</span><span class="pcode">C</span></td>
+          <td class="col-logic">最大饲料粮+深加工原料，国内供需主导。</td>
+          <td class="col-chain">玉米种植 <span class="arrow">→</span> 饲料、淀粉、燃料乙醇。</td>
+          <td class="col-conflict"><span class="hi">种植面积+进口政策 vs 饲料+深加工需求</span>：供给看播种与进口配额；需求看生猪存栏。<b>小麦/进口谷物替代</b>是上沿压制。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">玉米淀粉</span><span class="pcode">CS</span></td>
+          <td class="col-logic">玉米深加工，工业+食品用。</td>
+          <td class="col-chain">玉米 <span class="arrow">→</span> 淀粉 <span class="arrow">→</span> 食品、造纸、糖浆。</td>
+          <td class="col-conflict"><span class="hi">玉米成本 vs 加工利润</span>：价格 = 玉米成本 + 加工费，核心看 <b>淀粉-玉米价差</b>反映的深加工开工与下游需求。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">粳米</span><span class="pcode">RR</span></td>
+          <td class="col-logic">口粮，政策性强，流动性极低。</td>
+          <td class="col-chain">稻谷 <span class="arrow">→</span> 粳米 <span class="arrow">→</span> 口粮消费。</td>
+          <td class="col-conflict">受<span class="hi">最低收购价</span>等政策托底，市场化波动小，交投清淡。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">鸡蛋</span><span class="pcode">JD</span></td>
+          <td class="col-logic">少数贴近现货的"养殖周期"品种，季节性强。</td>
+          <td class="col-chain">蛋鸡养殖(饲料) <span class="arrow">→</span> 鸡蛋 <span class="arrow">→</span> 居民消费。</td>
+          <td class="col-conflict"><span class="hi">在产蛋鸡存栏(补栏/淘汰) vs 季节消费</span>：供给看存栏与开产周期；需求看中秋等旺季。<b>饲料(玉米豆粕)成本</b>构成底部。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">生猪</span><span class="pcode">LH</span></td>
+          <td class="col-logic">"猪周期"核心，CPI 权重大，养殖产业晴雨表。</td>
+          <td class="col-chain">饲料(玉米+豆粕) <span class="arrow">→</span> 生猪养殖 <span class="arrow">→</span> 猪肉消费。</td>
+          <td class="col-conflict"><span class="hi">能繁母猪存栏(产能去化) vs 消费</span>：产能领先猪价约 10 个月，是周期主矛盾；成本端饲料；<b>压栏/二次育肥</b>放大短期波动。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">林产品</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">原木</span><span class="pcode">LG</span><div class="ptag-new">2024-11 新上市 · 服务木材产业链首品种</div></td>
+          <td class="col-logic">进口依赖(新西兰/欧洲)，地产后周期品种。</td>
+          <td class="col-chain">进口原木 <span class="arrow">→</span> 建筑模板、家具、包装。</td>
+          <td class="col-conflict"><span class="hi">进口供给(汇率/海运/产地政策) vs 地产开工需求</span>：建筑模板需求随地产开工疲弱；供给受新西兰发运与到港节奏左右，库存压力大。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">黑色原料</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">焦煤</span><span class="pcode">JM</span></td>
+          <td class="col-logic">炼焦核心原料，进口(蒙煤/澳煤)+国产。</td>
+          <td class="col-chain">煤矿 <span class="arrow">→</span> 焦煤 <span class="arrow">→</span> 焦炭。</td>
+          <td class="col-conflict"><span class="hi">蒙煤进口+国内安监 vs 焦钢需求</span>：供给受通关量与煤矿安全检查影响弹性大；需求由焦炭/钢厂铁水决定，是黑色系成本的最上游。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">焦炭</span><span class="pcode">J</span></td>
+          <td class="col-logic">钢铁冶炼还原剂，介于焦煤与钢之间。</td>
+          <td class="col-chain">焦煤 <span class="arrow">→</span> 焦化厂 <span class="arrow">→</span> 钢厂。</td>
+          <td class="col-conflict"><span class="hi">焦煤成本+环保限产 vs 钢厂需求</span>：核心是 <b>焦化利润</b>——焦企议价能力弱，常被上下游两头挤压。"提涨/提降"博弈节奏感强。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">铁矿石</span><span class="pcode">I</span></td>
+          <td class="col-logic">钢铁第一大原料，进口依赖>80%，黑色系定价权争夺焦点。</td>
+          <td class="col-chain">铁矿(澳/巴四大矿山) <span class="arrow">→</span> 钢厂 <span class="arrow">→</span> 钢材。</td>
+          <td class="col-conflict"><span class="hi">四大矿寡头供给 vs 钢厂铁水产量</span>：供给由 VALE/力拓/必和必拓/FMG 发运主导；需求高度绑定地产与粗钢压减政策。<b>"反内卷"控产</b>与定价权博弈是长期主题。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">能源化工（烯烃链）</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">液化石油气</span><span class="pcode">PG</span></td>
+          <td class="col-logic">燃料+化工原料(PDH)双重身份，季节性强。</td>
+          <td class="col-chain">油气田/炼厂 <span class="arrow">→</span> LPG <span class="arrow">→</span> 民用燃烧 / 丙烷脱氢(PDH)。</td>
+          <td class="col-conflict"><span class="hi">进口成本(CP/FEI)+冬季燃烧 vs PDH化工需求</span>：冬季燃烧旺季与 PDH 利润共同争夺货源；价格紧跟原油与丙烷国际报价。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">聚乙烯</span><span class="pcode">L</span></td>
+          <td class="col-logic">第一大通用塑料(PE)，农膜/包装为主。</td>
+          <td class="col-chain">原油/煤 <span class="arrow">→</span> 乙烯 <span class="arrow">→</span> PE <span class="arrow">→</span> 农膜、包装。</td>
+          <td class="col-conflict"><span class="hi">新增产能投产 vs 包装农膜需求</span>：国内大炼化新装置集中投产带来过剩；<b>油化工 vs 煤化工成本竞争</b>决定成本支撑位。农膜有季节性。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">聚氯乙烯</span><span class="pcode">V</span></td>
+          <td class="col-logic">建材塑料(PVC)，国内电石法为主，地产链。</td>
+          <td class="col-chain">电石(兰炭+电)/乙烯 <span class="arrow">→</span> PVC <span class="arrow">→</span> 管材、型材(地产)。</td>
+          <td class="col-conflict"><span class="hi">电石成本(能耗双控) vs 地产需求疲弱</span>：成本端受电石/电价支撑，需求端受地产拖累——典型"成本与需求双弱"格局，长期产能过剩。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">乙二醇</span><span class="pcode">EG</span></td>
+          <td class="col-logic">聚酯两大原料之一，长期产能过剩、利润微薄。</td>
+          <td class="col-chain">石脑油/煤 <span class="arrow">→</span> 乙二醇 <span class="arrow">→</span> 聚酯(瓶片/长丝)。</td>
+          <td class="col-conflict"><span class="hi">油制+煤制双重过剩 vs 聚酯需求</span>：产能严重过剩使行业长期亏损；煤制成本与港口库存是节奏指标。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">聚丙烯</span><span class="pcode">PP</span></td>
+          <td class="col-logic">第二大通用塑料，拉丝/注塑，下游极分散。</td>
+          <td class="col-chain">丙烯 <span class="arrow">→</span> PP <span class="arrow">→</span> 塑编、汽车、家电、医用。</td>
+          <td class="col-conflict"><span class="hi">产能集中投产(过剩) vs 需求</span>：新增产能压制利润；<b>PDH/油制/煤制三种工艺成本分化</b>决定边际产能盈亏与开工。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">苯乙烯</span><span class="pcode">EB</span></td>
+          <td class="col-logic">重要化工中间体，承接纯苯与乙烯。</td>
+          <td class="col-chain">纯苯+乙烯 <span class="arrow">→</span> 苯乙烯 <span class="arrow">→</span> EPS/ABS/PS(家电、建材)。</td>
+          <td class="col-conflict"><span class="hi">纯苯成本+产能投产 vs 下游需求</span>：成本看纯苯，供给端新装置多；利润(<b>非一体化加工费</b>)易被两头挤压。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">纯苯</span><span class="pcode">BZ</span><div class="ptag-new">2025-07 新上市 · 芳烃基础原料</div></td>
+          <td class="col-logic">芳烃产业链最基础原料之一，下游多元。</td>
+          <td class="col-chain">原油/重整/加氢 <span class="arrow">→</span> 纯苯 <span class="arrow">→</span> 苯乙烯、己内酰胺、苯酚/丙酮、苯胺。</td>
+          <td class="col-conflict"><span class="hi">炼厂+进口供给 vs 多元下游需求</span>：供给受炼厂重整与进口影响，需求分散于多条链；核心是<b>芳烃产业链利润再分配</b>(纯苯-石脑油、纯苯-苯乙烯价差)。</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============ CZCE ============ -->
+  <section class="exch" style="--accent:var(--czce)">
+    <div class="exch-head">
+      <h2>四、郑州商品交易所</h2><span class="exch-code">CZCE / ZCE</span>
+    </div>
+    <p class="exch-pos">定位：中国第一家期货试点交易所(1990)。<b>农产品(糖、棉、油籽)与化工建材并重</b>，聚酯链品种最齐全。</p>
+
+    <h3 class="cat">农产品</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">白糖</span><span class="pcode">SR</span></td>
+          <td class="col-logic">食糖，强周期(增减产)+配额管理品种。</td>
+          <td class="col-chain">甘蔗/甜菜(广西云南) <span class="arrow">→</span> 白糖 <span class="arrow">→</span> 食品、饮料。</td>
+          <td class="col-conflict"><span class="hi">国产减产周期 vs 进口配额/走私</span>：国内 3-4 年增减产周期；<b>内外价差</b>决定进口与走私冲击。海外看巴西/印度/泰国产量。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">棉花</span><span class="pcode">CF</span></td>
+          <td class="col-logic">纺织产业链起点，新疆产量集中。</td>
+          <td class="col-chain">棉花(新疆) <span class="arrow">→</span> 棉纱 <span class="arrow">→</span> 坯布、服装、出口。</td>
+          <td class="col-conflict"><span class="hi">新疆产量+抛储+进口 vs 纺服需求</span>：供给受种植与轮储政策影响；需求看内需+出口订单(易受外需与贸易摩擦冲击)。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">棉纱</span><span class="pcode">CY</span></td>
+          <td class="col-logic">棉花的直接下游，纺纱环节。</td>
+          <td class="col-chain">棉花 <span class="arrow">→</span> 棉纱 <span class="arrow">→</span> 坯布。</td>
+          <td class="col-conflict"><span class="hi">棉花成本 vs 织厂需求</span>：核心是 <b>纱-棉价差(纺纱利润)</b>，反映纺纱厂开工与终端订单。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">菜籽油</span><span class="pcode">OI</span></td>
+          <td class="col-logic">三大食用油之一，进口菜籽/菜油为主。</td>
+          <td class="col-chain">菜籽 <span class="arrow">→</span> 压榨 <span class="arrow">→</span> 菜油 <span class="arrow">→</span> 食用(西南/华南偏好)。</td>
+          <td class="col-conflict"><span class="hi">进口菜籽(加拿大)+中加关系 vs 消费</span>：供给高度依赖加拿大，<b>中加贸易政策</b>是最大变量；与豆油棕榈油比价决定替代。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">菜籽粕</span><span class="pcode">RM</span></td>
+          <td class="col-logic">水产饲料主力蛋白，季节性强(夏季水产)。</td>
+          <td class="col-chain">菜籽 <span class="arrow">→</span> 压榨 <span class="arrow">→</span> 菜粕 <span class="arrow">→</span> 水产饲料。</td>
+          <td class="col-conflict"><span class="hi">进口菜籽成本 vs 水产需求季节性</span>：需求集中在夏季水产投喂；与豆粕的<b>菜豆粕价差</b>决定饲料配方替代。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">菜籽</span><span class="pcode">RS</span></td>
+          <td class="col-logic">油菜籽，流动性低，受贸易政策支配。</td>
+          <td class="col-chain">进口/国产菜籽 <span class="arrow">→</span> 压榨 <span class="arrow">→</span> 菜油+菜粕。</td>
+          <td class="col-conflict"><span class="hi">中加贸易政策</span>主导，交投清淡，多作压榨利润测算参考。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">苹果</span><span class="pcode">AP</span></td>
+          <td class="col-logic">鲜果，产区天气炒作典型品种。</td>
+          <td class="col-chain">苹果种植(陕西/山东) <span class="arrow">→</span> 冷库存储 <span class="arrow">→</span> 鲜果消费。</td>
+          <td class="col-conflict"><span class="hi">主产区花期天气(霜冻减产) vs 消费</span>：每年清明前后花期天气是核心炒作点；<b>冷库去化进度</b>决定后期价格。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">红枣</span><span class="pcode">CJ</span></td>
+          <td class="col-logic">新疆特产干果，库存压力常态化。</td>
+          <td class="col-chain">红枣种植(新疆) <span class="arrow">→</span> 仓储 <span class="arrow">→</span> 消费(节日)。</td>
+          <td class="col-conflict"><span class="hi">高产量/高库存 vs 需求偏弱</span>：供给充裕、需求弹性小，主要博弈产区天气与新季产量预期。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">花生</span><span class="pcode">PK</span></td>
+          <td class="col-logic">油料+食用双属性。</td>
+          <td class="col-chain">花生 <span class="arrow">→</span> 压榨(花生油)/食用(米果)。</td>
+          <td class="col-conflict"><span class="hi">种植面积+进口 vs 油用+食用需求</span>：油用与食用争货源；价格与豆油等<b>油脂板块联动</b>，受进口(苏丹等)冲击。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">化工（聚酯链 + 烯烃 + 煤化工）</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">PTA</span><span class="pcode">TA</span></td>
+          <td class="col-logic">聚酯链核心原料，期货化工旗舰品种。</td>
+          <td class="col-chain">PX <span class="arrow">→</span> PTA <span class="arrow">→</span> 聚酯(长丝/瓶片)。</td>
+          <td class="col-conflict"><span class="hi">PX成本+PTA产能过剩 vs 聚酯需求</span>：成本看 PX，供给端大装置投产使 <b>PTA 加工费</b>长期被压缩；终端看织造/服装景气。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">瓶片</span><span class="pcode">PR</span><div class="ptag-new">2024-08 新上市</div></td>
+          <td class="col-logic">聚酯瓶片，饮料包装用，出口比例高。</td>
+          <td class="col-chain">PTA+乙二醇 <span class="arrow">→</span> 瓶片 <span class="arrow">→</span> 饮料/食用油包装。</td>
+          <td class="col-conflict"><span class="hi">产能投产 vs 饮料(季节)+出口需求</span>：核心是 <b>瓶片加工差</b>；夏季饮料旺季+出口订单提振需求，但新产能压制利润。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">短纤</span><span class="pcode">PF</span></td>
+          <td class="col-logic">涤纶短纤，聚酯下游，纺纱原料。</td>
+          <td class="col-chain">PTA+乙二醇 <span class="arrow">→</span> 短纤 <span class="arrow">→</span> 纱线、无纺布。</td>
+          <td class="col-conflict"><span class="hi">原料成本+产能 vs 纺织需求</span>：成本传导顺畅，核心看 <b>短纤加工费</b>与下游纱厂订单。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">对二甲苯</span><span class="pcode">PX</span></td>
+          <td class="col-logic">芳烃，聚酯链上游，与成品油"调油"争原料。</td>
+          <td class="col-chain">石脑油 <span class="arrow">→</span> PX <span class="arrow">→</span> PTA。</td>
+          <td class="col-conflict"><span class="hi">石脑油成本+新增产能 vs PTA需求</span>：<b>PXN(PX-石脑油)价差</b>是核心利润指标；汽油旺季"调油逻辑"会抽走芳烃组分扰动供给。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">丙烯</span><span class="pcode">PL</span><div class="ptag-new">2025-07 新上市 · 烯烃基础原料</div></td>
+          <td class="col-logic">三大烯烃之一，下游极广。</td>
+          <td class="col-chain">油/丙烷/煤 <span class="arrow">→</span> 丙烯 <span class="arrow">→</span> PP、丙烯酸、环氧丙烷、丁辛醇。</td>
+          <td class="col-conflict"><span class="hi">PDH等新增产能过剩 vs 多元下游需求</span>：丙烷脱氢产能大扩张带来过剩；<b>不同原料路线(油/丙烷/煤)成本分化</b>决定边际产能盈亏。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">甲醇</span><span class="pcode">MA</span></td>
+          <td class="col-logic">煤化工龙头，燃料+化工双下游。</td>
+          <td class="col-chain">煤/天然气 <span class="arrow">→</span> 甲醇 <span class="arrow">→</span> 烯烃(MTO)、甲醛、燃料。</td>
+          <td class="col-conflict"><span class="hi">煤炭成本+进口(伊朗) vs MTO+传统需求</span>：成本紧跟煤价；进口(伊朗装置)冲击港口；<b>MTO 制烯烃利润</b>决定最大下游的买盘强度。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">尿素</span><span class="pcode">UR</span></td>
+          <td class="col-logic">氮肥，农业刚需+工业(复合肥、三聚氰胺)。</td>
+          <td class="col-chain">煤/天然气 <span class="arrow">→</span> 尿素 <span class="arrow">→</span> 农业化肥、工业。</td>
+          <td class="col-conflict"><span class="hi">煤气成本 vs 农需季节性 + 出口政策</span>：成本看煤/气；需求有春耕/秋肥季节性。<b>"保供稳价"限制出口</b>是最关键的人为变量——放开出口即上行。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">纯碱</span><span class="pcode">SA</span></td>
+          <td class="col-logic">玻璃主要原料 + 基础化工，与玻璃强绑定。</td>
+          <td class="col-chain">原盐/氨 <span class="arrow">→</span> 纯碱 <span class="arrow">→</span> 平板玻璃、光伏玻璃、化工。</td>
+          <td class="col-conflict"><span class="hi">新增产能(天然碱)过剩 vs 玻璃需求</span>：远兴等大型天然碱投产带来供给冲击；需求绑定地产竣工+光伏玻璃。供需博弈剧烈、波动大。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">烧碱</span><span class="pcode">SH</span></td>
+          <td class="col-logic">氯碱化工产品，与氯气联产，受氯碱平衡约束。</td>
+          <td class="col-chain">原盐电解 <span class="arrow">→</span> 烧碱(+液氯) <span class="arrow">→</span> 氧化铝、造纸、化工。</td>
+          <td class="col-conflict"><span class="hi">氯碱平衡(液氯拖累) vs 氧化铝需求</span>：液氯价格差时企业靠烧碱盈利；<b>最大下游氧化铝</b>的开工景气决定烧碱需求强弱。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">建材 + 黑色辅料</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">玻璃</span><span class="pcode">FG</span></td>
+          <td class="col-logic">平板玻璃，地产竣工链，产线点火/冷修刚性强。</td>
+          <td class="col-chain">纯碱+硅砂+燃料 <span class="arrow">→</span> 玻璃 <span class="arrow">→</span> 地产(竣工)、汽车。</td>
+          <td class="col-conflict"><span class="hi">产线刚性(难停产)+成本 vs 地产竣工需求</span>：玻璃窑炉一旦点火难停，供给刚性；需求高度依赖地产竣工(保交楼)。成本看纯碱+燃料。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">硅铁</span><span class="pcode">SF</span></td>
+          <td class="col-logic">炼钢脱氧剂 + 金属镁原料，高耗能。</td>
+          <td class="col-chain">兰炭+硅石+电 <span class="arrow">→</span> 硅铁 <span class="arrow">→</span> 钢厂(脱氧)、金属镁、出口。</td>
+          <td class="col-conflict"><span class="hi">电力/兰炭成本+双控限产 vs 钢厂需求</span>：成本驱动强(电价占比高)，能耗双控影响供给；需求随粗钢产量波动。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">锰硅</span><span class="pcode">SM</span></td>
+          <td class="col-logic">炼钢脱氧合金，锰矿成本驱动明显。</td>
+          <td class="col-chain">锰矿(进口南非/澳/加蓬)+焦炭+电 <span class="arrow">→</span> 锰硅 <span class="arrow">→</span> 钢厂。</td>
+          <td class="col-conflict"><span class="hi">锰矿进口成本(加蓬等扰动) vs 钢厂需求+产能过剩</span>：成本端锰矿(高度依赖进口、运输事件敏感)是主要矛盾；自身产能过剩压制利润。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">休眠品种（仍挂牌、流动性极低）</h3>
+    <p class="note">早籼稻 RI · 粳稻 JR · 晚籼稻 LR · 强麦 WH · 普麦 PM · 动力煤 ZC —— 或因政策性强(口粮最低收购价、煤炭保供管控)、或被现货定价替代，产业参与度极低，几无连续交易，仅作历史/政策研究参考。</p>
+  </section>
+
+  <!-- ============ GFEX ============ -->
+  <section class="exch" style="--accent:var(--gfex)">
+    <div class="exch-head">
+      <h2>五、广州期货交易所</h2><span class="exch-code">GFEX</span>
+    </div>
+    <p class="exch-pos">定位：2021 年成立，最年轻的交易所。聚焦<b>"双碳"下的新能源金属与绿色品种</b>，是新能源车/光伏产业链上游定价的核心阵地。</p>
+
+    <h3 class="cat">新能源金属</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>产业逻辑</th><th>上下游关系</th><th>供需 / 成本矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">工业硅</span><span class="pcode">SI</span></td>
+          <td class="col-logic">光伏+有机硅+铝合金三大下游，高耗能。</td>
+          <td class="col-chain">硅石+还原剂+电 <span class="arrow">→</span> 工业硅 <span class="arrow">→</span> 多晶硅、有机硅、铝合金。</td>
+          <td class="col-conflict"><span class="hi">丰枯水电价+产能过剩 vs 多晶硅(光伏)需求</span>：成本看云南/四川丰枯水电价；供给严重过剩；需求最大来自光伏(多晶硅景气直接传导)。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">碳酸锂</span><span class="pcode">LC</span></td>
+          <td class="col-logic">新能源车/储能正极核心原料，弹性极大。</td>
+          <td class="col-chain">锂矿(锂辉石/盐湖/云母) <span class="arrow">→</span> 碳酸锂 <span class="arrow">→</span> 正极材料 <span class="arrow">→</span> 锂电池。</td>
+          <td class="col-conflict"><span class="hi">锂资源大扩张(过剩) vs EV+储能需求增速放缓</span>：澳矿/盐湖/非洲矿集中放量，价格从高位暴跌；<b>成本曲线出清</b>(高成本云母、非洲矿)是底部支撑逻辑。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">多晶硅</span><span class="pcode">PS</span><div class="ptag-new">2024-12 新上市 · 光伏链最上游</div></td>
+          <td class="col-logic">光伏产业链最上游材料，行业大幅过剩、深度亏损。</td>
+          <td class="col-chain">工业硅 <span class="arrow">→</span> 多晶硅 <span class="arrow">→</span> 硅片 <span class="arrow">→</span> 电池片 <span class="arrow">→</span> 组件。</td>
+          <td class="col-conflict"><span class="hi">产能严重过剩(全行业亏损) vs 光伏装机需求</span>：供给侧远超需求，<b>行业自律减产/产能出清</b>与能耗+电价成本是核心；政策"反内卷"是重要催化。</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============ CFFEX ============ -->
+  <section class="exch" style="--accent:var(--cffex)">
+    <div class="exch-head">
+      <h2>附：中国金融期货交易所</h2><span class="exch-code">CFFEX</span>
+    </div>
+    <p class="exch-pos">非商品期货，定价逻辑是<b>宏观流动性与利率</b>而非产业供需，完整起见一并列出。</p>
+
+    <h3 class="cat">股指期货</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>定价逻辑</th><th>对应标的 / 风格</th><th>核心矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">沪深300</span><span class="pcode">IF</span></td>
+          <td class="col-logic">大盘蓝筹核心指数。</td>
+          <td class="col-chain">沪深 300 成份(金融、白马为主)。</td>
+          <td class="col-conflict" rowspan="4"><span class="hi">宏观流动性/风险偏好/经济预期</span>为主导。各品种<b>基差(贴水)</b>反映对冲成本与市场情绪；IH-IC/IM 价差反映大小盘风格切换。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">上证50</span><span class="pcode">IH</span></td>
+          <td class="col-logic">超大盘价值。</td>
+          <td class="col-chain">上证 50(权重金融)。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">中证500</span><span class="pcode">IC</span></td>
+          <td class="col-logic">中盘成长。</td>
+          <td class="col-chain">中证 500(中盘)。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">中证1000</span><span class="pcode">IM</span></td>
+          <td class="col-logic">小盘成长，弹性最大。</td>
+          <td class="col-chain">中证 1000(小盘)。</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="cat">国债期货</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th class="col-name">品种</th><th>定价逻辑</th><th>对应久期</th><th>核心矛盾点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">2年期</span><span class="pcode">TS</span></td>
+          <td class="col-logic">短端，最贴近资金面/政策利率。</td>
+          <td class="col-chain">2 年期国债。</td>
+          <td class="col-conflict" rowspan="4"><span class="hi">货币政策 vs 经济基本面</span>：短端(TS/TF)看资金面与央行操作；长端(T/TL)看经济增长与通胀预期。<b>期限利差(收益率曲线陡平)</b>是核心交易，TL 久期最长、弹性最大。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">5年期</span><span class="pcode">TF</span></td>
+          <td class="col-logic">中短端。</td>
+          <td class="col-chain">5 年期国债。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">10年期</span><span class="pcode">T</span></td>
+          <td class="col-logic">市场基准利率锚。</td>
+          <td class="col-chain">10 年期国债。</td>
+        </tr>
+        <tr>
+          <td><span class="pname">30年期</span><span class="pcode">TL</span></td>
+          <td class="col-logic">超长端，对利率预期最敏感。</td>
+          <td class="col-chain">30 年期国债。</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============ 收尾：产业脉络 ============ -->
+  <section class="closing">
+    <div class="exch-head" style="--accent:var(--ink);border-color:var(--ink)">
+      <h2>读完表格之后：四条值得连起来看的产业脉络</h2>
+    </div>
+
+    <div class="chain-card">
+      <h4>① 芳烃—烯烃化工链：可做"成本→加工费→终端"全链条套保套利</h4>
+      <div class="flow">原油 SC → PX / 纯苯 BZ / 丙烯 PL → PTA TA / 苯乙烯 EB / 聚丙烯 PP → 短纤 PF / 瓶片 PR</div>
+      矛盾贯穿全链：上游争原料(PX 调油、纯苯进口)，中游产能集中投产压缩加工费，下游看织造/包装/家电需求。<b>每个环节的"加工费/价差"就是该环节的供需温度计。</b>
+    </div>
+
+    <div class="chain-card">
+      <h4>② 黑色系闭环：原料 vs 成材的利润再分配</h4>
+      <div class="flow">铁矿石 I + 焦煤 JM + 焦炭 J → 螺纹 RB / 热卷 HC / 不锈钢 SS / 硅铁 SF / 锰硅 SM</div>
+      核心是一条<b>钢厂利润</b>的传导链：地产+基建需求决定成材；粗钢压减/"反内卷"决定供给；矿端寡头与焦煤安监决定成本。盯<b>吨钢利润、卷螺差、铁矿/焦炭基差</b>。
+    </div>
+
+    <div class="chain-card">
+      <h4>③ 新能源链：从"需求爆发叙事"切换到"产能过剩出清"</h4>
+      <div class="flow">工业硅 SI → 多晶硅 PS（光伏）｜ 锂矿 → 碳酸锂 LC（电池）｜ 废铝 → 铸造铝合金 AD（再生）</div>
+      共同矛盾：<b>前两年因需求叙事疯狂扩产，如今集中面对过剩与亏损</b>。当前主线已从"需求弹性"转为"成本曲线出清 + 行业自律/政策反内卷"，电价(硅)与资源成本(锂)是底部支撑。
+    </div>
+
+    <div class="chain-card">
+      <h4>④ 油脂油料/养殖链：天气、政策与"周期"是三大引擎</h4>
+      <div class="flow">大豆 A/B → 豆粕 M + 豆油 Y ｜ 棕榈 P / 菜系 OI·RM ｜ 玉米 C + 豆粕 → 生猪 LH / 鸡蛋 JD</div>
+      上游是<b>南美/东南亚天气 + 进口贸易政策(中美、中加)</b>；中游压榨看油粕比；下游养殖由<b>猪周期(能繁母猪)</b>主导。油脂内部豆-棕-菜三角替代，蛋白内部豆-菜粕替代，都是经典价差交易。
+    </div>
+
+    <div class="lead" style="border-left-color:var(--gfex);margin-top:30px">
+      <b>一句话方法论：</b>所有品种的矛盾几乎都能归到同一个模板——<b>「供给的某种刚性或扩张」撞上「需求的某种弹性或萎缩」，再叠加一项关键成本(能源/原料)或一项政策变量(限产、出口、收储、贸易)</b>。找到这三者中当下最紧的那一个，就找到了这个品种的"主要矛盾"。
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ===================== 第二/三部分 .rv ====================== -->
+  <!-- ============================================================ -->
+  <section class="rv">
+
+  <!-- ============ 第二部分：矛盾论深度分析 ============ -->
+  <div class="part-divider">
+    <p class="ptag">第 二 部 分 · 深 度 解 剖</p>
+    <h2 class="part">四条产业链的《矛盾论》深度供需分析</h2>
+    <p class="part-desc">第一部分把 77 个品种逐一定位到"供给与需求"的对立。这一部分挑出四条最重要的产业链，用主要矛盾、矛盾的主次方面、内因外因、同一性与斗争性、矛盾的转化，层层拆开当下最紧的那个结。</p>
+  </div>
+
+  <nav class="toc">
+    <b>本部分四条链</b>
+    <a href="#c1">① 芳烃—烯烃化工链</a>
+    <a href="#c2">② 黑色系闭环</a>
+    <a href="#c3">③ 新能源链</a>
+    <a href="#c4">④ 油脂油料/养殖链</a>
+  </nav>
+
+  <h2 class="main">总纲：为什么大宗商品天生适合用《矛盾论》来读</h2>
+  <div class="quote">
+    "事物发展的根本原因，不是在事物的外部而是在事物的内部，在于事物内部的矛盾性。"<br>
+    "研究问题，忌带主观性、片面性和表面性。所谓片面性，就是不知道全面地看问题。"
+    <span class="src">——《矛盾论》</span>
+  </div>
+  <p>大宗商品的价格，本质上就是<b>供给与需求</b>这一对矛盾在数字上的瞬时投影。它天然满足《矛盾论》的几条核心判断：</p>
+  <div class="concept-grid">
+    <div class="concept"><h4>普遍性 <span>共性</span></h4><p>一切商品都逃不开供需矛盾——这是"价格波动"的共同根据。四条链可以用同一套语言去谈。</p></div>
+    <div class="concept"><h4>特殊性 <span>个性</span></h4><p>但每条链、每个品种、每个阶段的矛盾形态都不同。<b>分析的着力点，正在于抓住"这一个"的特殊矛盾</b>，而非停在"供需决定价格"的废话层。</p></div>
+    <div class="concept"><h4>主要矛盾 / 次要矛盾</h4><p>一条产业链同时存在许多矛盾（成本、产能、库存、政策、天气），其中必有一个在当前阶段起主导——找到它，就找到了定价主线。</p></div>
+    <div class="concept"><h4>矛盾的主要方面 / 次要方面</h4><p>"供给 vs 需求"两方发展不平衡。<b>哪一方当前占上风，就决定了价格方向</b>：供给过剩主导下跌，还是需求拉动主导上涨。</p></div>
+    <div class="concept"><h4>内因 / 外因</h4><p>产能、库存、成本结构、产业周期是内因；宏观、政策、天气、地缘是外因。<b>外因必须通过内因起作用</b>——油价涨若无需求承接，只会吃掉加工费。</p></div>
+    <div class="concept"><h4>同一性 / 斗争性 + 转化</h4><p>上下游既相互依存，又在利润分配上相互争夺；过剩与短缺、成本支撑与崩塌都会<b>在一定条件下向对立面转化</b>——这正是趋势反转的来处。</p></div>
+  </div>
+  <p>下面每条链按同一套解剖顺序展开：<b>① 基本矛盾 → ② 主要矛盾与主要方面 → ③ 矛盾的特殊性 → ④ 内因与外因 → ⑤ 同一性与斗争性 → ⑥ 矛盾的转化 → ⑦ 时点判断</b>。</p>
+
+  <!-- 链① 化工 -->
+  <div class="chain" id="c1" style="--c:var(--chain1)">
+    <div class="chain-banner">
+      <div class="no">链条 ①</div>
+      <h2>芳烃—烯烃化工链：被两头挤压的"加工费战争"</h2>
+      <div class="chain-flow">原油 SC → PX / 纯苯 BZ / 丙烯 PL → PTA / 苯乙烯 EB / 聚丙烯 PP → 短纤 PF / 瓶片 PR（聚酯终端）</div>
+    </div>
+    <div class="chain-body">
+      <h3 class="sec"><span class="idx">1</span>基本矛盾：成本推动 与 需求拉动 的对立统一</h3>
+      <div class="duality">
+        <div class="pole sup"><h5>供给侧（成本推动）</h5>原油成本 + 各环节产能。原油是价值起点，产能投放决定供给量，成本要逐环传导。</div>
+        <div class="vs">⚔</div>
+        <div class="pole dem"><h5>需求侧（需求拉动）</h5>终端聚酯——纺服、饮料包装、家纺，及出口订单。需求决定成本能否被顺利传导出去。</div>
+      </div>
+      <p>这条链<b>足够长</b>：从原油到一件衣服要 5 个以上环节。链长意味着<b>每个环节都有自己的小供需矛盾</b>，彼此通过"加工费/价差"传染。整条链总利润（终端售价−原油成本）是固定的蛋糕，各环节都在抢。</p>
+      <h3 class="sec"><span class="idx">2</span>主要矛盾与主要方面：供给过剩已压倒需求</h3>
+      <div class="keycard"><p class="label">当前主要矛盾</p><p><b>民营大炼化产能集中投放带来的全链条过剩，与终端需求增长乏力之间的矛盾。</b>症状是<b>加工费被持续压缩、长期贴近现金成本线</b>。</p></div>
+      <p>恒力、荣盛、盛虹等一体化大炼化把各环节产能成倍铺开，矛盾的<b>主要方面从"需求"切换到"供给"</b>。判断这条链，第一眼看的不是终端景气，而是<b>新增产能投产节奏</b>。</p>
+      <h3 class="sec"><span class="idx">3</span>矛盾的特殊性：每个环节的"结"长在不同地方</h3>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>环节</th><th>该环节主要方面</th><th>特殊矛盾点</th></tr></thead>
+        <tbody>
+          <tr><td class="pn">PX 对二甲苯</td><td>成本端（石脑油）</td><td><span class="hi">"调油逻辑"扰动供给</span>：汽油旺季芳烃组分被抽去调油，阶段性制造 PX 紧张。核心看 <b>PXN 价差</b>。</td></tr>
+          <tr><td class="pn">纯苯 BZ</td><td>供给端（炼厂+进口）</td><td>下游极分散，是<span class="hi">芳烃利润再分配中枢</span>，弹性来自进口节奏与多下游开工错配。</td></tr>
+          <tr><td class="pn">丙烯 PL</td><td>供给端（PDH 扩产）</td><td>丙烷脱氢产能大扩张→过剩；<span class="hi">油/丙烷/煤三路线成本分化</span>，决定哪类边际产能先停。</td></tr>
+          <tr><td class="pn">PTA</td><td>加工费（产能）</td><td>大装置投产使加工费极致压缩，<span class="hi">龙头一体化 vs 中小装置出清</span>。</td></tr>
+          <tr><td class="pn">乙二醇 EG</td><td>成本端（煤价）</td><td>油制+煤制<span class="hi">双重过剩、长期亏损</span>。</td></tr>
+          <tr><td class="pn">聚酯终端 PF/PR</td><td>需求端</td><td>主要方面回到需求：纺服内需、饮料季节、<span class="hi">出口订单是关键外因</span>。</td></tr>
+        </tbody>
+      </table></div>
+      <h3 class="sec"><span class="idx">4</span>内因与外因：油价上涨为何常"利空"中游</h3>
+      <div class="yin-yang">
+        <div class="yy inner"><h5>内因（根据）</h5>各环节产能投放、装置一体化程度、库存周期。决定固定总利润<b>如何在链条上分配</b>。</div>
+        <div class="yy outer"><h5>外因（条件）</h5>原油价格、汇率、出口订单、调油逻辑、宏观纺服消费。</div>
+      </div>
+      <div class="quote">外因必须通过内因起作用——<b>终端需求疲弱（内因：供给过剩、议价权弱）时，原油上涨（外因）无法向终端传导，只会从中游加工费里"吃"掉一块</b>。这就是"成本涨、中游反更难受"的常识。</div>
+      <h3 class="sec"><span class="idx">5</span>同一性与斗争性：固定蛋糕的"两头挤中间"</h3>
+      <div class="duality">
+        <div class="pole sup"><h5>同一性</h5>PX 离不开 PTA 买盘，聚酯离不开 PTA 供给。终端不开工，上游卖给谁？</div>
+        <div class="vs">⇌</div>
+        <div class="pole dem"><h5>斗争性</h5>谁有产能话语权、谁有一体化成本优势，谁就在价差里多分。当前<b>上游资源 + 终端品牌两头强，中间 PTA/聚酯加工被挤压</b>。</div>
+      </div>
+      <h3 class="sec"><span class="idx">6</span>矛盾的转化：加工费要修复，需要什么条件</h3>
+      <div class="transform">
+        <div class="tf-row"><div class="tf-from">产能过剩、加工费触底<span class="tf-cond">条件：落后装置集中退出 + 新增投产停滞 +「反内卷」限产</span></div><div class="tf-arrow">→</div><div class="tf-to">供给收缩，加工费反弹</div></div>
+        <div class="tf-row"><div class="tf-from">成本高位支撑价格<span class="tf-cond">条件：原油大幅下跌</span></div><div class="tf-arrow">→</div><div class="tf-to">成本坍塌，价格中枢下移</div></div>
+        <div class="tf-row"><div class="tf-from">需求是次要方面<span class="tf-cond">条件：出口订单爆发 / 家纺回暖</span></div><div class="tf-arrow">→</div><div class="tf-to">主要方面重回需求侧</div></div>
+      </div>
+      <div class="verdict"><h5>时点判断 · 2026</h5><p>仍处<b>产能消化期</b>，主要方面在供给。发力点是<b>每个环节的加工费/价差</b>。加工费的趋势性修复依赖供给侧出清与"反内卷"，而非押注油价或终端。</p></div>
+    </div>
+  </div>
+
+  <!-- 链② 黑色 -->
+  <div class="chain" id="c2" style="--c:var(--chain2)">
+    <div class="chain-banner">
+      <div class="no">链条 ②</div>
+      <h2>黑色系闭环：地产长周期下行 与 行政控产 的对冲</h2>
+      <div class="chain-flow">铁矿石 I + 焦煤 JM + 焦炭 J（原料） → 螺纹 RB / 热卷 HC / 不锈钢 SS / 硅铁 SF / 锰硅 SM（成材）</div>
+    </div>
+    <div class="chain-body">
+      <h3 class="sec"><span class="idx">1</span>基本矛盾：原料与成材的利润对抗 + 全链与终端的供需总矛盾</h3>
+      <div class="duality">
+        <div class="pole sup"><h5>供给侧</h5>四大矿山发运、焦煤（安监+蒙煤通关）、钢厂粗钢产量。供给"水龙头"分散在不同环节。</div>
+        <div class="vs">⚔</div>
+        <div class="pole dem"><h5>需求侧</h5>地产（螺纹）、基建（螺纹）、制造业与出口（热卷）。终端用钢强度决定需求总量。</div>
+      </div>
+      <p>黑色有<b>双重矛盾</b>：整条链 vs 终端的"总供需"，与链内"原料 vs 成材"的利润分配对抗。<b>钢厂利润</b>把两重矛盾连成闭环。</p>
+      <h3 class="sec"><span class="idx">2</span>主要矛盾与主要方面：需求趋势性下台阶</h3>
+      <div class="keycard"><p class="label">当前主要矛盾</p><p><b>地产长周期下行带来的用钢需求收缩，与「压减粗钢」行政控产之间的矛盾。</b>主要方面在<b>需求侧</b>——地产用钢趋势性下台阶，决定中枢长期下移。</p></div>
+      <p>需求趋势走弱时，供给端出现一只"政策的手"——<b>压减粗钢</b>去对冲。于是黑色成了"需求向下、政策托底"的对冲博弈，<b>钢厂利润</b>是胜负手。</p>
+      <h3 class="sec"><span class="idx">3</span>矛盾的特殊性：每个环节话语权天差地别</h3>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>环节</th><th>该环节主要方面</th><th>特殊矛盾点</th></tr></thead>
+        <tbody>
+          <tr><td class="pn">铁矿石 I</td><td>供给（寡头）</td><td><span class="hi">四大矿山寡头垄断、定价权在外</span>；触发器是钢厂铁水产量。「基石计划」是长期变量。</td></tr>
+          <tr><td class="pn">焦煤 JM</td><td>供给（政策+进口）</td><td>受<span class="hi">煤矿安监、蒙煤/澳煤通关</span>影响，是黑色成本最上游。</td></tr>
+          <tr><td class="pn">焦炭 J</td><td>利润（被两头挤）</td><td>夹在焦煤与钢厂间，<span class="hi">议价能力最弱、斗争性最激烈</span>，"提涨/提降"博弈强。</td></tr>
+          <tr><td class="pn">螺纹 RB</td><td>需求（地产）</td><td>地产+基建晴雨表，黑色定价锚，需求下行最直接承受者。</td></tr>
+          <tr><td class="pn">热卷 HC</td><td>需求（制造业）</td><td>制造业/出口更有韧性；<span class="hi">卷螺差</span>反映"制造业 vs 地产"不平衡。</td></tr>
+          <tr><td class="pn">硅铁/锰硅</td><td>成本（电/锰矿）</td><td>炼钢辅料，硅铁看电价+双控，锰硅看<span class="hi">进口锰矿</span>，需求随粗钢被动波动。</td></tr>
+        </tbody>
+      </table></div>
+      <h3 class="sec"><span class="idx">4</span>内因与外因：政策如何通过钢厂利润起作用</h3>
+      <div class="yin-yang">
+        <div class="yy inner"><h5>内因（根据）</h5>钢厂利润、铁水产量、库存周期、产能结构。一切生产决策的真实出发点。</div>
+        <div class="yy outer"><h5>外因（条件）</h5>地产政策、基建财政、粗钢压减、出口、矿山发运。</div>
+      </div>
+      <div class="quote">"压减粗钢"不是直接命令价格，而是<b>通过改变钢厂生产决策（内因）</b>起作用：行政限产→供给收缩→若强于需求下滑→钢价与利润回升。这是黑色特有的<b>"政策对冲需求"</b>逻辑。</div>
+      <h3 class="sec"><span class="idx">5</span>同一性与斗争性：钢厂利润 与 矿价 的负反馈</h3>
+      <div class="duality">
+        <div class="pole sup"><h5>同一性</h5>矿-焦-钢一荣俱荣：钢厂减产，铁矿焦炭需求同步萎缩。</div>
+        <div class="vs">⇌</div>
+        <div class="pole dem"><h5>斗争性（经典负反馈）</h5>钢厂利润好→敢买高价矿→利润向矿端转移；钢厂亏损→打压采购→矿焦承压。<b>"钢厂利润 vs 矿价"</b>是最著名的拉锯。</div>
+      </div>
+      <h3 class="sec"><span class="idx">6</span>矛盾的转化：什么条件下黑色逆势走强</h3>
+      <div class="transform">
+        <div class="tf-row"><div class="tf-from">需求趋势走弱<span class="tf-cond">条件：地产企稳 / 基建超预期</span></div><div class="tf-arrow">→</div><div class="tf-to">主要方面阶段性回到需求拉动</div></div>
+        <div class="tf-row"><div class="tf-from">供给被动跟随<span class="tf-cond">条件：粗钢压减力度强于需求下滑</span></div><div class="tf-arrow">→</div><div class="tf-to">供给侧主导，钢价逆势上行</div></div>
+        <div class="tf-row"><div class="tf-from">矿端寡头供给主导<span class="tf-cond">条件：「基石计划」集采见效</span></div><div class="tf-arrow">→</div><div class="tf-to">矿价主导削弱，利润回流钢厂</div></div>
+      </div>
+      <div class="verdict"><h5>时点判断 · 2026</h5><p>需求趋势走弱是不变的主要矛盾，但"反内卷"控产构成对冲，<b>钢厂吨钢利润</b>是最关键高频观测。卷螺差判断需求结构，铁矿/焦炭基差判断原料强弱。</p></div>
+    </div>
+  </div>
+
+  <!-- 链③ 新能源 -->
+  <div class="chain" id="c3" style="--c:var(--chain3)">
+    <div class="chain-banner">
+      <div class="no">链条 ③</div>
+      <h2>新能源链：一场"主要矛盾向对立面转化"的教科书</h2>
+      <div class="chain-flow">工业硅 SI → 多晶硅 PS（光伏）｜ 锂矿 → 碳酸锂 LC（电池）｜ 废铝 → 铸造铝合金 AD（再生）</div>
+    </div>
+    <div class="chain-body">
+      <h3 class="sec"><span class="idx">1</span>基本矛盾：长期成长性需求 与 资本逐利的无序扩张</h3>
+      <div class="duality">
+        <div class="pole sup"><h5>供给侧</h5>资本逐利驱动的产能投放。高价高利润→疯狂扩产→供给迅速膨胀。</div>
+        <div class="vs">⚔</div>
+        <div class="pole dem"><h5>需求侧</h5>光伏装机、新能源车与储能的长期成长性需求——方向确定，但增速有节奏、会放缓。</div>
+      </div>
+      <p>这条链基本矛盾多一层戏剧性：<b>需求的长期确定性，恰恰诱发了供给的短期无序</b>。所有人都相信光伏/电池是未来，于是所有人都来扩产——确定的需求，制造了过剩的供给。</p>
+      <h3 class="sec"><span class="idx">2</span>主要矛盾的历史转化：本链最核心的叙事</h3>
+      <div class="quote">"矛盾着的对立的双方互相斗争的结果，无不在一定条件下互相转化。"——这条链把这句话演绎得最彻底。</div>
+      <div class="transform">
+        <div class="tf-row" style="border-color:var(--chain3)"><div class="tf-from"><b>阶段一 2020–2022</b><br>主要矛盾＝爆发需求 vs 供给瓶颈<span class="tf-cond">主要方面在需求 → 碳酸锂冲上近 60 万/吨</span></div><div class="tf-arrow">↓</div><div class="tf-to"><b>阶段二 2023–至今</b><br>主要矛盾＝产能严重过剩 vs 需求放缓<span class="tf-cond">主要方面转到供给 → 价格暴跌、全行业亏损</span></div></div>
+      </div>
+      <div class="keycard"><p class="label">转化的内在机制（外因通过内因）</p><p>高价格（外部信号）→ 高利润 → <b>疯狂扩产（内因决策）</b>→ 供给反超需求 → 价格崩塌。<b>是"利润"这个条件，通过"扩产"这个根据，亲手制造了自己的反面。</b></p></div>
+      <h3 class="sec"><span class="idx">3</span>矛盾的特殊性：过剩程度与出清逻辑各不相同</h3>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>品种</th><th>该品种主要方面</th><th>特殊矛盾点</th></tr></thead>
+        <tbody>
+          <tr><td class="pn">工业硅 SI</td><td>成本（电价）</td><td>高耗能，<span class="hi">云南/四川丰枯水电价</span>是成本主要方面；自身供给过剩。</td></tr>
+          <tr><td class="pn">多晶硅 PS</td><td>供给（出清节奏）</td><td><span class="hi">过剩最严重、亏损最深</span>；"反内卷"/行业自律减产是关键催化。</td></tr>
+          <tr><td class="pn">碳酸锂 LC</td><td>成本曲线（资源）</td><td>锂辉石/盐湖/云母/非洲矿<span class="hi">成本曲线分化</span>，焦点是"高成本产能何时出清"。</td></tr>
+          <tr><td class="pn">铸造铝合金 AD</td><td>供给（回收体系）</td><td>再生品种，<span class="hi">废铝回收体系不成熟</span> vs 一体化压铸需求，尚处培育期。</td></tr>
+        </tbody>
+      </table></div>
+      <h3 class="sec"><span class="idx">4</span>内因与外因：需求放缓如何放大跌幅</h3>
+      <div class="yin-yang">
+        <div class="yy inner"><h5>内因（根据）</h5>产能规模、成本曲线、库存、技术迭代（N型对P型、锂电对钠电）。</div>
+        <div class="yy outer"><h5>外因（条件）</h5>新能源车销量、光伏装机、补贴政策、出口壁垒、电价。</div>
+      </div>
+      <div class="quote">需求放缓（外因）作用在<b>已经严重过剩的产能（内因）</b>之上，二者叠加才把跌幅放大到"全行业亏损"。同样的需求放缓若发生在供给紧平衡时根本不会崩盘——<b>这就是"外因通过内因"的量化体现</b>。</div>
+      <h3 class="sec"><span class="idx">5</span>同一性与斗争性：全链亏损下"比谁更能扛"</h3>
+      <div class="duality">
+        <div class="pole sup"><h5>同一性</h5>硅—多晶硅—硅片—电池—组件，锂矿—碳酸锂—正极—电池，环环相依。</div>
+        <div class="vs">⇌</div>
+        <div class="pole dem"><h5>斗争性</h5><b>全产业链亏损下的生存博弈</b>：高成本落后产能 vs 低成本一体化龙头，比谁现金成本更低、谁先退出。</div>
+      </div>
+      <h3 class="sec"><span class="idx">6</span>矛盾的转化：向上反转需要哪些条件</h3>
+      <div class="transform">
+        <div class="tf-row"><div class="tf-from">产能严重过剩<span class="tf-cond">条件：高成本产能实质出清 + 行业自律 +「反内卷」落地</span></div><div class="tf-arrow">→</div><div class="tf-to">供给收缩，供需再平衡</div></div>
+        <div class="tf-row"><div class="tf-from">需求增速放缓<span class="tf-cond">条件：储能爆发 / 出海新增量 / 装机超预期</span></div><div class="tf-arrow">→</div><div class="tf-to">主要方面重回需求拉动</div></div>
+        <div class="tf-row"><div class="tf-from">价格跌破现金成本<span class="tf-cond">条件：成本曲线自我修复——亏损逼停减产</span></div><div class="tf-arrow">→</div><div class="tf-to">供给被动收缩，价格触底反弹</div></div>
+      </div>
+      <div class="verdict"><h5>时点判断 · 2026（注：见第三部分数据，锂已先行转化）</h5><p>定性叙事截至 2025 仍为"产能出清阵痛期"；但 2026 年的真实数据显示<b>碳酸锂已率先完成转化、硅链仍在底部</b>——这正是第三部分压力测试要量化校验的核心反差。</p></div>
+    </div>
+  </div>
+
+  <!-- 链④ 农产品 -->
+  <div class="chain" id="c4" style="--c:var(--chain4)">
+    <div class="chain-banner">
+      <div class="no">链条 ④</div>
+      <h2>油脂油料 / 养殖链：天气、政策、周期三引擎的复合矛盾</h2>
+      <div class="chain-flow">大豆 A/B → 豆粕 M + 豆油 Y ｜ 棕榈 P / 菜系 OI·RM ｜ 玉米 C + 豆粕 → 生猪 LH / 鸡蛋 JD</div>
+    </div>
+    <div class="chain-body">
+      <h3 class="sec"><span class="idx">1</span>基本矛盾：供给的"自然刚性+年度周期" 与 需求的相对刚性</h3>
+      <div class="duality">
+        <div class="pole sup"><h5>供给侧</h5>受种植周期、天气、存栏约束——<b>一年一种、产能调整慢</b>，供给有自然刚性。</div>
+        <div class="vs">⚔</div>
+        <div class="pole dem"><h5>需求侧</h5>食用与饲用需求相对刚性，叠加季节性波动（旺季、节日、水产投喂期）。</div>
+      </div>
+      <p>这条链被<b>三个引擎</b>同时驱动：天气（自然）、政策（贸易）、周期（养殖）。所以它没有单一"全链主要矛盾"，要<b>分板块各自抓主要矛盾</b>——正是"具体问题具体分析"的最佳练习场。</p>
+      <h3 class="sec"><span class="idx">2</span>分板块的主要矛盾：矛盾特殊性最突出的一条链</h3>
+      <div class="keycard"><p class="label">压榨板块（大豆→豆粕/豆油）</p><p><b>主要矛盾：进口大豆成本 vs 国内压榨与养殖需求；主要方面在成本端。</b>中国大豆高度依赖进口，紧跟 <b>CBOT + 汇率 + 升贴水</b>。</p></div>
+      <div class="keycard"><p class="label">油脂板块（豆油/棕榈/菜油）</p><p><b>棕榈油主要矛盾：马印产量 vs 生柴政策；</b>印尼 B35/B40 是强外因。三大油脂的<b>豆棕菜价差</b>决定替代。</p></div>
+      <div class="keycard"><p class="label">养殖板块（玉米+豆粕→生猪/鸡蛋）</p><p><b>生猪主要矛盾：能繁母猪存栏决定的"猪周期"产能 vs 消费</b>——内因主导的经典周期；饲料成本是次要矛盾、构成底部。</p></div>
+      <h3 class="sec"><span class="idx">3</span>矛盾的特殊性：同一条链，三种不同的定价语言</h3>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>板块</th><th>主要方面</th><th>特殊矛盾点</th></tr></thead>
+        <tbody>
+          <tr><td class="pn">大豆压榨</td><td>进口成本（外盘）</td><td><span class="hi">油粕比</span>决定压榨利润在油与粕间分配；豆粕看养殖、豆油看食用，不同步。</td></tr>
+          <tr><td class="pn">油脂（豆棕菜）</td><td>产量+生柴政策</td><td>棕榈看马印天气与<span class="hi">生柴政策</span>；三大油脂<span class="hi">价差替代</span>是核心。</td></tr>
+          <tr><td class="pn">蛋白粕（豆菜粕）</td><td>成本+季节需求</td><td>菜粕看夏季水产；<span class="hi">豆菜粕价差</span>决定配方替代。</td></tr>
+          <tr><td class="pn">生猪 LH</td><td>产能周期（内因）</td><td>能繁母猪领先猪价约 10 个月，<span class="hi">猪周期</span>是主矛盾；二次育肥放大短期波动。</td></tr>
+          <tr><td class="pn">鸡蛋 JD</td><td>存栏+季节</td><td>在产蛋鸡存栏 vs 中秋旺季；饲料成本构成底部。</td></tr>
+        </tbody>
+      </table></div>
+      <h3 class="sec"><span class="idx">4</span>内因与外因：养殖是"外因通过内因"最纯样本</h3>
+      <div class="yin-yang">
+        <div class="yy inner"><h5>内因（根据）</h5>种植面积、存栏（能繁母猪/在产蛋鸡）、库存、压榨利润。</div>
+        <div class="yy outer"><h5>外因（条件）</h5>天气（厄尔尼诺/拉尼娜）、贸易政策（中美/中加）、生柴政策、疫病。</div>
+      </div>
+      <div class="quote">猪周期是<b>"外因通过内因"</b>最纯粹样本：猪价高（外部信号）→ 补栏（内因决策）→ 产能过剩 → 猪价跌 → 去产能 → 再反转。<b>价格信号驱动产能、产能反过来决定价格</b>，自发循环。</div>
+      <h3 class="sec"><span class="idx">5</span>同一性与斗争性：成本与需求互为镜像</h3>
+      <div class="duality">
+        <div class="pole sup"><h5>同一性</h5>大豆压榨同产油和粕，命运绑定；玉米豆粕是生猪成本，生猪又是它们的需求。</div>
+        <div class="vs">⇌</div>
+        <div class="pole dem"><h5>斗争性</h5><b>油粕比</b>此消彼长；<b>豆菜粕替代、豆棕菜三角替代</b>——经典价差战场。</div>
+      </div>
+      <h3 class="sec"><span class="idx">6</span>矛盾的转化：三个"开关"随时改写平衡</h3>
+      <div class="transform">
+        <div class="tf-row"><div class="tf-from">供给宽松、价格低迷<span class="tf-cond">天气开关：南美干旱 / 东南亚棕榈减产</span></div><div class="tf-arrow">→</div><div class="tf-to">瞬间由过剩转向短缺，价格跳涨</div></div>
+        <div class="tf-row"><div class="tf-from">现有进口与替代格局<span class="tf-cond">政策开关：中美/中加贸易、生柴掺混调整</span></div><div class="tf-arrow">→</div><div class="tf-to">供给来源与需求结构重构</div></div>
+        <div class="tf-row"><div class="tf-from">产能过剩、猪价低迷<span class="tf-cond">周期开关：能繁母猪去化到位</span></div><div class="tf-arrow">→</div><div class="tf-to">猪周期拐点，价格反转</div></div>
+      </div>
+      <div class="verdict"><h5>时点判断 · 2026</h5><p>没有"一个"主要矛盾，必须<b>分板块、看季节</b>：压榨盯外盘成本；油脂盯东南亚产量与生柴；养殖盯<b>能繁母猪去化</b>。<b>天气是随时引爆的转化开关</b>。</p></div>
+    </div>
+  </div>
+
+  <!-- 收束对照 -->
+  <h2 class="main">第二部分收束：四条链的矛盾结构对照</h2>
+  <div class="tbl-scroll"><table style="--c:var(--red)">
+    <thead><tr><th>链条</th><th>当前主要矛盾</th><th>主要方面在</th><th>最该盯的"转化开关"</th></tr></thead>
+    <tbody>
+      <tr><td class="pn">① 芳烃—烯烃化工</td><td>产能过剩 vs 需求乏力</td><td>供给</td><td>供给侧出清 +「反内卷」→ 加工费修复</td></tr>
+      <tr><td class="pn">② 黑色系闭环</td><td>地产需求收缩 vs 行政控产</td><td>需求（政策对冲）</td><td>粗钢压减力度 vs 钢厂利润</td></tr>
+      <tr><td class="pn">③ 新能源链</td><td>产能严重过剩 vs 需求放缓</td><td>供给</td><td>成本曲线出清 + 行业自律限产</td></tr>
+      <tr><td class="pn">④ 油脂油料/养殖</td><td>分板块：成本 / 产量·政策 / 周期</td><td>因板块而异</td><td>天气（瞬时）、贸易政策、能繁母猪去化</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- ============ 第三部分：反向估值压力测试 ============ -->
+  <div class="part-divider">
+    <p class="ptag">第 三 部 分 · 压 力 测 试</p>
+    <h2 class="part">主要矛盾的反向估值压力测试：当前价格隐含了什么</h2>
+    <p class="part-desc">前两部分讲的是矛盾"是什么"——定性。这一部分借「反向估值审计」的骨架把它<b>量化</b>：不预测未来，而是倒推当前价格已经把市场对供需的什么假设定价进去，再用 Tushare 真实期货数据把它拉回历史样本对账，看落在什么分位、需要多大"反常"才能维持，以及假设落空时下行到哪。</p>
+  </div>
+
+  <div class="crux">
+    <p>商品没有 PE，所以把"估值锚"换成每条链最能代表主要矛盾的<b>可核查价格/价差/利润变量</b>。</p>
+    <em>"这个价位已经定价进去了什么样的供需？历史让这种供需出现过多频繁？假设落空，跌/涨到哪？"</em>
+    <p>方法三步（借自 reverse-valuation-audit）：<b>① 隐含假设</b>（当前价隐含的供需）→ <b>② 现实性检验</b>（真实历史分位）→ <b>③ 下行/修复测算</b>（回归中位与极值，对应"麦当劳铁律：必算下行"）。</p>
+  </div>
+  <div class="tip"><b>数据与可复用：</b>所有分位与下行数字由 Python 脚本对 <b>Tushare 期货主力连续结算价</b>真实计算，正文数字 = 脚本输出（脚本附本部分末尾）。分位条颜色：左绿（历史低位/便宜）→ 右红（历史高位/贵）。</div>
+  <div class="aside"><b>诚实声明（据 reverse-valuation-audit 规则 7「信息不足明确停止」）：</b>① Tushare <code>fut_daily</code> 单次上限 2000 行，故 RB/I/TA/P/油粕比等窗口为 <b>2018-02 至今约 8 年</b>（非全历史）；② PTA「加工费」因 PX 期货 2023-09 才上市，可比样本仅 2.5 年且<b>全程处于过剩期，分位参考性弱</b>，本节明确标注该项信息不足、不强行给跨周期频次；③ 钢厂毛利、PTA 加工费为<b>盘面代理</b>（未扣全部加工成本），用于看分位趋势而非绝对盈亏；④ 分位 = 结算价在样本中的位置分位。</div>
+
+  <!-- 压测①化工 -->
+  <div class="audit" id="a1" style="--c:var(--chain1)">
+    <div class="audit-head"><h3>压力测试 ① 芳烃—烯烃化工链</h3><div class="anchor">锚变量：PTA 主力价 & PTA 盘面加工费代理｜主要矛盾：产能过剩 vs 需求乏力</div></div>
+    <div class="chain-body">
+      <h3 class="sec" style="margin-top:6px"><span class="idx">隐</span>当前价格隐含的假设</h3>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>可核查变量</th><th>当前值</th><th>历史分位</th><th>当前价隐含的供需假设</th></tr></thead>
+        <tbody>
+          <tr><td class="pn">PTA 主力结算价</td><td>6212 元/吨</td><td>P87（近 8 年）</td><td>价格高位<b>主要由原油成本支撑，而非需求强劲</b>——这是"成本幻觉"。</td></tr>
+          <tr><td class="pn">PTA 盘面加工费代理<br>(TA−0.655·PX)</td><td>≈375 元/吨<br>(扣 400–500 成本后≈盈亏线)</td><td><span class="hi">P82（仅 2.5 年，参考性弱）</span></td><td>市场尚未定价加工费大幅修复；当前已隐含"过剩、龙头微利、中小亏损"。</td></tr>
+        </tbody>
+      </table></div>
+      <div class="pbar-wrap">
+        <div class="pbar-name">PTA 主力结算价（元/吨）<span class="badge" style="background:#b0402f">分位 87%</span></div>
+        <div class="pbar">
+          <div class="track"></div>
+          <div class="tick" style="left:0%"></div><div class="tlab" style="left:0%;transform:translateX(0)">最低 3158</div>
+          <div class="tick" style="left:25%"></div><div class="tlab" style="left:25%">P25 4772</div>
+          <div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">中位 5354</div>
+          <div class="tick" style="left:75%"></div><div class="tlab" style="left:75%">P75 5890</div>
+          <div class="tick" style="left:100%"></div><div class="tlab" style="left:100%;transform:translateX(-100%)">最高 7960</div>
+          <div class="mark" style="left:87.1%"></div>
+          <div class="cur" style="left:87.1%;transform:translateX(-70%)">现价 6212</div>
+        </div>
+        <div class="src-note">Tushare TA.ZCE 主力连续结算价，2018-02-22~2026-05-22（n=2000）。</div>
+      </div>
+      <h3 class="sec"><span class="idx">检</span>现实性检验：这条链数据最弱，置信度最低</h3>
+      <p>能反映主要矛盾的是<b>加工费</b>而非价格。但 PX 期货 2023-09 才上市，加工费代理只有 2.5 年可比样本，且这段<b>本就全程处于扩产/过剩期</b>——所谓"P82 分位"是在一个已经被压扁的区间内部比较，<span class="hi">据规则 7 标注：该项历史分位参考性不足，不给跨周期频次</span>。能确认的硬事实只有一条：加工费绝对值（扣成本后）在<b>盈亏线附近</b>，与第二部分"两头挤压中间"的定性一致。</p>
+      <h3 class="sec"><span class="idx">下</span>下行/修复测算</h3>
+      <div class="transform">
+        <div class="tf-row"><div class="tf-from">PTA 价格 P87（成本支撑）<span class="tf-cond">若原油大幅下跌</span></div><div class="tf-arrow">→</div><div class="tf-to">回历史中位 5354，约 <b>−14%</b></div></div>
+        <div class="tf-row"><div class="tf-from">加工费贴近盈亏线<span class="tf-cond">若供给侧出清 +「反内卷」</span></div><div class="tf-arrow">→</div><div class="tf-to">加工费向上修复（缺足够样本量化幅度）</div></div>
+      </div>
+      <div class="maodun">
+        <span class="label">本节结论</span>
+        <h5>当前价格隐含的主要矛盾</h5>
+        <p>PTA 高价分位是<b>"成本幻觉"——价格高、利润薄</b>。真正的主要矛盾（加工费）缺乏足够长可比样本，是四条链里<b>最难证伪、数据最弱</b>的一环。</p>
+        <h5>矛盾的转化条件</h5>
+        <p>原油下跌→价格回中位−14%；加工费修复→需供给侧实质出清。结论置信度：<b>低</b>（诚实标注，不强行编分位）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 压测②黑色 -->
+  <div class="audit" id="a2" style="--c:var(--chain2)">
+    <div class="audit-head"><h3>压力测试 ② 黑色系闭环</h3><div class="anchor">锚变量：螺纹价 / 钢厂盘面毛利 / 铁矿价 / 卷螺差｜主要矛盾：地产需求 vs 控产 + 原料-成材利润分配</div></div>
+    <div class="chain-body">
+      <h3 class="sec" style="margin-top:6px"><span class="idx">隐</span>当前价格隐含的假设</h3>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>可核查变量</th><th>当前值</th><th>历史分位</th><th>当前价隐含的供需假设</th></tr></thead>
+        <tbody>
+          <tr><td class="pn">螺纹钢 RB</td><td>3171 元/吨</td><td><span class="hi">P12.6</span></td><td>市场已定价<b>地产用钢长期低迷</b>。</td></tr>
+          <tr><td class="pn">钢厂盘面毛利代理<br>(RB−1.6I−0.5J)</td><td>1033 元/吨<br>(扣≈1100 成本后≈盈亏线/微亏)</td><td><span class="hi">P6.9（历史第 7 百分位）</span></td><td>钢厂利润被压到地板，定价"产量需被动压减"。</td></tr>
+          <tr><td class="pn">铁矿石 I</td><td>792.5 元/吨</td><td>P59.4（中位偏上）</td><td>市场为铁矿定价的是<b>"铁水维持高位 + 发运未大增"</b>。</td></tr>
+          <tr><td class="pn">卷螺差 HC−RB</td><td>214 元/吨</td><td>P86.1</td><td>制造业/出口需求<b>相对地产强劲</b>。</td></tr>
+        </tbody>
+      </table></div>
+      <div class="pbar-wrap">
+        <div class="pbar-name">钢厂盘面毛利代理（元/吨，RB−1.6I−0.5J）<span class="badge" style="background:#3a7d44">分位 6.9%</span></div>
+        <div class="pbar">
+          <div class="track"></div>
+          <div class="tick" style="left:0%"></div><div class="tlab" style="left:0%;transform:translateX(0)">最低 904</div>
+          <div class="tick" style="left:25%"></div><div class="tlab" style="left:25%">P25 1164</div>
+          <div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">中位 1404</div>
+          <div class="tick" style="left:75%"></div><div class="tlab" style="left:75%">P75 1721</div>
+          <div class="tick" style="left:100%"></div><div class="tlab" style="left:100%;transform:translateX(-100%)">最高 2857</div>
+          <div class="mark" style="left:6.9%"></div>
+          <div class="cur" style="left:6.9%;transform:translateX(-10%)">现 1033</div>
+        </div>
+        <div class="src-note">Tushare RB.SHF / I.DCE / J.DCE 主力连续，2018-02~2026-05（n=2000）。未扣其他加工费约 1000–1200 元/吨。</div>
+      </div>
+      <div class="pbar-wrap">
+        <div class="pbar-name">铁矿石 I 主力结算价（元/吨）<span class="badge" style="background:#c9b53e">分位 59%</span></div>
+        <div class="pbar">
+          <div class="track"></div>
+          <div class="tick" style="left:0%"></div><div class="tlab" style="left:0%;transform:translateX(0)">最低 437</div>
+          <div class="tick" style="left:25%"></div><div class="tlab" style="left:25%">P25 663</div>
+          <div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">中位 773</div>
+          <div class="tick" style="left:75%"></div><div class="tlab" style="left:75%">P75 839</div>
+          <div class="tick" style="left:100%"></div><div class="tlab" style="left:100%;transform:translateX(-100%)">最高 1315</div>
+          <div class="mark" style="left:59.4%"></div>
+          <div class="cur" style="left:59.4%;transform:translateX(-50%)">现 793</div>
+        </div>
+        <div class="src-note">Tushare I.DCE 主力连续结算价，2018-02~2026-05（n=2000）。</div>
+      </div>
+      <h3 class="sec"><span class="idx">检</span>现实性检验：原料 vs 成材的量化铁证</h3>
+      <p>这是四条链里<b>最尖锐的一组对账</b>：成材（螺纹 P12.6）与利润（钢厂毛利 P6.9）躺在地板，而原料（铁矿 P59.4）仍在中位偏上。<b>这正是第二部分"原料 vs 成材利润分配"矛盾的量化铁证——总利润几乎被矿端拿走。</b>钢厂毛利代理 P6.9 意味着近 8 年里仅约 7% 的交易日比现在更差，已贴近盈亏平衡线。卷螺差 P86 则印证"热卷(制造业) 强于 螺纹(地产)"。</p>
+      <h3 class="sec"><span class="idx">下</span>下行/修复测算</h3>
+      <div class="transform">
+        <div class="tf-row"><div class="tf-from">铁矿 P59（坚挺）<span class="tf-cond">若粗钢压减落地→铁水下降→矿向成材让利</span></div><div class="tf-arrow">→</div><div class="tf-to">回中位仅 −2.5%；若铁水大降，回历史低位空间达 <b>−45%</b></div></div>
+        <div class="tf-row"><div class="tf-from">钢厂毛利 P6.9（地板）<span class="tf-cond">若控产强于需求下滑</span></div><div class="tf-arrow">→</div><div class="tf-to">回中位 <b>+36%</b>（利润修复空间）</div></div>
+        <div class="tf-row"><div class="tf-from">卷螺差 P86（高位）<span class="tf-cond">若制造业/出口转弱</span></div><div class="tf-arrow">→</div><div class="tf-to">回中位 <b>−47%</b></div></div>
+      </div>
+      <div class="maodun">
+        <span class="label">本节结论</span>
+        <h5>当前价格隐含的主要矛盾</h5>
+        <p>当前定价隐含"<b>地产弱 + 铁水仍高 + 矿价坚挺</b>"。利润分配极度向矿端倾斜（钢厂 P6.9 vs 铁矿 P59）。</p>
+        <h5>矛盾的转化条件</h5>
+        <p>扳机 = <b>粗钢压减真正落地</b>，使铁矿从 P59 向下、钢厂利润从 P6.9 向上修复。这是一个<b>"利润再分配"而非"总量上行"</b>的故事；置信度：中高（样本 8 年，盘面代理）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 压测③新能源 -->
+  <div class="audit" id="a3" style="--c:var(--chain3)">
+    <div class="audit-head"><h3>压力测试 ③ 新能源链 —— 最精彩的一组：矛盾转化的"进度差"</h3><div class="anchor">锚变量：碳酸锂 / 多晶硅 / 工业硅 价格分位｜主要矛盾：产能过剩 vs 需求放缓</div></div>
+    <div class="chain-body">
+      <div class="tip" style="margin-top:6px"><b>真实数据修正了定性叙事：</b>截至 2026-05-22，<b>碳酸锂已从 2024-25 底部 5.89 万/吨反弹至 18.13 万（×3，分位 93%）</b>，而<b>多晶硅(P16)、工业硅(P10)仍躺在底部</b>。同一条新能源链，<b>锂的"矛盾转化"已经发生、硅链尚未</b>——这是"矛盾向对立面转化"的真实活案例。</div>
+      <h3 class="sec"><span class="idx">隐</span>当前价格隐含的假设</h3>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>可核查变量</th><th>当前值</th><th>历史分位</th><th>当前价隐含的供需假设</th></tr></thead>
+        <tbody>
+          <tr><td class="pn">碳酸锂 LC</td><td>18.13 万/吨</td><td><span class="hi">P93</span></td><td><b>市场已定价"供给大幅出清 / 需求超预期"——矛盾已转化。</b></td></tr>
+          <tr><td class="pn">多晶硅 PS</td><td>3.66 万/吨</td><td>P16</td><td>市场仍定价"持续过剩、亏损未止"。</td></tr>
+          <tr><td class="pn">工业硅 SI</td><td>8445 元/吨</td><td>P10.2</td><td>市场定价"严重过剩 + 丰水期低电价"。</td></tr>
+        </tbody>
+      </table></div>
+      <div class="pbar-wrap">
+        <div class="pbar-name">碳酸锂 LC 主力结算价（万元/吨）<span class="badge" style="background:#b0402f">分位 93%</span></div>
+        <div class="pbar">
+          <div class="track"></div>
+          <div class="tick" style="left:0%"></div><div class="tlab" style="left:0%;transform:translateX(0)">最低 5.89</div>
+          <div class="tick" style="left:25%"></div><div class="tlab" style="left:25%">P25 7.59</div>
+          <div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">中位 9.37</div>
+          <div class="tick" style="left:75%"></div><div class="tlab" style="left:75%">P75 12.9</div>
+          <div class="tick" style="left:100%"></div><div class="tlab" style="left:100%;transform:translateX(-100%)">最高 23.1</div>
+          <div class="mark" style="left:93%"></div>
+          <div class="cur" style="left:93%;transform:translateX(-90%)">现价 18.13</div>
+        </div>
+        <div class="src-note">Tushare LC.GFE 主力连续结算价，2023-07-21~2026-05-22（n=685，上市至今全样本）。注：样本起点为上市高位。</div>
+      </div>
+      <div class="pbar-wrap">
+        <div class="pbar-name">多晶硅 PS 主力结算价（万元/吨）<span class="badge" style="background:#3a7d44">分位 16%</span></div>
+        <div class="pbar">
+          <div class="track"></div>
+          <div class="tick" style="left:0%"></div><div class="tlab" style="left:0%;transform:translateX(0)">最低 3.07</div>
+          <div class="tick" style="left:25%"></div><div class="tlab" style="left:25%">P25 3.91</div>
+          <div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">中位 4.41</div>
+          <div class="tick" style="left:75%"></div><div class="tlab" style="left:75%">P75 5.14</div>
+          <div class="tick" style="left:100%"></div><div class="tlab" style="left:100%;transform:translateX(-100%)">最高 6.09</div>
+          <div class="mark" style="left:16%"></div>
+          <div class="cur" style="left:16%;transform:translateX(-20%)">现 3.66</div>
+        </div>
+        <div class="src-note">Tushare PS.GFE 主力连续结算价，2024-12-26~2026-05-22（n=337，上市至今）。</div>
+      </div>
+      <div class="pbar-wrap">
+        <div class="pbar-name">工业硅 SI 主力结算价（元/吨）<span class="badge" style="background:#3a7d44">分位 10%</span></div>
+        <div class="pbar">
+          <div class="track"></div>
+          <div class="tick" style="left:0%"></div><div class="tlab" style="left:0%;transform:translateX(0)">最低 7075</div>
+          <div class="tick" style="left:25%"></div><div class="tlab" style="left:25%">P25 8884</div>
+          <div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">中位 11418</div>
+          <div class="tick" style="left:75%"></div><div class="tlab" style="left:75%">P75 13551</div>
+          <div class="tick" style="left:100%"></div><div class="tlab" style="left:100%;transform:translateX(-100%)">最高 18540</div>
+          <div class="mark" style="left:10.2%"></div>
+          <div class="cur" style="left:10.2%;transform:translateX(-15%)">现 8445</div>
+        </div>
+        <div class="src-note">Tushare SI.GFE 主力连续结算价，2022-12-22~2026-05-22（n=824，上市至今）。</div>
+      </div>
+      <h3 class="sec"><span class="idx">检</span>现实性检验：同链不同步</h3>
+      <p>碳酸锂从底部 5.89 万反弹至 18.13 万（×3），处上市以来 <b>P93</b>——"矛盾向对立面转化"的真实兑现；但需提示样本仅 2.7 年且<b>起点为上市高位</b>，"高分位"部分来自上市初期，宜结合现货成本曲线交叉验证。多晶硅/工业硅仍在 <b>P10–16</b>，距中位需 +20%~+35% 修复，下行至历史低位<b>仅 −16%</b>（逼近现金成本支撑）。</p>
+      <h3 class="sec"><span class="idx">下</span>下行/修复测算：方向相反</h3>
+      <div class="transform">
+        <div class="tf-row"><div class="tf-from">碳酸锂 P93（已透支转化预期）<span class="tf-cond">若反弹证伪——复产 / 需求不及</span></div><div class="tf-arrow">→</div><div class="tf-to">回中位 9.37 万 = <b>−48%</b>；回 P25 = −58%</div></div>
+        <div class="tf-row"><div class="tf-from">多晶硅 P16（地板）<span class="tf-cond">若「反内卷」限产落地</span></div><div class="tf-arrow">→</div><div class="tf-to">回中位 <b>+21%</b>；下行至历史低位仅 −16%</div></div>
+        <div class="tf-row"><div class="tf-from">工业硅 P10（地板）<span class="tf-cond">若供给出清 + 枯水期电价上行</span></div><div class="tf-arrow">→</div><div class="tf-to">回中位 <b>+35%</b>；下行至历史低位仅 −16%</div></div>
+      </div>
+      <div class="maodun">
+        <span class="label">本节结论</span>
+        <h5>当前价格隐含的主要矛盾</h5>
+        <p>同一条新能源链，碳酸锂主要矛盾<b>"已转化"</b>（P93，定价出清成功），硅链<b>"未转化"</b>（P10–16，仍定价过剩）。这修正了"截至 2025 三者都在底部"的纯定性叙事。</p>
+        <h5>矛盾的转化条件 + 麦当劳铁律</h5>
+        <p>锂的风险在<b>"涨太多、下行 48%"</b>——质地（新能源成长）≠价格，锂价已透支转化预期，是这条链下行风险最大的品种；硅的风险在<b>"跌无可跌、等供给侧政策"</b>，向上修复需"反内卷"落地。<b>方向相反，不可同日而语。</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 压测④农产品 -->
+  <div class="audit" id="a4" style="--c:var(--chain4)">
+    <div class="audit-head"><h3>压力测试 ④ 油脂油料 / 养殖链</h3><div class="anchor">锚变量：油粕比 / 棕榈价 / 生猪价｜主要矛盾：分板块（成本 / 产量·政策 / 周期）</div></div>
+    <div class="chain-body">
+      <h3 class="sec" style="margin-top:6px"><span class="idx">隐</span>当前价格隐含的假设</h3>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>可核查变量</th><th>当前值</th><th>历史分位</th><th>当前价隐含的供需假设</th></tr></thead>
+        <tbody>
+          <tr><td class="pn">油粕比 Y/M</td><td>2.85</td><td><span class="hi">P90.6</span></td><td>定价"油强粕弱"到极端——油脂偏紧（棕榈/生柴）、蛋白偏松。</td></tr>
+          <tr><td class="pn">棕榈油 P</td><td>9481 元/吨</td><td>P89.6</td><td>定价"产地减产 + 生柴需求强"。</td></tr>
+          <tr><td class="pn">生猪 LH</td><td>11095 元/吨（≈11 元/公斤）</td><td><span class="hi">P2.5</span></td><td>定价"产能仍过剩 + 消费疲弱"——逼近上市以来最低。</td></tr>
+        </tbody>
+      </table></div>
+      <div class="pbar-wrap">
+        <div class="pbar-name">油粕比 Y/M（豆油价 ÷ 豆粕价）<span class="badge" style="background:#b0402f">分位 91%</span></div>
+        <div class="pbar">
+          <div class="track"></div>
+          <div class="tick" style="left:0%"></div><div class="tlab" style="left:0%;transform:translateX(0)">最低 1.67</div>
+          <div class="tick" style="left:25%"></div><div class="tlab" style="left:25%">P25 2.06</div>
+          <div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">中位 2.32</div>
+          <div class="tick" style="left:75%"></div><div class="tlab" style="left:75%">P75 2.67</div>
+          <div class="tick" style="left:100%"></div><div class="tlab" style="left:100%;transform:translateX(-100%)">最高 3.17</div>
+          <div class="mark" style="left:90.6%"></div>
+          <div class="cur" style="left:90.6%;transform:translateX(-85%)">现 2.85</div>
+        </div>
+        <div class="src-note">Tushare Y.DCE / M.DCE 主力连续结算价相除，2018-02~2026-05（n=2000）。</div>
+      </div>
+      <div class="pbar-wrap">
+        <div class="pbar-name">生猪 LH 主力结算价（元/吨）<span class="badge" style="background:#3a7d44">分位 2.5%</span></div>
+        <div class="pbar">
+          <div class="track"></div>
+          <div class="tick" style="left:0%"></div><div class="tlab" style="left:0%;transform:translateX(0)">最低 9060</div>
+          <div class="tick" style="left:25%"></div><div class="tlab" style="left:25%">P25 13709</div>
+          <div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">中位 15645</div>
+          <div class="tick" style="left:75%"></div><div class="tlab" style="left:75%">P75 18225</div>
+          <div class="tick" style="left:100%"></div><div class="tlab" style="left:100%;transform:translateX(-100%)">最高 29100</div>
+          <div class="mark" style="left:2.5%"></div>
+          <div class="cur" style="left:2.5%;transform:translateX(0)">现 11095</div>
+        </div>
+        <div class="src-note">Tushare LH.DCE 主力连续结算价，2021-01-08~2026-05-22（n=1298，上市至今）。</div>
+      </div>
+      <h3 class="sec"><span class="idx">检</span>现实性检验：两端都在极值</h3>
+      <p>油粕比 P90.6、棕榈 P89.6——<b>油脂多头逻辑已被充分定价</b>。而生猪 P2.5：上市以来仅 2.5% 的交易日比现在更低，现价约 11 元/公斤<b>远低于多数养殖完全成本（约 14–15 元/公斤）</b>，全行业深度亏损，定价"产能去化尚未到位"。</p>
+      <h3 class="sec"><span class="idx">下</span>下行/修复测算：三个"转化开关"</h3>
+      <div class="transform">
+        <div class="tf-row"><div class="tf-from">棕榈 P90 / 油粕比 P91（高位）<span class="tf-cond">天气开关：马印增产 / 南美丰产 + 生柴退坡</span></div><div class="tf-arrow">→</div><div class="tf-to">棕榈回中位 <b>−20%</b>；油粕比回中位（油相对粕走弱 −19%）</div></div>
+        <div class="tf-row"><div class="tf-from">生猪 P2.5（地板，深亏）<span class="tf-cond">周期开关：能繁母猪去化到位</span></div><div class="tf-arrow">→</div><div class="tf-to">回中位 <b>+41%</b>；下行至历史低位仅 −18%</div></div>
+        <div class="tf-row"><div class="tf-from">现有进口/替代格局<span class="tf-cond">政策开关：生柴掺混、中加/中美贸易</span></div><div class="tf-arrow">→</div><div class="tf-to">供给来源与需求结构重构</div></div>
+      </div>
+      <div class="maodun">
+        <span class="label">本节结论</span>
+        <h5>当前价格隐含的主要矛盾</h5>
+        <p>农产品两端都在极值——<b>油脂（油粕比/棕榈）在 P90 高位、生猪在 P2.5 地板</b>。这是一组天然的非对称结构。</p>
+        <h5>矛盾的转化条件</h5>
+        <p>高位风险在油脂（下行 20%+），反转机会在生猪（已无下行空间、等周期拐点 +41%）。<b>天气是随时引爆的转化开关</b>。置信度：高（样本长、品种成熟）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 压测总览 -->
+  <h2 class="main">第三部分总览：四条链压力测试一图收束</h2>
+  <div class="tbl-scroll"><table style="--c:var(--red)">
+    <thead><tr><th>链条</th><th>锚变量 · 当前分位</th><th>当前价隐含的假设</th><th>主要下行 / 修复</th><th>数据置信度</th></tr></thead>
+    <tbody>
+      <tr><td class="pn">① 化工</td><td>PTA 加工费代理 · P82<br><span style="font-size:14.5px;color:#888">（仅 2.5 年）</span></td><td>过剩、微利；高价是成本幻觉</td><td>价格回中位 −14%；加工费修复缺样本</td><td><span class="hi">低</span>（样本短）</td></tr>
+      <tr><td class="pn">② 黑色</td><td>钢厂毛利 P6.9 / 铁矿 P59 / 螺纹 P12.6</td><td>地产弱 + 铁水高 + 矿价坚挺；利润被矿端拿走</td><td>钢厂利润修复 +36% / 铁矿让利</td><td>中高（8 年 · 盘面代理）</td></tr>
+      <tr><td class="pn">③ 新能源</td><td>锂 P93 / 多晶硅 P16 / 工业硅 P10</td><td><b>锂"已转化"（定价出清成功）；硅"未转化"（仍定价过剩）</b></td><td><b>锂下行 −48%</b> / 硅修复 +21~35%</td><td>中（新品种样本短）</td></tr>
+      <tr><td class="pn">④ 农产品</td><td>油粕比 P91 / 棕榈 P90 / 生猪 P2.5</td><td>油强粕弱到极端；生猪深度亏损</td><td>棕榈 −20% / 生猪 +41%</td><td>高（样本长 · 成熟品种）</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="quote" style="border-left-color:var(--gold);background:#faf6ec">
+    <b>压力测试的统一读法：</b>把每条链主要矛盾翻译成一个可核查变量的<b>历史分位</b>——分位极高（锂 P93、油脂 P90）说明"市场已把利多假设定价进去"，下行风险大；分位极低（钢厂利润 P6.9、生猪 P2.5）说明"利空已被充分定价"，下行有限、等转化开关。<b>真正的非对称机会，藏在"分位极值 + 一个尚未发生的转化条件"的组合里。</b>
+  </div>
+
+  <!-- 计算脚本 -->
+  <h2 class="main">附：计算脚本（Tushare 真实数据，可复用）</h2>
+  <div class="tip">所有分位与下行数字均由下方脚本对 Tushare 期货主力连续结算价计算，正文数字 = 脚本 <code>print</code> 输出。改 <code>CODES</code> 与窗口可本地重跑。</div>
+  <pre><code>import urllib.request, json, os
+
+TOKEN = os.environ["TUSHARE_TOKEN"]
+def ts_call(api, **p):
+    payload = {"api_name": api, "token": TOKEN, "params": p}
+    req = urllib.request.Request("https://api.tushare.pro",
+        data=json.dumps(payload).encode(), headers={"Content-Type":"application/json"})
+    r = json.loads(urllib.request.urlopen(req, timeout=60).read())
+    return [dict(zip(r["data"]["fields"], it)) for it in r["data"]["items"]]
+
+def series(code):                       # 主力连续结算价(缺失回退收盘)
+    rows = ts_call("fut_daily", ts_code=code, start_date="20140101",
+                   end_date="20260524", fields="trade_date,close,settle")
+    rec = [(x["trade_date"], float(x["settle"] or x["close"]))
+           for x in rows if (x["settle"] or x["close"])]
+    return sorted(rec)
+
+def pct_stats(vals, cur):               # 分位 + 五数概括
+    v = sorted(vals); n = len(v)
+    q = lambda p: (lambda i: v[int(i)] + (v[min(int(i)+1,n-1)]-v[int(i)])*(i-int(i)))(p*(n-1))
+    rank = sum(1 for x in v if x <= cur)/n*100
+    return dict(n=n, cur=round(cur,2), p50=round(q(.5),2),
+                lo=round(v[0],2), hi=round(v[-1],2), pctile=round(rank,1))
+
+CODES = {"RB":"RB.SHF","HC":"HC.SHF","I":"I.DCE","J":"J.DCE","Y":"Y.DCE","M":"M.DCE",
+         "P":"P.DCE","LH":"LH.DCE","TA":"TA.ZCE","PX":"PX.ZCE",
+         "LC":"LC.GFE","PS":"PS.GFE","SI":"SI.GFE"}
+S = {k: series(c) for k, c in CODES.items()}
+
+# 单品种分位
+for k in ["LC","PS","SI","I","RB","P","LH","TA"]:
+    vals = [px for _, px in S[k]]
+    print(k, pct_stats(vals, vals[-1]))
+
+# 派生：对齐交易日做价差/比值（示例：油粕比、钢厂毛利代理、卷螺差）
+def align(*ks):
+    common = sorted(set.intersection(*[set(d for d,_ in S[k]) for k in ks]))
+    return common, {k: [dict(S[k])[d] for d in common] for k in ks}
+
+_, r = align("Y","M");  ratio = [y/m for y,m in zip(r["Y"],r["M"])]
+print("油粕比", pct_stats(ratio, ratio[-1]))
+_, r = align("RB","I","J"); gm = [rb-1.6*i-0.5*j for rb,i,j in zip(r["RB"],r["I"],r["J"])]
+print("钢厂毛利代理", pct_stats(gm, gm[-1]))      # 未扣其他加工费约1000-1200
+_, r = align("HC","RB"); sp = [h-rb for h,rb in zip(r["HC"],r["RB"])]
+print("卷螺差", pct_stats(sp, sp[-1]))
+# 下行：回归中位 = (p50-cur)/cur*100 ；回历史低位 = (lo-cur)/cur*100
+</code></pre>
+
+  </section>
+
+  <footer>
+    <p>说明：本表为产业逻辑速查，定性梳理"当前阶段最值得关注的矛盾点"，不构成任何投资建议；具体品种的实时供需平衡表、库存与价差数据需结合最新行情独立核验。新上市品种(AD/BZ/PL/PR/PS/LG/EC)流动性与产业参与度仍在培育中。</p>
+    <p>第二部分为《矛盾论》定性框架；第三部分压力测试的历史分位与下行幅度由 <b>Tushare 期货主力连续结算价</b>真实计算（fut_daily，主力连续合约，截至 2026-05-22），脚本随报告附上，正文数字 = 脚本输出。窗口受 Tushare 单次 2000 行上限约束（高频品种约近 8 年），新品种为上市至今全样本，已在各表脚注标注；分位为结算价位置分位，不替代实时供需平衡表。</p>
+    <p>覆盖范围：SHFE 19 · INE 5 · DCE 21 · CZCE 21(含 6 休眠) · GFEX 3 · CFFEX 8 ｜ 第一/二/三部分 ｜ 生成日期 2026-05-24。</p>
+  </footer>
+
+</div>
+<script>
+// 轻量 Python 语法高亮：零外部依赖，离线可用。仅作用于 .rv pre code。
+(function () {
+  var re = /(#[^\n]*)|("[^"]*"|'[^']*')|\b(import|from|def|return|for|in|if|elif|else|while|with|as|and|or|not|is|None|True|False|lambda|class|try|except|pass|global)\b|\b(print|len|sorted|set|sum|dict|zip|round|range|float|int|min|max|open|enumerate|map|filter)\b|(\b\d+\.?\d*\b)/g;
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  document.querySelectorAll('.rv pre code').forEach(function (b) {
+    var html = esc(b.textContent).replace(re, function (m, com, str, kw, fn, num) {
+      if (com) return '<span class="t-com">' + com + '</span>';
+      if (str) return '<span class="t-str">' + str + '</span>';
+      if (kw)  return '<span class="t-kw">'  + kw  + '</span>';
+      if (fn)  return '<span class="t-fn">'  + fn  + '</span>';
+      if (num) return '<span class="t-num">' + num + '</span>';
+      return m;
+    });
+    b.innerHTML = html;
+  });
+})();
+</script>
+</body>
+</html>
