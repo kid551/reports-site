@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serenity 投资体系复盘 · v1 底稿</title>
+<style>
+  :root{
+    --bg:#f6f4ee;
+    --paper:#fffdf8;
+    --ink:#1f2328;
+    --ink-soft:#41474e;
+    --line:#e3ddd0;
+    --accent:#9a3b2e;      /* 砖红 */
+    --accent-soft:#c97b53;
+    --blue:#2f5e72;
+    --gold:#b08227;
+    --green:#3d6b4a;
+    --red-warn:#a23b30;
+    --chip:#efe9dd;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Source Han Serif SC","Songti SC","Noto Serif CJK SC",Georgia,"Times New Roman",serif;
+    font-size:20px;line-height:1.85;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 26px 120px}
+
+  /* hero */
+  .hero{padding:64px 0 30px;border-bottom:3px double var(--line)}
+  .kicker{font-size:18px;letter-spacing:.32em;color:var(--accent);font-weight:600;text-transform:uppercase}
+  h1{font-size:42px;line-height:1.25;margin:18px 0 14px;font-weight:800;letter-spacing:.01em}
+  .sub{font-size:21px;color:var(--ink-soft);max-width:760px}
+  .meta-row{margin-top:22px;font-size:17px;color:#7a7367;display:flex;gap:18px;flex-wrap:wrap}
+  .meta-row span{background:var(--chip);padding:5px 13px;border-radius:20px}
+
+  /* TOC */
+  .toc{background:var(--paper);border:1px solid var(--line);border-radius:14px;
+       padding:22px 28px;margin:34px 0;box-shadow:0 2px 14px rgba(60,50,30,.05)}
+  .toc h4{margin:0 0 12px;font-size:18px;letter-spacing:.2em;color:#8a8276;text-transform:uppercase;font-weight:700}
+  .toc ol{margin:0;padding-left:1.4em;columns:2;column-gap:40px}
+  .toc li{font-size:18px;margin:6px 0;break-inside:avoid}
+  .toc a{color:var(--blue);text-decoration:none;border-bottom:1px dotted var(--accent-soft)}
+  .toc a:hover{color:var(--accent)}
+
+  h2{font-size:33px;margin:64px 0 8px;font-weight:800;letter-spacing:.01em;
+     padding-bottom:10px;border-bottom:2px solid var(--accent)}
+  h2 .num{color:var(--accent);font-size:24px;margin-right:12px;font-weight:700}
+  h3{font-size:25px;margin:38px 0 10px;font-weight:700;color:#2a2f34}
+  h3 .tk{font-family:"SF Mono",Menlo,Consolas,monospace;color:var(--accent);font-size:22px}
+  p{margin:14px 0}
+  a.ext{color:var(--blue)}
+  strong{font-weight:700}
+  .lead{font-size:21px;color:var(--ink-soft)}
+
+  /* callouts */
+  .callout{border-radius:12px;padding:20px 24px;margin:26px 0;font-size:19px;line-height:1.7}
+  .callout .tag{display:inline-block;font-size:15px;font-weight:800;letter-spacing:.14em;
+                text-transform:uppercase;padding:3px 11px;border-radius:6px;margin-bottom:8px}
+  .c-warn{background:#fbeeec;border:1px solid #e7b9b1}
+  .c-warn .tag{background:var(--red-warn);color:#fff}
+  .c-note{background:#eef4f3;border:1px solid #bcd4ce}
+  .c-note .tag{background:var(--blue);color:#fff}
+  .c-key{background:#f7f0dd;border:1px solid #e3cf9a}
+  .c-key .tag{background:var(--gold);color:#fff}
+
+  /* timeline */
+  .tl{position:relative;margin:34px 0 10px;padding-left:38px}
+  .tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:3px;
+              background:linear-gradient(var(--accent-soft),var(--blue))}
+  .ev{position:relative;margin:0 0 30px}
+  .ev::before{content:"";position:absolute;left:-32px;top:7px;width:15px;height:15px;
+              border-radius:50%;background:var(--paper);border:3px solid var(--accent)}
+  .ev.major::before{background:var(--accent);box-shadow:0 0 0 5px rgba(154,59,46,.16)}
+  .ev .date{font-size:17px;font-weight:800;color:var(--accent);letter-spacing:.04em}
+  .ev .h{font-size:21px;font-weight:700;margin:2px 0 4px}
+  .ev .d{font-size:18.5px;color:var(--ink-soft)}
+  .ev .est{font-size:16.5px;color:#615a4d;font-style:normal;background:#f1ece1;border-radius:6px;padding:3px 10px;display:inline-block;margin-top:4px}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto;margin:24px 0}
+  table{border-collapse:collapse;width:100%;font-size:17.5px;background:var(--paper);
+        border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  caption{caption-side:top;text-align:left;font-size:17px;color:#8a8276;padding:0 0 10px;font-style:italic}
+  th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:#efe7d7;font-weight:800;font-size:16.5px;letter-spacing:.03em;color:#3a342a}
+  tbody tr:nth-child(even){background:#faf7f0}
+  tbody tr:last-child td{border-bottom:none}
+  .tk{font-family:"SF Mono",Menlo,Consolas,monospace;font-weight:700;color:var(--accent)}
+  .pos{color:var(--green);font-weight:700}
+  td .why{font-size:16px;color:var(--ink-soft)}
+  .tier{display:inline-block;font-size:14px;font-weight:800;padding:2px 9px;border-radius:5px;color:#fff}
+  .t1{background:var(--accent)}.t2{background:var(--accent-soft)}.t3{background:var(--blue)}.t4{background:var(--gold)}
+
+  /* layer list */
+  .layers{counter-reset:ly;margin:22px 0;padding:0;list-style:none}
+  .layers li{counter-increment:ly;position:relative;padding:12px 12px 12px 56px;margin:8px 0;
+             background:var(--paper);border:1px solid var(--line);border-radius:10px;font-size:18.5px}
+  .layers li::before{content:counter(ly);position:absolute;left:14px;top:50%;transform:translateY(-50%);
+             width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;
+             font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .layers .nm{font-weight:700}
+
+  hr.soft{border:none;border-top:1px dashed var(--line);margin:46px 0}
+  .footnote{font-size:16px;color:#8a8276;margin-top:8px}
+  .src{font-size:17px}
+  .src li{margin:7px 0}
+  footer{margin-top:70px;padding-top:24px;border-top:3px double var(--line);font-size:16.5px;color:#8a8276}
+  .rev-badge{display:inline-block;background:var(--accent);color:#fff;font-size:15px;font-weight:800;
+             padding:4px 12px;border-radius:6px;letter-spacing:.1em}
+
+  /* bilingual appendix */
+  .bi{margin:22px 0;border-left:4px solid var(--accent-soft);padding:2px 0 2px 20px}
+  .bi .orig{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:18px;
+            color:#6b6256;background:#f1ece1;border-radius:8px;padding:12px 16px;line-height:1.6}
+  .bi .trans{font-size:20px;margin-top:10px;line-height:1.8}
+  .bi .pn{display:inline-block;font-size:14px;font-weight:800;color:#fff;background:var(--accent);
+          border-radius:5px;padding:1px 9px;margin-right:8px;vertical-align:2px}
+  /* 注释层：次于正文但清晰可读——中度暖灰(约4.3:1对比) + 略小 + 正体 */
+  .anno{color:#776f62;font-size:.9em;font-weight:400;font-style:normal}
+  .gloss{color:#776f62;font-size:.92em;font-weight:400}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="kicker">美股 · 散户传奇 · 投研复盘</div>
+    <h1>「卡脖子猎人」Serenity：<br>一套供应链瓶颈投资体系的全景复盘</h1>
+    <p class="sub">从被 Reddit 封禁的 AleaBito，到 X 上数十万粉丝的 AI 光通信瓶颈猎人——本文按时间线还原他的重要交易，拆解他的「13 层供应链卡脖子」框架，并附上一份必须同时阅读的反面证据清单。</p>
+    <div class="meta-row">
+      <span>底稿 <strong>v12</strong>（全量终检：31 个代码注释全覆盖）　2026-05-30</span>
+      <span>定位：客观多视角 · 不下买卖判断</span>
+      <span>状态：<span class="rev-badge">待 REVIEW</span></span>
+    </div>
+  </header>
+
+  <!-- ============ TOC ============ -->
+  <nav class="toc">
+    <h4>目录</h4>
+    <ol>
+      <li><a href="#tldr">一句话画像 &amp; 阅读须知</a></li>
+      <li><a href="#timeline">时间线：重要交易与事件</a></li>
+      <li><a href="#signature">三大招牌之作（封神三连）</a></li>
+      <li><a href="#framework">13 层供应链卡脖子框架</a></li>
+      <li><a href="#portfolio">光通信主线持仓梯队</a></li>
+      <li><a href="#core">长期复利核心仓（含买入价）</a></li>
+      <li><a href="#macro">宏观与战略主题线</a></li>
+      <li><a href="#philosophy">「紫苏叶理论」与三步法</a></li>
+      <li><a href="#anchor">「判断锚点」深读（含真实波动数据）</a></li>
+      <li><a href="#counter">反面证据 &amp; 争议清单</a></li>
+      <li><a href="#appendix-axti">附录 A · AXTI 原帖逐段精读</a></li>
+      <li><a href="#sources">资料来源</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============ TLDR ============ -->
+  <section id="tldr">
+    <h2><span class="num">0</span>一句话画像 &amp; 阅读须知</h2>
+    <p class="lead">Serenity 是一位自称「前 AI 研究科学家、RISC-V<span class="anno">（一种开源芯片指令集架构）</span>基金会成员、Nature 论文作者」的美股散户，核心打法是<strong>在 AI 产业链里寻找被垄断/寡头控制、但估值尚未反映其稀缺性的「卡脖子」环节</strong>——尤其集中在光通信<span class="anno">（CPO＝Co-Packaged Optics，共封装光学，把光引擎直接和芯片封装在一起、替代传统可插拔光模块的下一代方案；InP＝Indium Phosphide，磷化铟，做高速激光器的底层衬底材料；硅光＝硅光子，用硅基工艺造光器件）</span>这条链上，赶在机构定价之前埋伏。</p>
+
+    <div class="callout c-warn">
+      <span class="tag">阅读须知 · 必读</span>
+      本文是<strong>对一位公开人物投资履历的客观复盘</strong>，不是荐股，也不给出任何买入/卖出/持有判断。文中绝大多数收益数字（2 年 225 倍、2026 年内 3000%+、组合峰值 +501% 等）<strong>均为其本人自述或市场转述，未经独立审计</strong>；涉及其身份、动机的内容存在争议。请把「战绩」与「事实」分开看，并务必读完文末第 7 节的反面清单。
+    </div>
+  </section>
+
+  <!-- ============ TIMELINE ============ -->
+  <section id="timeline">
+    <h2><span class="num">1</span>时间线：重要交易与事件</h2>
+    <p>下表按时间顺序还原他的关键节点。带实心圆点者为<strong>标志性事件</strong>。日期凡来自单一来源或为推算的，已标注「约/推算」。</p>
+
+    <div class="tl">
+      <div class="ev">
+        <div class="date">2018（自称）</div>
+        <div class="h">拒绝 NVIDIA 的职位邀约</div>
+        <div class="d">自称在英伟达股价仅约 $6 时拒绝其 leadership 职位，理由是「自己炒股能赚更多」。</div>
+        <div class="est">⚠ 未经证实的自述，常被用作其「叙事」的一部分。</div>
+      </div>
+
+      <div class="ev">
+        <div class="date">2022 年 1 月 11 日</div>
+        <div class="h">Reddit 账号「u/AleaBito」创建</div>
+        <div class="d">据第三方考据账号创建于此日，称累计 <strong>13k+ 帖、5k+ 评论</strong>的高 karma<span class="anno">（声誉值）</span>。但<strong>实测其可见投稿最早仅到 2024-06</strong>，2022–2023 的内容要么不存在、要么已删，「4 年前就在 Reddit 深耕」之说存疑。</div>
+      </div>
+
+      <div class="ev major">
+        <div class="date">2025 年 12 月 29 日</div>
+        <div class="h">在 WSB 发布 AXTI 研报（可考的"那一篇"）</div>
+        <div class="d">标题《The Entire AI Buildout (Google, NVDA, MSFT) Is dependent on this $700m Monopoly — $15 → $150 PT<span class="anno">（PT＝Price Target，目标价）</span>》，正文论证 <span class="tk">AXTI</span>（AXT Inc.，磷化铟衬底，约 30–35% 份额，与 Sumitomo、JX 构成寡头）卡住整条 AI 光子链。他自述完整长文被 automod<span class="anno">（自动审核机器人）</span>以「低质量」删除，只能发精简版——这正是「WSB 审查他」叙事的真实出处。
+          <br><a class="ext" href="https://www.reddit.com/r/wallstreetbets/comments/1pyghud/the_entire_ai_buildout_google_nvda_msft_is/">🔗 原帖：reddit.com/r/wallstreetbets/…/the_entire_ai_buildout_google_nvda_msft_is</a>
+        </div>
+        <div class="est">⚠ 重要纠偏：他账号 <span class="tk">u/AleaBito</span> 实测<strong>至今活跃、并未被封</strong>，最早可见投稿仅追溯到 2024-06。所谓「2022 年发 AXTI 被永久封禁」的原始帖<strong>不可考</strong>，可验证的 AXTI 研报就是这篇 2025-12-29 的（彼时 AXTI 约 $15，而非传说的 $12）。「被封传奇」很可能也被传播层加了戏。</div>
+      </div>
+
+      <div class="ev major">
+        <div class="date">2025 年 7 月</div>
+        <div class="h">转战 X，启用「Serenity」（@aleabitoreddit）</div>
+        <div class="d">从 Reddit 迁到 X，延续免费公开研究风格，迅速被 Bloomberg、Reuters 等媒体关注。<strong>该 X 账号至今仅约 10 个月</strong>——这与「Reddit 4 年前被封」并不矛盾，是两个不同账号。</div>
+        <div class="est">✔ 已实测：访问 @aleabitoreddit 主页，明确显示「<strong>Joined July 2025</strong>」，当前 <strong>496K 粉丝 / 157 关注</strong>（2026-05-30 实测）。据此可<strong>证伪</strong>网传「他 2022 年就上 X、默默写了一年半没人看、2024 年才火」的说法——那两年该账号根本不存在。</div>
+      </div>
+
+      <div class="ev">
+        <div class="date">2025 年内（推算，首贴）</div>
+        <div class="h">首次公开「高信心持仓清单」</div>
+        <div class="d">自报 6 大高信心多头 + 1 只「1000% moonshot<span class="anno">（登月式高风险豪赌，押对就 10 倍以上）</span>」，并附买入价：<span class="tk">RKLB</span><span class="anno">（Rocket Lab，商业航天/火箭）</span> $16、<span class="tk">TSM</span><span class="anno">（台积电，全球晶圆代工龙头）</span> $120、<span class="tk">HOOD</span><span class="anno">（Robinhood，零售券商）</span> $11.27、<span class="tk">BTC</span><span class="anno">（比特币，最大加密货币）</span> $3k、<span class="tk">NBIS</span><span class="anno">（Nebius，AI 算力云）</span> $28、<span class="tk">ALAB</span><span class="anno">（Astera Labs，AI 互联芯片）</span> $55，moonshot 为 <span class="tk">WLAC</span><span class="anno">（借壳上市标的，将并入算力云 Boost）</span> $13。说明他<strong>除光通信卡脖子外，另有一条长期复利核心仓</strong>（详见第 4-bis 节）。</div>
+      </div>
+
+      <div class="ev">
+        <div class="date">2025 年底</div>
+        <div class="h">自报阶段收益 +630%</div>
+        <div class="d">到 2025 年底自报收益 <strong>+630%</strong>，持有 23 只票，自称无一只浮盈低于 100%、最佳个股约 84 倍。<span class="est">⚠ 自报、未审计；且第 7 节有反例（BKKT＝Bakkt，加密支付公司，巨亏）。</span></div>
+      </div>
+
+      <div class="ev major">
+        <div class="date">2026 年 2 月 17 日</div>
+        <div class="h">Raspberry Pi（RPI）喊单——破圈之作（第一击）</div>
+        <div class="d">社媒看多伦敦上市的 <span class="tk">RPI</span><span class="anno">（Raspberry Pi，英国廉价微型电脑/开发板厂）</span>，逻辑是 AI/边缘算力囤货需求（远比苹果产品便宜）；他预判营收增速远高于分析师当时约 14% 的共识。当时被主流媒体讥为 meme 股<span class="anno">（meme stock，网络梗股——靠社群情绪与话题度爆炒、与基本面无关的股票；2021 年 GameStop 散户逼空是鼻祖）</span>。</div>
+      </div>
+
+      <div class="ev">
+        <div class="date">2026 年 2 月（同期）</div>
+        <div class="h">韩股期权波动率预判兑现</div>
+        <div class="d">同期一笔对韩国股票期权波动率「错杀」的预判被点名精准兑现，显示能力圈不止于光通信个股。<span class="est">细节较少，待进一步核实。</span></div>
+      </div>
+
+      <div class="ev">
+        <div class="date">2026 年 3 月</div>
+        <div class="h">SOITEC（SOI.PA）入场</div>
+        <div class="d">约 €43 入场法国 SOI 衬底龙头 <span class="tk">SOITEC</span>，入场当日约 +16%。</div>
+      </div>
+
+      <div class="ev major">
+        <div class="date">2026 年 3 月 31 日</div>
+        <div class="h">RPI 全年财报兑现——破圈之作（第二击）</div>
+        <div class="d">RPI 发布全年业绩：调整后核心盈利 <strong>+25% 至 $46.4M</strong>，全年出货 760 万台（+7%）。<strong>财报当日股价涨超 20%</strong>，此前 meme 股标签被打脸。<span class="est">注：中文自媒体流传的「+44.76%／次日+27.43%」「两天+90%」未在权威口径核实，本稿以财报当日 +20%+ 为准。</span></div>
+      </div>
+
+      <div class="ev major">
+        <div class="date">2026 年 5 月</div>
+        <div class="h">SIVE「一战封神」——瑞典版 GME<span class="anno">（GameStop，2021 年散户逼空逼爆华尔街空头的标志性散户股）</span></div>
+        <div class="d">公开看多斯德哥尔摩上市的 <span class="tk">SIVE</span>（Sivers Semiconductors，做 CPO 用的 CW<span class="anno">＝Continuous Wave</span> 连续波激光光源，营收据其称随 <span class="tk">JBL</span><span class="anno">（Jabil，电子代工巨头）</span>放量）。单日一度 +73.78%，市值从约 $1.3 亿冲向 $2.3 亿，区间被描述为约 20 倍，被中文圈称为「瑞典 GME」。这一战让他真正破圈封神。</div>
+      </div>
+
+      <div class="ev">
+        <div class="date">2026 年内 <span class="anno">（YTD＝Year To Date，年初至今）</span></div>
+        <div class="h">自报收益峰值与回撤</div>
+        <div class="d">组合峰值的自报/转述口径高度不一：<strong>+501%</strong>、<strong>+1,116%</strong>、乃至 <strong>3000%+</strong>、两年 225 倍——<strong>数字本身就互相打架</strong>。使用约 1.4x 杠杆，尾部风险时自述降杠杆至 0；其后有所回调。粉丝在约一个月内从 5 万飙到 <strong>496K（2026-05-30 实测）</strong>，并据称已有约 37000 付费订阅。</div>
+        <div class="est">⚠ 上述均为自报/转述，未经审计，且彼此矛盾。</div>
+      </div>
+    </div>
+
+    <div class="callout c-note">
+      <span class="tag">Reddit 原始 DD 索引（实测 u/AleaBito 投稿）</span>
+      他在 X 走红前的研究痕迹留在 Reddit。其中<strong>唯一的 AXTI 研报</strong>即上方 2025-12-29 那篇；账号里偏严肃的 DD<span class="anno">（Due Diligence，尽职调查/深度研报）</span>还包括：
+      <ul style="margin:10px 0 4px;font-size:18px">
+        <li><strong>AXTI（磷化铟垄断）</strong>·2025-12-29 — <a class="ext" href="https://www.reddit.com/r/wallstreetbets/comments/1pyghud/the_entire_ai_buildout_google_nvda_msft_is/">The Entire AI Buildout… $700m Monopoly $15→$150 PT</a></li>
+        <li><strong>VLN（Valens Semiconductor 机器人芯片）</strong>·2025-10 — <a class="ext" href="https://www.reddit.com/r/ValueInvesting/comments/1q8nmlw/vln_robotics_chipmaker_is_fundamentally/">VLN Robotics Chipmaker Undervalued by 60%</a></li>
+        <li><strong>NBIS（Nebius，AI 云）</strong>·2025-09 — <a class="ext" href="https://www.reddit.com/r/wallstreetbets/comments/1nqjmwv/750k_in_nbis_nezuko_body_pillow_formation_150_pt/">$750k in NBIS … $150+ PT</a></li>
+        <li><strong>HIMS（Hims &amp; Hers）</strong>·2025-04 — <a class="ext" href="https://www.reddit.com/r/wallstreetbets/comments/1kaf303/hims_due_diligence/">HIMS Due Diligence</a></li>
+      </ul>
+      其余多为 WSB 风格的玩梗帖（如「Charizard TA<span class="anno">（喷火龙技术分析）</span>」「Nezuko Body Pillow Formation」），娱乐成分居多。需说明：<strong>他广为流传的「RPI 喊单」「韩股/EWY」主要发生在 X 上，并非 Reddit 自投稿</strong>。
+    </div>
+  </section>
+
+  <!-- ============ SIGNATURE ============ -->
+  <section id="signature">
+    <h2><span class="num">2</span>三大招牌之作（封神三连）</h2>
+    <p>外界最常提到的 AXTI、SIVE、RPI 确实是他最具代表性的三笔——但它们在其履历中扮演的角色<strong>并不相同</strong>，不应并列等量看待。</p>
+
+    <div class="tbl-wrap">
+    <table>
+      <caption>表 1 · 三大招牌之作的不同定位</caption>
+      <thead>
+        <tr><th>标的</th><th>定位</th><th>卡脖子逻辑</th><th>战绩（多为自述/市场观测）</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tk">AXTI</span><br><span class="why">AXT Inc.</span></td>
+          <td><strong>旗舰 / 招牌</strong></td>
+          <td>InP 磷化铟衬底，自称控制约 40% 供应链，戏称「AXTI 海峡」</td>
+          <td><span class="pos">单票浮盈约 +1000%（10x）</span>，其自评「最传奇一战」</td>
+        </tr>
+        <tr>
+          <td><span class="tk">SIVE</span><br><span class="why">Sivers Semi（瑞典）</span></td>
+          <td><strong>封神之作（2026/5）</strong></td>
+          <td>CPO 共封装光学的 CW 连续波激光光源</td>
+          <td><span class="pos">区间约 20x</span>，单日一度 +73.78%，「瑞典 GME」</td>
+        </tr>
+        <tr>
+          <td><span class="tk">RPI</span><br><span class="why">Raspberry Pi（伦敦）</span></td>
+          <td><strong>破圈 / 出圈之作</strong></td>
+          <td>AI / 边缘算力囤货，2 月喊单，3 月财报兑现</td>
+          <td><span class="pos">3/31 财报当日 +20%+</span>，在被嘲 meme 股时预判兑现</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout c-key">
+      <span class="tag">关键区分</span>
+      更准确的说法是：<strong>AXTI 是长期旗舰，SIVE 是让他一战封神的那笔，RPI 是让他被大众媒体看见的那笔</strong>。三者合起来是他的「核心名片」，但若论真实赚钱权重，下一节的 AAOI<span class="anno">（Applied Optoelectronics，应用光电）</span>同样不可忽略。
+    </div>
+  </section>
+
+  <!-- ============ FRAMEWORK ============ -->
+  <section id="framework">
+    <h2><span class="num">3</span>13 层供应链「卡脖子」框架</h2>
+    <p>Serenity 真正的护城河不是某一只票，而是<strong>把光通信/光子产业链拆成十余层、逐层寻找垄断或寡头控制点</strong>的体系化思维。其核心尽调问题被概括为一句话：<em>「谁控制了这一环？控制了多少？」</em></p>
+
+    <ul class="layers">
+      <li><span class="nm">InP 磷化铟衬底</span> —— <span class="tk">AXTI</span><span class="anno">（AXT Inc.，美国磷化铟衬底厂，主）</span>、Sumitomo<span class="anno">（住友，日本材料巨头）</span>、JX Nippon<span class="anno">（JX 金属，日本金属材料厂）</span></li>
+      <li><span class="nm">原料 / 提纯加工</span> —— 多家供应商，AXTI 亦参与</li>
+      <li><span class="nm">硅光代工（Si Photonics Foundry）</span> —— <span class="tk">TSEM</span><span class="anno">（Tower Semiconductor，以色列硅光代工厂）</span>、GFS<span class="anno">（GlobalFoundries 格芯，美国晶圆代工厂）</span></li>
+      <li><span class="nm">激光器（Laser）</span> —— <span class="tk">LITE</span><span class="anno">（Lumentum，美国光模块/激光器龙头）</span>、<span class="tk">COHR</span><span class="anno">（Coherent，美国激光与光器件厂）</span>、<span class="tk">AAOI</span><span class="anno">（Applied Optoelectronics，应用光电，美国光收发器厂）</span>、<span class="tk">SIVE</span><span class="anno">（Sivers Semiconductors，瑞典激光光源厂）</span></li>
+      <li><span class="nm">光 DSP<span class="anno">（Digital Signal Processor，数字信号处理器）</span></span> —— <span class="tk">MRVL</span><span class="anno">（Marvell，美国光 DSP/网络芯片厂）</span>、<span class="tk">AVGO</span><span class="anno">（Broadcom 博通，美国芯片巨头）</span></li>
+      <li><span class="nm">封装 / OSAT<span class="anno">（Outsourced Semiconductor Assembly &amp; Test，半导体外包封测）</span>组装</span> —— <span class="tk">FN</span><span class="anno">（Fabrinet，泰国光器件代工厂）</span>、ASE<span class="anno">（日月光投控，台湾封测龙头）</span>、LuxNet<span class="anno">（联钧光电，台湾光通信厂）</span>、Shunsin 讯芯<span class="anno">（鸿海系光学封装）</span></li>
+      <li><span class="nm">玻璃 / 衬底载板</span> —— <span class="tk">GLW</span><span class="anno">（Corning 康宁，美国玻璃/光纤巨头）</span>、LPKK<span class="anno">（日本玻璃载板厂，具体公司未确证）</span>、ONTO<span class="anno">（Onto Innovation，美国半导体量测设备厂）</span></li>
+      <li><span class="nm">老化测试<span class="anno">（Burn-in，量产前的高温通电筛查）</span></span> —— <span class="tk">AEHR</span><span class="anno">（Aehr Test Systems，美国老化测试设备厂）</span></li>
+      <li><span class="nm">SOI<span class="anno">（Silicon-On-Insulator）</span>绝缘体上硅衬底</span> —— <span class="tk">SOITEC</span><span class="anno">（Soitec，法国 SOI 衬底龙头，SOI.PA）</span></li>
+      <li><span class="nm">化合物半导体代工</span> —— Win Semi<span class="anno">（稳懋半导体，台湾化合物半导体代工，3105.TWO，InP/GaAs＝砷化镓）</span></li>
+      <li><span class="nm">MBE<span class="anno">（Molecular Beam Epitaxy，分子束外延）</span>设备</span> —— Riber<span class="anno">（法国分子束外延设备厂）</span></li>
+      <li><span class="nm">玻璃芯刻蚀技术</span> —— LPKK / LPK<span class="anno">（日本玻璃芯/刻蚀厂，具体公司未确证）</span></li>
+      <li><span class="nm">特种衬底材料</span> —— Shimizu Chemical<span class="anno">（清水化学，日本特种材料厂，SHMD）</span>、IQE<span class="anno">（IQE plc，英国外延片厂）</span></li>
+    </ul>
+
+    <div class="callout c-note">
+      <span class="tag">不对称性论点</span>
+      他押注的是「信息发现的时间差」：在机构尚未覆盖、估值未反映战略稀缺性之前埋伏，期待 10–30 倍的重定价窗口。这套逻辑的代价是——<strong>许多标的流动性极差、市值极小，喊单本身就可能成为价格的主要驱动力</strong>（见第 7 节）。
+    </div>
+
+    <h3>机构轮动路径（他自述的资金接力）</h3>
+    <p>他把这套框架嫁接到「机构资金轮动」上，自述的接力顺序是：</p>
+    <p style="font-size:18.5px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 18px">
+      <strong>存储（尾声）</strong> <span class="tk">SNDK</span><span class="anno">（SanDisk 闪迪，存储芯片）</span> · 三星 · SK海力士 · <span class="tk">MU</span><span class="anno">（Micron 美光，内存/存储）</span>
+      &nbsp;→&nbsp; <strong>光收发器</strong> <span class="tk">AAOI</span> · <span class="tk">AXTI</span> · <span class="tk">LITE</span> · <span class="tk">COHR</span>
+      &nbsp;→&nbsp; <strong>上游 SiPh<span class="anno">（Silicon Photonics，硅光子）</span>/ 外部光源 ELS<span class="anno">（External Light Source）</span></strong> <span class="tk">SIVE</span> · <span class="tk">POET</span><span class="anno">（POET Technologies，加拿大光引擎厂）</span> · Celestial AI
+    </p>
+    <p class="footnote">他整理的完整 CPO 行业图还覆盖：跨平台 CPO ASIC<span class="anno">（Application-Specific IC，专用芯片）</span>（<span class="tk">AVGO</span>/<span class="tk">MRVL</span>）、DSP/PAM4<span class="anno">（4 电平脉冲幅度调制，高速光信号编码）</span>（AVGO/MRVL）、DCI<span class="anno">（Data Center Interconnect，数据中心互联）</span>（<span class="tk">CIEN</span><span class="anno">（Ciena，美国光网络设备厂）</span>/<span class="tk">NOK</span><span class="anno">（Nokia 诺基亚，电信设备）</span>）、OCS<span class="anno">（Optical Circuit Switch，光路交换）</span>设备（iPronics/Polatis）、光纤（<span class="tk">GLW</span>/普睿司曼/古河）、HCF<span class="anno">（Hollow-Core Fiber，空芯光纤）</span>（LITE/OFS）。SIVE 的潜在收购链被他写为 <span class="tk">SIVE → Win → POET → Celestial → MRVL</span>。</p>
+  </section>
+
+  <!-- ============ PORTFOLIO ============ -->
+  <section id="portfolio">
+    <h2><span class="num">4</span>完整持仓梯队</h2>
+    <p>下表按收益 / 确信度分梯队整理其光通信主线持仓。<strong>这里最容易被忽略的是 AAOI——它其实是仅次于 AXTI 的大赢家</strong>，只是没 SIVE 那么有话题性。</p>
+
+    <div class="tbl-wrap">
+    <table>
+      <caption>表 2 · 光通信主线持仓梯队（YTD 2026，数据多为自述/观测）</caption>
+      <thead>
+        <tr><th>梯队</th><th>标的</th><th>卡脖子逻辑</th><th>战绩 / 评价</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tier t1">5x+</span></td>
+          <td><span class="tk">AXTI</span><br><span class="why">AXT Inc.</span></td>
+          <td>控制约 40% InP 衬底供应链，旗舰</td>
+          <td><span class="pos">5x+ / 浮盈约 +1000%</span></td>
+        </tr>
+        <tr>
+          <td><span class="tier t1">5x+</span></td>
+          <td><span class="tk">AAOI</span><br><span class="why">Applied Optoelectronics</span></td>
+          <td>激光瓶颈，完整光收发器链（激光→设计→组装），亦做 ELSFP<span class="anno">（外部光源可插拔模块）</span>接 CPO</td>
+          <td><span class="pos">约 5x</span>，自报约 <strong>$84 买入</strong>（彼时市值约 $66 亿），预测光收发器营收 2027H2<span class="anno">（2027 下半年）</span>放大 10 倍，现价约 $174</td>
+        </tr>
+        <tr>
+          <td><span class="tier t2">2x+</span></td>
+          <td><span class="tk">SIVE</span><br><span class="why">Sivers Semi（瑞典）</span></td>
+          <td>CPO 的 CW / DFB<span class="anno">（Distributed Feedback，分布反馈）</span>激光光源，市值曾仅约 $2.9 亿</td>
+          <td><span class="pos">2x+ / 区间约 20x</span>，自报仓位仅 0.5–1%</td>
+        </tr>
+        <tr>
+          <td><span class="tier t2">2x+</span></td>
+          <td><span class="tk">LITE</span><br><span class="why">Lumentum</span></td>
+          <td>EML<span class="anno">（Externally Modulated Laser，电吸收调制激光器）</span>约 50–60% 市占，核心仓</td>
+          <td><span class="pos">2x+</span></td>
+        </tr>
+        <tr>
+          <td><span class="tier t2">2x+</span></td>
+          <td><span class="tk">IQE</span></td>
+          <td>潜在 InP 光子产能，市值被低估</td>
+          <td><span class="pos">2x+</span></td>
+        </tr>
+        <tr>
+          <td><span class="tier t2">2x+</span></td>
+          <td><span class="tk">AEHR</span><br><span class="why">Aehr Test Systems</span></td>
+          <td>CPO 老化测试，与 TSEM 70% 产能锁定挂钩</td>
+          <td><span class="pos">2x+</span></td>
+        </tr>
+        <tr>
+          <td><span class="tier t2">≈2x</span></td>
+          <td><span class="tk">TSEM</span><br><span class="why">Tower Semiconductor</span></td>
+          <td>硅光产能据称已预订至 2028 年达 70%</td>
+          <td><span class="pos">接近 2x</span></td>
+        </tr>
+        <tr>
+          <td><span class="tier t3">海外</span></td>
+          <td><span class="tk">SOITEC</span><br><span class="why">SOI.PA（法国）</span></td>
+          <td>光子 PIC 平台的 SOI 衬底近乎垄断</td>
+          <td>约 €43 入场，当日 +16%</td>
+        </tr>
+        <tr>
+          <td><span class="tier t3">海外</span></td>
+          <td>Win Semi<br><span class="why">3105.TWO（台湾）</span></td>
+          <td>InP/GaAs 化合物半导体代工双雄之一</td>
+          <td>近期新加入的小名单标的</td>
+        </tr>
+        <tr>
+          <td><span class="tier t3">海外</span></td>
+          <td>Shunsin 讯芯<br><span class="why">6451.TW（鸿海系）</span></td>
+          <td>鸿海光学封装子公司，重点累积</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><span class="tier t3">海外</span></td>
+          <td>Riber / LPKK / SHMD</td>
+          <td>MBE 外延设备 / 玻璃芯刻蚀 / 零负债特种衬底</td>
+          <td>新兴 / 边缘仓位</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="footnote">注：RPI（Raspberry Pi）属边缘算力/囤货主题，逻辑上独立于上述光子链，故归入第 2 节招牌之作而非本表。SiTime（SITM）一度被外界与他并提，但<strong>未在可靠材料中核实为其明确持仓，本稿暂不收录</strong>。</p>
+  </section>
+
+  <!-- ============ CORE LONG-TERM ============ -->
+  <section id="core">
+    <h2><span class="num">4-bis</span>长期复利核心仓（含自报买入价）</h2>
+    <p>这是<strong>本次深挖最重要的补充</strong>：在那条「首次公开高信心清单」的帖子里，他亲口给出了一组<strong>与光通信卡脖子无关、按持有时长排序的长期多头</strong>，并附买入价。这说明他的体系是「<strong>长期复利核心仓 + 光通信瓶颈卫星仓</strong>」双层结构，外界只盯着后者，容易误以为他全是小盘暴涨股。</p>
+
+    <div class="tbl-wrap">
+    <table>
+      <caption>表 2-bis · 自报「6 大高信心多头 + 1 moonshot」（括号为其自报买入价 / 参考价，非审计）</caption>
+      <thead>
+        <tr><th>标的</th><th>名称 / 赛道</th><th>逻辑</th><th>自报买入价 → 参考价</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="tk">RKLB</span></td><td>Rocket Lab · 商业航天</td><td>持有最久的核心仓之一</td><td>$16 → $28</td></tr>
+        <tr><td><span class="tk">TSM</span></td><td>台积电 · 先进制程</td><td>AI 算力地基</td><td>$120 → $245</td></tr>
+        <tr><td><span class="tk">HOOD</span></td><td>Robinhood · 零售券商</td><td>散户交易复兴受益者</td><td>$11.27 → $18</td></tr>
+        <tr><td><span class="tk">BTC</span></td><td>比特币</td><td>极早期建仓</td><td>$3k → $57k</td></tr>
+        <tr><td><span class="tk">NBIS</span></td><td>Nebius · AI 云</td><td>Neocloud<span class="anno">（专做 AI 算力出租的新型云厂商）</span>算力</td><td>$28 → $99</td></tr>
+        <tr><td><span class="tk">ALAB</span></td><td>Astera Labs · 连接芯片</td><td>AI 互联瓶颈</td><td>$55 → $95</td></tr>
+        <tr><td><span class="tier t4">moonshot</span> <span class="tk">WLAC</span></td><td>SPAC<span class="anno">（特殊目的收购公司，即借壳上市的空壳）</span>→ Boost（算力云）</td><td>类 WULF/CIFR，与 Fluidstack 合作、Google 兜底，自标「1000% moonshot」</td><td>$13 → $13（刚建仓）</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="footnote">注：括号数字按其原帖为「买入价 ｜ 参考价（当时价/目标价，原帖未严格区分）」，本稿统一标为「买入价 → 参考价」，仅作结构展示，<strong>不可当作实际收益</strong>。此清单与第 4 节光通信梯队互不重叠，共同构成其完整组合。</p>
+  </section>
+
+  <!-- ============ MACRO ============ -->
+  <section id="macro">
+    <h2><span class="num">5</span>宏观与战略主题线</h2>
+    <p>除光通信外，他还有一条「地缘 / 国家安全 / 能源」的宏观线，说明其能力圈不止于光子半导体。</p>
+
+    <div class="tbl-wrap">
+    <table>
+      <caption>表 3 · 宏观与战略主题持仓</caption>
+      <thead><tr><th>标的</th><th>主题</th><th>逻辑 / 战绩</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tk">MRVL</span><span class="anno">（Marvell，光 DSP/网络芯片）</span> / <span class="tk">ARM</span><span class="anno">（Arm Holdings，英国芯片 IP 授权龙头）</span></td><td>算力芯片</td><td>光 DSP；ARM 自评「新 AI CPU 带来 5x 营收增长，最快复利」；英伟达 $20 亿光学投资验证 MRVL 路线图</td></tr>
+        <tr><td><span class="tk">LNG</span><br><span class="why">Cheniere Energy</span></td><td>能源战争</td><td>伊朗冲突升级下 LNG 出口增长，<span class="pos">+52.74% YTD</span></td></tr>
+        <tr><td><span class="tk">NEXT</span><br><span class="why">NextDecade</span></td><td>能源 3–5 年多头</td><td>「极其扎实的多年期多头」，产能已售罄</td></tr>
+        <tr><td><span class="tk">CVX</span><br><span class="why">Chevron</span></td><td>能源</td><td><span class="pos">+35.44% YTD</span></td></tr>
+        <tr><td><span class="tk">MP</span><br><span class="why">MP Materials</span></td><td>稀土战略</td><td>国家安全必需，对冲中国垄断风险</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- ============ PHILOSOPHY ============ -->
+  <section id="philosophy">
+    <h2><span class="num">6</span>「紫苏叶理论」：方法论与三步法</h2>
+    <p>他给自己这套打法起了个名字——<strong>紫苏叶理论</strong>。这是理解他全部持仓的总钥匙，比任何单只股票都重要。</p>
+
+    <div class="callout c-key">
+      <span class="tag">紫苏叶理论</span>
+      你走进一家高级寿司店，<strong>所有人都盯着那块金枪鱼大腹</strong>——在 AI 产业链里，那就是英伟达、微软、OpenAI。但后厨真正断不起的，是<strong>紫苏叶</strong>：一个念都念不顺的材料名、一家没有分析师覆盖的冷门小公司、一个全球只有一两家能供、缺了它整条链就停摆的环节。<em>没了金枪鱼只是菜单少几道菜；没了紫苏叶，整家店关门。</em>
+    </div>
+
+    <h3>三步法</h3>
+    <ol>
+      <li><strong>从顶层需求逐层下钻</strong>——从「AI 爆发 → GPU → 光刻机 → 镜头（蔡司）→ 特种玻璃」一路追问：<em>「这一层要工作，下一层什么东西是别人替代不了的？」</em>大部分人看到第二层就停下争论英伟达 PE 贵不贵，他要钻到第五、六层那家最陌生的公司。</li>
+      <li><strong>数这一环节全球有几个玩家</strong>——<span class="tk">≥3 家</span>：竞争充分、无定价权，pass；<span class="tk">2 家</span>：盯住；<span class="tk">1 家 / 实质垄断</span>：就是它。逻辑是「水涨船高，但只有一条船的环节能反过来要挟下游」。</li>
+      <li><strong>买入前先公开分析，专蹲人来反驳</strong>——不求认同，专等懂行的人挑错：有人指出逻辑跳步就回去重推，有人说漏了供应商就回去补，直到没人能喷才下单。他的名言：<em>「ChatGPT 不会反驳你，它永远顺着你说有道理；所以你得把东西给真人看。」</em></li>
+    </ol>
+
+    <h3>行为特征</h3>
+    <ul>
+      <li><strong>等基本面验证，不追风报道</strong>——先有供应链逻辑，再等财报/订单兑现，「不听王八念经」。</li>
+      <li><strong>逆向 / 抗噪</strong>——早期标的常被嘲为 meme 股（RPI、SIVE 皆然），他干脆等财报打脸嘲讽者。</li>
+      <li><strong>动态杠杆</strong>——平时约 1.4x，伊朗冲突等尾部风险时自述降杠杆至 0。</li>
+      <li><strong>对标英伟达式「锁产能」</strong>——提前埋伏瓶颈产能，逻辑与大厂锁单一致。</li>
+      <li><strong>信息源差异化</strong>——别人看 PE<span class="anno">（市盈率）</span>/ROE<span class="anno">（净资产收益率）</span>/龙虎榜，他看专利数据库、供应商名录、海关出口数据、GitHub 开发者讨论量、技术路线论文。</li>
+    </ul>
+    <p class="footnote">他自我标榜「花三周找一个标的，而大部分人想花 30 分钟」。需注意：早期「研究全免费」的人设，到 2026 年已与「<strong>据称 37000 付费订阅</strong>」并存——免费光环与付费变现的张力，见下节。</p>
+  </section>
+
+  <!-- ============ ANCHOR DEEP-DIVE ============ -->
+  <section id="anchor">
+    <h2><span class="num">6-bis</span>「判断锚点」深读：他扛得住、跟随者扛不住</h2>
+    <p class="lead">有个常被引用的观点这样说：<em>「慌的原因其实就一个——你不知道自己买的东西到底值多少钱。你若是看着要涨才买的，那看着要跌时你卖不卖？没有自己的判断锚点，市场随便动一下，你的心态就跟着崩。」</em>这句话点到了 Serenity 打法的心理内核。本节用<strong>双源核实的真实行情</strong>把它拆开——它对，但只对了一半。</p>
+
+    <h3>实证：AXTI 是一台「专治没有锚点」的绞肉机</h3>
+    <p>Serenity 自己说过：<em>「如果你没经历过 AXTI 那种每天 15%–25% 的下跌，那你大概率只是刚接触这类股票。」</em>这不是夸张。下面是 AXTI 2026 年 5 月的真实日线（<strong>stockanalysis.com 与 Tushare 两源逐位一致</strong>）：</p>
+
+    <div class="tbl-wrap">
+    <table>
+      <caption>表 3 · AXTI 2026 年 5 月部分交易日涨跌幅（双源核实，未复权）</caption>
+      <thead><tr><th>日期</th><th>收盘价</th><th>当日振幅（高→低）</th><th>单日涨跌</th></tr></thead>
+      <tbody>
+        <tr><td>5/01</td><td>$96.00</td><td>$78.05 – $96.32</td><td><span class="pos">+21.18%</span></td></tr>
+        <tr><td>5/18</td><td>$105.88</td><td>$105.17 – $125.50</td><td style="color:var(--red-warn);font-weight:700">−14.46%</td></tr>
+        <tr><td>5/21</td><td>$121.02</td><td>$103.01 – $121.73</td><td><span class="pos">+15.69%</span></td></tr>
+        <tr><td>5/22</td><td>$140.83</td><td>$116.01 – $141.37</td><td><span class="pos">+16.37%</span></td></tr>
+        <tr><td>5/26</td><td>$132.60</td><td>$131.60 – $143.16 <span class="anno">（盘中创历史新高）</span></td><td style="color:var(--red-warn);font-weight:700">−5.84%</td></tr>
+        <tr><td>5/27</td><td>$122.77</td><td>$115.14 – $133.54</td><td style="color:var(--red-warn);font-weight:700">−7.41%</td></tr>
+        <tr><td>5/28</td><td>$115.70</td><td>$114.51 – $129.35</td><td style="color:var(--red-warn);font-weight:700">−5.76%</td></tr>
+        <tr><td>5/29</td><td>$103.16</td><td>$100.00 – $116.00</td><td style="color:var(--red-warn);font-weight:700">−10.84%</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="footnote">实测更宏观的数字（2026-05-29 收盘）：AXTI <strong>52 周区间 $1.45 → $143.16（约 99 倍）</strong>，Beta 1.76；刚从 5/26 的历史高点 $143 三天暴跌至 $103，<strong>3 日回撤约 −28%</strong>。文中"$12→$70 / +1000%"其实大幅低估了它的真实波幅。</p>
+
+    <h3>正面：他扛得住，是因为锚点不在价格上</h3>
+    <p>面对这种每天 ±10–20% 的折磨，<strong>把锚点放在股价上的人会被反复甩下车</strong>——在 5/18 的 −14.46% 割肉，或在 5/22 冲高 $141 时追进去。Serenity 不为所动，是因为他的锚点是另一套东西：</p>
+    <ul>
+      <li><strong>锚点 = 供应链不可替代性</strong>，而非 K 线。他的三步法（这一环不可替代吗？全球几家供应商？下游需求在涨还是跌？）<strong>在买入前就生产出一个独立于股价的判断</strong>——只要这三个问题的答案没变，−14% 就只是噪音。</li>
+      <li><strong>锚点经过对抗性压力测试</strong>。他买入前公开发帖"专蹲懂行的人来反驳"，把逻辑漏洞先堵上——所以下跌时他不慌：该质疑的早在买入前就质疑过了。</li>
+      <li><strong>RPI 是"锚点=一个数字"的最干净案例</strong>。他锚定的是<em>营收增速</em>这个基本面数字（他测算 +55%，当时华尔街共识仅 +14%），在被全网讥为 meme 股时不卖，最终财报<strong>实际增长 +58%</strong>兑现。锚被验证靠的是<strong>财报，不是股价</strong>。</li>
+    </ul>
+
+    <div class="callout c-key">
+      <span class="tag">机制小结</span>
+      同样一根 −14% 的阴线，对无锚者是"市场在告诉我错了→恐慌"，对有锚者是"价格偏离了我的判断→噪音或机会"。<strong>真正决定你慌不慌的，不是波动有多大，而是你的买入理由是否独立于价格本身。</strong>这正是那句话说对的部分。
+    </div>
+
+    <h3>反面：但「有锚」并不等于「安全」——这句话只对了一半</h3>
+    <p>若就此把"建立锚点"当成万能解药，会踩进三个更深的坑。文中材料恰好提供了反证：</p>
+    <ul>
+      <li><strong>① 他的锚是「叙事稀缺」，不是「估值」。</strong>AXTI 实测<strong>仍在亏损</strong>（净亏 $14.26M、EPS −0.31、无市盈率、Forward PE 高达 224），分析师目标价 <strong>$87.75，比现价 $103 还低约 15%</strong>。也就是说，按传统估值它已经"贵了"——他的锚不是"它值多少钱"的答案，而是"它未来会卡住所有人脖子"的<strong>信念</strong>。这种锚<strong>无法用当下基本面去校验</strong>，只能赌未来兑现。那句话里的"值多少钱"，在这里被偷换成了"将来会多重要"。</li>
+      <li><strong>② 锚错了，和没有锚一样危险——甚至更危险。</strong>同一套"我有逻辑所以不慌"的机制，在标的真的变质时会让你<strong>一路扛到归零</strong>。他自己的反例成串：<span class="tk">BKKT</span><span class="anno">（Bakkt，美国加密支付）</span> $40→$8、<span class="tk">UPWK</span><span class="anno">（Upwork，自由职业招聘平台）</span> −35%、<span class="tk">HIMS</span><span class="anno">（Hims &amp; Hers，在线健康/处方平台）</span> −50%、<span class="tk">CRCL</span><span class="anno">（Circle，USDC 稳定币发行商）</span> −45%。<strong>"不恐慌"既能拦住你乱割肉，也能拦住你及时止损</strong>——锚点是双刃剑。</li>
+      <li><strong>③ 跟随者继承了波动，却没继承锚点。</strong>大多数人买 AXTI 不是因为读懂了 InP 双寡头，而是因为"Serenity 说的"或"它在涨"。他们手里是<strong>动量，不是信念</strong>。5/26→5/29 从历史高点 $143 三天 −28% 的暴跌，正是这种无锚跟随者集体崩溃的时刻。<strong>抄他的持仓 ≠ 抄他的锚点</strong>——你买到的是他的风险敞口，却没有他扛得住的理由。</li>
+    </ul>
+
+    <div class="callout c-note">
+      <span class="tag">把那句话补完整</span>
+      "要有判断锚点"是对的，但完整的版本是三个条件缺一不可：锚点必须<strong>①是你自己推导的</strong>（而非借来的信念），<strong>②大致正确</strong>（否则只是固执），<strong>③明确知道它何时失效</strong>（即"答案变了就走"）。Serenity 的价值在于示范了"怎么造一个锚"，而非"跟着他买就有锚"。对绝大多数跟随者而言，真实处境恰恰是那句话描述的反面——<strong>看着要涨才买的，看着要跌时，无锚可依。</strong>
+    </div>
+  </section>
+
+  <!-- ============ COUNTER ============ -->
+  <section id="counter">
+    <h2><span class="num">7</span>反面证据 &amp; 争议清单</h2>
+    <p class="lead">任何对 Serenity 的复盘，都必须与下面这份清单同时阅读，否则就是只看了硬币的一面。</p>
+
+    <div class="callout c-warn">
+      <span class="tag">争议一 · 战绩不可证，且口径自相矛盾</span>
+      2 年 225 倍、2026 年内 3000%+、组合峰值 <strong>+501% / +1,116%</strong>、2025 年 +630%——<strong>几乎全部来自他本人发帖或第三方转述，没有任何独立审计或券商对账单佐证</strong>；更关键的是<strong>这些峰值数字彼此打架</strong>（+501% 与 +1,116% 同期并存），本身就说明其不可靠。自报收益在社交媒体上系统性偏高是常态。
+    </div>
+
+    <div class="callout c-warn">
+      <span class="tag">争议二 · 「无一浮亏」自述被多只亏损票证伪</span>
+      他一度自称「持仓无一浮盈低于 100%」，但反例成串：<span class="tk">BKKT</span> $40→$8、<span class="tk">UPWK</span> −35%、<span class="tk">HIMS</span> −50%、<span class="tk">CRCL</span> −45%。而且他对自己战绩的口径都对不上——一处说「23 只无一浮亏」，另一处又说「35 只中 31 只上涨」（即承认 4 只下跌）。<strong>幸存者偏差</strong>显而易见：被反复传颂的是 AXTI/SIVE，亏损票鲜被提起。评估任何「全胜」叙事，先问「亏的那些去哪了」。
+    </div>
+
+    <div class="callout c-warn">
+      <span class="tag">争议三 · 传播链对其历史的二次神化</span>
+      中文圈热传的「他 2022 年就上 X、卧薪尝胆写了一年半没人看、2024 才厚积薄发」<strong>经实测证伪</strong>——X 账号 <span class="tk">Joined July 2025</span>，那两年根本不存在。这说明围绕他的叙事在传播中被<strong>层层加戏</strong>（连「225 倍自 2022 年起算」这种时间跨度都站不住）。读任何关于他的"励志故事"，都要把<strong>事实</strong>与<strong>二创神话</strong>剥开。</div>
+
+    <div class="callout c-warn">
+      <span class="tag">争议四 · 因果方向存疑</span>
+      他自报 SIVE 等仓位仅 0.5–1%，且这些标的<strong>市值极小、流动性极差</strong>。「他喊单 → 散户涌入 → 单日暴涨」的链条，究竟是<strong>他选股准</strong>，还是<strong>他自身的号召力制造了价格</strong>，二者难以分离——后者意味着收益对早期跟随者并不可复制。
+    </div>
+
+    <div class="callout c-warn">
+      <span class="tag">争议五 · 「杀猪盘」质疑 &amp; 免费光环已变现</span>
+      已有中文财经媒体（如新浪）公开质疑其为<strong>荐股拉盘 / 杀猪盘模式</strong>：先免费公开研究建立信任、吸引散户跟进、在暴涨中完成派发。其标志性的「研究全免费」人设，到 2026 年已与<strong>据称 37000 名付费订阅</strong>并存——免费恰恰可能是建立信任、再行变现的前置成本。何时卖出，他从未公开。
+    </div>
+
+    <div class="callout c-warn">
+      <span class="tag">争议六 · 身份与叙事</span>
+      「拒绝英伟达 offer（$6 股价时）」「Nature 作者」「RISC-V 基金会成员」「前 AI 研究科学家」等<strong>均为不可证实的自述</strong>。它们在增强可信度的同时，也是典型的「人设营销」要素——尤其「拒绝英伟达」这种无法证伪、又极具传播力的钩子，应保持警惕。
+    </div>
+
+    <div class="callout c-warn">
+      <span class="tag">争议七 · 整个组合压在两个宏观预判上</span>
+      他自己也承认：全部持仓的底层逻辑押在两件事上——<strong>① CPO 成为数据中心几乎唯一的技术路线；② 人形机器人铺到十亿台级别</strong>。只要任一被推翻（技术路线分叉、机器人放量不及预期），SIVE/AAOI/AXTI 等一大批标的的逻辑就会同时塌方。<strong>高度同源的「卡脖子」叙事＝高度相关的风险敞口</strong>，并非看起来那样分散。
+    </div>
+
+    <div class="callout c-note">
+      <span class="tag">两个维度要分开看</span>
+      判断「哪几笔最重要」时，建议把<strong>话题度 / 破圈度</strong>与<strong>真实赚钱权重</strong>分开：按破圈度是 SIVE &gt; RPI &gt; AXTI；按真实收益旗舰是 AXTI、AAOI。两个维度并不重合——这也是为什么单看「最出名的三笔」会漏掉 AAOI。
+    </div>
+  </section>
+
+  <!-- ============ APPENDIX A: AXTI POST ============ -->
+  <section id="appendix-axti">
+    <h2><span class="num">附录 A</span>AXTI 原帖逐段精读</h2>
+    <p>这是他在 Reddit/WSB 发布、可考的<strong>唯一一篇 AXTI 研报</strong>（2025-12-29）。下面按原文段落顺序，<strong>英文原文 + 中文逐段翻译</strong>对照呈现，专有名词在译文中就近用 <span class="gloss">蓝色小字</span>注明。</p>
+
+    <div class="callout c-note">
+      <span class="tag">原文链接</span>
+      标题：<em>The Entire AI Buildout (Google, NVDA, MSFT) Is dependent on this $700m Monopoly — $15 → $150 PT</em><br>
+      作者：u/AleaBito　·　版块：r/wallstreetbets　·　时间：2025-12-29<br>
+      🔗 <a class="ext" href="https://www.reddit.com/r/wallstreetbets/comments/1pyghud/the_entire_ai_buildout_google_nvda_msft_is/">https://www.reddit.com/r/wallstreetbets/comments/1pyghud/the_entire_ai_buildout_google_nvda_msft_is/</a>
+    </div>
+
+    <div class="bi"><div class="orig">I drew colossus from Starcraft 2 to represent laser beams. And prepared a whole thesis but kept getting automodded for "low quality". So here's the more TLDR version of my thesis:</div>
+      <div class="trans"><span class="pn">1</span>我画了《星际争霸2》里的「巨像（Colossus，会发射激光的机甲）」来代表激光束。本来准备了一整篇完整论证，但一直被<span class="gloss">automod（版块自动审核机器人）</span>以"低质量"打回。所以这是精简版（<span class="gloss">TLDR＝Too Long; Didn't Read，长话短说</span>）：</div>
+    </div>
+
+    <div class="bi"><div class="orig">The Entire AI Industry is shifting to photonics from Google TPU to optical interconnects. The entire AI "Growth" story ends in 2026 if there's no InP substrates + materials. BUT GUESS WHO CONTROLS IT ALL? One Company: $AXTI.</div>
+      <div class="trans"><span class="pn">2</span>整个 AI 产业正在转向<span class="gloss">光子学（用光而非电传输/处理信号）</span>——从谷歌 <span class="gloss">TPU（Tensor Processing Unit，谷歌自研 AI 芯片）</span>到光互连，无一例外。如果没有 InP（磷化铟）衬底和相关材料，整个 AI 的"增长"故事在 2026 年就会终结。<strong>但你猜是谁掌控了这一切？一家公司：$AXTI。</strong></div>
+    </div>
+
+    <div class="bi"><div class="orig">There's two bottlenecks: InP Substrates — Hyperscaler optics (TPU pods, etc); Optical transceivers (5g, data); LiDAR (robotaxis, drones, military); Optical Modules (interconnect clusters); Silicon photonics laser dies (Nvidia's future co-packaged optics and Intel/Broadcom SiPh engines use InP CW laser arrays.)</div>
+      <div class="trans"><span class="pn">3</span>这里有<strong>两个卡脖子环节</strong>。第一个是 <strong>InP 衬底</strong>，它是这些东西的命脉：<span class="gloss">超大规模数据中心（Hyperscaler，指谷歌/微软/亚马逊这类巨头）</span>光学（TPU pod 等）、光收发器（5G、数据通信）、<span class="gloss">激光雷达 LiDAR</span>（Robotaxi 无人出租车、无人机、军用）、光模块（集群互连）、硅光激光芯粒（英伟达未来的 CPO 共封装光学、英特尔/博通的 SiPh 硅光引擎，都要用 InP 的 CW 连续波激光阵列）。</div>
+    </div>
+
+    <div class="bi"><div class="orig">This is a DUOPOLY from — AXTI (est. ~30–35%), Sumitomo (est. ~30%), JX Nippon (est. 10-15%). Indium Phosphide (the source material for everything): Vital Materials - 35%, AXT - 25%. Before, this was a commodity with low TAM just for telecom. Now they're used for the entire AI buildout.</div>
+      <div class="trans"><span class="pn">4</span>InP 衬底是个<strong>双寡头（duopoly）</strong>格局：AXTI 约 30–35%、住友（Sumitomo）约 30%、JX Nippon 约 10–15%。而第二个卡脖子是<strong>磷化铟原料本身</strong>（一切的源头）：Vital Materials（先导稀材）约 35%、AXT 约 25%。过去它只是个<span class="gloss">低 TAM（Total Addressable Market，总潜在市场）</span>的电信用大宗材料；现在却被用于整个 AI 基建。</div>
+    </div>
+
+    <div class="bi"><div class="orig">Just to give u an example $AXTI -> $LITE -> $GOOGL TPU. without any of these members, the program shuts down.</div>
+      <div class="trans"><span class="pn">5</span>举个例子，这条链是：$AXTI →（衬底卖给）$LITE（Lumentum，激光器厂）→（激光器用于）$GOOGL 谷歌的 TPU。<strong>链上少了任何一环，整个项目就停摆。</strong></div>
+    </div>
+
+    <div class="bi"><div class="orig">Google would literally pay $5B (50 TIMES prices + ~$140m TAM from 2024) DIRECTLY to one of these suppliers -> hand to COHR just so their whole TPU program doesn't stall because Meta decided to buy them out. And this would only be a like a 3-4% added cost to their BOM because this thing was so cheap. If Meta does it first, then Google's TPU program stalls. If Google does it first Microsoft's ASIC problem stalls.</div>
+      <div class="trans"><span class="pn">6</span>谷歌完全可能<strong>直接掏 50 亿美元</strong>（相当于 2024 年约 1.4 亿美元 TAM 的 50 倍价格）给其中一家供应商——比如交给 COHR（Coherent）——只为防止 Meta 把对方买断、害自己整个 TPU 项目停摆。而这笔钱对谷歌的 <span class="gloss">BOM（Bill of Materials，物料清单成本）</span>来说只增加约 3–4%，因为这东西本来太便宜了。如果 Meta 先下手，谷歌 TPU 停摆；如果谷歌先下手，微软的 <span class="gloss">ASIC（专用芯片）</span>就卡住。</div>
+    </div>
+
+    <div class="bi"><div class="orig">THE WORLD IS AT MAX CAPACITY RIGHT NOW (demand > supply by multiple factors pre-ramp) AND THIS IS GAME THEORY on materials supply chains. Guess who shows up twice in the WHOLE AI bottleneck? Both as the duopoly bottleneck and the duopoly bottleneck of the bottleneck. AXTI.</div>
+      <div class="trans"><span class="pn">7</span>现在<strong>全球产能已经拉满</strong>（在放量之前，需求就已是供给的数倍），这本质上是一场材料供应链上的<span class="gloss">博弈论（game theory）</span>游戏。你猜谁在整个 AI 卡脖子里出现了<strong>两次</strong>？既是"卡脖子"那一层的双寡头，又是"卡脖子的上游卡脖子"那一层的双寡头——<strong>都是 AXTI。</strong></div>
+    </div>
+
+    <div class="bi"><div class="orig">This is the holy grail of supply chain analysis + materials research. Nobody's posted about this stock here in the past 5 years, you're welcome.</div>
+      <div class="trans"><span class="pn">8</span>这是供应链分析＋材料研究的<strong>圣杯</strong>。过去 5 年没人在这儿发过这只股票，不用谢。</div>
+    </div>
+
+    <div class="bi"><div class="orig">Anyway I decided to max OTM some spare change on Calls last Friday, because there's a low chance this goes from $15 to $150 if we see the same memory supply stock in 2026. I will buy more shares on Monday when markets open up but wanted to share this at the start as proof.</div>
+      <div class="trans"><span class="pn">9</span>总之上周五我用一点闲钱顶格买了些<span class="gloss">深度价外（OTM＝Out-of-The-Money，行权价远高于现价、便宜但更易归零的）看涨期权</span>，因为如果 2026 年重演存储股那种供给行情，它从 $15 涨到 $150 也不是没可能（虽然概率不高）。周一开盘我会再加买股票，但想先在起点把帖发出来<strong>留个证据</strong>。</div>
+    </div>
+
+    <div class="bi"><div class="orig">NFI, there's a chance China sends this to $0 with export controls so don't follow along I just wanted to share my thoughts. But if this goes to $0 so does the entire growth phase of the AI buildout.</div>
+      <div class="trans"><span class="pn">10</span><span class="gloss">不构成投资建议（NFI＝Not Financial Advice）</span>。中国有可能用出口管制把它打到 $0，所以别跟，我只是分享想法。<strong>但真要是它归零，那整个 AI 基建的增长阶段也会一起归零。</strong></div>
+    </div>
+
+    <div class="bi"><div class="orig">I just thought this could also easily be a $7B company given they control 1/3rd of the world's entire substrate capacity and then 1/4th of the world's entire materials used for AI buildout. It's a monopoly in mining -> refining -> substrate production. And a duopoly for InP substrate production and Indium Phosphide.</div>
+      <div class="trans"><span class="pn">11</span>我只是觉得，鉴于他们掌控着全球 <strong>1/3 的衬底产能</strong>、以及 <strong>1/4 的 AI 基建所需材料</strong>，它轻松值 70 亿美元。在"开采 → 提纯 → 衬底制造"这条链上它是<strong>垄断</strong>；在 InP 衬底制造与磷化铟两端则是<strong>双寡头</strong>。</div>
+    </div>
+
+    <div class="bi"><div class="orig">I just wanted to share as proof in case this becomes legendary. TLDR: THE ENTIRE AI INDUSTRY IS BOTTLENECKED TWO TIMES BY THE SAME COMPANY. FOUND THE SINGLE POINT OF FAILURE OF THE ENTIRE MANY TRILLION USD WESTERN AI BUILDOUT IS SOME $700m COMPANY CALLED AXTI, WORTH LESS THAN SOME PRE REVENUE LLM STARTUP.</div>
+      <div class="trans"><span class="pn">12</span>我发出来只是留个证据，<strong>万一这真成了传奇呢</strong>。一句话总结：整个 AI 产业被同一家公司卡了<strong>两道脖子</strong>。我找到了整个数万亿美元西方 AI 基建的<span class="gloss">「单点故障」（single point of failure，一旦它失效全盘崩溃的那个点）</span>——一家叫 AXTI、市值只有 $7 亿的公司，比某些<strong>还没有收入的大模型<span class="gloss">（LLM＝Large Language Model，大语言模型）</span>创业公司</strong>还便宜。</div>
+    </div>
+
+    <div class="callout c-warn">
+      <span class="tag">读这篇原帖时请注意</span>
+      ① 这是<strong>事后留痕</strong>式发帖（"留个证据，万一成传奇"），本身带有强烈的叙事经营意识；② 文中数据（份额、TAM、$5B 假想交易）多为他自己的估算，未注来源；③ 他明说买的是<strong>顶格价外期权（高赔率高归零率）</strong>并自陈"概率不高"——与后来被传颂的"十倍神单"之间，隔着幸存者偏差；④ 他自己也点出最大风险：<strong>中国对镓/铟的出口管制可能让它归零</strong>。
+    </div>
+  </section>
+
+  <!-- ============ SOURCES ============ -->
+  <section id="sources">
+    <h2><span class="num">9</span>资料来源</h2>
+    <ul class="src">
+      <li><a class="ext" href="https://www.jimmyhuli.com/p/serenity-x-21">Jimmy 狐狸 · Serenity 是谁？X 上 21 万粉丝的「光通信瓶颈猎人」</a></li>
+      <li><a class="ext" href="https://singularityresearchfund.substack.com/p/inside-the-mind-of-serenity-aleabitoreddit">Singularity Research Fund · Inside the Mind of Serenity (@aleabitoreddit)</a></li>
+      <li><a class="ext" href="https://www.panewslab.com/en/articles/019e6cf0-c247-707e-b151-dce5f3c3f3c3">PANews · This generation of stock gurus no longer look at financial statements</a></li>
+      <li><a class="ext" href="https://www.odaily.news/en/post/5210924">Odaily · Refusing an NVIDIA offer at a $6 stock price</a></li>
+      <li><a class="ext" href="https://www.kucoin.com/news/flash/serenity-s-ai-chip-screws-stocks-surge-sive-rises-19-6x">KuCoin · Serenity's AI chip drives stock surge, SIVE rises 19.6x</a></li>
+      <li><a class="ext" href="https://www.moomoo.com/community/feed/here-s-the-backstory-on-the-twitter-account-aleabitoreddit-x-116401268326405">moomoo · @aleabitoreddit 背景考据（Reddit 2022-01-11 创建、X 2025-07 迁移、BKKT $40→$8）</a></li>
+      <li><a class="ext" href="https://x.com/aleabitoreddit/status/1977495210063286491">X / Serenity · 首次公开高信心清单（RKLB/TSM/HOOD/BTC/NBIS/ALAB + WLAC 买入价）</a></li>
+      <li><a class="ext" href="https://x.com/aleabitoreddit/status/2046003874553901188">X / Serenity · Frontrunning 1.6T/CPO，做多整条光子供应链（SIVE 随 JBL 放量）</a></li>
+      <li><a class="ext" href="https://nationaltoday.com/us/ny/new-york/news/2026/03/31/raspberry-pi-posts-strong-full-year-earnings/">National Today · Raspberry Pi 全年财报（2026-03-31，当日 +20%+，核心盈利 +25% 至 $46.4M）</a></li>
+      <li><a class="ext" href="https://x.com/0xKevin00/status/2059277366976016475">X / 0xkevin · 「传奇白毛女股神 Serenity 看这篇就够了」（战绩+持仓+CPO 全图，2026-05-26）</a></li>
+      <li><a class="ext" href="https://x.com/nini_incrypto_/status/2060383936229032031">X / nini · 「Serenity 投资打法拆解」（紫苏叶理论+三步法+踩雷标的，2026-05-29）</a></li>
+      <li><a class="ext" href="https://x.com/nini_incrypto_/status/2060325660665725253">X / nini · 「被 WSB 封杀这是对的」（叙事文，含 37000 付费订阅等数据，2026-05-29）</a></li>
+      <li><a class="ext" href="https://x.com/aleabitoreddit">X / @aleabitoreddit 主页实测（Joined July 2025、496K 粉丝、157 关注，2026-05-30 亲自核验）</a></li>
+      <li><a class="ext" href="https://www.sina.cn/news/detail/5302753762741788.html">新浪 · 怀疑 Serenity 是杀猪盘</a></li>
+      <li><a class="ext" href="https://boist.org/2026/05/25/">勃勃的美股投资日记 · 瑞典「GME」连涨 20 倍，Serenity 一战封神（2026-05-25）</a></li>
+    </ul>
+    <p class="footnote">资料抓取日期：2026-05-30。多源交叉的事实已尽量标注；单源或推算项均已在正文注明「约/推算/存疑」。</p>
+  </section>
+
+  <footer>
+    <p><strong>Serenity 投资体系复盘 · v5 底稿</strong>　|　v1→v2 深挖核实→v3 整合三篇 X 长文并实测账号→v4 补 Reddit 原始 AXTI 研报链接+术语注解→v5 新增 AXTI 原帖逐段精读附录　均 2026-05-30　|　客观多视角，不构成任何投资建议。</p>
+    <p><strong>v4 变更：</strong>① 实测 Reddit u/AleaBito（未被封、最早投稿仅到 2024-06），<strong>纠偏「2022 发 AXTI 被永久封」叙事</strong>——可考的 AXTI 研报实为 <strong>2025-12-29</strong> 那篇并附原帖链接；② 时间线新增「Reddit 原始 DD 索引」（AXTI/VLN/NBIS/HIMS 直链）；③ 全文为缩写/晦涩术语在首次出现处加中文全称与通俗解释（CPO/InP/SOI/DSP/OSAT/EML/DFB/PAM4/DCI/OCS/HCF/MBE/SiPh/ASIC/SPAC/PT/YTD/GME 等）。</p>
+    <p><strong>v3 基于三篇 X 文章 + 浏览器实测的核实结论：</strong>① 实测 @aleabitoreddit「Joined July 2025、496K 粉丝」，<strong>证伪</strong>网传「2022 上 X 耕耘两年」叙事；② 新增「紫苏叶理论 + 三步法」方法论一节；③ <strong>纠回 v2 的过度修正</strong>——AAOI ~$84 确为其自报买入价（两篇独立印证），非 Citron 目标价；④ 框架补「机构轮动路径 + CPO 全图 + 收购链」；⑤ 持仓补存储轮动起点（SNDK/三星/SK海力士/MU）与 POET/Celestial 等；⑥ 争议节补串联亏损票（UPWK/HIMS/CRCL）、战绩口径自相矛盾、传播二次神化、宏观双押风险、免费光环已变现。</p>
+    <p><strong>下一版仍待核实：</strong>① 各仓位真实权重（除 SIVE 自报 0.5–1% 外多数未知）；② 225 倍 / +1,116% 等收益的真实区间与起算点；③ AXTI 在 $12 时的真实市值（两篇分别说 $2 亿 / $7 亿，实际约 $5 亿）；④ 37000 付费订阅的承载平台与真实性；⑤ 是否还有更多未披露的亏损票。</p>
+  </footer>
+
+</div>
+</body>
+</html>
