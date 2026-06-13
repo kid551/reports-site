@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>明朝历代皇帝完整时间线（1368–1644）</title>
+<style>
+  :root{
+    --ink:#2b2620; --ink-soft:#5a5248; --gold:#9a7b2e; --gold-deep:#7a5e1c;
+    --crimson:#8c2f2f; --paper:#f7f2e7; --card:#fffdf8; --line:#d8cbb0;
+    --blue:#2f5a7a; --green:#3f6b3f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:
+      radial-gradient(circle at 20% 0%, #efe6d2 0%, transparent 55%),
+      radial-gradient(circle at 90% 100%, #ece1c9 0%, transparent 50%),
+      var(--paper);
+    color:var(--ink);
+    font-family:"Noto Serif SC","Songti SC","STSong",serif;
+    font-size:20px; line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:56px 28px 90px;}
+  header.top{text-align:center; margin-bottom:18px;}
+  header.top .seal{
+    display:inline-block; border:3px solid var(--crimson); color:var(--crimson);
+    font-size:21px; letter-spacing:6px; padding:7px 16px; border-radius:6px;
+    transform:rotate(-2deg); margin-bottom:22px; font-weight:700;
+  }
+  h1{
+    font-size:44px; line-height:1.25; margin:6px 0 10px; color:var(--ink);
+    letter-spacing:2px; font-weight:800;
+  }
+  .subtitle{font-size:21px; color:var(--ink-soft); margin:0 0 6px;}
+  .meta-line{font-size:18px; color:var(--gold-deep); letter-spacing:1px;}
+  .intro{
+    background:var(--card); border:1px solid var(--line); border-left:6px solid var(--gold);
+    border-radius:10px; padding:22px 26px; margin:34px 0 12px; font-size:19.5px;
+    color:var(--ink-soft); box-shadow:0 4px 16px rgba(120,94,28,.06);
+  }
+  .intro b{color:var(--ink);}
+
+  /* 世系总览表 */
+  .lineage{margin:40px 0;}
+  h2{
+    font-size:33px; margin:48px 0 22px; padding-bottom:10px;
+    border-bottom:2px solid var(--gold); color:var(--gold-deep); letter-spacing:2px;
+  }
+  table{width:100%; border-collapse:collapse; font-size:17.5px; background:var(--card);
+    border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+  th,td{padding:11px 12px; border-bottom:1px solid #ece2cd; text-align:center;}
+  th{background:#efe4cb; color:var(--gold-deep); font-weight:700; text-align:center; font-size:17px;}
+  td.l{text-align:left;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#fbf6ea;}
+
+  /* 时间线 */
+  .timeline{position:relative; margin:30px 0 0; padding-left:8px;}
+  .timeline::before{
+    content:""; position:absolute; left:30px; top:8px; bottom:30px; width:3px;
+    background:linear-gradient(var(--gold),#cdbb8e); border-radius:2px;
+  }
+  .emp{position:relative; padding:0 0 30px 76px; margin-bottom:6px;}
+  .dot{
+    position:absolute; left:18px; top:24px; width:26px; height:26px; border-radius:50%;
+    background:var(--card); border:4px solid var(--gold); z-index:2;
+    font-size:14px; line-height:18px; text-align:center; color:var(--gold-deep); font-weight:800;
+  }
+  .emp.crimson .dot{border-color:var(--crimson); color:var(--crimson);}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 28px; box-shadow:0 6px 20px rgba(120,94,28,.07);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{transform:translateY(-2px); box-shadow:0 10px 28px rgba(120,94,28,.12);}
+  .emp.crimson .card{border-left:6px solid var(--crimson);}
+  .card-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .temple{font-size:30px; font-weight:800; color:var(--ink); letter-spacing:1px;}
+  .era{
+    font-size:19px; color:#fff; background:var(--gold); padding:3px 13px; border-radius:20px;
+    font-weight:700; letter-spacing:1px;
+  }
+  .emp.crimson .era{background:var(--crimson);}
+  .name{font-size:19px; color:var(--ink-soft);}
+  .reign{font-size:18px; color:var(--gold-deep); margin:2px 0 14px; letter-spacing:.5px;}
+  .reign b{color:var(--crimson);}
+  .rel{
+    background:#f3ecda; border-radius:8px; padding:10px 16px; margin-bottom:14px;
+    font-size:18.5px; color:var(--ink);
+  }
+  .rel .tag{color:var(--gold-deep); font-weight:700;}
+  .block{margin:13px 0;}
+  .block .lab{
+    display:inline-block; font-size:16px; font-weight:800; letter-spacing:2px;
+    color:#fff; padding:2px 12px; border-radius:6px; margin-bottom:7px;
+  }
+  .lab.evt{background:var(--blue);}
+  .lab.con{background:var(--green);}
+  .lab.eva{background:#7a5470;}
+  .block ul{margin:4px 0 0; padding-left:22px;}
+  .block li{margin:5px 0; font-size:18.5px;}
+  .eva-text{
+    font-size:18.5px; color:var(--ink-soft); font-style:normal;
+    border-left:3px solid #c9a87a; padding-left:14px; line-height:1.8;
+  }
+  .eva-text .src{color:var(--gold-deep); font-weight:700; font-style:normal;}
+
+  .interlude{
+    text-align:center; margin:6px 0 30px 76px; padding:14px 20px;
+    background:repeating-linear-gradient(45deg,#f1e8d4,#f1e8d4 10px,#eee2c8 10px,#eee2c8 20px);
+    border-radius:10px; font-size:18px; color:var(--crimson); font-weight:700; letter-spacing:1px;
+    border:1px dashed #c9a06a;
+  }
+  /* 名臣谱 */
+  .minister-intro{
+    background:var(--card); border:1px solid var(--line); border-left:6px solid var(--crimson);
+    border-radius:10px; padding:20px 24px; margin:24px 0 28px; font-size:19px; color:var(--ink-soft);
+  }
+  .minister-intro b{color:var(--crimson);}
+  table.mins td.deed{text-align:left;}
+  table.mins td.fate{text-align:left; font-size:16.5px;}
+  .fate-kill{color:var(--crimson); font-weight:700;}
+  .fate-ok{color:var(--green); font-weight:700;}
+  .mcard{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:22px 26px; margin:20px 0; box-shadow:0 6px 20px rgba(120,94,28,.07);
+    border-left:6px solid var(--crimson);
+  }
+  .mcard.good{border-left-color:var(--green);}
+  .mcard h3{font-size:26px; margin:0 0 4px; color:var(--ink); letter-spacing:1px;}
+  .mcard .who{font-size:17.5px; color:var(--gold-deep); margin:0 0 12px;}
+  .mcard p{margin:8px 0; font-size:18.5px;}
+  .mcard .lab{display:inline-block; font-size:15px; font-weight:800; color:#fff; padding:1px 10px; border-radius:5px; margin-right:8px; letter-spacing:1px;}
+  .mcard .lab.k{background:var(--crimson);} .mcard .lab.m{background:var(--green);} .mcard .lab.s{background:#7a5470;}
+  footer{margin-top:60px; text-align:center; font-size:16.5px; color:var(--ink-soft); line-height:1.9;}
+  footer .rule{width:120px; height:2px; background:var(--gold); margin:0 auto 18px;}
+  @media (max-width:680px){
+    body{font-size:18px;} h1{font-size:34px;} .temple{font-size:25px;}
+    .wrap{padding:34px 14px 60px;} .emp{padding-left:60px;}
+    .timeline::before{left:22px;} .dot{left:11px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="seal">大 明</div>
+    <h1>明朝历代皇帝完整时间线</h1>
+    <p class="subtitle">从洪武开国到崇祯殉国 · 一姓十六帝 · 二百七十六年</p>
+    <p class="meta-line">公元 1368 年 — 1644 年 · 共历 16 帝（明英宗两度临朝，年号正统、天顺）</p>
+  </header>
+
+  <div class="intro">
+    明朝自太祖朱元璋立国，至思宗朱由检自缢煤山，共传 <b>十六位皇帝</b>。皇位主线为「太祖 → 成祖一系」嫡长相承，其间经历 <b>三次非常规交接</b>：建文以皇太孙继统、成祖靖难夺位、世宗以藩王入继大统。下文先以总览表呈现完整世系与每代血缘关系，再以时间线逐帝详述<b>在位大事、主要贡献与史书评价</b>。
+  </div>
+
+  <!-- ===== 世系总览表 ===== -->
+  <section class="lineage">
+    <h2>一、世系总览（含血缘关系）</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>序</th><th>庙号</th><th>姓名</th><th>年号</th><th>在位</th><th>与前任 / 上一代关系</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>太祖</td><td>朱元璋</td><td>洪武</td><td>1368–1398</td><td class="l">开国皇帝</td></tr>
+        <tr><td>2</td><td>惠帝（建文帝）</td><td>朱允炆</td><td>建文</td><td>1398–1402</td><td class="l">太祖之<b>孙</b>（太子朱标次子），以皇太孙继位</td></tr>
+        <tr><td>3</td><td>成祖</td><td>朱棣</td><td>永乐</td><td>1402–1424</td><td class="l">太祖<b>第四子</b>，建文帝之<b>叔</b>，靖难夺位</td></tr>
+        <tr><td>4</td><td>仁宗</td><td>朱高炽</td><td>洪熙</td><td>1424–1425</td><td class="l">成祖<b>长子</b></td></tr>
+        <tr><td>5</td><td>宣宗</td><td>朱瞻基</td><td>宣德</td><td>1425–1435</td><td class="l">仁宗<b>长子</b></td></tr>
+        <tr><td>6</td><td>英宗</td><td>朱祁镇</td><td>正统</td><td>1435–1449</td><td class="l">宣宗<b>长子</b></td></tr>
+        <tr><td>7</td><td>代宗（景泰帝）</td><td>朱祁钰</td><td>景泰</td><td>1449–1457</td><td class="l">宣宗<b>次子</b>，英宗之<b>弟</b>，土木之变后被拥立</td></tr>
+        <tr><td>6′</td><td>英宗（复辟）</td><td>朱祁镇</td><td>天顺</td><td>1457–1464</td><td class="l">夺门之变复位</td></tr>
+        <tr><td>8</td><td>宪宗</td><td>朱见深</td><td>成化</td><td>1464–1487</td><td class="l">英宗<b>长子</b></td></tr>
+        <tr><td>9</td><td>孝宗</td><td>朱祐樘</td><td>弘治</td><td>1487–1505</td><td class="l">宪宗<b>第三子</b></td></tr>
+        <tr><td>10</td><td>武宗</td><td>朱厚照</td><td>正德</td><td>1505–1521</td><td class="l">孝宗<b>独子</b>，无嗣</td></tr>
+        <tr><td>11</td><td>世宗（嘉靖帝）</td><td>朱厚熜</td><td>嘉靖</td><td>1521–1567</td><td class="l">孝宗之<b>侄</b>、武宗<b>堂弟</b>，兴献王之子，以藩王入继</td></tr>
+        <tr><td>12</td><td>穆宗</td><td>朱载坖</td><td>隆庆</td><td>1567–1572</td><td class="l">世宗<b>第三子</b></td></tr>
+        <tr><td>13</td><td>神宗（万历帝）</td><td>朱翊钧</td><td>万历</td><td>1572–1620</td><td class="l">穆宗<b>第三子</b></td></tr>
+        <tr><td>14</td><td>光宗</td><td>朱常洛</td><td>泰昌</td><td>1620</td><td class="l">神宗<b>长子</b>，在位仅一月</td></tr>
+        <tr><td>15</td><td>熹宗</td><td>朱由校</td><td>天启</td><td>1620–1627</td><td class="l">光宗<b>长子</b></td></tr>
+        <tr><td>16</td><td>思宗（崇祯帝）</td><td>朱由检</td><td>崇祯</td><td>1627–1644</td><td class="l">光宗<b>第五子</b>，熹宗之<b>弟</b>，兄终弟及</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== 时间线 ===== -->
+  <section>
+    <h2>二、逐帝时间线详述</h2>
+    <div class="timeline">
+
+      <!-- 1 太祖 -->
+      <div class="emp">
+        <div class="dot">1</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明太祖</span><span class="era">洪武</span><span class="name">朱元璋</span></div>
+          <div class="reign">在位 1368–1398（31 年）· 享年 71 · <b>开国之君</b></div>
+          <div class="rel"><span class="tag">血缘：</span>濠州钟离布衣出身，从乞丐、和尚到红巾军，自立开国，无前任可承。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>1368 年应天称帝，国号大明，年号洪武；同年北伐攻克元大都，元顺帝北遁。</li>
+              <li>废丞相、罢中书省（1380 胡惟庸案），权分六部，皇权空前集中。</li>
+              <li>大兴党狱：胡惟庸案、蓝玉案（1393）株连数万，功臣宿将几尽。</li>
+              <li>设锦衣卫；颁《大明律》《大诰》；分封诸子为藩王。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>结束元末战乱，恢复汉族政权与农业经济，推行屯田、轻徭、休养生息。</li>
+              <li>编制黄册（户籍）、鱼鳞图册（地籍），奠定明代赋役与财政基础。</li>
+              <li>重塑中央集权官制，影响明清两代五百余年政治格局。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·太祖本纪》：</span>「太祖以聪明神武之资，抱济世安民之志……武定祸乱，文致太平，太祖实身兼之。」赞其雄才；亦讥其晚年「猜忌好杀」，株连过酷。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 建文 -->
+      <div class="emp crimson">
+        <div class="dot">2</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明惠帝</span><span class="era">建文</span><span class="name">朱允炆 · 建文帝</span></div>
+          <div class="reign">在位 1398–1402（4 年）· 结局成谜 · <b>太祖之孙</b></div>
+          <div class="rel"><span class="tag">血缘：</span>太子朱标早逝，太祖立其子朱允炆为<b>皇太孙</b>，隔代传位。是太祖之孙、诸王之侄。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>即位后用齐泰、黄子澄、方孝孺，锐意<b>削藩</b>。</li>
+              <li>1399 年燕王朱棣以「清君侧」起兵，史称<b>靖难之役</b>。</li>
+              <li>1402 年南京陷落，宫中起火，建文帝下落不明（自焚 / 出亡之说并存）。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>宽刑省狱，纠太祖严苛之政，史称「建文新政」，文教一时宽和。</li>
+              <li>因削藩操切、用人书生气，终致败亡，为后世变法之鉴。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·恭闵帝本纪》：</span>「天资仁厚……惠泽未及于民，而国统中绝。」哀其仁弱而失国；成祖在位时削其帝号，南明始追谥「惠帝」。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 成祖 -->
+      <div class="emp crimson">
+        <div class="dot">3</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明成祖</span><span class="era">永乐</span><span class="name">朱棣 · 永乐大帝</span></div>
+          <div class="reign">在位 1402–1424（22 年）· 享年 64 · <b>太祖第四子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>太祖<b>第四子</b>，封燕王。建文帝之<b>叔父</b>，以靖难之役夺侄之位。原庙号「太宗」，嘉靖时改尊「成祖」。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>1402 即位；诛方孝孺等建文旧臣，灭其十族。</li>
+              <li>1405–1433 命<b>郑和七下西洋</b>（前六次在永乐朝），远抵东非。</li>
+              <li>1406–1420 营建北京紫禁城；<b>1421 年正式迁都北京</b>。</li>
+              <li>1403–1408 修成《永乐大典》，三亿七千万字，古代最大类书。</li>
+              <li>五次<b>亲征蒙古</b>，1424 病逝于第五次北征归途榆木川。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>迁都北京，奠定其后五百余年首都格局，确立「天子守国门」。</li>
+              <li>设内阁、复用宦官（郑和、东厂），重塑明代权力结构。</li>
+              <li>经略边疆：设奴儿干都司、置贵州布政司、收安南，开创「永乐盛世」。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·成祖本纪》：</span>「智勇有大略……雄武之略，同符高祖。六师屡出，漠北尘清……远迈汉唐！」极赞其功；后世亦评其得位不正、用刑严酷。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 仁宗 -->
+      <div class="emp">
+        <div class="dot">4</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明仁宗</span><span class="era">洪熙</span><span class="name">朱高炽</span></div>
+          <div class="reign">在位 1424–1425（不足 1 年）· 享年 47 · <b>成祖长子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>成祖<b>长子</b>。身体肥胖、仁厚好文，与「仁宣之治」由此开篇。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>1424 即位，年号洪熙，在位仅约十月即病逝。</li>
+              <li>平反建文旧案，赦免方孝孺等冤狱株连者，停罢西洋宝船与采办。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>息兵养民、宽赦减赋，扭转永乐连年用兵之耗，开「仁宣之治」之端。</li>
+              <li>重用「三杨」（杨士奇、杨荣、杨溥），文官内阁地位上升。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·仁宗本纪》：</span>「当靖难师起，仁宗以世子居守……使天下久而义安……为人君，止于仁。」赞其仁德，惜在位太短。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 宣宗 -->
+      <div class="emp">
+        <div class="dot">5</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明宣宗</span><span class="era">宣德</span><span class="name">朱瞻基</span></div>
+          <div class="reign">在位 1425–1435（10 年）· 享年 36 · <b>仁宗长子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>仁宗<b>长子</b>，成祖之孙。深得祖父喜爱，史载成祖立仁宗为储与喜爱此孙有关。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>1426 平定叔父汉王朱高煦叛乱（高煦之乱）。</li>
+              <li>1427 罢弃安南（交趾），主动收缩战线。</li>
+              <li>设内书堂教宦官读书，宦官批红之权渐起，埋后世隐患。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>承父之政，内阁「三杨」辅政，吏治清明、仓廪充实，<b>「仁宣之治」</b>臻于鼎盛，被比拟为明之「文景之治」。</li>
+              <li>本人善书画，「宣德炉」「宣德青花」为一代工艺名品。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·宣宗本纪》：</span>「仁、宣之际，吏称其职，政得其平，纲纪修明，仓庾充羡，闾阎乐业……盖明兴至是历年六十，民气渐舒，蒸然有治平之象矣。」</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 英宗 正统 -->
+      <div class="emp crimson">
+        <div class="dot">6</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明英宗</span><span class="era">正统</span><span class="name">朱祁镇（前期）</span></div>
+          <div class="reign">在位 1435–1449（正统 14 年）· <b>宣宗长子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>宣宗<b>长子</b>，九岁即位。明朝唯一<b>两度在位</b>的皇帝（正统、天顺）。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>幼年由太皇太后张氏与「三杨」辅政，初期尚称稳定。</li>
+              <li>三杨凋零后，宠信宦官<b>王振</b>，开明代宦官专权之大端。</li>
+              <li>1449 年瓦剌也先南侵，王振怂恿亲征，<b>土木堡之变</b>，五十万军溃，英宗被俘。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献 / 影响</span>
+            <ul>
+              <li>正统前期承仁宣余荫，国力尚盛；土木之变成为明朝由盛转衰的转折点。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史》：</span>讥其「狃于声色、嬖幸王振」，致有土木之祸；然天顺复辟后亦有「废殉葬」等善政（见下）。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 代宗 -->
+      <div class="emp crimson">
+        <div class="dot">7</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明代宗</span><span class="era">景泰</span><span class="name">朱祁钰 · 景泰帝</span></div>
+          <div class="reign">在位 1449–1457（8 年）· 享年 30 · <b>宣宗次子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>宣宗<b>次子</b>，英宗之<b>弟</b>。土木之变后英宗被俘，国不可一日无君，群臣拥立为帝。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>1449 任<b>于谦</b>为兵部尚书，主持<b>北京保卫战</b>，击退瓦剌，社稷转危为安。</li>
+              <li>遥尊被俘的英宗为太上皇；后英宗被放归，幽于南宫七年。</li>
+              <li>废英宗之子太子，改立己子，太子早夭，储位空悬。</li>
+              <li>1457 景泰帝病重，徐有贞、石亨等发动<b>夺门之变</b>，迎英宗复位；代宗旋废为郕王，旋逝。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>危局中力排南迁之议、坚守北京，保住明朝半壁，功不可没。</li>
+              <li>整顿京营、重用贤能，景泰一朝政局一度回稳。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·景帝本纪》：</span>「景帝当倥偬之时，奉命居摄，旋王大位，以系人心，事之权而得其正者也……」赞其守国之功；惜其晚年易储、骨肉相忌。英宗复辟后削其帝号，至成化时方复。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="interlude">⟡ 夺门之变（1457）：英宗朱祁镇复辟，改元天顺 ⟡</div>
+
+      <!-- 6' 天顺 -->
+      <div class="emp crimson">
+        <div class="dot">6′</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明英宗</span><span class="era">天顺</span><span class="name">朱祁镇（复辟）</span></div>
+          <div class="reign">在位 1457–1464（天顺 7 年）· 享年 37</div>
+          <div class="rel"><span class="tag">血缘：</span>同前，宣宗长子。经「太上皇—南宫幽居—复位」三重身份，传奇曲折。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>复位后冤杀北京保卫战功臣<b>于谦</b>，天下冤之。</li>
+              <li>1461 平定石亨、曹吉祥之乱（夺门功臣反噬）。</li>
+              <li>1464 临终<b>下诏废除宫妃殉葬制度</b>，为其一生最受称道之举。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>废止自太祖以来的人殉陋习，史家许为「仁政」，惠及后世后妃。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·英宗后纪》：</span>「前后在位二十四年，无甚稗政。至于上恭让后谥，释建庶人之系，罢宫妃殉葬，则盛德之事可法后世者矣。」功过参半，杀于谦为其大失。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 宪宗 -->
+      <div class="emp">
+        <div class="dot">8</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明宪宗</span><span class="era">成化</span><span class="name">朱见深</span></div>
+          <div class="reign">在位 1464–1487（23 年）· 享年 41 · <b>英宗长子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>英宗<b>长子</b>。幼时随父历废立之险，长大后宠爱长其十七岁的<b>万贵妃</b>。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>即位即为于谦平反、恢复代宗帝号，平息前朝怨愤。</li>
+              <li>宠信万贵妃与宦官汪直，设<b>西厂</b>，特务横行；又有「传奉官」滥授之弊。</li>
+              <li>1465 平荆襄流民、1466 平大藤峡瑶乱；推行荆襄流民安置（设郧阳府）。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>前期颇有作为，恢复弛禁、安抚流民、整顿边防（「成化犁庭」重创建州女真）。</li>
+              <li>后期怠政、佞幸丛生，为弘治中兴留下需要清理的积弊。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·宪宗本纪》：</span>「恢恢有人君之度矣。而……信任汪直，西厂横恣；传奉之官，一时杂进。」誉其度量，责其溺爱怠政。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 孝宗 -->
+      <div class="emp">
+        <div class="dot">9</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明孝宗</span><span class="era">弘治</span><span class="name">朱祐樘</span></div>
+          <div class="reign">在位 1487–1505（18 年）· 享年 35 · <b>宪宗第三子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>宪宗<b>第三子</b>，生母纪氏为宫人，因万贵妃专宠，幼年藏养于宫中险被害，得太监保全。明代少有的<b>一夫一妻</b>之君。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>即位即斥逐成化朝佞幸、传奉官、僧道，澄清吏治。</li>
+              <li>重用王恕、刘大夏、马文升等贤臣，史称「弘治三君子」。</li>
+              <li>修《大明会典》，整顿赋役、兴修水利（治理黄河、苏松水患）。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>勤政爱民、宽厚节俭，开<b>「弘治中兴」</b>，为明代中期最清明之世。</li>
+              <li>君臣相得、言路畅通，被誉为明朝「中兴令主」。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·孝宗本纪》：</span>「明有天下，传世十六，太祖、成祖而外，可称者仁宗、宣宗、孝宗而已……恭俭有制，勤政爱民，兢兢于保泰持盈之道，用使朝序清宁，民物康阜。」评价极高。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 武宗 -->
+      <div class="emp">
+        <div class="dot">10</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明武宗</span><span class="era">正德</span><span class="name">朱厚照</span></div>
+          <div class="reign">在位 1505–1521（16 年）· 享年 31 · <b>孝宗独子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>孝宗<b>独子</b>，一夫一妻所生嫡长。<b>无子嗣</b>，其死直接引出世宗以藩王入继。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>宠信宦官「八虎」之首<b>刘瑾</b>，刘瑾擅权敛财，1510 以谋反伏诛。</li>
+              <li>建「豹房」嬉游，自封「威武大将军朱寿」，巡边宣府，亲历应州之役败小王子。</li>
+              <li>1519 宁王朱宸濠叛乱，王守仁（阳明）旬月而平。</li>
+              <li>1520 南巡途中落水染疾，1521 无嗣崩于豹房。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献 / 影响</span>
+            <ul>
+              <li>虽荒嬉，然应州之役亲征御寇、平宁王之乱，边事未致大坏。</li>
+              <li>性格不羁、屡破祖制，是明代最具争议的「顽童天子」。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·武宗本纪》：</span>「然其时孝宗恭俭有制，犹有先朝之遗泽……惜乎大臣……不能尽职，致万几之荒怠，威福之下移，而帝顾以为常。」惜其耽乐怠政、所幸未致倾覆。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 世宗 -->
+      <div class="emp crimson">
+        <div class="dot">11</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明世宗</span><span class="era">嘉靖</span><span class="name">朱厚熜 · 嘉靖帝</span></div>
+          <div class="reign">在位 1521–1567（45 年）· 享年 60 · <b>藩王入继</b></div>
+          <div class="rel"><span class="tag">血缘：</span>孝宗之<b>侄</b>、武宗<b>堂弟</b>，兴献王朱祐杬之子。武宗无嗣，依「兄终弟及」由湖广安陆藩邸<b>入继大统</b>。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>即位之初爆发<b>「大礼议」</b>之争（1521–1524），坚持追尊生父为「睿宗」，廷杖群臣，皇权大伸。</li>
+              <li>1542 「壬寅宫变」宫女谋弑未遂；此后<b>移居西苑，二十余年不上朝</b>，专意修玄斋醮。</li>
+              <li>宠信严嵩父子专权二十年，吏治腐败；1562 严嵩败。</li>
+              <li>「南倭北虏」交困：东南<b>倭寇</b>之患（戚继光、俞大猷御之）、北方<b>庚戌之变</b>（1550 俺答兵临北京）。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献 / 影响</span>
+            <ul>
+              <li>前期「嘉靖新政」革弊、抑宦官、清庄田，一度有起色。</li>
+              <li>中后期崇道怠政、用人失当，国力虚耗，社会矛盾积累，为明衰张本。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·世宗本纪》：</span>「若其时纲纪犹明……顾迩年好神仙，富贵未几而败……盖亦有由。」赞其初政英断，讥其「中年崇道、君道致隳」。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 穆宗 -->
+      <div class="emp">
+        <div class="dot">12</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明穆宗</span><span class="era">隆庆</span><span class="name">朱载坖</span></div>
+          <div class="reign">在位 1567–1572（6 年）· 享年 36 · <b>世宗第三子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>世宗<b>第三子</b>。因世宗信「二龙不相见」之说，久不立储，兄长早夭后方继位。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li><b>「隆庆开关」</b>（1567）：开放福建月港，准许民间海外通商，白银大量流入。</li>
+              <li><b>「俺答封贡」</b>（1571）：与蒙古俺答汗议和、封顺义王、开互市，北边数十年无大战。</li>
+              <li>重用徐阶、高拱、张居正等贤臣，内阁人才鼎盛。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>宽仁守成、用人得当，「隆庆开关」与「俺答封贡」一海一陆解两大边患，史称<b>「隆庆新政」</b>，为万历初年改革铺路。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·穆宗本纪》：</span>「穆宗在位六年……端拱寡营，躬行俭约……信任辅臣，纲纪修明，繁不期月而四境晏然……所谓恭俭无为之主也。」评其无为而治、与民休息。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13 神宗 -->
+      <div class="emp crimson">
+        <div class="dot">13</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明神宗</span><span class="era">万历</span><span class="name">朱翊钧 · 万历帝</span></div>
+          <div class="reign">在位 1572–1620（<b>48 年，明朝最长</b>）· 享年 58 · <b>穆宗第三子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>穆宗<b>第三子</b>，十岁即位。明朝在位最久之君，前期赖张居正辅政。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>1572–1582 <b>张居正</b>柄政，行<b>「一条鞭法」</b>、考成法，国库充盈，史称「万历中兴」。</li>
+              <li>1582 张居正卒，神宗反攻倒算、抄其家；此后渐怠。</li>
+              <li><b>「万历三大征」</b>（1592 宁夏哱拜、1592–1598 朝鲜抗倭援朝、1599 播州杨应龙），皆胜，然耗帑巨万。</li>
+              <li>「国本之争」久拖立储；1589 后<b>近三十年不上朝</b>，矿监税使横征，民怨四起。</li>
+              <li>1619 <b>萨尔浒之战</b>大败于后金努尔哈赤，辽东局势糜烂。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献 / 影响</span>
+            <ul>
+              <li>前十年张居正改革使明朝财政、军政一度复振，为全盛回光。</li>
+              <li>中后期消极怠政、党争（东林党争起）激化，后金崛起，世称<b>「明实亡于万历」</b>。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·神宗本纪》：</span>「故论者谓明之亡，实亡于神宗，岂不诚然哉！」——这是《明史》对其最重的盖棺定论。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14 光宗 -->
+      <div class="emp">
+        <div class="dot">14</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明光宗</span><span class="era">泰昌</span><span class="name">朱常洛</span></div>
+          <div class="reign">在位 1620（<b>仅 29 天</b>）· 享年 38 · <b>神宗长子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>神宗<b>长子</b>，生母为宫女王氏，地位卑微，是「国本之争」的焦点，太子之位苦争二十年方定。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>1620 八月即位，旋即纵欲患病；李可灼进「红丸」，服后暴卒，史称<b>「红丸案」</b>。</li>
+              <li>与「梃击案」「移宫案」并称<b>明末三大案</b>，皆围绕其储位与身后展开，党争由此白热化。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献</span>
+            <ul>
+              <li>即位之初罢矿监税使、补缺官、发内帑犒边，颇有拨乱之意，惜未及施展而崩。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·光宗本纪》：</span>「光宗潜德久彰，海内属望，而嗣服一月，天不假年……惜哉！」叹其有令名而在位太促。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15 熹宗 -->
+      <div class="emp crimson">
+        <div class="dot">15</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明熹宗</span><span class="era">天启</span><span class="name">朱由校 · 木匠皇帝</span></div>
+          <div class="reign">在位 1620–1627（7 年）· 享年 22 · <b>光宗长子</b></div>
+          <div class="rel"><span class="tag">血缘：</span>光宗<b>长子</b>。十六岁即位，因「移宫案」仓促登极，少年好木工而疏政。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>沉迷木工营造，朝政付于乳母客氏与宦官<b>魏忠贤</b>，「阉党」势焰熏天，自号「九千岁」。</li>
+              <li>阉党大兴党狱，残害<b>东林党人</b>（杨涟、左光斗等「六君子」惨死诏狱）。</li>
+              <li>辽东战事：1622 广宁失守；赖<b>孙承宗、袁崇焕</b>筑宁锦防线，1626 宁远之战重创努尔哈赤。</li>
+              <li>1627 落水受惊染病而崩，无子，传位于弟。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献 / 影响</span>
+            <ul>
+              <li>本人怠政误国，纵容阉党，使明末政治生态进一步崩坏。</li>
+              <li>关宁防线的构筑，暂时遏制了后金西进，为残局留一线生机。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·熹宗本纪》：</span>「明自世宗而后，纲纪日以陵夷……忠贤一窃国柄，滥赏淫刑……而帝竟酣嬉于斧斤之事，卒以亡国。」斥其荒嬉亡政。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 16 思宗 -->
+      <div class="emp crimson">
+        <div class="dot">16</div>
+        <div class="card">
+          <div class="card-head"><span class="temple">明思宗</span><span class="era">崇祯</span><span class="name">朱由检 · 崇祯帝</span></div>
+          <div class="reign">在位 1627–1644（17 年）· 享年 34 · <b>明朝亡国之君</b></div>
+          <div class="rel"><span class="tag">血缘：</span>光宗<b>第五子</b>，熹宗之<b>弟</b>。熹宗无嗣，<b>兄终弟及</b>，由信王入承大统。</div>
+          <div class="block"><span class="lab evt">重要时间</span>
+            <ul>
+              <li>1627 即位，1628 雷厉风行<b>铲除魏忠贤阉党</b>，天下称快。</li>
+              <li>1630 中皇太极反间计，<b>冤杀蓟辽督师袁崇焕</b>，自毁长城。</li>
+              <li>陕北大旱激起<b>李自成、张献忠</b>农民军；同时辽东后金（清）步步紧逼，「内忧外患」交攻。</li>
+              <li>在位十七年，频繁更换内阁与督抚（杀总督七人、巡抚十一人），君臣离心。</li>
+              <li><b>1644 年三月十九日</b>，李自成破北京，崇祯帝自缢于煤山（今景山），明朝灭亡。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab con">主要贡献 / 影响</span>
+            <ul>
+              <li>勤政节俭、励精图治，志在中兴，常自责下「罪己诏」。</li>
+              <li>然性多疑刚愎、用人不专、刻薄寡恩，终回天乏术，承万历以来积重难返之亡局。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab eva">史书评价</span>
+            <p class="eva-text"><span class="src">《明史·庄烈帝本纪》：</span>「帝承神、熹之后，慨然有为……而求治太急，丛脞之病，无救于败亡。然在位十有七年……非亡国之君，而当亡国之运……可谓不幸也已。」哀其志而悯其运。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== 名臣谱 ===== -->
+  <section>
+    <h2>三、名臣谱（事奉皇帝 · 功绩 · 结局）</h2>
+    <div class="minister-intro">
+      明朝名臣辈出，却有一条触目的暗线：<b>功高者多难善终</b>。开国功臣死于太祖党狱，方孝孺死于成祖之刀，<b>于谦再造社稷却被英宗冤杀</b>，张居正身后遭神宗清算抄家，袁崇焕守边却被崇祯凌迟——君臣相疑、兔死狗烹，几乎贯穿一代。下表以「事奉皇帝→核心功绩→结局」为主线，结局栏用 <span class="fate-kill">红色</span> 标出被本朝皇帝/阉党所杀者。
+    </div>
+    <table class="mins">
+      <thead>
+        <tr><th>名臣</th><th>事奉皇帝（年号）</th><th>核心功绩</th><th>结局</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>刘基（刘伯温）</td><td>太祖 洪武</td><td class="deed">开国第一谋臣，定征伐方略、制历法律令</td><td class="fate">1375 病逝，传为胡惟庸所毒（野史）</td></tr>
+        <tr><td>李善长</td><td>太祖 洪武</td><td class="deed">开国首功文臣、首任左丞相，比之萧何</td><td class="fate"><span class="fate-kill">1390 坐胡惟庸党，全家七十余口被诛</span></td></tr>
+        <tr><td>徐达</td><td>太祖 洪武</td><td class="deed">开国第一名将，北伐灭元、克大都</td><td class="fate">1385 病逝，追封中山王，配享太庙</td></tr>
+        <tr><td>胡惟庸</td><td>太祖 洪武</td><td class="deed">最后一任丞相（后定为权奸）</td><td class="fate"><span class="fate-kill">1380 以谋反诛，株连三万，丞相制就此废</span></td></tr>
+        <tr><td>蓝玉</td><td>太祖 洪武</td><td class="deed">名将，捕鱼儿海大破北元</td><td class="fate"><span class="fate-kill">1393 蓝玉案，剥皮抄家，株连一万五千</span></td></tr>
+        <tr><td>方孝孺</td><td>建文</td><td class="deed">建文重臣、天下读书种子之宗</td><td class="fate"><span class="fate-kill">拒草成祖即位诏，被灭十族（八百余人）</span></td></tr>
+        <tr><td>郑和</td><td>成祖 永乐</td><td class="deed">七下西洋，远抵东非，宣威异域</td><td class="fate">1433 第七次返航途中病逝于古里</td></tr>
+        <tr><td>三杨（士奇·荣·溥）</td><td>仁宗·宣宗·英宗</td><td class="deed">历四朝内阁辅政，缔造「仁宣之治」</td><td class="fate"><span class="fate-ok">皆善终</span>；三杨凋零后王振始专权</td></tr>
+        <tr style="background:#fbeede;"><td><b>于谦</b> ★</td><td>代宗 景泰</td><td class="deed"><b>土木之变后主持北京保卫战，力排南迁、再造社稷</b></td><td class="fate"><span class="fate-kill">1457 英宗夺门复辟，以「谋逆」冤杀；天下冤之，成化追复</span></td></tr>
+        <tr><td>王守仁（王阳明）</td><td>武宗 正德</td><td class="deed">旬月平宁王宸濠之乱；创「心学」，立德立功立言</td><td class="fate"><span class="fate-ok">1529 病逝军中</span>，谥文成，从祀孔庙</td></tr>
+        <tr><td>王恕·刘大夏·马文升</td><td>孝宗 弘治</td><td class="deed">「弘治三君子」，佐成「弘治中兴」</td><td class="fate"><span class="fate-ok">多得善终</span></td></tr>
+        <tr><td>杨廷和</td><td>武宗·世宗</td><td class="deed">武宗暴崩后总朝政三十七日、定策迎立世宗</td><td class="fate">大礼议忤世宗，1524 致仕、后削籍为民</td></tr>
+        <tr><td>严嵩</td><td>世宗 嘉靖</td><td class="deed">内阁首辅二十年（一代权奸）</td><td class="fate">1562 败，籍没家产，1567 寄食墓舍而死</td></tr>
+        <tr><td>海瑞</td><td>世宗·穆宗·神宗</td><td class="deed">「海青天」，备棺上《治安疏》直斥嘉靖</td><td class="fate">下狱待死，嘉靖崩获释，<span class="fate-ok">1587 卒于任</span></td></tr>
+        <tr><td>戚继光</td><td>世宗·穆宗·神宗</td><td class="deed">抗倭名将（台州大捷），镇蓟州固北边</td><td class="fate">张居正死后被排挤罢归，1588 病逝</td></tr>
+        <tr style="background:#fbeede;"><td><b>张居正</b> ★</td><td>神宗 万历</td><td class="deed"><b>内阁首辅，行一条鞭法、考成法，成「万历中兴」</b></td><td class="fate"><span class="fate-kill">1582 病逝，旋遭神宗清算抄家、险开棺戮尸</span></td></tr>
+        <tr><td>杨涟·左光斗</td><td>熹宗 天启</td><td class="deed">东林「六君子」，劾魏忠贤二十四大罪</td><td class="fate"><span class="fate-kill">1625 被阉党下诏狱，酷刑拷死</span></td></tr>
+        <tr><td>孙承宗</td><td>熹宗·思宗</td><td class="deed">督师辽东，筑「关宁锦防线」拒后金</td><td class="fate"><span class="fate-kill">1638 清军破高阳，率全家殉国</span></td></tr>
+        <tr style="background:#fbeede;"><td><b>袁崇焕</b> ★</td><td>熹宗·思宗</td><td class="deed"><b>宁远大捷重创努尔哈赤、宁锦大捷拒皇太极</b></td><td class="fate"><span class="fate-kill">1630 崇祯中反间计，以「通敌」凌迟处死</span></td></tr>
+        <tr><td>史可法（附·南明）</td><td>思宗·南明弘光</td><td class="deed">督师扬州，孤城抗清</td><td class="fate"><span class="fate-kill">1645 扬州城破殉国，史称「扬州十日」</span></td></tr>
+      </tbody>
+    </table>
+
+    <h2 style="font-size:27px; border:none; margin:42px 0 18px; color:var(--crimson);">◆ 重点名臣详述</h2>
+
+    <div class="mcard">
+      <h3>于谦 —— 再造社稷之臣，却死于他所救的皇帝之手</h3>
+      <p class="who">事奉：代宗（景泰）· 由前朝英宗（正统）擢用 · <b>结局：被复辟的英宗（天顺）冤杀</b></p>
+      <p><span class="lab m">功绩</span>1449 年「土木堡之变」，英宗朱祁镇被瓦剌也先掳走，五十万京军覆没，京师震动、群臣议南迁。时任兵部侍郎的于谦力斥南迁之议，扶立郕王朱祁钰即位（代宗），亲自督师，整顿京营、调集勤王之兵，于德胜门外大破瓦剌，<b>北京保卫战</b>转危为安，保住了明朝半壁江山，世人比之挽狂澜于既倒。</p>
+      <p><span class="lab k">结局</span>1457 年代宗病重，徐有贞、石亨、曹吉祥发动「夺门之变」迎英宗复位。复辟的英宗为坐实政变之「正当」，听信谗言，<b>以「谋逆」之罪将于谦下狱处斩</b>，抄家时家无余财、唯有皇帝赐物。于谦之死，「天下冤之」。直到其子于冕上疏、明宪宗成化年间方为他平反复官，追谥「肃愍」，后改「忠肃」。</p>
+      <p><span class="lab s">评说</span>《明史》本传：「谦忠心义烈，与日月争光，卒以谗死……」其《石灰吟》"粉骨碎身浑不怕，要留清白在人间"，正是一生写照。于谦之冤，是明代「功臣难善终」最刺痛人心的一笔。</p>
+    </div>
+
+    <div class="mcard">
+      <h3>张居正 —— 续命半世纪的改革家，身后被门生天子抄家</h3>
+      <p class="who">事奉：神宗（万历）· 同时身兼帝师与首辅 · <b>结局：死后遭神宗清算、抄家削谥</b></p>
+      <p><span class="lab m">功绩</span>神宗十岁即位，张居正以内阁首辅总揽朝纲十年。他推行<b>「考成法」</b>整顿吏治、<b>「一条鞭法」</b>合并赋役征银，清丈田亩、裁汰冗费，使太仓积粟可支十年、国库充盈，又用戚继光、李成梁固边，史称「万历中兴」，被誉为明代最有魄力的政治家。</p>
+      <p><span class="lab k">结局</span>1582 年张居正病逝。亲政后的神宗与失势官僚反攻倒算，<b>抄没张家、长子自尽、削去官谥</b>，几乎开棺戮尸，改革新政多被废弛。一代权相，生荣死辱。</p>
+      <p><span class="lab s">评说</span>《明史》：「居正为政，以尊主权、课吏职、信赏罚、一号令为主……虽万里外，朝下而夕奉行。」功在社稷，然威权震主、待人严刻，亦埋下身后之祸。</p>
+    </div>
+
+    <div class="mcard">
+      <h3>袁崇焕 —— 关宁长城，毁于自家君王的反间计</h3>
+      <p class="who">事奉：熹宗（天启）→ 思宗（崇祯）· <b>结局：被崇祯以「通敌」凌迟处死</b></p>
+      <p><span class="lab m">功绩</span>天启年间，袁崇焕坚守宁远孤城，以红夷大炮重创努尔哈赤（<b>宁远大捷</b>，后金兴兵以来首败），次年又取<b>宁锦大捷</b>击退皇太极，构筑「关宁锦防线」，一度是后金西进最大的障碍。</p>
+      <p><span class="lab k">结局</span>1629 年皇太极绕道破关、兵临北京。崇祯中皇太极所施<b>反间计</b>，疑袁崇焕通敌引兵，1630 年将其逮捕，次年以「擅主和议、专戮大帅、通敌谋叛」之罪<b>凌迟处死</b>于市，京民不明真相，争啖其肉。自毁长城，辽东再无可恃之将。</p>
+      <p><span class="lab s">评说</span>《明史》本传：「自崇焕死，边事益无人，明亡征决矣。」其功过、是否「通敌」后世仍有争议，但崇祯之猜杀大将，公认是加速明亡的致命一击。</p>
+    </div>
+
+    <div class="mcard good">
+      <h3>方孝孺 与 王阳明 —— 一以死殉道，一以功成圣</h3>
+      <p class="who">方孝孺：事奉建文，<b>被成祖灭十族</b> ｜ 王阳明：事奉武宗，<b>得善终封圣</b></p>
+      <p><span class="lab k">方孝孺</span>建文帝之师、天下文宗。1402 年成祖破南京，欲借其声望草拟即位诏书，方孝孺掷笔大书「燕贼篡位」，宁死不从。成祖怒而<b>诛其十族（连门生友朋共八百余人）</b>，为中国史上唯一一例。气节凛然，亦是靖难之残酷的极端注脚。</p>
+      <p><span class="lab m">王阳明</span>正德年间，南赣巡抚王守仁<b>仅用四十余日平定宁王朱宸濠之乱</b>，又屡平民变；更于龙场悟道，集「心学」之大成，提出「知行合一」「致良知」，立德、立功、立言三不朽，是明代少数功成名就、得享荣谥的名臣。两相对照，足见明代士人「殉道」与「事功」的两种极致。</p>
+    </div>
+
+    <div class="mcard">
+      <h3>群像速记 —— 其余名臣与他们的皇帝</h3>
+      <p><b>太祖朝</b>：刘伯温定策、徐达常遇春平天下、李善长理庶政——开国班底，却多在洪武党狱（胡惟庸案、蓝玉案）中凋零。</p>
+      <p><b>仁宣英三朝</b>：「三杨」内阁辅政四十年，是明代文官政治的黄金期，仁宣之治赖以维系；三杨之后王振乱政，盛极而衰。</p>
+      <p><b>嘉靖朝</b>：海瑞备棺骂君、戚继光俞大猷荡平东南倭患、徐阶斗倒严嵩——清官、名将、贤相同台，与崇道怠政的世宗形成强烈反差。</p>
+      <p><b>天启朝</b>：东林党杨涟、左光斗等「六君子」死劾魏忠贤，被阉党拷死诏狱，正邪相搏，是明末党争最惨烈的一幕。</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="rule"></div>
+    <p>明朝 1368–1644 · 十六帝二百七十六年 · 资料据《明史》各本纪及通行明代史述梳理</p>
+    <p>制于 2026-06-13 · 史料评价以《明史》为主，年代以公元纪年标注（即位/改元之年偶有一年之差，依本纪为准）</p>
+  </footer>
+
+</div>
+</body>
+</html>
