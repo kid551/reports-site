@@ -112,27 +112,23 @@
     border-radius:10px; font-size:18px; color:var(--crimson); font-weight:700; letter-spacing:1px;
     border:1px dashed #c9a06a;
   }
-  /* 名臣谱 */
-  .minister-intro{
-    background:var(--card); border:1px solid var(--line); border-left:6px solid var(--crimson);
-    border-radius:10px; padding:20px 24px; margin:24px 0 28px; font-size:19px; color:var(--ink-soft);
-  }
-  .minister-intro b{color:var(--crimson);}
-  table.mins td.deed{text-align:left;}
-  table.mins td.fate{text-align:left; font-size:16.5px;}
+  /* 表格·在位时长 */
+  td .dur{display:block; font-size:13.5px; color:var(--gold-deep); margin-top:2px; letter-spacing:.5px;}
+  /* 时间线内·名臣 */
+  .lab.min{background:#a8631f;}
+  .block li b{color:var(--ink);}
   .fate-kill{color:var(--crimson); font-weight:700;}
   .fate-ok{color:var(--green); font-weight:700;}
-  .mcard{
-    background:var(--card); border:1px solid var(--line); border-radius:14px;
-    padding:22px 26px; margin:20px 0; box-shadow:0 6px 20px rgba(120,94,28,.07);
-    border-left:6px solid var(--crimson);
+  .spotlight{
+    background:#f5ecd8; border:1px solid #d8c39a; border-left:5px solid var(--crimson);
+    border-radius:10px; padding:15px 19px; margin:14px 0 4px;
   }
-  .mcard.good{border-left-color:var(--green);}
-  .mcard h3{font-size:26px; margin:0 0 4px; color:var(--ink); letter-spacing:1px;}
-  .mcard .who{font-size:17.5px; color:var(--gold-deep); margin:0 0 12px;}
-  .mcard p{margin:8px 0; font-size:18.5px;}
-  .mcard .lab{display:inline-block; font-size:15px; font-weight:800; color:#fff; padding:1px 10px; border-radius:5px; margin-right:8px; letter-spacing:1px;}
-  .mcard .lab.k{background:var(--crimson);} .mcard .lab.m{background:var(--green);} .mcard .lab.s{background:#7a5470;}
+  .spotlight.ok{border-left-color:var(--green);}
+  .spotlight .sp-name{font-size:21px; font-weight:800; color:var(--crimson); margin-bottom:5px; letter-spacing:1px;}
+  .spotlight.ok .sp-name{color:var(--green);}
+  .spotlight p{margin:7px 0; font-size:18px; line-height:1.78;}
+  .spotlight .sp-tag{display:inline-block; font-size:14px; font-weight:800; color:#fff; padding:1px 9px; border-radius:5px; margin-right:7px; letter-spacing:1px;}
+  .sp-tag.m{background:var(--green);} .sp-tag.k{background:var(--crimson);} .sp-tag.s{background:#7a5470;}
   footer{margin-top:60px; text-align:center; font-size:16.5px; color:var(--ink-soft); line-height:1.9;}
   footer .rule{width:120px; height:2px; background:var(--gold); margin:0 auto 18px;}
   @media (max-width:680px){
@@ -153,7 +149,7 @@
   </header>
 
   <div class="intro">
-    明朝自太祖朱元璋立国，至思宗朱由检自缢煤山，共传 <b>十六位皇帝</b>。皇位主线为「太祖 → 成祖一系」嫡长相承，其间经历 <b>三次非常规交接</b>：建文以皇太孙继统、成祖靖难夺位、世宗以藩王入继大统。下文先以总览表呈现完整世系与每代血缘关系，再以时间线逐帝详述<b>在位大事、主要贡献与史书评价</b>。
+    明朝自太祖朱元璋立国，至思宗朱由检自缢煤山，共传 <b>十六位皇帝</b>。皇位主线为「太祖 → 成祖一系」嫡长相承，其间经历 <b>三次非常规交接</b>：建文以皇太孙继统、成祖靖难夺位、世宗以藩王入继大统。下文先以总览表呈现完整世系与每代血缘关系，再以时间线逐帝详述<b>在位大事、辅弼名臣、主要贡献与史书评价</b>——名臣事迹直接系于其所事奉的皇帝之下。其中有一条触目暗线：<b>明朝功臣多难善终</b>，李善长死于太祖党狱、方孝孺被成祖灭十族、于谦被英宗冤杀、张居正死后遭神宗抄家、袁崇焕被崇祯凌迟，君臣相疑几乎贯穿一代（被本朝皇帝或阉党所杀者，下文以<span style="color:#8c2f2f;font-weight:700;">红字</span>标出）。
   </div>
 
   <!-- ===== 世系总览表 ===== -->
@@ -166,23 +162,23 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>太祖</td><td>朱元璋</td><td>洪武</td><td>1368–1398</td><td class="l">开国皇帝</td></tr>
-        <tr><td>2</td><td>惠帝（建文帝）</td><td>朱允炆</td><td>建文</td><td>1398–1402</td><td class="l">太祖之<b>孙</b>（太子朱标次子），以皇太孙继位</td></tr>
-        <tr><td>3</td><td>成祖</td><td>朱棣</td><td>永乐</td><td>1402–1424</td><td class="l">太祖<b>第四子</b>，建文帝之<b>叔</b>，靖难夺位</td></tr>
-        <tr><td>4</td><td>仁宗</td><td>朱高炽</td><td>洪熙</td><td>1424–1425</td><td class="l">成祖<b>长子</b></td></tr>
-        <tr><td>5</td><td>宣宗</td><td>朱瞻基</td><td>宣德</td><td>1425–1435</td><td class="l">仁宗<b>长子</b></td></tr>
-        <tr><td>6</td><td>英宗</td><td>朱祁镇</td><td>正统</td><td>1435–1449</td><td class="l">宣宗<b>长子</b></td></tr>
-        <tr><td>7</td><td>代宗（景泰帝）</td><td>朱祁钰</td><td>景泰</td><td>1449–1457</td><td class="l">宣宗<b>次子</b>，英宗之<b>弟</b>，土木之变后被拥立</td></tr>
-        <tr><td>6′</td><td>英宗（复辟）</td><td>朱祁镇</td><td>天顺</td><td>1457–1464</td><td class="l">夺门之变复位</td></tr>
-        <tr><td>8</td><td>宪宗</td><td>朱见深</td><td>成化</td><td>1464–1487</td><td class="l">英宗<b>长子</b></td></tr>
-        <tr><td>9</td><td>孝宗</td><td>朱祐樘</td><td>弘治</td><td>1487–1505</td><td class="l">宪宗<b>第三子</b></td></tr>
-        <tr><td>10</td><td>武宗</td><td>朱厚照</td><td>正德</td><td>1505–1521</td><td class="l">孝宗<b>独子</b>，无嗣</td></tr>
-        <tr><td>11</td><td>世宗（嘉靖帝）</td><td>朱厚熜</td><td>嘉靖</td><td>1521–1567</td><td class="l">孝宗之<b>侄</b>、武宗<b>堂弟</b>，兴献王之子，以藩王入继</td></tr>
-        <tr><td>12</td><td>穆宗</td><td>朱载坖</td><td>隆庆</td><td>1567–1572</td><td class="l">世宗<b>第三子</b></td></tr>
-        <tr><td>13</td><td>神宗（万历帝）</td><td>朱翊钧</td><td>万历</td><td>1572–1620</td><td class="l">穆宗<b>第三子</b></td></tr>
-        <tr><td>14</td><td>光宗</td><td>朱常洛</td><td>泰昌</td><td>1620</td><td class="l">神宗<b>长子</b>，在位仅一月</td></tr>
-        <tr><td>15</td><td>熹宗</td><td>朱由校</td><td>天启</td><td>1620–1627</td><td class="l">光宗<b>长子</b></td></tr>
-        <tr><td>16</td><td>思宗（崇祯帝）</td><td>朱由检</td><td>崇祯</td><td>1627–1644</td><td class="l">光宗<b>第五子</b>，熹宗之<b>弟</b>，兄终弟及</td></tr>
+        <tr><td>1</td><td>太祖</td><td>朱元璋</td><td>洪武<span class="dur">在位 31 年</span></td><td>1368–1398</td><td class="l">开国皇帝</td></tr>
+        <tr><td>2</td><td>惠帝（建文帝）</td><td>朱允炆</td><td>建文<span class="dur">在位 4 年</span></td><td>1398–1402</td><td class="l">太祖之<b>孙</b>（太子朱标次子），以皇太孙继位</td></tr>
+        <tr><td>3</td><td>成祖</td><td>朱棣</td><td>永乐<span class="dur">在位 22 年</span></td><td>1402–1424</td><td class="l">太祖<b>第四子</b>，建文帝之<b>叔</b>，靖难夺位</td></tr>
+        <tr><td>4</td><td>仁宗</td><td>朱高炽</td><td>洪熙<span class="dur">在位 ≈10 月</span></td><td>1424–1425</td><td class="l">成祖<b>长子</b></td></tr>
+        <tr><td>5</td><td>宣宗</td><td>朱瞻基</td><td>宣德<span class="dur">在位 10 年</span></td><td>1425–1435</td><td class="l">仁宗<b>长子</b></td></tr>
+        <tr><td>6</td><td>英宗</td><td>朱祁镇</td><td>正统<span class="dur">在位 14 年</span></td><td>1435–1449</td><td class="l">宣宗<b>长子</b></td></tr>
+        <tr><td>7</td><td>代宗（景泰帝）</td><td>朱祁钰</td><td>景泰<span class="dur">在位 8 年</span></td><td>1449–1457</td><td class="l">宣宗<b>次子</b>，英宗之<b>弟</b>，土木之变后被拥立</td></tr>
+        <tr><td>6′</td><td>英宗（复辟）</td><td>朱祁镇</td><td>天顺<span class="dur">在位 7 年</span></td><td>1457–1464</td><td class="l">夺门之变复位</td></tr>
+        <tr><td>8</td><td>宪宗</td><td>朱见深</td><td>成化<span class="dur">在位 23 年</span></td><td>1464–1487</td><td class="l">英宗<b>长子</b></td></tr>
+        <tr><td>9</td><td>孝宗</td><td>朱祐樘</td><td>弘治<span class="dur">在位 18 年</span></td><td>1487–1505</td><td class="l">宪宗<b>第三子</b></td></tr>
+        <tr><td>10</td><td>武宗</td><td>朱厚照</td><td>正德<span class="dur">在位 16 年</span></td><td>1505–1521</td><td class="l">孝宗<b>独子</b>，无嗣</td></tr>
+        <tr><td>11</td><td>世宗（嘉靖帝）</td><td>朱厚熜</td><td>嘉靖<span class="dur">在位 45 年</span></td><td>1521–1567</td><td class="l">孝宗之<b>侄</b>、武宗<b>堂弟</b>，兴献王之子，以藩王入继</td></tr>
+        <tr><td>12</td><td>穆宗</td><td>朱载坖</td><td>隆庆<span class="dur">在位 6 年</span></td><td>1567–1572</td><td class="l">世宗<b>第三子</b></td></tr>
+        <tr><td>13</td><td>神宗（万历帝）</td><td>朱翊钧</td><td>万历<span class="dur">在位 48 年</span></td><td>1572–1620</td><td class="l">穆宗<b>第三子</b></td></tr>
+        <tr><td>14</td><td>光宗</td><td>朱常洛</td><td>泰昌<span class="dur">在位 ≈1 月</span></td><td>1620</td><td class="l">神宗<b>长子</b>，在位仅一月</td></tr>
+        <tr><td>15</td><td>熹宗</td><td>朱由校</td><td>天启<span class="dur">在位 7 年</span></td><td>1620–1627</td><td class="l">光宗<b>长子</b></td></tr>
+        <tr><td>16</td><td>思宗（崇祯帝）</td><td>朱由检</td><td>崇祯<span class="dur">在位 17 年</span></td><td>1627–1644</td><td class="l">光宗<b>第五子</b>，熹宗之<b>弟</b>，兄终弟及</td></tr>
       </tbody>
     </table>
   </section>
@@ -214,6 +210,15 @@
               <li>重塑中央集权官制，影响明清两代五百余年政治格局。</li>
             </ul>
           </div>
+          <div class="block"><span class="lab min">辅弼名臣（开国班底，多殁于洪武党狱）</span>
+            <ul>
+              <li><b>李善长</b>（开国首相·韩国公）— 开国首功文臣，掌庶政、定制度，太祖比之萧何。<span class="fate-kill">1390 年以「胡惟庸党」牵连，全家七十余口被诛，时年七十七。</span></li>
+              <li><b>刘基（刘伯温）</b>（御史中丞·诚意伯）— 开国第一谋臣，定征伐大计、制历法律令，民间神化为「前知五百年」。1375 年病逝，传为胡惟庸投毒（野史，正史无确证）。</li>
+              <li><b>徐达</b>（魏国公）/ <b>常遇春</b>（开平王）— 开国双璧名将，北伐灭元、克大都。徐达 1385 年病逝、追封中山王配享太庙；常遇春 1369 年北征途中暴卒。</li>
+              <li><b>胡惟庸</b> — 中国历史上最后一任丞相。<span class="fate-kill">1380 年以「谋反」诛，株连三万余人</span>，太祖借此<b>永废丞相制</b>，权归六部。</li>
+              <li><b>蓝玉</b>（凉国公）— 名将，1388 年捕鱼儿海大破北元。<span class="fate-kill">1393 年「蓝玉案」以谋反剥皮实草，株连一万五千人</span>，开国宿将至此几尽。</li>
+            </ul>
+          </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·太祖本纪》：</span>「太祖以聪明神武之资，抱济世安民之志……武定祸乱，文致太平，太祖实身兼之。」赞其雄才；亦讥其晚年「猜忌好杀」，株连过酷。</p>
           </div>
@@ -239,6 +244,17 @@
               <li>宽刑省狱，纠太祖严苛之政，史称「建文新政」，文教一时宽和。</li>
               <li>因削藩操切、用人书生气，终致败亡，为后世变法之鉴。</li>
             </ul>
+          </div>
+          <div class="block"><span class="lab min">辅弼名臣（建文死忠，靖难后几被尽诛）</span>
+            <ul>
+              <li><b>齐泰 · 黄子澄</b>（兵部尚书 / 太常卿）— 削藩主谋，力主撤燕。<span class="fate-kill">城破被成祖处死、族灭。</span></li>
+              <li><b>铁铉</b>（山东参政）— 死守济南，几以诈降擒杀朱棣。<span class="fate-kill">兵败被磔，传成祖以油锅烹之，骂不绝口。</span></li>
+            </ul>
+          </div>
+          <div class="spotlight">
+            <div class="sp-name">★ 方孝孺 —— 拒草篡诏，被诛十族</div>
+            <p><span class="sp-tag s">其人</span>建文帝之师、天下读书人之宗，名重一时，门生遍野。</p>
+            <p><span class="sp-tag k">结局</span>1402 年成祖破南京，欲借其声望草拟即位诏书。方孝孺掷笔于地、大书「<b>燕贼篡位</b>」，宁死不从。成祖怒，<span class="fate-kill">诛其「十族」——九族之外加门生友朋，共八百余人，方孝孺本人被磔于市</span>。这是中国史上唯一一例「灭十族」，也是靖难之残酷的极端注脚。其气节，后世奉为士人风骨之标杆。</p>
           </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·恭闵帝本纪》：</span>「天资仁厚……惠泽未及于民，而国统中绝。」哀其仁弱而失国；成祖在位时削其帝号，南明始追谥「惠帝」。</p>
@@ -269,6 +285,14 @@
               <li>经略边疆：设奴儿干都司、置贵州布政司、收安南，开创「永乐盛世」。</li>
             </ul>
           </div>
+          <div class="block"><span class="lab min">辅弼名臣（永乐文武之盛）</span>
+            <ul>
+              <li><b>姚广孝（道衍和尚）</b>— 靖难首席谋主，怂恿并辅佐朱棣起兵夺位，世称「<b>黑衣宰相</b>」；后监修《永乐大典》。<span class="fate-ok">1418 年善终，谥恭靖，配享太庙（明代文臣配享之唯一）。</span></li>
+              <li><b>郑和（三宝太监）</b>— 七下西洋（永乐朝六次），舰队远抵东非，扬国威于异域。1433 年第七次返航途中病逝于古里。</li>
+              <li><b>解缙</b>— 一代才子，主持纂修《永乐大典》。后卷入立储之争失宠，<span class="fate-kill">1415 年被锦衣卫灌醉、埋于积雪中冻死。</span></li>
+              <li><b>夏原吉</b>（户部尚书）— 理财能臣，为下西洋、北征、迁都筹措巨饷，历事五朝、国之柱石。</li>
+            </ul>
+          </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·成祖本纪》：</span>「智勇有大略……雄武之略，同符高祖。六师屡出，漠北尘清……远迈汉唐！」极赞其功；后世亦评其得位不正、用刑严酷。</p>
           </div>
@@ -292,6 +316,12 @@
             <ul>
               <li>息兵养民、宽赦减赋，扭转永乐连年用兵之耗，开「仁宣之治」之端。</li>
               <li>重用「三杨」（杨士奇、杨荣、杨溥），文官内阁地位上升。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab min">辅弼名臣（内阁政治成型）</span>
+            <ul>
+              <li><b>「三杨」——杨士奇、杨荣、杨溥</b>自此正式执掌内阁中枢，成为「仁宣之治」的文官支柱，<span class="fate-ok">辅政历仁、宣、英三朝近三十年</span>。</li>
+              <li><b>夏原吉 · 蹇义</b>— 五朝元老复掌户部、吏部，老成持重，与三杨同撑大局。</li>
             </ul>
           </div>
           <div class="block"><span class="lab eva">史书评价</span>
@@ -320,6 +350,13 @@
               <li>本人善书画，「宣德炉」「宣德青花」为一代工艺名品。</li>
             </ul>
           </div>
+          <div class="block"><span class="lab min">辅弼名臣（君臣相得的黄金期）</span>
+            <ul>
+              <li><b>「三杨」</b>续秉国钧，内阁票拟成制，吏治清平，仁宣之治臻于鼎盛。</li>
+              <li><b>于谦</b>（初露头角）— 宣德间任御史，巡按江西、巡抚河南山西，平反冤狱、赈济灾荒，以清直干练知名。这位日后再造社稷的名臣，正是从宣宗朝起步。</li>
+              <li><b>蹇义 · 夏原吉</b>— 老臣坐镇六部，为「仁宣之治」压舱。</li>
+            </ul>
+          </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·宣宗本纪》：</span>「仁、宣之际，吏称其职，政得其平，纲纪修明，仓庾充羡，闾阎乐业……盖明兴至是历年六十，民气渐舒，蒸然有治平之象矣。」</p>
           </div>
@@ -343,6 +380,13 @@
           <div class="block"><span class="lab con">主要贡献 / 影响</span>
             <ul>
               <li>正统前期承仁宣余荫，国力尚盛；土木之变成为明朝由盛转衰的转折点。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab min">辅弼名臣 / 权阉（贤辅凋零，阉祸初起）</span>
+            <ul>
+              <li><b>「三杨」相继离世</b>（杨荣 1440、杨士奇 1444、杨溥 1446 卒），辅政中枢出现真空，少年天子失去约束。</li>
+              <li><b>王振</b>（司礼监太监）— <b>明代第一个专权宦官</b>，结党营私、擅威作福。1449 年怂恿英宗轻率亲征，酿成<span class="fate-kill">土木堡之变</span>；乱军中王振被护卫将军樊忠捶死。明代宦官之祸由此发端。</li>
+              <li><b>于谦</b>（兵部侍郎）— 正统间任职兵部，因不附王振一度下狱，土木之变后临危受命，成为下一朝的中流砥柱。</li>
             </ul>
           </div>
           <div class="block"><span class="lab eva">史书评价</span>
@@ -372,6 +416,16 @@
               <li>整顿京营、重用贤能，景泰一朝政局一度回稳。</li>
             </ul>
           </div>
+          <div class="spotlight">
+            <div class="sp-name">★ 于谦 —— 再造社稷之臣（功绩）</div>
+            <p><span class="sp-tag m">力挽狂澜</span>1449 年土木之变，英宗被瓦剌也先掳走、五十万京军覆没，京师震动，徐珵（徐有贞）等议南迁。<b>时任兵部侍郎的于谦力斥南迁之议</b>——「言南迁者，可斩也！京师天下根本，一动则大事去矣」，扶立郕王朱祁钰即位以安人心，自任兵部尚书，整顿京营、调集勤王之师。</p>
+            <p><span class="sp-tag m">北京保卫战</span>瓦剌挟英宗兵临城下，于谦亲自披甲督战于德胜门外，列阵九门、背城死战，大破也先，瓦剌挟天子勒索之计落空，<b>明朝转危为安、保全半壁</b>。世人比之挽狂澜于既倒，功在社稷。其结局之惨，详见下一代「天顺」卡。</p>
+          </div>
+          <div class="block"><span class="lab min">其他重臣</span>
+            <ul>
+              <li><b>王文 · 陈循</b>— 景泰内阁辅臣，助代宗稳住政局；夺门之变后王文与于谦同被处死。</li>
+            </ul>
+          </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·景帝本纪》：</span>「景帝当倥偬之时，奉命居摄，旋王大位，以系人心，事之权而得其正者也……」赞其守国之功；惜其晚年易储、骨肉相忌。英宗复辟后削其帝号，至成化时方复。</p>
           </div>
@@ -397,6 +451,17 @@
           <div class="block"><span class="lab con">主要贡献</span>
             <ul>
               <li>废止自太祖以来的人殉陋习，史家许为「仁政」，惠及后世后妃。</li>
+            </ul>
+          </div>
+          <div class="spotlight">
+            <div class="sp-name">★ 于谦 —— 死于他所救的皇帝之手（结局）</div>
+            <p><span class="sp-tag k">冤杀</span>1457 年「夺门之变」，徐有贞、石亨、曹吉祥迎英宗复位。为坐实政变的「正当性」，徐有贞进言「不杀于谦，此举为无名」。<span class="fate-kill">英宗遂以「谋逆」罪将这位北京保卫战的首功之臣斩于市</span>，抄家时家无余赀、唯正屋锁着皇帝御赐之物。<b>「天下冤之」</b>，行刑之日阴霾蔽天。</p>
+            <p><span class="sp-tag s">平反</span>直至明宪宗成化年间，经其子于冕申诉，方获昭雪复官，追谥「肃愍」，后改谥「忠肃」。其《石灰吟》「<b>粉骨碎身浑不怕，要留清白在人间</b>」，正是一生写照——于谦之冤，是明代「功臣难善终」最刺痛人心的一笔。</p>
+          </div>
+          <div class="block"><span class="lab min">辅弼名臣 / 夺门功臣的反噬</span>
+            <ul>
+              <li><b>李贤</b>（内阁首辅）— 天顺一朝贤相，劝英宗远小人、惜民力，主持善政（含废殉葬之议），是这段时期难得的稳定力量。</li>
+              <li><b>徐有贞 · 石亨 · 曹吉祥</b>（夺门三人）— 拥立有功而骄横揽权，旋即互斗败亡：徐有贞被贬、<span class="fate-kill">石亨下狱死、曹吉祥 1461 年谋反被磔</span>。投机得位者终无善果。</li>
             </ul>
           </div>
           <div class="block"><span class="lab eva">史书评价</span>
@@ -425,6 +490,13 @@
               <li>后期怠政、佞幸丛生，为弘治中兴留下需要清理的积弊。</li>
             </ul>
           </div>
+          <div class="block"><span class="lab min">辅弼名臣 / 佞幸（贤奸并存）</span>
+            <ul>
+              <li><b>商辂</b>（内阁首辅）— 明代唯一「<b>连中三元</b>」（乡试、会试、殿试皆第一）的贤相，正直敢言，力请罢西厂，一度迫使汪直收敛。</li>
+              <li><b>王越</b>（兵部尚书·提督军务）— 边帅，威宁海大捷、屡破河套与建州，明代以战功封爵的少数文臣之一。</li>
+              <li><b>汪直</b>（御马监太监·提督西厂）— 宪宗宠宦，<span class="fate-kill">设西厂大兴罗织、特务横行</span>，权倾一时，后失宠被贬，西厂罢撤。</li>
+            </ul>
+          </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·宪宗本纪》：</span>「恢恢有人君之度矣。而……信任汪直，西厂横恣；传奉之官，一时杂进。」誉其度量，责其溺爱怠政。</p>
           </div>
@@ -449,6 +521,13 @@
             <ul>
               <li>勤政爱民、宽厚节俭，开<b>「弘治中兴」</b>，为明代中期最清明之世。</li>
               <li>君臣相得、言路畅通，被誉为明朝「中兴令主」。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab min">辅弼名臣（君子满朝，弘治中兴）</span>
+            <ul>
+              <li><b>「弘治三君子」——王恕、刘大夏、马文升</b>。王恕掌吏部、刚正选贤；刘大夏治军理财、敢言直谏；马文升历事五朝、整饬武备。三人皆贤能廉直，<span class="fate-ok">得享善终</span>，是弘治中兴的脊梁。</li>
+              <li><b>刘健 · 李东阳 · 谢迁</b>（内阁「李公谋、刘公断、谢公尤侃侃」）— 一时之选的贤相组合，君臣相得、言路畅通。</li>
+              <li><b>丘濬</b>（大学士）— 博学名臣，著《大学衍义补》，为治国理财之要典。</li>
             </ul>
           </div>
           <div class="block"><span class="lab eva">史书评价</span>
@@ -478,6 +557,18 @@
               <li>性格不羁、屡破祖制，是明代最具争议的「顽童天子」。</li>
             </ul>
           </div>
+          <div class="spotlight ok">
+            <div class="sp-name">★ 王守仁（王阳明）—— 立德立功立言，三不朽</div>
+            <p><span class="sp-tag m">事功</span>1519 年宁王朱宸濠举兵反，南赣巡抚王守仁<b>仅用四十余日</b>平定叛乱、生擒宁王，又屡平南中民变，是明代罕见的军事奇才。</p>
+            <p><span class="sp-tag s">立言</span>早年因忤刘瑾被贬贵州龙场，于绝境中「龙场悟道」，集<b>「心学」</b>之大成，倡「<b>知行合一</b>」「<b>致良知</b>」，影响及于东亚数百年。<span class="fate-ok">1529 年病逝军中，谥文成，从祀孔庙</span>——与方孝孺「以死殉道」相对照，王阳明是「以功成圣」的另一极。</p>
+          </div>
+          <div class="block"><span class="lab min">辅弼名臣 / 权阉</span>
+            <ul>
+              <li><b>刘瑾</b>（司礼监太监·「八虎」之首）— 专权擅政、卖官鬻爵，时称「立皇帝」。<span class="fate-kill">1510 年事败，以谋反凌迟处死</span>，籍没家产富可敌国。</li>
+              <li><b>杨廷和</b>（内阁首辅）— 正德朝中流砥柱，1521 年武宗暴崩无嗣，他总揽朝政三十七日、<b>定策迎立世宗</b>，稳住了皇位真空。</li>
+              <li><b>杨一清</b>（兵部尚书）— 平安化王之乱，设计联合宦官张永除掉刘瑾，文武兼资。</li>
+            </ul>
+          </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·武宗本纪》：</span>「然其时孝宗恭俭有制，犹有先朝之遗泽……惜乎大臣……不能尽职，致万几之荒怠，威福之下移，而帝顾以为常。」惜其耽乐怠政、所幸未致倾覆。</p>
           </div>
@@ -505,6 +596,18 @@
               <li>中后期崇道怠政、用人失当，国力虚耗，社会矛盾积累，为明衰张本。</li>
             </ul>
           </div>
+          <div class="block"><span class="lab min">辅弼名臣 / 权奸（贤奸忠佞同台）</span>
+            <ul>
+              <li><b>严嵩</b>（内阁首辅）— 一代权奸，柄国二十年，结党营私、构陷异己、贪贿无算。<span class="fate-kill">1562 年败，籍没家产，1567 年寄食墓舍、饥病而死</span>；其子严世蕃被斩。</li>
+              <li><b>夏言</b>（首辅）— 刚直敢任，为严嵩所构陷，<span class="fate-kill">1548 年弃市</span>，明代被处死的内阁首辅之一。</li>
+              <li><b>徐阶</b>（首辅）— 隐忍多年，终于斗倒严嵩，拨乱反正、起用人才，为隆万新政铺路。</li>
+              <li><b>戚继光 · 俞大猷</b>— 抗倭双璧。戚继光练「戚家军」、创鸳鸯阵，台州九战九捷；与俞大猷协力，至嘉靖末基本荡平东南倭患。</li>
+            </ul>
+          </div>
+          <div class="spotlight">
+            <div class="sp-name">★ 海瑞 —— 备棺骂君的「海青天」</div>
+            <p><span class="sp-tag s">直谏</span>1566 年，户部主事海瑞<b>买好棺材、诀别妻子</b>，上《治安疏》（「天下第一疏」）痛斥沉迷修道的嘉靖「<b>嘉靖者，言家家皆净而无财用也</b>」，直指君过。世宗暴怒下狱论死。<span class="fate-ok">次年嘉靖崩，海瑞获释</span>，一生清介刚直，1587 年卒于南京任上、身后萧然。</p>
+          </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·世宗本纪》：</span>「若其时纲纪犹明……顾迩年好神仙，富贵未几而败……盖亦有由。」赞其初政英断，讥其「中年崇道、君道致隳」。</p>
           </div>
@@ -528,6 +631,13 @@
           <div class="block"><span class="lab con">主要贡献</span>
             <ul>
               <li>宽仁守成、用人得当，「隆庆开关」与「俺答封贡」一海一陆解两大边患，史称<b>「隆庆新政」</b>，为万历初年改革铺路。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab min">辅弼名臣（人才鼎盛，新政铺路）</span>
+            <ul>
+              <li><b>高拱</b>（内阁首辅）— 锐意任事，主导整顿吏治、推动「俺答封贡」与开关，隆庆新政的核心操盘者；后在权斗中被张居正联合冯保逐去。</li>
+              <li><b>张居正</b>（入阁）— 由此进入权力中枢、崭露锋芒，为下一朝的大改革蓄势。</li>
+              <li><b>王崇古 · 谭纶 · 戚继光</b>— 主持北边议和与防务：王崇古促成俺答封贡、戚继光移镇蓟州、谭纶总督蓟辽，北边由此数十年安。</li>
             </ul>
           </div>
           <div class="block"><span class="lab eva">史书评价</span>
@@ -558,6 +668,18 @@
               <li>中后期消极怠政、党争（东林党争起）激化，后金崛起，世称<b>「明实亡于万历」</b>。</li>
             </ul>
           </div>
+          <div class="spotlight">
+            <div class="sp-name">★ 张居正 —— 续命半世纪，身后被门生天子抄家</div>
+            <p><span class="sp-tag m">改革</span>神宗十岁即位，张居正以首辅兼帝师总揽朝纲十年。推<b>「考成法」</b>以事责人、整顿吏治；行<b>「一条鞭法」</b>合并赋役、计亩征银，清丈全国田亩，使太仓积粟可支十年、国库充盈；又用戚继光、李成梁固边——史称「<b>万历中兴</b>」，是明代最有魄力的改革。</p>
+            <p><span class="sp-tag k">身后</span><span class="fate-kill">1582 年张居正病逝，亲政的神宗随即反攻倒算：抄没张家、长子自尽、削夺官谥，几乎开棺戮尸</span>，新政多遭废弛。一代权相，生荣死辱——《明史》曰其「威权震主，祸萌骖乘」。</p>
+          </div>
+          <div class="block"><span class="lab min">其他名臣名将</span>
+            <ul>
+              <li><b>戚继光 · 李成梁</b>— 张居正倚重的南北长城；居正死后戚继光被排挤罢归、1588 年病逝。</li>
+              <li><b>申时行</b>（继任首辅）— 调和君臣、维持运转，但已无力扭转神宗怠政。</li>
+              <li><b>李如松 · 麻贵 · 刘綎</b>— 「万历三大征」主将，宁夏、朝鲜、播州三役皆胜，扬威于外。</li>
+            </ul>
+          </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·神宗本纪》：</span>「故论者谓明之亡，实亡于神宗，岂不诚然哉！」——这是《明史》对其最重的盖棺定论。</p>
           </div>
@@ -580,6 +702,12 @@
           <div class="block"><span class="lab con">主要贡献</span>
             <ul>
               <li>即位之初罢矿监税使、补缺官、发内帑犒边，颇有拨乱之意，惜未及施展而崩。</li>
+            </ul>
+          </div>
+          <div class="block"><span class="lab min">相关名臣（三案中的东林身影）</span>
+            <ul>
+              <li><b>杨涟 · 左光斗</b>（东林）— 光宗骤崩、李选侍据乾清宫挟持太子，杨涟、左光斗等强闯宫禁、力促移宫，<b>护佑并扶立熹宗即位</b>（「移宫案」）。东林党由此在天启初年一度得势。</li>
+              <li><b>方从哲</b>（内阁首辅）— 因未阻「红丸」进药，事后于「红丸案」中备受清议攻讦而去位。</li>
             </ul>
           </div>
           <div class="block"><span class="lab eva">史书评价</span>
@@ -607,6 +735,18 @@
             <ul>
               <li>本人怠政误国，纵容阉党，使明末政治生态进一步崩坏。</li>
               <li>关宁防线的构筑，暂时遏制了后金西进，为残局留一线生机。</li>
+            </ul>
+          </div>
+          <div class="spotlight">
+            <div class="sp-name">★ 东林六君子 —— 死劾阉党，惨死诏狱</div>
+            <p><span class="sp-tag k">血案</span>1624 年左副都御史<b>杨涟</b>上疏<b>劾魏忠贤二十四大罪</b>，朝野震动。阉党反扑，罗织罪名大兴党狱。<span class="fate-kill">1625 年杨涟、左光斗、魏大中、周朝瑞、袁化中、顾大章「六君子」被下诏狱，受炮烙、土囊压身等酷刑拷掠致死</span>；次年高攀龙等「七君子」再遭迫害。正邪相搏，是明末党争最惨烈的一幕。</p>
+          </div>
+          <div class="block"><span class="lab min">权阉 / 边防名臣</span>
+            <ul>
+              <li><b>魏忠贤</b>（司礼监秉笔太监）+ <b>客氏</b>（熹宗乳母）— 把持朝政，自称「九千岁」，党羽遍天下、生祠林立，「阉党」之祸登峰造极。崇祯即位后被清算，畏罪自缢。</li>
+              <li><b>孙承宗</b>（帝师·辽东经略）— 督师关外，修筑<b>关宁锦防线</b>、整军屯田，稳住辽东危局；为阉党所忌而去职。</li>
+              <li><b>袁崇焕</b>（宁前道）— 1626 年坚守宁远，以红夷大炮重创努尔哈赤（<b>宁远大捷</b>，后金起兵以来首败），次年再取宁锦大捷。</li>
+              <li><b>熊廷弼</b>（辽东经略）— 主「守为正著」之策，因党争与广宁失守牵连，<span class="fate-kill">1625 年被冤杀、传首九边</span>。</li>
             </ul>
           </div>
           <div class="block"><span class="lab eva">史书评价</span>
@@ -637,88 +777,26 @@
               <li>然性多疑刚愎、用人不专、刻薄寡恩，终回天乏术，承万历以来积重难返之亡局。</li>
             </ul>
           </div>
+          <div class="spotlight">
+            <div class="sp-name">★ 袁崇焕 —— 关宁长城，毁于自家君王的反间计</div>
+            <p><span class="sp-tag m">守边</span>崇祯起复袁崇焕为蓟辽督师，许以「五年复辽」，赐尚方宝剑。然他擅杀东江总兵毛文龙，已埋君臣嫌隙。</p>
+            <p><span class="sp-tag k">凌迟</span>1629 年皇太极绕道蒙古、兵临北京（己巳之变）。袁崇焕千里回援，崇祯却<b>中皇太极所施反间计</b>，疑其引敌入塞、私通后金。<span class="fate-kill">1630 年以「擅主和议、专戮大帅、通敌谋叛」之罪将其凌迟处死于市</span>，京民不明真相、争啖其肉。自毁长城，辽东再无可恃之将——《明史》叹：「自崇焕死，边事益无人，明亡征决矣。」</p>
+          </div>
+          <div class="block"><span class="lab min">殉国群臣 / 误国庸相</span>
+            <ul>
+              <li><b>孙承宗</b>（老臣）— 致仕居乡，1638 年清军破高阳，<span class="fate-kill">率全家子孙守城殉国</span>。</li>
+              <li><b>卢象升</b>（宣大总督）— 主战名将，1639 年巨鹿贾庄被清军围困，<span class="fate-kill">力战殉国</span>，死时甲胄犹存。</li>
+              <li><b>洪承畴</b>（蓟辽总督）— 1642 年松锦大战兵败被俘，<b>降清</b>，后为清廷平定江南之先锋——气节之变，与殉国诸臣相映成讽。</li>
+              <li><b>温体仁 · 周延儒</b>（先后为首辅）— 党同伐异、欺君误国，《明史》入《奸臣传》，加速朝局崩坏。</li>
+              <li><b>史可法</b>（附·南明）— 明亡后督师扬州抗清，1645 年城破殉国，史称「扬州十日」。</li>
+            </ul>
+          </div>
           <div class="block"><span class="lab eva">史书评价</span>
             <p class="eva-text"><span class="src">《明史·庄烈帝本纪》：</span>「帝承神、熹之后，慨然有为……而求治太急，丛脞之病，无救于败亡。然在位十有七年……非亡国之君，而当亡国之运……可谓不幸也已。」哀其志而悯其运。</p>
           </div>
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ===== 名臣谱 ===== -->
-  <section>
-    <h2>三、名臣谱（事奉皇帝 · 功绩 · 结局）</h2>
-    <div class="minister-intro">
-      明朝名臣辈出，却有一条触目的暗线：<b>功高者多难善终</b>。开国功臣死于太祖党狱，方孝孺死于成祖之刀，<b>于谦再造社稷却被英宗冤杀</b>，张居正身后遭神宗清算抄家，袁崇焕守边却被崇祯凌迟——君臣相疑、兔死狗烹，几乎贯穿一代。下表以「事奉皇帝→核心功绩→结局」为主线，结局栏用 <span class="fate-kill">红色</span> 标出被本朝皇帝/阉党所杀者。
-    </div>
-    <table class="mins">
-      <thead>
-        <tr><th>名臣</th><th>事奉皇帝（年号）</th><th>核心功绩</th><th>结局</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>刘基（刘伯温）</td><td>太祖 洪武</td><td class="deed">开国第一谋臣，定征伐方略、制历法律令</td><td class="fate">1375 病逝，传为胡惟庸所毒（野史）</td></tr>
-        <tr><td>李善长</td><td>太祖 洪武</td><td class="deed">开国首功文臣、首任左丞相，比之萧何</td><td class="fate"><span class="fate-kill">1390 坐胡惟庸党，全家七十余口被诛</span></td></tr>
-        <tr><td>徐达</td><td>太祖 洪武</td><td class="deed">开国第一名将，北伐灭元、克大都</td><td class="fate">1385 病逝，追封中山王，配享太庙</td></tr>
-        <tr><td>胡惟庸</td><td>太祖 洪武</td><td class="deed">最后一任丞相（后定为权奸）</td><td class="fate"><span class="fate-kill">1380 以谋反诛，株连三万，丞相制就此废</span></td></tr>
-        <tr><td>蓝玉</td><td>太祖 洪武</td><td class="deed">名将，捕鱼儿海大破北元</td><td class="fate"><span class="fate-kill">1393 蓝玉案，剥皮抄家，株连一万五千</span></td></tr>
-        <tr><td>方孝孺</td><td>建文</td><td class="deed">建文重臣、天下读书种子之宗</td><td class="fate"><span class="fate-kill">拒草成祖即位诏，被灭十族（八百余人）</span></td></tr>
-        <tr><td>郑和</td><td>成祖 永乐</td><td class="deed">七下西洋，远抵东非，宣威异域</td><td class="fate">1433 第七次返航途中病逝于古里</td></tr>
-        <tr><td>三杨（士奇·荣·溥）</td><td>仁宗·宣宗·英宗</td><td class="deed">历四朝内阁辅政，缔造「仁宣之治」</td><td class="fate"><span class="fate-ok">皆善终</span>；三杨凋零后王振始专权</td></tr>
-        <tr style="background:#fbeede;"><td><b>于谦</b> ★</td><td>代宗 景泰</td><td class="deed"><b>土木之变后主持北京保卫战，力排南迁、再造社稷</b></td><td class="fate"><span class="fate-kill">1457 英宗夺门复辟，以「谋逆」冤杀；天下冤之，成化追复</span></td></tr>
-        <tr><td>王守仁（王阳明）</td><td>武宗 正德</td><td class="deed">旬月平宁王宸濠之乱；创「心学」，立德立功立言</td><td class="fate"><span class="fate-ok">1529 病逝军中</span>，谥文成，从祀孔庙</td></tr>
-        <tr><td>王恕·刘大夏·马文升</td><td>孝宗 弘治</td><td class="deed">「弘治三君子」，佐成「弘治中兴」</td><td class="fate"><span class="fate-ok">多得善终</span></td></tr>
-        <tr><td>杨廷和</td><td>武宗·世宗</td><td class="deed">武宗暴崩后总朝政三十七日、定策迎立世宗</td><td class="fate">大礼议忤世宗，1524 致仕、后削籍为民</td></tr>
-        <tr><td>严嵩</td><td>世宗 嘉靖</td><td class="deed">内阁首辅二十年（一代权奸）</td><td class="fate">1562 败，籍没家产，1567 寄食墓舍而死</td></tr>
-        <tr><td>海瑞</td><td>世宗·穆宗·神宗</td><td class="deed">「海青天」，备棺上《治安疏》直斥嘉靖</td><td class="fate">下狱待死，嘉靖崩获释，<span class="fate-ok">1587 卒于任</span></td></tr>
-        <tr><td>戚继光</td><td>世宗·穆宗·神宗</td><td class="deed">抗倭名将（台州大捷），镇蓟州固北边</td><td class="fate">张居正死后被排挤罢归，1588 病逝</td></tr>
-        <tr style="background:#fbeede;"><td><b>张居正</b> ★</td><td>神宗 万历</td><td class="deed"><b>内阁首辅，行一条鞭法、考成法，成「万历中兴」</b></td><td class="fate"><span class="fate-kill">1582 病逝，旋遭神宗清算抄家、险开棺戮尸</span></td></tr>
-        <tr><td>杨涟·左光斗</td><td>熹宗 天启</td><td class="deed">东林「六君子」，劾魏忠贤二十四大罪</td><td class="fate"><span class="fate-kill">1625 被阉党下诏狱，酷刑拷死</span></td></tr>
-        <tr><td>孙承宗</td><td>熹宗·思宗</td><td class="deed">督师辽东，筑「关宁锦防线」拒后金</td><td class="fate"><span class="fate-kill">1638 清军破高阳，率全家殉国</span></td></tr>
-        <tr style="background:#fbeede;"><td><b>袁崇焕</b> ★</td><td>熹宗·思宗</td><td class="deed"><b>宁远大捷重创努尔哈赤、宁锦大捷拒皇太极</b></td><td class="fate"><span class="fate-kill">1630 崇祯中反间计，以「通敌」凌迟处死</span></td></tr>
-        <tr><td>史可法（附·南明）</td><td>思宗·南明弘光</td><td class="deed">督师扬州，孤城抗清</td><td class="fate"><span class="fate-kill">1645 扬州城破殉国，史称「扬州十日」</span></td></tr>
-      </tbody>
-    </table>
-
-    <h2 style="font-size:27px; border:none; margin:42px 0 18px; color:var(--crimson);">◆ 重点名臣详述</h2>
-
-    <div class="mcard">
-      <h3>于谦 —— 再造社稷之臣，却死于他所救的皇帝之手</h3>
-      <p class="who">事奉：代宗（景泰）· 由前朝英宗（正统）擢用 · <b>结局：被复辟的英宗（天顺）冤杀</b></p>
-      <p><span class="lab m">功绩</span>1449 年「土木堡之变」，英宗朱祁镇被瓦剌也先掳走，五十万京军覆没，京师震动、群臣议南迁。时任兵部侍郎的于谦力斥南迁之议，扶立郕王朱祁钰即位（代宗），亲自督师，整顿京营、调集勤王之兵，于德胜门外大破瓦剌，<b>北京保卫战</b>转危为安，保住了明朝半壁江山，世人比之挽狂澜于既倒。</p>
-      <p><span class="lab k">结局</span>1457 年代宗病重，徐有贞、石亨、曹吉祥发动「夺门之变」迎英宗复位。复辟的英宗为坐实政变之「正当」，听信谗言，<b>以「谋逆」之罪将于谦下狱处斩</b>，抄家时家无余财、唯有皇帝赐物。于谦之死，「天下冤之」。直到其子于冕上疏、明宪宗成化年间方为他平反复官，追谥「肃愍」，后改「忠肃」。</p>
-      <p><span class="lab s">评说</span>《明史》本传：「谦忠心义烈，与日月争光，卒以谗死……」其《石灰吟》"粉骨碎身浑不怕，要留清白在人间"，正是一生写照。于谦之冤，是明代「功臣难善终」最刺痛人心的一笔。</p>
-    </div>
-
-    <div class="mcard">
-      <h3>张居正 —— 续命半世纪的改革家，身后被门生天子抄家</h3>
-      <p class="who">事奉：神宗（万历）· 同时身兼帝师与首辅 · <b>结局：死后遭神宗清算、抄家削谥</b></p>
-      <p><span class="lab m">功绩</span>神宗十岁即位，张居正以内阁首辅总揽朝纲十年。他推行<b>「考成法」</b>整顿吏治、<b>「一条鞭法」</b>合并赋役征银，清丈田亩、裁汰冗费，使太仓积粟可支十年、国库充盈，又用戚继光、李成梁固边，史称「万历中兴」，被誉为明代最有魄力的政治家。</p>
-      <p><span class="lab k">结局</span>1582 年张居正病逝。亲政后的神宗与失势官僚反攻倒算，<b>抄没张家、长子自尽、削去官谥</b>，几乎开棺戮尸，改革新政多被废弛。一代权相，生荣死辱。</p>
-      <p><span class="lab s">评说</span>《明史》：「居正为政，以尊主权、课吏职、信赏罚、一号令为主……虽万里外，朝下而夕奉行。」功在社稷，然威权震主、待人严刻，亦埋下身后之祸。</p>
-    </div>
-
-    <div class="mcard">
-      <h3>袁崇焕 —— 关宁长城，毁于自家君王的反间计</h3>
-      <p class="who">事奉：熹宗（天启）→ 思宗（崇祯）· <b>结局：被崇祯以「通敌」凌迟处死</b></p>
-      <p><span class="lab m">功绩</span>天启年间，袁崇焕坚守宁远孤城，以红夷大炮重创努尔哈赤（<b>宁远大捷</b>，后金兴兵以来首败），次年又取<b>宁锦大捷</b>击退皇太极，构筑「关宁锦防线」，一度是后金西进最大的障碍。</p>
-      <p><span class="lab k">结局</span>1629 年皇太极绕道破关、兵临北京。崇祯中皇太极所施<b>反间计</b>，疑袁崇焕通敌引兵，1630 年将其逮捕，次年以「擅主和议、专戮大帅、通敌谋叛」之罪<b>凌迟处死</b>于市，京民不明真相，争啖其肉。自毁长城，辽东再无可恃之将。</p>
-      <p><span class="lab s">评说</span>《明史》本传：「自崇焕死，边事益无人，明亡征决矣。」其功过、是否「通敌」后世仍有争议，但崇祯之猜杀大将，公认是加速明亡的致命一击。</p>
-    </div>
-
-    <div class="mcard good">
-      <h3>方孝孺 与 王阳明 —— 一以死殉道，一以功成圣</h3>
-      <p class="who">方孝孺：事奉建文，<b>被成祖灭十族</b> ｜ 王阳明：事奉武宗，<b>得善终封圣</b></p>
-      <p><span class="lab k">方孝孺</span>建文帝之师、天下文宗。1402 年成祖破南京，欲借其声望草拟即位诏书，方孝孺掷笔大书「燕贼篡位」，宁死不从。成祖怒而<b>诛其十族（连门生友朋共八百余人）</b>，为中国史上唯一一例。气节凛然，亦是靖难之残酷的极端注脚。</p>
-      <p><span class="lab m">王阳明</span>正德年间，南赣巡抚王守仁<b>仅用四十余日平定宁王朱宸濠之乱</b>，又屡平民变；更于龙场悟道，集「心学」之大成，提出「知行合一」「致良知」，立德、立功、立言三不朽，是明代少数功成名就、得享荣谥的名臣。两相对照，足见明代士人「殉道」与「事功」的两种极致。</p>
-    </div>
-
-    <div class="mcard">
-      <h3>群像速记 —— 其余名臣与他们的皇帝</h3>
-      <p><b>太祖朝</b>：刘伯温定策、徐达常遇春平天下、李善长理庶政——开国班底，却多在洪武党狱（胡惟庸案、蓝玉案）中凋零。</p>
-      <p><b>仁宣英三朝</b>：「三杨」内阁辅政四十年，是明代文官政治的黄金期，仁宣之治赖以维系；三杨之后王振乱政，盛极而衰。</p>
-      <p><b>嘉靖朝</b>：海瑞备棺骂君、戚继光俞大猷荡平东南倭患、徐阶斗倒严嵩——清官、名将、贤相同台，与崇道怠政的世宗形成强烈反差。</p>
-      <p><b>天启朝</b>：东林党杨涟、左光斗等「六君子」死劾魏忠贤，被阉党拷死诏狱，正邪相搏，是明末党争最惨烈的一幕。</p>
     </div>
   </section>
 
