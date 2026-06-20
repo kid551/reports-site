@@ -1,0 +1,1704 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>从添柏岚（Timberland）一案，学会像价值投资者一样思考 —— 一份 OSTEP 式重述</title>
+<style>
+  :root {
+    --bg: #faf8f3;
+    --paper: #fffdf7;
+    --ink: #1f2330;
+    --ink-soft: #3b4252;
+    --muted: #6b7280;
+    --rule: #d9d2bf;
+    --accent: #8a3324;          /* OSTEP 棕红 */
+    --accent-soft: #b4533b;
+    --tip-bg: #fff5d6;          /* TIP 暖黄 */
+    --tip-border: #c79b2b;
+    --aside-bg: #eef3fb;        /* ASIDE 冷蓝 */
+    --aside-border: #4c6c9c;
+    --crux-bg: #fde7e0;         /* CRUX 桃橘 */
+    --crux-border: #8a3324;
+    --pitfall-bg: #f4e4e8;
+    --pitfall-border: #944056;
+    --metric-bg: #f1ede0;
+    --metric-border: #b09a55;
+    --code: #f3efe3;
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); }
+  body {
+    color: var(--ink);
+    font-family: "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong",
+                 Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    line-height: 1.78;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 64px 48px 96px;
+    background: var(--paper);
+    border-left: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  header.cover {
+    border-bottom: 3px double var(--rule);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+  .eyebrow {
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: 40px;
+    line-height: 1.25;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  .subtitle {
+    font-size: 21px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .meta {
+    margin-top: 24px;
+    color: var(--muted);
+    font-size: 16.5px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  h2 {
+    font-size: 32px;
+    line-height: 1.3;
+    margin: 64px 0 18px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+  }
+  h2 .ch {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 18px;
+    color: var(--accent-soft);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 4px;
+  }
+  h3 {
+    font-size: 24px;
+    line-height: 1.4;
+    margin: 36px 0 14px;
+    color: var(--ink);
+  }
+  p { margin: 0 0 18px; }
+  em { font-style: italic; color: var(--accent); }
+  strong { color: var(--ink); }
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: #f6f1e3;
+    margin: 24px 0;
+    padding: 18px 24px;
+    color: var(--ink-soft);
+    font-size: 19.5px;
+    line-height: 1.7;
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+  code, .mono {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 17.5px;
+    background: var(--code);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  /* OSTEP 风格的旁注卡片 */
+  .box {
+    border-left: 6px solid;
+    padding: 22px 28px 18px;
+    margin: 30px 0;
+    border-radius: 2px;
+    font-size: 19px;
+    line-height: 1.7;
+  }
+  .box .tag {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14.5px;
+    letter-spacing: 0.18em;
+    padding: 2px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+    color: #fff;
+    font-weight: 600;
+  }
+  .box .tag-title {
+    display: block;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .crux { background: var(--crux-bg); border-color: var(--crux-border); }
+  .crux .tag { background: var(--crux-border); }
+  .tip { background: var(--tip-bg); border-color: var(--tip-border); }
+  .tip .tag { background: var(--tip-border); }
+  .aside { background: var(--aside-bg); border-color: var(--aside-border); }
+  .aside .tag { background: var(--aside-border); }
+  .pitfall { background: var(--pitfall-bg); border-color: var(--pitfall-border); }
+  .pitfall .tag { background: var(--pitfall-border); }
+  .metric { background: var(--metric-bg); border-color: var(--metric-border); }
+  .metric .tag { background: var(--metric-border); }
+
+  .box p:last-child, .box ul:last-child, .box ol:last-child { margin-bottom: 0; }
+  .box ul, .box ol { padding-left: 22px; margin: 8px 0 12px; }
+  .box li { margin: 6px 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 17.5px;
+    font-feature-settings: "tnum";
+  }
+  th {
+    background: #ede5d0;
+    color: var(--ink);
+    padding: 12px 14px;
+    text-align: center;
+    border: 1px solid var(--rule);
+    font-weight: 700;
+  }
+  td {
+    padding: 11px 14px;
+    border: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  td.num { text-align: right; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+  td.label { background: #f7f2e2; font-weight: 600; }
+
+  ul.body, ol.body { padding-left: 24px; }
+  ul.body li, ol.body li { margin: 10px 0; }
+
+  .figure {
+    background: #f3ede0;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin: 28px 0;
+    font-size: 18.5px;
+    line-height: 1.65;
+  }
+  .figure .cap {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    color: var(--accent);
+    font-size: 14.5px;
+    letter-spacing: 0.16em;
+    margin-bottom: 8px;
+  }
+
+  nav.toc {
+    background: #f5efde;
+    border: 1px solid var(--rule);
+    padding: 24px 28px;
+    margin: 0 0 40px;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  nav.toc h4 {
+    margin: 0 0 12px;
+    font-size: 17px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  nav.toc ol { margin: 0; padding-left: 24px; }
+  nav.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--muted); }
+  nav.toc a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  footer.colophon {
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 32px 22px 64px; }
+    body { font-size: 19px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 26px; }
+    h3 { font-size: 21px; }
+    .box { padding: 18px 20px; font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="eyebrow">OSTEP-STYLE REREADING · CASE STUDY</div>
+  <h1>从添柏岚（Timberland）一案，学会像价值投资者一样思考</h1>
+  <p class="subtitle">把一堂讲座，拆成一本「投资三易篇」——每一章先抛出一个 The Crux，再用具体计算和提问把它打穿，最后留一条可以照搬到下一只股票上的通用心法。</p>
+  <div class="meta">原李录：李录 · 哥伦比亚商学院课堂 · 1998 年案例 · 重述日期 2026-06-20</div>
+</header>
+
+<nav class="toc">
+  <h4>本书目录 / TABLE OF CONTENTS</h4>
+  <ol>
+    <li><a href="#ch0">序章 · 这堂课为什么值得反复读</a></li>
+    <li><a href="#ch1">第 1 章 · 怎么在几千只股票里挑出值得看的那一只？<br><span style="font-size:15.5px; color:var(--muted); padding-left:18px;">（含《价值线》一页解剖图 + 五步阅读法 + 六个商业直觉训练动作）</span></a></li>
+    <li><a href="#ch2">第 2 章 · 五秒钟看估值——资产端到底装了什么</a></li>
+    <li><a href="#ch3">第 3 章 · 五秒钟看生意——剥掉杠杆之后的资本回报</a></li>
+    <li><a href="#ch4">第 4 章 · 既然这么好，为什么这么便宜？</a></li>
+    <li><a href="#ch5">第 5 章 · 老板是谁——像调查记者一样做尽调</a></li>
+    <li><a href="#ch6">第 6 章 · 增长引擎在哪——门店、人群、地理</a></li>
+    <li><a href="#ch7">第 7 章 · 该下多少注——「基点」与「常识」之争</a></li>
+    <li><a href="#ch8">第 8 章 · 何时卖——估值与盈利的赛跑</a></li>
+    <li><a href="#ch9">第 9 章 · 时点复盘与可迁移心法</a></li>
+  </ol>
+</nav>
+
+<!-- ============== 序章 ============== -->
+<h2 id="ch0"><span class="ch">PROLOGUE</span>序章 · 这堂课为什么值得反复读</h2>
+
+<p>这是一堂典型的「案例驱动」的价值投资课。李录用三十分钟，把自己 1998 年秋天买入添柏岚（Timberland）的完整决策过程，从筛选、估值、反向尽调、管理层考察，一直到买入、持有、卖出，一段不漏地铺开来。</p>
+
+<p>课讲得快，金句多，但真正值得反复琢磨的不是金句，而是<strong>每一个动作背后的「思维顺序」</strong>：</p>
+
+<ol class="body">
+  <li>怎么在一张报纸般大的财报上，<em>五秒钟之内</em>判断它值不值得继续看；</li>
+  <li>看完估值之后，<em>下一秒</em>问的问题是什么，而不是「再看一遍估值」；</li>
+  <li>一桩明显便宜的好生意，<em>必须先假设它有问题</em>，然后挨个排除问题——而不是被便宜冲昏头脑；</li>
+  <li>排除问题之后，<em>最后一道大坎是「人」</em>，要用调查记者的方式去做，而不是看 IR 邮件。</li>
+</ol>
+
+<p>这正好是 Remzi Arpaci-Dusseau 写《操作系统三易篇》(OSTEP) 用的写法：<strong>每一节先给出 The Crux of the Problem，再围绕这个问题一路追问下去</strong>。我们就以这种方式重排这堂课。每一章，我会先把那个看似「轻描淡写」的核心问题摆到桌面上，再把李录在那一刻调用的<em>财务指标</em>逐个解释清楚——它是什么、怎么算、为什么在那个位置使用、背后的商业直观是什么。</p>
+
+<div class="box aside">
+  <span class="tag">ASIDE</span>
+  <span class="tag-title">本案的故事梗概（给只是路过的读者）</span>
+  <p>1998 年秋，亚洲金融危机刚过，科技股泡沫将起未起。李录翻《价值线》(Value Line) 的「新低名单」时注意到鞋服品牌添柏岚（Timberland，纽交所代码 TBL）股价跌到 28–30 美元区间。他用约三周时间，从财报算到门店、从家族控股算到诉讼卷宗，重仓买入。<strong>之后两年，添柏岚股价涨了约 7 倍</strong>，且盈利同步增长，估值并未明显被拉高。李录在卖方分析师涌入会议室时清仓退出。</p>
+</div>
+
+<!-- ============== 第 1 章 ============== -->
+<h2 id="ch1"><span class="ch">CHAPTER 1</span>怎么在几千只股票里挑出值得看的那一只？</h2>
+
+<div class="box crux">
+  <span class="tag">THE CRUX</span>
+  <span class="tag-title">在没有任何「外部推荐」的情况下，一个研究者每天从哪里开始翻？</span>
+  <p>市场上每天有几千只股票在跳动。如果你不依赖卖方研报、不依赖朋友推荐、不依赖热门话题——你需要一台「自我驱动的筛选机器」。这台机器最低成本的实现是什么？</p>
+</div>
+
+<h3>1.1 工具：《价值线》(Value Line) 是什么</h3>
+
+<p>李录反复推荐的《价值线投资调查》是一份美国老牌的股票研究服务，每周更新，覆盖约 1700 家美国主要上市公司。它最大的特点是<strong>「一只股票一页」</strong>——把过去 15 年左右的收入、利润、每股盈利、股息、ROE、负债率等关键数字铺成一张大表，加上一段简短文字。对一个想博学的人来说，它的优势不是「告诉你买什么」，而是<strong>让你在一页纸内一次看完一家公司十几年的轨迹</strong>，闻多了就有了「商业的嗅觉」。</p>
+
+<div class="box tip">
+  <span class="tag">TIP #1</span>
+  <span class="tag-title">看新低，不看新高</span>
+  <p>李录打开《价值线》第一件事，是去翻「<strong>历史新低名单</strong>」——股价新低、P/E 新低、P/B 新低。原因很朴素：<em>价值投资的本质是低买高卖，而便宜首先出现在「无人问津」之处</em>。新高名单上的公司，大概率已经有几十个分析师在覆盖；新低名单上的公司，常常是过去一段时间没人愿意再看一眼的——这恰恰是你能比别人多花十分钟就抢到信息差的地方。</p>
+</div>
+
+<h3>1.2 在「新低」里看到了什么</h3>
+
+<p>李录翻到了添柏岚。资料给的股价标签印错为 46 美元，但 1998 年 8–9 月真实股价大约在 28–30 美元/股。李录说，他<em>不</em>看公司过去的「交易情况」（即股价图）——这是关键的一句。一个价值投资者首先关心的不是图，而是估值与生意。</p>
+
+<div class="box aside">
+  <span class="tag">ASIDE</span>
+  <span class="tag-title">为什么巴菲特也要读《价值线》</span>
+  <p>《价值线投资调查》(<em>The Value Line Investment Survey</em>) 是巴菲特公开承认<strong>多年订阅、几乎是他唯一持续使用的第三方研究服务</strong>。他的原话是：「价值线呈现信息的方式，<em>是一种异常高效的资料组织</em>」。<br>
+  这种「异常高效」是有原因的——它把一家公司过去 15–20 年的<em>所有关键经营数据</em>，按统一字段塞进一页 A4 纸大小的版面里。受过训练的眼睛，能在一两分钟内完成「这家公司过去 15 年到底干得怎么样」的判断。<br>
+  李录推荐学生「一页一页地阅读」，本质上是要复现巴菲特用了几十年的训练方法。</p>
+</div>
+
+<h3>1.3 一页《价值线》到底长什么样——解剖图</h3>
+
+<p>大多数初次翻开《价值线》的人会被信息密度吓退：一页纸塞了二十多个区块、上百个数字。但只要把它拆成<em>四个功能区</em>，就能让人一眼看出每个角落在回答什么问题。</p>
+
+<table>
+  <thead>
+    <tr><th style="width:18%">区位</th><th style="width:32%">字段</th><th>它在回答什么问题</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="label">页面顶部</td>
+      <td>公司名 / 代码 / 行业 / 当前股价 / 当前 P/E / P/B / 股息率 / Timeliness 评级 / Safety 评级 / Technical 评级</td>
+      <td>「<em>5 秒内</em>它属于哪一档」</td>
+    </tr>
+    <tr>
+      <td class="label">页面中央<br>（最重要）</td>
+      <td><strong>15–20 年纵向数据阵列</strong>：每股销售、每股现金流、每股利润、每股股息、每股资本开支、每股账面价值、年均 P/E、相对 P/E、年均股息率、营业收入、营业利润率、净利率、所得税率、营运资本、长期负债、股东权益、ROCE、ROE、留存比例、派息比例</td>
+      <td>「过去 15 年这桩生意是怎么走过来的——稳？周期？换挡？掉队？」</td>
+    </tr>
+    <tr>
+      <td class="label">左中</td>
+      <td>资本结构盒（Capital Structure）：总负债、租赁负债、优先股、普通股权益、债务到期分布</td>
+      <td>「这家公司怎么融资的？有多少杠杆？短债压力多大？」</td>
+    </tr>
+    <tr>
+      <td class="label">左中下</td>
+      <td>当前财务状态（Current Position）：现金、应收、存货、应付、短债——通常是最近一季度的截图</td>
+      <td>「<em>此刻</em>它账上什么样——能不能扛过半年寒冬？」</td>
+    </tr>
+    <tr>
+      <td class="label">中央右</td>
+      <td>季度数据表：分季度的收入、利润、股息</td>
+      <td>「季节性强不强？最近一两个季度有没有破坏长期趋势？」</td>
+    </tr>
+    <tr>
+      <td class="label">中部</td>
+      <td>业务摘要（Business Summary）：1 段话讲清楚做什么、几个业务板块、员工数、主要持有人 / 内部持股比例</td>
+      <td>「这家公司是谁、做什么、谁在持有它」</td>
+    </tr>
+    <tr>
+      <td class="label">中下</td>
+      <td>分析师评论（约 6 段文字）+ 未来 3–5 年预测数</td>
+      <td>「卖方现在的故事是什么——可<em>参考</em>、但不可全信」</td>
+    </tr>
+    <tr>
+      <td class="label">右下角</td>
+      <td>财务实力评级（C 到 A++）、股价稳定性指数（0–100）、盈利可预测性（0–100）、增长持久性</td>
+      <td>「这家公司有多硬——金融危机里它扛得住吗？」</td>
+    </tr>
+    <tr>
+      <td class="label">右上角</td>
+      <td>大幅股价 + 成交量图（15–20 年）+ 几条估值通道线</td>
+      <td>「市场情绪过去怎么对待它——但<em>这是装饰</em>，不是答案」</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box tip">
+  <span class="tag">TIP #1.5</span>
+  <span class="tag-title">页面中央的「15–20 年纵向阵列」才是金矿</span>
+  <p>对受过训练的价值投资者来说，<em>整页价值线 80% 的信息量都来自这块阵列</em>。它的厉害之处不在于「数据多」，而在于<strong>所有字段用统一口径、按统一时间轴、对所有 1700 家公司同等呈现</strong>——这意味着你看的不是一份卖方报告，而是一份「可以横纵向比较的数据样本」。<br>
+  其它区块（图表、分析师评论、未来预测）<em>可以全部忽略</em>。你越早建立这个意识，越快摆脱「跟着叙事走」的陷阱。</p>
+</div>
+
+<h3>1.4 价值投资者的阅读顺序——五步式 5 分钟扫描</h3>
+
+<p>同一页面，不同人读的顺序完全不一样。零售交易者会先看图、看 Timeliness 评级；价值投资者会按下面这个顺序读——而且 90% 的公司在第二步就被砍掉了。</p>
+
+<table>
+  <thead>
+    <tr><th style="width:8%">步骤</th><th style="width:22%">看哪一块</th><th style="width:32%">追问什么</th><th>淘汰率</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="num">①</td><td>业务摘要 + 资本结构</td><td>这家公司做什么？在我能力圈内吗？资本结构干净吗？有没有大债压顶？内部人持股多少？</td><td class="num">~40%</td></tr>
+    <tr><td class="num">②</td><td>15–20 年阵列：营业利润率、ROCE、ROE 这三行</td><td>过去 15 年它有没有持续<em>赚钱的能力</em>？利润率是稳定的、上升的、还是塌陷的？</td><td class="num">~50%</td></tr>
+    <tr><td class="num">③</td><td>15–20 年阵列：每股销售 / 每股现金流 / 每股利润 / 每股股息 / 每股账面价值<br>+ 在外股本数（Shares Outstanding）</td><td>这五条线<em>长期方向是否同步上行</em>？股本是被稀释了、还是被回购了？</td><td class="num">~30%</td></tr>
+    <tr><td class="num">④</td><td>当前财务状态（流动资产/负债）+ 资本开支占现金流比例</td><td>家底干不干净？是不是一台「重资产、永远缺现金」的机器？</td><td class="num">~20%</td></tr>
+    <tr><td class="num">⑤</td><td>P/E、P/B、股息率（顶部当下值 vs 阵列里 15 年均值）</td><td>现在便宜吗？落在历史的什么分位？</td><td class="num">—</td></tr>
+  </tbody>
+</table>
+
+<p>这五步加起来，<strong>熟手 3–5 分钟，新手 15 分钟</strong>。每读完一家公司，你都会把它丢进三个桶之一：</p>
+
+<ul class="body">
+  <li><strong>桶 A · 「值得后续花几小时再看」</strong>——通常一页里只有 5–10% 进这个桶；</li>
+  <li><strong>桶 B · 「现在不便宜，但生意好，放进观察清单」</strong>——等估值下来再看；</li>
+  <li><strong>桶 C · 「直接淘汰」</strong>——绝大多数公司归这里。</li>
+</ul>
+
+<div class="box pitfall">
+  <span class="tag">PITFALL</span>
+  <span class="tag-title">价值投资者的「四不看」</span>
+  <p>有四个区块，在价值投资语境下<em>主动地不读，比读了更对</em>：</p>
+  <ul>
+    <li><strong>Timeliness Rank（时效性评级）</strong>：基于短期价格动量与盈利惊喜的技术性排名，本质是给高换手交易者用的，跟价值投资框架冲突；</li>
+    <li><strong>顶部的大股价图</strong>：心理锚定的最大来源；价值投资者「不关心过去的交易情况」（李录原话）；</li>
+    <li><strong>分析师未来 3–5 年预测</strong>：可参考但不可信，它代表当时卖方共识，<em>你的工作就是去找到共识错的地方</em>；</li>
+    <li><strong>"Beta" 系数</strong>：现代金融学定义的市场风险，跟「<em>这家生意的真实风险</em>」几乎无关。</li>
+  </ul>
+  <p>李录那句「<em>你不应该关心公司过去的交易情况</em>」，已经把这四样东西一次性扫掉了。</p>
+</div>
+
+<h3>1.5 真正的金矿：15–20 年纵向数据怎么读</h3>
+
+<p>同一行数据连续 15 年放在一起，<em>不是简单的「历史」，而是一台时间机器</em>。它把一家公司穿过周期、CEO 换届、技术变革、产品迭代、宏观危机的全过程铺平。受过训练的眼睛，会在阵列上做下面几个动作：</p>
+
+<table>
+  <thead>
+    <tr><th style="width:24%">动作</th><th style="width:36%">具体做法</th><th>能看到什么</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="label">穿越周期看利润率</td>
+      <td>盯营业利润率这一行，找到 2001 互联网泡沫、2008 金融危机、2020 疫情这几个「应力点」</td>
+      <td>真正的好生意，在危机年份利润率只是微跌；周期性生意会塌掉一半甚至到负数</td>
+    </tr>
+    <tr>
+      <td class="label">看 ROCE 的「地板」</td>
+      <td>不看 15 年均值，看 15 年里 <em>最差的那一年</em> 的 ROCE</td>
+      <td>「最差年份的 ROCE」是更可靠的护城河信号，比平均值靠谱得多</td>
+    </tr>
+    <tr>
+      <td class="label">五线同向</td>
+      <td>把每股销售、每股现金流、每股利润、每股股息、每股账面价值五条曲线<em>叠在脑子里</em>，看是不是同步上行</td>
+      <td>五线同向上行 = 真增长；只有销售涨、利润没涨 = 增长是用价格/补贴换来的</td>
+    </tr>
+    <tr>
+      <td class="label">股本是膨胀还是收缩</td>
+      <td>看 Common Shares Outstanding 这一行，从第一年到当下涨了多少 %</td>
+      <td>股本年化稀释 5%+ 是个红旗（管理层在偷你份额）；股本下降则是回购实打实地集中你的所有权</td>
+    </tr>
+    <tr>
+      <td class="label">资本开支 / 现金流</td>
+      <td>看 CapEx ÷ Cash Flow 这个比例的 15 年中位数</td>
+      <td>常年 ≥ 80% 是「永远在喂机器」的重资产生意；20–40% 是<em>有自主分配权</em>的好生意</td>
+    </tr>
+    <tr>
+      <td class="label">派息比例 vs 留存比例</td>
+      <td>看「All Div'ds to Net Profit」（派息率）这一行的 15 年走势</td>
+      <td>稳定派息 + 留存的钱再投出来获得高 ROCE = 复利机器；派息率一路抬高到 80%+，常常意味着没有再投资机会</td>
+    </tr>
+    <tr>
+      <td class="label">异常点放大镜</td>
+      <td>哪一年某个指标突然破坏 15 年趋势（利润率塌了一半、负债翻倍）</td>
+      <td>这是<em>研究的入口</em>。打开那一年的 10-K，看到底发生了什么——大概率是一次并购、一次官司、一次新业务</td>
+    </tr>
+    <tr>
+      <td class="label">P/E 的历史区间</td>
+      <td>看阵列里每一年的「年均 P/E」</td>
+      <td>当下 P/E 落在 15 年的什么分位——前 10%、还是后 10%？这是估值的真正坐标</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>1.6 训练商业直觉的六个具体动作</h3>
+
+<p>商业直觉不是天赋，它是<em>大量样本积累后的模式识别</em>。下面这六个动作，是把「读《价值线》」从被动浏览变成主动训练的关键：</p>
+
+<div class="box tip">
+  <span class="tag">DRILL #1</span>
+  <span class="tag-title">「五秒分类」练习</span>
+  <p>翻开一页，<em>用秒表计时 5 秒</em>，强迫自己说出：①这家公司大致是什么生意；②它的 ROCE 大致档位（&lt;10% / 10–20% / 20%+）；③估值大致档位（贵 / 中 / 便宜）。然后再花 30 秒验证。<br>
+  做 100 家以后，你会发现自己的「直觉档位」越来越接近实际——这就是嗅觉的物质基础。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">DRILL #2</span>
+  <span class="tag-title">「同行业横扫」练习</span>
+  <p>每周挑一个行业（鞋服、化工、铁路、银行……），把这个行业在《价值线》里所有的公司<em>一次性扫一遍</em>。<br>
+  你会被迫看到「同样卖鞋」里，谁的利润率长期 5%、谁是 15%、谁是 25%——这个对比一旦内化，下次随便有人说「卖鞋是个烂生意」，你会立刻知道这话<em>对了一半</em>。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">DRILL #3</span>
+  <span class="tag-title">「猜行业」反向练习</span>
+  <p>找一位朋友（或自己事先准备），把 5 家公司的<em>名字遮住</em>，只露出 15 年阵列。试着倒推：这是什么行业、什么市场地位、大概是哪种商业模式。<br>
+  这个练习能在不依赖名字光环的前提下，校准你对「数字 → 生意」的转换能力。坚持几个月，你会开始<em>从数字闻到行业的味道</em>。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">DRILL #4</span>
+  <span class="tag-title">「找断点」练习</span>
+  <p>专门挑数据里有「明显异常年份」的公司，停在异常点上，问自己：「<em>那年到底发生了什么？</em>」然后打开当年的 10-K 或新闻。<br>
+  这一步训练的是「<em>把数字翻译回故事</em>」的能力。坚持下来，你会建立一套自己的「商业故事库」：并购整合阵痛长啥样、产品换代失败长啥样、官司一次性计提长啥样——下次遇到一个新数字，<em>它会自动配对到一段故事</em>。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">DRILL #5</span>
+  <span class="tag-title">「老熟人复读」练习</span>
+  <p>挑 10–20 家你长期关注的公司，<em>每年同一时间翻一遍它们的价值线页面</em>，看一年间哪一行发生了变化、哪一行没动。<br>
+  这是巴菲特最被低估的习惯之一：他会反复重读自己熟悉的公司。一个公司你读到第七遍的时候，会发现自己开始看到第一遍时完全忽略的细节——<em>而这些细节，常常是别人也忽略掉的</em>。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">DRILL #6</span>
+  <span class="tag-title">「故事先写、数字后查」练习</span>
+  <p>面对一家陌生公司，<em>不要先看数字</em>。先根据业务摘要（1 段话）写下 5 个你认为应该出现在数据里的特征（比如「应该是高利润率」「应该是低 CapEx」「应该是周期性」）。然后再看 15 年阵列，<em>检查自己写对了几条</em>。<br>
+  这是把「叙事 → 数字」的链路反复来回打磨。直觉的本质就是这条链路被走熟。</p>
+</div>
+
+<h3>1.7 警惕：哪些字段是「糖衣陷阱」</h3>
+
+<p>《价值线》的版面会自然地诱导你看错重点。这里列三个最常见的「糖衣陷阱」：</p>
+
+<table>
+  <thead>
+    <tr><th style="width:28%">陷阱字段</th><th style="width:30%">它看起来在说什么</th><th>它实际在隐藏什么</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="label">"Cash Flow" per share</td>
+      <td>「每股现金流」</td>
+      <td>这其实是<em>EBITDA / 摊销前利润</em>口径的近似，<strong>不是真正的自由现金流（FCF）</strong>。重资产公司这里看着漂亮，但 CapEx 一减就所剩无几。<em>必须配资本开支一起看</em>。</td>
+    </tr>
+    <tr>
+      <td class="label">ROE</td>
+      <td>「股东回报率」</td>
+      <td>会被杠杆放大。一家高 ROE 公司可能只是借了很多钱。<em>必须和 ROCE 一起看</em>——ROCE 反映的是「生意本身」的回报。</td>
+    </tr>
+    <tr>
+      <td class="label">未来 3–5 年预测数</td>
+      <td>「分析师对未来的判断」</td>
+      <td>这些数会被排版用<em>更大的字号 + 不同颜色</em>突出显示，但它们是预测，不是历史。把它们当成「假设」，不要当成「数据」。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>1.8 把它做成「每天 30 分钟」的训练习惯</h3>
+
+<p>李录那句「<em>每一页都不放过</em>」听上去吓人——《价值线》覆盖约 1700 家公司，一年总共更新 13 轮，意味着一年要扫几千页。但拆成日历就不可怕：</p>
+
+<ul class="body">
+  <li><strong>每天 20–30 分钟</strong>，约 6–10 家公司（按「5 步法」5 分钟一家，加上少量 deep dive 候选）；</li>
+  <li><strong>每周一个行业</strong>横扫，建立行业基线；</li>
+  <li><strong>每月一个「断点专题」</strong>：从本月扫到的公司里挑一家「数据有断点」的，写一篇短笔记，强迫自己把数字翻译回故事；</li>
+  <li><strong>每季一次「老熟人重读」</strong>：把核心关注的 10–20 家公司复看一遍。</li>
+</ul>
+
+<div class="box aside">
+  <span class="tag">ASIDE</span>
+  <span class="tag-title">2026 年没有《价值线》怎么办</span>
+  <p>《价值线》在美国之外不容易订阅，但<em>这套方法不依赖具体工具</em>。它的本质要求只有三条：①一家公司一页能看完；②至少 15 年的历史；③字段统一可比。任何能满足这三条的来源都行：</p>
+  <ul>
+    <li>Wind / 同花顺 iFinD / 东方财富 Choice：可以导出「单股 15 年关键财务数据」做成自己的表；</li>
+    <li>StockAnalysis.com / Macrotrends：免费，覆盖美股 + 部分港股，10 年数据；</li>
+    <li>巨潮资讯网 + 港交所披露易：原始 PDF，但需要自己提炼成表；</li>
+    <li>自己写一个数据脚本，从 Tushare / akshare 抓「单股 15 年×20 字段」自动生成「价值线式」一页。</li>
+  </ul>
+  <p>关键不是「我用什么数据库」，而是「<em>我有没有把这一页扫满 1000 次</em>」。</p>
+</div>
+
+<h3>1.9 回到李录那句最朴素的总结</h3>
+
+<blockquote>
+  <p>「我喜欢读《穆迪手册》是因为它读起来很有乐趣。不是说去读就一定能找到机会，但我边读边学，我对各行各业的生意都很好奇。读得多了你就能闻到机会的味道。」</p>
+</blockquote>
+
+<p>所有上面这些步骤、清单、训练动作，目的只有一个：<strong>把「读财报」从一项苦差，变成一项每天会主动去做的小事</strong>。真正的商业直觉就藏在这个小事里。它不需要天赋，只需要每天 30 分钟，加上一份不功利的好奇心。<br>
+所以下一步立刻切入第 2 章：把这套阅读方法应用到添柏岚那一页上——五秒钟看估值。</p>
+
+<!-- ============== 第 2 章 ============== -->
+<h2 id="ch2"><span class="ch">CHAPTER 2</span>五秒钟看估值——资产端到底装了什么</h2>
+
+<div class="box crux">
+  <span class="tag">THE CRUX</span>
+  <span class="tag-title">怎样在五秒内判断这家公司的估值「值不值得继续看」？</span>
+  <p>如果你打开每一份财报都从头读到尾，一年读不完几家。你需要一个「快速否决」机制：估值不便宜，直接走人；便宜，再花时间。但「便宜」本身是个含糊的词，怎么把它拆成<em>可以五秒判断</em>的几个数字？</p>
+</div>
+
+<h3>2.1 第一个动作：P/B 是不是足够低</h3>
+
+<div class="box metric">
+  <span class="tag">METRIC</span>
+  <span class="tag-title">P/B（市净率，Price-to-Book Ratio）</span>
+  <p><strong>它是什么：</strong>当前股价 ÷ 每股净资产 = 总市值 ÷ 股东权益。</p>
+  <p><strong>怎么算：</strong>股东权益就是资产负债表里「资产 − 负债」之后归股东的那一块。把它除以总股本得到每股净资产，再用股价比一下。</p>
+  <p><strong>这里为什么先用它：</strong>因为<em>账面价值是估值的下限</em>。如果一家公司的账面资产是干净的、可变现的，那么 P/B 接近 1 意味着「你出的钱基本就等于公司家底」，下行空间被资产托住了。李录上来就用 P/B，是在<em>测试下限</em>——下限稳，才去看上限。</p>
+  <p><strong>商业直观：</strong>一个老板要把街角的便利店卖给你，你最先问的不是「未来五年卖多少瓶水」，而是「店里现在有多少存货、冰柜值多少钱、押金能不能退」。P/B 是同一种心理。</p>
+</div>
+
+<h3>2.2 但账面资产里到底装了什么？</h3>
+
+<p>P/B 低本身没有意义。如果账面资产里塞满了过时的设备、应收账款、商誉，那打个一折也未必能变现。李录立刻切到了「资产质量」——这是 P/B 后面必须紧跟的一步：</p>
+
+<div class="box metric">
+  <span class="tag">METRIC</span>
+  <span class="tag-title">运营资本（Working Capital）</span>
+  <p><strong>它是什么：</strong>流动资产 − 流动负债，常被叫做「营运资本」。它代表公司每天用来运转生意的「短期可动用资金」——现金、应收账款、存货，减掉应付账款和短债。</p>
+  <p><strong>怎么算：</strong>翻资产负债表，把上半部分（一年内可变现的资产）减下半部分（一年内要还的债）。</p>
+  <p><strong>这里为什么用它：</strong>李录说「<em>运营资本是 3 亿左右</em>」，他要的就是这个数：它告诉你「这家公司的家底里有多少是流动的、能变现的」。一旦运营资本接近甚至超过总市值，意味着你<em>几乎是用「现金 + 存货」的价格</em>买下了整家公司——典型的「净流动资产法」(Net-Net) 价值投资思路。</p>
+  <p><strong>商业直观：</strong>不光是问「店值多少钱」，而是问「店里有多少现金、有多少能马上卖掉的货」。这是格雷厄姆式的下行保护。</p>
+</div>
+
+<div class="box aside">
+  <span class="tag">术语备注</span>
+  <span class="tag-title">「运营资本」「营运资本」「Working Capital」「NWC」——同一个东西的四种叫法</span>
+  <p>中文文献里你会同时看到 <strong>「运营资本」</strong> 和 <strong>「营运资本」</strong> 两种译法——<em>含义、公式、口径完全一样</em>，只是字序不同。差别仅仅是流派习惯：</p>
+  <ul style="margin:8px 0;">
+    <li><strong>运营资本</strong>：内地企业 / 金融实务 / 财经媒体里更口语化、更常用；</li>
+    <li><strong>营运资本</strong>：注会（CPA）教材、香港台湾会计准则、大学教科书里更标准。</li>
+  </ul>
+  <p>英文世界统一叫 <strong>Working Capital</strong>；有时你会看到 <strong>Net Working Capital (NWC)</strong>——多了一个「Net（净）」字，强调「流动资产减去流动负债之后<em>剩下的净额</em>」，但口径还是同一个数。<em>这四种说法（运营资本 / 营运资本 / Working Capital / NWC）背后是同一个公式，看到任何一种都不必当成不同概念</em>。本报告下文统一用「运营资本」，但在引用注会教材或港台资料时也会出现「营运资本」的叫法，请自行心算等同。</p>
+</div>
+
+<div class="box aside">
+  <span class="tag">DEEP DIVE · 给初学者</span>
+  <span class="tag-title">讲透：运营资本（Working Capital）到底是个什么东西</span>
+
+  <p>会计书上一句「流动资产 − 流动负债」太抽象。我们换成一家<em>面馆</em>来看——你就能一眼看懂这个东西在每一家做生意的公司里到底意味着什么。</p>
+
+  <p>设想一家正常运转的面馆老板，他每天早晨打开店门时，眼前是这样的：</p>
+
+  <table style="margin:8px 0 14px;">
+    <thead>
+      <tr><th style="width:50%">他「能动用 / 一年内能变成钱」的东西</th><th>他「一年内要还掉」的债</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <strong>① 收银盒里的现金 + 银行账户</strong>：8 万<br>
+          <strong>② 上次外卖平台欠他的服务费（应收账款）</strong>：2 万<br>
+          <strong>③ 仓库里的面粉、酱料、冷冻牛肉（存货）</strong>：5 万<br>
+          <strong>④ 桌椅 / 灶台 / 冰柜 / 门头招牌</strong>：×（不算！这些是<em>固定资产</em>，一年内不会卖掉）
+        </td>
+        <td>
+          <strong>① 欠面粉厂的进货款（应付账款）</strong>：4 万<br>
+          <strong>② 上个月卡里没还的信用卡（短期借款）</strong>：3 万<br>
+          <strong>③ 今年还没交的房租（应付未付）</strong>：1 万<br>
+          <strong>④ 银行 5 年期长期贷款</strong>：×（不算！一年内不到期，属于<em>长期负债</em>）
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>上面这些前面被框入的项就叫 <strong>流动资产</strong>（一年内可以变成钱的东西，共 8+2+5 = <em>15 万</em>）和 <strong>流动负债</strong>（一年内要还的债，共 4+3+1 = <em>8 万</em>）。它们之差，<strong>15 − 8 = 7 万</strong>，就是这家面馆的「运营资本」。</p>
+
+  <p><strong>注意：这 7 万<em>不是</em>「可以再还一遍短期债」的钱。</strong>正好相反——它是<em>「先把所有短期债还干净之后，老板手里还能剩下的净流动资源」</em>。换句话说：</p>
+
+  <ul style="margin:8px 0;">
+    <li>15 万流动资产里，其中 <strong>8 万的「份额」已经被预留来还 8 万的流动负债</strong>了（哪笔现金还房租、哪笔应收抵进货款，账上一一对应）；</li>
+    <li>把这 8 万「还完」之后，账上剩下的就是 <strong>15 − 8 = 7 万</strong>；</li>
+    <li>这 7 万才是老板真正<em>「<strong>自由的</strong>」</em>那部分——不属于任何一个债权人、不被任何一个短债指名要走、可以拿去进新货、付下个月工资、应对突发状况。</li>
+  </ul>
+
+  <p>把这个概念画成画面会非常直观：</p>
+
+  <div class="figure" style="margin:14px 0;">
+    <div class="cap">运营资本图示</div>
+<pre style="font-family:ui-monospace,monospace; font-size:16.5px; line-height:1.65; margin:0; white-space:pre-wrap;">
+流动资产 15 万 ────────────────────────────────────
+[现金 8] [应收 2] [存货 5]
+
+流动负债 8 万 ──────────────────
+[应付 4][短贷 3][应付未付 1]
+
+         "贴一贴" 之后:
+┌──────────────────┐┌─────────┐
+│ 被「预留还短债」 ││ 净余裕  │
+│       8 万        ││  7 万   │
+└──────────────────┘└─────────┘
+       (这部分跟你           (这部分才是
+        没关系, 必须           "你的"  ——
+        留给债权人)            运营资本)
+</pre>
+  </div>
+
+  <p>所以「老板拥有 7 万运营资本」更精确的意思是：<strong>哪怕债权人明天全部来要钱，老板都能 8 万对 8 万地还清——还清之后他手里还剩下 7 万的「非现金流动资产」</strong>（具体是 2 万应收 + 5 万存货）。这 7 万既可以慢慢变现继续撑生意，也可以作为生产原料继续做面卖钱。它是面馆的<em>抗风险垫</em>——不是「再还一次债的弹药」，而是「还完所有债之后<strong>余下来的</strong>那一笔生意余裕」。</p>
+
+  <p>反过来：如果这家面馆 15 万的流动资产里只有 5 万、流动负债却有 8 万，运营资本就是 <strong>5 − 8 = −3 万</strong>（负值）。这意味着——<em>哪怕老板把店里所有现金 + 存货 + 应收<strong>全</strong>变现，也还差 3 万才能还清所有短期债</em>。这就是「<em>资金链断裂</em>」的会计学定义。</p>
+
+  <p><strong>把面馆的视角放大到上市公司，画面是一模一样的：</strong></p>
+
+  <ul style="margin:8px 0;">
+    <li>「现金 + 银行账户」← 资产负债表里的 <strong>货币资金</strong>；</li>
+    <li>「外卖平台欠的服务费」← <strong>应收账款</strong>（客户赊账的部分）；</li>
+    <li>「仓库里的面粉牛肉」← <strong>存货</strong>（成品、半成品、原材料）；</li>
+    <li>「欠面粉厂的进货款」← <strong>应付账款</strong>；</li>
+    <li>「信用卡 / 短期周转贷款」← <strong>短期借款</strong>；</li>
+    <li>「未交的房租 / 工资」← <strong>应付职工薪酬 / 其它应付</strong>。</li>
+  </ul>
+
+  <p>所以「运营资本」其实就是一个非常朴素的问题：「<em>这家公司的存量短期资源，够不够撑过短期债务？还能富余多少？</em>」</p>
+
+  <h4 style="font-size:22px; margin:20px 0 8px;">为什么这个数字对价值投资者特别重要？</h4>
+
+  <p>原因有三个，从浅到深：</p>
+
+  <ol style="margin:8px 0;">
+    <li><strong>它是「公司清算价值」的可靠下限。</strong>就算公司明天关门、把固定资产（厂房、机器）打折卖，<em>运营资本里的现金 + 应收 + 能脱手的存货，几乎是 1 : 1 的钱</em>。这是格雷厄姆「Net-Net」投资法的底层逻辑——找到「市值 &lt; 运营资本」的公司，相当于买公司送整个生意。</li>
+    <li><strong>它告诉你「这家公司在用谁的钱做生意」。</strong>如果运营资本是<em>正</em>的，说明公司在用自己的钱做生意；如果运营资本是<em>负</em>的，说明它在用别人的钱做生意——也可能是「霸气」（比如沃尔玛、好市多用应付账款占用上游资金），也可能是「危险」（比如随时可能资金链断裂）。需要再看「为什么」是负的。</li>
+    <li><strong>它的<em>变化</em>会反映在现金流量表上。</strong>运营资本一年减少了 1 个亿，意味着这一个亿要么变成了现金回流（存货卖光、应收收回），要么消化成支出（提前还款）。看现金流量表的「营运资本变化」项，是判断利润是否真转成现金的关键一步。</li>
+  </ol>
+
+  <h4 style="font-size:22px; margin:20px 0 8px;">三种典型状态：健康 / 紧张 / 危险</h4>
+
+  <table>
+    <thead>
+      <tr><th style="width:18%">状态</th><th style="width:30%">指标特征</th><th>面馆类比</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label" style="background:#dff4dd;">健康</td>
+        <td>运营资本 &gt; 0；流动比率 (流动资产/流动负债) ≥ 1.5；现金能盖短债 1 倍以上</td>
+        <td>面馆收银盒里钱够交两三个月房租；货也不积压；老板睡得着觉</td>
+      </tr>
+      <tr>
+        <td class="label" style="background:#fff4d6;">紧张</td>
+        <td>运营资本接近 0；流动比率 1.0–1.2；现金/短债 &lt; 1</td>
+        <td>面馆每月初要先看回款能不能赶上信用卡还款日；一旦外卖平台延期 1 周打款就吃紧</td>
+      </tr>
+      <tr>
+        <td class="label" style="background:#fadcdc;">危险</td>
+        <td>运营资本 &lt; 0 且不是因为强势占款；流动比率 &lt; 1；现金/短债 &lt; 0.5</td>
+        <td>面馆账上没现金、仓库还是赊来的、信用卡下个月就到期——任何一个客户欠款不到就要关门</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 style="font-size:22px; margin:20px 0 8px;">为什么它叫「运营资本」而不是「储备资本」？</h4>
+
+  <p>「运营」二字是关键。这笔钱不是给老板装进口袋的<em>利润</em>，也不是放进银行吃利息的<em>储备</em>，而是<strong>每天进进出出、做生意必须不断「用掉再补上」的那一笔钱</strong>。</p>
+
+  <p>面馆老板早晨用 5,000 元买了一批牛肉（钱变存货）；中午客人结账 3,000 元（存货变现金）；下午刷信用卡补了一批面粉（暂时不用付现金，欠应付账款）；晚上把回款的 3,000 元存进银行账户（变现金）。<em>一天里这笔「运营资本」的形态在现金 → 存货 → 应收 → 应付之间反复转换，但总量大致维持</em>。</p>
+
+  <p>这就是为什么它被叫做「<em>运</em>营资本」——它一直在<em>运动</em>，是这桩生意的血液循环，而不是体内储存的脂肪。</p>
+
+  <h4 style="font-size:22px; margin:20px 0 8px;">回到添柏岚的 2 亿</h4>
+
+  <p>李录算出添柏岚「<em>运营资本约 2 亿</em>」，意思是：剥掉所有短期债务后，这家公司账面上<strong>每天用来运转生意的「弹药」</strong>有 2 亿——其中现金约 1 亿、应收和存货净额（应收 + 存货 − 应付）约 1 亿。再加上 1 亿的固定资产（大楼），共 3 亿账面硬资产，正好等于李录出价买下整家公司的代价。</p>
+
+  <p>所以「<em>3 亿买公司，2 亿运营资本 + 1 亿大楼托底</em>」这句话的真正含义是：<strong>哪怕公司明天宣布关门清算，你拿回来的钱和你付出去的钱也基本相等；剩下的品牌、渠道、35% 增长率，全部是白送的</strong>。这就是为什么价值投资者会立刻坐直身子。</p>
+</div>
+
+<h3>2.3 季节性的修正——别被某一时点骗了</h3>
+
+<p>李录点了一个非常重要的细节：「<em>这是前三季度的业绩，根据常识不难想到零售行业通常第四季度是旺季</em>」。这里他做的是一个隐含的还原：</p>
+
+<ul class="body">
+  <li>Q1–Q3 的数据 ≠ 全年常态；</li>
+  <li>零售品牌的 Q4（圣诞档）通常贡献大量现金流入和存货消化；</li>
+  <li>翻去年 Q4 的数字，就能粗估「<em>今年年末账上会累计多少现金</em>」。</li>
+</ul>
+
+<div class="box tip">
+  <span class="tag">TIP #2</span>
+  <span class="tag-title">看资产负债表，先打一个「时间戳」</span>
+  <p>同一家公司，3 月 31 日的现金可能和 12 月 31 日的现金差好几个亿。<em>不还原季节性的资产负债表读数，就是在读一张不完整的照片</em>。零售看 Q4、农业看春耕、地产看年中结转——你需要根据生意特性，把你看到的那张快照对应到全年的什么位置。</p>
+</div>
+
+<h3>2.4 把家底拆成「现金 + 地产 + 其他」</h3>
+
+<p>李录算得非常快，但每一步都是有顺序的。我们把他的口算拉成一张表：</p>
+
+<table>
+  <thead>
+    <tr><th style="width:34%">家底拆解</th><th style="width:22%">金额（亿美元）</th><th>含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">账面总资产</td><td class="num">≈ 3.0</td><td>资产负债表上「资产合计」一行</td></tr>
+    <tr><td class="label">运营资本</td><td class="num">≈ 2.0</td><td>流动资产 − 流动负债</td></tr>
+    <tr><td class="label">└ 其中现金</td><td class="num">≈ 1.0</td><td>账上现金及等价物</td></tr>
+    <tr><td class="label">└ 其中其他流动净额</td><td class="num">≈ 1.0</td><td>存货 + 应收 − 应付的净额</td></tr>
+    <tr><td class="label">固定资产</td><td class="num">≈ 1.0</td><td>主要是一栋公司自有的大楼</td></tr>
+    <tr><td class="label">市值（约）</td><td class="num">≈ 3.0</td><td>3 亿左右，与账面资产相近</td></tr>
+  </tbody>
+</table>
+
+<p><strong>这张表告诉你的事情，比任何卖方报告都干净：</strong>你用 3 亿买下整家公司，背面摆着 <em>2 亿运营资本（其中现金约 1 亿）+ 1 亿货真价实的房产</em>，下行空间几乎被「现金 + 砖头」托底。<em>剩下的部分（品牌、渠道、增长）是「白送」的。</em></p>
+
+<div class="box aside">
+  <span class="tag">ASIDE · 用词澄清</span>
+  <span class="tag-title">李录那句「2 亿的流动资产，其中 1 亿是地产」严格来说是说错的——但意思没错</span>
+  <p>原文很容易让人卡住。李录前后用了三个不同的数：先说「<em>运营资本 3 亿</em>」（指 Q3 末的快照）、再说「<em>2.75 亿的运营资本</em>」（同一时点的另一种近似）、最后又说「<em>得到了 2 亿的流动资产，其中 1 亿是地产</em>」。三处之间不严格自洽，必须当心。</p>
+  <p>有两个混淆点：</p>
+  <ol>
+    <li><strong>「运营资本」≠「流动资产」。</strong>严格的会计口径下：
+      <ul>
+        <li><strong>流动资产</strong>（Current Assets）= 现金 + 应收 + 存货 + 其它一年内可变现的资产；</li>
+        <li><strong>运营资本</strong>（Working Capital）= 流动资产 − 流动负债；</li>
+        <li>两者差一个「流动负债」。李录在口播里把它们当成同一个词来用。</li>
+      </ul>
+    </li>
+    <li><strong>「地产」是固定资产，不是流动资产。</strong>那栋大楼记在资产负债表的 <em>Property, Plant and Equipment</em>（固定资产），不在「流动资产」一栏。李录说「2 亿流动资产，其中 1 亿是地产」从会计语言上是错的——大楼不可能既是流动的、又是地产。</li>
+  </ol>
+  <p>那李录真正想表达的是什么？把那段话翻译成严谨的版本：</p>
+  <blockquote style="margin:14px 0 12px;">
+    <p>「你出 3 亿买下整家公司，账面上有 <strong>大约 2 亿的『硬资产』可以兜底</strong>——其中约 1 亿是账上现金、约 1 亿是一栋自有大楼。剩下不到 1 亿的应收/存货/其它科目，正负相抵，可以视为净额约等于 0。」</p>
+  </blockquote>
+  <p>所以正确的拆解不是「2 亿流动资产 + 1 亿地产」，而是<strong>「1 亿现金（流动）+ 1 亿大楼（固定）+ 其它科目大致相抵」= 2 亿硬资产托底</strong>。李录在课堂上是<em>口算式的速记</em>，把「<em>有底、可兑现</em>」的概念笼统地叫成「流动资产」——价值投资者圈子里这种口语很常见，但听者要会脑内翻译。</p>
+  <p>顺便一说，他前面说的「2.75 亿运营资本」和后面说的「2 亿运营资本」的差，应当对应「<em>账上 1 亿现金扣不扣作经营所需</em>」：</p>
+  <ul>
+    <li>口径 A · 含全部现金：运营资本 ≈ 2.75 亿（流动资产 − 流动负债，全部现金算在内）；</li>
+    <li>口径 B · 剔除超额现金后的「经营所需运营资本」：≈ 2 亿（把那 1 亿账上闲置现金当作「白送」剔出去）；</li>
+    <li>所以下文第 3 章算 ROCE 时，他用的是 <strong>口径 B 的 2 亿</strong>——把闲置现金从分母里剔出，反映「生意本身的资本效率」。</li>
+  </ul>
+  <p>结论：这两处用词不严谨，但不影响投资逻辑的方向。<em>核心叙事仍然是「3 亿买公司，2 亿硬资产托底，剩下白送」</em>。本报告之前那一句「2 亿流动资产 + 1 亿房产」也属于沿用了李录的口语，已在上文修订为「2 亿运营资本（含 1 亿现金）+ 1 亿房产」更精确的口径。</p>
+</div>
+
+<div class="box aside">
+  <span class="tag">ASIDE</span>
+  <span class="tag-title">为什么固定资产是「大楼」会让李录眼前一亮</span>
+  <p>不是所有固定资产都靠谱。一个鞋厂的旧机器、半导体厂的旧设备，可能账面 1 亿，清算只剩 1000 万。但一栋位于商业地段的<em>自有大楼</em>，是出了名的「硬资产」——可以租、可以卖、可以抵押。李录反复强调「干净、保守、有流动性」的资产包，指的就是<em>把账面价值翻译回现实世界里能交易出去的钱</em>。</p>
+</div>
+
+<!-- ============== 第 3 章 ============== -->
+<h2 id="ch3"><span class="ch">CHAPTER 3</span>五秒钟看生意——剥掉杠杆之后的资本回报</h2>
+
+<div class="box crux">
+  <span class="tag">THE CRUX</span>
+  <span class="tag-title">资产端便宜，是「白送」；那这桩生意本身好不好，怎么五秒钟就判定？</span>
+  <p>李录只问了一个比例：<strong>这家公司投出去的每一块钱，每年能赚回多少钱来？</strong>——这就是 ROCE（资本回报率）。但要算 ROCE，他先做了一件特别重要的事：<em>把利息和税从利润里剥出去</em>。</p>
+</div>
+
+<h3>3.1 为什么用 EBIT，不用净利润</h3>
+
+<div class="box metric">
+  <span class="tag">METRIC</span>
+  <span class="tag-title">EBIT（息税前利润，Earnings Before Interest and Tax）</span>
+  <p><strong>它是什么：</strong>把净利润加回所得税、加回利息支出，得到的「在不考虑融资方式和税率前」的经营利润。</p>
+  <p><strong>怎么算：</strong>一种是「营业收入 − 营业成本 − 三费」自上而下算；另一种更快：「净利润 + 利息 + 所得税」自下而上倒推。两种应一致。</p>
+  <p><strong>这里为什么用它：</strong>李录明确说「<em>需要还原没有债务杠杆条件下它的资本回报，这能让你看到这个生意的本质</em>」。<br>
+  净利润是「股东最后拿到手」的数；它会被两件事干扰：① 你借了多少钱（利息高低）；② 你在哪个国家交税（税率高低）。这两件事跟「<em>生意本身好不好</em>」无关。剥掉它们，剩下的 EBIT 才是「<em>生意机器本身一年转出多少钱</em>」。</p>
+  <p><strong>商业直观：</strong>两家面馆，月卖 10 万、成本 6 万、毛利 4 万。一家老板没借钱、一家借了高利贷。后者「净利润」被利息吃光，但<em>面馆本身</em>同样赚钱。EBIT 让你看到「面馆」，而不是「面馆 + 老板的资金成本」。</p>
+</div>
+
+<h3>3.2 第二步：营业利润率告诉你生意的「弹性」</h3>
+
+<div class="box metric">
+  <span class="tag">METRIC</span>
+  <span class="tag-title">营业利润率（Operating Margin = EBIT / Revenue）</span>
+  <p><strong>它是什么：</strong>每一块钱收入，留下多少作为经营利润。</p>
+  <p><strong>李录怎么用：</strong>「<em>公司的运营利润率大概是 13%，8–8.5 亿的收入，1–1.1 亿息税前利润</em>」。这是一个标准的「鞋服中等品牌」利润率——既不是 5% 的纯代工，也不是 25% 的高奢品牌。13% 意味着<em>有定价权但不奢侈、有规模效应但不垄断</em>。</p>
+  <p><strong>商业直观：</strong>面馆的利润率告诉你「一碗面的水分有多大」。同样营收，利润率 5% 的生意一遇成本上行就亏，利润率 13% 的生意有缓冲带，能扛住汇率波动和原材料涨价。</p>
+</div>
+
+<h3>3.3 第三步：投入资本不是「总资产」</h3>
+
+<div class="box metric">
+  <span class="tag">METRIC</span>
+  <span class="tag-title">投入资本（Invested Capital）</span>
+  <p><strong>它是什么：</strong><em>真正被「锁」在生意里、用来产生 EBIT 的那笔钱</em>。粗算 = 经营所需的运营资本 + 固定资产；它<em>不</em>包括账面上闲置的多余现金、不包括与经营无关的金融投资。</p>
+  <p><strong>李录怎么算：</strong>「<em>2 亿流动资产，其中 1 亿固定资产，2 亿的投入资本</em>」——他这里的「2 亿」其实是「运营所需的 1 亿运营资本（剔除超额现金）+ 1 亿固定资产」。<em>账上那 1 亿现金被视为「白送给股东的」，不算在生意里</em>。</p>
+  <p><strong>为什么这么算很重要：</strong>如果你拿总资产 3 亿去除 EBIT，会得到一个偏低的回报率，并误以为「这就是一桩平庸生意」。<em>把「现金垫底」从分母里剔出去，才能看到生意本身的资本效率</em>。</p>
+  <p><strong>商业直观：</strong>一家面馆门口堆了 10 万现金做「装样子」，那 10 万跟做面没关系。判断「面馆这个生意」回报多高，要把那 10 万拿走。</p>
+</div>
+
+<h3>3.4 最后一锤：ROCE = 50%</h3>
+
+<div class="box metric">
+  <span class="tag">METRIC</span>
+  <span class="tag-title">ROCE（资本回报率，Return on Capital Employed）</span>
+  <p><strong>公式：</strong>EBIT ÷ 投入资本。</p>
+  <p><strong>李录得到的数：</strong>1 亿 ÷ 2 亿 = <strong>50%</strong>。</p>
+  <p><strong>它意味着什么：</strong>这桩生意每锁定 1 块钱，每年还你 5 毛钱的<em>经营层面</em>利润。要知道，美国长期股票回报率年化 8–10%，能持续做出 50% ROCE 的生意，<em>在商业世界里属于一类极少数的精品</em>。它通常对应「品牌护城河」、「网络效应」、「轻资产分销」这类结构性优势。</p>
+  <p><strong>为什么必须看 ROCE，而不是 ROE：</strong>ROE（净资产回报率）会被「加杠杆」放大。两家面馆同样赚 1 万，一家自有资本 5 万 ROE=20%，另一家自有 1 万借 4 万 ROE=100%。<em>但生意本身没区别</em>。ROCE 把杠杆挤掉，看到的是真东西。</p>
+</div>
+
+<div class="box aside">
+  <span class="tag">DEEP DIVE · 进阶</span>
+  <span class="tag-title">为什么这里的 ROCE 这么简洁？——和格林沃德《竞争优势》里那一版复杂计算对比</span>
+
+  <p>学过布鲁斯·格林沃德（Bruce Greenwald）的同学，可能立刻会皱眉头：他在《价值投资：从格雷厄姆到巴菲特》(<em>Value Investing</em>) 和《竞争优势》(<em>Competition Demystified</em>) 里讲到 ROIC / ROCE 时，给出的计算<em>极其</em>复杂——一笔账要做 5–7 步调整。李录在课堂上用 5 秒钟、几个口算数字就出了 ROCE 50%，是不是太草率？</p>
+
+  <p>两个版本都对，但服务的目的不同。先把格林沃德的「全套」长什么样列出来，再说李录「五秒版」省掉了什么、省略凭什么可行。</p>
+
+  <h4 style="font-size:22px; margin:22px 0 8px;">格林沃德的全套 ROIC 计算（约 7 步）</h4>
+
+  <p>格林沃德的核心动机是<em>「测量这家生意真正部署的资本，以及它真正产出的经济利润」</em>——他要把这个数和资本成本 (WACC) 比较，判断这家生意是否在「<strong>创造</strong>」价值，并据此识别护城河。所以他在<em>分子</em>和<em>分母</em>两端都要做大量调整：</p>
+
+  <table>
+    <thead>
+      <tr><th style="width:18%">调整端</th><th style="width:34%">动作</th><th>为什么</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label" rowspan="3">分子<br>(经营利润)</td>
+        <td>用 NOPAT 而非 EBIT<br>NOPAT = EBIT × (1 − 实际税率)</td>
+        <td>税是真实成本，不能不交。EBIT 高估了股东能拿到的真利润</td>
+      </tr>
+      <tr>
+        <td>把 R&D 从「费用」改回「投资」<br>分摊到未来 5–10 年</td>
+        <td>研发是<em>多年期</em>资本性投入，会计上一次性费用化扭曲了当年利润</td>
+      </tr>
+      <tr>
+        <td>把品牌广告里「建品牌」的部分资本化<br>常按 30–50% 估算</td>
+        <td>广告里有一部分等于「<em>买品牌资产</em>」，不应全部当作即期费用</td>
+      </tr>
+      <tr>
+        <td class="label" rowspan="4">分母<br>(投入资本)</td>
+        <td>把经营性资产用<em>重置成本</em>而非历史账面价值</td>
+        <td>老设备账面 1 亿、重新买要 3 亿，体现的「真实投入」是 3 亿</td>
+      </tr>
+      <tr>
+        <td>资本化的 R&D 累计余额加进分母</td>
+        <td>既然分子里加回了 R&D 摊销，分母也要加上「R&D 累计资产」</td>
+      </tr>
+      <tr>
+        <td>经营租赁按现值资本化（旧 GAAP 时代尤其重要）</td>
+        <td>租来的店面也是占用资本，只是不上资产负债表</td>
+      </tr>
+      <tr>
+        <td>剔除商誉、剔除超额现金、剔除非经营性投资</td>
+        <td>商誉是「<em>过去高溢价收购的纪念碑</em>」，跟「这桩生意的资本效率」无关</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>套完这一整套：</p>
+
+  <pre style="background:#f3efe3; padding:14px 18px; border-radius:4px; font-family:ui-monospace,monospace; font-size:17px; line-height:1.6; margin:14px 0;">
+ROIC(格林沃德) = NOPAT(调整后) ÷ 投入资本(重置 + R&D 资本化 + 租赁资本化 − 商誉 − 超额现金)
+             = (EBIT × (1−t) + R&D 摊销 + 品牌广告资本化部分)
+               ÷ (运营资本_经营性 + 固定资产_重置 + R&D 累计 + 租赁现值 − 商誉 − 超额现金 − 非经营投资)
+  </pre>
+
+  <p>一份这样的 ROIC 算下来，一家公司能写满半页 Excel。耗时<em>以天计</em>，不以秒计。</p>
+
+  <h4 style="font-size:22px; margin:22px 0 8px;">李录「五秒版」省掉了什么</h4>
+
+  <table>
+    <thead>
+      <tr><th style="width:32%">格林沃德要做的调整</th><th style="width:34%">李录怎么处理</th><th>影响</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>EBIT 改 NOPAT（扣税）</td><td>直接用 EBIT（约 1 亿）</td><td>ROCE 会被高估 ≈ (1/(1−t)) ≈ 1.35×；50% 其实对应 NOPAT-based 的 37%</td></tr>
+      <tr><td>R&D 资本化</td><td>不做</td><td>添柏岚是鞋服品牌，R&D 占收入&lt;1%，省略影响 &lt; 1pp</td></tr>
+      <tr><td>品牌广告资本化</td><td>不做</td><td>会低估「真实投入资本」，导致 ROCE <em>偏高</em>；但同一行业可比性不变</td></tr>
+      <tr><td>固定资产改重置成本</td><td>直接用账面 1 亿</td><td>大楼账面 ≈ 市价（李录已确认），偏差 &lt; 20%</td></tr>
+      <tr><td>经营租赁资本化</td><td>不做</td><td>添柏岚以自有大楼为主，租赁占比小</td></tr>
+      <tr><td>剔除商誉 / 超额现金</td><td>剔除了超额现金（1 亿现金从分母中拿走）；商誉未单独剔（账面无重大商誉）</td><td>核心动作其实做了</td></tr>
+    </tbody>
+  </table>
+
+  <p>核心结果：李录算出的 50% ROCE，如果套格林沃德全套，<em>大约</em>会落到 30–35%。<strong>但秩序不变</strong>——仍是优秀生意。</p>
+
+  <h4 style="font-size:22px; margin:22px 0 8px;">为什么这种「简化」在这个场景下是可行的？</h4>
+
+  <p>简化的代价是<em>「精度低 1–2 档」</em>；省下的是<em>「时间多 100×」</em>。这笔交易在 5 秒筛选场景里非常划算，原因有四：</p>
+
+  <ol style="margin:8px 0;">
+    <li><strong>「数量级正确」比「小数点正确」重要 100 倍。</strong>李录要回答的是「<em>这桩生意是 5% 回报还是 50% 回报</em>」——一个十倍的差。在这种数量级差距面前，30% vs 50% 的精度争议根本不影响结论：<em>都是优秀生意</em>。<br>反过来：如果简化版算出 8% ROCE，全套版算出 5% ROCE——结论也一致，都是<em>「平庸」</em>。<strong>简化几乎不会翻转质性判断</strong>。</li>
+    <li><strong>行业适配性。</strong>格林沃德的 5–7 项调整每一项的重要性，取决于行业特征：
+      <ul style="margin:6px 0;">
+        <li>R&D 资本化 → 对软件 / 半导体 / 制药<em>必做</em>；对鞋服<em>可省</em>；</li>
+        <li>品牌广告资本化 → 对快消 / 奢侈品<em>必做</em>；对工业品<em>可省</em>；</li>
+        <li>租赁资本化 → 对零售连锁 / 航空（IFRS 16 前）<em>必做</em>；对自有物业公司<em>可省</em>；</li>
+        <li>重置成本调整 → 对铁路 / 公用事业 / 重资产制造业<em>必做</em>；对资产较新的公司<em>可省</em>。</li>
+      </ul>
+      添柏岚作为<em>鞋服品牌 + 自有大楼 + R&D 极少</em>的公司，恰好落在「简化版误差最小」的象限里。李录这里不是偷懒，是<em>对企业类型做了正确的方法论匹配</em>。</li>
+    <li><strong>「漏斗」逻辑：5 秒不是终点，是入口。</strong>李录用 5 秒判断「值不值得继续看」；如果通过了，他在后续几个星期的尽调里<em>实际上是把格林沃德式的调整都做了一遍</em>（你回头看第 2 章里他对超额现金、对固定资产的真实流动性、对经营所需资本的拆解——那已经是「半个格林沃德」）。换句话说：<em>简化是「漏斗顶端」的工具，详细是「漏斗底端」的工具</em>，两者不矛盾。</li>
+    <li><strong>偏差方向是可预测的。</strong>简化版对 ROCE 的偏差几乎一律是<em>「高估」</em>（EBIT vs NOPAT、不剔租赁、不剔品牌资本化）。所以简化版给出 50%、全套给出 35% 是常态；但<em>不会反过来</em>。这意味着：<strong>简化版给出「优秀」时，真实可能只是「很好」；但简化版给出「平庸」时，真实几乎一定也是「平庸」</strong>——绝不会因为简化错过好生意。</li>
+  </ol>
+
+  <h4 style="font-size:22px; margin:22px 0 8px;">什么时候必须用格林沃德的全套？</h4>
+
+  <p>当你的目的从「<em>这家公司值不值得看</em>」升级到「<em>这家公司值多少钱</em>」时，简化就不够了：</p>
+
+  <ul style="margin:8px 0;">
+    <li><strong>做正式估值</strong>（DCF / EPV / 多倍数对照）：必须用 NOPAT，必须区分经营资本与非经营资产；</li>
+    <li><strong>跨行业横比</strong>：比较一家软件公司和一家铁路公司谁回报高，简化版会让软件公司被低估（R&D 当费用）、铁路公司被高估（老资产账面太便宜）。这种比较必须用重置成本 + R&D 资本化才能公平；</li>
+    <li><strong>判断「护城河来自哪里」</strong>（格林沃德《竞争优势》的核心议题）：要把「<em>资本回报 − 资本成本</em>」(EVA) 拆到具体业务段，看护城河是品牌带来的、规模带来的、还是客户粘性带来的——这需要精确的 ROIC；</li>
+    <li><strong>追踪企业「真实资本配置能力」</strong>：要算「<em>每留存 1 元钱，未来能产出多少新利润</em>」（增量 ROIC），简化版连基数都错，更别说增量。</li>
+  </ul>
+
+  <h4 style="font-size:22px; margin:22px 0 8px;">一句话总结</h4>
+
+  <blockquote style="margin:14px 0 6px;">
+    <p>李录的「五秒 ROCE」是<strong>筛选工具</strong>，用来在 1700 家公司里 5 秒砍掉 90%；格林沃德的「全套 ROIC」是<strong>定价工具</strong>，用来在剩下的 10% 里精算价值。<em>同一个生意，前者帮你决定『要不要看』，后者帮你决定『值多少钱』</em>。两者都对，搞错使用场景才是错。</p>
+  </blockquote>
+</div>
+
+<div class="box tip">
+  <span class="tag">TIP #3</span>
+  <span class="tag-title">「估值便宜」+「生意好」是两道独立的考题</span>
+  <p>很多人把「股价低」当成「好买点」，这是混淆。<br>
+  <strong>估值便宜</strong>解决的是「下行风险有多大」——账面、运营资本、固定资产组成的安全垫；<br>
+  <strong>生意好</strong>解决的是「上行空间有多大」——靠 EBIT 和 ROCE 衡量的盈利能力。<br>
+  只有同时通过这两道题，才是「便宜的好生意」。李录一上来分两步：先 P/B + 运营资本，再 EBIT + ROCE——就是为了不混。</p>
+</div>
+
+<h3>3.5 五秒钟结论</h3>
+
+<p>李录复盘自己当时的判断是：</p>
+
+<blockquote>
+  <p>「股票交易的市值在净资产附近，账面资产是干净的、保守的、有流动性的；1 亿的运营资本加上 1 亿的固定资产，投入资本占市值的三分之二，2 亿的运营资本产生了约 1 亿的息税前利润。所以这肯定是桩不赖的生意。」</p>
+</blockquote>
+
+<p>到这里，他<em>还没看一份卖方报告、没去一家门店、没打一个电话</em>。他只用了一本《价值线》和五秒钟。这才是「快速否决/快速肯定」机制的威力：<strong>对 1700 家公司，90% 在五秒内被否决，剩下的才值得花几周</strong>。</p>
+
+<!-- ============== 第 4 章 ============== -->
+<h2 id="ch4"><span class="ch">CHAPTER 4</span>既然这么好，为什么这么便宜？</h2>
+
+<div class="box crux">
+  <span class="tag">THE CRUX</span>
+  <span class="tag-title">市场不是傻子。一桩明显的好生意被打了五折，一定有理由——找不出理由，就是你还没找到。</span>
+  <p>这是价值投资里最反人性的一步：<em>明明已经看到了好东西，却必须先假设它有问题，然后挨个排除</em>。否则你买的可能不是「便宜的好生意」，而是「正在变坏的中等生意」。</p>
+</div>
+
+<h3>4.1 用矛盾论拆「为什么便宜」</h3>
+
+<p>李录在这一段做的事，本质是「矛盾分析」：把所有「市场不爱它」的可能原因列出来，再分清哪些是<strong>主要矛盾</strong>（决定股价是否便宜的根本原因）、哪些是<strong>次要矛盾</strong>（让局面更糟，但不是根因）；再分清哪些是<strong>外因</strong>（行业/宏观环境）、哪些是<strong>内因</strong>（公司治理/结构）。</p>
+
+<table>
+  <thead>
+    <tr><th style="width:24%">维度</th><th style="width:38%">具体表现</th><th>性质判定</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="label">宏观/外因</td>
+      <td>1997–1998 亚洲金融危机，鞋服国际业务受波及；耐克、锐步同步下杀</td>
+      <td>外因，行业贝塔的回落；属于「<em>主要的、暂时性的</em>」矛盾</td>
+    </tr>
+    <tr>
+      <td class="label">研究覆盖</td>
+      <td>近 10 亿销售额、品牌响亮，却<em>没有任何卖方报告</em></td>
+      <td>反常信号；提示存在「<em>结构性原因</em>」让分析师不愿意覆盖</td>
+    </tr>
+    <tr>
+      <td class="label">公司诉求</td>
+      <td>历史上几乎没有从资本市场融资，对券商关系冷淡</td>
+      <td>内因；解释了为什么 IR 弱、为什么不给 guidance</td>
+    </tr>
+    <tr>
+      <td class="label">股权结构</td>
+      <td>家族持 40% 股权但拥有 98% 投票权</td>
+      <td>内因；让外部小股东「没影响力」，估值天然打折</td>
+    </tr>
+    <tr>
+      <td class="label">法律风险</td>
+      <td>多起股东集体诉讼</td>
+      <td>表层现象；需要打开卷宗看是「<em>诚信问题</em>」还是「<em>沟通问题</em>」</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>4.2 关键的一对概念：「股权」与「投票权」可以分离</h3>
+
+<div class="box metric">
+  <span class="tag">METRIC</span>
+  <span class="tag-title">双重股权结构 / 投票权集中（Dual-class shares）</span>
+  <p><strong>它是什么：</strong>不少美股公司发两类股票——A 类（公众持有，1 股 1 票）和 B 类（创始家族持有，1 股 10 票甚至更多）。结果就是<em>「经济权益」和「控制权」分离</em>。</p>
+  <p><strong>添柏岚的情况：</strong>家族经济上占 40%，投票上拿 98%——也就是说，普通股东在董事会、CEO 任命、并购等重大决定上<em>几乎没有发言权</em>。</p>
+  <p><strong>李录用它来做什么：</strong>解释「为什么便宜」。市场对「<em>我没法影响这家公司</em>」会要一个折扣，这是合理的。但反过来——如果家族本身经营得好、利益跟你一致，<em>这个折扣就是你的便宜</em>。</p>
+  <p><strong>商业直观：</strong>双重股权像是「<em>你跟一位强势但能干的合伙人合作</em>」。决定权不在你手上，但只要他做得对，你跟他同船。判断便宜还是危险，关键看「他靠不靠谱」——这就直接通往第 5 章。</p>
+</div>
+
+<h3>4.3 警觉：诉讼背后是「沟通问题」还是「诚信问题」</h3>
+
+<p>李录在课堂里专门怼了学生一句：「<em>你们的怀疑精神还不够！有没有可能是管理层挪用公司资金或者伪造账目？</em>」这是关键的训练。<strong>一个家族同时握有 98% 投票权 + 多起诉讼 + 没有卖方覆盖，从外部看，足够构成一个「红旗组合」</strong>——值得最坏的假设。</p>
+
+<p>他的处理方式不是「问问 IR」，而是<em>下载所有诉讼资料，逐字研究</em>。最后的结论是：所有诉讼都围绕一个争议——「公司停止提供盈利指引（earnings guidance）」。换句话说，这是「<em>沟通问题</em>」，不是「诚信问题」。</p>
+
+<div class="box tip">
+  <span class="tag">TIP #4</span>
+  <span class="tag-title">遇到红旗，先验证「红旗的性质」，再决定怕不怕</span>
+  <p>诉讼、监管调查、机构集体减持、审计师轮换——这些信号本身只是「值得调查」，<em>不能直接当判决</em>。<br>
+  价值投资者要做的是<strong>把红旗的内容打开</strong>：诉讼里告的是什么？监管查的是什么？机构卖出是因为做错了还是因为做对了？<br>
+  「沟通问题」和「财务造假」之间，估值差可以是 5 倍 P/E 与 0。挖清楚再下注。</p>
+</div>
+
+<h3>4.4 为什么市场上没有卖方报告？</h3>
+
+<p>李录用「公司对资本市场没有诉求」一句话点穿了。卖方分析师的本质工作是<em>帮投行赚承销/经纪/做市的费用</em>：</p>
+
+<ul class="body">
+  <li>公司不发新股 / 不发债 → 投行赚不到承销费 → 没动力安排分析师覆盖；</li>
+  <li>公司不接待路演、不开 guidance → 卖方研报没素材可写 → 没动力主动覆盖；</li>
+  <li>公司家族控股不接受激进股东 → 投行帮不到对冲基金做活动家投资 → 没动力关注。</li>
+</ul>
+
+<p>这就形成一个完美的「<em>市场失灵区</em>」：好生意 + 烂股价 + 没人讨论。对一个独立研究者来说，这是宝藏地图。</p>
+
+<div class="box aside">
+  <span class="tag">ASIDE</span>
+  <span class="tag-title">「市场有效」在哪些角落最容易失灵</span>
+  <ul>
+    <li><strong>小市值 + 家族控股 + 不融资</strong>：卖方没动力覆盖；</li>
+    <li><strong>分拆/重组刚完成</strong>：母公司的研究员看不懂，子公司研究员还没建模；</li>
+    <li><strong>跨多个行业、被强行分类</strong>：每个行业的分析师都觉得「不在我赛道」；</li>
+    <li><strong>有官司、有丑闻但事实清楚</strong>：机构怕「头条风险」直接弃权，而事实其实可以查清。</li>
+  </ul>
+  <p>价值投资者长期挣的就是这些「市场失灵口」的钱。</p>
+</div>
+
+<!-- ============== 第 5 章 ============== -->
+<h2 id="ch5"><span class="ch">CHAPTER 5</span>老板是谁——像调查记者一样做尽调</h2>
+
+<div class="box crux">
+  <span class="tag">THE CRUX</span>
+  <span class="tag-title">当一个家族对你「几乎不受任何限制」时，你怎么判断「他靠不靠谱」？</span>
+  <p>这一章是讲座里最反常识的部分。它跳出了财报、跳出了估值，转向「<em>人</em>」。李录称之为<em>investigative journalist</em>（调查记者）式尽调。</p>
+</div>
+
+<h3>5.0 先解开一个比喻——为什么是「调查记者」？</h3>
+
+<p>李录原话其实给了三个比喻：<em>「价值投资者要把自己培养成一个学术型的研究人员、侦探，甚至记者」</em>。可他在整堂课里反复强调的、唯一拿来形容尽调动作的，<strong>只有「调查记者」</strong>这一个。为什么不是「学者」或「侦探」？把这三个职业对照着看，你就明白为什么这个比喻特别精准——它对应的是<em>价值投资者真实的「信息环境」</em>。</p>
+
+<table>
+  <thead>
+    <tr><th style="width:18%">比喻对象</th><th style="width:30%">他要解决的问题</th><th style="width:28%">他能拿到的信息</th><th>他的「时间盘子」</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="label">学者</td>
+      <td>找出<em>普遍规律</em>——「鞋服行业的毛利率长期均值是多少」</td>
+      <td>已发表的论文、统计数据库；信息<em>静态、公开、可同行复核</em></td>
+      <td>以「年」为单位，没有截稿压力</td>
+    </tr>
+    <tr>
+      <td class="label">侦探</td>
+      <td>解决<em>已经发生</em>的案件——「凶手是谁」</td>
+      <td>受法律授权的搜查权、传讯权；可强制取证</td>
+      <td>以「破案为止」计，公检法协作</td>
+    </tr>
+    <tr>
+      <td class="label" style="background:#fce5d8;">调查记者</td>
+      <td>揭露<em>正在发生、且被刻意掩盖</em>的真相——「这家公司有没有粉饰报表」</td>
+      <td><strong>只能用公开记录 + 自愿合作</strong>；当事人可能撒谎、可能拒访、可能反咬</td>
+      <td>以「下一个版面」/「下一次股价反映」为单位</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>把这三栏对齐价值投资者真实面对的世界——<em>研究的是「正在发生的生意」（不是已固化的历史）；面对的是「有动机包装自己」的信源（管理层、卖方、IR）；没有任何法律工具能强迫公司告诉你真相；机会窗口随时关闭</em>——你会发现<strong>没有任何职业比「调查记者」更同构</strong>。学者的方法论太慢，且默认信源诚实；侦探的方法论强大但对民间研究者完全不开放。唯有调查记者，在<em>「真相被埋藏、欺骗有回报、外部强制力为零」</em>的极端环境里，把一套行之有效的研究方法打磨成熟。这正是价值投资者需要的工具箱。</p>
+
+<h3>5.0.1 调查记者这一行的八个核心特征——以及为什么这个行业必然产生这些特征</h3>
+
+<p>「调查记者」(Investigative Journalist) 在新闻业内部是一个非常具体的工种，不同于跑会、写综合、做评论。他们做的是「深度调查报道」（Investigative Reporting）：用 3–6 个月甚至 1–2 年去挖一篇报道，最后产出 5,000–20,000 字的长稿，揭露一桩之前没人讲清楚的事。这个行业能稳定生存，是因为长期演化出了几条非常硬的<em>工作习惯</em>。下面这八条，每一条都能 1:1 映射到价值投资者的研究方法。</p>
+
+<div class="box tip">
+  <span class="tag">TRAIT #1</span>
+  <span class="tag-title">默认假设：所有「正式说法」都是过滤过的</span>
+  <p><strong>记者为什么有：</strong>新闻发言人、公关稿、官方声明的工作就是「<em>把信息修剪到对发布者最有利的形状</em>」。一个直接把官方通告原样转发的记者，写出来的是新闻通稿，不是新闻——他的稿子一年内就会因为「没东西」而被读者抛弃。</p>
+  <p><strong>价投映射：</strong>财报披露、IR 路演、CEO 致股东信——都是修剪过的版本。<em>价值投资者必须假设「他们告诉你的是他们希望你看到的」</em>，然后去挖「他们没说但同样重要」的部分。例如：财报附注里的或有负债、关联交易表、审计意见的微妙措辞、上一份招股书 vs 这一份的差异。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">TRAIT #2</span>
+  <span class="tag-title">「两个独立信源」铁律 (Two-Source Rule)</span>
+  <p><strong>记者为什么有：</strong>这是 1972 年水门事件以后，美国新闻业写进操作手册的一条硬规则——任何重大事实在发表前，<em>必须有至少两个互相不知道的、各自独立的信源证实</em>。原因极朴素：单一信源可能撒谎、可能记错、可能被胁迫；只要有两个独立来源指向同一事实，<em>「<strong>都</strong>撒谎」的概率会从 10% 一下子掉到 1%</em>，可靠性陡增。这是新闻业最贵的一条规则——多花时间、多得罪一倍人——但因为输不起官司，所有顶级媒体都遵守。</p>
+  <p><strong>价投映射：</strong>不要只信公司财报；同一个事实要从<em>独立信源</em>验证——卖方报告、供应商访谈、客户访谈、离职员工、招聘信息、专利数据库、海关进出口数据、电费用量、第三方调研。李录尽调添柏岚时跑到城市中心区门店看「店长是否抱怨缺货」、跑去 City Year 董事会和老板儿子共事——他在做的就是「<em>两个独立信源验证『管理层人品』和『生意热度』</em>」。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">TRAIT #3</span>
+  <span class="tag-title">把公开档案当宝矿挖 (Mining Public Records)</span>
+  <p><strong>记者为什么有：</strong>调查记者最大的「<em>不公平优势</em>」其实不是私下爆料，而是<strong>对公开档案的熟悉</strong>——法庭卷宗、土地登记、政府采购、监管处罚、议会听证、企业注册变更、税务文件、慈善基金会披露……这些档案 95% 的人不知道在哪，但它们大多免费公开。一个被训练过的记者，能从一份法庭判决书里读出一个公司不愿意提的债务问题。</p>
+  <p><strong>价投映射：</strong>10-K、10-Q、8-K、招股书、并购协议附件、监管处罚 PDF、法院庭审记录、招聘网站的岗位 JD、专利 / 商标申请、海关数据——<em>这些都是公开的</em>，但 95% 的散户从没打开过。李录在添柏岚案例里「<em>下载所有诉讼资料，逐字逐行仔细研究</em>」——这是典型的「档案挖矿」动作，让他在没有内幕的前提下，比卖方分析师都更懂这家公司的法律风险。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">TRAIT #4</span>
+  <span class="tag-title">「Beat 跟线」式的长期沉浸</span>
+  <p><strong>记者为什么有：</strong>调查记者通常长期「跑一条线」（a beat）——比如有人专跑大法院、有人专跑国防部、有人专跑制药行业。一个跑了 8 年制药线的记者，闻得到「这家公司临床试验数据有点不对劲」的味道，因为他读过 200 家公司的临床数据；这种<em>嗅觉</em>是新手怎么搜资料也搜不到的，只能用时间换。</p>
+  <p><strong>价投映射：</strong>这就是李录反复强调「<em>读一页一页的 Value Line、读穆迪手册</em>」的真正原因——它在训练你<em>对各行各业的「正常状态」建立基线</em>。一个看过 100 家鞋服公司年报的人，看添柏岚的 13% 营业利润率会立刻知道「这在行业里偏上、不算夸张」；而一个第一次看的人会要么以为它平庸、要么以为它疯狂。<strong>嗅觉 = 时间积累的副产品</strong>。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">TRAIT #5</span>
+  <span class="tag-title">关注「人」而不只是「事」</span>
+  <p><strong>记者为什么有：</strong>新闻学里有一句行话：「<em>Follow the people, not the headline</em>」（跟人，不跟标题）。因为「事」是被讲出来的，「人」才是讲事情的主体；理解一个事件背后有谁有动机说什么话、谁能从中获益——比理解事件本身更靠近真相。这一行最经典的口诀是 <em>"follow the money"</em>（钱跟谁走，你跟谁挖）和 <em>"cui bono"</em>（拉丁文「谁受益」）。</p>
+  <p><strong>价投映射：</strong>李录在添柏岚案例里花了几个月的时间研究老板和老板儿子的为人——这远远超出了财报范围。<em>因为家族控股 + 98% 投票权意味着「人」就是公司</em>。如果换成一家管理层 5 年一换的大公司，他可能就不必下这种功夫。<strong>「跟人」的投入度，应该和「人的影响力」成正比。</strong></p>
+</div>
+
+<div class="box tip">
+  <span class="tag">TRAIT #6</span>
+  <span class="tag-title">「对抗式思考」(Adversarial Thinking)</span>
+  <p><strong>记者为什么有：</strong>调查报道刊发前，要经过<em>「事实核查」(fact-checking)</em>——一位独立同事会把每一句陈述拿出来反驳一次：「这个数据你怎么知道？」「这个说法可不可以解释成相反的意思？」「如果对方起诉你，你拿什么证据自卫？」这种「自我反驳」是这一行的标配，原因是<strong>诽谤诉讼的代价极高</strong>——一篇报道写错可以让一家媒体破产。</p>
+  <p><strong>价投映射：</strong>这就是「<em>反向尽调</em>」「<em>空头视角</em>」的训练。在你买入之前，必须先用一个小时的时间扮演空头——「<em>如果我要劝自己『不要买这只股票』，我会列出哪些理由？</em>」如果列不出 3 条以上有分量的反方论据，说明你研究得还不够深。李录在课堂里怼学生「<em>你们的怀疑精神还不够！有没有可能是管理层挪用公司资金？</em>」——这就是把对抗式思考塞进研究流程的最直接动作。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">TRAIT #7</span>
+  <span class="tag-title">现场 (Field Reporting)，而不是只看屏幕</span>
+  <p><strong>记者为什么有：</strong>有句行话叫「<em>有些故事电话里听不到</em>」。一个事件的真相，常常藏在<em>受访者的表情、他工厂车间的味道、他社区里邻居端着咖啡聊的几句</em>——这些细节没法通过邮件或视频会议传递。这是为什么所有的顶级调查报道，几乎都需要花相当一部分预算坐飞机去现场。</p>
+  <p><strong>价投映射：</strong>李录反复强调：「<em>光靠打电话是不够的，你要实地考察</em>」。他亲自跑去添柏岚老板的社区、教堂、董事会——这些场合里他「看到」的东西，是任何 IR 邮件回不来的：老板穿什么衣服、对邻居什么态度、儿子在做什么公益。同理，价值投资者要把<em>「去门店、去工厂、去停车场数车、去经销商办公室喝茶」</em>当成研究的标准动作，而不是「锦上添花」。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">TRAIT #8</span>
+  <span class="tag-title">耐心和「截稿压力」共存</span>
+  <p><strong>记者为什么有：</strong>调查记者长期处于两种相互拉扯的压力下——<em>「报道必须经得起反复推敲」</em> vs <em>「机会窗口正在关闭」</em>（其它媒体会先发、当事人会跑路、消息会过气）。这一行的高手会在两者之间精确找到平衡：宁可慢两天确保不错，也不能慢两个月让别人发了。</p>
+  <p><strong>价投映射：</strong>李录那段话——「<em>这样的机会不会经常出现，当它到来时你必须抓紧它，尽你所能把事情做周全，而且要尽可能地快</em>」——就是把记者这种「快慢平衡」直接搬到了投资里。<strong>研究的「快」靠平时积累，研究的「慢」靠机会出现时不偷懒</strong>——这是同一回事。</p>
+</div>
+
+<h3 style="margin-top:36px;">5.0.2 这两个行业为什么会演化出同样的工作方式？</h3>
+
+<p>表面看，新闻和投资风马牛不相及——一个写报道、一个买股票。但如果你抽象一下两者的「<em>工作环境</em>」，会发现他们面对的是<strong>几乎一模一样的市场结构</strong>：</p>
+
+<table>
+  <thead>
+    <tr><th style="width:32%">环境特征</th><th>调查记者</th><th>价值投资者</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="label">信源有动机包装事实</td>
+      <td>政府/企业有动机讲对自己有利的版本</td>
+      <td>管理层/卖方/IR 有动机讲对股价有利的版本</td>
+    </tr>
+    <tr>
+      <td class="label">真相高度稀缺、欺骗有回报</td>
+      <td>挖出真相能拿普利策；写假新闻也能短期吸睛</td>
+      <td>找出错配能赚 7×；信叙事买高估值也能短期赚钱</td>
+    </tr>
+    <tr>
+      <td class="label">没有强制取证权</td>
+      <td>不能传讯、不能搜查</td>
+      <td>不能要求公司给你看真实数据</td>
+    </tr>
+    <tr>
+      <td class="label">输不起</td>
+      <td>诽谤诉讼 → 媒体破产</td>
+      <td>看错股票 → 真金白银亏</td>
+    </tr>
+    <tr>
+      <td class="label">没有截稿日的人会失业</td>
+      <td>稿子太慢 → 别人先发 → 你被裁</td>
+      <td>研究太慢 → 别人先买完 → 你买在高点</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这五条「<em>环境压力</em>」共同作用，<strong>必然把任何在这两个行业里长期生存的人，塑造成同一类「人」</strong>——怀疑、独立、勤奋、耐心、爱挖档案、爱跑现场、爱跟人聊天、爱反驳自己。这不是巧合，是经济学上的「<em>相同选择压力 → 相似的进化形态</em>」。</p>
+
+<div class="box aside">
+  <span class="tag">ASIDE · 为什么不是「侦探」更好的比喻</span>
+  <span class="tag-title">侦探有强制取证权，记者没有——这一条让两者天差地别</span>
+  <p>大家可能会觉得「侦探」听起来比「记者」更酷、更准确。但侦探（特别是警方侦探）拥有<em>记者没有的核心工具</em>：</p>
+  <ul>
+    <li>搜查令 → 可以进对方的办公室；</li>
+    <li>传讯 → 可以强迫对方作证；</li>
+    <li>逮捕 → 可以扣留嫌疑人；</li>
+    <li>公检法配合 → 有一整套国家机器在背后。</li>
+  </ul>
+  <p>这些工具是<em>价值投资者完全没有的</em>。投资者去公司「调查」时，公司可以拒访、可以撒谎、可以反过来怀疑你是不是空头。<em>价值投资者面对的是「自愿合作 or 不合作」的世界，和调查记者一模一样</em>——只能靠公开档案、可信信源、现场观察、对抗式推理。这就是为什么调查记者比侦探更接近价值投资者真实的处境。</p>
+</div>
+
+<h3>5.1 为什么打电话不够</h3>
+
+<p>学生提议「打电话给他的邻居」，李录直接说：「<em>大部分人真的会说『你见鬼去吧』。</em>」这一段是这堂课最值得抄笔记的部分：</p>
+
+<blockquote>
+  <p>「凡是创立公司的人一般都有强烈的个性，都有历史可供考证，都会留下一些蛛丝马迹告诉大家他们是什么样的人，他们做过什么，他们如何应对纷繁复杂的情况……去这些人的社区、教会，拜访他们周围的人，把自己融入他们的家庭、朋友、邻居，光靠打电话是不够的，你要实地考察，甚至不惜花上几个星期的时间。」</p>
+</blockquote>
+
+<p>他做了什么：</p>
+
+<ul class="body">
+  <li>实地走访社区，了解老板是高中毕业、为人简单、乐善好施，去教堂但不狂热；</li>
+  <li>发现老板儿子（候任 CEO）跟自己年龄相仿，已经在董事会；</li>
+  <li>更巧：老板儿子同时是另一家公益组织 City Year 的董事，而 City Year 的创始人是李录朋友；</li>
+  <li>李录借此进入同一个董事会，两人在<em>非投资场合</em>共事数年，深入了解为人。</li>
+</ul>
+
+<div class="box tip">
+  <span class="tag">TIP #5</span>
+  <span class="tag-title">人的尽调，靠「场景多样性」</span>
+  <p>一个人在 IR 会议室上呈现的，是「<em>他想让你看见的样子</em>」。但同一个人在<em>教会、社区、董事会、家庭、朋友圈</em>呈现出来的<em>差异</em>，才是他真实的轮廓。<br>
+  这就是为什么调查记者方法的本质是<strong>多场景三角验证</strong>：每多一个场景，他能粉饰的余地就少一分；几年下来，一个人到底什么样，瞒不住。<br>
+  对家族控股公司来说，这一步不是「锦上添花」，而是「<em>买不买</em>」的胜负手。</p>
+</div>
+
+<h3>5.2 治理的代价 vs 治理的红利</h3>
+
+<p>家族控股 + 不爱跟华尔街沟通，有两面性：</p>
+
+<table>
+  <thead>
+    <tr><th style="width:33%">维度</th><th>家族不上心 / 不当回事 = 风险</th><th>家族当成长子 / 一辈子的事 = 红利</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">资本配置</td><td>胡乱多元化、买豪宅、关联交易</td><td>极度保守、低杠杆、对资产质量极度负责</td></tr>
+    <tr><td class="label">短期压力</td><td>无 → 可能松懈</td><td>无 → 可以专注做长期对的事</td></tr>
+    <tr><td class="label">透明度</td><td>低 → 可能藏污纳垢</td><td>低 → 但可以经得起卷宗 + 调查检验</td></tr>
+    <tr><td class="label">对小股东态度</td><td>当韭菜</td><td>当合伙人但不讨好</td></tr>
+  </tbody>
+</table>
+
+<p>李录用几个星期把添柏岚父子归到了右边一列。这一刻，前面所有「便宜 + 好生意 + 没人覆盖」的财务结论，<em>才真正变成可以下注的判断</em>。</p>
+
+<!-- ============== 第 6 章 ============== -->
+<h2 id="ch6"><span class="ch">CHAPTER 6</span>增长引擎在哪——门店、人群、地理</h2>
+
+<div class="box crux">
+  <span class="tag">THE CRUX</span>
+  <span class="tag-title">财报上利润率稳定上行，但「为什么」才是关键。如果不知道为什么，你就不知道明年会不会继续。</span>
+  <p>李录发现添柏岚的<em>毛利率持续上升</em>，这是个好信号；但他没把它当成结论，而是把它当成<strong>下一个谜题</strong>。这种「<em>把好消息当问题去解</em>」的姿态，是高级研究员和普通研究员的分水岭。</p>
+</div>
+
+<h3>6.1 走进门店：找到「文化级」的需求驱动</h3>
+
+<p>李录走访多个地区的门店，得到的事实是：<strong>大都市中心区的黑人青少年把添柏岚当成时尚符号，鞋子和牛仔裤都供不应求</strong>。这条信息，财报上看不出来，季报里也看不出来，但<em>它是毛利率上行的真正动因</em>。</p>
+
+<p>为什么这个发现这么重要？因为它把一个「鞋服品牌的周期性故事」，<em>升级</em>成了「<em>跨文化的潮流溢出</em>」。一个原本卖给户外蓝领的实用品牌，被嘻哈文化拥抱后，<em>客群、定价权、复购率</em>同时被升一档。这种变化往往不会马上反映在卖方模型里，留出了认知窗口。</p>
+
+<div class="box tip">
+  <span class="tag">TIP #6</span>
+  <span class="tag-title">渠道调研要回答「为什么」三层</span>
+  <ol>
+    <li><strong>谁在买？</strong>（不是「客户画像」，是「店长一周内见到的人长什么样」）</li>
+    <li><strong>为什么买？</strong>（功能？身份？社交？）</li>
+    <li><strong>为什么现在买？</strong>（什么变量在变化——电影、明星、补贴、社交平台）</li>
+  </ol>
+  <p>财报告诉你「卖了多少」，门店告诉你「还能卖多久」。前者是后视镜，后者是前视镜。</p>
+</div>
+
+<h3>6.2 把「最可怕的故事」拆成可量化的小盒子</h3>
+
+<p>李录面对的最大宏观空头是「亚洲金融危机 → 国际业务下滑 → 利润下滑」。他没有用直觉处理，而是把「国际业务」拆开看：</p>
+
+<ul class="body">
+  <li>国际业务占总收入比例：<strong>27%</strong>；</li>
+  <li>国际业务里，<em>亚洲鞋类</em>只占其中 <strong>10%</strong>；</li>
+  <li>对全公司的真实暴露 = 27% × 10% = <strong>约 2.7%</strong>；</li>
+  <li>即使亚洲鞋类业务<em>归零</em>，对全公司收入的最大冲击不到 3%——而它对应着的 EBIT 占比，可能更小。</li>
+</ul>
+
+<div class="box tip">
+  <span class="tag">TIP #7</span>
+  <span class="tag-title">把宏观风险翻译成「占公司利润的百分之几」</span>
+  <p>新闻和情绪倾向于放大风险，因为「亚洲危机 + 鞋服品牌」六个字看起来就很糟。<br>
+  但价值投资者要做的是<strong>把这个故事「除以一个分母」</strong>：它实际影响公司多少利润？是 30% 还是 3%？<br>
+  3% 的暴露 + 50% 的折扣，这是一种<em>错杀</em>，是机会而非风险。<br>
+  没有这一步的「除法」，估值再便宜也会怕得不敢买。</p>
+</div>
+
+<h3>6.3 总结：增长的可持续性已经被三方面交叉验证</h3>
+
+<table>
+  <thead>
+    <tr><th style="width:32%">验证维度</th><th>李录看到的事实</th><th>对未来的含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">财报</td><td>毛利率持续上升、利润稳健</td><td>已发生</td></tr>
+    <tr><td class="label">门店</td><td>城市中心区客群升级、供不应求</td><td>正在发生且会持续</td></tr>
+    <tr><td class="label">业务结构</td><td>国际业务只贡献 27%，亚洲鞋类只 2.7%</td><td>宏观风险被严重高估</td></tr>
+  </tbody>
+</table>
+
+<!-- ============== 第 7 章 ============== -->
+<h2 id="ch7"><span class="ch">CHAPTER 7</span>该下多少注——「基点」与「常识」之争</h2>
+
+<div class="box crux">
+  <span class="tag">THE CRUX</span>
+  <span class="tag-title">当所有事实都已查清、所有风险都已折现，仓位应该怎么定？</span>
+  <p>这是李录整堂课最有「火药味」的一段。他批评机构投资者的「基点思维」，提倡<em>用常识下注</em>。这里隐含的，是关于「<strong>仓位 = 你对自己研究的诚信度</strong>」的一种哲学。</p>
+</div>
+
+<h3>7.1 「基点」是什么</h3>
+
+<div class="box metric">
+  <span class="tag">METRIC</span>
+  <span class="tag-title">基点（Basis Point, bp）</span>
+  <p><strong>它是什么：</strong>金融行业最常用的小单位，<em>1 bp = 0.01%</em>。<br>
+  「25 个基点」= 0.25%；「50 个基点」= 0.5%。</p>
+  <p><strong>李录怎么用：</strong>他讽刺基金经理们「先来 25 个基点，不够再加到 50 个基点」——也就是说，<em>一只他们最看好的股票，仓位也只占组合的 0.5%</em>。</p>
+  <p><strong>为什么他反对：</strong>这种仓位制度的核心，是「<em>跟踪误差最小化</em>」——避免跟基准指数偏离太多，从而避免短期被客户骂、被解雇。它<em>不</em>是为了「让钱长得最快」。在这种制度下，再好的判断也不会被压上注。</p>
+</div>
+
+<h3>7.2 仓位的「凯利分数」直觉</h3>
+
+<p>李录没有提凯利公式（Kelly Criterion），但他的常识恰好是它的语言版本：<strong>一只赔率高、向下空间被资产托底、向上空间是 7 倍盈利增长的股票，应该重仓</strong>。这是因为：</p>
+
+<ul class="body">
+  <li>下行：账面价值托底 → 损失上限可控；</li>
+  <li>上行：盈利 7 倍 + 估值不被压制 → 收益空间巨大；</li>
+  <li>胜率：经过几个星期 24/7 的尽调 → 高于一般直觉。</li>
+</ul>
+
+<p>把三件事放在一起：<em>低下行 × 高上行 × 高胜率</em>，凯利公式给出的最优仓位会非常高。李录那句「我下重金买了很多添柏岚的股票」，就是凯利公式的人话版。</p>
+
+<div class="box tip">
+  <span class="tag">TIP #8</span>
+  <span class="tag-title">仓位的诚信</span>
+  <p>如果你嘴上说「这是一个 5 倍 P/E、下行被资产托底的好生意」，但只买了 0.25% 仓位——那要么<strong>你不相信自己的研究</strong>，要么<strong>你被制度逼着不敢相信</strong>。<br>
+  两种情况都意味着<em>这个研究本身没意义</em>。<br>
+  好的研究值得重仓；如果不值得重仓，那它配不上你花几周时间。</p>
+</div>
+
+<div class="box pitfall">
+  <span class="tag">PITFALL</span>
+  <span class="tag-title">机构「基点思维」的副作用</span>
+  <p>注意，这不代表「重仓 = 正确」。它的前提是<em>你已经把研究做到了「调查记者」的深度</em>。<br>
+  对绝大多数投资者，重仓+研究不到位 = 自杀。李录真正在批评的是<strong>「研究做到了 95% 却只下 0.25% 仓位」的扭曲制度</strong>，而不是「所有人都该 ALL IN」。<br>
+  对自己诚实：研究深度到哪里，仓位就到哪里。</p>
+</div>
+
+<!-- ============== 第 8 章 ============== -->
+<h2 id="ch8"><span class="ch">CHAPTER 8</span>何时卖——估值与盈利的赛跑</h2>
+
+<div class="box crux">
+  <span class="tag">THE CRUX</span>
+  <span class="tag-title">买入是一回事，持有和卖出是另一回事。一个 7 倍的赢家，你怎么决定哪一天该走？</span>
+</div>
+
+<h3>8.1 涨 7 倍但风险并没有放大：因为盈利同步增长</h3>
+
+<p>李录强调一个非常关键的细节：</p>
+
+<blockquote>
+  <p>「接下来两年这家公司涨了 7 倍，更重要的是它的上涨与盈利增长是匹配的，所以这期间你没有冒什么大的风险……添柏岚这个公司从未超过 15 倍 P/E。但假设你在 5 倍买的，估值翻了 3 倍，盈利每年 30% 的增长，就变成了 7 倍。」</p>
+</blockquote>
+
+<p>把这段话拆开：</p>
+
+<table>
+  <thead>
+    <tr><th style="width:30%">来源</th><th>涨幅倍数</th><th>风险性质</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">估值修复（5x → 15x P/E）</td><td class="num">≈ 3.0×</td><td>一次性、不可重复，且让风险变大</td></tr>
+    <tr><td class="label">盈利增长（约两年）</td><td class="num">≈ 2.3×</td><td>持续的、由生意本身产生，让风险变小</td></tr>
+    <tr><td class="label">合计</td><td class="num">≈ 7.0×</td><td>风险被部分中和</td></tr>
+  </tbody>
+</table>
+
+<p>注：3.0 × 2.3 ≈ 6.9，符合「约 7 倍」的口径。</p>
+
+<div class="box tip">
+  <span class="tag">TIP #9</span>
+  <span class="tag-title">区分「估值的涨」和「盈利的涨」</span>
+  <p>同样涨 7 倍，<strong>由估值推上去</strong>的 7 倍像吹气球，越涨越脆；<strong>由盈利推上去</strong>的 7 倍像砌房子，越涨越稳。<br>
+  价值投资者每年都要问一次：<em>过去一年的上涨，靠的是分子（盈利）还是分母（估值倍数）？</em><br>
+  分母推动越多，离卖出越近；分子推动越多，可以接着拿。</p>
+</div>
+
+<h3>8.2 退出信号 1：估值从 5 倍涨到 15 倍</h3>
+
+<p>P/E 从 5 涨到 15，是一个事实判断；它<em>不</em>意味着 15 倍就高估了，<em>它意味着「资产端便宜」这个论据已经失效了</em>。买点的安全垫不在了，剩下能赚的钱只能来自盈利增长——风险/回报比已经不再是当年那个组合。</p>
+
+<h3>8.3 退出信号 2：会议室从 3 个人变成 60 个人</h3>
+
+<p>李录讲了一个细节：1998 年第一次跟管理层 + 分析师见面，会议室只有 3 个人——CEO、李录、一位分析师；到 2000 年再开会，已经五六十人，主要券商都在覆盖。</p>
+
+<p>这是<strong>市场失灵被市场修复</strong>的信号。一旦无人问津的小角落变成「主流共识」，<em>你原本的认知优势就消失了</em>。这时该让位给别人。</p>
+
+<div class="box tip">
+  <span class="tag">TIP #10</span>
+  <span class="tag-title">卖出，常常不是因为「贵」，而是因为「我不再有信息优势了」</span>
+  <p>当你的论据从「<em>我比市场多看到了 X</em>」变成「<em>市场也都看到了 X</em>」，你的边际就消失了。<br>
+  这时即使股价没到目标价，也应该把仓位让出去，留给新的「便宜的没人看的」机会。<br>
+  价值投资的本质，是不断把仓位从「<em>已被定价</em>」的标的，转移到「<em>未被定价</em>」的标的上。</p>
+</div>
+
+<h3>8.4 数据复核：从 SEC 10-K 看真实股价、拆股、7 倍的逐笔计算</h3>
+
+<p>为了让「<em>两年涨 7 倍</em>」这句课堂数字落地，下面把 Timberland 自己披露的官方数据搬出来。所有数字来源于公司向美国证监会（SEC）提交的 <strong>FY1999 10-K</strong> 与 <strong>FY2000 10-K</strong>（Form 10-K, EDGAR Filing #0000814361）<sup>[1][2]</sup>。</p>
+
+<div class="box aside">
+  <span class="tag">FACT CHECK · 关于「1998 年 8–9 月股价 28–30 美元」这一句</span>
+  <span class="tag-title">课堂记忆 vs SEC 官方披露</span>
+  <p>李录原话：「<em>资料给的股价标签印错为 46 美元，但 1998 年 8–9 月真实股价大约在 28–30 美元/股</em>」。把这句话放到 SEC 文件里逐项核对，结论是：<strong>「28–30」这个具体数字与官方季度高低价无法完全精确匹配，但它和 1998 年 Q3 的实际交易区间「方向一致、量级相当」</strong>。详情如下：</p>
+  <ul>
+    <li>Timberland 在 <strong>1999 年 9 月</strong> 和 <strong>2000 年 7 月</strong> 各做了一次「2 拆 1」拆股（合计相当于 4 拆 1）<sup>[2]</sup>。所以同一年的同一天股价，在不同时点的图表上会呈现出 1×、2×、4× 三种刻度。</li>
+    <li>FY1999 10-K 披露的 1998 年 Q3 高低价为 <strong>High $36 1/32（≈ $36.03）、Low $18 5/8（≈ $18.625）</strong>。这是「已对 1999 年 9 月拆股做过追溯调整」之后的数字，即每个数字 = <em>当年实际交易价 ÷ 2</em>。</li>
+    <li>换算回 1998 年实盘交易价：Q3 实际成交区间约 <strong>$37.25 – $72.06</strong>。即使在 8–9 月最低点，也不应低于 $37 左右。</li>
+    <li>换算到「2000 年 7 月二次拆股之后」的图表刻度（这是今天历史 K 线最常用的刻度）：Q3 1998 区间为 <strong>$9.31 – $18.02</strong>。</li>
+    <li>李录讲述的「28–30 美元」有<em>两种合理的对应解释</em>，都来自 SEC 文件交叉验证：
+      <ol style="margin-top:6px;">
+        <li><strong>解释 A · 站在 1999 年（一次拆股之后、二次拆股之前）回忆图表刻度</strong>：Q3 1998 区间是 $18.625 – $36.03（÷2 后），「28–30」恰好落在该区间中段，是 Aug–Sept 大致水平的合理估计。</li>
+        <li><strong>解释 B · 实际交易价（actual, pre-split）</strong>：Q3 1998 实盘 $37.25 – $72.06，与「28–30」不符；但<em>Q4 1998 实盘低位 $28.94</em>（= $14 15/32 × 2）<strong>几乎逐分逐厘地落在「28–30」区间内</strong>。这意味着也存在「李录记成了 Aug–Sept，实际是 Sept 末到 12 月之间」的可能。</li>
+      </ol>
+      两种解释都把买入价定位在 1998 年下半年的实际谷底区间，<strong>不影响倍数计算的方向与量级</strong>。</li>
+    <li>课堂提到《价值线》上印的「$46」标签本身就是李录明确指出的「印刷错误」——这一项无法从 SEC 文件交叉验证。</li>
+  </ul>
+  <p>所以在本报告中，<em>这句课堂数字应理解为「李录当时记忆中的图表刻度」</em>，真实交易价由 SEC 文件为准。下文所有 7 倍的计算，<em>不</em>采用「28–30」这个口述数字，而采用 SEC 披露的可核查价位，以保证数学口径严密。</p>
+</div>
+
+<h4>8.4.1 SEC 文件披露的季度高低价（1998 – 2000）</h4>
+
+<p>三张表合在一起，是 Timberland 在那两年股价完整的「过山车」：</p>
+
+<table>
+  <thead>
+    <tr><th rowspan="2" style="width:18%">季度</th><th colspan="2">1998（在 FY1999 10-K 中报告，已就 1999 年 9 月拆股做 ÷2 调整）</th><th colspan="2">1999（同上）</th><th colspan="2">2000（在 FY2000 10-K 中报告，已就两次拆股做 ÷4 调整<sup>注</sup>）</th></tr>
+    <tr><th>High</th><th>Low</th><th>High</th><th>Low</th><th>High</th><th>Low</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">Q1</td><td class="num">$37.72</td><td class="num">$26.63</td><td class="num">$16.14</td><td class="num">$10.64</td><td class="num">$26.63</td><td class="num">$18.50</td></tr>
+    <tr><td class="label">Q2</td><td class="num">$43.44</td><td class="num">$34.50</td><td class="num">$18.50</td><td class="num">$14.53</td><td class="num">$39.34</td><td class="num">$24.00</td></tr>
+    <tr><td class="label">Q3</td><td class="num">$36.03</td><td class="num"><strong>$18.625</strong></td><td class="num">$21.16</td><td class="num">$15.72</td><td class="num">$44.19</td><td class="num">$31.25</td></tr>
+    <tr><td class="label">Q4</td><td class="num">$24.88</td><td class="num">$14.47</td><td class="num">$26.44</td><td class="num">$17.875</td><td class="num"><strong>$69.19</strong></td><td class="num">$33.81</td></tr>
+  </tbody>
+</table>
+
+<p style="font-size:17px; color:var(--muted); margin-top:-12px;">注：FY2000 10-K 中明确写道「Quarterly stock prices have been restated to reflect the 2-for-1 stock splits in September 1999 and July 2000」。所以 1999 列与 2000 列的刻度<em>已经一致</em>（都是 ÷4 后的），但 1998 列由 FY1999 10-K 给出，仅做了一次 ÷2 调整——要和 1999、2000 列同台比较，<em>1998 数字需要再除以 2</em>。</p>
+
+<h4>8.4.2 把三年统一到同一刻度（post-July-2000 split-adjusted）</h4>
+
+<p>把上表 1998 列再除以 2，与今天 Yahoo Finance / 历史 K 线常用刻度对齐：</p>
+
+<table>
+  <thead>
+    <tr><th style="width:18%">季度</th><th>1998 High</th><th>1998 Low</th><th>1999 High</th><th>1999 Low</th><th>2000 High</th><th>2000 Low</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">Q1</td><td class="num">$18.86</td><td class="num">$13.31</td><td class="num">$16.14</td><td class="num">$10.64</td><td class="num">$26.63</td><td class="num">$18.50</td></tr>
+    <tr><td class="label">Q2</td><td class="num">$21.72</td><td class="num">$17.25</td><td class="num">$18.50</td><td class="num">$14.53</td><td class="num">$39.34</td><td class="num">$24.00</td></tr>
+    <tr><td class="label">Q3</td><td class="num">$18.02</td><td class="num"><strong>$9.31</strong>（年内最低）</td><td class="num">$21.16</td><td class="num">$15.72</td><td class="num">$44.19</td><td class="num">$31.25</td></tr>
+    <tr><td class="label">Q4</td><td class="num">$12.44</td><td class="num">$7.23</td><td class="num">$26.44</td><td class="num">$17.875</td><td class="num"><strong>$69.19</strong>（峰值）</td><td class="num">$33.81</td></tr>
+  </tbody>
+</table>
+
+<p>这张表最能说明问题：</p>
+<ul class="body">
+  <li>1998 年 Q3–Q4 是<strong>恐慌底</strong>：从 Q2 高位 $21.72 跌到 Q4 低位 $7.23，几乎腰斩再腰斩；</li>
+  <li>1999 全年是<strong>修复期</strong>：从 Q1 低点 $10.64 一路爬到 Q4 高位 $26.44，仅靠估值修复就完成 2.5x；</li>
+  <li>2000 年全年是<strong>盈利+估值双击</strong>：从 Q1 低 $18.50 冲到 Q4 高 <strong>$69.19</strong>，再叠加 7 月一次 2 拆 1 拆股（拆股本身不创造价值，但常常吸引大量新买盘）。</li>
+</ul>
+
+<h4>8.4.3 「两年涨 7 倍」的逐笔计算</h4>
+
+<div class="box metric">
+  <span class="tag">CALC</span>
+  <span class="tag-title">用一笔模拟交易把 7 倍跑出来</span>
+  <p>设李录在 <strong>1998 年 8–9 月（Q3 1998）</strong> 以 1998 年 Q3 实盘平均价 <strong>$37–$50（actual, pre-split）</strong> 区间买入。取一个偏保守的口径：<strong>$40 / 股，actual 价</strong>（介于 Q3 高 $72 与低 $37 之间，靠近底部）。</p>
+  <p><strong>持有期间发生的两次拆股：</strong></p>
+  <ol>
+    <li>1999 年 9 月，2 拆 1：1 股 × $40 → 2 股 × $20（账面市值不变，但份额加倍）；</li>
+    <li>2000 年 7 月，再 2 拆 1：2 股 × $20 → <strong>4 股 × $10</strong>（同上，份额再加倍）。</li>
+  </ol>
+  <p><strong>退出：</strong>2000 年 Q4，股价高点 <strong>$69.19 / 股</strong>（post-split actual 报价，可被 SEC 文件直接验证）。</p>
+  <p>最终市值 = 4 股 × $69.19 = <strong>$276.76</strong>。<br>
+  初始投入 = 1 股 × $40 = $40。<br>
+  收益倍数 = $276.76 ÷ $40 = <strong>≈ 6.9 倍</strong>。</p>
+  <p>用更靠近底部的 1998 Q3 实盘低点 <strong>$37.25</strong> 入：$276.76 ÷ $37.25 = <strong>≈ 7.4 倍</strong>。<br>
+  用 Q4 1998 真实最低点 <strong>$28.94</strong>（actual = $14.47 × 2）入：$276.76 ÷ $28.94 = <strong>≈ 9.6 倍</strong>。</p>
+  <p>三种「买点假设」给出 7×–10× 的回报区间，<em>课堂里讲的「两年涨 7 倍」处在这个区间偏保守的一档</em>，与官方披露数据吻合。</p>
+</div>
+
+<h4>8.4.4 把回报拆成「估值贡献 vs 盈利贡献」</h4>
+
+<p>李录强调「<em>它的上涨与盈利增长是匹配的</em>」。用 SEC 10-K 披露的净利润数据可以独立验证：</p>
+
+<table>
+  <thead>
+    <tr><th style="width:24%">财年</th><th>净利润（百万美元）</th><th>同比</th><th>累计 vs 1998</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">FY1998</td><td class="num">$59.156</td><td class="num">—</td><td class="num">1.00x</td></tr>
+    <tr><td class="label">FY1999</td><td class="num">$75.247</td><td class="num">+27.2%</td><td class="num">1.27x</td></tr>
+    <tr><td class="label">FY2000</td><td class="num">$121.998</td><td class="num">+62.1%</td><td class="num"><strong>2.06x</strong></td></tr>
+  </tbody>
+</table>
+
+<p>两年间，净利润从 $59M 涨到 $122M，相当于 <strong>盈利层面 ≈ 2.06 倍</strong>。整体股价 ≈ 7 倍，剩下的 7 ÷ 2.06 ≈ <strong>3.4 倍来自估值修复</strong>（P/E 从 ~5 倍向 ~15 倍回归）。这和李录的口述完全一致：</p>
+
+<blockquote>
+  <p>「假设你在 5 倍买的，估值翻了 3 倍，盈利每年 30% 的增长，就变成了 7 倍。」</p>
+</blockquote>
+
+<p>数学上：<strong>3.0（估值修复）× 2.3（盈利增长两年）≈ 6.9</strong>。李录的口算与 SEC 实测的 <strong>3.4 × 2.06 = 7.0</strong> 互相印证。差别在于：实际<em>盈利增长比李录口算稍弱（×2.06 而非 ×2.3）</em>，但<em>估值修复比李录口算稍强（×3.4 而非 ×3.0）</em>，两边互相补偿，总结果落在同一数量级。</p>
+
+<div class="box tip">
+  <span class="tag">TIP #8.5</span>
+  <span class="tag-title">所有「N 倍故事」都要做这种拆解</span>
+  <p>下次听到「<em>某某股两年涨了 X 倍</em>」，立刻在心里做一道除法：<em>X 倍中有几倍来自盈利？有几倍来自估值？</em><br>
+  ── 盈利推动多 = 故事可持续，可能还能拿；<br>
+  ── 估值推动多 = 安全垫已被市场吃掉，下一段路全靠业绩，<em>风险显著抬升</em>。<br>
+  Timberland 案例之所以稳，是因为 3.4×（估值） + 2.06×（盈利）的<strong>结构里，盈利那一档已经把估值的扩张「兜住」了</strong>——即使 P/E 退回当初的 5 倍，光是盈利翻倍也保住了股东 1× 不亏的下限。</p>
+</div>
+
+<h4>8.4.5 数据来源</h4>
+
+<ol class="body" style="font-size:18px;">
+  <li><strong>[1]</strong> The Timberland Company, <em>Form 10-K for the fiscal year ended December 31, 1998</em>, SEC EDGAR, Filing No. 0000950135-99-001502 — 该文件披露了 1998 年各季度 Class A 普通股的交易高低价（已就 1999 年 9 月 2 拆 1 拆股做追溯调整）。</li>
+  <li><strong>[2]</strong> The Timberland Company, <em>Form 10-K for the fiscal year ended December 31, 2000</em>（Exhibit 13: Annual Report 财务部分），SEC EDGAR, Filing No. 0000950135-01-001002 — 该文件披露了 1999、2000 年各季度 Class A 普通股交易高低价（已就 1999 年 9 月与 2000 年 7 月两次 2 拆 1 拆股做追溯调整），并披露了 FY1998–FY2000 三年的合并净利润。原文 URL：<span class="mono" style="font-size:16px;">https://www.sec.gov/Archives/edgar/data/814361/000095013501001002/b38204tcex13.txt</span></li>
+  <li><strong>[3]</strong> 课堂转述本身的「28–30 美元」与「46 美元印错」两个具体数字，<em>无法在 SEC 文件中精确复核</em>。文中已注明这是李录当时记忆中的图表读数，不影响倍数计算结论。</li>
+</ol>
+
+<h3>8.5 警惕历史阴影：1994–1996 的旧伤</h3>
+
+<p>采访人布鲁斯问李录：「你担心 1994–1996 年的事重演吗？」李录回答<em>「我确实担心」</em>。那段时间正是诉讼集中爆发的时期，添柏岚在「防水鞋」概念上犯过营销错误，模糊了防水/非防水产品的边界，误导消费者，并造成品牌受损。</p>
+
+<p>这一段在讲座里被一带而过，但它隐含一个非常成熟的判断：<em>过去这家公司犯过同类错误，所以未来再犯一次并非小概率</em>。这不是看空，但是把<strong>「我什么时候应该警觉」</strong>提前框出来。</p>
+
+<!-- ============== 第 9 章 ============== -->
+<h2 id="ch9"><span class="ch">CHAPTER 9</span>时点复盘与可迁移心法</h2>
+
+<div class="box crux">
+  <span class="tag">THE CRUX</span>
+  <span class="tag-title">把添柏岚案例从「鞋服品牌 1998 年的故事」抽象成一套可以照搬到下一家公司的研究流程。</span>
+</div>
+
+<h3>9.1 一张「五秒判断 → 几周深挖」的总流程</h3>
+
+<table>
+  <thead>
+    <tr><th style="width:18%">阶段</th><th style="width:30%">问题</th><th style="width:32%">指标 / 动作</th><th>淘汰率</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">① 入库</td><td>从哪里发现「不在大家视野」的公司？</td><td>《价值线》历史新低名单</td><td class="num">99%</td></tr>
+    <tr><td class="label">② 估值底</td><td>下行风险有多大？</td><td>P/B + 运营资本 + 资产构成（现金/地产/其他）</td><td class="num">~50%</td></tr>
+    <tr><td class="label">③ 生意质量</td><td>上行空间有多大？</td><td>EBIT + 营业利润率 + 投入资本 + ROCE</td><td class="num">~50%</td></tr>
+    <tr><td class="label">④ 反向思考</td><td>为什么这么便宜？</td><td>矛盾分析：宏观/股权/治理/诉讼/覆盖</td><td class="num">~30%</td></tr>
+    <tr><td class="label">⑤ 人</td><td>管理层信得过吗？</td><td>调查记者式的多场景三角验证</td><td class="num">~30%</td></tr>
+    <tr><td class="label">⑥ 渠道</td><td>增长引擎是什么？还能跑多久？</td><td>实地门店、客群、地理拆解</td><td class="num">~20%</td></tr>
+    <tr><td class="label">⑦ 仓位</td><td>这桩生意值得下多大注？</td><td>赔率 × 胜率 × 安全垫 → 常识仓位</td><td class="num">—</td></tr>
+    <tr><td class="label">⑧ 卖出</td><td>什么时候这桩生意不再属于我？</td><td>估值修复完 + 共识形成 + 历史阴影警觉</td><td class="num">—</td></tr>
+  </tbody>
+</table>
+
+<p>每经过一道关卡，候选清单都会被砍掉很大一部分。<em>一年里真正穿过这条流水线的，可能只有一两家公司</em>——但这正是李录所说的：</p>
+
+<blockquote>
+  <p>「这样的机会不会经常出现，当它到来时，你必须抓紧它，尽你所能把事情做周全，而且要尽可能地快……平常没机会的时候把钱放在银行，什么也不买，这都没问题。」</p>
+</blockquote>
+
+<h3>9.2 三个最容易被遗忘、但最重要的心法</h3>
+
+<div class="box tip">
+  <span class="tag">TIP #11</span>
+  <span class="tag-title">把「好奇心」当成研究的发动机，不要把「赚钱」当成发动机</span>
+  <p>李录反复强调：<em>假如你只是想着赚钱，你很难去坚持深究</em>。<br>
+  因为深究是无聊的、是有边际成本的、回报又是不确定的——只有<em>对一家生意/一个人本身感到好奇</em>的人，才能扛过深究的疲惫。<br>
+  这就是为什么他推荐一页一页读《价值线》《穆迪手册》：训练的是<em>对各行各业的真实兴趣</em>，副产品才是机会的嗅觉。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">TIP #12</span>
+  <span class="tag-title">独立性 = 「你是对的不是因为别人同意你」</span>
+  <p>李录那句「<em>你是对的不是因为别人同意你，而是因为你必须这么做、必须自己查证</em>」，是整堂课最重的一句话。<br>
+  共识是研究的副产品，不是研究的目标。<em>当你的判断已经被五六十人共识化的时候，你早就应该开始卖了</em>。</p>
+</div>
+
+<div class="box tip">
+  <span class="tag">TIP #13</span>
+  <span class="tag-title">买得便宜是王道，买完之后就「不要做傻事」</span>
+  <p>李录收尾的一句话听起来朴素：<em>「买得便宜是王道，买了之后就尽量长期持有，不要做傻事，因为好生意会自己照顾好自己，你的财富会随着生意的发展而增长。」</em><br>
+  翻译成可操作的版本：买入决策的<em>厚度</em>决定后续是否能安心持有；如果买入研究太薄，每一次股价回调都会让你怀疑自己。<br>
+  所以「研究的深度」是「长期持有」的<em>前置条件</em>，不是反过来。</p>
+</div>
+
+<h3>9.3 这堂课对今天投资者的隐含建议</h3>
+
+<p>把这堂 1998 年的课迁移到 2026 年的环境里，需要做几个翻译：</p>
+
+<ul class="body">
+  <li><strong>《价值线》在今天</strong>≈ 一份覆盖广、能纵向看十年以上、字段统一的数据库（Bloomberg Terminal、CapIQ、wind/同花顺的「历史数据导出」），重点不在工具贵不贵，而在<em>是否一页能看完十年</em>；</li>
+  <li><strong>「新低名单」在今天</strong>≈ 跌幅榜、P/E 分位数后 5% 名单、52 周新低板块——但<em>必须自己过一遍</em>，不要依赖别人推送的「便宜股」；</li>
+  <li><strong>「调查记者尽调」在今天</strong>≈ 各类公开讲话、播客访谈、公司内部员工平台（Glassdoor/职言/脉脉）+ 供应商访谈 + 区域线下走访；信息更易获取，但<em>愿意走出去的人更少</em>，差距反而拉大；</li>
+  <li><strong>「分析师覆盖少」</strong>在 A 股 / 港股小盘股、海外冷门市场（东欧、中东、东南亚）依然存在；ETF 时代制造了大量「<em>被指数捆绑然后被指数遗忘</em>」的角落；</li>
+  <li><strong>家族控股的折扣</strong>同样存在于 A 股民营家族企业、港股小市值上市公司，但「红利型家族」和「掏空型家族」的区分，需要<em>同样的调查记者训练</em>。</li>
+</ul>
+
+<div class="box aside">
+  <span class="tag">ASIDE</span>
+  <span class="tag-title">本案不构成任何具体买卖建议</span>
+  <p>添柏岚的故事已经发生在快三十年前，公司本身也早被 VF Corporation 收购，不再独立上市。本文的目的是<em>把这堂讲座抽象成一套可以迁移的思考方式</em>，而不是任何具体标的的多空判断。<br>
+  价值投资的核心是「<em>自己研究、自己确信、自己负责</em>」，请把本文当成研究<em>流程</em>的复盘，而不是「跟买信号」。</p>
+</div>
+
+<h3>9.4 一个轻量的自检清单</h3>
+
+<p>下次你打开一份财报、又觉得「好像挺便宜」时，按这张清单逐条问自己一遍：</p>
+
+<ol class="body">
+  <li>账面价值是不是被「干净的、有流动性的」资产撑住？现金 + 地产 + 应收的质量分别如何？</li>
+  <li>剥掉利息和税之后的 EBIT 是多少？营业利润率落在行业的什么位置？</li>
+  <li>投入资本（不是总资产）下的 ROCE 是多少？这个回报率，<em>放在三十年人类历史</em>里属于哪一档？</li>
+  <li>这桩生意明明便宜还能赚钱，<em>为什么没人要</em>？你能列出至少 3 条理由吗？这 3 条里，哪一条是真问题，哪一条只是噪音？</li>
+  <li>家族 / 控股股东是谁？你能从财报之外的<em>至少 3 个独立场景</em>，验证他们的人品和动机吗？</li>
+  <li>这家公司面对的最大宏观风险，<em>用算式</em>表达出来是公司利润的百分之几？</li>
+  <li>如果你今天买入，<em>三年后</em>这桩生意涨 5 倍 / 跌 50% 的情景，分别需要什么前提？哪一个更可能？</li>
+  <li>你愿意为它配多大仓位？这个仓位是不是<em>诚实地反映</em>了你的研究深度？</li>
+  <li>什么情况下你会卖？请<em>提前</em>写下来，不要等股价告诉你。</li>
+</ol>
+
+<p>能答出 7 条以上，再考虑动手。如果答不出，<em>把钱放在银行，什么也不买，是更聪明的决定</em>。</p>
+
+<footer class="colophon">
+  <p>原始素材：李录在哥伦比亚商学院的课堂讲述（添柏岚 / Timberland 案例）。<br>
+  本文按 OSTEP（Operating Systems: Three Easy Pieces）章节式 + 矛盾论分析框架重排，未对原李录结论做评判性修改；所有指标解释为本文整理者的通俗化补注。<br>
+  重述日期：2026-06-20 · 投研笔记 / 价值投资思维训练用。</p>
+</footer>
+
+</div>
+</body>
+</html>
