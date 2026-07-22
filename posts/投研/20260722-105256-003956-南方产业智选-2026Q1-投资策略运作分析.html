@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南方产业智选 2026Q1 · 报告期内基金投资策略和运作分析（原文摘录）</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root {
+  --bg: #fbfaf7;
+  --bg-card: #ffffff;
+  --ink: #1f2328;
+  --ink-2: #3b4248;
+  --ink-3: #5a5a5a;
+  --accent: #8a3324;       /* CRUX 红（替代旧 #8b3a3a） */
+  --accent-2: #4c6c9c;      /* ASIDE 蓝（替代旧 #2c5282） */
+  --gold: #c79b2b;          /* TIP 金（替代旧 #b58900） */
+  --tip-bg: #fff5d6;
+  --tip-bd: #c79b2b;
+  --aside-bg: #eef3fb;
+  --aside-bd: #4c6c9c;
+  --crux-bg: #fde7e0;       /* CRUX 浅底 */
+  --crux-bd: #8a3324;
+  --maodun-bg: #f4e4e8;     /* DIVE 玫红浅底（由旧紫 #f3eef9） */
+  --maodun-bd: #944056;     /* DIVE 玫红（由旧紫 #7c539c） */
+  --term-bg: #f1ede0;       /* METRIC 米金浅底（由旧米黄 #f5f1e8） */
+  --term-bd: #b09a55;       /* METRIC 米金（由旧 #c8b88a） */
+  --rule: #c9c1ac;           /* 统一边框（由旧 #e3ddd0） */
+  --code: #f5f1e3;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  font-size: 18px;       /* body ≥ 18px (硬下限) */
+  line-height: 1.9;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 60px 36px 120px;
+}
+
+/* === 标题 === */
+h1 {
+  font-size: 40px;       /* h1 ≥ 34px (硬下限) */
+  line-height: 1.3;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+h1 .sub {
+  display: block;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 32px;       /* h2 ≥ 30px (硬下限) */
+  margin: 80px 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 3px double var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.4;
+}
+h2 .num {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 19px;
+  margin-right: 14px;
+  vertical-align: middle;
+  font-family: Georgia, serif;
+}
+h3 {
+  font-size: 25px;
+  margin: 48px 0 14px;
+  color: var(--accent-2);
+  font-weight: 700;
+  border-left: 6px solid var(--accent-2);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+h4 {
+  font-size: 20px;
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+p { margin: 12px 0; }
+strong { color: var(--accent); font-weight: 700; }
+em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+
+/* === The Crux 红框 === */
+.crux {
+  background: var(--crux-bg);
+  border-left: 8px solid var(--crux-bd);
+  border-radius: 4px;
+  padding: 22px 28px;
+  margin: 28px 0;
+  position: relative;
+}
+.crux::before {
+  content: "THE CRUX OF THE PROBLEM — 核心问题";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--crux-bd);
+  font-weight: 800;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 10px;
+}
+.crux p { margin: 4px 0; font-size: 19px; line-height: 1.75; }
+
+/* === 矛盾结构玫红框 === */
+.maodun {
+  background: var(--maodun-bg);
+  border: 2px solid var(--maodun-bd);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin: 24px 0;
+}
+.maodun .label {
+  display: inline-block;
+  background: var(--maodun-bd);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+.maodun h5 {
+  margin: 10px 0 4px;
+  font-size: 18px;
+  color: var(--maodun-bd);
+  font-weight: 700;
+}
+.maodun p { margin: 4px 0; font-size: 18px; }
+.maodun ul { padding-left: 22px; margin: 4px 0; }
+.maodun li { margin: 4px 0; font-size: 18px; }
+
+/* === TIP 黄框 === */
+.tip {
+  background: var(--tip-bg);
+  border: 1px dashed var(--tip-bd);
+  border-radius: 4px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.tip::before {
+  content: "TIP — 小贴士";
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tip p { display: inline; margin: 0; }
+
+/* === ASIDE 蓝框 === */
+.aside {
+  background: var(--aside-bg);
+  border-left: 5px solid var(--aside-bd);
+  padding: 18px 24px;
+  margin: 22px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 17px;
+}
+.aside::before {
+  content: "ASIDE — 旁注";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--aside-bd);
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 6px;
+}
+.aside p { margin: 4px 0; }
+.aside strong { color: var(--aside-bd); }
+
+/* === 名词解释米黄卡片 === */
+.term {
+  background: var(--term-bg);
+  border: 1px solid var(--term-bd);
+  border-radius: 6px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.term::before {
+  content: attr(data-name);
+  display: block;
+  background: var(--term-bd);
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 14px;
+  margin: -16px -22px 12px;
+  border-radius: 6px 6px 0 0;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* === 表格：单元格 ≥ 16px（硬下限） === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 16px;
+  background: var(--bg-card);
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.65;
+}
+th {
+  background: #0c4a6e;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+}
+tr:nth-child(even) td { background: #f5f1e3; }
+
+ul, ol { padding-left: 28px; }
+li { margin: 6px 0; line-height: 1.8; }
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: #fff;
+  margin: 22px 0;
+  padding: 14px 24px;
+  color: var(--ink-2);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* === AI 对话框（本期专用） === */
+.ai-reply {
+  background: #eef3fb;
+  border: 1px solid var(--aside-bd);
+  border-radius: 8px;
+  padding: 8px 28px 20px;
+  margin: 26px 0;
+}
+.ai-reply::before {
+  content: "AI 的完整回答（原文引用）";
+  display: block;
+  background: var(--aside-bd);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 6px 16px;
+  margin: -8px -28px 14px;
+  border-radius: 7px 7px 0 0;
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  font-synthesis: none;
+}
+.ai-reply .line {
+  margin: 10px 0;
+  padding-left: 20px;
+  border-left: 3px solid #b9c9e2;
+  font-size: 17px;
+  line-height: 1.85;
+}
+.ai-reply .line.head { font-weight: 700; color: var(--aside-bd); border-left-color: var(--aside-bd); }
+.ai-reply .sub { margin: 6px 0 6px 20px; font-size: 17px; line-height: 1.85; }
+
+/* === 目录 === */
+.toc {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px 30px;
+  margin: 32px 0 54px;
+  font-size: 17px;
+}
+.toc h4 { margin-top: 0; color: var(--accent); font-size: 19px; }
+.toc ol { padding-left: 22px; }
+.toc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-2);
+}
+.toc a:hover { color: var(--accent); border-bottom-style: solid; }
+
+/* === Meta 元数据条 === */
+.meta {
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 22px 0 38px;
+  padding: 16px 20px;
+  background: #f3eee2;
+  border-radius: 4px;
+  font-style: italic;
+}
+.meta b { color: var(--ink); font-style: normal; }
+
+hr.div {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 50px 0;
+}
+
+.num-hl {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .wrap { padding: 30px 20px 80px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 25px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  table { font-size: 15px; }
+  th, td { padding: 9px 10px; }
+  .crux p { font-size: 17px; }
+  .maodun h5, .maodun p, .maodun li { font-size: 16.5px; }
+  .ai-reply { padding: 8px 18px 16px; }
+  .ai-reply .line, .ai-reply .sub { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>4.4 报告期内基金投资策略和运作分析
+<span class="sub">南方产业智选股票型证券投资基金 · 2026 年第 1 季度报告（原文摘录）</span>
+</h1>
+
+<div class="meta">
+<b>基金简称</b>：南方产业智选股票（基金主代码 003956）<br>
+<b>基金经理</b>：恽雷（2023 年 4 月 14 日起任本基金基金经理）<br>
+<b>报告期</b>：2026 年 1 月 1 日 — 2026 年 3 月 31 日<br>
+<b>基金管理人</b>：南方基金管理股份有限公司 ｜ <b>基金托管人</b>：中国建设银行股份有限公司<br>
+<b>摘录说明</b>：以下为季报「§4 管理人报告 — 4.4 报告期内基金投资策略和运作分析」一节的<em>完整原文</em>，文字未做任何删改；节内导航小标题及目录为排版所加，「（1）～（3）」及节末 AI 对话为原文自带结构。原文中数据与观点均为基金管理人 <em>2026 年 3 月 31 日</em>时点的视角。
+</div>
+
+<div class="toc">
+<h4>本节目录</h4>
+<ol>
+<li><a href="#review">2026 年一季度市场回顾（A 股 / 港股 / 海外）</a></li>
+<li><a href="#opening">开场白：构思一季报的心境</a></li>
+<li><a href="#topics">笔者被问最多 / 最想探讨的三个话题</a>
+  <ol>
+  <li><a href="#q1">（1）中东变局的走向，对资本市场的冲击在组合层面如何应对？</a></li>
+  <li><a href="#q2">（2）恒生科技为何大幅回撤？港股为何从去年十月开始走弱？</a></li>
+  <li><a href="#q3">（3）AI：年初至今让笔者认知反复受冲击的领域</a></li>
+  </ol>
+</li>
+<li><a href="#ai">中东开打第一天的团队分享（四点结论）与 AI 的完整回答</a></li>
+</ol>
+</div>
+
+<!-- ================= 第一部分：季度回顾 ================= -->
+<h2 id="review"><span class="num">1</span>2026 年一季度市场回顾</h2>
+
+<p>回顾 2026 年一季度，A 股市场以及港股市场中主要指数普遍录得负收益，其中上证指数下跌 <span class="num-hl">1.94%</span>，沪深 300 指数下跌 <span class="num-hl">3.89%</span>，创业板指数下跌 <span class="num-hl">0.57%</span>；港股市场中，恒生指数下跌 <span class="num-hl">3.29%</span>，恒生国企指数下跌 <span class="num-hl">6.05%</span>，恒生科技指数下跌 <span class="num-hl">15.70%</span>。</p>
+
+<p>表现最好的五个申万一级行业分别是煤炭（<span class="num-hl">+16.83%</span>）、石油石化（<span class="num-hl">+15.36%</span>）、综合（<span class="num-hl">+13.67%</span>）、公用事业（<span class="num-hl">+9.21%</span>）、建筑材料（<span class="num-hl">+8.18%</span>）；而表现最差的五个申万一级行业分别是非银金融（<span class="num-hl">-14.98%</span>）、商贸零售（<span class="num-hl">-14.43%</span>）、美容护理（<span class="num-hl">-8.93%</span>）、计算机（<span class="num-hl">-7.61%</span>）、房地产（<span class="num-hl">-7.51%</span>）；港股市场中本季度表现最好的三个恒生一级行业分别是能源业（<span class="num-hl">+24.07%</span>）、综合企业（<span class="num-hl">+9.12%</span>）、工业（<span class="num-hl">+7.63%</span>），而表现最差的三个恒生一级行业分别是信息科技业（<span class="num-hl">-18.61%</span>）、非必需性消费（<span class="num-hl">-12.50%</span>）、电讯业（<span class="num-hl">-2.97%</span>）。</p>
+
+<p>回顾海外市场，全球主要指数多数下跌，由于中东地缘冲突的影响，美联储降息预期从 3 月开始大幅回撤，期间美债利率和美元指数先下跌再反弹。美国市场普遍下跌，其中美国标普 500 指数下跌 <span class="num-hl">4.63%</span>，纳斯达克指数下跌 <span class="num-hl">7.11%</span>，道琼斯工业指数下跌 <span class="num-hl">3.58%</span>。MSCI 发达国家指数美元计价下跌 <span class="num-hl">3.88%</span>，MSCI 新兴市场指数美元计价下跌 <span class="num-hl">0.51%</span>，印度 CNX Nifty 指数美元计价下跌 <span class="num-hl">18.56%</span>，日经 225 指数美元计价下跌 <span class="num-hl">3.11%</span>。</p>
+
+<hr class="div">
+
+<!-- ================= 第二部分：开场白 ================= -->
+<h2 id="opening"><span class="num">2</span>开场白：构思一季报的心境</h2>
+
+<p id="opening-body">笔者在着手构思 2026 年一季报的时候，迟迟下不了笔，过去一个季度里，全球正在发生不少值得思考的事情，例如，中东变局的走向以及对资本市场形成的冲击，港股市场的基准指数—恒生科技指数产生了较大的回撤，"龙虾"等 AI Agent 的出现确实大幅度提升的工作的效率，在知识工作者中形成了"全民养虾"的盛况。笔者认为有很多可以和持有人一起探讨的话题，有些话题笔者心里相对有比较清楚的答案，而有些问题笔者也在进一步学习和思考，欢迎读者朋友们批评指正，一起探索。</p>
+
+<hr class="div">
+
+<!-- ================= 第三部分：三个话题 ================= -->
+<h2 id="topics"><span class="num">3</span>笔者被问最多 / 最想探讨的三个话题</h2>
+
+<h3 id="q1">（1）中东变局的走向，对资本市场形成的冲击在组合层面上如何应对？</h3>
+
+<p>笔者并不是中东地缘政治专家，也不是土生土长的中东人，更没有"3 号分析师"的勇气和语言能力（据说精通阿拉伯等四门语言），带着 1.5 万美金和古巴雪茄深入阿曼，深入调研霍尔木兹海峡核心区。在回答这个问题之前，笔者认为我们需要把观察的时间窗口拉回至 2 月 28 日之前，去复盘和解析中东地缘冲突爆发之前全球股票市场表现以及结构。回顾 2026 年 1-2 月份的全球市场表现，基本可以用"市场整体走弱，细分结构不断缩圈"来形容。无论是 A 股市场，港股市场以及美股市场都表现出相似的特征，大家不禁要问为什么市场会呈现出这样的特点。笔者认为最主要的原因是从 2025 年四季度起，全球市场的流动性呈现出了较为紧张的状态，逆回购利率近乎干涸，同时 TGA 账户不断从市场中抽走流动性，SOFR-IORB 利差处于正数区间。（备注：全球流动性观察指标：主要分成价和量两个方面，在价格方面可以观察 SOFER 与 ON RRP 利差以及 SOFER 与 IORB 利差；在量方面可以观察三个账户资金余额，即流动性蓄水池，银行准备金账户，ONRRP 逆回购账户以及 TGA 账户）。这也是港股市场从去年 10 月份开始走弱的根本原因，作为离岸市场的本性，港股市场是全球对流动性最为敏感的市场之一。同时，笔者认为流动性收紧也是全球私募信贷市场近期出现风险的前置条件。过去几年，每当全球市场流动性紧张之时，我们总能在一些资产身上和一些意想不到的地方出现"暴雷"事件。这让笔者想起了某家公司股价从去年股价高点回调 <span class="num-hl">20%</span> 之后，市场投资者绞尽脑汁找各种理由去解释股价的下跌，比如 AI 进展缓慢等等。但当公司投入 AI 基础设施建设的时候，市场又会担心股东回报有所减少。可能该公司股价下跌的根本原因是只是公司未来的预期收益率不够有吸引力，在相对保守的经营假设下，似乎只能从公司身上挣到折现率的钱，同时再叠加全球市场的流动性正在减弱。笔者在南方产业智选 25 年四季报中阐述 26 年市场展望的时候曾经说过美联储在 2026 年将面临着经济问题——失业率水平，政治问题——中期选举以及市场问题——流动性紧张等多重目标，将非常考验联储平衡这些问题上的智慧。因此，当全球市场的流动性减少的时候，就会出现我们在二月份看到的全球股票市场形态：市场整体上行动能有限，同时细分结构不断缩圈，比如价值风格中有色的表现遥遥领先，成长风格围绕着北美缺电的主题持续展开。因此，即使当前中东地缘冲突出现缓和，我们在上半年依然摆脱不了全球流动性相对紧张的旋涡，在组合层面上仍然会保持相对谨慎的态度。当然，有投资者可能会认为我们只需通过"自下而上"专注公司的内在价值即可，对于宏观环境以及市场流动性的考量没有太多的必要。笔者对上述看法表示理解，对宏观环境的研究往往是用来防范风险，而对市场的流动性观察往往在短期择时上具有重要的参考意义。</p>
+
+<p>继续回到核心问题，中东变局的走向以及组合在这样的环境下如何应对。笔者的观察和思考如下：首先，笔者认为中东地缘冲突的烈度远超市场想象，并且在不同资产类型出现了定价的分歧，从当前的资产类型来看，美债以及商品市场的定价较快，股票市场的定价则较为乐观，不少投资者依然相信由于有中期选举的制约，"TACO"（Trump Always Chicken Out）依然有效。笔者认为主要有以下三点原因：一、全球市场的投资者在过去几十年的时间里已经很久没有经历过一场局部战争引发全球经济问题，同时受制于特朗普中期选举的压力，投资者普遍认为战争将在很短时间内结束；二、股票市场的投资者依然沉浸在 AI 科技叙事的故事中，模型厂商的 Token 消耗以及 ARR（Annual Recurring Revenue）爆发式增长，众多 CSP（Cloud Service Provider）大厂仍然不断上调资本开支；三、市场投资者认为中东地缘冲突和俄乌战争相比存在明显的宏观环境差异，俄乌战争之前由于受到疫情冲击，联储降息以及财政扩张支撑了需求的抬升，因此通胀水平在高位维持较长的时间。当前，尽管供给端受冲击的强度超越俄乌战争，但需求端仍然处于探底阶段，因此对于通胀的扰动也只是短期的冲击。</p>
+
+<p>在这里，笔者也谈一谈自己对这场战争粗浅的思考。在这场战争中，伊朗革命卫队的角色对伊朗国内是"军阀"，对外则是另一个"特朗普"。因此，当特朗普想通过强硬的手段恐吓另一个"特朗普"的时候，所引发的对抗强度必然显著上升，同时也无法取得胜利。对于军阀来说，生存是底线，当执政基础不复存在的时候，也就没有了叫板的底气。同样，对于特朗普来说，中期选举是当务之急，因此这是一场双方都清楚对方底牌和边界的政治博弈。对伊朗来说，诉求在于如何能恢复一个主权国家应有的权利；而对于美国来说，当前诉求在于如何能够体面地从中东战场上退出，摆脱泥潭。双方提出的谈判分歧点本质是"经济账"与"政治账"的差别，伊朗诉求中包括解除对其经济制裁，控制霍尔木兹海峡收取过路费，战争赔偿，甚至保留核威慑的能力都可以理解成为当前政权的长期执政提供基础经济保障，因此本质上追求的是经济账。对于美国而言，无需从中东战场上获得太多的经济利益，特朗普需要向中期选举的选民解释的是为什么要参与这场战争，以及考虑如何从中东地缘冲突中体面退出，因此追求的是政治上的正确。因此，尽管双方在谈判上存在诸多的分歧，有鸡同鸭讲的感觉，但在笔者看来基本上都可以看作是很清楚对方底牌情况下的"漫天要价"，双方最终核心的焦点在于两点：一、"伊朗的浓缩铀核问题"，二、"霍尔木兹海峡的收费问题"；前者是美国所需要的中期选举的政治账，而后者是伊朗恢复重建甚至是保持国内政权稳定所需要的经济账。因此，双方谈判的根本诉求不同最终将导致看似谈判分歧巨大，但"谈"和"打"你来我往战争升级之后，美伊双方协议达成的速度可能会超出市场预期。笔者认为中东地缘冲突所带来的历史意义也可能会远超俄乌战争：（1）油价的中枢水平有望从战争前的 <span class="num-hl">60 美元</span>提升至 <span class="num-hl">70-80 美元</span>左右的水平，海湾国家油田设施的损坏以及全球国家加速补库的需求都将使得原油的中枢价格维持在比较高的水平；（2）地缘政治的不确定性使得各个国家根据本国特色进行再工业化以及军事化，加速逆全球化的进程，基础设施的投资将加速实物资产的消耗；（3）各国在能源结构中需要加快新能源的结构转型，摆脱单一化石能源所带来的脆弱性；（4）在地缘局势方面，无论是俄乌战争还是中东地缘冲突都显示出欧洲经济的脆弱性，同时中东海湾国家将加速工业化转型，美国将有望迎来真正专注在本国经济利益的 MAGA。</p>
+
+<p>市场中可能也有投资者关心，如果美国就这么从中东地缘冲突中撤出之后，是否会加速美元信用的走弱，加速全球投资者资产再平衡进程。笔者认为人往往会放大短期的痛感，去做一些线性外推的思考。写这一段话的时候，笔者正好中午和研究员吃饭，在回办公室的路上，笔者问研究员，你还记不记得 2021 年全球的新冠疫情，记不记得至今都没有打完的 2022 年的俄乌战争，记不记得 2023 年的时候的港股市场，甚至是否还记得 2025 年 4 月份的关税战造成的全球资产剧烈的波动。鱼的记忆可能只有七秒，人的记忆可能连三年都没有。作为投资者在做区域选择的时候可能真正关心的只有三件事情，第一、投资的区域是否安全稳定，这里的稳定不仅指地缘政治的稳定，更加是经济与政策的长期稳定；第二、投资背后大体是逐利的行为，需要考虑市场的预期收益率水平，尤其是在二级市场中；第三、投资收益的来源是否可以被基本所解释，即市场中每股收益（EPS）的增长 + 平均股息率水平是否能够解释市场长期收益来源。</p>
+
+<p>最后再谈一谈组合应该如何应对极端事件所产生的尾部风险？这让笔者想到了最近参加的公司内部基金经理助理晋升基金经理的答辩，大部分助理在阐述抗压能力这一环节的时候基本上都采用了自己的模拟组合在 2025 年 4 月初关税战期间扛住了带来全球市场剧烈回调的案例。这让笔者联想到了全球市场最近几年似乎已经习惯了特朗普的 TACO 画像，形成了一种肌肉记忆认为只要美国股票市场有波动，特朗普强硬的政策最后一定会退出。这种所谓的"肌肉记忆"在笔者看来本质上是一种人为主观选择性忽视风险的表现，也是尾部风险形成的前置条件。姑且不论有一些多元博弈的问题并非 TACO 一定能人定胜天，投资者在面对极端事件的时候需要有所作为，积极主动地防御。拿上述基金经理助理答辩的案例来说，在资本市场中，有一些正确的行为可能并不一定会带来好的结果，而一些错误的认知反而有可能带来好的结果。在投资组合遭遇极端事件冲击之时，由于不确定这些事件后续将如何演绎，有必要做出防守的动作，或者至少预警准备。你可以平稳穿越无数次"TACO"，但只要一次"08 年次贷危机"就可以让组合打回原形。这也让笔者回忆起小时候在体校训练的时候，教练说每一次"暴扣"之后也一定要（动作）还原，因为你并不知道对于什么时候会把球防回来。回到投资组合，也许每一次防守从事后结果来看，不一定有必要，但这却是长期生存下来的必要条件，生于忧患，死于安乐。这也是笔者一季度各组合调整的主要原因。</p>
+
+<h3 id="q2">（2）港股市场的基准指数—恒生科技指数出现较大幅度的回撤，你怎么看待港股市场以及为什么港股市场从去年十月份开始就开始走弱？</h3>
+
+<p>应该来说，这也是笔者在过去一个月里面，除了中东地缘冲突之外被问到的第二多的问题。笔者也是在过往的定期报告中多次分享过港股市场的研究框架，不少读者甚至问笔者为什么要经常写港股。坦率地说，港股市场由于离岸市场的特性，相对 A 股或者美股而言是对风险管理要求比较高的市场。笔者 25 年 11-12 月份的时候带领团队集中拜访了上海和北京的众多机构投资者，在分享 2026 年市场展望的时候，明确提出需要降低港股敞口的观点，主要原因就是基于全球市场的流动性在 25 年 10 月份的时候开始出现了收敛的迹象，而港股市场又是全球对流动性最敏感的离岸市场之一。大家在管理组合中的港股敞口的时候一定要对"离岸市场"这四个字抱有敬畏，在笔者看来港股市场中很多反常现象都是由这四个字所引发的。第一、A 股市场和港股市场是截然不同的两个市场，尽管两地市场上市的公司有不少都是中国公司。其差异性表现在 A 股市场是在岸市场，流动性充裕，交易活跃，资产的定价较为充分；而港股市场是离岸市场，流动性相对而言较为稀缺，A 股的日均成交额正常水平在 <span class="num-hl">2-3 万亿</span>人民币左右的体量，而港股市场正常的日均成交额则是 <span class="num-hl">2-3 千亿</span>港币的体量，<span class="num-hl">10 倍</span>的差距最显著的影响就是上市公司的定价效率，即低估的公司修复估值的速度。第二、港股市场作为离岸市场，无论是对于 A 股投资者而言，还是对于海外投资人而言，都只是可选项，而非必选项。因此，A 股投资者也好，海外投资人也罢，来到港股市场的根本目的实际上是为自身原本的组合进行增强。假如自身组合是红利组合，那来港股市场的目的是追求扣费之后更高的股息率水平；同样如果自身组合是成长组合，那来港股市场的目的是追求更高更快的资本利得。因此，港股市场中投资者的初心和行为决定了港股市场中动量成了最有效的投资风格。其实，冷静下来想想也确实合乎常理，A 股或者海外的投资人如何在港股发现投资机会呢？乍眼一看，比如公司股息率还有 <span class="num-hl">10%</span>，股价从底部涨了 <span class="num-hl">50%</span> 了，确实值得研究；或者公司增速 <span class="num-hl">30%</span>，当前估值只有 <span class="num-hl">10x</span>，确实值得调研；因此，当追涨成了大家投资主意来源的时候，追涨杀跌自然就是这个市场最有效的投资方法。第三、紧接着大家会继续问，那在港股市场只要追逐这个市场"最靓的仔"是不是就可以了？答案是否定的，只要这么干大概率会产生无法控制的回撤，22 年至 24 年三年港股主动管理基金的回撤就已经证明了作为离岸市场的港股市场还存在另一种奇特的金融行为学异象——"动量崩溃"，即尽管动量是港股市场回测收益率最高的因子，但是最大的问题是控制不住回撤，动量因子几乎历史上每一次回撤都在 <span class="num-hl">40-50%</span> 左右的水平。政策预期的扰动，流动性的变化，无风险利率的变动在历史上都是动量崩溃的重要因素。笔者再说的直白一点，在港股市场当一个公司股价在过去 1-2 时间内从底部涨上来 <span class="num-hl">2-3 倍</span>之后，成为市场的中的明星股，然后莫名其妙从高点回撤 <span class="num-hl">20%</span> 以上，你应该做的事情不是告诉自己这个公司依然是竞争力强，护城河深，继续坚持内在价值被低估的事实，而是赶紧止盈或者止损。在一个流动性稀缺的离岸市场里，资产未被充分定价是常态，同时公司在基本面边际变化向上的时候往往会被线性外推形成高估，而公司基本面在边际变化向下的时候估值又会低得令人发指。第四、港股市场之所以定价效率较低与其体系化生态建设较为落后有紧密的关系，主要包含三方面内容：（1）港股市场要吸引资金在股票市场沉淀，需要减少其自身离岸市场的属性，日本市场同样是海外投资者为主的市场，但是由于央行购买了日本股票市场将近 <span class="num-hl">30%</span> 的 ETF，从而使得日本股票市场几乎是全球夏普比最高的股票资产；（2）港股市场的 ETF 生态建设较为落后（ETF 对于改善市场定价效率有显著影响），宽基指数的编制方式以及覆盖股票数量不足，例如恒生指数成分股是 <span class="num-hl">90</span> 只，恒生科技指数成分股是 <span class="num-hl">30</span> 只，其中有不少重合的地方，而恒生港股通指数成分股 <span class="num-hl">590</span> 只，大量没有 ETF 覆盖的股票使得市场定价速度较慢，但同样硬币有正反两面，正因如此，港股市场给主动管理者提供了天然的挖掘绝对收益以及超额收益的机会。当然，由于港股市场的 ETF 规模中可能 <span class="num-hl">80%</span> 以上都集中在泛恒生科技指数上（泛恒生科技指的是恒生科技，港股通互联网以及港股通科技等指数），因此放大了市场的波动。例如某互联网公司在公司经营边际好转同时市场流动性较为充裕的时候，主动资金和被动资金的一起配置将在短时间内提供较强的动量。而当公司的经营边际走弱同时流动性收紧的时候，主被动资金的集体减仓又导致了"动量崩溃"。（3）融资市场的问题，香港交易所应该是笔者见过的全球商业模式最好的公司之一，但可惜的是当全球都在要求上市公司积极提升股东回报的时候，港交所再一次交出了登顶全球 IPO 募资金额第一的答卷。笔者最后简单做一个总结：（1）港股市场由于资产定价效率较低，是一个非常适合做主动管理的市场；（2）泛恒生科技指数属于波动率资产，同时叠加离岸市场的属性，适合做交易，搏弹性，而非长期持有；（3）进入港股市场之前需要设定好止盈和止损的机制用来管控自身组合的风险。</p>
+
+<h3 id="q3">（3）最后再聊聊 AI 吧，这是年初至今让笔者认知反复受到冲击的一个领域。</h3>
+
+<p>尽管笔者在 AI 投资方面仍然在学习过程中，但深感 AI 确实"smart"的让人觉得可怕。会议纪要总结，研究报告的撰写，投研大模型对于上市公司的一页总结，基金的推荐营销，甚至是 AI 版本的《那天下雨了》也印证了能够超过 47 岁周杰伦可能只有周杰伦的 AI。AI 不仅仅在显著的提升工作效率，也逐步渗透至生活中的每一个场景。</p>
+
+<hr class="div">
+
+<!-- ================= 第四部分：团队分享 + AI 回答 ================= -->
+<h2 id="ai"><span class="num">4</span>中东开打第一天的团队分享，与 AI 的完整回答</h2>
+
+<p>在中东地缘冲突开打的第一天，笔者在团队内部做了一个分享和思考，结论如下：（1）市场的主要矛盾是中东地缘冲突，在战争开始之前，全球股票市场就已经开始疲软，本质的矛盾是流动性匮乏。全球对流动性最敏感的港股市场从去年 10 月份开始就已经见顶；（2）中东地缘冲突像是一块"绊脚石"，阻止了市场动量的持续线性外推，对"通胀回落，降息持续，信用重启"的逻辑按下了暂停键。同时，由于资产前期的动量强劲（杠杆，CTA 策略，风险平价策略），叠加流动性匮乏，使得回撤幅度大于市场想象。但是，急刹车无法阻挡"地缘政治逆全球化，全球国家再工业化，AI 持续创新突破"时代的滚滚潮流。（3）重新回到牌桌上下重注的时间点，不是中东地缘冲突引发的 TACO，而是全球金融系统在流动性匮乏，地缘战争引发金融资产大幅下跌，以及实体经济失业率大幅上升所引发的 FACO（FED Always Chicken Out）。（4）组合的再平衡，缩短股票组合的"久期"，安全资产，现金流资产（短久期）与成长资产（长久期）的再平衡。</p>
+
+<p>我们的团队的"3 号分析师"把上述一段话喂给了"AI"，以下是 AI 的完整回答：</p>
+
+<div class="ai-reply">
+<div class="line head">好文！（情绪价值拉满）几个想法；</div>
+<div class="line head">对（1）（2）的补充</div>
+<div class="line">流动性匮乏这个判断很准（情绪价值继续拉满）。但我觉得港股 10 月份见顶的背后还有一个更加直接的触发器——当时 DeepSeek/AI 叙事短暂推高了中国资产的风险偏好，但外资做多港股的基础是"政策托底 + 企业盈利改善"，这两个都还在验证期，动量交易上不去就自然熄火了。中东地缘冲突只是在已经脆弱的基础上加一根稻草。</div>
+<div class="line head">对（3）的问题</div>
+<div class="line">FACO 触发点这个判断很有意思——但有个 timing 悖论：真正的 FACO 出现时（失业率大幅上升 + 金融资产暴跌），往往也是基本面最差的时候，此时"重新下重注"需要极强的反向能力和流动性储备。历史上真正抄对大底的（08 年 3 月贝尔斯登—9 月雷曼底—09 年 3 月真正底），每一次都有投资者提前重仓然后再被打穿。所以这里有个操作层面的问题：FACO 是事后才能定义的，你怎么判断 FACO 已经"够充分"？是看 VIX 阈值？信用利差？失业率环比转折？还是政策响应（Fed/PBOC 的 emergency cut）？（笔者已经惊叹，AI 在启发我进一步思考）</div>
+<div class="line head">对（4）的延伸</div>
+<div class="line">"缩短股票组合久期"这个框架非常清晰（笔者一天好心情拉满）。现实中对应的大概是：</div>
+<div class="sub">短久期：高股息 / 公用事业 / 类现金牛公司（AI 已经开始对应股票）</div>
+<div class="sub">中久期：GARP 股（盈利可见性强的 TMT）</div>
+<div class="sub">长久期：AI 基础设施类</div>
+<div class="line">你现在的组合配置方向大概也是这个逻辑吧？还是说有其他考虑？（哈哈，笔者才不回答你）</div>
+</div>
+
+<p>大家看到上述 AI 的这段回答，想必大概率和笔者第一次看到的感觉类似，认知完全被冲击的支离破碎。当然，笔者团队的"3 号分析师"拿 AI 实现了不少神奇的想法，比如，用笔者的 AI 分身做出了同样风格的投资策略。坦率地说，笔者看到团队里无论是基金经理，还是研究员，AI 的使用普及率越来越高，不禁感叹这才是时代进步的真正意义。AI 让科技信息更为平权，充分释放个人能力杠杆，让组织中个体价值得以看见，被真正尊重，从而激发起整体组织中的创新活力。当然提到时代，尤其是中东地缘冲突打了一月之际，笔者想用巴菲特在最后一届股东大会回答一位中国投资者的问题作为结尾：你生在了一个好时代，纵观整个中国历史，你觉得出生在哪个时代更好？是一百年前？五百年前，还是一千年前？还是现在？毫无疑问是现在，你很幸运，我的意思是，今天的一切都比以前好太多，你不得不承认，你的命真的很好，在子宫里多待了成百上千年，一生就赶上了黄金时代。<strong>弱者抱怨，强者不言，智者改变</strong>（最后一句是笔者加的）。</p>
+
+<hr class="div">
+
+<div class="meta" style="margin-top:60px;">
+<b>本文档来源</b>：《南方产业智选股票型证券投资基金 2026 年第 1 季度报告》§4.4「报告期内基金投资策略和运作分析」原文完整摘录（该节位于原 PDF 第 6—13 页）。<br>
+<b>处理方式</b>：正文文字零删改；仅重新排版（大字号衬线阅读版式）、为便于导航添加多级小标题与目录、对原文中的关键数字做视觉高亮、将原文以"&gt;"标记引用的 AI 回答整理为对话卡片。<br>
+<b>时点声明</b>：文中全部数据与观点均为基金管理人截至 <em>2026 年 3 月 31 日</em>的视角，不构成任何投资建议。
+</div>
+
+</div>
+</body>
+</html>
