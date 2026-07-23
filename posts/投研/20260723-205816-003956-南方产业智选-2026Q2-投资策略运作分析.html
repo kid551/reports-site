@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南方产业智选 2026Q2 · 报告期内基金投资策略和运作分析（原文摘录）</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root {
+  --bg: #fbfaf7;
+  --bg-card: #ffffff;
+  --ink: #1f2328;
+  --ink-2: #3b4248;
+  --ink-3: #5a5a5a;
+  --accent: #8a3324;       /* CRUX 红 */
+  --accent-2: #4c6c9c;      /* ASIDE 蓝 */
+  --gold: #c79b2b;          /* TIP 金 */
+  --tip-bg: #fff5d6;
+  --tip-bd: #c79b2b;
+  --aside-bg: #eef3fb;
+  --aside-bd: #4c6c9c;
+  --crux-bg: #fde7e0;
+  --crux-bd: #8a3324;
+  --maodun-bg: #f4e4e8;
+  --maodun-bd: #944056;
+  --term-bg: #f1ede0;
+  --term-bd: #b09a55;
+  --rule: #c9c1ac;
+  --code: #f5f1e3;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 60px 36px 120px;
+}
+
+/* === 标题 === */
+h1 {
+  font-size: 40px;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+h1 .sub {
+  display: block;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 32px;
+  margin: 80px 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 3px double var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.4;
+}
+h2 .num {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 19px;
+  margin-right: 14px;
+  vertical-align: middle;
+  font-family: Georgia, serif;
+}
+h3 {
+  font-size: 25px;
+  margin: 48px 0 14px;
+  color: var(--accent-2);
+  font-weight: 700;
+  border-left: 6px solid var(--accent-2);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+h4 {
+  font-size: 20px;
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+p { margin: 12px 0; }
+strong { color: var(--accent); font-weight: 700; }
+em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+
+/* === The Crux 红框 === */
+.crux {
+  background: var(--crux-bg);
+  border-left: 8px solid var(--crux-bd);
+  border-radius: 4px;
+  padding: 22px 28px;
+  margin: 28px 0;
+  position: relative;
+}
+.crux::before {
+  content: "THE CRUX OF THE PROBLEM — 核心问题";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--crux-bd);
+  font-weight: 800;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 10px;
+}
+.crux p { margin: 4px 0; font-size: 19px; line-height: 1.75; }
+
+/* === 矛盾结构玫红框 === */
+.maodun {
+  background: var(--maodun-bg);
+  border: 2px solid var(--maodun-bd);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin: 24px 0;
+}
+.maodun .label {
+  display: inline-block;
+  background: var(--maodun-bd);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+.maodun h5 {
+  margin: 10px 0 4px;
+  font-size: 18px;
+  color: var(--maodun-bd);
+  font-weight: 700;
+}
+.maodun p { margin: 4px 0; font-size: 18px; }
+.maodun ul { padding-left: 22px; margin: 4px 0; }
+.maodun li { margin: 4px 0; font-size: 18px; }
+
+/* === TIP 黄框 === */
+.tip {
+  background: var(--tip-bg);
+  border: 1px dashed var(--tip-bd);
+  border-radius: 4px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.tip::before {
+  content: "TIP — 小贴士";
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tip p { display: inline; margin: 0; }
+
+/* === ASIDE 蓝框 === */
+.aside {
+  background: var(--aside-bg);
+  border-left: 5px solid var(--aside-bd);
+  padding: 18px 24px;
+  margin: 22px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 17px;
+}
+.aside::before {
+  content: "ASIDE — 旁注";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--aside-bd);
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 6px;
+}
+.aside p { margin: 4px 0; }
+.aside strong { color: var(--aside-bd); }
+
+/* === 名词解释米黄卡片 === */
+.term {
+  background: var(--term-bg);
+  border: 1px solid var(--term-bd);
+  border-radius: 6px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.term::before {
+  content: attr(data-name);
+  display: block;
+  background: var(--term-bd);
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 14px;
+  margin: -16px -22px 12px;
+  border-radius: 6px 6px 0 0;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* === 表格 === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 16px;
+  background: var(--bg-card);
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.65;
+}
+th {
+  background: #0c4a6e;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+}
+tr:nth-child(even) td { background: #f5f1e3; }
+
+ul, ol { padding-left: 28px; }
+li { margin: 6px 0; line-height: 1.8; }
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: #fff;
+  margin: 22px 0;
+  padding: 14px 24px;
+  color: var(--ink-2);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* === 目录 === */
+.toc {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px 30px;
+  margin: 32px 0 54px;
+  font-size: 17px;
+}
+.toc h4 { margin-top: 0; color: var(--accent); font-size: 19px; }
+.toc ol { padding-left: 22px; }
+.toc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-2);
+}
+.toc a:hover { color: var(--accent); border-bottom-style: solid; }
+
+/* === Meta 元数据条 === */
+.meta {
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 22px 0 38px;
+  padding: 16px 20px;
+  background: #f3eee2;
+  border-radius: 4px;
+  font-style: italic;
+}
+.meta b { color: var(--ink); font-style: normal; }
+
+hr.div {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 50px 0;
+}
+
+.num-hl {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .wrap { padding: 30px 20px 80px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 25px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  table { font-size: 15px; }
+  th, td { padding: 9px 10px; }
+  .crux p { font-size: 17px; }
+  .maodun h5, .maodun p, .maodun li { font-size: 16.5px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>4.4 报告期内基金投资策略和运作分析
+<span class="sub">南方产业智选股票型证券投资基金 · 2026 年第 2 季度报告（原文摘录）</span>
+</h1>
+
+<div class="meta">
+<b>基金简称</b>：南方产业智选股票（基金主代码 003956）<br>
+<b>基金经理</b>：恽雷（2023 年 4 月 14 日起任本基金基金经理）<br>
+<b>报告期</b>：2026 年 4 月 1 日 — 2026 年 6 月 30 日<br>
+<b>基金管理人</b>：南方基金管理股份有限公司 ｜ <b>基金托管人</b>：中国建设银行股份有限公司<br>
+<b>摘录说明</b>：以下为季报「§4 管理人报告 — 4.4 报告期内基金投资策略和运作分析」一节的<em>完整原文</em>，文字未做任何删改；节内导航小标题与目录为排版所加。原文中数据与观点均为基金管理人 <em>2026 年 6 月 30 日</em>时点的视角，不构成任何投资建议。
+</div>
+
+<div class="toc">
+<h4>本节目录</h4>
+<ol>
+<li><a href="#review">二季度全球大类资产回顾 · 两条主线驱动</a>
+  <ol>
+  <li><a href="#line1">第一条线：AI 产业链盈利上修</a></li>
+  <li><a href="#line2">第二条线：地缘冲突与油价通胀</a></li>
+  <li><a href="#cross">两线交汇：6 月「股跌债涨」与关键关口</a></li>
+  </ol>
+</li>
+<li><a href="#reflect">逆风中的三视角思考</a>
+  <ol>
+  <li><a href="#apology">致歉、逆风与投资框架的迭代（四个问题）</a></li>
+  <li><a href="#q1">视角一 · 价值风格：价值与成长到底在追求什么？</a></li>
+  <li><a href="#q2">视角一（续）· 价值逆风期如何改进与迭代？</a></li>
+  <li><a href="#q3">视角二 · 成长风格：AI 产业趋势下值得反思之处</a></li>
+  <li><a href="#q4">视角三 · 资产配置者：市场分化、波动放大中如何应对？</a></li>
+  <li><a href="#coda">尾声 · 缅怀</a></li>
+  </ol>
+</li>
+</ol>
+</div>
+
+<!-- ================= 第一部分：二季度回顾 ================= -->
+<h2 id="review"><span class="num">1</span>二季度全球大类资产回顾 · 两条主线驱动</h2>
+
+<p>回顾二季度，全球大类资产表现由两条主线驱动：一条是由 AI 产业链带动盈利持续上修，另一条则是中东地缘冲突引发油价飙升所形成的通胀扰动。</p>
+
+<h3 id="line1">第一条线：AI 产业链盈利上修</h3>
+
+<p>先看第一条线。4 月一季报，美股 AI 相关公司业绩普遍大超预期，云厂商资本开支指引不降反升，市场对标普 500 指数全年盈利增速的预期从年初的 <span class="num-hl">10%</span> 至 <span class="num-hl">12%</span> 一路上修，5 月为 <span class="num-hl">20%</span>，季末已接近 <span class="num-hl">24%</span>，盈利上修取代估值扩张成为权益资产最主要支撑。与之对应，美股 4 月起 V 型反弹并创出历史新高，二季度标普 500 指数上涨 <span class="num-hl">14.87%</span>，纳斯达克指数上涨 <span class="num-hl">21.41%</span>，费城半导体指数上涨 <span class="num-hl">87.75%</span>；受台积电超级周期驱动，韩国综合指数 4 月单月上涨 <span class="num-hl">30.61%</span>，为 1998 年 1 月以来最大月度涨幅，全季上涨 <span class="num-hl">67.77%</span>；日经 225 指数上涨 <span class="num-hl">37.21%</span>。全球市场高度一致地交易 AI 产业链，也导致市场宽度收窄至历史极端位置，指数上涨集中于单一主线，拥挤度和杠杆水平显著抬升，6 月韩国市场数次双向熔断就是流动性高度拥挤下系统脆弱性的表现。</p>
+
+<h3 id="line2">第二条线：地缘冲突与油价通胀</h3>
+
+<p>再看第二条线。二季度初，美伊打打停停，使得 WTI 油价在 <span class="num-hl">85-115 美元/桶</span> 区间宽幅震荡，权益市场对地缘博弈逐渐脱敏，霍尔木兹海峡事实通航使得市场不再交易油价会上涨到极端水平；但油价高企的通胀冲击于 5 月开始影响宏观经济数据，欧元区 CPI 升至 <span class="num-hl">3.2%</span>，十年期美债利率一度突破 <span class="num-hl">4.5%</span>，三十年期突破 <span class="num-hl">5.0%</span>，市场对美联储的定价由年初降息彻底扭转为年内加息约 <span class="num-hl">1.3 次</span>，美债 2 年期利率向上突破政策利率，降息周期结束的前瞻信号已经显现。政策端也随之而动：欧央行 6 月重启加息 25bp，日本央行在春斗期间连续第三年长薪超 5%的背景下，于 6 月加息 25bp 至 <span class="num-hl">1.00%</span>。美联储按兵不动，但点阵图明显偏鹰。转折发生在 5 月下旬，美伊敲定 60 天临时停火框架并于 6 月正式签署，霍尔木兹海峡通行恢复，原油的地缘溢价快速回吐，二季度累计下跌 <span class="num-hl">31.45%</span>；黄金受流动性抽血与加息预期升温双重挤压，逐步丧失动量，二季度下跌 <span class="num-hl">13.44%</span>，一度跌破 <span class="num-hl">4000 美元/盎司</span> 关口。</p>
+
+<h3 id="cross">两线交汇：6 月「股跌债涨」与关键关口</h3>
+
+<p>6 月"股跌债涨"正是两条线交汇的产物：停火协议解除了通胀尾部风险，长端利率自高位回落，债券反弹；但地缘冲击留下的加息预期并没有随地缘冲突一起消失，与 AI 交易的高拥挤度叠加，美股资金由科技轮动至防御板块，恐惧贪婪指数一度落入恐惧区间。全季美股美债滚动一年相关性升至 <span class="num-hl">+0.33</span>，在高利率环境下股债同涨同跌，传统股债组合的对冲效果被明显削弱，市场波动率显著放大。</p>
+
+<p>站在当前时间点，市场似乎又走到了一个关键关口，两条主线各自都临近验证窗口。AI 这条线，7 月财报季是对本轮盈利上修最直接的检验——月初存储龙头业绩速报、月中代工龙头法说会、月底海外云厂商财报将依次落地，盈利上修尚未出现拐点。但市场宽度极窄、股权风险溢价已处负值区间，一旦景气验证不及预期，动量交易的反身性将会放大回撤；历史上泡沫破裂的次序是流动性收紧、动量崩溃、盈利下修，目前尚无一条被触发，但每一条在市场高度拥挤的状态下都值得重点关注。年内 1.3 次的加息定价与仍然疲软的就业数据之间存在较强的定价偏差。无论大类资产向哪个方向收敛，都会牵动长端利率走向和全球风险资产的估值锚。二季度行情把两条主线都推到了各自的临界位置，三季度市场大概率仍将围绕"盈利验证"与"利率预期收敛"展开，波动率中枢难以回到上半年的低位。</p>
+
+<hr class="div">
+
+<!-- ================= 第二部分：三视角思考 ================= -->
+<h2 id="reflect"><span class="num">2</span>逆风中的三视角思考</h2>
+
+<h3 id="apology">致歉、逆风与投资框架的迭代（四个问题）</h3>
+
+<p>首先，作为基金经理在交出单季度回撤超过 <span class="num-hl">10%</span> 业绩，组合管理以来最大回撤的时候，还是需要和所有持有人说一声抱歉的，极端的市场行情是笔者所始料未及的。不管怎么样，我们正视过去一个季度表现不佳的业绩，投资这条路并非坦途，在逆风期，仍然需要不断思考，持续不断的迭代来完善自身的投资框架。潮水褪去之后，更加清楚地意识到自己懂得还很少，还有不少手艺需要精进。这篇定期报告完成于笔者去浙江调研上市公司的路上，不管外界环境是否顺遂，市场投资风格如何变化，挖掘，思考那些估值合理，现金流充沛，股东回报丰厚的投资标的，持续不断迭代投资策略依然是笔者缓解焦虑，应对逆风的方式。</p>
+
+<p>笔者尝试以价值风格投资者，成长风格投资者以及资产配置者，三种不同视角分享对市场的思考。作为价值风格的投资者，想必今年二季度尤其六月份过得异常艰难。资本市场对以高股息、自由现金流稳健增长为代表的生息资产视而不见，取而代之的是依靠流动性抱团的高景气度 AI 硬件以及半导体产业。沮丧之余，依然可以坦然面对逆风，冷静下来思考以下四个问题：（1）价值与成长风格相比，两者到底在追求什么东西？（2）当价值面临逆风期的时候，如何能够改进和迭代策略？（3）AI 的产业趋势蓬勃发展，落实到投资上，哪些地方依然值得反思？（4）作为资产配置者在面临市场分化，波动放大的环境中，如何应对？</p>
+
+<h3 id="q1">视角一 · 价值风格：价值与成长到底在追求什么？（问题一）</h3>
+
+<p>在笔者看来，价值和成长风格追求的东西并不相同，价值风格追求的是高胜率，因为这些能够大量产生自由现金流的行业以及公司普遍进入成熟阶段，通常变化较小，TAM（Total Addressable Market）提升空间有限。行业中值得下注的公司往往是历经多年厮杀，剩者为王，具备定价权的龙头企业，要么是在成熟行业中通过产品或者商业模式的微创新，后来者居上占据一定市场份额的孤勇者。因此，价值投资者的话语体系往往围绕安全边际，低估值，商业模式，护城河，股东回报等实实在在能大致算清楚，看明白的事情展开。因为，所有的研究最终都落实到解决一个基本问题——企业经营的生命周期，投资人可以回收多少现金以及回收期是否足够短。这些生息资产的长期回报来自于自由现金流的增长加上平均股息率水平。与之相反，成长风格迷人之处在于其提供了极高的赔率，这些行业往往具备强大的产业趋势，新技术导入变化极快，同时 TAM 空间也足够大。因此，成长投资者的话语体系往往围绕跟踪产业趋势，预测成长空间，紧盯景气度而展开，静态的估值，商业模式，护城河却显得没那么重要。因为，在成长投资者眼中，即使再高的当期估值水平都可以被未来潜在巨大利润增长所消化。例如，某一公司当年利润是 1 个亿，市值为 100 亿，当期市盈率为 <span class="num-hl">100x</span>，显然很高，但是当十年后这家公司利润如果能增长到 100 亿，即使给 <span class="num-hl">10x</span> 的估值水平，股价依然有 <span class="num-hl">10x</span> 的成长空间（备注：实际合理估值是 463 亿，假设折现率 8%，十年十倍的故事从体感上确实较比十年四倍的故事更有动物精神）。价值与成长除了所追求的投资目标不一样导致话语体系，方法论不同之外，更为核心的是两者所采用了截然不同的投资心态和假设条件，价值投资者始终保持弱势心态，即在没有宏观经济复苏，公司经营即使不增长的情况下，依然能够算清楚投资回报。成长投资者始终是强势心态，认为当下的产业趋势景气度会持续，公司渗透率会持续提升，产品价格能够不断提价，TAM 空间会随着时间而抬升。因此，基于不同的投资假设条件，价值投资者往往会敬畏成长投资者是真的"猛士"，无知者无畏；而成长投资者会觉得价值投资者是一群不爱学习的"老登"，不学无术。可现实情况会不会，价值投资者可能学了挺久，越学问题越多，发现行业中唯一确定的是当下订单的景气度，公司要从"1 亿利润增长到 100 亿利润"过程中存在诸多的挑战和不确定性；另一方面，成长投资者尽管有宏大产业趋势的拥趸，却时时刻刻在担心订单景气度的边际变化，抑或是估值太高下不去手，患得患失，即害怕错失股价上行的趋势又担心被动量反噬。所以，到底是价值投资者想得太多，胆子太小，在产业趋势面前耽误挣钱，还是成长投资者具备深刻洞见，抑或是拥有如德鲁克米勒般的交易能力，也许只有他们各自心里清楚……</p>
+
+<h3 id="q2">视角一（续）· 价值逆风期如何改进与迭代？（问题二）</h3>
+
+<p>作为价值风格的投资者，依然可以从当前被"抽血"，丧失引擎动力的市场环境中，去反思组合和心态上的应对方式。价值投资者在选择投资标的的时候往往在基于公司在弱势经营假设下依然能算的清楚预期回报，同理，在一个潮水退去的环境中，也许能够更加清醒的审视自己能力上的短板和面对逆境心态上的缺陷。价值投资自格雷厄姆《证券分析》开山立派以来，每一位处身其中的投资者都会根据自身所处的时代环境对价值镌刻上自己独有的理解方式。巴菲特从捡烟蒂抽一口扔掉转变成买入高质量稳健增长的公司长期持有，量化巨擘 AQR 通过量化方式在价值因子中引入动量来提升组合的夏普比率。万变不离其宗，价值投资的前提条件都是基于评估公司产生自由现金流的效率以及可持续性，前者由商业模式来决定，后者由护城河来保障。更加值得进一步思考的是什么原因促使这些价值投资者做出了自身的转变或是在进化过程中衍生出了不同的模式。笔者认为，被低估并非是当下买入的理由，专业投资者经过一段时间的训练是能够识别出被低估的标的。而之所以衍生出了不同的投资范式，笔者认为大体上都是在有意识或者无意识解决收益率在时间维度上分布不均的问题，毕竟"摊余法"的体验确实远好于"市值法"。在过去一年时间里，笔者团队同样也在思考上述问题的应对方法，因为内心深处似乎总觉得耐心等待看上去有点像躺平的借口。因此在 AQR 思路的基础上，过去一个阶段，我们尝试在价值组合中增加一部分动量来优化整体组合，起到了一定的效果。同时，更加重要的是如何从公司经营基本面的角度去理解动量产生的驱动因素，例如，红利标的中小公司派息比率的提升、公司经济回报的各项指标（现金流水平，资本回报率等等）在逐步改善等等因素。坦率地说，我们本以为上述研究已经解决了大部分问题，直到经历了 5、6 月份极致分化的市场，价值风格的流动性不断被抽走的时候，之前优化的方法似乎也没有抵抗住回撤。迫使笔者团队开始重新思考，价值风格在身处如此逆风的环境中应该如何应对？最后的结论是，价值风格组合为了解决收益率分布不均等问题可以采取添加动量来优化，两种方式：（1）寻找具备动量的价值股，这也是笔者团队采取的优化组合的方式，由于这些公司本身所处价值风格，因此当价值回撤的时候很难幸免；（2）独立寻找价值股和动量股，把两者在组合中相结合，通过把更高维度的资产配置理念引入到股票组合管理中，来控制住部分的回撤。</p>
+
+<h3 id="q3">视角二 · 成长风格：AI 产业趋势下值得反思之处（问题三）</h3>
+
+<p>从成长风格的投资者角度，过去两年在 AI 宏大的产业趋势下，不少 AI 硬件公司都获得了巨大的涨幅。平心而论，单看 AI 硬件产业链公司的业绩增速确实非常亮眼，所交出的答卷可能连公司创始人都始料未及。当然景气度的持续性是基于一个前提假设——各家 CSP（Cloud Service Provider）厂商的资本开支不会显著放缓。随着基础模型推理能力越来越强，同时，Agent 的推出使得模型的易用性越来越便捷，模型公司的 ARR 环比加速提升，算力呈现出供不应求的状况，使得 AI 硬件整个产业链都呈现出供不应求的正向飞轮效应。AI 的使用以及场景的拓展也深度融合进了笔者的投研团队，确实显著提升了投研效率，对于产业趋势，我们从不怀疑。其实市场从 CSP 厂商的角度认为经营性现金流都用来做资本开支，并且需要额外信贷融资这一行为不可持续，笔者觉得上述判断具有较强的主观性，无法去预测这些 CSP 厂商的资本开支进展。CSP 厂商的财务杠杆水平并不高，ROI 回报很强的话（比如即使出租算力都能很快回本的情况下），花钱大手大脚也无可厚非。同样，在供应链比较吃紧的情况下，CSP 厂商由于 FOMO（Fear of Missing Out）提前支出一部分资本开支，下单锁定一部分产能也是正常现象。笔者在这里更多的是提出一些问题供大家一起思考：</p>
+
+<p>（1）3 月份中东战争开打之后，油价飙升使得市场担心通胀高企，因此市场逐步缩圈，具有宏观敞口的行业普遍表现较差，AI 硬件产业链由于较高景气度所带来的确定性，受到市场追捧，那当六月底油价回到接近战争之前的水平，那市场是不是又重新具备了扩圈的基础？（2）不管 AI 产业链有多么宏伟的叙事故事，但在二级市场 AI 硬件端的定价上，我们观察到的是投资范式类似于商品的投资逻辑，围绕着供给最紧缺，能够持续涨价的环节缩圈，是因为涨价才能为股价提供持续的动量还是因为涨价才可以消化当前较高的静态估值水平？（3）市场认为供不应求的算力需求将会促使 CSP 厂商持续超预期提升资本性开支，可是否存在算力需求是真实的，CSP 厂商提升资本开支也是真实的，但真正的卡点是存储等硬件设备作为资本品，下游无法接受太高的涨价幅度，宁愿通过签订具有保底价格的长单让硬件厂商拉长盈利周期，而定价涨价所带来的动量也会随之偃旗息鼓？（4）市场始终在把 AI 高估值去和 00 年互联网泡沫以及 21 年新能源产业趋势结束时比较，但是否都不具备可比性？算力需求是真实存在的，模型能力在不断进步的，而 AI 硬件环节中供需边际变化是需要动态跟踪的，是否存在 AI 硬件环节随着产能瓶颈逐步缓解被负向爆破，而 CSP 厂商，GPU 公司或者芯片代工厂依然凭借健康的现金流增长，合理的估值水平依然能让市场整体保持平稳状态？（5）科技股公司从来不会因为估值贵而股价见顶，同样价值股也不会因为估值便宜而买入，算力，模型推理能力在笔者看来是供给端要素，需求端持续变化也同样重要，例如，Agent 的推出使得像笔者这种不会写代码的人也同样可以使用 AI 来满足日常的工作需求。除了用户数通过产品的易用性以及场景拓展不断扩圈之外，需求端的分层似乎也同样需要关注，真的需要每个人都使用 Fable 5 来满足日常需求吗？</p>
+
+<h3 id="q4">视角三 · 资产配置者：市场分化、波动放大中如何应对？（问题四）</h3>
+
+<p>从资产配置者的角度，我们把美股、日本、韩国、A 股、甚至是港股市场涉及到 AI 产业链的上市公司编制成各自市场的 AI 指数，可以明显发现尽管身处不同市场，并且涉及到 AI 产业链的不同环节，但其行为特征呈现出高度的正相关性且表现出强动量特征。笔者曾经在过往的定期报告中分享过，一类资产的充分定价不仅仅可以从预期收益率的角度去进行定量测算（备注：缺陷是无法衡量最终泡沫化的程度会达到什么水平），还可以从资产之间相关性变化角度出发，当观察本不相关的资产呈现出高度正相关性的时候，也同样说明该资产被充分定价。例如，某水电公司随着时间推移股息率水平不断压低的过程中和中国债收益率的相关性越来越高；再比如，一季度我们观察到几乎大部分有色品种都与黄金走势呈现出高度的正相关性，理论上每个有色品种都应该有其自身的基本面特征。因此，当某些特定资产表现出正相关性且具备强动量的时候，往往需要对这类资产亮起黄灯预警信号。打断资产这一"惯性"行为的可能是一项突发的"救市"的政策，某种潜在的经济托底刺激政策，抑或是如三月份突如其来的一场战争。除了资产表现出异常的相关性之外，波动率大则通常是扣动预警扳机的第一声枪响。从资产配置的角度来理解，抱团行为本质上是市场参与者对资产某一时间段呈现超高夏普比的正反馈效应。当某一资产在一定时期内呈现出的超高夏普比被打破之时，持有的"体感"将显著下降，再平衡就是自然不过的事情了。抱团瓦解往往并非从股价开始，而是波动率放大导致夏普比率的崩塌。股票这类资产在价格高点呈现出波动率放大的现象，在笔者看来，可能是最乐观的"分子"（公司经营基本面假设）与"分母"之间（股票折现率与无风险利率和风险溢价有关）之间呈现出的反身性。当乐观的分子在边际上出现松动的时候，随之而来的则是系统整体的失衡。这也在某种程度上解释了资产泡沫的顶点往往是市场交易出来的，无法预测，当资产动量开始逐步衰竭的时候，"鬼故事"们也开始逐步发酵……当然，值得注意的是估值高并不是股票这类资产价格见顶的直接原因，按照 P/E 估值来看，黄金的估值无穷大，但依然不影响这是一个没有价格天花板的资产属性，而背后支撑这一行为的是作为货币载体的"稀缺性"能否不断持续。市场中那些当下或者曾经被抱团热门股票也同样是"稀缺性"的集中体现，可能公司的产品是稀缺的，也可能是公司的增速放眼全市场是稀缺的，可能是上市公司的护城河是稀缺的，可能是上市公司的高股息率在市场是稀缺的，可能是公司所在领域的 TAM 是稀缺的，甚至可能是公司的产能在当下是稀缺的……同样，当 Labubu 和星星人依然备受欢迎，但稀缺性开始逐步下降的时候，抱团瓦解的飞轮也在不知不觉中开始转动。除了上述资产相关性以及波动率值得讨论之外，另一方面值得探讨的是不同风格的股票资产在中长期具备相对稳定的风险收益特征，这是资产的天然属性，例如，以红利为代表的价值风格，在正常的市场环境下，预期收益率水平在 <span class="num-hl">10%-14%</span>，波动率水平在 <span class="num-hl">15-20%</span> 左右，最大回撤约为 <span class="num-hl">20%</span>。（备注：历史上遭遇股灾等流动性丧失等极端行情，最大回撤会靠近 30-35%）。研究资产积累收益的底层逻辑和行为表现，同样有助于我们管理好组合的再平衡。资产估值低不一定是买入的理由，但当一个资产回撤到了历史极值水平那就已经开始暗流涌动，蕴藏着强大的买入动力。</p>
+
+<h3 id="coda">尾声 · 缅怀</h3>
+
+<p>写完这篇定期报告的时候，惊闻高善文博士离世的消息，一位有风骨的知识分子值得尊重和缅怀，同样激励我们后学晚辈即使身处逆境环境中，勤勉尽职，恪守本分，做好本职工作。</p>
+
+<hr class="div">
+
+<div class="meta" style="margin-top:60px;">
+<b>本文档来源</b>：《南方产业智选股票型证券投资基金 2026 年第 2 季度报告》§4.4「报告期内基金投资策略和运作分析」原文完整摘录（该节位于原 PDF 第 6—11 页）。<br>
+<b>处理方式</b>：正文文字零删改；仅重新排版（大字号衬线阅读版式）、为便于导航添加两级小标题与目录、对原文中的关键数字做视觉高亮。<br>
+<b>时点声明</b>：文中全部数据与观点均为基金管理人截至 <em>2026 年 6 月 30 日</em>的视角，不构成任何投资建议。
+</div>
+
+</div>
+</body>
+</html>

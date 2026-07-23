@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南方全球精选配置 2026Q2 · 报告期内基金投资策略和运作分析（原文摘录）</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root {
+  --bg: #fbfaf7;
+  --bg-card: #ffffff;
+  --ink: #1f2328;
+  --ink-2: #3b4248;
+  --ink-3: #5a5a5a;
+  --accent: #8a3324;       /* CRUX 红（替代旧 #8b3a3a） */
+  --accent-2: #4c6c9c;      /* ASIDE 蓝（替代旧 #2c5282） */
+  --gold: #c79b2b;          /* TIP 金（替代旧 #b58900） */
+  --tip-bg: #fff5d6;
+  --tip-bd: #c79b2b;
+  --aside-bg: #eef3fb;
+  --aside-bd: #4c6c9c;
+  --crux-bg: #fde7e0;       /* CRUX 浅底 */
+  --crux-bd: #8a3324;
+  --maodun-bg: #f4e4e8;     /* DIVE 玫红浅底（由旧紫 #f3eef9） */
+  --maodun-bd: #944056;     /* DIVE 玫红（由旧紫 #7c539c） */
+  --term-bg: #f1ede0;       /* METRIC 米金浅底（由旧米黄 #f5f1e8） */
+  --term-bd: #b09a55;       /* METRIC 米金（由旧 #c8b88a） */
+  --rule: #c9c1ac;           /* 统一边框（由旧 #e3ddd0） */
+  --code: #f5f1e3;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  font-size: 18px;       /* body ≥ 18px (硬下限) */
+  line-height: 1.9;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 60px 36px 120px;
+}
+
+/* === 标题 === */
+h1 {
+  font-size: 40px;       /* h1 ≥ 34px (硬下限) */
+  line-height: 1.3;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+h1 .sub {
+  display: block;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 32px;       /* h2 ≥ 30px (硬下限) */
+  margin: 80px 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 3px double var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.4;
+}
+h2 .num {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 19px;
+  margin-right: 14px;
+  vertical-align: middle;
+  font-family: Georgia, serif;
+}
+h3 {
+  font-size: 25px;
+  margin: 48px 0 14px;
+  color: var(--accent-2);
+  font-weight: 700;
+  border-left: 6px solid var(--accent-2);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+h4 {
+  font-size: 20px;
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+p { margin: 12px 0; }
+strong { color: var(--accent); font-weight: 700; }
+em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+
+/* === The Crux 红框 === */
+.crux {
+  background: var(--crux-bg);
+  border-left: 8px solid var(--crux-bd);
+  border-radius: 4px;
+  padding: 22px 28px;
+  margin: 28px 0;
+  position: relative;
+}
+.crux::before {
+  content: "THE CRUX OF THE PROBLEM — 核心问题";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--crux-bd);
+  font-weight: 800;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 10px;
+}
+.crux p { margin: 4px 0; font-size: 19px; line-height: 1.75; }
+
+/* === 矛盾结构玫红框 === */
+.maodun {
+  background: var(--maodun-bg);
+  border: 2px solid var(--maodun-bd);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin: 24px 0;
+}
+.maodun .label {
+  display: inline-block;
+  background: var(--maodun-bd);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+.maodun h5 {
+  margin: 10px 0 4px;
+  font-size: 18px;
+  color: var(--maodun-bd);
+  font-weight: 700;
+}
+.maodun p { margin: 4px 0; font-size: 18px; }
+.maodun ul { padding-left: 22px; margin: 4px 0; }
+.maodun li { margin: 4px 0; font-size: 18px; }
+
+/* === TIP 黄框 === */
+.tip {
+  background: var(--tip-bg);
+  border: 1px dashed var(--tip-bd);
+  border-radius: 4px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.tip::before {
+  content: "TIP — 小贴士";
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tip p { display: inline; margin: 0; }
+
+/* === ASIDE 蓝框 === */
+.aside {
+  background: var(--aside-bg);
+  border-left: 5px solid var(--aside-bd);
+  padding: 18px 24px;
+  margin: 22px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 17px;
+}
+.aside::before {
+  content: "ASIDE — 旁注";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--aside-bd);
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 6px;
+}
+.aside p { margin: 4px 0; }
+.aside strong { color: var(--aside-bd); }
+
+/* === 名词解释米黄卡片 === */
+.term {
+  background: var(--term-bg);
+  border: 1px solid var(--term-bd);
+  border-radius: 6px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.term::before {
+  content: attr(data-name);
+  display: block;
+  background: var(--term-bd);
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 14px;
+  margin: -16px -22px 12px;
+  border-radius: 6px 6px 0 0;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* === 表格：单元格 ≥ 16px（硬下限） === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 16px;
+  background: var(--bg-card);
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.65;
+}
+th {
+  background: #0c4a6e;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+}
+tr:nth-child(even) td { background: #f5f1e3; }
+
+ul, ol { padding-left: 28px; }
+li { margin: 6px 0; line-height: 1.8; }
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: #fff;
+  margin: 22px 0;
+  padding: 14px 24px;
+  color: var(--ink-2);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* === 目录 === */
+.toc {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px 30px;
+  margin: 32px 0 54px;
+  font-size: 17px;
+}
+.toc h4 { margin-top: 0; color: var(--accent); font-size: 19px; }
+.toc ol { padding-left: 22px; }
+.toc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-2);
+}
+.toc a:hover { color: var(--accent); border-bottom-style: solid; }
+
+/* === Meta 元数据条 === */
+.meta {
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 22px 0 38px;
+  padding: 16px 20px;
+  background: #f3eee2;
+  border-radius: 4px;
+  font-style: italic;
+}
+.meta b { color: var(--ink); font-style: normal; }
+
+hr.div {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 50px 0;
+}
+
+.num-hl {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .wrap { padding: 30px 20px 80px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 25px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  table { font-size: 15px; }
+  th, td { padding: 9px 10px; }
+  .crux p { font-size: 17px; }
+  .maodun h5, .maodun p, .maodun li { font-size: 16.5px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>4.5.1 报告期内基金投资策略和运作分析
+<span class="sub">南方全球精选配置证券投资基金 · 2026 年第 2 季度报告（原文摘录）</span>
+</h1>
+
+<div class="meta">
+<b>基金简称</b>：南方全球精选配置证券投资基金（基金主代码 202801）<br>
+<b>基金经理</b>：恽雷<br>
+<b>报告期</b>：2026 年 4 月 1 日 — 2026 年 6 月 30 日<br>
+<b>基金管理人</b>：南方基金管理股份有限公司<br>
+<b>摘录说明</b>：以下为季报「§4 管理人报告 — 4.5.1 报告期内基金投资策略和运作分析」一节的<em>完整原文</em>，文字未做任何删改；节内导航小标题与目录为排版所加。原文中数据与观点均为基金管理人 <em>2026 年 6 月 30 日</em>时点的视角，不构成任何投资建议。
+</div>
+
+<div class="toc">
+<h4>本节目录</h4>
+<ol>
+<li><a href="#review">二季度全球大类资产双主线回顾</a>
+  <ol>
+  <li><a href="#line1">主线一：AI 产业链带动盈利持续上修</a></li>
+  <li><a href="#line2">主线二：中东地缘冲突与通胀扰动</a></li>
+  <li><a href="#cross">两线交汇：6 月「股跌债涨油涨」与当前关口</a></li>
+  </ol>
+</li>
+<li><a href="#iter">南方全球的第二次策略迭代</a>
+  <ol>
+  <li><a href="#iter1">第一次优化回顾（去年 10 月初）</a></li>
+  <li><a href="#iter2">第二次迭代的三项调整</a></li>
+  <li><a href="#allw">底层原因：ALLW 持仓详解</a></li>
+  </ol>
+</li>
+<li><a href="#think">关于南方全球与资产配置的思考</a>
+  <ol>
+  <li><a href="#position">风险收益特征与适合人群</a></li>
+  <li><a href="#eval">评价方式与可比基金名单</a></li>
+  <li><a href="#hard">资产配置类基金管理的四大难点</a></li>
+  <li><a href="#end">结语</a></li>
+  </ol>
+</li>
+</ol>
+</div>
+
+<!-- ================= 第一部分：双主线回顾 ================= -->
+<h2 id="review"><span class="num">1</span>二季度全球大类资产双主线回顾</h2>
+
+<p>回顾二季度，全球大类资产表现由两条主线驱动：一条是由 AI 产业链带动盈利持续上修，另一条则是中东地缘冲突引发油价飙升所形成的通胀扰动。</p>
+
+<h3 id="line1">主线一：AI 产业链带动盈利持续上修</h3>
+
+<p>先看第一条线。4 月一季报，美股 AI 相关公司业绩普遍大超预期，云厂商资本开支指引不降反升，市场对标普 500 指数全年盈利增速的预期从年初的 <span class="num-hl">10%</span> 至 <span class="num-hl">12%</span> 一路上修，5 月为 <span class="num-hl">20%</span>，季末已接近 <span class="num-hl">24%</span>，盈利上修取代估值扩张成为权益资产最主要支撑。与之对应，美股 4 月起 V 型反弹并创出历史新高，二季度标普 500 指数上涨 <span class="num-hl">14.87%</span>，纳斯达克指数上涨 <span class="num-hl">21.41%</span>，费城半导体指数上涨 <span class="num-hl">87.75%</span>；受储蓄超级周期驱动，韩国综合指数 4 月单月上涨 <span class="num-hl">30.61%</span>，为 1998 年 1 月以来最大月度涨幅，全季上涨 <span class="num-hl">67.77%</span>；日经 225 指数上涨 <span class="num-hl">37.21%</span>。全球市场高度一致地交易 AI 产业链，也导致市场宽度收窄至历史极端位置，指数上涨集中于单一主线，拥挤度和杠杆水平显著抬升，6 月韩国市场数次双向熔断就是流动性高度拥挤下系统脆弱性的表现。</p>
+
+<h3 id="line2">主线二：中东地缘冲突与通胀扰动</h3>
+
+<p>再看第二条线。二季度初，美伊打打停停，使得 WTI 油价在 <span class="num-hl">85-115 美元/桶</span>区间宽幅震荡，权益市场对地缘博弈逐渐脱敏，霍尔木兹海峡事实性通航使得市场不再交易油价会上涨到极端水平；但油价高企的通胀冲击于 5 月开始影响宏观经济数据，欧元区 CPI 升至 <span class="num-hl">3.2%</span>，十年期美债利率一度突破 <span class="num-hl">4.5%</span>，三十年期突破 <span class="num-hl">5.0%</span>，市场对美联储的定价由年初降息约 <span class="num-hl">1.3 次</span>扭转为年内加息约 <span class="num-hl">1.3 次</span>，美债 2 年期利率向上突破政策利率，降息周期结束的前瞻信号已经显现。政策端也随之而动：欧央行 6 月重启加息 25bp，日本央行在春斗期间连续第三年长薪超 5%的背景下，于 6 月加息 25bp 至 <span class="num-hl">1.00%</span>。美联储虽按兵不动，但点阵图明显偏鹰。转折发生在 5 月下旬，美伊敲定 60 天临时停火框架并于 6 月正式签署，霍尔木兹海峡通行恢复，原油的地缘溢价快速回吐，二季度累计下跌 <span class="num-hl">31.45%</span>；黄金虽是流动性抽血与加息预期升温双重挤压，逐步丧失动量，二季度下跌 <span class="num-hl">13.44%</span>，一度跌破 <span class="num-hl">4000 美元/盎司</span>关口。</p>
+
+<h3 id="cross">两线交汇：6 月「股跌债涨油涨」与当前关口</h3>
+
+<p>6 月"股跌债涨油涨"正是两条线交汇的产物：停火协议解除了通胀尾部风险，长端利率自高位回落，债券反弹；但地缘冲击留下的加息预期并没有随地缘冲突一起消失，与 AI 交易的高拥挤度叠加，美股资金由科技轮动至防御板块，恐惧贪婪指数一度落入恐惧区间。全季美股美债滚动一年相关性升至 <span class="num-hl">+0.33</span>，在高利率环境下股债同涨同跌，传统股债组合的对冲效果被明显削弱，市场波动率显著放大。</p>
+
+<p>站在当前时间点，市场似乎又走到了一个关键关口，两条主线各自都临近验证窗口。AI 这条线，7 月财报季是对本轮盈利上修最直接的检验——月初存储龙头业绩速披、月中代工龙头业绩说会、月底海外云厂商财报将依次落地，盈利上修尚未出现拐点。但市场宽度极窄、股权风险溢价已处负值区间，一旦景气验证不及预期，动量交易的反身性将会放大回撤。历史上泡沫破裂的次序是流动性收紧、动量崩溃、盈利下修，目前尚无一条被触发，但每一条在市场高度拥挤的状态下都值得重点关注。年内 <span class="num-hl">1.3 次</span>的加息定价与仍然疲软的就业数据之间存在较强的定价偏差。无论大类资产向哪个方向收敛，都会牵动长端利率走向和全球风险资产的估值锚。二季度行情把两条主线都推到了各自的临界位置，三季度市场大概率仍将围绕"盈利验证"与"利率预期收敛"展开，波动率中枢难以回到上半年的低位。</p>
+
+<hr class="div">
+
+<!-- ================= 第二部分：策略迭代 ================= -->
+<h2 id="iter"><span class="num">2</span>南方全球的第二次策略迭代</h2>
+
+<h3 id="iter1">第一次优化回顾（去年 10 月初）</h3>
+
+<p>2026 年 5 月 1 日劳动节期间，笔者在办公室值班，对南方全球的投资策略以及过去一段时间以来组合所呈现出的风险收益比特征做了归因总结，认为在风险可控的基础上，可以有限度地提升组合波动率水平来获取更高收益。因此，笔者团队对南方全球进行了第二次策略迭代。在详细阐述第二轮策略迭代原理之前，首先回顾去年 10 月初笔者团队针对组合进行的第一次优化。在第一次策略迭代中，投资组合从初始最为简单的"60/40 股债均衡策略，底层资产主要为持有标普 500ETF，美国国债 ETF"调整为（1）采用科技行业基金以及 smart beta 风格基金为替代简单的宽基指数基金，例如纳斯达克 100 或者标普 500 等宽基指数基金；（2）通过全球以及加拿大，日本等市场的低波动策略 ETF 在尽可能不牺牲收益率的情况下降低组合波动；（3）通过桥水的 ALLW ETF 来使得仓位更有效利用，提升对于低波资产一债券的持仓权重；（4）在股债均衡配置的框架下，引入风险预算模型来更好地控制波动率水平。</p>
+
+<h3 id="iter2">第二次迭代的三项调整</h3>
+
+<p>在第二次组合投资策略的迭代中，笔者相信持有人可以从南方全球的前十大持仓变化上看到如下调整，（1）提升了第一大持仓 ALLW 的比重（从 <span class="num-hl">~10%</span> 提升至 <span class="num-hl">~16%</span>），同时大幅度缩减了组合中直接持有不同信用等级/不同久期美元债券 ETF 的仓位；（2）在组合中引入与股票以及债券等资产呈现出弱相关性的 CTA 策略；（3）进一步递进从科技行业 ETF 下沉至细分行业 ETF 的配置，例如半导体，通信，工业等来提升组合动量水平，捕捉收益。</p>
+
+<h3 id="allw">底层原因：ALLW 持仓详解</h3>
+
+<p>基于上述策略迭代变化，笔者将与往常一样，和持有人阐述清楚持仓调整的底层原因。首先，最大变化来自于第一大持仓 ALLW 的持仓比例进一步提升，建议持有人可以读一读 ALLW ETF 官网上的两篇科普文章《How to add the State Street? Bridgewater? All Weather? ETF to your portfolio to enhance resilience》，《ALLW brings Bridgewater's All Weather wisdom to ETF investors》文章中解释了添加 ALLW ETF 除了提升组合配置的资本效率之外，还丰富了投资组合对于非美股票持仓的多元化，以及通过增加商品、黄金和通胀挂钩债券的配置，在增长下降或通胀上升的环境中对组合起到缓冲保护作用。ALLW ETF 自 25 年 3 月份上市以来一直是笔者团队高度关注和研究的一支多元资产配置类 ETF 产品，主要也是可以通过每日持仓来近距离系统性研究和学习全球领先资产配置机构的配置思路。ALLW ETF 的持仓结构中（备注，数据为公开数据，官网披露每日底层持仓数据），全球名义债券（Global Nominal Bonds）比重 <span class="num-hl">69.35%</span>，通胀挂钩债券（Inflation Linked Bonds）比重 <span class="num-hl">40.94%</span>；全球股票（Global Equities）比重 <span class="num-hl">43.10%</span>；商品（Commodities）比重 <span class="num-hl">32.82%</span>；因此，ALLW ETF 是一支接近 <span class="num-hl">190%</span> 仓位，接近 2x 杠杆的多元资产配置基金，其中债券持仓比重为 <span class="num-hl">110.29%</span>，与市场中众多股票类杠杆 ETF 不一样的是杠杆主要增加在债券这一类低波资产上。例如，与传统 100%仓位的 60/40 股债均衡资产配置组合相比，如果组合 80%资产配置 60/40 股债均衡组合，20%资产配置在 ALLWETF 上，实际带来的组合名义敞口为 <span class="num-hl">117%</span>。除了提升组合的资本利用效率之外，也能够让组合风险来源更为多元化。即在风险预算模型的约束下，节省出来的仓位可以转向更广泛的资产以及策略覆盖，例如，HGER ETF（Harbor Commodity All Weather StrategyETF），FFUT ETF（Fidelity ManagedFutures ETF），从而降低任何单一资产下跌所带来的最大风险贡献。同时，鉴于当前的宏观利率环境，即无论今年下半年是否降息，都将是美联储本轮降息周期的尾声。因此，我们大幅度削减了组合债券部分直接持有美债 ETF 的头寸，把这部分头寸"藏"到了 ALLW 的通胀保护债券资产中。除此以外，ALLW ETF 中目前非美股票在股票配置中占据更大的比例（根据公开披露数据，约占股票资产的 2/3），与南方全球持仓中权益资产以美股 ETF 为主形成了有效的互补，使笔者团队可以把权益部分的研究深度从美股宽基 ETF，例如标普 500，纳斯达克 100ETF，拓展至 Smart beta ETF，例如，SPMO ETF（Invesco S&amp;P 500 Momentum ETF），CGDV ETF(Capital Group Dividend Value ETF)，甚至下沉至锐度更强的行业 ETF，例如，SMH/FTXL ETF（VanEck Semiconductor ETF / FirstTrust Nasdaq Semiconductor ETF），AIRR ETF(First Trust RBA American Industrial Renaissance TM)以及 XBI ETF（State Street SPDR S&amp;P Biotech ETF）并且通过阶段性的行业 ETF 的轮动来捕捉市场中超越宽基带来的收益。</p>
+
+<hr class="div">
+
+<!-- ================= 第三部分：思考 ================= -->
+<h2 id="think"><span class="num">3</span>关于南方全球与资产配置的思考</h2>
+
+<h3 id="position">风险收益特征与适合人群</h3>
+
+<p>在这里，笔者将进一步分享关于南方全球以及资产配置的一些思考。在日常的客户路演过程中，笔者团队经常被客户问到这一支基金的风险收益特征是什么？他适合什么样的群体？笔者团队是如何看待这样一支产品的？以及这样一支产品管理的难点在什么地方？首先，笔者对南方全球的风险收益特征定位为产生类似于股票收益，且随时间推移组合表现相较单纯股票组合更为稳健。这种风险收益特征兼具股票和债券的双重属性，作为家庭资产配置，笔者认为可以从债券等低风险资产类别中拨出一部分资金配置南方全球可能会提高投资组合的收益，而从股票等高风险资产类别中拨出一部分资金配置南方全球，则可能有助于在不牺牲收益的情况下降低家庭资产配置组合整体的波动性。这也是笔者团队成员在做自己家庭资产配置的时候对南方全球这一支产品的定位。笔者认为这样一款产品更适合愿意承担适度风险，追求稳健收益，且同时具有全球资产配置需求的客户。写到这里，笔者回想起有一次和一位投资顾问朋友在聊南方全球产品定位的场景。投顾坦诚地告知笔者，就是因为第一大持仓是 ALLW ETF 关注到南方全球，因为南方全球让普通人第一次有机会能够接触到了桥水全天候产品，而不再是高净值客户的专属权利。其实，这也是笔者愿意接手南方全球这一支历史负担较重产品的根本原因。笔者团队重塑南方全球投资策略的初心一希望能够为普通人降低持有海外优质资产的门槛，同时通过对不同资产的深度研究，把全球市场优质的 beta 带回国内，为持有人创造稳健的收益。当然，在经历了过去一年多学习和思考之后，笔者和团队反而很感激这支 19 年前的创新产品，让我们有机会能够跳出中国资产的范围去看一看新世界的大门，跨市场比较不同市场之间资产表现的行为和底层运作的逻辑。</p>
+
+<h3 id="eval">评价方式与可比基金名单</h3>
+
+<p>作为一支实现全球多元资产配置类的基金，国内缺少足够数量的可比对象。笔者在这里也分享我们团队是如何评价这一支基金产品的。上文提到笔者希望南方全球能够产生类似于股票收益，且随时间推移组合表现相较单纯股票组合更加稳健的风险收益特征。因此，我们会把南方全球和国内标普 500 基金净值表现而非标普 500 指数做业务比较，主要原因是剔除了人民币汇率的影响（备注：26 年上半年由于人民币兑美元汇率的单边升值，使得组合损失约 <span class="num-hl">5%</span> 收益）。鉴于笔者自身能力局限以及锁汇成本高企，我们不会在南方全球这一支产品上做汇率的套期保值，为了解决这个问题，南方全球也会在后续的运作过程中考虑增设美元份额的可行性。除上述评价参考方式以外，我们也和全球知名的资产配置类基金做一个比较和学习，参考名单如下，BlackRock Global Allocation Fund（MALOX/MDLOX），First Eagle Global Fund（SGENX），PIMCO All Asset Fund（PAAIX），GMO Benchmark-Free Allocation（GBFFX），Vanguard Wellington Fund（VWELX），American Funds Capital Income Builder（CAIBX），T. Rowe. Price Capital Appreciation（PRWCX），Cambria Global Asset Allocation ETF（GAA）。</p>
+
+<h3 id="hard">资产配置类基金管理的四大难点</h3>
+
+<p>在研究和学习上述这些资产配置基金的时候，笔者观察到尽管各家资产配置的框架都有其鲜明的特色，但是整体净值曲线区间并没有拉开显著的差距。这一现象也引发了笔者新的思考，资产配置类的基金如何突破其自身框架所带来的"天花板"（即资产配置类的基金管理的难点到底在何处）？市场中经常会听到两种论调，第一是团队没有足够多的人覆盖众多区域和国家，因此做不了跨区域或者跨资产的配置研究；第二是通过回溯测试把沪深 300 指数，标普 500 指数，南华商品指数，黄金以及境内债券指数简单等权重就认为是全球资产配置方案。笔者认为前者高估了人员数量在资产配置研究上的重要性（尽管也很重要），后者低估了资产配置类基金管理的难度。资产配置类基金的难点在笔者看来主要体现在四个方面：（1）不同类型资产收益行为的研究，即为什么这些资产能够产生收益；什么时候这些资产可以产生收益；不同资产收益率差异的底层原因到底是什么？同时，由于收益率在时间维度分布并不均匀，因此组合如何能够更为高效地捕捉收益？（2）不同类型资产和组合波动行为的研究：为什么不同类型的 smart beta 以及不同的行业表现出了波动率差异；单一资产随着时间推移发生波动率变化的时候应如何应对；如何前瞻性地发现资产之间相关性与历史关系产生异常，从而利用这种相关性降低组合的整体波动；（3）宏观环境以及流动性环境的变化对不同资产所产生影响的研究，多元资产配置策略往往守住的是下限，而宏观则是守住下限的基石，例如，今年 3 月份一场突如其来的美伊冲突使得黄金的动量戛然而止，这时候需要借助宏观以及基于资产波动率放大来动态调整黄金仓位并非仍然基于宏大叙事坚定超配。我们往往可以通过量化回溯拟合出多资产组合在样本内一条非常漂亮的净值曲线，但是当身处样本外的时候表现却往往一言难尽。（4）在研究多元资产配置策略的时候，笔者直觉上认为采用何种资产配置模型最终对组合波动率的优化效果胜于组合收益率，可能归根到底组合收益率还是更多决定于底层资产的选择。这也是为什么大卫史文森对资产配置界的贡献是卓越的——将当时未被充分定价的另类资产引入到了资产配置中（备注 和负债端的久期也有密切的关系）。坦率地说，新的资产类别往往可遇不可求，因此在波动率可控的基础上，笔者在过去的定期报告中曾经分享过第二条思路，采用 smart beta 策略，行业 ETF，甚至个股替代部分宽基 ETF。传统的资产配置团队往往更习惯在资产层面上表达观点，而非进一步深入到因子以及行业层面，这反而是股票基金经理所擅长的领域。其实，这也是笔者过去一年多时间身兼主动管理和资产配置基金经理最大感触，主动管理和资产配置殊途同归，主动权益迭代进步的方向大概率是引入更高维度的资产配置框架，才能在逆风期能够平稳过渡。同时，对于资产配置策略来说，进步的方向大概率是把资产观点的表达深入到对因子，对行业甚至对个股的表达，在波动率可控的基础上获得稳健的收益。</p>
+
+<h3 id="end">结语</h3>
+
+<p>鉴于篇幅原因，笔者把对市场观点的讨论放到南方产业智选等在管的股票基金季报中。之所以会把阶段性的思考分享出来，也是自身过去一个阶段的复盘总结，第一位读者始终是自己。每当在办公室敲下这些文字之后，很多平日里累积的问题也会变得更加清澈明亮。也感谢不少持有人对定期报告以及产品的关注，在一年多的时间里，笔者团队收获了很多宝贵的建议，其中不少建议也已经落实到每一次策略的迭代上。笔者平日除了出差调研以及客户路演之外大部分时间 base 在深圳，团队成员分布在北，上，深三地，我们欢迎对资产配置感兴趣的小伙伴们一起探讨和交流。同时，换位思考，笔者作为基金持有人也希望知道基金经理如何看待市场，组合中持仓变化的底层原因是什么，基金经理是否能够持续不断的思考和进步。好比去医院的时候，也总希望医生能和我多说两句打消顾虑。不少持有人知道笔者职业生涯起步是港股市场的研究员，十年前在港股市场就有不少上市公司能够做到高质量的信息披露，使投资人只需听听管理层季度会议，读读路演材料便可以安心做投资决策。随着工作年限的增长，笔者越来越体会到金融行业的核心壁垒是基于信任，信任基础不仅仅是供给端专业能力的不断进步，更重要的是作为需求端的普通基民来说能够被善待。</p>
+
+<hr class="div">
+
+<div class="meta" style="margin-top:60px;">
+<b>本文档来源</b>：《南方全球精选配置证券投资基金 2026 年第 2 季度报告》§4.5.1「报告期内基金投资策略和运作分析」原文完整摘录（该节位于原 PDF 第 6—11 页）。<br>
+<b>处理方式</b>：正文文字零删改；仅重新排版（大字号衬线阅读版式）、为便于导航添加两级小标题与目录、对原文中的关键数字做视觉高亮。<br>
+<b>时点声明</b>：文中全部数据与观点均为基金管理人截至 <em>2026 年 6 月 30 日</em>的视角，不构成任何投资建议。
+</div>
+
+</div>
+</body>
+</html>
