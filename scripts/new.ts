@@ -24,25 +24,15 @@ function slugify(input: string): string {
 
 const args = process.argv.slice(2)
 if (!args.length) {
-  console.error("用法: pnpm new <slug-or-title> [--category <name>]")
+  console.error("用法: pnpm new <slug-or-title>")
   process.exit(1)
 }
 
-let category: string | null = null
-const positional: string[] = []
-for (let i = 0; i < args.length; i++) {
-  if (args[i] === "--category" || args[i] === "-c") {
-    category = args[++i] ?? null
-  } else {
-    positional.push(args[i])
-  }
-}
-
-const rawTitle = positional.join(" ")
+const rawTitle = args.join(" ")
 const slug = slugify(rawTitle) || "untitled"
 const date = today()
 const fileName = `${date}-${slug}.html`
-const targetDir = category ? path.join(root, "posts", category) : path.join(root, "posts")
+const targetDir = path.join(root, "posts")
 const target = path.join(targetDir, fileName)
 
 const title = rawTitle || slug

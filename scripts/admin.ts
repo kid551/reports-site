@@ -20,7 +20,6 @@ interface Meta {
   title: string
   description: string
   date: string
-  category: string
   keywords: string[]
 }
 
@@ -61,9 +60,6 @@ async function readMeta(relPath: string): Promise<Meta> {
   const stat = await fs.stat(full)
   const { document } = parseHTML(raw)
 
-  const dir = path.dirname(relPath)
-  const category = dir === "." ? "未分类" : dir.split(path.sep)[0]
-
   const title = (document.querySelector("title")?.textContent || "").trim()
   const description = (
     document.querySelector('meta[name="description"]')?.getAttribute("content") || ""
@@ -73,10 +69,9 @@ async function readMeta(relPath: string): Promise<Meta> {
   ).trim()
   const keywords = keywordsAttr ? parseKeywords(keywordsAttr) : []
 
-  const date =
-    parseDateFromName(path.basename(relPath)) || stat.mtime.toISOString().slice(0, 10)
+  const date = parseDateFromName(path.basename(relPath)) || stat.mtime.toISOString().slice(0, 10)
 
-  return { title, description, date, category, keywords }
+  return { title, description, date, keywords }
 }
 
 function changeFilename(relPath: string, newDate: string): string {
@@ -87,12 +82,6 @@ function changeFilename(relPath: string, newDate: string): string {
   const datePart = newDate.replace(/-/g, "-")
   const newName = slug ? `${datePart}-${slug}${ext}` : `${datePart}${ext}`
   return path.join(dir, newName)
-}
-
-function changeCategoryPath(relPath: string, newCategory: string): string {
-  const file = path.basename(relPath)
-  if (newCategory === "未分类" || !newCategory) return file
-  return path.join(newCategory, file)
 }
 
 function isAllowed(req: http.IncomingMessage): boolean {
@@ -149,7 +138,6 @@ async function handlePutPost(res: http.ServerResponse, id: string, body: any) {
   const title = String(body?.title ?? "").trim()
   const description = String(body?.description ?? "").trim()
   const dateRaw = String(body?.date ?? "").trim()
-  const category = String(body?.category ?? "").trim() || "未分类"
   const keywordsArr: string[] = Array.isArray(body?.keywords)
     ? body.keywords.map((k: any) => String(k).trim()).filter(Boolean)
     : []
@@ -168,10 +156,6 @@ async function handlePutPost(res: http.ServerResponse, id: string, body: any) {
 
   // 2. compute new path
   let newRel = oldRel
-  if (category) {
-    const movedRel = changeCategoryPath(newRel, category)
-    if (movedRel !== newRel) newRel = movedRel
-  }
   if (dateRaw) {
     const oldDate = parseDateFromName(path.basename(newRel))
     if (oldDate !== dateRaw) newRel = changeFilename(newRel, dateRaw)
@@ -225,7 +209,7 @@ function adminHtml(): string {
   .sidebar li.active { background: #eff6ff; border-left: 3px solid #2563eb; padding-left: 17px; }
   .sidebar .item-title { font-weight: 500; font-size: 13.5px; margin-bottom: 2px; }
   .sidebar .item-meta { font-size: 11px; color: #94a3b8; display: flex; gap: 8px; }
-  .sidebar .item-meta .cat { background: #f1f5f9; padding: 1px 6px; border-radius: 999px; }
+  .sidebar .item-meta .tags { background: #f1f5f9; padding: 1px 6px; border-radius: 999px; }
   main { padding: 32px 40px; max-width: 720px; }
   .empty { color: #94a3b8; text-align: center; margin-top: 80px; }
   .form-group { margin-bottom: 20px; }
@@ -234,7 +218,6 @@ function adminHtml(): string {
   input:focus, textarea:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
   textarea { resize: vertical; min-height: 80px; }
   .hint { font-size: 12px; color: #94a3b8; margin-top: 4px; }
-  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .actions { display: flex; gap: 12px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #e2e8f0; }
   button { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font: inherit; font-weight: 500; }
   .btn-primary { background: #0f172a; color: #fff; }
@@ -295,7 +278,7 @@ async function renderList() {
   ul.innerHTML = state.posts.map(p => \`
     <li data-id="\${escape(p.id)}" \${state.current === p.id ? 'class="active"' : ''}>
       <div class="item-title">\${escape(p.title || p.id)}</div>
-      <div class="item-meta"><span>\${escape(p.date)}</span><span class="cat">\${escape(p.category)}</span></div>
+      <div class="item-meta"><span>\${escape(p.date)}</span><span class="tags">\${escape((p.keywords || []).join(" · "))}</span></div>
     </li>
   \`).join("")
   ul.querySelectorAll("li").forEach(li => {
@@ -326,24 +309,18 @@ function renderEditor(p) {
       <textarea id="f-description">\${escape(p.description)}</textarea>
       <div class="hint">空则不写入 meta；最长建议 200 字。</div>
     </div>
-    <div class="row">
-      <div class="form-group">
-        <label>日期</label>
-        <input id="f-date" type="date" value="\${escape(p.date)}" />
-        <div class="hint">改动会重命名文件（YYYY-MM-DD-slug.html）。</div>
-      </div>
-      <div class="form-group">
-        <label>分类</label>
-        <input id="f-category" value="\${escape(p.category)}" list="cat-list" />
-        <datalist id="cat-list">
-          \${[...new Set(state.posts.map(x => x.category))].map(c => \`<option value="\${escape(c)}">\`).join("")}
-        </datalist>
-        <div class="hint">"未分类" = 放在 posts/ 根目录；其他 = 放进同名子目录。</div>
-      </div>
+    <div class="form-group">
+      <label>日期</label>
+      <input id="f-date" type="date" value="\${escape(p.date)}" />
+      <div class="hint">改动会重命名文件（YYYY-MM-DD-slug.html）。</div>
     </div>
     <div class="form-group">
-      <label>关键词 (keywords)</label>
-      <input id="f-keywords" value="\${escape((p.keywords || []).join(", "))}" placeholder="逗号分隔" />
+      <label>标签 (keywords)</label>
+      <input id="f-keywords" value="\${escape((p.keywords || []).join(", "))}" list="tag-list" placeholder="逗号分隔" />
+      <datalist id="tag-list">
+        \${[...new Set(state.posts.flatMap(x => x.keywords || []))].map(t => \`<option value="\${escape(t)}">\`).join("")}
+      </datalist>
+      <div class="hint">留空 = 首页归入「未分类」。</div>
     </div>
     <div class="actions">
       <button class="btn-primary" id="btn-save">保存</button>
@@ -364,7 +341,6 @@ async function save() {
       title: document.getElementById("f-title").value,
       description: document.getElementById("f-description").value,
       date: document.getElementById("f-date").value,
-      category: document.getElementById("f-category").value,
       keywords: document.getElementById("f-keywords").value.split(/[,，]/).map(s => s.trim()).filter(Boolean),
     }
     const r = await api.put(state.current, body)

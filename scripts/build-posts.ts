@@ -75,8 +75,6 @@ async function processPost(rel: string): Promise<{ meta: PostMeta; doc: SearchDo
   clone.querySelectorAll("script,style,noscript").forEach((n) => n.remove())
 
   const baseName = path.basename(rel, path.extname(rel))
-  const dir = path.dirname(rel)
-  const category = dir === "." ? "未分类" : dir.split(path.sep)[0]
 
   const titleEl = document.querySelector("title")
   const h1 = clone.querySelector("h1")
@@ -89,19 +87,15 @@ async function processPost(rel: string): Promise<{ meta: PostMeta; doc: SearchDo
   const firstP = collapseWhitespace(clone.querySelector("p")?.textContent || "")
   const description = (descMeta || firstP).slice(0, 200)
 
-  const keywordsAttr = document
-    .querySelector('meta[name="keywords"]')
-    ?.getAttribute("content")
+  const keywordsAttr = document.querySelector('meta[name="keywords"]')?.getAttribute("content")
   const keywords = keywordsAttr ? extractKeywords(keywordsAttr) : []
 
-  const date =
-    parseDateFromName(path.basename(rel)) ||
-    stat.mtime.toISOString().slice(0, 10)
+  const date = parseDateFromName(path.basename(rel)) || stat.mtime.toISOString().slice(0, 10)
 
   const id = rel.replace(/\\/g, "/")
   const href = `${BASE}posts/${id}`
 
-  const meta: PostMeta = { id, href, title, description, date, category, keywords }
+  const meta: PostMeta = { id, href, title, description, date, keywords }
   const body = collapseWhitespace(clone.body?.textContent || "").slice(0, MAX_BODY_CHARS)
 
   // copy file with back button injection

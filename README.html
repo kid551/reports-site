@@ -37,7 +37,8 @@
 <h2>核心理念</h2>
 <ul>
   <li><strong>你的 HTML 即真相</strong>：详情页直接打开你扔进 <code>posts/</code> 的原文件，构建时只在 <code>&lt;/body&gt;</code> 前注入一个浮动的「← 返回列表」按钮，不改你的样式、不改你的结构。</li>
-  <li><strong>零元数据维护</strong>：标题、描述、日期、分类、关键词，全部从 HTML 的 <code>&lt;title&gt;</code> / <code>&lt;meta&gt;</code> / 文件名 / 目录名自动提取。</li>
+  <li><strong>零元数据维护</strong>：标题、描述、日期、标签，全部从 HTML 的 <code>&lt;title&gt;</code> / <code>&lt;meta&gt;</code> / 文件名自动提取。</li>
+  <li><strong>标签而非目录</strong>：分类完全由 <code>&lt;meta name="keywords"&gt;</code> 决定，<code>posts/</code> 是扁平的。一篇文章可以同时属于多个标签，目录做不到这点。</li>
   <li><strong>本地一键发布</strong>：<code>pnpm ship</code> 交互确认后 commit + push，GitHub Actions 自动构建并发布，无需登录服务器。</li>
 </ul>
 
@@ -55,7 +56,7 @@ pnpm new "我的报告标题"
 
 # 4. 编辑元数据（可视化，仅本地）
 pnpm admin
-#    → http://127.0.0.1:4322/  改 title/description/date/category/keywords
+#    → http://127.0.0.1:4322/  改 title/description/date/keywords
 
 # 5. 本地构建预览
 pnpm build &amp;&amp; pnpm preview
@@ -65,7 +66,7 @@ pnpm ship</code></pre>
 
 <h2>仓库结构</h2>
 <pre><code>reports-site/
-├── posts/                     ← ⭐ 你的 HTML 放在这里（可分子目录作为分类）
+├── posts/                     ← ⭐ 你的 HTML 放在这里（扁平，分类靠标签）
 │   └── 2026-05-22-foo.html
 ├── src/
 │   ├── pages/index.astro      ← 列表 / 搜索首页
@@ -104,8 +105,7 @@ pnpm ship</code></pre>
     <tr><td>title</td><td><code>&lt;title&gt;</code> → <code>&lt;h1&gt;</code> → 文件名</td></tr>
     <tr><td>description</td><td><code>&lt;meta name="description"&gt;</code> → 首个非空 <code>&lt;p&gt;</code>（截断 200 字）</td></tr>
     <tr><td>date</td><td>文件名前缀 <code>YYYY-MM-DD-</code> 或 <code>YYYYMMDD-</code> → 文件 mtime</td></tr>
-    <tr><td>category</td><td>所在子目录名（直接位于 <code>posts/</code> 下则归入 <em>未分类</em>）</td></tr>
-    <tr><td>keywords</td><td><code>&lt;meta name="keywords"&gt;</code>（逗号分隔）</td></tr>
+    <tr><td>keywords</td><td><code>&lt;meta name="keywords"&gt;</code>（逗号分隔）；为空则首页归入 <em>未分类</em></td></tr>
   </tbody>
 </table>
 
@@ -129,21 +129,18 @@ pnpm ship</code></pre>
 <h3>添加一篇文章（手写）</h3>
 <p>直接把任意 HTML 文件放进 <code>posts/</code>。命名建议带日期前缀，例如：</p>
 <pre><code>posts/2026-05-22-q2-review.html
-posts/research/2026-05-22-llm-eval.html   # 子目录 = 分类</code></pre>
+posts/2026-05-22-llm-eval.html</code></pre>
+<p><code>posts/</code> 保持扁平——分类写在文件自己的 <code>&lt;meta name="keywords" content="投研, 芯片"&gt;</code> 里。构建器仍会递归扫描子目录，但子目录只会让 URL 变长，不产生任何分类语义。</p>
 
 <h3>添加一篇文章（用脚手架）</h3>
 <pre><code>pnpm new "Q2 复盘"
-#  → posts/2026-05-22-q2-复盘.html
-
-pnpm new "LLM 评测" --category research
-#  → posts/research/2026-05-22-llm-评测.html</code></pre>
+#  → posts/2026-05-22-q2-复盘.html</code></pre>
 
 <h3>编辑元数据（仅本地，不需要服务器）</h3>
 <p><code>pnpm admin</code> 启动一个绑定在 <code>127.0.0.1:4322</code> 的本地服务，浏览器打开 <code>http://127.0.0.1:4322/</code> 即可可视化编辑每篇文章的元数据：</p>
 <ul>
   <li><strong>title / description / keywords</strong>：直接重写原 HTML 文件的 <code>&lt;title&gt;</code> 和 <code>&lt;meta&gt;</code>，不改正文。</li>
   <li><strong>date</strong>：改动后自动按 <code>YYYY-MM-DD-slug.html</code> 规则重命名文件。</li>
-  <li><strong>category</strong>：改动后自动把文件移动到对应子目录（<em>未分类</em> = 放回 <code>posts/</code> 根目录）。</li>
   <li>支持删除文章。</li>
 </ul>
 <p><strong>为什么只有你能用</strong>：服务仅监听 <code>127.0.0.1</code>（loopback），网络上其他设备无法访问；同时校验 <code>Host</code> / <code>Origin</code> 请求头，挡住 DNS rebinding 类攻击。你的另一台电脑、手机、同事，都进不来。</p>
