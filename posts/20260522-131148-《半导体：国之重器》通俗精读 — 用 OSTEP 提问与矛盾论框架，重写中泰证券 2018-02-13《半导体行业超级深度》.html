@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《半导体：国之重器》通俗精读 — OSTEP × 矛盾论改写本</title>
+<style>
+:root {
+  --bg: #fbfaf7;
+  --bg-card: #ffffff;
+  --ink: #1f2328;
+  --ink-2: #3b4248;
+  --ink-3: #6a737d;
+  --accent: #8b3a3a;       /* OSTEP 红 */
+  --accent-2: #2c5282;      /* 学术蓝 */
+  --gold: #b58900;
+  --tip-bg: #fff8e1;
+  --tip-bd: #f0c674;
+  --aside-bg: #eef4fb;
+  --aside-bd: #79a6d2;
+  --crux-bg: #fdecec;
+  --crux-bd: #b04040;
+  --maodun-bg: #f3eef9;
+  --maodun-bd: #7c539c;
+  --term-bg: #f5f1e8;
+  --term-bd: #c8b88a;
+  --rule: #e3ddd0;
+  --code: #f6f1e6;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 60px 36px 120px;
+}
+
+/* === 标题 === */
+h1 {
+  font-size: 38px;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+h1 .sub {
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 30px;
+  margin: 80px 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 3px double var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.4;
+}
+h2 .num {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 44px;
+  font-size: 20px;
+  margin-right: 14px;
+  vertical-align: middle;
+  font-family: Georgia, serif;
+}
+h3 {
+  font-size: 24px;
+  margin: 48px 0 14px;
+  color: var(--accent-2);
+  font-weight: 700;
+  border-left: 6px solid var(--accent-2);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+h4 {
+  font-size: 20px;
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+p { margin: 12px 0; }
+strong { color: var(--accent); font-weight: 700; }
+em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+
+/* === The Crux 框 === */
+.crux {
+  background: var(--crux-bg);
+  border-left: 8px solid var(--crux-bd);
+  border-radius: 4px;
+  padding: 22px 28px;
+  margin: 28px 0;
+  position: relative;
+}
+.crux::before {
+  content: "THE CRUX OF THE PROBLEM — 核心问题";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--crux-bd);
+  font-weight: 800;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 10px;
+}
+.crux p { margin: 4px 0; font-size: 19px; line-height: 1.75; }
+
+/* === 矛盾框 === */
+.maodun {
+  background: var(--maodun-bg);
+  border: 2px solid var(--maodun-bd);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin: 24px 0;
+}
+.maodun .label {
+  display: inline-block;
+  background: var(--maodun-bd);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+.maodun h5 {
+  margin: 10px 0 4px;
+  font-size: 17px;
+  color: var(--maodun-bd);
+  font-weight: 700;
+}
+.maodun p { margin: 4px 0; font-size: 17px; }
+.maodun ul { padding-left: 22px; margin: 4px 0; }
+.maodun li { margin: 4px 0; font-size: 17px; }
+
+/* === TIP === */
+.tip {
+  background: var(--tip-bg);
+  border: 1px dashed var(--tip-bd);
+  border-radius: 4px;
+  padding: 14px 20px;
+  margin: 20px 0;
+  font-size: 16.5px;
+}
+.tip::before {
+  content: "TIP — 小贴士";
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tip p { display: inline; margin: 0; }
+
+/* === ASIDE 旁注 === */
+.aside {
+  background: var(--aside-bg);
+  border-left: 5px solid var(--aside-bd);
+  padding: 16px 22px;
+  margin: 20px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 16.5px;
+}
+.aside::before {
+  content: "ASIDE — 旁注";
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: var(--aside-bd);
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 6px;
+}
+.aside p { margin: 4px 0; }
+.aside strong { color: var(--aside-bd); }
+
+/* === 名词解释 === */
+.term {
+  background: var(--term-bg);
+  border: 1px solid var(--term-bd);
+  border-radius: 6px;
+  padding: 14px 20px;
+  margin: 18px 0;
+  font-size: 16.5px;
+}
+.term::before {
+  content: attr(data-name);
+  display: block;
+  background: var(--term-bd);
+  color: #fff;
+  font-weight: 800;
+  padding: 3px 12px;
+  margin: -14px -20px 10px;
+  border-radius: 6px 6px 0 0;
+  font-size: 14.5px;
+  letter-spacing: 1px;
+}
+
+/* === 表格 === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 22px 0;
+  font-size: 15.5px;
+  background: var(--bg-card);
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+th {
+  background: #f0e8d8;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15.5px;
+}
+tr:nth-child(even) td { background: #fbf7ee; }
+
+/* === 列表 === */
+ul, ol { padding-left: 28px; }
+li { margin: 6px 0; line-height: 1.8; }
+
+/* === 摘录 === */
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: #fff;
+  margin: 20px 0;
+  padding: 12px 22px;
+  color: var(--ink-2);
+  font-style: italic;
+  font-size: 16.5px;
+}
+
+/* === 导航 === */
+.toc {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 22px 28px;
+  margin: 30px 0 50px;
+  font-size: 16.5px;
+}
+.toc h4 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 18px;
+}
+.toc ol { padding-left: 22px; }
+.toc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-2);
+}
+.toc a:hover { color: var(--accent); border-bottom-style: solid; }
+
+/* === Meta === */
+.meta {
+  color: var(--ink-3);
+  font-size: 15px;
+  margin: 20px 0 36px;
+  padding: 14px 18px;
+  background: #f3eee2;
+  border-radius: 4px;
+  font-style: italic;
+}
+.meta b { color: var(--ink); font-style: normal; }
+
+/* === 公司卡片 === */
+.company {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin: 18px 0;
+  font-size: 16.5px;
+}
+.company h4 {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 18px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 6px;
+}
+.company .tag {
+  display: inline-block;
+  background: var(--accent-2);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 9px;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+.company p { margin: 6px 0; line-height: 1.7; }
+
+/* === Divider === */
+hr.div {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 50px 0;
+}
+
+/* === 数字强调 === */
+.num-hl {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+@media (max-width: 720px) {
+  body { font-size: 16.5px; }
+  .wrap { padding: 30px 20px 80px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 23px; }
+  h3 { font-size: 19px; }
+  table { font-size: 14.5px; }
+  th, td { padding: 7px 9px; }
+}
+</style>
+  <meta name="keywords" content="投研, 芯片">
+</head>
+<body>
+<div class="wrap">
+
+<h1>《半导体：国之重器》通俗精读
+<span class="sub">— 用 OSTEP 提问与矛盾论框架，重写中泰证券 2018-02-13《半导体行业超级深度》</span>
+</h1>
+
+<div class="meta">
+<b>原报告</b>：中泰证券《半导体行业超级深度：国之重器、拥抱芯片科技红利！》（2018-02-13，分析师：郑震湘）<br>
+<b>原报告体量</b>：9 章 + 32 家公司点评，约 142 页，硅片、AI、汽车、IoT、产业链、日韩台经验、大陆崛起路径全覆盖<br>
+<b>本改写本</b>：信息无删减，但换一种讲法 —— 学《操作系统：三易之事》（OSTEP）<em>先抛核心问题（the crux of the problem），再展开论证</em>；同时套用<em>矛盾论</em>（主要矛盾 vs 次要矛盾、内因 vs 外因、矛盾的特殊性、矛盾的转化）来梳理每章背后的"为什么"。<br>
+<b>读者画像</b>：对半导体不太熟、但想读懂这份"深度报告"在讲什么的初学者。所有专业名词均配通俗解释。<br>
+<b>立场声明</b>：这份报告写于<em>2018 年 2 月</em>。文中所有数据、价格、公司基本面、政策事件均为<em>当时的判断</em>；技术路线（如 EUV、3D NAND、化合物半导体）后续如何发展、报告里那些公司今天怎样了，请读者自行用 <em>2026 年的眼光</em>去复盘对照。本改写本忠实于原文。
+</div>
+
+<!-- ============ 总导读 ============ -->
+<h2><span class="num">0</span>导读：这份报告到底在论证什么？</h2>
+
+<div class="crux">
+<p>这份报告其实只在回答<strong>一个问题</strong>：</p>
+<p style="font-size:21px;line-height:1.7;margin-top:14px;"><em>"为什么 2018 年这个时点，中国半导体产业值得 all-in？"</em></p>
+<p style="margin-top:14px;">作者给出的答案是：因为"<strong>硅片剪刀差</strong>"和"<strong>第四次硅含量提升</strong>"两条曲线同时绷紧了，叠加摩尔定律放缓、大陆万亿级资金注入、海外人才回流，构成了"<em>天时、地利、人和</em>"三位一体的窗口期。</p>
+</div>
+
+<div class="maodun">
+<span class="label">全局矛盾结构</span>
+<h5>主要矛盾（贯穿全报告）</h5>
+<p>全球半导体<em>需求爆发</em>（AI/汽车/物联网/5G）<strong> ↔ </strong>核心环节<em>供给受限</em>（硅片 + 先进制程产能）</p>
+<h5>次要矛盾</h5>
+<ul>
+<li>中国<em>下游需求最大</em>（占全球 1/3 以上） ↔ 上游<em>供给最弱</em>（自给率仅 36%）</li>
+<li>摩尔定律推进<em>越来越贵</em> ↔ 28nm 等成熟节点<em>性价比拐点</em>出现</li>
+<li>IDM"一体化"模式 ↔ Foundry / Fabless"垂直分工"模式</li>
+</ul>
+<h5>矛盾的特殊性 — 为什么是"中国"、为什么是"现在"？</h5>
+<p>前三次产业转移（美→日→韩→台），追赶者都是抓住了一次<em>需求换代+技术放缓+本国政府举国扶持</em>的三重窗口。第四次转移，这套"剧本"轮到大陆来演。</p>
+</div>
+
+<!-- ============ TOC ============ -->
+<div class="toc">
+<h4>章节目录（保持原报告 9 章结构 + 32 家公司）</h4>
+<ol>
+<li><a href="#ch1">超级周期：硅片"剪刀差"是怎么炼成的？</a></li>
+<li><a href="#ch2">第四次硅含量提升：AI/汽车/IoT 谁在拱火？</a></li>
+<li><a href="#ch3">产品结构：存储器、GPU、MCU、FPGA 谁是赢家？</a></li>
+<li><a href="#ch4">技术升级：FinFET、EUV、化合物半导体往哪走？</a></li>
+<li><a href="#ch5">产业链分工与并购：为什么大家都在"拆"和"合"？</a></li>
+<li><a href="#ch6">向日韩台学什么：后发者如何弯道超车？</a></li>
+<li><a href="#ch7">中国大陆的天时、地利、人和</a></li>
+<li><a href="#ch8">大陆的爬升路径：从微笑曲线底部爬向两端</a></li>
+<li><a href="#ch9">32 家上市公司一览：作者的"重点推荐"地图</a></li>
+<li><a href="#postscript">收尾：站在 2026 年回望这份 2018 年的"乐观书"</a></li>
+</ol>
+</div>
+
+<!-- ============ 名词速查 ============ -->
+<h3>读前热身：高频术语速查</h3>
+
+<p>下面这一组术语会在后文反复出现。如果你对半导体陌生，先扫一眼，遇到时再回来翻。</p>
+
+<div class="term" data-name="晶圆 / 硅片 (Wafer)">
+一块超高纯度（纯度要做到九个 9，<span class="num-hl">99.9999999%</span> 以上）的圆形单晶硅薄片，是制造芯片的"画布"。直径通常 8 英寸（200mm）或 12 英寸（300mm）。一块 12 寸晶圆上可以切出数百颗芯片。本报告反复讲的"<em>硅片剪刀差</em>"就是讲这块"画布"供给不足。
+</div>
+
+<div class="term" data-name="IDM / Foundry / Fabless">
+半导体公司的三种"商业模式"：<br>
+<strong>IDM（Integrated Device Manufacturer，整合元件制造商）</strong>：从设计到制造到封测全自己做。代表：Intel、三星、美光、东芝。<br>
+<strong>Foundry（晶圆代工厂）</strong>：只做制造，给别人代工。代表：台积电、中芯国际、华虹。<br>
+<strong>Fabless（无晶圆设计公司）</strong>：只做设计，制造外包给 Foundry。代表：高通、英伟达、海思、兆易创新。
+</div>
+
+<div class="term" data-name="制程 / 节点（如 28nm、14nm、7nm）">
+"nm"是纳米。这个数字大致代表晶体管之间最小线宽。<em>数字越小，晶体管越密，性能越强、功耗越低，但研发和建厂成本指数级上升</em>。报告里反复提到的"<em>28nm 性价比拐点</em>"指：28nm 以下，每提升一代的成本暴涨，使 28nm 变成"用得最久、最值"的节点 —— 这是中国大陆的<em>战略机遇窗口</em>。
+</div>
+
+<div class="term" data-name="DRAM / NAND / NOR Flash">
+都是存储器（Memory）：<br>
+<strong>DRAM</strong>（动态随机存储器）：电脑/手机里的"<em>内存</em>"，断电就丢数据，速度快。三星、美光、SK 海力士三家垄断。<br>
+<strong>NAND Flash</strong>：U 盘、SSD、手机里的"<em>大容量存储</em>"，断电也不丢。<br>
+<strong>NOR Flash</strong>：体积小、容量小但读取快，常用在手机 AMOLED 屏、TWS 耳机、汽车 ECU 里。中国的<em>兆易创新</em>就是 NOR 龙头。
+</div>
+
+<div class="term" data-name="MCU (Microcontroller Unit, 微控制器)">
+一个芯片里集成了 CPU + 内存 + 接口的"<em>微型电脑</em>"，专门做"控制"任务。家电、汽车 ECU、智能门锁、电动牙刷里面都是它。报告把它称为"<em>万物互联的中枢神经</em>"。
+</div>
+
+<div class="term" data-name="GPU / FPGA / ASIC / SoC / IP">
+都是不同类型的"算力芯片"：<br>
+<strong>GPU（图形处理器）</strong>：原本画游戏画面，结构擅长"<em>同样一件事做几千遍</em>"，所以天然适合深度学习训练。英伟达是绝对老大。<br>
+<strong>FPGA（可编程门阵列）</strong>：芯片做好后还能"<em>改电路</em>"，灵活、低延迟，适合云端推断。Xilinx + Altera（已被 Intel 收购）几乎垄断。<br>
+<strong>ASIC（专用集成电路）</strong>：为一种任务专门定制，性能/功耗最优但开发贵、不能改。谷歌 TPU 是典型。<br>
+<strong>SoC（System on Chip）</strong>：把 CPU、GPU、Modem 等等塞进一颗芯片，手机主芯片都是 SoC。海思麒麟、苹果 A 系列都是。<br>
+<strong>IP（Intellectual Property，半导体 IP 核）</strong>：可以"买来直接拼"到自己 SoC 里的功能模块，比如 ARM 卖 CPU 内核 IP。
+</div>
+
+<div class="term" data-name="FinFET">
+一种 3D 立体晶体管结构。当工艺缩到 22nm 以下，<em>平面晶体管漏电严重</em>，把源极/漏极立起来变成"鳍片"（Fin）就能控制住漏电。10nm/7nm/5nm 都是 FinFET。
+</div>
+
+<div class="term" data-name="EUV（极紫外光刻）">
+ASML 垄断的下一代光刻机，用 13.5nm 波长极紫外光去"<em>把电路图案投影到硅片上</em>"。是做出 7nm/5nm 以下芯片的关键设备。报告写于 2018 年初，那时 EUV 量产还未普及。
+</div>
+
+<div class="term" data-name="封装 / 测试">
+晶圆制造好以后，要切成单颗芯片、焊上引脚、塑封保护，叫"<em>封装</em>"；再测试每颗的好坏，叫"<em>测试</em>"。这是产业链最末端、技术壁垒相对低的环节，也是中国大陆起步最早、份额最高的环节。
+</div>
+
+<div class="term" data-name="ECU（汽车电子控制单元）">
+汽车里的"小电脑"。一辆普通车 30 个左右 ECU，高端车 100 个以上 —— 发动机、ABS、空调、车窗、安全气囊各一个。汽车智能化 = ECU 数量和单价同时涨。
+</div>
+
+<div class="term" data-name="化合物半导体（GaAs / GaN / SiC）">
+不是单一硅元素，而是两种以上元素的化合物：<br>
+<strong>GaAs（砷化镓）</strong>：用于手机射频 PA（功率放大器）；<br>
+<strong>GaN（氮化镓）</strong>：高频高功率，用于快充、5G 基站、雷达；<br>
+<strong>SiC（碳化硅）</strong>：耐高压高温，用于新能源车电控、光伏逆变器、高铁。<br>
+被称为"<em>第二、三代半导体材料</em>"，是硅之外的新战场。
+</div>
+
+<div class="term" data-name="大基金（国家集成电路产业投资基金）">
+2014 年成立的国家级股权投资基金。一期 1387 亿元（撬动地方基金 5145 亿），二期规模上千亿。专门投设计、制造、封测、设备、材料各环节龙头，是中国半导体"<em>举国体制 2.0</em>"。
+</div>
+
+<hr class="div">
+
+<!-- ============ 第 1 章 ============ -->
+<h2 id="ch1"><span class="num">1</span>超级周期：硅片"剪刀差"是怎么炼成的？</h2>
+
+<div class="crux">
+<p>2017 年全球半导体销售额突然冲破 <span class="num-hl">4122 亿美元</span>（同比 +21.6%），连续 19 个月环比增长。<strong>问题是：这是普通的景气波动，还是一次结构性的"超级周期"？如果是超级周期，到底什么力量在推？还能持续多久？</strong></p>
+</div>
+
+<h3>1.1 半导体到底是什么？一张图就能看明白</h3>
+
+<p>半导体可以拆成四类：<em>集成电路 (IC)</em>、<em>分立器件</em>、<em>光电器件</em>、<em>传感器</em>。其中集成电路占大头（约 81.6%），又分微处理器、逻辑电路、存储器、模拟电路四种。简单粗暴对应人体功能：</p>
+
+<table>
+<tr><th>芯片类型</th><th>人体类比</th><th>典型代表</th></tr>
+<tr><td>微处理器（CPU/GPU/MCU）</td><td>大脑（运算思考）</td><td>Intel / 英伟达 / ST</td></tr>
+<tr><td>存储器（DRAM/NAND）</td><td>记忆（短期 + 长期）</td><td>三星 / 美光 / 海力士</td></tr>
+<tr><td>逻辑电路 / FPGA</td><td>神经反射</td><td>Xilinx / Altera</td></tr>
+<tr><td>模拟电路 / 电源管理</td><td>呼吸、心跳调节</td><td>TI / ADI</td></tr>
+<tr><td>传感器 / 光电</td><td>感官（眼耳皮肤）</td><td>索尼 CIS / MEMS 厂</td></tr>
+</table>
+
+<p>产业链像一个<strong>倒金字塔</strong>：往上越细分（设备、材料），产值越小，但技术壁垒越高 —— 越往下（IC 设计→制造→封测→终端组装），产值越大，门槛越低。</p>
+
+<div class="aside">
+<p>很多人误以为"半导体公司"都长一个样。其实差别巨大：Intel 这种 IDM 自己设计 + 自己造，资本支出像油田公司；台积电是 Foundry，更像高纯度的代工厂；高通是 Fabless，更像软件公司加销售。<strong>读公司报表前，先看清它是哪一种模式</strong>。</p>
+</div>
+
+<h3>1.2 "硅片剪刀差"到底是什么？</h3>
+
+<p>"剪刀差"是这份报告反复强调的<em>底层逻辑</em>，本质上是一句话：</p>
+
+<blockquote>
+硅片（原材料）需求曲线在上扬，而供给曲线几乎是平的 —— 两条线像剪刀一样越张越大。
+</blockquote>
+
+<p>为什么供给如此僵硬？</p>
+
+<ul>
+<li><strong>极度寡头</strong>：日本信越、SUMCO，台湾环球晶，德国 Siltronic，韩国 SK Siltron 五家拿走全球<span class="num-hl">90%+</span>的份额。</li>
+<li><strong>纯度要求疯狂</strong>：单晶硅纯度要做到九个 9（99.9999999%）以上，没有几十年工艺积累根本干不了。</li>
+<li><strong>扩产周期长 + 厂商谨慎</strong>：龙头们 2008 年被反复教训过（产能投了卖不掉），这一轮宁可涨价也不轻易扩产；2017 报价从 75 美金涨到 120-150 美金，台积电、三星历史首次和硅片厂签<em>"锁量不锁价"</em>的长约。</li>
+</ul>
+
+<div class="maodun">
+<span class="label">第 1 章的矛盾结构</span>
+<h5>主要矛盾</h5>
+<p><em>下游晶圆厂猛烈扩产</em>（中国 2017-2020 计划新建 26 座晶圆厂，占全球 42%）<strong> ↔ </strong><em>上游硅片厂死活不扩产</em>（剪刀差至少撑到 2020）</p>
+<h5>矛盾的特殊性</h5>
+<p>历史上每一轮半导体景气周期都被"<em>需求驱动</em>"，但这一轮是史上第一次<em>由原材料供给瓶颈触发</em>的。所以传导路径很特别：硅片涨 → 晶圆制造涨 → 存储颗粒涨 → 内存条涨 → 手机/PC 涨。</p>
+<h5>矛盾的主要方面</h5>
+<p>报告判断 —— <em>供给端的硅片缺口</em>就是矛盾的主要方面。所以下注顺序是：先押<em>易耗、通用、量大</em>的存储器（DRAM、NOR）；再押前端晶圆制造；最后才是封测。</p>
+</div>
+
+<div class="tip">
+<p>"涨价潮"里谁最受益？口诀：<strong>需求刚性 + 标准化 + 全闭环传导</strong>。三个条件同时满足的，就是这一轮的最大赢家 —— 也就是存储器（尤其 DRAM）和 NOR Flash。</p>
+</div>
+
+<h3>1.3 为什么最看好存储器？</h3>
+
+<p>作者举两个例子，每个都对应一条完整的"涨价传导链"：</p>
+
+<p><strong>DRAM 链条</strong>：AI 服务器 + 游戏（《绝地求生》带火 PC 内存升级）+ 数据中心 → 内存需求刚性 → 硅片涨 → 三星/美光/海力士/南亚成本上升 → 内存颗粒涨 → 模组厂涨 → 内存条整体涨。</p>
+
+<p><strong>NOR Flash 链条</strong>：AMOLED 屏、双摄、TDDI（触控显示驱动整合）、智能音响四大新需求 → 消费级吃不下，往汽车 + 工业级延伸（很像 2009 年智能手机刚起飞时的产业格局）→ 国内的兆易创新、台湾的旺宏/华邦电充分受益。</p>
+
+<hr class="div">
+
+<!-- ============ 第 2 章 ============ -->
+<h2 id="ch2"><span class="num">2</span>第四次硅含量提升：AI / 汽车 / IoT 谁在拱火？</h2>
+
+<div class="crux">
+<p>如果说第 1 章讲"<em>供给端为什么紧</em>"，第 2 章讲"<em>需求端为什么爆</em>"。<strong>核心问题：为什么 2017-2022 这一轮需求和过去 50 年的任何一轮都不一样？</strong></p>
+</div>
+
+<h3>2.1 什么叫"硅含量"？</h3>
+
+<div class="term" data-name="硅含量 (Silicon Content)">
+半导体专业术语，定义为<em>"电子系统中半导体集成电路芯片的总价值，占整个系统设备价值的百分比"</em>。简单说：你家这台 5 千块的电脑里，芯片那部分值多少钱？这个比例就是硅含量，可以衡量"半导体渗透率"。
+</div>
+
+<h3>2.2 60 年来的四波硅含量提升</h3>
+
+<table>
+<tr><th>波次</th><th>时间</th><th>硅含量变化</th><th>需求驱动</th><th>全球半导体产值</th></tr>
+<tr><td>第 1 波</td><td>1970s-1990s</td><td>6% → 23.1%</td><td>个人电脑、大型机</td><td>5 亿 → 1000 亿美元</td></tr>
+<tr><td>第 2 波</td><td>2000-2008</td><td>17.3% → 22.4%</td><td>笔记本、无线通讯、家电</td><td>1750 亿 → 2500 亿</td></tr>
+<tr><td>第 3 波</td><td>2010-2016</td><td>21.1% → 26.4%</td><td>智能手机/移动互联网</td><td>2180 亿 → 3300 亿</td></tr>
+<tr><td><strong>第 4 波</strong></td><td><strong>2017-2022</strong></td><td><strong>预计突破 30-35%</strong></td><td><strong>AI + 汽车电子 + IoT + 5G</strong></td><td><strong>有望破 5000 亿</strong></td></tr>
+</table>
+
+<div class="maodun">
+<span class="label">这一波的矛盾特殊性</span>
+<h5>前三波 vs 第四波，最大的不同是什么？</h5>
+<p>前三波的<em>核心抓手是单一品类</em>（PC / 笔记本 / 智能手机），技术周期清晰、应用集中。第四波的<em>抓手却是"数据"本身</em> —— 数据来自传感器、来自摄像头、来自麦克风、来自雷达，散布在汽车里、家里、工厂里、城市里。</p>
+<h5>由此推论：</h5>
+<p>第四波最大受益者是<strong>存储器</strong>（采集到的数据要存）+ <strong>传感器</strong>（感知）+ <strong>MCU/AP</strong>（处理）+ <strong>RF/光通讯</strong>（传输）四类全都受益。这就是为什么作者说"<em>数据是核心，存储器是主要抓手</em>"。</p>
+</div>
+
+<h3>2.3 AI：高性能运算芯片百花齐放</h3>
+
+<p>AI 芯片按"训练 vs 推断"、"云 vs 端"切成三块市场：</p>
+
+<table>
+<tr><th>市场</th><th>诉求</th><th>主流方案</th><th>代表</th></tr>
+<tr><td><strong>训练（training）</strong></td><td>高并发、高吞吐</td><td>CPU + GPU 异构</td><td>英伟达 Tesla 一家独大；谷歌 TPU 试图突围</td></tr>
+<tr><td><strong>云端推断</strong></td><td>多指令数据、低延迟</td><td>云服务器 + FPGA</td><td>BAT、Amazon、微软 Azure 都在押注</td></tr>
+<tr><td><strong>端侧推断</strong></td><td>低延迟、低功耗、低成本</td><td>"SoC + IP" 模式</td><td>高通骁龙 835（Hexagon DSP）、海思麒麟 970（NPU）</td></tr>
+</table>
+
+<div class="aside">
+<p><strong>什么叫"SoC + IP"模式？</strong> 把"AI 加速"这个功能做成一个可复用的"模块"（IP），SoC 厂商（高通、海思）买回去拼进主芯片就行。好处是<em>开发周期短、成本低</em>；坏处是<em>灵活性差</em>。报告判断这种模式会成为端侧主流 —— 后来的事实证明它确实成了主流。</p>
+</div>
+
+<h4>案例：英伟达 — 2016-2017 最大赢家</h4>
+
+<p>英伟达 1993 年成立，1999 年首创 GPU 概念，2006 年推出 CUDA 编程工具包。2017 年初股价 100 美元，一年后冲到 200+ 美元，市值翻番。Q3 营收 26.36 亿美元，同比 +32%；其中<em>数据中心业务同比暴涨 109%</em>，从过去依赖游戏，转向 AI 平台公司。中国大陆业务同比 +61.9%，是增长最快的地区。BAT 全部部署 Tesla V100 GPU。</p>
+
+<div class="tip">
+<p>英伟达在 2018 年初已经把自己<em>从"游戏显卡公司"重定位为"AI 平台公司"</em>。报告在那个时点准确捕捉到了这次转型。当然，更猛烈的拐点要到 2022 年 ChatGPT 出来才到 —— 但底层逻辑这份报告已经讲明白了。</p>
+</div>
+
+<h3>2.4 汽车电子：核心驱动是 ECU 量价齐升</h3>
+
+<p>三个关键趋势驱动汽车半导体爆发：<em>电动化 + 智能驾驶 + 新能源</em>。</p>
+
+<ul>
+<li>普通车 ECU 数量 = <span class="num-hl">30 个</span>，特斯拉等高端车 = <span class="num-hl">100+ 个</span></li>
+<li>单车半导体价值 = <span class="num-hl">358 美元</span>（2017），未来每年 5-10% 持续提升</li>
+<li>车用芯片市场 2017 年 <span class="num-hl">288 亿美元</span>，2013-2018 复合增速 10.8%（远高于半导体行业整体 5.5%）</li>
+<li>ADAS（高级驾驶辅助）和混动/电动系统两个细分，复合增速最高 15-18%</li>
+</ul>
+
+<h4>案例：德州仪器 (TI) — 战略性退出消费、All-in 汽车工业</h4>
+
+<p>2012 年 TI 战略性放弃手机基带/处理器（避免和 Intel、高通正面竞争），把资源砸向<em>模拟器件 + 嵌入式处理</em>。如今这两块占总营收 88.9%，目标推到 90%+。2017 Q3 营收同比 +38%，汽车业务从 2013 年占总营收 12% 涨到 2016 年的 18%。300mm 模拟产品占比提升，毛利率突破 60%。</p>
+
+<div class="aside">
+<p><strong>TI 的故事在矛盾论里怎么解读？</strong> 它主动识别了自己<em>不是矛盾的主要方面</em>（在手机芯片上打不过 Intel、高通），果断退出"非主要矛盾领域"，把弹药集中在"汽车/工业"这条仍在加速的曲线上。结果：在半导体并购浪潮中，TI 没被吞并、反而做强了利润率。</p>
+</div>
+
+<h3>2.5 IoT：物联网半导体率先受益</h3>
+
+<p>物联网产业链分三层：<em>感知层（芯片+模组） → 网络层 → 应用层</em>。价值最终会落到网络和应用层，但第一波红利属于感知层 —— 因为不管什么样的物联网，<strong>底层模组里都必须有 MCU、传感器、通信芯片</strong>。</p>
+
+<ul>
+<li>全球物联网设备：2013 年 30 亿 → 2020 年预计 <span class="num-hl">250 亿</span> 台</li>
+<li>物联网半导体市场：2015 年 154 亿 → 2020 年 <span class="num-hl">311 亿</span> 美元（5 年翻倍）</li>
+<li>典型 IoT 模组的成本中，MCU + 传感器 + 无线通信芯片占 <span class="num-hl">60-70%</span></li>
+</ul>
+
+<p>2014-2016 大量巨头并购都围绕物联网芯片：赛普拉斯 40 亿美元收 Spansion；NXP 118 亿美元收 Freescale；软银 320 亿美元收 ARM；高通 390 亿美元收 NXP（后未成）。</p>
+
+<hr class="div">
+
+<!-- ============ 第 3 章 ============ -->
+<h2 id="ch3"><span class="num">3</span>产品结构：存储器、GPU、MCU、FPGA 谁是赢家？</h2>
+
+<div class="crux">
+<p>第 1、2 章告诉我们"<em>需求大、供给紧</em>"。第 3 章要回答：<strong>具体押注哪些品类的芯片？</strong> 作者的答案是：存储器（国家战略级）、GPU（AI 训练首选）、MCU（万物互联中枢）、FPGA（云端推断）、新型存储器（3D NAND / PCRAM / 3D XPoint）。</p>
+</div>
+
+<h3>3.1 存储器：国之重器</h3>
+
+<p>"国之重器"四个字在原报告里反复出现 —— 因为存储芯片有三重战略意义：</p>
+
+<ol>
+<li><strong>市场超大、缺口超大</strong>：2015 年中国大陆存储器市场 <span class="num-hl">2842.7 亿元</span>（占全球 54.1%），但<em>几乎全靠进口</em>。2015 集成电路进口 2307 亿美元中存储器占 1/4。</li>
+<li><strong>国产化是信息安全的核心战场</strong>：存储芯片如果全靠进口，等于把"记忆"交到别人手里。</li>
+<li><strong>历史可以借鉴</strong>：日本（1980s）、韩国（1990s）半导体崛起，都是从 DRAM 切入 —— 这是<em>追赶型国家的最佳突破口</em>。</li>
+</ol>
+
+<div class="maodun">
+<span class="label">存储器矛盾结构</span>
+<h5>主要矛盾</h5>
+<p>中国是全球最大的"<em>数据生产国</em>"，下游应用需求 → ∞；但存储产能 → 0。</p>
+<h5>矛盾转化的契机</h5>
+<p>过去 30 年 DRAM 是"<em>三国杀</em>"（三星 + 美光 + 海力士），新进入者几乎不可能。但第四波硅含量提升 + 大基金 + 海归人才 + 现成下游市场 = 第一次有可能撕开口子。<em>合肥长鑫、长江存储、福建晋华</em>三大新势力就是这个矛盾在 2018 年开始转化的产物。</p>
+</div>
+
+<h3>3.2 GPU：高并行计算能力，深度学习训练首选</h3>
+
+<p>CPU 和 GPU 都是处理器，区别在于"<em>核数和结构</em>"：</p>
+
+<ul>
+<li>CPU：少量"<em>聪明大核</em>"，擅长复杂顺序逻辑（操作系统、判断分支）</li>
+<li>GPU：海量"<em>简单小核</em>"（几千个 ALU），擅长"<em>同样的指令重复几万次</em>"（图形渲染、矩阵运算）</li>
+</ul>
+
+<p>深度学习的核心运算（矩阵乘法、卷积）天然可以并行化 → GPU 完美匹配。在"PC + 工作站 + 服务器"独立 GPU 市场，<strong>英伟达市占率接近 70%</strong>，AMD 多年缺席通用计算导致一家独大。</p>
+
+<h3>3.3 MCU：万物互联的"中枢神经"</h3>
+
+<p>MCU 是把<em>CPU + 内存 + 计数器 + AD 转换 + 接口</em>塞进一颗芯片里的"<em>单片机</em>"。市场结构：</p>
+
+<ul>
+<li>2015 年全球市场 159 亿美元，221 亿颗出货，单价 0.72 美元</li>
+<li>2020 年预计 209 亿美元、267 亿颗，单价升至 0.78 美元</li>
+<li>32 位 MCU 渗透率：2005 年 28% → 2015 年 54% → 2020 年预计 66%</li>
+<li>NXP、瑞萨、ST 等<strong>前八大占全球 88%</strong>市场份额</li>
+</ul>
+
+<p>报告判断 MCU 的三大方向：<em>32 位化、低功耗化、高集成度（MCU+ 整合传感器+无线模块）</em>。</p>
+
+<div class="aside">
+<p><strong>为什么 MCU 需求要爆发？</strong> 报告给了一个非常本质的分析：物联网之前的时代是"<em>人和物的交互</em>"（人按键盘、按遥控器）；物联网时代是"<em>物和物的交互</em>"（车与车、设备与产品、家电之间），人不再主动输入信号，<em>终端节点自己感知 + 处理 + 交互</em>。这就要求每个节点都有传感器（眼）+ MCU（脑）+ 通信芯片（嘴）。MCU 就是这个"脑"。</p>
+</div>
+
+<h3>3.4 FPGA：云端推断的好选择</h3>
+
+<p>FPGA 最大特点是"<em>烧录后可改电路</em>"。和 GPU 比，FPGA 主频更低，但因为<em>不用取指令、解码</em>，完成同样运算所需的时钟周期更少，<em>能耗优势明显、延迟低</em>。这正是云端推断需要的。</p>
+
+<p>Intel 167 亿美元收购 Altera 就是为这个 —— 把 CPU 和 FPGA 整合在一个封装里，攻数据中心推断市场。Xilinx + Altera 合计 90%+ 的份额，技术专利和长开发周期形成极高壁垒。</p>
+
+<h3>3.5 新型存储器：3D NAND、PCRAM、3D XPoint</h3>
+
+<p>传统平面存储到 16nm 以下越来越难做，下一代有三个方向：</p>
+
+<table>
+<tr><th>技术</th><th>原理</th><th>优势</th><th>状态</th></tr>
+<tr><td><strong>3D NAND</strong></td><td>把存储单元垂直堆叠</td><td>容量大、成本低、功耗低</td><td>三星、美光已量产</td></tr>
+<tr><td><strong>PCRAM（相变存储器）</strong></td><td>利用材料晶态/非晶态切换</td><td>嵌入式、高密度、读写快、寿命长</td><td>多家在研</td></tr>
+<tr><td><strong>3D XPoint</strong></td><td>2 种相变材料 3D 堆叠</td><td>速度是 NAND 的 1000 倍，密度是 DRAM 的 10 倍</td><td>Intel + 美光 2015 推出，被誉为"<em>1989 年 NAND 之后存储领域第一次质的突破</em>"</td></tr>
+</table>
+
+<hr class="div">
+
+<!-- ============ 第 4 章 ============ -->
+<h2 id="ch4"><span class="num">4</span>技术升级：FinFET、EUV、化合物半导体往哪走？</h2>
+
+<div class="crux">
+<p>下游需要更强算力 + 更低功耗，靠什么来实现？<strong>三条技术路线在同时推进：① 制程工艺（10nm 以下 FinFET）；② 高精密设备（EUV 光刻机）；③ 替代材料（化合物半导体）。每条路线的瓶颈与机遇都不一样。</strong></p>
+</div>
+
+<h3>4.1 晶圆制造工艺：10nm 以下 FinFET，28nm 性价比拐点</h3>
+
+<p>目前主流 Foundry 厂工艺主要在 40nm（40+28+16nm 三档加起来占全球营收 65%+）。台积电 7nm 已经在 17Q2 tape-out，7/5nm 未来两年量产。</p>
+
+<div class="aside">
+<p><strong>什么是"tape-out"？</strong> 字面意思是"出磁带"（其实早期是把设计文件刻在磁带上送给晶圆厂）。今天通指"<em>把芯片设计文件最终交付给制造厂</em>"这个里程碑动作。一个 7nm 芯片从设计到 tape-out 通常要烧掉数千万美元。</p>
+</div>
+
+<p>但报告抛出一个非常关键的判断：<strong>28nm 是性价比拐点</strong>。</p>
+
+<ul>
+<li>从微米级到纳米级，"<em>每单位计算能力的成本</em>"持续下降；</li>
+<li>但 20x nm 之后，<em>研发成本非线性飙升</em> —— 5nm 厂研发投入是 28nm 的好几倍；</li>
+<li>结果：28nm 极可能是"<em>计算能力成本的极小值</em>"，在很多"够用就好"的领域 28nm 会用很久。</li>
+</ul>
+
+<div class="maodun">
+<span class="label">中国的机遇藏在这个拐点里</span>
+<h5>主要矛盾</h5>
+<p>领先者（台积电、三星、Intel）<em>砸钱抢 7/5/3nm 制高点</em> ↔ 大量应用场景<em>用 28nm 就够了</em>。</p>
+<h5>矛盾的特殊性 — 这给中国带来什么？</h5>
+<p>中国大陆 Foundry（中芯、华虹）短期赶不上 7nm，但<em>可以把 28nm 做扎实、做便宜、做大规模</em>。汽车电子、物联网、家电主控大部分就停在 28nm/40nm/55nm，这是<em>能稳定吃 10 年以上的市场</em>。</p>
+</div>
+
+<h3>4.2 先进封装：SiP、3D、TSV、Bumping</h3>
+
+<p>摩尔定律在 5nm 物理极限附近会"<em>撞墙</em>"，14nm 以下的研发投入指数级膨胀。所以另一条路是<em>不缩晶体管，但用封装提升整体性能</em>。</p>
+
+<p>封装技术的演进路径是"<em>用'点的连接'替代'线的连接'</em>"：</p>
+
+<ol>
+<li>第一代 WB（Wire Bonding，金线键合）：用金线把芯片引脚一根根连出来</li>
+<li>第二代 TAB</li>
+<li>第三代 FC（Flip Chip，倒装焊）</li>
+<li>第四代 <strong>TSV（Through Silicon Via，硅通孔）</strong>：在芯片内部打垂直通孔填金属，把信号引到背面 → 3D 堆叠</li>
+</ol>
+
+<div class="term" data-name="TSV / Bumping / SiP">
+<strong>TSV</strong>：硅通孔，把好几层芯片"<em>串糖葫芦</em>"垂直连起来，密度最大、延迟最低。<br>
+<strong>Bumping</strong>：在芯片表面做金属凸点（"球"或"铜柱"），用于芯片与基板的"<em>点连接</em>"，是 FC、WLP、3D 封装的关键。<br>
+<strong>SiP（System in Package）</strong>：把多颗不同功能的芯片"<em>打包封装在一起</em>"，像 Apple Watch 主板就是 SiP。
+</div>
+
+<h3>4.3 EUV：突破 7nm 以下工艺的核心设备</h3>
+
+<p>传统光刻机（用 193nm DUV 浸没式）撞到物理极限。下一代用 13.5nm 极紫外光（EUV）才能继续往下做。EUV 是 ASML 一家独大，<em>一台机器十几亿人民币</em>，是"<em>人类工业皇冠上的明珠</em>"之一。报告发布时（2018 初），EUV 还没大规模量产，台积电 7nm+ 才开始用。</p>
+
+<h3>4.4 化合物半导体：第二、三代材料</h3>
+
+<table>
+<tr><th>材料</th><th>属性</th><th>主要应用</th><th>市场</th></tr>
+<tr><td>GaAs（砷化镓）</td><td>高频，最成熟</td><td>手机 PA（功率放大器）</td><td>70-80 亿美元</td></tr>
+<tr><td>GaN（氮化镓）</td><td>大功率、高频</td><td>军用雷达、5G 基站、新能源车充电</td><td>正在放量</td></tr>
+<tr><td>SiC（碳化硅）</td><td>高压、高温</td><td>新能源车电控、光伏逆变器、高铁</td><td>未来高增长</td></tr>
+</table>
+
+<div class="aside">
+<p><strong>为什么硅之外要找新材料？</strong> 硅基 CMOS 工艺在 5nm 以下会遇到<em>量子隧穿效应</em>（电子像幽灵一样直接穿过沟道），从根本上限制了缩小速度。化合物半导体在<em>高频、高压、高温、大功率</em>场景下天然优于硅 —— 不是替代，是<em>占领硅干不好的细分战场</em>。这也是中国可以与世界水平差距较小的领域之一。</p>
+</div>
+
+<hr class="div">
+
+<!-- ============ 第 5 章 ============ -->
+<h2 id="ch5"><span class="num">5</span>产业链分工与并购：为什么大家都在"拆"和"合"？</h2>
+
+<div class="crux">
+<p>过去 60 年半导体产业链像"<em>呼吸</em>"一样反复"拆 → 合"：早期 IDM 一体化 → 80 年代 IC 设计独立（Fabless）→ 90 年代 IP 商独立 → 21 世纪封测分出来 → 近年又是 Avago 收博通、Intel 收 Altera、高通要收 NXP 的并购潮。<strong>为什么会这样？什么样的公司会留下来、什么样的会被吞掉？</strong></p>
+</div>
+
+<h3>5.1 IDM vs Foundry — 两种基因的对决</h3>
+
+<p>IDM 和 Foundry 的本质差别是<em>"资产强度"</em>。</p>
+
+<table>
+<tr><th></th><th>IDM 模式</th><th>Fabless + Foundry 模式</th></tr>
+<tr><td>代表</td><td>Intel、三星、美光、东芝</td><td>高通（Fabless）+ 台积电（Foundry）</td></tr>
+<tr><td>资本支出</td><td>极重</td><td>设计公司轻、代工厂重</td></tr>
+<tr><td>优势</td><td>设计 + 制造协同优化，性能上限高</td><td>专业分工，代工厂能服务多客户、稼动率高、技术迭代快</td></tr>
+<tr><td>劣势</td><td>制造若跟不上摩尔定律会拖死自己</td><td>设计公司受制于代工产能；代工厂折旧压力大</td></tr>
+</table>
+
+<p>趋势：<strong>Fab Lite</strong>（轻晶圆厂）模式盛行。除了三星、Intel、东芝、SK 海力士、美光，其他 IDM（NXP、ST、英飞凌、TI、Freescale）<em>都把先进制程外包出去</em>，只保留自己有竞争优势的特色工艺。</p>
+
+<div class="maodun">
+<span class="label">分工 vs 整合的辩证统一</span>
+<h5>表面看上去矛盾的现象</h5>
+<p>一方面"产业链分工越来越细"（Fab Lite、Fabless 兴起）；另一方面"并购整合越来越猛"（NXP 收 Freescale、高通要收 NXP）。<em>到底是分还是合？</em></p>
+<h5>本质</h5>
+<p>"分"的是<em>价值链上不同环节</em>（设计 ↔ 制造 ↔ 封测）；"合"的是<em>同一环节里的玩家</em>（设计公司之间相互兼并、IDM 之间合并）。<em>分是为了专业化，合是为了规模化</em>。两者并不矛盾。</p>
+</div>
+
+<h3>5.2 2014 年以来的超级并购潮</h3>
+
+<ul>
+<li>NXP — 118 亿美元收购飞思卡尔 Freescale</li>
+<li>Avago — <strong>370 亿美元</strong>收购博通 Broadcom</li>
+<li>Intel — 167 亿美元收购 Altera（FPGA）</li>
+<li>ADI — 148 亿美元收购 Linear</li>
+<li>高通 — 390 亿美元收购 NXP（最终未成）</li>
+<li>博通 — <strong>1300 亿美元</strong>要约高通（后被特朗普否决）</li>
+</ul>
+
+<div class="aside">
+<p><strong>为什么并购浪潮停不下来？</strong> 行业进入成熟期 → 增速 < 两位数 → 单打独斗很难创造增长 → 抱团做大份额、降低研发成本、避免无谓竞争。这一规律对任何"<em>从快速成长期进入成熟期</em>"的行业都成立。</p>
+</div>
+
+<hr class="div">
+
+<!-- ============ 第 6 章 ============ -->
+<h2 id="ch6"><span class="num">6</span>向日韩台学什么：后发者如何弯道超车？</h2>
+
+<div class="crux">
+<p>美国 1950s 起步，日本 1980s 赶超美国（DRAM），韩国 1990s 赶超日本（DRAM），台湾 1990s 末凭"垂直分工"崛起（Foundry）。<strong>三次产业转移背后有什么共通规律？这套规律能不能被中国大陆复用？</strong></p>
+</div>
+
+<h3>6.1 半导体行业的三大基因</h3>
+
+<p>所有讨论必须从这三个底层属性开始：</p>
+
+<ul>
+<li><strong>技术密集</strong>：材料 + 工艺 + 自动化 + 精密控制 + 电路 的交叉，门槛极高</li>
+<li><strong>资本密集</strong>：晶圆代工、封测都要烧巨额资本买设备，且<em>设备 3-5 年就要更新</em></li>
+<li><strong>产业集群</strong>：材料、设备、IC 设计、晶圆代工、封测 <em>5 个环节配套研发</em>，物理上要在一起才能高效合作</li>
+</ul>
+
+<h3>6.2 追赶者的"天时 + 地利 + 人和"通用框架</h3>
+
+<div class="maodun">
+<span class="label">追赶者崛起的矛盾论模型</span>
+<h5>内因 vs 外因</h5>
+<p><em>内因</em>：自己有没有完整的"政府 + 公司 + 人才 + 资本"系统；<br>
+<em>外因</em>：全球行业是不是出现了"<em>新需求 / 新工艺 / 新模式 / 技术放缓</em>"这种<em>给新人留出窗口的时刻</em>。</p>
+<h5>结论</h5>
+<p>内因是基础，外因是触发。<em>没有外因的窗口，再强的内因也追不上（行业是"强者恒强")；没有内因的支撑，外因来了也接不住</em>。日韩台都是两者完美对齐才崛起的。</p>
+</div>
+
+<h3>6.3 日本：官产学一体化 + 工业 IC 时代机遇 + 高可靠性工艺</h3>
+
+<p><strong>怎么追上的</strong>：</p>
+
+<ol>
+<li><em>外因（天时）</em>：1970-80 年代 PC 普及 → DRAM 大爆发，对"<em>高可靠性</em>"有刚需</li>
+<li><em>地利</em>：日本制造业精益求精的文化 → 良品率极高 → 质优价廉</li>
+<li><em>人和</em>：1976 年"<strong>VLSI 技术研究所</strong>"项目 —— 日本政府出 320 亿日元，日立/NEC/富士通/三菱/东芝五家联合出 400 亿日元，800 多名顶级工程师集中攻关，4 年做出 1210 件实用新型专利和 347 件商业专利。<em>这是一次教科书级的"举国体制"</em>。</li>
+</ol>
+
+<p>结果：1986 年日本企业在全球 DRAM 市场份额达到 <span class="num-hl">80%</span>。</p>
+
+<p><strong>怎么衰落的</strong>：</p>
+
+<ol>
+<li><em>外因变了</em>：1984 年 IBM 推 PC → 计算机从大型机转向个人电脑 → DRAM 不再要求"高可靠性"，而是要求"<em>高性价比</em>"</li>
+<li><em>内因没跟上</em>：日本企业战略上还是<em>偏向大型机需求</em>，对消费级 PC 反应慢</li>
+<li><em>外因恶化</em>：美国从扶植转向限制 —— 美日半导体协议规定日本产品最低价格，《广场协议》让日元升值，价格优势全没了</li>
+</ol>
+
+<div class="aside">
+<p><strong>矛盾论里的"矛盾的转化"</strong>：日本崛起靠的是"<em>大型机时代 + 高可靠性</em>"的主要矛盾匹配；但当主要矛盾变成"<em>消费 PC 时代 + 高性价比</em>"时，原来的优势变成了束缚。<em>不进则退，是逃不掉的规律</em>。</p>
+</div>
+
+<h3>6.4 韩国：政府 + 大财团合力推 DRAM</h3>
+
+<p>韩国 DRAM 的成功公式 = <em>消费电子崛起 + 日本受美国限制 + "政府 + 大财团"举国推动</em>。</p>
+
+<ul>
+<li>1976 年韩国电子技术研究所（KIET）成立，从美国硅谷引进归国工程师</li>
+<li>1986 年韩国政府把 4M DRAM 列为国家项目，三星 + LG + 现代 + 6 所顶尖高校结盟，3 年投入 1.1 亿元（政府承担 57%）</li>
+<li>政府引导<em>把 95% 的资金给大企业</em>（不撒胡椒面），集中突破</li>
+<li>大量留学生派去美国，回国后直接进三星/海力士高层</li>
+</ul>
+
+<p>1998 年金融危机刚过，恰逢手机起步带来新一轮 DRAM 需求 → 韩国搭上下一班车。今天三星 + 海力士仍占全球 DRAM 市场 <span class="num-hl">60%+</span>。</p>
+
+<h3>6.5 台湾：垂直分工时代机遇 + 工研院模式</h3>
+
+<p>台湾的崛起几乎就是<em>张忠谋 + 台积电的故事</em>：</p>
+
+<ol>
+<li>1987 年台积电成立 = <strong>全球第一家纯 Foundry 厂</strong>，开创"<em>只代工不设计</em>"的模式</li>
+<li>这种模式让设备折旧能均摊到无数设计公司的订单上，资本效率极高；同时让无数 Fabless 设计公司能诞生</li>
+<li>工研院（1973 年成立）<em>从国外购买技术 → 在台湾消化 → 转让给私人企业 → 鼓励创业</em>，张忠谋、曹兴诚等都出自这套体系</li>
+<li>新竹科学园区聚合台清交大学 + 工研院 + 风险投资 → 形成超强产业集群</li>
+</ol>
+
+<div class="tip">
+<p>注意一个反复出现的"<strong>关键人物</strong>"模式：日本有 VLSI 项目 800 名工程师；韩国有海归潮 + 留学生；台湾有张忠谋。<em>没有顶级人才，所有政府投入都打不响</em>。这是后面讲大陆"梁孟松效应"的伏笔。</p>
+</div>
+
+<hr class="div">
+
+<!-- ============ 第 7 章 ============ -->
+<h2 id="ch7"><span class="num">7</span>中国大陆的天时、地利、人和</h2>
+
+<div class="crux">
+<p>第 6 章给出了"<em>追赶者公式</em>"。第 7 章问：<strong>这个公式套在 2018 年的中国身上，每一项条件具不具备？</strong> 作者的回答：三项都到位了，是"<em>大势所趋</em>"。</p>
+</div>
+
+<h3>7.1 天时：第四波硅含量提升 + 摩尔定律放缓</h3>
+
+<ul>
+<li>前三波周期我们都<em>错过了</em>（PC 时代被美日把持，移动时代被美韩台把持）；这一波 AI + 汽车 + IoT，<em>第一次在中国本土起爆</em></li>
+<li>摩尔定律放缓 = 领先者的"<em>升级速度</em>"变慢 = 追赶者有时间窗口缩小差距</li>
+<li>28nm 性价比拐点 = 给中国制造一个<em>能扎稳脚跟的长期市场</em></li>
+</ul>
+
+<h3>7.2 地利：最大的下游需求 + 最完整的产业集群</h3>
+
+<ul>
+<li>中国制造了全球 80%+ 的电子产品（3.3 亿台电脑、15 亿台智能手机、1.8 亿台平板）</li>
+<li>2016 年中国集成电路消费市场 11,986 亿元，但国内产业销售额仅 4,336 亿元 → <strong>自给率只有 36%</strong></li>
+<li>2016 集成电路<em>进口额 2271 亿美元，逆差 1657 亿美元 —— 比原油进口还多</em>，是中国第一大进口商品</li>
+<li>已形成长三角、京津环渤海、珠三角、中西部<em>四大集群</em></li>
+</ul>
+
+<div class="maodun">
+<span class="label">"地利"的辩证看法</span>
+<p>"<em>最大的逆差</em>"既是中国的痛点，也是中国的机会 —— 这就是矛盾论里"<em>坏事可以转化成好事</em>"的典型。每一块逆差都是一块潜在的国产替代空间。</p>
+</div>
+
+<h3>7.3 人和：政策 + 大基金 + 海归潮 + 高校供给</h3>
+
+<p><strong>政策接力</strong>：2000 年《鼓励软件和集成电路若干政策》、《国家集成电路产业发展推进纲要》（2014）。</p>
+
+<p><strong>大基金的弹药</strong>：</p>
+
+<ul>
+<li>一期：1387 亿元，撬动地方基金 5145 亿，合计接近 6500 亿</li>
+<li>二期：与一期规模相当甚至更大，预计撬动总投资接近<em>万亿级</em></li>
+<li>覆盖设计、制造、封测、装备、材料各环节<em>全产业链布局</em></li>
+<li>各地方版基金合计已超 <span class="num-hl">4000 亿元</span></li>
+</ul>
+
+<p><strong>海外并购 + 人才回流</strong>：</p>
+
+<ul>
+<li>长电收购星科金朋（封测）；通富收购 AMD 苏州/槟城；豪威被 A 股私有化</li>
+<li>梁孟松 2017 年加盟中芯国际（曾推动三星 14nm 跨越式发展）</li>
+<li>展讯挖了联发科的袁帝文；紫光集团挖了华亚科的高启全</li>
+</ul>
+
+<p><strong>研究生供给</strong>：2004 年 15 万 → 2015 年 55 万，<em>10 年增长 3.7 倍</em>。理工科研究生占比常年保持 60%+。</p>
+
+<div class="aside">
+<p><strong>梁孟松效应是什么？</strong> 梁孟松是张忠谋的爱将之一，曾经把三星 14nm 工艺从"远远落后"做到"和台积电平起平坐"。他到中芯国际，意味着<em>大陆 Foundry 第一次拥有了对标顶级 Foundry 的研发带头人</em>。报告里反复用"<em>振奋人心</em>"四个字描述这件事。后来事实证明：他到中芯后，N+1、N+2 工艺确实大步突破。</p>
+</div>
+
+<hr class="div">
+
+<!-- ============ 第 8 章 ============ -->
+<h2 id="ch8"><span class="num">8</span>大陆的爬升路径：从微笑曲线底部爬向两端</h2>
+
+<div class="crux">
+<p>承认天时地利人和都有了，下一个问题就是<strong>："具体怎么爬？"先攻哪个环节？后攻哪个？路径是什么样的？</strong></p>
+</div>
+
+<h3>8.1 半导体行业独特的"微笑曲线"</h3>
+
+<p>传统制造业的微笑曲线（宏碁创始人施振荣 1992 年提出）：</p>
+
+<blockquote>
+研发设计（前端高价值）→ 生产制造（中间低价值）→ 营销服务（后端高价值）
+</blockquote>
+
+<p>但半导体的微笑曲线<em>不太一样</em>：</p>
+
+<blockquote>
+材料/设备 → IC 设计 → Foundry → 封测 → IC 设计（营销/服务）
+</blockquote>
+
+<p>原因：</p>
+<ul>
+<li>IC 设计公司<em>既研发又做营销</em>（同时占曲线两端的高点）</li>
+<li>Foundry 不是"普通代工厂"，<em>掌握最核心的先进制程工艺</em>（不是单纯的"中间低价值")</li>
+</ul>
+
+<h3>8.2 大陆在五大环节的现状（按 2016/2017 数据）</h3>
+
+<table>
+<tr><th>环节</th><th>本土化率</th><th>代表公司</th><th>判断</th></tr>
+<tr><td>封测</td><td>12%</td><td>长电、华天、通富</td><td>已经是<em>全球前列</em>，长电收星科金朋后跻身全球前三</td></tr>
+<tr><td>IC 设计</td><td>10%</td><td>海思、紫光展锐、兆易、汇顶</td><td>2016 年设计业首次超过 1500 亿元，海思 + 紫光展锐进入全球前十</td></tr>
+<tr><td>Foundry</td><td>7%</td><td>中芯国际、华虹</td><td>2017-2020 中国规划建 26 座晶圆厂（占全球 42%），梁孟松加盟带来质变契机</td></tr>
+<tr><td>材料</td><td>< 5%</td><td>晶瑞、鼎龙、江丰、南大光电</td><td>靶材、CMP 抛光液已达到国际水平；硅片、光刻胶差距巨大</td></tr>
+<tr><td>设备</td><td>< 5%</td><td>北方华创、中微、晶盛机电、长川</td><td>02 专项 + 大基金大力支持，刻蚀机、PVD、清洗机已部分进入产线</td></tr>
+</table>
+
+<div class="maodun">
+<span class="label">爬升路径的辩证</span>
+<h5>主次矛盾顺序</h5>
+<p><em>近期主要矛盾</em>：封测已经过线，IC 设计正在突破，制造是<em>下一步必须啃下的硬骨头</em>。<br>
+<em>中期主要矛盾</em>：材料、设备的国产替代 —— 这是"<em>卡脖子</em>"的核心。<br>
+<em>长期主要矛盾</em>：能不能在新工艺（FinFET 以下）、新材料（化合物半导体）、新存储（3D NAND/XPoint）建立<em>自己的代际优势</em>。</p>
+</div>
+
+<h3>8.3 封测：海外并购 + 先进封装</h3>
+
+<p>2016 年大陆封测业产值 1563 亿元（同比 +13%），全球第二。先进封装（3D / SiP / WLCSP）占比提升到 30%。三大龙头：</p>
+
+<ul>
+<li><strong>长电科技</strong>：收购星科金朋后全球第三（仅次于日月光、安靠），与中芯国际合资中芯长电做 bumping</li>
+<li><strong>华天科技</strong>：天水（传统）+ 西安（QFN/BGA/FC/SiP）+ 昆山（TSV/Fan-Out）三大基地</li>
+<li><strong>通富微电</strong>：大基金 2.7 亿美金支持下收购 AMD 苏州 + 槟城 85% 股权，绑定 AMD 这个超级客户</li>
+</ul>
+
+<h3>8.4 IC 设计：2016 年首次成为大陆半导体第一大子产业</h3>
+
+<p>大陆 IC 设计业实现"三个第一次"：第一次超过制造业，第一次超过千亿规模，第一次有 2 家公司进入全球前十（海思、紫光展锐）。全部是 Fabless 模式（没有 IDM）。</p>
+
+<h3>8.5 制造：中芯国际、华虹的双轮</h3>
+
+<ul>
+<li>中芯：28nm polysion 量产中，HKMG 在攻坚，14nm 在研发中；梁孟松加盟<em>带来工艺研发体系性飞跃</em></li>
+<li>华虹：差异化特色工艺（eNVM 嵌入式存储 + 功率器件 + 90nm RF/PMIC），大基金 9.22 亿美元注入助其建无锡 12 寸厂</li>
+</ul>
+
+<h3>8.6 材料：硅片、光刻胶差距大；靶材、CMP 已突破</h3>
+
+<table>
+<tr><th>材料</th><th>全球主导</th><th>大陆代表</th><th>差距</th></tr>
+<tr><td>硅片</td><td>信越、SUMCO、Siltronic、SK、GWC</td><td>有研半导体、上海新晟、金瑞泓</td><td>200mm 国产化，300mm 刚起步</td></tr>
+<tr><td>光刻胶</td><td>JSR、信越化学、东京应化、陶氏 9 家占 95%</td><td>北京科华、苏州瑞红、晶瑞</td><td>差距大，i 线/g 线刚起步</td></tr>
+<tr><td>电子气体</td><td>欧美日</td><td>南大光电（磷烷、砷烷）</td><td>正在突破</td></tr>
+<tr><td>溅射靶材</td><td>JX/Nikko、Praxair、Honeywell、Tosoh 占 80%</td><td>江丰电子</td><td><em>已进台积电、中芯</em>，技术接轨</td></tr>
+<tr><td>CMP 抛光</td><td>陶氏化学</td><td>鼎龙股份（抛光垫）</td><td>客户验证阶段</td></tr>
+<tr><td>湿电子化学品</td><td>多家国际厂</td><td>江化微、晶瑞、新阳</td><td>本土供应能力较强</td></tr>
+</table>
+
+<h3>8.7 设备：国产替代率 13%，但部分细分已突破</h3>
+
+<p>2017 中国半导体设备销售收入预计 76.5 亿元（同比 +33%）。但整体国产化率 13.35%，连续 4 年下滑（因为外资也在拼命卖给中国大陆建厂的设备）。</p>
+
+<p>突破点：</p>
+<ul>
+<li><strong>北方华创</strong>：刻蚀、薄膜沉积、清洗设备，进入中芯供应链</li>
+<li><strong>至纯科技</strong>：高纯工艺系统（A 股唯一标的）</li>
+<li><strong>晶盛机电</strong>：长晶炉设备，国内唯一能做半导体硅片单晶炉的公司</li>
+<li><strong>长川科技</strong>：测试机和分选机，进入长电、华天、通富供应链</li>
+<li><strong>精测电子</strong>：与 IT&T 合资，由 LCD 检测扩展到半导体测试</li>
+</ul>
+
+<div class="tip">
+<p>"<strong>02 专项</strong>"是国务院 16 个国家科技重大专项之一，全称《极大规模集成电路制造装备与成套工艺》。从"十一五"到"十二五"，让大陆首次实现了 12 寸国产装备<em>从无到有</em>，刻蚀机/PVD/CMP/离子注入机等 16 种关键装备通过大生产线验证。是中国设备国产替代的<em>大本营项目</em>。</p>
+</div>
+
+<hr class="div">
+
+<!-- ============ 第 9 章 ============ -->
+<h2 id="ch9"><span class="num">9</span>32 家上市公司一览：作者的"重点推荐"地图</h2>
+
+<div class="crux">
+<p>前 8 章是<em>理论</em>，第 9 章是<em>落地清单</em>。作者按产业链环节把推荐分成 5 组：<strong>设计 / 制造 / 封测 / 设备 / 材料</strong>。下面给一份"通俗化的速读卡"。</p>
+</div>
+
+<div class="aside">
+<p><strong>读这份名单之前要做的心理准备</strong>：报告写于 2018 年 2 月，紧接着 2018 年 4 月就是<em>中兴事件</em>，5 月是<em>中美贸易摩擦升级</em>，2019 年是华为禁令。这些"突发外因"对名单里很多公司的命运都产生了与原报告预期截然不同的影响（有些被加速，有些被打断）。读名单时<em>把它当作"作者当时眼中的产业地图"，而不是"今天的投资建议"</em>。</p>
+</div>
+
+<h3>9.1 设计类</h3>
+
+<div class="company">
+<h4>兆易创新 <span class="tag">NOR + MCU + NAND</span></h4>
+<p><strong>身份</strong>：大陆存储芯片设计龙头。"NOR + MCU + NAND" 三战线，主供 PC/手机/汽车电子。</p>
+<p><strong>看点</strong>：和合肥产投签约切入 DRAM（计划成为全球第四大 DRAM 厂），停牌期间入股中芯、收购思立微，完成关键产业资源整合。Fabless 模式 + 中芯/华力微战略合作。</p>
+<p><strong>2017Q3 业绩</strong>：单季营收 5.78 亿（+47%），净利润 1.59 亿（+192%）。</p>
+</div>
+
+<div class="company">
+<h4>景嘉微 <span class="tag">国产 GPU 唯一</span></h4>
+<p><strong>身份</strong>：A 股唯一 GPU 设计企业，自主研制 JM5400 实现 GPU 国产化突破。</p>
+<p><strong>看点</strong>：军用图形显控芯片"四证齐全"；定增 13 亿做高性能 GPU + 消费电子芯片；十三五期间军民显控约百亿市场空间；大基金有意入股。</p>
+</div>
+
+<div class="company">
+<h4>扬杰科技 <span class="tag">分立器件 + SiC</span></h4>
+<p><strong>身份</strong>：国内分立器件龙头（功率二极管、整流桥），IDM 模式。</p>
+<p><strong>看点</strong>：4 寸线产能国内最大；6 寸线释放；投资国宇电子 + 与 55 所合作布局 SiC 功率器件，有望切入新能源车 + 军用市场。</p>
+</div>
+
+<div class="company">
+<h4>紫光国芯 <span class="tag">紫光集团旗舰</span></h4>
+<p><strong>身份</strong>：紫光集团旗下，做智能卡 + 特种集成电路 + 大容量存储设计。</p>
+<p><strong>看点</strong>：2017H1 存储器业务营收 1.5 亿（+112%）；西安研发"第四代 DRAM"预计 2018 进入市场；身份证芯片稳定供货 + 银行 IC 卡放量。</p>
+</div>
+
+<div class="company">
+<h4>北京君正 <span class="tag">嵌入式 CPU</span></h4>
+<p><strong>身份</strong>：极少数掌握嵌入式 CPU 核心技术的本土企业，XBurst 内核 Jz47 系列。</p>
+<p><strong>看点</strong>：M 系列专攻可穿戴设备（智能手表、眼镜）；32 位嵌入式 CPU 中本土领先。</p>
+</div>
+
+<div class="company">
+<h4>中颖电子 <span class="tag">小家电 MCU + AMOLED 驱动</span></h4>
+<p><strong>身份</strong>：国内小家电 MCU 市占率第一；AMOLED 驱动芯片国内领先（和辉光电主供）。</p>
+<p><strong>看点</strong>：物联网 32 位 MCU SoC（MCU + 蓝牙）研发完成；锂电池管理芯片 BMIC 进入兑现期。</p>
+</div>
+
+<div class="company">
+<h4>汇顶科技 <span class="tag">指纹识别芯片</span></h4>
+<p><strong>身份</strong>：电容触控 + 指纹识别 IC 设计；2017H1 推出全球首创屏内指纹识别。</p>
+<p><strong>看点</strong>：成为三星/华为/联想供应商，中国第二大指纹芯片供应商；屏下指纹有先发优势。</p>
+</div>
+
+<div class="company">
+<h4>富瀚微 / 富满电子 / 圣邦股份 / 中科曙光</h4>
+<p><strong>富满电子</strong>：电源管理 + LED 驱动 + MOSFET，国内少数同时具备设计/封装/测试的本土 IC 企业。<br>
+<strong>圣邦股份</strong>：模拟芯片，800+ 产品，信号链 + 电源管理。模拟芯片国内自给率 10%（中国消费占世界 45%），<em>巨大替代空间</em>。<br>
+<strong>中科曙光</strong>：高性能计算（HPC）龙头，连续 8 年《中国 HPC TOP100》第一；与寒武纪合作的 AI 服务器；天津海光获 AMD 授权生产 X86。</p>
+</div>
+
+<h3>9.2 制造类</h3>
+
+<div class="company">
+<h4>三安光电 <span class="tag">LED 龙头 + 化合物半导体</span></h4>
+<p><strong>身份</strong>：全球 LED 芯片龙头（份额约 35%）；化合物半导体（GaAs/GaN）布局已久。</p>
+<p><strong>看点</strong>：与 GCS 合资卡位专利；大基金背书；规模量产后有望成为<em>全球领先 GaAs/GaN 代工厂</em>。</p>
+</div>
+
+<div class="company">
+<h4>士兰微 <span class="tag">国内 IDM 稀缺</span></h4>
+<p><strong>身份</strong>：A 股稀缺的 IDM 模式，做集成电路 + 分立器件 + LED 芯片。</p>
+<p><strong>看点</strong>：8 英寸生产线试生产，将导入高压集成电路、超结 MOSFET、IGBT 工艺平台；2017 前三季度归母净利同比 +123%。</p>
+</div>
+
+<div class="company">
+<h4>中芯国际 <span class="tag">大陆 Foundry 龙头</span></h4>
+<p><strong>身份</strong>：大陆晶圆代工龙头，全球第四。0.35um 到 28nm 全覆盖，28nm polysion 量产中。</p>
+<p><strong>看点</strong>：梁孟松出任联席 CEO，加速 28nm HKMG 良率突破 + 14nm 工艺开发；上海/深圳/北京新厂明年陆续量产（达产后增 14 万片/月）。大基金多次注资。</p>
+</div>
+
+<div class="company">
+<h4>华虹半导体 <span class="tag">8 寸代工差异化</span></h4>
+<p><strong>身份</strong>：全球领先的 200mm 纯晶圆代工厂，专攻嵌入式非易失性存储 + 功率器件 + RF + PMIC。</p>
+<p><strong>看点</strong>：大基金 9.22 亿美元注资助力华虹无锡 12 寸厂（65nm 4 万片/月）；特色工艺从 0.11um 扩展到 65nm。</p>
+</div>
+
+<h3>9.3 封测类</h3>
+
+<div class="company">
+<h4>长电科技 <span class="tag">封测全球第三</span></h4>
+<p><strong>身份</strong>：国产封测龙头，收购星科金朋后全球第三。FO-WLP / WLCSP / Bumping 全球领先。</p>
+<p><strong>看点</strong>：和中芯成立中芯长电做 bumping；大基金 29 亿参股成为第一大股东；先进封装比例提升 + 中芯绑定。</p>
+</div>
+
+<div class="company">
+<h4>华天科技 <span class="tag">先进封装 50%+</span></h4>
+<p><strong>身份</strong>：规模次于长电，天水（传统）+ 西安（QFN/BGA/FC/SiP）+ 昆山（TSV/Fan-Out）三大基地。先进封装占营收 50%+。</p>
+<p><strong>看点</strong>：与武汉新芯合作存储封测；TSV 硅通孔晶圆级封装方案 + 12 寸图像传感器晶圆级封装规模量产。</p>
+</div>
+
+<div class="company">
+<h4>通富微电 <span class="tag">绑定 AMD</span></h4>
+<p><strong>身份</strong>：国内前三 IC 封测企业，全球前十。</p>
+<p><strong>看点</strong>：大基金 2.7 亿美金支持下收购 AMD 苏州 + 槟城 85% 股权，绑定 AMD 大客户；AMD 苏州+槟城 2017H1 收入 13.3 亿，占总收入 44.8%。</p>
+</div>
+
+<div class="company">
+<h4>晶方科技 <span class="tag">CIS 晶圆级封装</span></h4>
+<p><strong>身份</strong>：传感器封测专家（CIS 图像传感器、指纹、MEMS），8/12 寸晶圆级封装能力全球领先。</p>
+<p><strong>看点</strong>：3D Sensing 中 WLO/DOE 工艺 know-how；汽车级 CIS 持续推进，受益车载摄像头加速渗透。</p>
+</div>
+
+<h3>9.4 设备类</h3>
+
+<div class="company">
+<h4>北方华创 <span class="tag">设备全品类</span></h4>
+<p><strong>身份</strong>：国产半导体设备龙头，覆盖刻蚀、薄膜沉积、清洗设备 + 真空装备 + 新能源锂电装备。</p>
+<p><strong>看点</strong>：大基金持股 7.5%；从低端切入逐步渗透，后道工艺设备已向中芯供货；对应 5 万片/月 Fab 设备投资 120-140 亿。</p>
+</div>
+
+<div class="company">
+<h4>至纯科技 <span class="tag">高纯工艺系统</span></h4>
+<p><strong>身份</strong>：A 股唯一高纯工艺系统集成供应商，2011 年进入半导体。</p>
+<p><strong>看点</strong>：高纯系统占晶圆厂投资 5-10%；中国未来 1-3 年高纯设备采购达 100-200 亿元。2017 限制性股票激励目标：净利润 2019 年比 2016 年增长 170%。</p>
+</div>
+
+<div class="company">
+<h4>晶盛机电 <span class="tag">单晶炉</span></h4>
+<p><strong>身份</strong>：长晶炉设备龙头；国内唯一能做半导体硅片单晶炉的公司。</p>
+<p><strong>看点</strong>：与中环合作攻坚 02 专项（一期 15 亿美元）；非公开发行募集 13.2 亿加码蓝宝石制备项目。</p>
+</div>
+
+<div class="company">
+<h4>长川科技 <span class="tag">测试机 + 分选机</span></h4>
+<p><strong>身份</strong>：国产封测段测试设备领头厂商，客户覆盖长电、华天、通富。</p>
+<p><strong>看点</strong>：2015 年大基金占股 7.5%；测试设备国产化进程明显领先制造设备。</p>
+</div>
+
+<div class="company">
+<h4>精测电子 <span class="tag">面板检测 → 半导体测试</span></h4>
+<p><strong>身份</strong>：国内 LCD 检测领域龙头。</p>
+<p><strong>看点</strong>：与 IT&T（三星/SK 海力士供应商）合资成立精鸿电子进军半导体检测。2018 全球半导体测试设备 53.5 亿美元，中国 10.1 亿美元。</p>
+</div>
+
+<h3>9.5 材料类</h3>
+
+<div class="company">
+<h4>晶瑞股份 <span class="tag">微电子化学品 + 光刻胶</span></h4>
+<p><strong>身份</strong>：超净高纯试剂 + 光刻胶 + 锂电池粘结剂；持有苏州瑞红 54.56%（02 专项 "i 线光刻胶产品开发"项目承担方）。</p>
+<p><strong>看点</strong>：双氧水达 SEMI G5 等级；i 线光刻胶 0.35um 分辨率量产；248nm 在研。</p>
+</div>
+
+<div class="company">
+<h4>鼎龙股份 <span class="tag">CMP 抛光垫</span></h4>
+<p><strong>身份</strong>：打印耗材龙头跨界做半导体材料；CMP 抛光垫客户验证阶段。</p>
+<p><strong>看点</strong>：全球 CMP 市场由陶氏化学垄断（国产化率 < 5%）；2016 年中国 CMP 材料市场 4.7 亿美元。</p>
+</div>
+
+<div class="company">
+<h4>江丰电子 <span class="tag">高纯靶材</span></h4>
+<p><strong>身份</strong>：国内高纯溅射靶材龙头；铝、钛、钽、钨钛靶。</p>
+<p><strong>看点</strong>：进入中芯、台积电、格罗方德、京东方供应链；马来西亚厂 2017 年底投产；攻 14-28nm 钽靶/钛靶。</p>
+</div>
+
+<div class="company">
+<h4>南大光电 <span class="tag">MO 源 + 光刻胶</span></h4>
+<p><strong>身份</strong>：全球 MO 源（高纯金属有机化合物）龙头，市占率 20%+。</p>
+<p><strong>看点</strong>：高纯磷烷 35 吨 + 砷烷 15 吨产能投放；入股北京科华切入光刻胶（248nm 已部分商业订单，193nm 重大立项）。</p>
+</div>
+
+<div class="company">
+<h4>江化微 <span class="tag">湿电子化学品</span></h4>
+<p><strong>身份</strong>：国内规模最大、品种最全的湿电子化学品供应商。</p>
+<p><strong>看点</strong>：产品结构稳定（半导体 45% / 平板 30% / 光伏 25%）；二期 3.5 万吨产能扩张，覆盖 8 寸以上晶圆和高世代面板。</p>
+</div>
+
+<div class="company">
+<h4>上海新阳 <span class="tag">电子化学品 + 大硅片参股</span></h4>
+<p><strong>身份</strong>：半导体专用化学材料 + 配套设备；客户包括中芯、海力士、华力、长电。</p>
+<p><strong>看点</strong>：参股<em>新昇大硅片项目 27.57%</em>（初期 15 万片/月、三期 60 万片/月）—— 大陆 300mm 硅片国产化的核心项目。</p>
+</div>
+
+<div class="company">
+<h4>菲利华 <span class="tag">石英玻璃</span></h4>
+<p><strong>身份</strong>：国内首家获国际主要半导体设备制造商认证（2011 年东京电子认证）的石英玻璃企业；全球少数几家具备石英纤维批量产能。</p>
+<p><strong>看点</strong>：军民融合，航空航天 + 半导体 + 光通讯三大领域；2012-2016 年营收复合增速 11.5%。</p>
+</div>
+
+<div class="company">
+<h4>华灿光电 <span class="tag">LED + MEMS</span></h4>
+<p><strong>身份</strong>：全球第二大 LED 芯片制造商（份额 13%）；收购美新半导体 (MEMSIC) 切入 MEMS。</p>
+<p><strong>看点</strong>：投资 25 亿张家港四期 LED 项目；通过 MEMSIC 进入加速度计和磁传感器赛道。</p>
+</div>
+
+<div class="company">
+<h4>捷捷微电 <span class="tag">晶闸管</span></h4>
+<p><strong>身份</strong>：国内电力半导体器件晶闸管龙头（市占 5%+）。</p>
+<p><strong>看点</strong>：晶闸管 80% 市场仍被国外垄断，提升空间大；常年毛利率 50%+；产能扩张到 90 万片/年 + 11.48 亿只器件。</p>
+</div>
+
+<hr class="div">
+
+<!-- ============ 收尾 ============ -->
+<h2 id="postscript"><span class="num">10</span>收尾：站在 2026 年回望这份 2018 年的"乐观书"</h2>
+
+<div class="crux">
+<p>读完这份报告，最后要问自己<strong>三个问题</strong>：① 这份报告的<em>底层逻辑</em>站不站得住？ ② 它的<em>预测命中率</em>怎么样？ ③ 它<em>没说</em>或者<em>没料到</em>的事是什么？</p>
+</div>
+
+<h3>10.1 底层逻辑站不站得住？</h3>
+
+<p>"硅片剪刀差 + 第四次硅含量提升" + "天时地利人和"框架，<em>方向上</em>是站得住的。原因：</p>
+
+<ul>
+<li>AI、汽车智能化、IoT、5G 这四个驱动力在 2018-2026 间确实成为半导体增长的核心动能；</li>
+<li>中国制造在这一时期确实<em>从代工底部向设计/制造两端爬升</em>；</li>
+<li>大基金一期 + 二期 + 三期持续注入，国产替代成为主线之一；</li>
+<li>梁孟松这种"<em>关键人物</em>"模式确实改变了中芯国际的工艺研发能力。</li>
+</ul>
+
+<h3>10.2 预测命中率怎么样？</h3>
+
+<table>
+<tr><th>报告预测</th><th>实际进展</th></tr>
+<tr><td>2018-2020 硅片剪刀差持续</td><td>大体兑现；但 2019 下半年开始有所缓解</td></tr>
+<tr><td>大陆建厂高峰，2017-2020 占全球 42%</td><td>方向兑现，且持续到 2023+</td></tr>
+<tr><td>大陆设计、制造、封测全产业链崛起</td><td>正在兑现，海思一度成为全球前三 IC 设计公司</td></tr>
+<tr><td>存储器是第四波最大抓手</td><td>方向对，但 2018-2019 存储器进入下行周期，节奏比预想曲折</td></tr>
+<tr><td>EUV 是 7nm 以下关键设备</td><td>已兑现 —— ASML 成为半导体产业链最重要的瓶颈节点之一</td></tr>
+</table>
+
+<h3>10.3 它没说或没料到的事</h3>
+
+<div class="maodun">
+<span class="label">报告的"盲区"也值得思考</span>
+<h5>没料到 ①：中美科技博弈急剧升级</h5>
+<p>2018 年 4 月中兴事件、2019 年华为禁令、2022 年 10 月美国对华芯片出口管制、2023 年 ASML EUV/DUV 限制 …… 这些<em>地缘政治外因</em>不仅推动了"国产替代"加速，也<em>切断了中国 Foundry 走向 7/5/3nm 的部分外部技术路径</em>。原报告的"天时"叙事过于乐观，没有充分纳入"贸易战 + 科技战"这一变量。</p>
+<h5>没料到 ②：AI 二次爆发（生成式 AI / 大模型）</h5>
+<p>报告里 AI 主要还是"CNN + 深度学习训练/推断"的范式。2022 年 ChatGPT 引爆的<em>大模型 + Transformer</em>带来的算力诉求量级，远远超出 2018 年预想。英伟达从"AI 平台公司"进化为"AI 基础设施公司"。</p>
+<h5>没料到 ③：先进封装的战略地位再上升</h5>
+<p>2018 年报告里"先进封装"主要还是 SiP/3D/TSV。后来<em>台积电的 CoWoS</em> 和<em>Chiplet</em>把先进封装变成了"<em>突破摩尔定律物理极限的核心战场</em>"。</p>
+<h5>没料到 ④：部分推荐公司的命运拐点</h5>
+<p>梁孟松确实推动了中芯的飞跃，但 2020 年外部制裁让"<em>14nm 之后</em>"的演进路径变得高度受限；长江存储被美国列入实体清单导致设备采购受阻；紫光集团 2020 年发生债务危机后破产重整 …… 这些都是"外因决定性影响"的提醒。</p>
+</div>
+
+<h3>10.4 用矛盾论给整份报告一个收束</h3>
+
+<p>这份 2018 年的报告，本质上是一篇<em>"内因决定论"基调</em>的文献 —— 它高度看重大基金、人才、产业集群、本土需求这些"<em>我们自己能掌控</em>"的力量，这些力量大方向上都被验证了。</p>
+
+<p>但矛盾论同时告诉我们：<em>外因通过内因起作用，但当外因变得足够剧烈时，它会逼迫内因发生质变</em>。中美科技博弈就是这种"<em>剧烈外因</em>" —— 它<em>同时</em>验证了报告的"国产替代要做大"判断，又<em>否决</em>了报告默认的"全球分工自由协作"前提。</p>
+
+<p>因此，对这份报告的最佳读法是：<strong>用它学懂"半导体的产业基本面"，但要把后续的所有故事，放在 2018 年作者还没看到的"外部约束"框架下重新解释一遍</strong>。这才是矛盾论真正教我们的事 ——<em>不要把过去的胜利当成必然，也不要把过去的判断当成永恒</em>。</p>
+
+<div class="aside">
+<p><strong>一句话总结</strong>：原报告是一份精彩、扎实、立场鲜明的"<em>看多书</em>"。今天读它，不是为了照搬名单，而是为了学习它<em>怎样把宏观周期、产业链结构、追赶规律、本土资源四张图叠在一起看</em>。这种<em>多层叠加</em>的看法，才是这份"超级深度"最值得学的东西。</p>
+</div>
+
+<hr class="div">
+
+<div class="meta" style="margin-top:60px;">
+<b>本文档生成自：</b> 中泰证券 2018-02-13 半导体行业深度报告原文逐章通读（142 页，未采样）<br>
+<b>改写风格：</b> 类《Operating Systems: Three Easy Pieces》（OSTEP）—— "crux of the problem" 提问驱动 + ASIDE / TIP 旁注框 + 通俗术语解释；叠加<em>《矛盾论》</em>分析框架（主要矛盾 / 次要矛盾 / 内因外因 / 普遍性与特殊性 / 矛盾转化）<br>
+<b>读者画像：</b> 半导体初学者；每个生僻名词均配通俗解释<br>
+<b>立场：</b> 忠实于原报告 2018 年视角，并在收尾章节给出 2026 年的复盘对照<br>
+<b>免责声明：</b> 本文档为读书笔记 / 学习用通俗化重写，不构成任何投资建议。
+</div>
+
+</div>
+</body>
+</html>

@@ -44,6 +44,16 @@ function parseDateFromName(name: string): string | null {
   return null
 }
 
+// 完整发布时间戳（14 位 yyyymmddhhmmss），用于同一天内的精确倒序。
+// 20260505-020039.html → 20260505020039；无 hhmmss 时补 000000；无日期返回 null。
+function parseTimestampFromName(name: string): string | null {
+  const withTime = name.match(/^(\d{4})-?(\d{2})-?(\d{2})[-_](\d{2})(\d{2})(\d{2})/)
+  if (withTime) return withTime.slice(1).join("")
+  const date = name.match(/^(\d{4})-?(\d{2})-?(\d{2})/)
+  if (date) return date.slice(1).join("") + "000000"
+  return null
+}
+
 function extractKeywords(content: string): string[] {
   return content
     .split(/[,，]/)
@@ -64,7 +74,7 @@ function injectBackButton(html: string): string {
   return `${html}\n${button}`
 }
 
-async function processPost(rel: string): Promise<{ meta: PostMeta; doc: SearchDoc }> {
+async function processPost(rel: string): Promise<{ meta: PostMeta; doc: SearchDoc; sortKey: string }> {
   const srcPath = path.join(POSTS_SRC, rel)
   const raw = await fs.readFile(srcPath, "utf8")
   const stat = await fs.stat(srcPath)
@@ -91,6 +101,10 @@ async function processPost(rel: string): Promise<{ meta: PostMeta; doc: SearchDo
   const keywords = keywordsAttr ? extractKeywords(keywordsAttr) : []
 
   const date = parseDateFromName(path.basename(rel)) || stat.mtime.toISOString().slice(0, 10)
+  // 排序用完整时间戳；文件名无法解析时退回文件 mtime（14 位）。
+  const sortKey =
+    parseTimestampFromName(path.basename(rel)) ||
+    stat.mtime.toISOString().replace(/\D/g, "").slice(0, 14)
 
   const id = rel.replace(/\\/g, "/")
   const href = `${BASE}posts/${id}`
@@ -103,7 +117,7 @@ async function processPost(rel: string): Promise<{ meta: PostMeta; doc: SearchDo
   await fs.mkdir(path.dirname(destPath), { recursive: true })
   await fs.writeFile(destPath, injectBackButton(raw), "utf8")
 
-  return { meta, doc: { ...meta, body } }
+  return { meta, doc: { ...meta, body }, sortKey }
 }
 
 async function rmRf(p: string) {
@@ -118,8 +132,8 @@ async function main() {
   const files = await walk(POSTS_SRC)
   const results = await Promise.all(files.map(processPost))
 
-  // newest first
-  results.sort((a, b) => (a.meta.date < b.meta.date ? 1 : a.meta.date > b.meta.date ? -1 : 0))
+  // newest first，按文件名的完整 yyyymmddhhmmss 时间戳倒序
+  results.sort((a, b) => (a.sortKey < b.sortKey ? 1 : a.sortKey > b.sortKey ? -1 : 0))
 
   const posts = results.map((r) => r.meta)
   const docs = results.map((r) => r.doc)
