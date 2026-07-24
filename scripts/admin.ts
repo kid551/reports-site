@@ -1,11 +1,18 @@
 import { promises as fs } from "node:fs"
 import path from "node:path"
 import http from "node:http"
-import { fileURLToPath } from "node:url"
 import { parseHTML } from "linkedom"
+import {
+  POSTS_DIR,
+  parseKeywords,
+  pathExists,
+  removeMeta,
+  rmEmptyDirs,
+  safeRelInsidePosts,
+  setMeta,
+  setTitle,
+} from "./post-meta.ts"
 
-const root = path.resolve(fileURLToPath(import.meta.url), "../..")
-const POSTS_DIR = path.join(root, "posts")
 const PORT = Number(process.env.PORT) || 4322
 const HOST = "127.0.0.1"
 
@@ -64,56 +71,12 @@ async function readMeta(relPath: string): Promise<Meta> {
   const keywordsAttr = (
     document.querySelector('meta[name="keywords"]')?.getAttribute("content") || ""
   ).trim()
-  const keywords = keywordsAttr
-    ? keywordsAttr
-        .split(/[,，]/)
-        .map((s) => s.trim())
-        .filter(Boolean)
-    : []
+  const keywords = keywordsAttr ? parseKeywords(keywordsAttr) : []
 
   const date =
     parseDateFromName(path.basename(relPath)) || stat.mtime.toISOString().slice(0, 10)
 
   return { title, description, date, category, keywords }
-}
-
-function escapeAttr(s: string): string {
-  return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;")
-}
-function escapeText(s: string): string {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-}
-
-function setTitle(html: string, value: string): string {
-  if (/<title[^>]*>[\s\S]*?<\/title>/i.test(html)) {
-    return html.replace(/<title[^>]*>[\s\S]*?<\/title>/i, `<title>${escapeText(value)}</title>`)
-  }
-  if (/<\/head>/i.test(html)) {
-    return html.replace(/<\/head>/i, `  <title>${escapeText(value)}</title>\n</head>`)
-  }
-  return `<title>${escapeText(value)}</title>\n${html}`
-}
-
-function setMeta(html: string, name: string, value: string): string {
-  const reDouble = new RegExp(`<meta\\s+name=["']${name}["']\\s+content=["'][^"']*["']\\s*/?>`, "i")
-  const reReversed = new RegExp(
-    `<meta\\s+content=["'][^"']*["']\\s+name=["']${name}["']\\s*/?>`,
-    "i",
-  )
-  const replacement = `<meta name="${name}" content="${escapeAttr(value)}">`
-  if (reDouble.test(html)) return html.replace(reDouble, replacement)
-  if (reReversed.test(html)) return html.replace(reReversed, replacement)
-
-  if (!value) return html // don't insert empty
-  if (/<\/head>/i.test(html)) {
-    return html.replace(/<\/head>/i, `  ${replacement}\n</head>`)
-  }
-  return `${replacement}\n${html}`
-}
-
-function removeMeta(html: string, name: string): string {
-  const re = new RegExp(`\\s*<meta\\s+name=["']${name}["']\\s+content=["'][^"']*["']\\s*/?>`, "gi")
-  return html.replace(re, "")
 }
 
 function changeFilename(relPath: string, newDate: string): string {
@@ -130,35 +93,6 @@ function changeCategoryPath(relPath: string, newCategory: string): string {
   const file = path.basename(relPath)
   if (newCategory === "未分类" || !newCategory) return file
   return path.join(newCategory, file)
-}
-
-async function pathExists(p: string): Promise<boolean> {
-  try {
-    await fs.access(p)
-    return true
-  } catch {
-    return false
-  }
-}
-
-async function rmEmptyDirs(dir: string) {
-  if (path.resolve(dir) === path.resolve(POSTS_DIR)) return
-  try {
-    const entries = await fs.readdir(dir)
-    if (entries.length === 0) {
-      await fs.rmdir(dir)
-      await rmEmptyDirs(path.dirname(dir))
-    }
-  } catch {}
-}
-
-function safeRelInsidePosts(rel: string): string {
-  const normalized = path.normalize(rel).replace(/^[/\\]+/, "")
-  const abs = path.resolve(POSTS_DIR, normalized)
-  if (!abs.startsWith(POSTS_DIR + path.sep) && abs !== POSTS_DIR) {
-    throw new Error("Invalid path")
-  }
-  return path.relative(POSTS_DIR, abs)
 }
 
 function isAllowed(req: http.IncomingMessage): boolean {

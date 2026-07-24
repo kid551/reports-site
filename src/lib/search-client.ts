@@ -92,13 +92,16 @@ async function loadIndex(): Promise<void> {
 
 function search(query: string, limit = 30): Doc[] {
   if (!index) return []
-  const raw = index.search(query, { limit, enrich: true, suggest: true })
+  // limit 必须作为独立参数传，才能命中 FlexSearch 那个按 Enrich 推导返回类型的重载；
+  // 塞进 options 里会落到返回 SimpleDocumentSearchResultSetUnit[] 的重载上。
+  const raw = index.search<true>(query, limit, { enrich: true, suggest: true })
   const seen = new Set<string>()
   const out: Doc[] = []
   for (const group of raw) {
-    for (const r of group.result as Array<{ id: string; doc: Doc }>) {
-      if (seen.has(r.id)) continue
-      seen.add(r.id)
+    for (const r of group.result) {
+      const id = String(r.id)
+      if (seen.has(id)) continue
+      seen.add(id)
       out.push(r.doc)
       if (out.length >= limit) return out
     }
@@ -119,7 +122,13 @@ function renderResults(results: Doc[], query: string): string {
           ${desc ? `<p class="post-desc">${highlight(desc, query)}</p>` : ""}
           <div class="post-meta">
             <time>${escapeHtml(p.date)}</time>
-            <span class="cat">${escapeHtml(p.category)}</span>
+            ${
+              p.keywords.length
+                ? `<span class="tags">${p.keywords
+                    .map((k) => `<span class="cat">${escapeHtml(k)}</span>`)
+                    .join("")}</span>`
+                : ""
+            }
           </div>
         </a>
       </li>`
@@ -140,7 +149,7 @@ export function initSearch() {
   const status = document.getElementById("search-status")
   const listDefault = document.getElementById("list-default")
   const listSearch = document.getElementById("list-search")
-  const catNav = document.getElementById("category-nav")
+  const tagNav = document.getElementById("tag-nav")
   if (!input || !listDefault || !listSearch) return
 
   const setStatus = (msg: string) => {
@@ -174,20 +183,22 @@ export function initSearch() {
     if (!index) loadIndex().catch(() => {})
   })
 
-  if (catNav) {
-    catNav.addEventListener("click", (e) => {
+  if (tagNav) {
+    tagNav.addEventListener("click", (e) => {
       const t = e.target as HTMLElement
-      const btn = t.closest("button[data-cat]") as HTMLButtonElement | null
+      const btn = t.closest("button[data-tag]") as HTMLButtonElement | null
       if (!btn) return
-      const cat = btn.dataset.cat || "__all"
-      catNav.querySelectorAll<HTMLButtonElement>("button[data-cat]").forEach((el) => {
+      const tag = btn.dataset.tag || "__all"
+      tagNav.querySelectorAll<HTMLButtonElement>("button[data-tag]").forEach((el) => {
         el.classList.toggle("active", el === btn)
       })
-      listDefault.querySelectorAll<HTMLLIElement>("li[data-category]").forEach((li) => {
-        li.style.display = cat === "__all" || li.dataset.category === cat ? "" : "none"
+      listDefault.querySelectorAll<HTMLLIElement>("li[data-tags]").forEach((li) => {
+        // data-tags 形如 |芯片|半导体|，用分隔符包裹以避免子串误匹配
+        const match = (li.dataset.tags || "").includes(`|${tag}|`)
+        li.style.display = tag === "__all" || match ? "" : "none"
       })
       listDefault.querySelectorAll<HTMLDivElement>("div[data-month]").forEach((div) => {
-        const visible = Array.from(div.querySelectorAll<HTMLLIElement>("li[data-category]")).some(
+        const visible = Array.from(div.querySelectorAll<HTMLLIElement>("li[data-tags]")).some(
           (li) => li.style.display !== "none",
         )
         div.style.display = visible ? "" : "none"

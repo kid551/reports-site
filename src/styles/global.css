@@ -28,7 +28,7 @@
     background: var(--bg);
     color: var(--ink);
     font-family: var(--serif);
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.85;
     -webkit-font-smoothing: antialiased;
   }
@@ -37,7 +37,7 @@
 .wrap {
   max-width: 920px;
   margin: 0 auto;
-  padding: 60px 36px 120px;
+  padding: 44px 36px 80px;
 }
 
 /* === Site header === */
@@ -45,7 +45,7 @@
   margin-bottom: 28px;
 }
 .site-header h1 {
-  font-size: 38px;
+  font-size: 33.5px;
   margin: 0 0 8px;
   font-weight: 800;
   letter-spacing: 0.5px;
@@ -55,7 +55,7 @@
 .site-header .lede {
   margin: 0;
   color: var(--ink-3);
-  font-size: 15.5px;
+  font-size: 13.5px;
   font-style: italic;
 }
 .site-header .lede b {
@@ -75,7 +75,7 @@
   border: 1px solid var(--rule);
   border-radius: 6px;
   font-family: var(--serif);
-  font-size: 16.5px;
+  font-size: 14.5px;
   color: var(--ink);
   outline: none;
   transition:
@@ -91,7 +91,7 @@
 }
 .search-status {
   margin: 8px 0 0;
-  font-size: 13.5px;
+  font-size: 12px;
   color: var(--ink-3);
   font-style: italic;
   min-height: 1.2em;
@@ -111,7 +111,7 @@
   border: 1px solid var(--rule);
   border-radius: 999px;
   font-family: var(--serif);
-  font-size: 14px;
+  font-size: 12.5px;
   color: var(--ink-2);
   cursor: pointer;
   transition: all 0.15s;
@@ -128,18 +128,18 @@
 
 /* === Month group === */
 .month-group {
-  margin-bottom: 44px;
+  margin-bottom: 26px;
 }
 .month-label {
   display: block;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 400;
   letter-spacing: 3px;
   color: var(--ink-3);
   text-transform: uppercase;
-  margin: 0 0 16px;
-  padding-bottom: 10px;
+  margin: 0 0 10px;
+  padding-bottom: 6px;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -150,14 +150,14 @@
   margin: 0;
 }
 .post-item {
-  margin: 0 0 18px;
+  margin: 0 0 8px;
 }
 .post-card {
   display: block;
   background: var(--bg-card);
   border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 24px 28px;
+  border-radius: 5px;
+  padding: 13px 17px;
   text-decoration: none;
   color: var(--ink);
   transition:
@@ -171,43 +171,167 @@
   box-shadow: 0 2px 12px rgba(139, 58, 58, 0.06);
 }
 .post-title {
-  font-size: 22px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--accent);
-  margin: 0 0 8px;
-  line-height: 1.45;
+  margin: 0 0 3px;
+  line-height: 1.4;
 }
 .post-desc {
-  margin: 8px 0 14px;
-  color: var(--ink-2);
-  font-size: 16px;
-  line-height: 1.7;
+  margin: 0 0 6px;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.5;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .post-meta {
-  font-size: 13.5px;
+  font-size: 11.5px;
+  line-height: 1.4;
   color: var(--ink-3);
   font-family: Georgia, "Times New Roman", serif;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
 .post-meta time {
   letter-spacing: 0.5px;
+}
+.post-meta .tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 .post-meta .cat {
   display: inline-block;
   background: var(--accent-2);
   color: #fff;
-  font-size: 11.5px;
-  padding: 2px 10px;
+  font-size: 10px;
+  padding: 2px 8px;
   border-radius: 3px;
   font-family: "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 0.5px;
   font-weight: 700;
+}
+
+/* === Tag editor (dev only, 由 tag-editor.ts 在 localhost 挂载) === */
+.tag-editing .post-meta .cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 4px;
+}
+.tag-del,
+.tag-add {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1;
+  padding: 0;
+}
+.tag-del {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+}
+.tag-del:hover {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.25);
+}
+.tag-add {
+  color: var(--ink-3);
+  border: 1px dashed var(--rule);
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 1px 7px;
+  opacity: 0;
+  transition:
+    opacity 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+.post-item:hover .tag-add,
+.tag-add:focus {
+  opacity: 1;
+}
+.tag-add:hover {
+  color: var(--accent-2);
+  border-color: var(--accent-2);
+}
+.tag-input {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 10px;
+  width: 84px;
+  padding: 2px 6px;
+  border: 1px solid var(--accent-2);
+  border-radius: 3px;
+  outline: none;
+  background: var(--bg-card);
+  color: var(--ink);
+}
+/* 删除按钮挂在 <a class="post-card"> 之外，靠 li 定位 */
+.tag-editing .post-item {
+  position: relative;
+}
+/* 给右上角的删除按钮让位，避免长标题被压在按钮下面 */
+.tag-editing .post-title {
+  padding-right: 30px;
+}
+.post-del {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-3);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.15s,
+    color 0.15s,
+    background 0.15s;
+}
+.post-item:hover .post-del,
+.post-del:focus {
+  opacity: 1;
+}
+.post-del:hover {
+  color: #b91c1c;
+  background: #fef2f2;
+}
+.post-del.armed {
+  opacity: 1;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: #b91c1c;
+  border-color: #b91c1c;
+  outline: none;
+}
+
+.tag-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 
 /* === Empty state === */
@@ -218,7 +342,7 @@
   padding: 48px 24px;
   text-align: center;
   color: var(--ink-3);
-  font-size: 15.5px;
+  font-size: 13.5px;
   font-style: italic;
 }
 .empty code {
@@ -245,7 +369,7 @@ mark {
   padding-top: 24px;
   border-top: 1px solid var(--rule);
   color: var(--ink-3);
-  font-size: 13.5px;
+  font-size: 12px;
   font-style: italic;
   text-align: center;
 }
@@ -262,21 +386,21 @@ mark {
 @media (max-width: 720px) {
   html,
   body {
-    font-size: 16.5px;
+    font-size: 14.5px;
   }
   .wrap {
     padding: 36px 20px 90px;
   }
   .site-header h1 {
-    font-size: 28px;
+    font-size: 24.5px;
   }
   .post-title {
-    font-size: 19px;
+    font-size: 15.5px;
   }
   .post-card {
-    padding: 20px 22px;
+    padding: 12px 14px;
   }
   .month-group {
-    margin-bottom: 36px;
+    margin-bottom: 22px;
   }
 }

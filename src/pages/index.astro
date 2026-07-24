@@ -2,7 +2,7 @@
 import { promises as fs } from "node:fs"
 import path from "node:path"
 import "../styles/global.css"
-import type { PostMeta } from "../lib/types"
+import { UNTAGGED, type PostMeta } from "../lib/types"
 
 const generatedPath = path.resolve(process.cwd(), ".generated/posts.json")
 let posts: PostMeta[] = []
@@ -12,7 +12,18 @@ try {
   posts = []
 }
 
-const categories = Array.from(new Set(posts.map((p) => p.category))).sort()
+const tagsOf = (p: PostMeta): string[] => (p.keywords.length ? p.keywords : [UNTAGGED])
+
+// 标签按出现次数降序，「未分类」永远排最后
+const tagCounts = new Map<string, number>()
+for (const p of posts) {
+  for (const t of tagsOf(p)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1)
+}
+const tags = Array.from(tagCounts.keys()).sort((a, b) => {
+  if (a === UNTAGGED) return 1
+  if (b === UNTAGGED) return -1
+  return tagCounts.get(b)! - tagCounts.get(a)! || a.localeCompare(b, "zh")
+})
 
 const grouped = posts.reduce<Record<string, PostMeta[]>>((acc, p) => {
   const ym = p.date.slice(0, 7)
@@ -54,14 +65,14 @@ const siteTitle = "Reports"
       </div>
 
       {
-        categories.length > 1 && (
-          <nav class="cat-nav" id="category-nav">
-            <button type="button" data-cat="__all" class="cat-chip active">
+        posts.length > 0 && (
+          <nav class="cat-nav" id="tag-nav">
+            <button type="button" data-tag="__all" class="cat-chip active">
               全部
             </button>
-            {categories.map((c) => (
-              <button type="button" data-cat={c} class="cat-chip">
-                {c}
+            {tags.map((t) => (
+              <button type="button" data-tag={t} class="cat-chip">
+                {t}
               </button>
             ))}
           </nav>
@@ -80,13 +91,19 @@ const siteTitle = "Reports"
                 <h2 class="month-label">{ym}</h2>
                 <ul class="post-list">
                   {grouped[ym].map((p) => (
-                    <li class="post-item" data-category={p.category}>
+                    <li class="post-item" data-id={p.id} data-tags={`|${tagsOf(p).join("|")}|`}>
                       <a href={p.href} class="post-card">
                         <h3 class="post-title">{p.title}</h3>
                         {p.description && <p class="post-desc">{p.description}</p>}
                         <div class="post-meta">
                           <time>{p.date}</time>
-                          <span class="cat">{p.category}</span>
+                          {p.keywords.length > 0 && (
+                            <span class="tags">
+                              {p.keywords.map((k) => (
+                                <span class="cat">{k}</span>
+                              ))}
+                            </span>
+                          )}
                         </div>
                       </a>
                     </li>
@@ -105,12 +122,18 @@ const siteTitle = "Reports"
       </footer>
     </div>
 
-    <script define:vars={{ baseUrl }}>
+    <script is:inline define:vars={{ baseUrl }}>
       window.__BASE_URL = baseUrl
     </script>
     <script>
       import { initSearch } from "../lib/search-client"
       initSearch()
+
+      // 卡片编辑（标签增删 / 删除文章）只在 dev server 上启用，写文件的接口也只存在于 dev。
+      // import.meta.env.DEV 在 build 时为 false，整段会被 Vite 摇掉，不进产物。
+      if (import.meta.env.DEV && /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+        import("../lib/card-editor").then((m) => m.initCardEditor())
+      }
     </script>
   </body>
 </html>
