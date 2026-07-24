@@ -95,7 +95,8 @@ async function processPost(rel: string): Promise<{ meta: PostMeta; doc: SearchDo
     ?.getAttribute("content")
     ?.trim()
   const firstP = collapseWhitespace(clone.querySelector("p")?.textContent || "")
-  const description = (descMeta || firstP).slice(0, 200)
+  // 手写的 meta description 完整保留、不截断；仅对自动提取的正文首段设 200 字预览上限
+  const description = descMeta || firstP.slice(0, 200)
 
   const keywordsAttr = document.querySelector('meta[name="keywords"]')?.getAttribute("content")
   const keywords = keywordsAttr ? extractKeywords(keywordsAttr) : []

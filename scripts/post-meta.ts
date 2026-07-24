@@ -65,6 +65,11 @@ export function setKeywords(html: string, keywords: string[]): string {
     : removeMeta(html, "keywords")
 }
 
+/** 写入 description（摘要）；空串表示删掉整个 meta 标签而不是留空 content */
+export function setDescription(html: string, value: string): string {
+  return value ? setMeta(html, "description", value) : removeMeta(html, "description")
+}
+
 /** 防路径穿越：确保 rel 解析后仍落在 posts/ 内 */
 export function safeRelInsidePosts(rel: string): string {
   const normalized = path.normalize(rel).replace(/^[/\\]+/, "")

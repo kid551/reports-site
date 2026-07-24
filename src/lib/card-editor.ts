@@ -1,16 +1,19 @@
 /**
- * dev-only 的卡片编辑：标签增删 + 删除整篇文章。
+ * dev-only 的卡片编辑：标签增删 + 摘要编辑 + 删除整篇文章。
  *
  * 由 index.astro 在 import.meta.env.DEV 下动态 import，build 时整段被摇掉。
- * 写文件走 scripts/dev-api.ts 提供的 PUT /__tags 与 DELETE /__post，两者仅存在于 dev server。
+ * 写文件走 scripts/dev-api.ts 提供的 PUT /__tags、PUT /__summary 与 DELETE /__post，仅存在于 dev server。
  *
- * 标签控件位于 <a class="post-card"> 内部，点击必须 preventDefault，否则会跳去文章页；
+ * 标签控件、摘要文本都位于 <a class="post-card"> 内部，点击必须 preventDefault，否则会跳去文章页；
  * 删除按钮则挂在 <a> 之外（li 的直接子元素），天然不受影响。
  */
 import { UNTAGGED } from "./types"
 
 const TAGS_API = "/__tags"
+const SUMMARY_API = "/__summary"
 const POST_API = "/__post"
+
+const DESC_PLACEHOLDER = "＋ 添加摘要"
 
 function esc(s: string): string {
   return s
@@ -107,6 +110,123 @@ async function save(li: HTMLLIElement, keywords: string[]) {
   renderCard(li)
   rebuildChips()
 }
+
+/* ============================ 摘要编辑 ============================ */
+
+/** 没有摘要的卡片补一个占位 <p class="post-desc desc-empty">，让用户能点进去新增 */
+function ensureDesc(li: HTMLLIElement) {
+  if (li.querySelector(".post-desc")) return
+  const title = li.querySelector(".post-title")
+  if (!title) return
+  const p = document.createElement("p")
+  p.className = "post-desc desc-empty"
+  p.textContent = DESC_PLACEHOLDER
+  title.after(p)
+}
+
+/** 保存后把卡片上的摘要文本同步成新值；空串退回占位态 */
+function setDescDom(li: HTMLLIElement, description: string) {
+  const desc = li.querySelector<HTMLElement>(".post-desc")
+  if (!desc) return
+  if (description) {
+    desc.classList.remove("desc-empty")
+    desc.textContent = description
+  } else {
+    desc.classList.add("desc-empty")
+    desc.textContent = DESC_PLACEHOLDER
+  }
+}
+
+async function saveDesc(li: HTMLLIElement, description: string) {
+  const res = await fetch(SUMMARY_API, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id: li.dataset.id, description }),
+  })
+  const json = await res.json().catch(() => ({}))
+  if (!res.ok) throw new Error(json.error || res.statusText)
+  setDescDom(li, json.description)
+}
+
+/**
+ * 点击摘要就地展开一个 textarea：
+ * Enter 换行、⌘/Ctrl+Enter 保存、Esc 取消，另配 保存 / 取消 按钮。
+ * 整个编辑框自己 stopPropagation，因此不会冒泡到 <a> 触发跳转。
+ */
+function openDescEditor(li: HTMLLIElement) {
+  const desc = li.querySelector<HTMLElement>(".post-desc")
+  if (!desc || desc.hidden) return
+  const current = desc.classList.contains("desc-empty") ? "" : (desc.textContent || "").trim()
+
+  desc.hidden = true
+
+  const box = document.createElement("div")
+  box.className = "desc-edit"
+
+  const ta = document.createElement("textarea")
+  ta.className = "desc-input"
+  ta.rows = 3
+  ta.value = current
+  ta.setAttribute("aria-label", "文章摘要")
+
+  const bar = document.createElement("div")
+  bar.className = "desc-bar"
+  const hint = document.createElement("span")
+  hint.className = "desc-hint"
+  hint.textContent = "Enter 换行 · ⌘/Ctrl+Enter 保存 · Esc 取消"
+  const cancel = document.createElement("button")
+  cancel.type = "button"
+  cancel.className = "desc-cancel"
+  cancel.textContent = "取消"
+  const save = document.createElement("button")
+  save.type = "button"
+  save.className = "desc-save"
+  save.textContent = "保存"
+  bar.append(hint, cancel, save)
+
+  box.append(ta, bar)
+  desc.after(box)
+  ta.focus()
+  ta.setSelectionRange(ta.value.length, ta.value.length)
+
+  const close = () => {
+    box.remove()
+    desc.hidden = false
+  }
+  const commit = async () => {
+    save.disabled = true
+    cancel.disabled = true
+    try {
+      await saveDesc(li, ta.value.trim())
+      close()
+    } catch (err: any) {
+      toast(err?.message || "保存失败")
+      save.disabled = false
+      cancel.disabled = false
+    }
+  }
+
+  // 编辑框内的任何点击都别冒泡到 <a>，否则点进文本框就跳文章页
+  box.addEventListener("click", (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+  })
+  ta.addEventListener("keydown", (e) => {
+    e.stopPropagation()
+    if (e.key === "Escape") {
+      e.preventDefault()
+      close()
+    } else if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault()
+      commit()
+    }
+    // 普通 Enter 交给 textarea 默认行为（换行）
+  })
+  save.addEventListener("click", commit)
+  cancel.addEventListener("click", close)
+}
+
+/* ============================ 标签编辑 ============================ */
 
 /** 把 [+] 就地换成输入框 */
 function openInput(li: HTMLLIElement) {
@@ -212,6 +332,7 @@ export function initCardEditor() {
 
   list.querySelectorAll<HTMLLIElement>("li[data-id]").forEach((li) => {
     renderCard(li)
+    ensureDesc(li)
     mountDeleteButton(li)
   })
   document.body.classList.add("tag-editing")
@@ -221,14 +342,22 @@ export function initCardEditor() {
     const del = target.closest<HTMLElement>(".tag-del")
     const add = target.closest<HTMLElement>(".tag-add")
     const postDel = target.closest<HTMLButtonElement>(".post-del")
-    if (!del && !add && !postDel) return
+    // 编辑框（.desc-edit）内部点击已自行 stopPropagation，不会到这里；
+    // 命中的只会是尚未展开的 .post-desc
+    const descEl = target.closest<HTMLElement>(".post-desc")
+    if (!del && !add && !postDel && !descEl) return
 
-    // 控件位于 <a class="post-card"> 内部，不拦就会跳转
+    // 控件 / 摘要都位于 <a class="post-card"> 内部，不拦就会跳转
     e.preventDefault()
     e.stopPropagation()
 
     const li = target.closest<HTMLLIElement>("li[data-id]")
     if (!li) return
+
+    if (descEl) {
+      openDescEditor(li)
+      return
+    }
 
     if (postDel) {
       if (postDel.dataset.armed !== "1") return armDelete(postDel)

@@ -1,5 +1,39 @@
 # Implementation Notes
 
+## 2026-07-24 · dev 内联编辑文章摘要
+
+### 背景
+
+首页卡片上的摘要来自 `PostMeta.description`——[build-posts.ts](scripts/build-posts.ts) 里
+取 `<meta name="description">`，没有就退回正文首个 `<p>`，再 `.slice(0, 200)`。
+此前只能改标签、删文章，摘要只能去源 HTML 手改。现补上 dev-only 的内联编辑，
+沿用既有 `PUT /__tags` 那套模式。
+
+### 做了什么
+
+1. `scripts/post-meta.ts` — 新增 `setDescription()`（镜像 `setKeywords`，空串则删掉整个 meta 标签）。
+2. `scripts/dev-api.ts` — 新增 `PUT /__summary { id, description }`；把 `patchRecord` 泛化成
+   合并任意字段（原来写死 keywords）。写 `<meta name="description">` + 增量 patch 两份 JSON 索引，
+   同 `/__tags` 一样不整体重跑 build-posts。**不限字数**（手写摘要不截断）。
+3. `src/lib/card-editor.ts` — 点击 `.post-desc` 就地展开 textarea：
+   **Enter 换行、⌘/Ctrl+Enter 保存、Esc 取消**，另配 保存/取消 按钮，编辑不限字数。
+   没有摘要的卡片补一个 `.post-desc.desc-empty`「＋ 添加摘要」占位，让用户能新增。
+   编辑框整体 `stopPropagation`，因此点进文本框不会冒泡到 `<a>` 触发跳转。
+4. `src/styles/global.css` — 摘要编辑相关样式；`.post-desc` 用 `white-space: pre-line`
+   完整显示多行摘要，去掉了原来的 `-webkit-line-clamp:1` 单行截断。
+5. `scripts/build-posts.ts` — 手写的 meta description 完整保留不截断；
+   仅对「无 meta 时自动提取的正文首段」保留 200 字预览上限。
+
+### 偏差
+
+- **清空摘要在 dev 与 rebuild 之间不一致**。用户清空摘要 → `removeMeta` 删掉 meta、JSON 记为 `""`，
+  dev 卡片立即空。但下次整体 `build-posts` 时 `description` 会重新退回正文首个 `<p>`——
+  因为 description 的来源本就是「meta 优先，否则首 `<p>`」。即「清空」在 dev 是即时生效的，
+  但不等于永久压制首段摘要。个人站点、可接受，未做特殊处理。
+- **摘要允许换行且完整显示**（用户明确要求 Enter=换行、多行完整展示、编辑不限字数）。
+  meta content 里存字面换行符，卡片用 `white-space: pre-line` 原样渲染多行；未做 whitespace 折叠。
+  代价：摘要越长卡片越高，同一月份分组下卡片高度会参差——个人站点、用户要的就是完整，接受。
+
 ## 2026-07-24 · 废除目录分类，统一到标签
 
 ### 背景

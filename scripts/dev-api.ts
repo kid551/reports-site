@@ -4,10 +4,11 @@
  * 挂成 Vite plugin 的 `apply: "serve"`，因此只在 `pnpm dev` 时存在；
  * `astro build` 的产物里不含任何服务端代码，线上永远拿不到这些接口。
  *
- * PUT    /__tags  { id, keywords: string[] }  改写 <meta name="keywords">
- * DELETE /__post  { id }                      删除整篇文章
+ * PUT    /__tags     { id, keywords: string[] }  改写 <meta name="keywords">
+ * PUT    /__summary  { id, description: string } 改写 <meta name="description">（摘要）
+ * DELETE /__post     { id }                       删除整篇文章
  *
- * 两者都只增量更新 .generated/posts.json 与 public/search-index.json 中的对应记录，
+ * 三者都只增量更新 .generated/posts.json 与 public/search-index.json 中的对应记录，
  * 不整体重跑 build-posts —— 那会 rm -rf public/posts，触发 dev server 整页刷新。
  */
 import { promises as fs } from "node:fs"
@@ -19,6 +20,7 @@ import {
   pathExists,
   rmEmptyDirs,
   safeRelInsidePosts,
+  setDescription,
   setKeywords,
 } from "./post-meta.ts"
 
@@ -49,16 +51,13 @@ function sendJson(res: ServerResponse, code: number, obj: unknown) {
   res.end(JSON.stringify(obj))
 }
 
-/** 就地更新 JSON 数组里 id 匹配的那条记录的 keywords */
-async function patchRecord(file: string, id: string, keywords: string[]) {
+/** 就地把 patch 的字段合并进 JSON 数组里 id 匹配的那条记录 */
+async function patchRecord(file: string, id: string, patch: Record<string, unknown>) {
   if (!(await pathExists(file))) return
-  const list = JSON.parse(await fs.readFile(file, "utf8")) as Array<{
-    id: string
-    keywords: string[]
-  }>
+  const list = JSON.parse(await fs.readFile(file, "utf8")) as Array<{ id: string }>
   const hit = list.find((r) => r.id === id)
   if (!hit) return
-  hit.keywords = keywords
+  Object.assign(hit, patch)
   // posts.json 原本就是缩进写出的，search-index 是压缩的，各自保持
   const pretty = file === GENERATED_POSTS
   await fs.writeFile(file, JSON.stringify(list, null, pretty ? 2 : undefined), "utf8")
@@ -82,10 +81,11 @@ export function devApi() {
       server.middlewares.use(async (req: IncomingMessage, res: ServerResponse, next: () => void) => {
         const url = (req.url || "").split("?")[0]
         const isTags = url === "/__tags"
+        const isSummary = url === "/__summary"
         const isPost = url === "/__post"
-        if (!isTags && !isPost) return next()
+        if (!isTags && !isSummary && !isPost) return next()
 
-        const expected = isTags ? "PUT" : "DELETE"
+        const expected = isPost ? "DELETE" : "PUT"
         if (req.method !== expected) return sendJson(res, 405, { error: "method not allowed" })
         if (!isLocal(req)) return sendJson(res, 403, { error: "local only" })
 
@@ -109,9 +109,20 @@ export function devApi() {
 
             const html = await fs.readFile(full, "utf8")
             await fs.writeFile(full, setKeywords(html, keywords), "utf8")
-            await patchRecord(GENERATED_POSTS, id, keywords)
-            await patchRecord(SEARCH_INDEX, id, keywords)
+            await patchRecord(GENERATED_POSTS, id, { keywords })
+            await patchRecord(SEARCH_INDEX, id, { keywords })
             return sendJson(res, 200, { ok: true, id, keywords })
+          }
+
+          if (isSummary) {
+            // 保留用户输入里的换行（Enter 是换行、Cmd+Enter 才提交），仅去掉首尾空白；不限字数
+            const description = String(body?.description ?? "").trim()
+
+            const html = await fs.readFile(full, "utf8")
+            await fs.writeFile(full, setDescription(html, description), "utf8")
+            await patchRecord(GENERATED_POSTS, id, { description })
+            await patchRecord(SEARCH_INDEX, id, { description })
+            return sendJson(res, 200, { ok: true, id, description })
           }
 
           // 删除整篇：源文件 + public 下的构建副本 + 两份索引记录

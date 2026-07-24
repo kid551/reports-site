@@ -72,10 +72,13 @@ pnpm ship</code></pre>
 │   ├── pages/index.astro      ← 列表 / 搜索首页
 │   ├── lib/
 │   │   ├── search-client.ts   ← 浏览器端 FlexSearch
+│   │   ├── card-editor.ts     ← dev-only 首页就地编辑（标签 / 摘要 / 删除）
 │   │   └── types.ts
 │   └── styles/global.css      ← Tailwind 全局样式
 ├── scripts/
 │   ├── build-posts.ts         ← 预构建：扫 posts、提取元数据、生成索引
+│   ├── post-meta.ts           ← 读写文章 &lt;head&gt; 元信息的共享工具
+│   ├── dev-api.ts             ← dev-only 写接口（改标签 / 改摘要 / 删文章）
 │   ├── new.ts                 ← pnpm new
 │   ├── admin.ts               ← pnpm admin（本地元数据编辑 GUI）
 │   └── ship.ts                ← pnpm ship
@@ -103,7 +106,7 @@ pnpm ship</code></pre>
   <thead><tr><th>字段</th><th>提取来源（按优先级）</th></tr></thead>
   <tbody>
     <tr><td>title</td><td><code>&lt;title&gt;</code> → <code>&lt;h1&gt;</code> → 文件名</td></tr>
-    <tr><td>description</td><td><code>&lt;meta name="description"&gt;</code> → 首个非空 <code>&lt;p&gt;</code>（截断 200 字）</td></tr>
+    <tr><td>description</td><td><code>&lt;meta name="description"&gt;</code>（手写摘要完整保留、不截断） → 首个非空 <code>&lt;p&gt;</code>（自动预览，截断 200 字）</td></tr>
     <tr><td>date</td><td>文件名前缀 <code>YYYY-MM-DD-</code> 或 <code>YYYYMMDD-</code> → 文件 mtime</td></tr>
     <tr><td>keywords</td><td><code>&lt;meta name="keywords"&gt;</code>（逗号分隔）；为空则首页归入 <em>未分类</em></td></tr>
   </tbody>
@@ -145,6 +148,17 @@ posts/2026-05-22-llm-eval.html</code></pre>
 </ul>
 <p><strong>为什么只有你能用</strong>：服务仅监听 <code>127.0.0.1</code>（loopback），网络上其他设备无法访问；同时校验 <code>Host</code> / <code>Origin</code> 请求头，挡住 DNS rebinding 类攻击。你的另一台电脑、手机、同事，都进不来。</p>
 <p>编辑完后照常 <code>pnpm ship</code> 发布。</p>
+
+<h3>在首页就地编辑（仅 dev，无需开 admin）</h3>
+<p>跑 <code>pnpm dev</code> 时，首页每张卡片直接可编辑——不用切到 <code>pnpm admin</code>：</p>
+<ul>
+  <li><strong>改摘要</strong>：点卡片上的摘要文字就地展开文本框。<strong>Enter 换行、⌘/Ctrl+Enter 保存、Esc 取消</strong>，另有「保存 / 取消」按钮。没有摘要的卡片显示「＋ 添加摘要」占位供新增。摘要<strong>支持多行、不限字数</strong>，列表卡片会完整显示所有行。</li>
+  <li><strong>改标签</strong>：卡片标签区的 <code>×</code> 删标签、<code>+</code> 加标签，顶部标签导航实时重建。</li>
+  <li><strong>删文章</strong>：卡片右上角 <code>×</code>，两段式确认（点一下进入「确认删除？」，5 秒无操作自动复原）。</li>
+</ul>
+<p><strong>怎么落盘</strong>：改动通过只在 dev server 存在的写接口（<code>PUT /__summary</code> / <code>PUT /__tags</code> / <code>DELETE /__post</code>，见 <code>scripts/dev-api.ts</code>）就地重写源 HTML 的 <code>&lt;meta&gt;</code>，并增量更新 <code>.generated/posts.json</code> 与 <code>public/search-index.json</code>——不整体重跑 build，因此不会触发整页刷新。</p>
+<p><strong>为什么线上没有这个能力</strong>：<code>dev-api.ts</code> 挂成 Vite 的 <code>apply:"serve"</code> 插件、只在 dev server 生效；前端逻辑 <code>card-editor.ts</code> 在 <code>import.meta.env.DEV</code> 下才动态 import，<code>astro build</code> 时整段被摇掉。构建产物里没有任何服务端写接口，线上只读。写接口同样只接受来自 <code>127.0.0.1</code> 的请求。</p>
+<p><strong>并发写冲突</strong>：dev 就地编辑和批量脚本都会写 <code>posts/</code>。批量改 <code>posts/</code>（脚本、<code>git checkout</code> 等）之前先停掉 dev server，否则可能把一次就地编辑覆盖或回滚掉。</p>
 
 <h3>发布</h3>
 <pre><code>pnpm ship             # 默认会列出变更，输入 y 确认后提交并 push
