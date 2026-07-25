@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南方产业智选 2025Q1 · 报告期内基金投资策略和运作分析（原文摘录）</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root {
+  --bg: #fbfaf7;
+  --bg-card: #ffffff;
+  --ink: #1f2328;
+  --ink-2: #3b4248;
+  --ink-3: #5a5a5a;
+  --accent: #8a3324;       /* CRUX 红 */
+  --accent-2: #4c6c9c;      /* ASIDE 蓝 */
+  --gold: #c79b2b;          /* TIP 金 */
+  --tip-bg: #fff5d6;
+  --tip-bd: #c79b2b;
+  --aside-bg: #eef3fb;
+  --aside-bd: #4c6c9c;
+  --crux-bg: #fde7e0;       /* CRUX 浅底 */
+  --crux-bd: #8a3324;
+  --maodun-bg: #f4e4e8;     /* DIVE 玫红浅底 */
+  --maodun-bd: #944056;     /* DIVE 玫红 */
+  --term-bg: #f1ede0;       /* METRIC 米金浅底 */
+  --term-bd: #b09a55;       /* METRIC 米金 */
+  --rule: #c9c1ac;           /* 统一边框 */
+  --code: #f5f1e3;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  font-size: 18px;       /* body ≥ 18px (硬下限) */
+  line-height: 1.9;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 60px 36px 120px;
+}
+
+/* === 标题 === */
+h1 {
+  font-size: 40px;       /* h1 ≥ 34px (硬下限) */
+  line-height: 1.3;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+h1 .sub {
+  display: block;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 32px;       /* h2 ≥ 30px (硬下限) */
+  margin: 80px 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 3px double var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.4;
+}
+h2 .num {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 19px;
+  margin-right: 14px;
+  vertical-align: middle;
+  font-family: Georgia, serif;
+}
+h3 {
+  font-size: 25px;
+  margin: 48px 0 14px;
+  color: var(--accent-2);
+  font-weight: 700;
+  border-left: 6px solid var(--accent-2);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+h4 {
+  font-size: 20px;
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+p { margin: 12px 0; }
+strong { color: var(--accent); font-weight: 700; }
+em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+
+/* === The Crux 红框 === */
+.crux {
+  background: var(--crux-bg);
+  border-left: 8px solid var(--crux-bd);
+  border-radius: 4px;
+  padding: 22px 28px;
+  margin: 28px 0;
+  position: relative;
+}
+.crux::before {
+  content: "THE CRUX OF THE PROBLEM — 核心问题";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--crux-bd);
+  font-weight: 800;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 10px;
+}
+.crux p { margin: 4px 0; font-size: 19px; line-height: 1.75; }
+
+/* === 矛盾结构玫红框 === */
+.maodun {
+  background: var(--maodun-bg);
+  border: 2px solid var(--maodun-bd);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin: 24px 0;
+}
+.maodun .label {
+  display: inline-block;
+  background: var(--maodun-bd);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+.maodun h5 {
+  margin: 10px 0 4px;
+  font-size: 18px;
+  color: var(--maodun-bd);
+  font-weight: 700;
+}
+.maodun p { margin: 4px 0; font-size: 18px; }
+.maodun ul { padding-left: 22px; margin: 4px 0; }
+.maodun li { margin: 4px 0; font-size: 18px; }
+
+/* === TIP 黄框 === */
+.tip {
+  background: var(--tip-bg);
+  border: 1px dashed var(--tip-bd);
+  border-radius: 4px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.tip::before {
+  content: "TIP — 小贴士";
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tip p { display: inline; margin: 0; }
+
+/* === ASIDE 蓝框 === */
+.aside {
+  background: var(--aside-bg);
+  border-left: 5px solid var(--aside-bd);
+  padding: 18px 24px;
+  margin: 22px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 17px;
+}
+.aside::before {
+  content: "ASIDE — 旁注";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--aside-bd);
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 6px;
+}
+.aside p { margin: 4px 0; }
+.aside strong { color: var(--aside-bd); }
+
+/* === 名词解释米黄卡片 === */
+.term {
+  background: var(--term-bg);
+  border: 1px solid var(--term-bd);
+  border-radius: 6px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.term::before {
+  content: attr(data-name);
+  display: block;
+  background: var(--term-bd);
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 14px;
+  margin: -16px -22px 12px;
+  border-radius: 6px 6px 0 0;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* === 表格：单元格 ≥ 16px（硬下限） === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 16px;
+  background: var(--bg-card);
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.65;
+}
+th {
+  background: #0c4a6e;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+}
+tr:nth-child(even) td { background: #f5f1e3; }
+
+ul, ol { padding-left: 28px; }
+li { margin: 6px 0; line-height: 1.8; }
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: #fff;
+  margin: 22px 0;
+  padding: 14px 24px;
+  color: var(--ink-2);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* === 目录 === */
+.toc {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px 30px;
+  margin: 32px 0 54px;
+  font-size: 17px;
+}
+.toc h4 { margin-top: 0; color: var(--accent); font-size: 19px; }
+.toc ol { padding-left: 22px; }
+.toc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-2);
+}
+.toc a:hover { color: var(--accent); border-bottom-style: solid; }
+
+/* === Meta 元数据条 === */
+.meta {
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 22px 0 38px;
+  padding: 16px 20px;
+  background: #f3eee2;
+  border-radius: 4px;
+  font-style: italic;
+}
+.meta b { color: var(--ink); font-style: normal; }
+
+hr.div {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 50px 0;
+}
+
+.num-hl {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .wrap { padding: 30px 20px 80px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 25px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  table { font-size: 15px; }
+  th, td { padding: 9px 10px; }
+  .crux p { font-size: 17px; }
+  .maodun h5, .maodun p, .maodun li { font-size: 16.5px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>4.4 报告期内基金投资策略和运作分析
+<span class="sub">南方产业智选股票型证券投资基金 · 2025 年第 1 季度报告（原文摘录）</span>
+</h1>
+
+<div class="meta">
+<b>基金简称</b>：南方产业智选股票（基金主代码 003956）<br>
+<b>基金经理</b>：恽雷（2023 年 4 月 14 日至今任本基金基金经理）<br>
+<b>报告期</b>：2025 年 1 月 1 日 — 2025 年 3 月 31 日 ｜ <b>送出日期</b>：2025 年 4 月 22 日<br>
+<b>基金管理人</b>：南方基金管理股份有限公司 ｜ <b>基金托管人</b>：中国建设银行股份有限公司<br>
+<b>摘录说明</b>：以下为季报「§4 管理人报告 — 4.4 报告期内基金投资策略和运作分析」一节的<em>完整原文</em>，文字未做任何删改；节内导航小标题（第一、二部分及目录）为排版所加，「思考（一）～（三）」为原文自带标题。原文中数据与观点均为基金管理人 <em>2025 年 3 月 31 日</em>时点的视角。
+</div>
+
+<div class="toc">
+<h4>本节目录</h4>
+<ol>
+<li><a href="#review">2025 年一季度市场回顾与行业复盘</a></li>
+<li><a href="#topics">本季度热门话题专题（自问自答）</a>
+  <ol>
+  <li><a href="#t1">思考（一）：信心的价值与安全边际</a></li>
+  <li><a href="#t2">思考（二）：自由现金流 ETF 这类 smart beta 产品怎么看？</a></li>
+  <li><a href="#t3">思考（三）：当前对港股市场的观点</a></li>
+  </ol>
+</li>
+</ol>
+</div>
+
+<!-- ================= 第一部分：季度回顾 ================= -->
+<h2 id="review"><span class="num">1</span>2025 年一季度市场回顾与行业复盘</h2>
+
+<p>回顾 2025 年第一季度，A 股市场以及港股市场主要指数表现：A 股以及港股市场中主要基准指数表现分化较大，其中上证指数下跌 <span class="num-hl">0.48%</span>，沪深 300 指数下跌 <span class="num-hl">1.21%</span>，创业板综指上涨 <span class="num-hl">2.82%</span>，中证 1000 指数上涨 <span class="num-hl">4.51%</span>，科创 50 指数上涨 <span class="num-hl">3.42%</span>，市场呈现出成长优于价值，中小盘好于大盘的风格表现，这也是典型的市场流动性较好，主题投资相对活跃的市场特征。港股市场主要基准指数表现亮眼，收益水平领先全球主要基准指数，恒生指数上涨 <span class="num-hl">15.25%</span>，恒生国企指数上涨 <span class="num-hl">16.83%</span>，恒生科技指数上涨 <span class="num-hl">20.74%</span>。港股市场表现较好的主要原因有以下三点，第一、经历了过去三年港股市场的熊市之后，市场整体估值水平处于极低的位置；第二、港股市场中主要的基准指数中科技含量（AI 含量）较高，随着春节期间 Deepseek 的横空出世以及人形机器人落地场景进一步丰富，带动港股市场的指数表现较高。第三、国内经济展现出较强的韧性，主要的经济宏观指标展现出触底回暖的态势。</p>
+
+<p>回顾海外市场，第一季度全球主要指数表现：美股主要基准指数表现较为疲软，欧洲主要市场基准指数表现较为优异，德国 DAX30 指数上涨 <span class="num-hl">15.71%</span>，富时 100 指数上涨 <span class="num-hl">8.39%</span>，法国 CAC40 指数上涨 <span class="num-hl">10.28%</span>。十年期美债利率横盘震荡，利率水平从 <span class="num-hl">4.5%</span> 微幅下降至 <span class="num-hl">4.2%</span> 左右的水平。标普 500 指数下降 <span class="num-hl">4.59%</span>，纳斯达克指数下跌 <span class="num-hl">10.42%</span>。MSCI 发达国家指数美元计价下跌 <span class="num-hl">2.14%</span>，MSCI 新兴市场指数美元计价上涨 <span class="num-hl">2.41%</span>，印度 CNX Nifty 指数美元计价下跌 <span class="num-hl">0.36%</span>，日经 225 指数美元计价下跌 <span class="num-hl">6.62%</span>。</p>
+
+<p>复盘 2025 年第一季度 A 股和港股市场的行业表现，A 股市场中第一季度表现最好的五个申万一级行业分别是有色金属（<span class="num-hl">+11.96%</span>），汽车（<span class="num-hl">+11.4%</span>），机械设备（<span class="num-hl">+10.61%</span>），计算机（<span class="num-hl">+7.62%</span>），钢铁（<span class="num-hl">+5.64%</span>）；而表现最差的五个申万一级行业分别是煤炭（<span class="num-hl">-10.59%</span>），商贸零售（<span class="num-hl">-8.22%</span>），石油石化（<span class="num-hl">-5.9%</span>），建筑装饰（<span class="num-hl">-5.88%</span>）以及房地产（<span class="num-hl">-5.83%</span>）；港股市场中四季度表现最好的三个恒生一级行业分别是医药保健（<span class="num-hl">+26.36%</span>），可选消费（<span class="num-hl">+23.11%</span>）以及资讯科技（<span class="num-hl">+22.41%</span>），而表现最差的三个恒生一级行业分别是能源（<span class="num-hl">-4.7%</span>）,公用事业（<span class="num-hl">-3.73%</span>），地产建筑（<span class="num-hl">+2.96%</span>）。从行业表现中也可以感受到过去两年表现相对落后的成长性行业在本季度取得了较为优异的表现。</p>
+
+<p>南方产业智选 2025 年第一季度收益为 <span class="num-hl">4.04%</span>，受益于 A 股以及港股市场整体市场情绪较好，组合净值呈现出了增长的状态，尽管和沪深 300 相比获得了一定的收益，但是和恒生指数相比远远落后。客观公允自我评价基金经理一季度的表现，基金经理认为刚刚合格，整体组合表现以及结构还是有可以进步和优化的地方。</p>
+
+<hr class="div">
+
+<!-- ================= 第二部分：热门话题专题 ================= -->
+<h2 id="topics"><span class="num">2</span>本季度热门话题专题（自问自答）</h2>
+
+<p>在一季报中，我们依然围绕本季度市场中热门的话题来分享我们的所思所想。坦率地说，第一、我们希望通过定期报告来记录自身的思考，形成阶段性完整的框架。过一段时间，复盘总结看看哪些地方可以优化和迭代，同时也有越来越多的读者会给我们一些正向反馈，进一步完善和提升认知的深度；第二、我们希望客户能够通过读定期报告就能清晰明了地理解我们对于市场热门问题的思考。作为一名基金经理，一直认为行业中不少优秀上市公司定期沟通和交流方式是值得我们学习的。基金经理同时也可以把更多的时间投入到研究标的，挖掘投资机会。</p>
+
+<p>因此，在本次季报中，我们还是采用大家熟悉的“自问自答”的形式去探讨市场上本季度较为热门的话题。当然除了下面罗列的问题之外，市场中还有一些更为热门的话题，比如人形机器人未来的发展落地的场景，人工通用智能模型如何提升我们的日常效率。坦率地说，尽管基金经理也读了一些研究报告，听了一些相关的路演，看了一些演示视频，动手试用了不少人工智能产品。但是，对于太过宏大叙述的课题，目前的思考依然只停留在零零散散的节点上面。甚至不瞒您说，基金经理都没办法回答出为什么机器人一定要以人形这样的形式存在。因此，我们还是回归自身的能力圈，去探讨自身能力相对可以把握的问题。</p>
+
+<p>接下来，我们将围绕以下三方面的热门话题，谈一谈我们的思考：（1）信心的价值与投资的安全边际；（2）对于当前市场中较为热门的 smart beta ETF—自由现金流 ETF 产品的看法；（3）当前对港股市场的观点。</p>
+
+<h3 id="t1">思考（一）信心的价值与安全边际</h3>
+
+<p>关于对信心价值几何的思考灵感来源于今年一季度整体股票市场的表现。春节期间，随着 Deepseek 石破天惊般的出现，以及人形机器人在春晚等场合大放异彩之后，资本市场似乎找到了新的热点，刺激着 A 股以及港股市场中相关的主题投资如火如荼地展开。同时，不少二级市场中，过去两年受制于政策以及经济等宏观环境，企业内在价值被低估的公司获得快速的重估。针对这一现象，不禁让我们感叹，被投资的公司可能经营基本面并没有发生实质性的变化，只是大家看待他们的方式却发生了根本性的改变。在悲观情绪弥漫的时期，似乎资本市场看到的永远都是这家公司的问题所在。而当市场情绪反转的时候，资本市场又呈现截然相反的解读方式，似乎短期的问题都不是问题，勇于蹭热点的公司都有美好的未来。所以，这也经常能让我们回想起价值投资者奉为圭臬的一句话“短期而言，市场是投票机，长期而言，市场是称重机”。在基金经理看来，二级市场的周期变化往往也对应着市场先生的情绪从悲观到乐观的变化，本质是市场参与者信心发生了根本性的转变。因此，也就产生了，信心的价值应该如何衡量？</p>
+
+<p>我们通过一个例子来阐述，信心的价值以及投资中的安全边际。当市场极度悲观的时候，某公司在二级市场的市值是 <span class="num-hl">100</span> 块钱，采用自由现金流折现计算出的公司内在价值，即使在经营业绩上设定一个相对来说保守的假设条件，得到公司内在价值是 <span class="num-hl">500</span> 块钱。市场为什么对于明显的资产定价错误，投资人会视而不见呢？我们认为其中核心的原因主要有两个方面：（1）线性外推所产生的认知谬误，人们习惯的思维决策（快思考）的方式是立足于当下发生的现象，然后根据这个现象去寻找背后的驱动因素，并且用这个规律去指导下一步的决策。因此，也就出现了市场参与者往往以过去公司的景气高来推算未来会继续维持高景气，或者以过去的经营困难去推算未来公司依然会维持困境，上面这两种认知偏差会导致市场在某段时间内陷入过度乐观或过度悲观的情绪，这种极端情绪也是导致股票市场中资产的定价错误；（2）在整体的悲观市场情绪中，市场对于公司的定价无法定价更远期的自由现金流，使得资产的估值水平一直处于被压制的状态。但是，当市场出现一些反转的信号开始提升参与者的信心的时候，例如宏观经济的一些前瞻数据出现明显的好转；春节期间国内通用人工智能大模型 Deepseek 的横空出世以及人形机器人产业链的百花齐放，都使得投资人对未来更加有信心。因此，前期不少被低估的公司获得了重估的机会，所以信心是有价值的，并且是可以度量的。对二级市场而言，信心比黄金都要珍贵，信心是资产价值是否能够充分定价的前提条件。</p>
+
+<p>当然，当市场情绪比较亢奋的时候，我们时常可以发现公司的市场交易市值等于自由现金流折现估算出的企业内在价值。例如，过去几年，在通用人工智能军备竞赛的叙事逻辑下，美股市场就呈现出这样的格局，尤其是对于全球知名的科技巨头公司。通常，在我们研究团队，会把这样的现象称之为充分定价，即“把 DCF 用尽”，也意味着这些公司在现有的经营假设下，估值的安全边际不足。此时，投资者在该公司上可以挣到两种钱，第一种是经营业绩持续上修带来的企业内在价值不断提升的钱，当然同样的反例是一旦公司业绩或者未来的指引不达市场预期的时候，公司的股价往往会出现暴跌，这也是过去几年我们在美股市场上经常看到的一类现象。第二种是折现率释放所带来的钱，当然我们知道折现率的计算公式只与两方面因素相关，无风险利率以及股权风险溢价，这两方面因素都与二级市场的资产定价紧密相关，却与公司的实际经营业绩关联度不大。因此，在市场中我们也会经常观察到这样的的现象，当资产被充分定价之后，股价会呈现出高波动的走势，与市场的情绪以及流动性高度相关。此时，投研人员往往对于公司经营数据跟踪颗粒度要求非常细致，即大家经常讨论的“卷数据”是否有意义这一话题。同样，我们再举一个例子，对于一笔投资来说什么样的状态是具备安全边际的。例如，一笔投资的潜在收益水平是 <span class="num-hl">20%</span>，折现率水平是 <span class="num-hl">8%</span>，那么与利率以及市场情绪相关的系统性因素占比整体潜在回报的 <span class="num-hl">40%</span>，而 <span class="num-hl">60%</span> 的潜在收益水平是由公司实际经营业绩所贡献的。因此，当折现率水平占比潜在收益水平越小，也就意味着投资的安全边际越高。</p>
+
+<h3 id="t2">思考（二）对于当前市场中较为热门的 smart beta ETF—自由现金流 ETF 产品的看法。</h3>
+
+<p>我们认为以自由现金流为底层逻辑的 smart beta 策略能够被动化以及产品化是资本市场成熟度进一步提升的表现。坦率地说，自由现金流类型的 ETF 给价值型主动管理基金经理提供了较为有效的选股池。海外市场以自由现金流策略作为投资策略进行主动管理的基金经理以及资产管理公司具有较成熟的发展历史和较为长期的业绩追踪。价值投资的第一性原理即为研究公司的商业模式是否能够长期稳定产生自由现金流以及是否能以合理的估值水平买入这些现金流资产。在全球投资人中凭借该策略获得长期优异业绩表现，为客户带来丰厚收益，最为代表的主动管理投资人莫过于伯克希尔哈撒韦的沃伦．巴菲特以及查理．芒格。过去十年，伯克希尔哈撒韦的净值曲线表现和美国自由现金流 100 ETF（COWZ 指数，US Cash COW 100 ETF）呈现出较强的相关性。理论上来讲，二级市场的投资收益可以分成三个组成部分，（一）资本市场提供的系统性平均回报，即我们常说的市场贝塔（beta）；（二）投资者风格所提供的超出市场平均回报的部分，即我们常说的聪明贝塔（smart beta）；（三）主动管理人通过精选股票，择时以及选择不同市场投资等方式带来超出市场贝塔和聪明贝塔部分的收益，即我们常说的阿尔法收益（Pure Alpha）。</p>
+
+<p>与当前市场中较为热门的自由现金流 ETF 产品相比，我们认为主动管理的基金经理依然具备了广泛的可为空间，因为通常主动管理的介入能提前预判风险，使得收益更加平稳，同时收益来源更加多元化。</p>
+
+<p><strong>主动管理的投资策略对企业自由现金流产生的持续性评估要求更高。</strong>当前市场中自由现金流 ETF 产品所挂钩的指数编制方式中仅要求一年的自由现金流为正，缺乏对于更长时间维度对企业创造自由现金流持续性能力以及对于自由现金流创造效率的评估。因此，导致指数成分股中强周期资源品行业占比较高。例如，国证自由现金流指数中资源品占比超过 <span class="num-hl">50%</span>，当资源品价格出现下行周期的时候，往往股价有较大的下行风险，主动管理则可以对行业的基本面进行前瞻性预判，提前预防下行风险。</p>
+
+<p><strong>主动管理的投资策略选择投资市场包含 A 股和港股，收益来源更多元化。</strong>当前市场中自由现金流 ETF 产品所挂钩的指数，无论是国证自由现金流指数还是富时自由现金流指数以及中证自由现金流指数全部集中在 A 股市场。但是主动管理的基金经理可以通过自身跨市场的主动投资能力，把港股市场中在港股通内，部分现金流较好的互联网公司以及消费品公司纳入到选股的范畴中，使得产品的收益来自于不同的市场，不同的行业，让收益的来源更加分散化和多元化。因此，这也是主动管理的策略与当前 A 股市场的现金流 ETF 产品相比重要的差异化之处。</p>
+
+<p><strong>主动管理的投资策略对企业自由现金流的理解具有更强的包容性。</strong>当前的自由现金流 ETF 所挂钩的主要指数把银行和地产两个大类行业进行了剔除，主要原因是在指数编制过程中由于银行以及地产商业模式的特殊性，使得无法采用企业自由现金流/企业价值（FCF/EV）单一指标筛选出相关行业的标的。作为主动管理的投资人，我们对于自由现金流的定义更加具备包容性，自由现金流的根源是企业内在价值的积累，是企业通过自身经营不断获得现金流来增厚净资产的过程。因此，可以不用执拗于教科书上关于企业自由现金流的定义，例如，银行就是经营现金流，长期稳定的生意模式，每年可以拿出来回报股东的现金流即是银行可以自由分配的现金流。</p>
+
+<h3 id="t3">思考（三）当前对港股市场的观点。</h3>
+
+<p>港股市场年初至今主要基准指数表现领先全球，主要原因有以下三点，第一、经历了过去三年港股市场的熊市之后，市场整体估值水平处于极低的位置；第二、港股市场中主要的基准指数中科技含量（AI 含量）较高，随着春节期间 Deepseek 的横空出世以及人形机器人落地场景进一步丰富，带动港股市场的指数表现较高。第三、国内经济展现出较强的韧性，主要的经济宏观指标展现出触底回暖的态势。尽管指数表现较好，但如果我们把基准指数（恒生指数，恒生科技指数）中的成分股按照上涨幅度做一个简单的统计，会发现指数的涨幅是有少数行业以及公司来贡献的，因此市场呈现出了极端的结构分化，冷热不均的走势。当前，我们认为市场中存在的两个主要的风险点：（1）不少所谓的新消费公司存在一定的估值泡沫，资产定价计入了未来过多的增长预期；（2）市场中习惯于过去两年的投资范式，把自由现金流较好的周期公司当成是红利低波的股票进行投资，一旦周期品的价格出现下跌，当前这些公司的股东回报水平仍然缺少一定的安全边际。</p>
+
+<p>港股市场当前呈现出冷热不均的结构化行情主要和投资者行为有一定的关系，投资者主要通过两种方式投资到港股市场，一是买入恒生指数以及恒生科技指数等主要被动型产品投资到港股市场；二是通过港股通南下投资到港股市场。由于基准指数成分股数量较少并且具有高度的重合，同时离岸市场的特征（投资离岸市场无论是对于外资投资者还是 A 股投资者都起到组合增强的效益）都会使得市场投资者的目光聚焦到少数高增长或者潜在有美好未来的公司中。因此，投资者的行为促使了市场流动性集中到了少数热门公司。反而，我们认为当前港股市场的机会恰恰由于基准指数覆盖的成分股较少，同时港股通的公司数量较多，给了主动管理的基金经理翻石头，挖掘个股投资的机会。在香港市场中，依然存在不少估值较低，现金流优秀，同时股东回报水平较好的优质公司。</p>
+
+<hr class="div">
+
+<div class="meta" style="margin-top:60px;">
+<b>本文档来源</b>：《南方产业智选股票型证券投资基金 2025 年第 1 季度报告》§4.4「报告期内基金投资策略和运作分析」原文完整摘录（该节位于原 PDF 第 7—11 页，即页脚标注的第 6—10 页）。<br>
+<b>处理方式</b>：正文文字零删改；仅重新排版（大字号衬线阅读版式）、为便于导航添加两级小标题与目录、对原文中的关键数字与三条并列论点的首句做视觉高亮。<br>
+<b>原文存疑处（按零删改原则原样保留，未作修改）</b>：第 1 节第三段中「港股市场中<em>四季度</em>表现最好的三个恒生一级行业」一处，据上下文应为「第一季度」；同段「表现最差的三个恒生一级行业」中列出的「地产建筑（+2.96%）」为正收益。两处均照原文录入。<br>
+<b>时点声明</b>：文中全部数据与观点均为基金管理人截至 <em>2025 年 3 月 31 日</em>（送出日期 2025 年 4 月 22 日）的视角，不构成任何投资建议。
+</div>
+
+</div>
+</body>
+</html>
