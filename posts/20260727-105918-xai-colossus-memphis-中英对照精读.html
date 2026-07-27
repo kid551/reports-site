@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xAI 孟菲斯 Colossus：10 万卡 GPU 超算解剖 — 中英对照精读</title>
+<style>
+:root {
+  --bg: #fbfaf7;
+  --bg-card: #ffffff;
+  --ink: #1f2328;
+  --ink-2: #3b4248;
+  --ink-3: #5a5a5a;
+  --accent: #8a3324;       /* CRUX 红 */
+  --accent-2: #4c6c9c;      /* ASIDE 蓝 */
+  --gold: #c79b2b;          /* TIP 金 */
+  --tip-bg: #fff5d6;
+  --tip-bd: #c79b2b;
+  --aside-bg: #eef3fb;
+  --aside-bd: #4c6c9c;
+  --crux-bg: #fde7e0;
+  --crux-bd: #8a3324;
+  --maodun-bg: #f4e4e8;
+  --maodun-bd: #944056;
+  --term-bg: #f1ede0;
+  --term-bd: #b09a55;
+  --rule: #c9c1ac;
+  --code: #f5f1e3;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 60px 36px 120px;
+}
+
+/* === 标题 === */
+h1 {
+  font-size: 40px;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+h1 .sub {
+  display: block;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 32px;
+  margin: 80px 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 3px double var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.4;
+}
+h2 .num {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 19px;
+  margin-right: 14px;
+  vertical-align: middle;
+  font-family: Georgia, serif;
+}
+h3 {
+  font-size: 25px;
+  margin: 48px 0 14px;
+  color: var(--accent-2);
+  font-weight: 700;
+  border-left: 6px solid var(--accent-2);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+h4 {
+  font-size: 20px;
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+p { margin: 12px 0; }
+strong { color: var(--accent); font-weight: 700; }
+em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+
+/* === The Crux 红框 === */
+.crux {
+  background: var(--crux-bg);
+  border-left: 8px solid var(--crux-bd);
+  border-radius: 4px;
+  padding: 22px 28px;
+  margin: 28px 0;
+  position: relative;
+}
+.crux::before {
+  content: "THE CRUX OF THE PROBLEM — 核心问题";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--crux-bd);
+  font-weight: 800;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 10px;
+}
+.crux p { margin: 4px 0; font-size: 19px; line-height: 1.75; }
+
+/* === 矛盾结构框 === */
+.maodun {
+  background: var(--maodun-bg);
+  border: 2px solid var(--maodun-bd);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin: 24px 0;
+}
+.maodun .label {
+  display: inline-block;
+  background: var(--maodun-bd);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+.maodun h5 {
+  margin: 10px 0 4px;
+  font-size: 18px;
+  color: var(--maodun-bd);
+  font-weight: 700;
+}
+.maodun p { margin: 4px 0; font-size: 18px; }
+.maodun ul { padding-left: 22px; margin: 4px 0; }
+.maodun li { margin: 4px 0; font-size: 18px; }
+
+/* === TIP 黄框 === */
+.tip {
+  background: var(--tip-bg);
+  border: 1px dashed var(--tip-bd);
+  border-radius: 4px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.tip::before {
+  content: "TIP — 小贴士";
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tip p { display: inline; margin: 0; }
+
+/* === ASIDE 蓝框 === */
+.aside {
+  background: var(--aside-bg);
+  border-left: 5px solid var(--aside-bd);
+  padding: 18px 24px;
+  margin: 22px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 17px;
+}
+.aside::before {
+  content: "ASIDE — 旁注";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--aside-bd);
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 6px;
+}
+.aside p { margin: 4px 0; }
+.aside strong { color: var(--aside-bd); }
+
+/* === 名词解释米黄卡片 === */
+.term {
+  background: var(--term-bg);
+  border: 1px solid var(--term-bd);
+  border-radius: 6px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.term::before {
+  content: attr(data-name);
+  display: block;
+  background: var(--term-bd);
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 14px;
+  margin: -16px -22px 12px;
+  border-radius: 6px 6px 0 0;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* === 表格 === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 16px;
+  background: var(--bg-card);
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.65;
+}
+th {
+  background: #0c4a6e;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+}
+tr:nth-child(even) td { background: #f5f1e3; }
+
+ul, ol { padding-left: 28px; }
+li { margin: 6px 0; line-height: 1.8; }
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: #fff;
+  margin: 22px 0;
+  padding: 14px 24px;
+  color: var(--ink-2);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* === 目录 === */
+.toc {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px 30px;
+  margin: 32px 0 54px;
+  font-size: 17px;
+}
+.toc h4 { margin-top: 0; color: var(--accent); font-size: 19px; }
+.toc ol { padding-left: 22px; }
+.toc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-2);
+}
+.toc a:hover { color: var(--accent); border-bottom-style: solid; }
+.toc .toc-en {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink-3);
+  font-size: 15px;
+  border: none;
+}
+
+/* === Meta 元数据条 === */
+.meta {
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 22px 0 38px;
+  padding: 16px 20px;
+  background: #f3eee2;
+  border-radius: 4px;
+  font-style: italic;
+}
+.meta b { color: var(--ink); font-style: normal; }
+.meta a { color: var(--accent-2); word-break: break-all; }
+
+hr.div {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 50px 0;
+}
+
+.num-hl {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+/* ============================================================
+   以下为本报告追加组件：中英对照（en / zh 配对）+ 脚注体系
+   规则：英文原文用衬线 Georgia 常规呈现；紧随其后的中文译文
+   置于米金虚线框内，形成「原文在上、译文在下」的阅读节奏。
+   ============================================================ */
+
+/* 英文原文段落 */
+.en {
+  font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+  color: var(--ink);
+  margin: 22px 0 8px;
+  line-height: 1.85;
+}
+
+/* 中文译文块 —— 米金虚线框 */
+.zh {
+  border: 1.5px dashed #a8914a;
+  background: var(--term-bg);
+  border-radius: 5px;
+  padding: 13px 20px;
+  margin: 0 0 26px;
+  font-size: 18px;
+  line-height: 1.9;
+  color: var(--ink-2);
+}
+.zh p { margin: 0; }
+.zh p + p { margin-top: 10px; }
+
+/* 标题行的中文译名：同款虚线框，行内块，跟在英文标题下方 */
+.zh-title {
+  display: inline-block;
+  border: 1.5px dashed #a8914a;
+  background: var(--term-bg);
+  border-radius: 5px;
+  padding: 4px 16px;
+  margin: 10px 0 4px;
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.4;
+}
+.zh-title.lv3 {
+  font-size: 20px;
+  color: var(--accent-2);
+  margin: 6px 0 4px;
+}
+.zh-title.lv1 {
+  font-size: 28px;
+  color: var(--accent);
+}
+
+/* 列表的中英配对：英文 li 内嵌中文译文 */
+li .zh-inline {
+  display: block;
+  border: 1.5px dashed #a8914a;
+  background: var(--term-bg);
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin: 8px 0 14px;
+  font-size: 17px;
+  color: var(--ink-2);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", serif;
+}
+li.en { font-family: Georgia, "Times New Roman", serif; margin: 14px 0; }
+
+/* 表格内的中文译文 */
+td .zh-cell {
+  display: block;
+  margin-top: 6px;
+  padding-top: 5px;
+  border-top: 1px dashed var(--term-bd);
+  color: var(--ink-3);
+  font-size: 16px;
+  font-family: "Source Han Serif SC", "Noto Serif SC", serif;
+}
+td .en-cell { font-family: Georgia, "Times New Roman", serif; }
+th .zh-cell {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  opacity: .85;
+  border: none;
+  margin-top: 2px;
+}
+
+/* 脚注引用上标 */
+sup.ref { font-size: 12.5px; line-height: 0; }
+sup.ref a {
+  color: var(--accent-2);
+  text-decoration: none;
+  font-family: Georgia, serif;
+  padding: 0 1px;
+}
+sup.ref a:hover { color: var(--accent); text-decoration: underline; }
+
+/* 文末脚注列表 */
+ol.sources {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink-3);
+  padding-left: 34px;
+  font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+}
+ol.sources li { margin: 9px 0; }
+ol.sources li:target {
+  background: var(--tip-bg);
+  outline: 2px solid var(--tip-bd);
+  border-radius: 3px;
+}
+ol.sources a { color: var(--accent-2); word-break: break-all; text-decoration: none; }
+ol.sources a:hover { text-decoration: underline; }
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .wrap { padding: 30px 20px 80px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 25px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  table { font-size: 15px; }
+  th, td { padding: 9px 10px; }
+  .crux p { font-size: 17px; }
+  .maodun h5, .maodun p, .maodun li { font-size: 16.5px; }
+  .zh { font-size: 17px; padding: 11px 15px; }
+  .zh-title { font-size: 20px; }
+  .zh-title.lv1 { font-size: 22px; }
+  .zh-title.lv3 { font-size: 17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ 主标题 ============ -->
+<h1>xAI's Memphis Colossus: Anatomy of a 100,000 GPU Supercomputer
+<span class="sub">Introl · Blake Crosley · 2026-04-01 · 11 min read — 英文原文 / 中文对照精读本</span>
+</h1>
+<div class="zh-title lv1">xAI 孟菲斯 Colossus：一台 10 万卡 GPU 超级计算机的解剖</div>
+
+<div class="meta">
+<b>原文标题</b>：xAI's Memphis Colossus: Anatomy of a 100,000 GPU Supercomputer<br>
+<b>作者 / 出处</b>：Blake Crosley，Introl Blog，2026 年 4 月 1 日发布，约 11 分钟阅读<br>
+<b>原文链接</b>：<a href="https://introl.com/blog/xai-memphis-colossus-100000-gpu-supercomputer-infrastructure" target="_blank" rel="noopener">https://introl.com/blog/xai-memphis-colossus-100000-gpu-supercomputer-infrastructure</a><br>
+<b>本文体例</b>：<em>英文原文逐段完整保留</em>，每段之下以米金虚线框给出<em>中文译文</em>；原文 54 条引用编号全部保留为可点击脚注，落到文末 References 对应条目。<br>
+<b>翻译立场</b>：技术术语（Spectrum-X、RoCE v2、Megapack、incast 等）保留英文原名并在首次出现处附中文释义；数字、单位、时间点一律照搬原文，<em>不做换算、不做推断、不做增删</em>。<br>
+<b>阅读提示</b>：原文写于 <em>2026 年 4 月</em>，文中"currently / 目前"均指该时点；文末规格表与 Key Takeaways 可作速查。
+</div>
+
+<div class="toc">
+<h4>目录 · Table of Contents</h4>
+<ol>
+<li><a href="#ch1">开篇：122 天建成 10 万卡集群</a><br><span class="toc-en">Opening: 100,000 GPUs in 122 days</span></li>
+<li><a href="#ch2">建设时间线与打法</a><br><span class="toc-en">Construction timeline and approach</span></li>
+<li><a href="#ch3">前所未有规模的电力基础设施</a><br><span class="toc-en">Power infrastructure at unprecedented scale</span></li>
+<li><a href="#ch4">冷却系统与水基础设施</a><br><span class="toc-en">Cooling systems and water infrastructure</span></li>
+<li><a href="#ch5">Spectrum-X 以太网组网</a><br><span class="toc-en">Spectrum-X Ethernet networking</span></li>
+<li><a href="#ch6">规模对比</a><br><span class="toc-en">Scale comparison</span></li>
+<li><a href="#ch7">Colossus 2 扩建</a><br><span class="toc-en">Colossus 2 expansion</span></li>
+<li><a href="#ch8">基础设施经验教训</a><br><span class="toc-en">Infrastructure lessons</span></li>
+<li><a href="#ch9">速查：Colossus 规格表</a><br><span class="toc-en">Quick reference: Colossus specifications</span></li>
+<li><a href="#ch10">要点速览</a><br><span class="toc-en">Key takeaways</span></li>
+<li><a href="#refs">参考文献（54 条）</a><br><span class="toc-en">References</span></li>
+</ol>
+</div>
+
+<!-- ============ 术语速查 ============ -->
+<h3>读前热身：高频术语速查</h3>
+<div class="zh-title lv3">Glossary — 全文反复出现的 8 个术语</div>
+
+<div class="term" data-name="Colossus（巨像）">
+xAI 位于美国田纳西州孟菲斯（Memphis）的 AI 训练集群代号。第一期由一座废弃的伊莱克斯家电工厂改造而成，也是本文的主角。
+</div>
+
+<div class="term" data-name="Spectrum-X Ethernet">
+NVIDIA 推出的、面向 AI 集群的以太网平台。它试图在标准以太网之上，通过自适应路由与拥塞控制，达到接近 InfiniBand 的网络效率——这正是 Colossus 与其他大型集群最大的技术分歧点。
+</div>
+
+<div class="term" data-name="InfiniBand">
+高性能计算领域长期主导的专用高速互连技术，自带优先级流控（PFC）与硬件级拥塞管理。绝大多数超大规模 AI 训练集群选它，Colossus 没有。
+</div>
+
+<div class="term" data-name="RDMA / RoCE v2">
+RDMA 即「远程直接内存访问」，让一台机器绕过 CPU 直接读写另一台机器的内存，是 GPU 集群通信的基础能力。RoCE v2 是「在以太网上跑 RDMA」的协议版本。
+</div>
+
+<div class="term" data-name="incast（多打一拥塞）">
+成千上万块 GPU 同时向同一个目标发数据，交换机端口瞬间被打爆导致排队、丢包。这是大规模 AI 集群组网的头号难题。
+</div>
+
+<div class="term" data-name="Tesla Megapack">
+特斯拉的集装箱式大容量储能电池。在 Colossus 里它承担两个角色：电网中断时的后备电源，以及在永久性供电接入完成前支撑集群先跑起来。
+</div>
+
+<div class="term" data-name="MLGW">
+Memphis Light, Gas and Water，孟菲斯电、燃气与水务公司，当地的市政公用事业单位，Colossus 的电力与水资源审批和接入方。
+</div>
+
+<div class="term" data-name="graywater（中水 / 灰水）">
+指经处理后可再利用的生活废水。Colossus 用它替代抽取地下含水层的清洁水做冷却，是其应对当地水资源争议的核心方案。
+</div>
+
+<hr class="div">
+
+<!-- ============ 章节 1 ============ -->
+<h2 id="ch1"><span class="num">1</span>Opening: 122 days to 100,000 GPUs</h2>
+<div class="zh-title">开篇：122 天，10 万卡</div>
+
+<div class="aside">
+<p><strong>December 2025 Update</strong>: Colossus now comprising 150,000 H100 + 50,000 H200 + 30,000 GB200 GPUs—world's largest single-coherent AI training cluster. Built in 122 days (initial 100K), doubled in 92 more. Planning expansion to 1M GPUs. Drawing 250MW from Memphis utility grid. Spectrum-X Ethernet achieving 95% throughput vs 60% on traditional Ethernet.</p>
+</div>
+<div class="zh">
+<p><strong>2025 年 12 月更新</strong>：Colossus 目前由 15 万块 H100 + 5 万块 H200 + 3 万块 GB200 GPU 组成——全球最大的单一相干（single-coherent）AI 训练集群。首期 10 万卡耗时 122 天建成，此后再用 92 天翻倍。计划扩张至 100 万卡。从孟菲斯市政电网取电 250 兆瓦。Spectrum-X 以太网实现 95% 吞吐率，而传统以太网仅为 60%。</p>
+</div>
+
+<p class="en">Built in 122 days, xAI's Colossus cluster deployed 100,000 NVIDIA H100 GPUs in a former appliance factory in Memphis, Tennessee.<sup class="ref"><a href="#src-1">[1]</a></sup> Then xAI doubled the system to 200,000 GPUs in 92 additional days.<sup class="ref"><a href="#src-2">[2]</a></sup> The cluster currently comprises 150,000 H100 GPUs, 50,000 H200 GPUs, and 30,000 GB200 GPUs, making it the largest fully operational, single-coherent AI training cluster in the world.<sup class="ref"><a href="#src-3">[3]</a></sup> xAI plans to expand to 1 million GPUs.<sup class="ref"><a href="#src-4">[4]</a></sup> The project demonstrates what aggressive infrastructure deployment looks like when an organization prioritizes speed over conventional planning timelines.</p>
+<div class="zh">
+<p>xAI 的 Colossus 集群在 122 天内建成，于田纳西州孟菲斯一座废弃的家电工厂内部署了 10 万块 NVIDIA H100 GPU。<sup class="ref"><a href="#src-1">[1]</a></sup> 随后 xAI 又用 92 天把整套系统翻倍到 20 万块 GPU。<sup class="ref"><a href="#src-2">[2]</a></sup> 该集群目前由 15 万块 H100、5 万块 H200 和 3 万块 GB200 组成，是全球规模最大且完全投入运行的单一相干 AI 训练集群。<sup class="ref"><a href="#src-3">[3]</a></sup> xAI 计划将其扩张到 100 万块 GPU。<sup class="ref"><a href="#src-4">[4]</a></sup> 这个项目展示了：当一家机构把速度置于常规规划周期之上时，激进的基础设施部署会是什么样子。</p>
+</div>
+
+<p class="en">The Colossus project offers lessons for any organization building AI infrastructure at scale. The decisions around power, cooling, networking, and facility selection reveal how constraints can be overcome when traditional approaches prove too slow. The tradeoffs also reveal risks that more methodical deployments avoid.</p>
+<div class="zh">
+<p>对任何要大规模建设 AI 基础设施的机构，Colossus 项目都提供了可借鉴的经验。它在电力、冷却、组网和厂址选择上的一系列决策，揭示了当传统路径太慢时，约束条件可以如何被绕过。而这些取舍同时也暴露出风险——那些更按部就班的部署本可以避开的风险。</p>
+</div>
+
+<!-- ============ 章节 2 ============ -->
+<h2 id="ch2"><span class="num">2</span>Construction timeline and approach</h2>
+<div class="zh-title">建设时间线与打法</div>
+
+<p class="en">Musk received initial quotes of 18 to 24 months for data center construction.<sup class="ref"><a href="#src-5">[5]</a></sup> Rejecting that timeline, xAI found the former Electrolux factory in Memphis, which the appliance maker had opened in 2012 and closed in 2020.<sup class="ref"><a href="#src-6">[6]</a></sup> The abandoned facility offered considerable warehouse space and 15 megawatts of initial industrial power.<sup class="ref"><a href="#src-7">[7]</a></sup></p>
+<div class="zh">
+<p>马斯克最初拿到的数据中心建设报价是 18 至 24 个月工期。<sup class="ref"><a href="#src-5">[5]</a></sup> 他否掉了这个时间表，xAI 转而找到了孟菲斯这座前伊莱克斯（Electrolux）工厂——这家家电制造商 2012 年在此开工、2020 年将其关闭。<sup class="ref"><a href="#src-6">[6]</a></sup> 这座废弃厂房提供了可观的仓储空间，以及 15 兆瓦的初始工业电力。<sup class="ref"><a href="#src-7">[7]</a></sup></p>
+</div>
+
+<p class="en">Supermicro CEO Charles Liang confirmed his company teamed with xAI to build the gargantuan Colossus data center in 122 days.<sup class="ref"><a href="#src-8">[8]</a></sup> Both Dell Technologies and Supermicro partnered with xAI on construction.<sup class="ref"><a href="#src-9">[9]</a></sup> The compressed timeline required parallel workstreams across facility preparation, power infrastructure, cooling systems, and compute deployment.</p>
+<div class="zh">
+<p>美超微（Supermicro）CEO 梁见后（Charles Liang）证实，其公司与 xAI 联手在 122 天内建成了这座庞大的 Colossus 数据中心。<sup class="ref"><a href="#src-8">[8]</a></sup> 戴尔科技与美超微双双作为建设伙伴参与其中。<sup class="ref"><a href="#src-9">[9]</a></sup> 如此压缩的工期，要求厂房改造、电力基础设施、冷却系统和算力部署四条工作流并行推进。</p>
+</div>
+
+<p class="en">The 100,000-GPU cluster uses HGX servers containing eight GPUs each, housed in Supermicro liquid-cooled racks with 64 GPUs per rack.<sup class="ref"><a href="#src-10">[10]</a></sup> The total deployment comprises 1,500 GPU racks.<sup class="ref"><a href="#src-11">[11]</a></sup> The rack density required liquid cooling from inception, with Supermicro's 4U liquid-cooled systems providing thermal management.<sup class="ref"><a href="#src-12">[12]</a></sup></p>
+<div class="zh">
+<p>这套 10 万卡集群使用 HGX 服务器，每台含 8 块 GPU，装载在美超微的液冷机柜中，每个机柜 64 块 GPU。<sup class="ref"><a href="#src-10">[10]</a></sup> 整体部署共计 1,500 个 GPU 机柜。<sup class="ref"><a href="#src-11">[11]</a></sup> 这样的机柜密度从设计之初就必须上液冷，由美超微的 4U 液冷系统负责散热管理。<sup class="ref"><a href="#src-12">[12]</a></sup></p>
+</div>
+
+<p class="en">Three months after the initial deployment, xAI announced expansion to 200,000 GPUs with plans to continue scaling to 1 million.<sup class="ref"><a href="#src-13">[13]</a></sup> The expansion demonstrated that the infrastructure architecture could accommodate growth without fundamental redesign.</p>
+<div class="zh">
+<p>首期部署完成三个月后，xAI 宣布扩容至 20 万块 GPU，并计划继续扩张到 100 万块。<sup class="ref"><a href="#src-13">[13]</a></sup> 这轮扩容证明了：这套基础设施架构无需推倒重来，就能容纳增长。</p>
+</div>
+
+<div class="tip">
+<p>「找一座带电的废弃工厂」是 122 天工期里最关键的一步——它省掉的不是施工时间，而是<strong>拿到电</strong>的时间。</p>
+</div>
+
+<!-- ============ 章节 3 ============ -->
+<h2 id="ch3"><span class="num">3</span>Power infrastructure at unprecedented scale</h2>
+<div class="zh-title">前所未有规模的电力基础设施</div>
+
+<p class="en">The Colossus facility currently draws approximately 250 megawatts, up from the initial 150-megawatt configuration.<sup class="ref"><a href="#src-14">[14]</a></sup> xAI installed 35 gas turbines capable of producing 420 megawatts of power alongside Tesla Megapack battery systems.<sup class="ref"><a href="#src-15">[15]</a></sup> The hybrid approach provides both baseload power and grid independence.</p>
+<div class="zh">
+<p>Colossus 园区目前取电约 250 兆瓦，高于最初的 150 兆瓦配置。<sup class="ref"><a href="#src-14">[14]</a></sup> xAI 安装了 35 台燃气轮机，发电能力达 420 兆瓦，并配套部署了特斯拉 Megapack 电池储能系统。<sup class="ref"><a href="#src-15">[15]</a></sup> 这套混合方案同时提供了基荷电力与脱离电网独立运行的能力。</p>
+</div>
+
+<p class="en">xAI designed and built the first MLGW substation in 97 days, completing a 150-megawatt substation that would normally take 2.5 years.<sup class="ref"><a href="#src-16">[16]</a></sup> The acceleration required working with Memphis Light, Gas and Water while simultaneously deploying temporary power solutions.</p>
+<div class="zh">
+<p>xAI 用 97 天设计并建成了第一座 MLGW 变电站——一座通常需要 2.5 年才能落成的 150 兆瓦变电站。<sup class="ref"><a href="#src-16">[16]</a></sup> 这种提速的前提是：一边与孟菲斯电燃水务公司（MLGW）协同推进，一边同步部署临时供电方案。</p>
+</div>
+
+<p class="en">The company deployed 208 Tesla Megapacks to power the supercomputer, initially isolating it from the MLGW grid.<sup class="ref"><a href="#src-17">[17]</a></sup> The Megapacks store large amounts of electricity, providing backup during grid disruptions and enabling operations before permanent utility connections completed.</p>
+<div class="zh">
+<p>该公司部署了 208 台特斯拉 Megapack 为这台超级计算机供电，初期使其与 MLGW 电网隔离运行。<sup class="ref"><a href="#src-17">[17]</a></sup> Megapack 储存大量电力，既在电网中断时提供后备，也让集群得以在永久性市政接入完成之前就开始运转。</p>
+</div>
+
+<p class="en">Solaris Energy Infrastructure owns a fleet of 600 megawatts of gas turbines, with approximately 400 megawatts currently serving xAI.<sup class="ref"><a href="#src-18">[18]</a></sup> xAI represents 67% of Solaris's 1,700-megawatt order book, totaling 1,140 megawatts.<sup class="ref"><a href="#src-19">[19]</a></sup> Solaris expects to have over 1.1 gigawatts of fully operating turbines for xAI by Q2 2027.<sup class="ref"><a href="#src-20">[20]</a></sup></p>
+<div class="zh">
+<p>Solaris Energy Infrastructure 拥有一支 600 兆瓦规模的燃气轮机机队，其中约 400 兆瓦目前服务于 xAI。<sup class="ref"><a href="#src-18">[18]</a></sup> xAI 占 Solaris 1,700 兆瓦在手订单的 67%，合计 1,140 兆瓦。<sup class="ref"><a href="#src-19">[19]</a></sup> Solaris 预计到 2027 年第二季度，将有超过 1.1 吉瓦的轮机为 xAI 全面投运。<sup class="ref"><a href="#src-20">[20]</a></sup></p>
+</div>
+
+<p class="en">The Colossus 2 expansion at the Tulane Road site includes at least 110,000 NVIDIA GB200 GPUs carrying a power load around 170 megawatts.<sup class="ref"><a href="#src-21">[21]</a></sup> Additional Megapacks and turbine capacity support the expanded footprint.</p>
+<div class="zh">
+<p>位于杜兰路（Tulane Road）厂址的 Colossus 2 扩建项目，包含至少 11 万块 NVIDIA GB200 GPU，承载约 170 兆瓦的电力负荷。<sup class="ref"><a href="#src-21">[21]</a></sup> 追加的 Megapack 与轮机容量为这片扩大的版图提供支撑。</p>
+</div>
+
+<p class="en">xAI received permits for gas-burning turbines to power the supercomputer.<sup class="ref"><a href="#src-22">[22]</a></sup> The permit expires in 2027, by which time xAI intends to rely on multiple power sources including two MLGW substations financed and built on the Colossus campus.<sup class="ref"><a href="#src-23">[23]</a></sup> xAI plans to break ground on a 500-acre solar farm near the site.<sup class="ref"><a href="#src-24">[24]</a></sup></p>
+<div class="zh">
+<p>xAI 拿到了燃气轮机为超算供电的许可证。<sup class="ref"><a href="#src-22">[22]</a></sup> 该许可将于 2027 年到期，届时 xAI 打算改为依靠多元电源，其中包括两座由其出资、建在 Colossus 园区内的 MLGW 变电站。<sup class="ref"><a href="#src-23">[23]</a></sup> xAI 还计划在厂址附近动工建设一座 500 英亩的光伏电站。<sup class="ref"><a href="#src-24">[24]</a></sup></p>
+</div>
+
+<div class="maodun">
+<span class="label">本章的张力</span>
+<h5>速度 ↔ 合规与可持续</h5>
+<p>燃气轮机 + Megapack 是「先跑起来」的最快解，但许可 2027 年到期；变电站与光伏是「跑得久」的解，却必须走完整审批周期。xAI 的做法是<strong>两条腿同时迈</strong>——用临时电源买下永久电源的建设时间。</p>
+</div>
+
+<!-- ============ 章节 4 ============ -->
+<h2 id="ch4"><span class="num">4</span>Cooling systems and water infrastructure</h2>
+<div class="zh-title">冷却系统与水基础设施</div>
+
+<p class="en">From the start, xAI trucked in water and recycled it through an internal closed-loop system to cool the supercomputer.<sup class="ref"><a href="#src-25">[25]</a></sup> The unconventional approach enabled operations before permanent water infrastructure completed. xAI committed to build an $80 million wastewater recycling facility to address long-term water needs.<sup class="ref"><a href="#src-26">[26]</a></sup></p>
+<div class="zh">
+<p>从一开始，xAI 就采用卡车运水的方式，并通过内部闭环系统循环利用这些水来冷却超级计算机。<sup class="ref"><a href="#src-25">[25]</a></sup> 这种非常规方法使超算在永久性供水基础设施建成之前就能正常运行。xAI 承诺投资 8000 万美元建造一座废水回收处理厂，以满足长期的用水需求。<sup class="ref"><a href="#src-26">[26]</a></sup></p>
+</div>
+
+<p class="en">The company plans the world's largest ceramic membrane bioreactor wastewater recycling plant.<sup class="ref"><a href="#src-27">[27]</a></sup> Once complete, the facility will protect an estimated 4.745 billion gallons of aquifer water.<sup class="ref"><a href="#src-28">[28]</a></sup> A massive graywater cooling tower under construction will pipe cooled recycled water into Colossus from the nearby graywater plant.<sup class="ref"><a href="#src-29">[29]</a></sup></p>
+<div class="zh">
+<p>该公司规划中的这座工厂，将是全球最大的陶瓷膜生物反应器废水回收厂。<sup class="ref"><a href="#src-27">[27]</a></sup> 建成后，预计可保护约 47.45 亿加仑的地下含水层水资源。<sup class="ref"><a href="#src-28">[28]</a></sup> 一座正在建设中的大型中水冷却塔，将把冷却后的再生水从附近的中水处理厂管输进 Colossus。<sup class="ref"><a href="#src-29">[29]</a></sup></p>
+</div>
+
+<p class="en">Colossus 2 uses a hybrid cooling approach. Approximately half of the cooling comes from xAI's graywater facility while the other half uses air cooling.<sup class="ref"><a href="#src-30">[30]</a></sup> By August 2025, 119 air-cooled chillers provided roughly 200 megawatts of cooling capacity, enough for approximately 110,000 GB200 NVL72 GPUs.<sup class="ref"><a href="#src-31">[31]</a></sup></p>
+<div class="zh">
+<p>Colossus 2 采用混合冷却方案：约一半的冷量来自 xAI 的中水设施，另一半则使用风冷。<sup class="ref"><a href="#src-30">[30]</a></sup> 截至 2025 年 8 月，119 台风冷冷水机组提供了约 200 兆瓦的冷却能力，足以支撑大约 11 万块 GB200 NVL72 GPU。<sup class="ref"><a href="#src-31">[31]</a></sup></p>
+</div>
+
+<p class="en">During the initial construction phase, xAI leased generators and approximately a quarter of the US mobile cooling capacity to kickstart operations quickly.<sup class="ref"><a href="#src-32">[32]</a></sup> The aggressive procurement of temporary infrastructure enabled the compressed timeline while permanent systems completed.</p>
+<div class="zh">
+<p>在最初的建设阶段，xAI 租用了发电机组，以及全美约四分之一的移动式制冷产能，以求尽快让运营跑起来。<sup class="ref"><a href="#src-32">[32]</a></sup> 这种对临时基础设施的激进采购，让压缩后的工期得以成立，同时永久性系统在后台继续建设完成。</p>
+</div>
+
+<div class="aside">
+<p><strong>"全美四分之一的移动制冷产能"是什么概念</strong>：这意味着 xAI 在一段时间内实质性地占用了整个美国的应急冷却租赁市场。这类资源通常服务于医院、赛事、灾后恢复——把它们集中调到一个厂址，是纯粹用钱换时间的极端案例。</p>
+</div>
+
+<!-- ============ 章节 5 ============ -->
+<h2 id="ch5"><span class="num">5</span>Spectrum-X Ethernet networking</h2>
+<div class="zh-title">Spectrum-X 以太网组网</div>
+
+<div class="crux">
+<p>大多数 AI 训练集群都选 InfiniBand，Colossus 却押注以太网。<strong>核心问题：在 20 万卡这个量级上，以太网到底顶不顶得住？</strong></p>
+</div>
+
+<p class="en">Unlike most AI training clusters that use InfiniBand, xAI's Colossus uses NVIDIA's Spectrum-X Ethernet platform for its RDMA network.<sup class="ref"><a href="#src-33">[33]</a></sup> The choice demonstrates that Ethernet can support the largest AI training clusters when properly configured.</p>
+<div class="zh">
+<p>与大多数使用 InfiniBand 的 AI 训练集群不同，xAI 的 Colossus 采用 NVIDIA 的 Spectrum-X 以太网平台来承载其 RDMA 网络。<sup class="ref"><a href="#src-33">[33]</a></sup> 这一选择表明：只要配置得当，以太网也能支撑起最大规模的 AI 训练集群。</p>
+</div>
+
+<p class="en">Colossus uses the 51.2 terabits-per-second Spectrum SN5600, which provides 64 800-gigabit Ethernet ports in a 2U form factor.<sup class="ref"><a href="#src-34">[34]</a></sup> Individual nodes use NVIDIA's BlueField-3 SuperNICs featuring a single 400-gigabit connection to each GPU.<sup class="ref"><a href="#src-35">[35]</a></sup></p>
+<div class="zh">
+<p>Colossus 使用交换容量 51.2 Tb/s 的 Spectrum SN5600 交换机，在 2U 机箱内提供 64 个 800G 以太网端口。<sup class="ref"><a href="#src-34">[34]</a></sup> 各计算节点则使用 NVIDIA 的 BlueField-3 SuperNIC，为每块 GPU 配一路 400G 连接。<sup class="ref"><a href="#src-35">[35]</a></sup></p>
+</div>
+
+<p class="en">The network achieved zero application latency degradation or packet loss due to flow collisions across all three tiers of the fabric.<sup class="ref"><a href="#src-36">[36]</a></sup> The system maintained 95% data throughput enabled by Spectrum-X congestion control.<sup class="ref"><a href="#src-37">[37]</a></sup> Standard Ethernet typically delivers only 60% throughput at this scale due to thousands of flow collisions.<sup class="ref"><a href="#src-38">[38]</a></sup></p>
+<div class="zh">
+<p>在整套网络的全部三层结构中，该网络实现了「零」——没有因流冲突（flow collision）导致的应用延迟劣化或丢包。<sup class="ref"><a href="#src-36">[36]</a></sup> 得益于 Spectrum-X 的拥塞控制，系统维持了 95% 的数据吞吐率。<sup class="ref"><a href="#src-37">[37]</a></sup> 而标准以太网在这个规模下，因数以千计的流冲突，通常只能跑出 60% 的吞吐。<sup class="ref"><a href="#src-38">[38]</a></sup></p>
+</div>
+
+<p class="en">Traditional Ethernet networks struggle with incast problems when thousands of GPUs communicate simultaneously.<sup class="ref"><a href="#src-39">[39]</a></sup> InfiniBand traditionally solved this with built-in Priority Flow Control and hardware-level congestion management.<sup class="ref"><a href="#src-40">[40]</a></sup> Spectrum-X achieves similar results using RoCE v2 with enhanced congestion control mechanisms.<sup class="ref"><a href="#src-41">[41]</a></sup></p>
+<div class="zh">
+<p>当成千上万块 GPU 同时通信时，传统以太网在 incast（多打一拥塞）问题上举步维艰。<sup class="ref"><a href="#src-39">[39]</a></sup> InfiniBand 历来靠内建的优先级流控（Priority Flow Control）与硬件级拥塞管理来解决这一问题。<sup class="ref"><a href="#src-40">[40]</a></sup> Spectrum-X 则通过 RoCE v2 加上增强型拥塞控制机制，达到了相似的效果。<sup class="ref"><a href="#src-41">[41]</a></sup></p>
+</div>
+
+<p class="en">The Ethernet approach provides cost benefits and flexibility compared to InfiniBand while maintaining performance. Spectrum-X features including adaptive routing with Direct Data Placement technology, congestion control, and enhanced AI fabric visibility enable InfiniBand-like performance on Ethernet infrastructure.<sup class="ref"><a href="#src-42">[42]</a></sup></p>
+<div class="zh">
+<p>相比 InfiniBand，以太网路线在保持性能的同时带来了成本优势与灵活性。Spectrum-X 的一系列特性——包括搭配直接数据放置（Direct Data Placement）技术的自适应路由、拥塞控制，以及增强的 AI 网络可视化——使得以太网基础设施上能跑出接近 InfiniBand 的性能。<sup class="ref"><a href="#src-42">[42]</a></sup></p>
+</div>
+
+<!-- ============ 章节 6 ============ -->
+<h2 id="ch6"><span class="num">6</span>Scale comparison</h2>
+<div class="zh-title">规模对比</div>
+
+<p class="en">Colossus at 200,000 GPUs exceeds other major supercomputers by substantial margins.<sup class="ref"><a href="#src-43">[43]</a></sup> Oracle's zettascale AI supercomputer contains 131,072 NVIDIA GPUs.<sup class="ref"><a href="#src-44">[44]</a></sup> Lawrence Livermore National Laboratory's El Capitan has 44,544 GPUs.<sup class="ref"><a href="#src-45">[45]</a></sup> Oak Ridge National Laboratory's Frontier has 37,632 GPUs.<sup class="ref"><a href="#src-46">[46]</a></sup></p>
+<div class="zh">
+<p>20 万卡规模的 Colossus，大幅超过其他主要超级计算机。<sup class="ref"><a href="#src-43">[43]</a></sup> 甲骨文的泽塔级（zettascale）AI 超算含 131,072 块 NVIDIA GPU。<sup class="ref"><a href="#src-44">[44]</a></sup> 劳伦斯利弗莫尔国家实验室的 El Capitan 有 44,544 块 GPU。<sup class="ref"><a href="#src-45">[45]</a></sup> 橡树岭国家实验室的 Frontier 有 37,632 块 GPU。<sup class="ref"><a href="#src-46">[46]</a></sup></p>
+</div>
+
+<p class="en">According to xAI's specifications, Colossus achieves total memory bandwidth of 194 petabytes per second with storage capacity exceeding one exabyte.<sup class="ref"><a href="#src-47">[47]</a></sup> The memory bandwidth enables the collective operations that AI training requires across hundreds of thousands of GPUs.</p>
+<div class="zh">
+<p>根据 xAI 公布的规格，Colossus 的总显存带宽达到每秒 194 PB，存储容量超过 1 EB（艾字节）。<sup class="ref"><a href="#src-47">[47]</a></sup> 这样的显存带宽，才撑得起 AI 训练在数十万块 GPU 之间所需的集合通信操作。</p>
+</div>
+
+<p class="en">The cluster trains xAI's Grok chatbot and provides computing support to X and other Musk ventures including SpaceX.<sup class="ref"><a href="#src-48">[48]</a></sup> The multi-purpose utilization justifies the infrastructure investment across multiple business lines.</p>
+<div class="zh">
+<p>该集群用于训练 xAI 的 Grok 聊天机器人，同时为 X 以及包括 SpaceX 在内的马斯克旗下其他企业提供算力支持。<sup class="ref"><a href="#src-48">[48]</a></sup> 这种一机多用的利用方式，使这笔基础设施投资能够分摊到多条业务线上得到论证。</p>
+</div>
+
+<!-- ============ 章节 7 ============ -->
+<h2 id="ch7"><span class="num">7</span>Colossus 2 expansion</h2>
+<div class="zh-title">Colossus 2 扩建</div>
+
+<p class="en">xAI kicked off the Colossus 2 project on March 7, 2025, acquiring a 1-million-square-foot warehouse in Memphis plus two adjacent sites totaling 100 acres.<sup class="ref"><a href="#src-49">[49]</a></sup> The Tulane Road site will host the expanded GPU fleet.</p>
+<div class="zh">
+<p>xAI 于 2025 年 3 月 7 日启动 Colossus 2 项目，在孟菲斯收购了一座 100 万平方英尺的仓库，外加两块相邻地块，总面积 100 英亩。<sup class="ref"><a href="#src-49">[49]</a></sup> 扩容后的 GPU 机群将落在杜兰路厂址。</p>
+</div>
+
+<p class="en">The expansion targets 350,000 GPUs with the world's largest deployment of Tesla Megapack batteries for backup power during high grid loads.<sup class="ref"><a href="#src-50">[50]</a></sup> The site will feature 60 to 70 Megapacks alongside the GPU infrastructure.<sup class="ref"><a href="#src-51">[51]</a></sup></p>
+<div class="zh">
+<p>此次扩建目标为 35 万块 GPU，并配套全球最大规模的特斯拉 Megapack 电池部署，用于电网高负荷时段的后备供电。<sup class="ref"><a href="#src-50">[50]</a></sup> 该厂址将在 GPU 基础设施之外，配置 60 至 70 台 Megapack。<sup class="ref"><a href="#src-51">[51]</a></sup></p>
+</div>
+
+<p class="en">The Memphis Chamber of Commerce claims xAI intends to expand to 1 million GPUs total.<sup class="ref"><a href="#src-52">[52]</a></sup> Achieving that scale requires continued power infrastructure development beyond current capacity. The 1.1 gigawatts Solaris plans for 2027 would support approximately half a million high-power GPUs at current density levels.</p>
+<div class="zh">
+<p>孟菲斯商会称，xAI 意图将总规模扩张至 100 万块 GPU。<sup class="ref"><a href="#src-52">[52]</a></sup> 要达到这个量级，就必须在现有容量之外持续推进电力基础设施建设。按当前功率密度水平计算，Solaris 计划 2027 年投运的 1.1 吉瓦，大约只能支撑五十万块高功耗 GPU。</p>
+</div>
+
+<!-- ============ 章节 8 ============ -->
+<h2 id="ch8"><span class="num">8</span>Infrastructure lessons</h2>
+<div class="zh-title">基础设施经验教训</div>
+
+<p class="en">The Colossus project demonstrates several approaches that accelerate AI infrastructure deployment.</p>
+<div class="zh">
+<p>Colossus 项目展示了若干能够加速 AI 基础设施部署的方法。</p>
+</div>
+
+<p class="en"><strong>Facility reuse can compress timelines dramatically.</strong> Finding an existing industrial facility with power infrastructure in place eliminated construction time that new builds require. Organizations with access to decommissioned industrial facilities may find opportunities for rapid AI infrastructure deployment.</p>
+<div class="zh">
+<p><strong>厂房复用能极大压缩工期。</strong>找到一座电力基础设施已经就位的现成工业厂房，直接省掉了新建项目必须付出的施工时间。能接触到退役工业厂房的机构，或许能借此获得快速部署 AI 基础设施的机会。</p>
+</div>
+
+<p class="en"><strong>Temporary infrastructure enables parallel paths.</strong> Leasing generators, mobile cooling, and trucking water allowed operations to begin while permanent infrastructure completed. The cost premium for temporary solutions may prove worthwhile when time-to-operation determines competitive position.</p>
+<div class="zh">
+<p><strong>临时基础设施让并行推进成为可能。</strong>租发电机、租移动制冷、卡车运水，让运营得以在永久性设施尚未完工时就先跑起来。当「多久能开动」直接决定竞争位置时，临时方案的溢价成本可能是值得的。</p>
+</div>
+
+<p class="en"><strong>Ethernet can support the largest clusters.</strong> The Spectrum-X deployment proves that InfiniBand is not required for massive-scale AI training. Organizations with Ethernet expertise and infrastructure may not need to adopt InfiniBand for even the largest deployments.</p>
+<div class="zh">
+<p><strong>以太网撑得起最大规模的集群。</strong>Spectrum-X 的部署证明，超大规模 AI 训练并非非 InfiniBand 不可。已有以太网技术积累与基础设施的机构，即便面对最大规模的部署，也未必需要改投 InfiniBand。</p>
+</div>
+
+<p class="en"><strong>Power remains the primary constraint.</strong> Despite creative solutions including battery storage, gas turbines, and accelerated substation construction, power availability limited the speed and scale of deployment. Organizations planning large AI clusters should secure power capacity first.</p>
+<div class="zh">
+<p><strong>电力始终是首要约束。</strong>尽管有电池储能、燃气轮机、加速建变电站等种种创造性方案，电力的可得性仍然限制了部署的速度与规模。规划大型 AI 集群的机构，应当把锁定电力容量放在第一位。</p>
+</div>
+
+<p class="en">The tradeoffs include regulatory challenges, community relations issues, and technical risks from compressed timelines. xAI's permit for gas turbines expires in 2027, creating transition requirements.<sup class="ref"><a href="#src-53">[53]</a></sup> Local officials expressed concerns about limited visibility into xAI's operations.<sup class="ref"><a href="#src-54">[54]</a></sup> The speed that enables competitive advantage may create technical debt that slower deployments avoid.</p>
+<div class="zh">
+<p>其代价包括：监管挑战、社区关系问题，以及压缩工期带来的技术风险。xAI 的燃气轮机许可 2027 年到期，由此产生了必须完成能源转换的硬性要求。<sup class="ref"><a href="#src-53">[53]</a></sup> 当地官员曾表示，他们对 xAI 运营情况的知情程度有限，对此感到担忧。<sup class="ref"><a href="#src-54">[54]</a></sup> 那种带来竞争优势的速度，也可能积下技术债——而这些债，更慢的部署本可以避免。</p>
+</div>
+
+<!-- ============ 章节 9 ============ -->
+<h2 id="ch9"><span class="num">9</span>Quick reference: Colossus specifications</h2>
+<div class="zh-title">速查：Colossus 规格表</div>
+
+<table>
+<tr>
+  <th>Specification<span class="zh-cell">规格项</span></th>
+  <th>Value<span class="zh-cell">数值</span></th>
+</tr>
+<tr>
+  <td><span class="en-cell">Total GPUs</span><span class="zh-cell">GPU 总数</span></td>
+  <td><span class="en-cell">200,000+ (150K H100, 50K H200, 30K GB200)</span><span class="zh-cell">20 万块以上（15 万 H100、5 万 H200、3 万 GB200）</span></td>
+</tr>
+<tr>
+  <td><span class="en-cell">Build time</span><span class="zh-cell">建设周期</span></td>
+  <td><span class="en-cell">122 days (Phase 1), 92 days (Phase 2)</span><span class="zh-cell">一期 122 天，二期 92 天</span></td>
+</tr>
+<tr>
+  <td><span class="en-cell">Power consumption</span><span class="zh-cell">电力消耗</span></td>
+  <td><span class="en-cell">250 MW current</span><span class="zh-cell">当前 250 兆瓦</span></td>
+</tr>
+<tr>
+  <td><span class="en-cell">Power infrastructure</span><span class="zh-cell">电力设施</span></td>
+  <td><span class="en-cell">35 gas turbines (420 MW), 208 Tesla Megapacks</span><span class="zh-cell">35 台燃气轮机（420 兆瓦）、208 台特斯拉 Megapack</span></td>
+</tr>
+<tr>
+  <td><span class="en-cell">Networking</span><span class="zh-cell">网络</span></td>
+  <td><span class="en-cell">NVIDIA Spectrum-X 800G Ethernet</span><span class="zh-cell">NVIDIA Spectrum-X 800G 以太网</span></td>
+</tr>
+<tr>
+  <td><span class="en-cell">Storage</span><span class="zh-cell">存储</span></td>
+  <td><span class="en-cell">&gt;1 exabyte</span><span class="zh-cell">超过 1 EB（艾字节）</span></td>
+</tr>
+<tr>
+  <td><span class="en-cell">Memory bandwidth</span><span class="zh-cell">显存带宽</span></td>
+  <td><span class="en-cell">194 PB/s</span><span class="zh-cell">每秒 194 PB</span></td>
+</tr>
+<tr>
+  <td><span class="en-cell">Rack configuration</span><span class="zh-cell">机柜配置</span></td>
+  <td><span class="en-cell">64 GPUs per rack, 1,500 racks</span><span class="zh-cell">每机柜 64 块 GPU，共 1,500 个机柜</span></td>
+</tr>
+<tr>
+  <td><span class="en-cell">Cooling</span><span class="zh-cell">冷却</span></td>
+  <td><span class="en-cell">Liquid cooling + graywater recycling</span><span class="zh-cell">液冷 + 中水循环</span></td>
+</tr>
+<tr>
+  <td><span class="en-cell">Expansion target</span><span class="zh-cell">扩张目标</span></td>
+  <td><span class="en-cell">1 million GPUs</span><span class="zh-cell">100 万块 GPU</span></td>
+</tr>
+</table>
+
+<!-- ============ 章节 10 ============ -->
+<h2 id="ch10"><span class="num">10</span>Key takeaways</h2>
+<div class="zh-title">要点速览</div>
+
+<h3>For infrastructure leaders</h3>
+<div class="zh-title lv3">给基础设施负责人</div>
+<ul>
+<li class="en">Traditional DC quotes: 18-24 months; xAI delivered in 122 days using facility reuse
+  <span class="zh-inline">传统数据中心报价 18–24 个月；xAI 靠厂房复用 122 天交付。</span></li>
+<li class="en">Temporary infrastructure (leased generators, mobile cooling, trucked water) enables parallel paths
+  <span class="zh-inline">临时基础设施（租赁发电机、移动制冷、卡车运水）让多条路径并行推进。</span></li>
+<li class="en">Power remains the primary constraint—secure capacity before GPU procurement
+  <span class="zh-inline">电力是首要约束——先锁容量，再买 GPU。</span></li>
+<li class="en">Spectrum-X Ethernet proved viable at 200K GPU scale, challenging InfiniBand necessity
+  <span class="zh-inline">Spectrum-X 以太网在 20 万卡规模上被证明可行，动摇了「必须用 InfiniBand」的成见。</span></li>
+</ul>
+
+<h3>For facilities teams</h3>
+<div class="zh-title lv3">给厂务团队</div>
+<ul>
+<li class="en">Decommissioned industrial facilities offer rapid deployment opportunities
+  <span class="zh-inline">退役工业厂房提供了快速部署的机会。</span></li>
+<li class="en">250 MW requires multiple power sources—gas turbines, batteries, utility substations
+  <span class="zh-inline">250 兆瓦必须靠多元电源撑起——燃气轮机、电池储能、市政变电站。</span></li>
+<li class="en">Graywater recycling addresses water concerns at scale—$80M facility protects 4.7B gallons aquifer
+  <span class="zh-inline">中水循环在规模上化解了水资源争议——8000 万美元的设施保护 47 亿加仑含水层水量。</span></li>
+<li class="en">119 air-cooled chillers provide ~200 MW cooling capacity
+  <span class="zh-inline">119 台风冷冷水机组提供约 200 兆瓦冷却能力。</span></li>
+</ul>
+
+<h3>For strategic planning</h3>
+<div class="zh-title lv3">给战略规划者</div>
+<ul>
+<li class="en">Speed vs. sustainability tradeoff: gas turbine permits expire 2027
+  <span class="zh-inline">速度与可持续性的取舍：燃气轮机许可 2027 年到期。</span></li>
+<li class="en">Compressed timelines create technical debt that methodical deployments avoid
+  <span class="zh-inline">压缩工期会积下技术债，而按部就班的部署可以避开。</span></li>
+<li class="en">Multi-purpose utilization (Grok, X, SpaceX) justifies infrastructure investment
+  <span class="zh-inline">一机多用（Grok、X、SpaceX）为这笔基础设施投资提供了论证依据。</span></li>
+<li class="en">1 million GPU target requires 1.1+ GW power—beyond current grid capacity
+  <span class="zh-inline">100 万卡目标需要 1.1 吉瓦以上电力——超出当前电网容量。</span></li>
+</ul>
+
+<p class="en">The Colossus project establishes a new baseline for what aggressive AI infrastructure deployment can achieve. Organizations should understand what the fastest possible path looks like, even if they choose more measured approaches for their own deployments.</p>
+<div class="zh">
+<p>Colossus 项目为「激进的 AI 基础设施部署最多能做到什么程度」立下了新的基准线。各家机构都应当理解「最快可能的路径」长什么样——哪怕自己最终选择更稳健的做法。</p>
+</div>
+
+<hr class="div">
+
+<!-- ============ 参考文献 ============ -->
+<h2 id="refs"><span class="num">R</span>References</h2>
+<div class="zh-title">参考文献（54 条，原文体例保留）</div>
+
+<p style="font-size:16px;color:var(--ink-3);">下列条目与正文中的上标编号一一对应。点击正文上标可跳转至此；条目会以黄色高亮标出。</p>
+
+<ol class="sources">
+<li id="src-1">Supermicro. &quot;Inside the 100K GPU xAI Colossus Cluster.&quot; 2024. <a href="https://www.supermicro.com/CaseStudies/Success_Story_xAI_Colossus_Cluster.pdf" target="_blank" rel="noopener">https://www.supermicro.com/CaseStudies/Success_Story_xAI_Colossus_Cluster.pdf</a></li>
+<li id="src-2">HPCwire. &quot;Colossus AI Hits 200,000 GPUs as Musk Ramps Up AI Ambitions.&quot; May 2025. <a href="https://www.hpcwire.com/2025/05/13/colossus-ai-hits-200000-gpus-as-musk-ramps-up-ai-ambitions/" target="_blank" rel="noopener">https://www.hpcwire.com/2025/05/13/colossus-ai-hits-200000-gpus-as-musk-ramps-up-ai-ambitions/</a></li>
+<li id="src-3">SemiAnalysis. &quot;xAI&#x27;s Colossus 2 - First Gigawatt Datacenter In The World.&quot; September 2025. <a href="https://semianalysis.com/2025/09/16/xais-colossus-2-first-gigawatt-datacenter/" target="_blank" rel="noopener">https://semianalysis.com/2025/09/16/xais-colossus-2-first-gigawatt-datacenter/</a></li>
+<li id="src-4">Data Center Dynamics. &quot;Elon Musk&#x27;s xAI targets one million GPUs for Colossus supercomputer in Memphis.&quot; 2025. <a href="https://www.datacenterdynamics.com/en/news/xai-elon-musk-memphis-colossus-gpu/" target="_blank" rel="noopener">https://www.datacenterdynamics.com/en/news/xai-elon-musk-memphis-colossus-gpu/</a></li>
+<li id="src-5">Wikipedia. &quot;Colossus (supercomputer).&quot; 2025. <a href="https://en.wikipedia.org/wiki/Colossus_(supercomputer)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Colossus_(supercomputer)</a></li>
+<li id="src-6">Wikipedia. &quot;Colossus (supercomputer).&quot;</li>
+<li id="src-7">R&amp;D World Online. &quot;How xAI turned a factory shell into an AI &#x27;Colossus&#x27; for Grok 3.&quot; 2025. <a href="https://www.rdworldonline.com/how-xai-turned-a-factory-shell-into-an-ai-colossus-to-power-grok-3-and-beyond/" target="_blank" rel="noopener">https://www.rdworldonline.com/how-xai-turned-a-factory-shell-into-an-ai-colossus-to-power-grok-3-and-beyond/</a></li>
+<li id="src-8">Fortune. &quot;Super Micro CEO Charles Liang said he teamed up with Elon Musk&#x27;s xAI to build the gargantuan Colossus data center in just 122 days.&quot; March 2025. <a href="https://fortune.com/2025/03/14/super-micro-ceo-charles-liang-elon-musk-xai-grok-nvidia-server-chips/" target="_blank" rel="noopener">https://fortune.com/2025/03/14/super-micro-ceo-charles-liang-elon-musk-xai-grok-nvidia-server-chips/</a></li>
+<li id="src-9">Wikipedia. &quot;Colossus (supercomputer).&quot;</li>
+<li id="src-10">ServeTheHome. &quot;Inside the 100K GPU xAI Colossus Cluster that Supermicro Helped Build for Elon Musk.&quot; 2024. <a href="https://www.servethehome.com/inside-100000-nvidia-gpu-xai-colossus-cluster-supermicro-helped-build-for-elon-musk/" target="_blank" rel="noopener">https://www.servethehome.com/inside-100000-nvidia-gpu-xai-colossus-cluster-supermicro-helped-build-for-elon-musk/</a></li>
+<li id="src-11">NVIDIA Newsroom. &quot;NVIDIA Ethernet Networking Accelerates World&#x27;s Largest AI Supercomputer, Built by xAI.&quot; 2024. <a href="https://nvidianews.nvidia.com/news/spectrum-x-ethernet-networking-xai-colossus" target="_blank" rel="noopener">https://nvidianews.nvidia.com/news/spectrum-x-ethernet-networking-xai-colossus</a></li>
+<li id="src-12">Built In. &quot;What Is the xAI Supercomputer (Colossus)?&quot; 2025. <a href="https://builtin.com/artificial-intelligence/xai-supercomputer-colossus" target="_blank" rel="noopener">https://builtin.com/artificial-intelligence/xai-supercomputer-colossus</a></li>
+<li id="src-13">Wikipedia. &quot;Colossus (supercomputer).&quot;</li>
+<li id="src-14">R&amp;D World Online. &quot;How xAI turned a factory shell into an AI &#x27;Colossus.&#x27;&quot;</li>
+<li id="src-15">Infinity Turbine. &quot;The Xai Colossus MegaCluster in Memphis TN Featuring 100000 Nvidia H100.&quot; 2025. <a href="https://infinityturbine.com/xai-colossus-cluster-memphis-tn-nvida-h100-by-infinity-turbine.html" target="_blank" rel="noopener">https://infinityturbine.com/xai-colossus-cluster-memphis-tn-nvida-h100-by-infinity-turbine.html</a></li>
+<li id="src-16">Greater Memphis Chamber. &quot;xAI.&quot; 2025. <a href="https://memphischamber.com/economic-development/xai/" target="_blank" rel="noopener">https://memphischamber.com/economic-development/xai/</a></li>
+<li id="src-17">Infinity Turbine. &quot;The Xai Colossus MegaCluster.&quot;</li>
+<li id="src-18">SemiAnalysis. &quot;xAI&#x27;s Colossus 2.&quot;</li>
+<li id="src-19">SemiAnalysis. &quot;xAI&#x27;s Colossus 2.&quot;</li>
+<li id="src-20">SemiAnalysis. &quot;xAI&#x27;s Colossus 2.&quot;</li>
+<li id="src-21">SemiAnalysis. &quot;xAI&#x27;s Colossus 2.&quot;</li>
+<li id="src-22">CNBC. &quot;Musk&#x27;s xAI scores permit for gas-burning turbines to power Grok supercomputer in Memphis.&quot; July 2025. <a href="https://www.cnbc.com/2025/07/03/musks-xai-gets-permit-for-turbines-to-power-supercomputer-in-memphis.html" target="_blank" rel="noopener">https://www.cnbc.com/2025/07/03/musks-xai-gets-permit-for-turbines-to-power-supercomputer-in-memphis.html</a></li>
+<li id="src-23">Local Memphis. &quot;xAI officials ensure stable power for Shelby County as they prepare to fire up Colossus 2.&quot; 2025. <a href="https://www.localmemphis.com/article/news/local/xai-says-stable-power-for-shelby-county-colossus/522-54334b93-6d25-49c3-89b8-563437797adc" target="_blank" rel="noopener">https://www.localmemphis.com/article/news/local/xai-says-stable-power-for-shelby-county-colossus/522-54334b93-6d25-49c3-89b8-563437797adc</a></li>
+<li id="src-24">Local Memphis. &quot;xAI officials ensure stable power for Shelby County.&quot;</li>
+<li id="src-25">Greater Memphis Chamber. &quot;xAI.&quot;</li>
+<li id="src-26">Greater Memphis Chamber. &quot;xAI.&quot;</li>
+<li id="src-27">Greater Memphis Chamber. &quot;xAI.&quot;</li>
+<li id="src-28">Greater Memphis Chamber. &quot;xAI.&quot;</li>
+<li id="src-29">Action News 5. &quot;Inside Look: Action News 5&#x27;s Joe Birch tours growing xAI data center.&quot; August 2025. <a href="https://www.actionnews5.com/2025/08/18/inside-look-action-news-5s-joe-birch-tours-growing-xai-data-center/" target="_blank" rel="noopener">https://www.actionnews5.com/2025/08/18/inside-look-action-news-5s-joe-birch-tours-growing-xai-data-center/</a></li>
+<li id="src-30">SemiAnalysis. &quot;xAI&#x27;s Colossus 2.&quot;</li>
+<li id="src-31">SemiAnalysis. &quot;xAI&#x27;s Colossus 2.&quot;</li>
+<li id="src-32">R&amp;D World Online. &quot;How xAI turned a factory shell into an AI &#x27;Colossus.&#x27;&quot;</li>
+<li id="src-33">Data Center Dynamics. &quot;xAI to double Colossus compute capacity, reveals cluster uses Nvidia Spectrum-X ethernet.&quot; 2024. <a href="https://www.datacenterdynamics.com/en/news/xai-to-double-colossus-compute-capacity-reveals-cluster-uses-nvidia-spectrum-x-ethernet/" target="_blank" rel="noopener">https://www.datacenterdynamics.com/en/news/xai-to-double-colossus-compute-capacity-reveals-cluster-uses-nvidia-spectrum-x-ethernet/</a></li>
+<li id="src-34">The Register. &quot;xAI&#x27;s 100,000 H100 Colossus is glued together using Ethernet.&quot; October 2024. <a href="https://www.theregister.com/2024/10/29/xai_colossus_networking/" target="_blank" rel="noopener">https://www.theregister.com/2024/10/29/xai_colossus_networking/</a></li>
+<li id="src-35">The Register. &quot;xAI&#x27;s 100,000 H100 Colossus.&quot;</li>
+<li id="src-36">NVIDIA Newsroom. &quot;NVIDIA Ethernet Networking Accelerates World&#x27;s Largest AI Supercomputer.&quot;</li>
+<li id="src-37">NVIDIA Newsroom. &quot;NVIDIA Ethernet Networking Accelerates World&#x27;s Largest AI Supercomputer.&quot;</li>
+<li id="src-38">NVIDIA Newsroom. &quot;NVIDIA Ethernet Networking Accelerates World&#x27;s Largest AI Supercomputer.&quot;</li>
+<li id="src-39">Storage Review. &quot;NVIDIA Spectrum-X Networking Powers xAI&#x27;s Colossus Supercomputer.&quot; 2024. <a href="https://www.storagereview.com/news/nvidia-spectrum-x-networking-powers-xais-colossus-supercomputer" target="_blank" rel="noopener">https://www.storagereview.com/news/nvidia-spectrum-x-networking-powers-xais-colossus-supercomputer</a></li>
+<li id="src-40">Storage Review. &quot;NVIDIA Spectrum-X Networking Powers xAI&#x27;s Colossus Supercomputer.&quot;</li>
+<li id="src-41">Storage Review. &quot;NVIDIA Spectrum-X Networking Powers xAI&#x27;s Colossus Supercomputer.&quot;</li>
+<li id="src-42">NVIDIA Newsroom. &quot;NVIDIA Ethernet Networking Accelerates World&#x27;s Largest AI Supercomputer.&quot;</li>
+<li id="src-43">Built In. &quot;What Is the xAI Supercomputer (Colossus)?&quot;</li>
+<li id="src-44">Built In. &quot;What Is the xAI Supercomputer (Colossus)?&quot;</li>
+<li id="src-45">Built In. &quot;What Is the xAI Supercomputer (Colossus)?&quot;</li>
+<li id="src-46">Built In. &quot;What Is the xAI Supercomputer (Colossus)?&quot;</li>
+<li id="src-47">xAI. &quot;Colossus.&quot; 2025. <a href="https://x.ai/colossus/" target="_blank" rel="noopener">https://x.ai/colossus/</a></li>
+<li id="src-48">Wikipedia. &quot;Colossus (supercomputer).&quot;</li>
+<li id="src-49">SemiAnalysis. &quot;xAI&#x27;s Colossus 2.&quot;</li>
+<li id="src-50">Baxtel. &quot;xAI: Memphis Data Center.&quot; 2025. <a href="https://baxtel.com/data-center/xai-memphis" target="_blank" rel="noopener">https://baxtel.com/data-center/xai-memphis</a></li>
+<li id="src-51">SemiAnalysis. &quot;xAI&#x27;s Colossus 2.&quot;</li>
+<li id="src-52">Data Center Dynamics. &quot;Elon Musk&#x27;s xAI targets one million GPUs.&quot;</li>
+<li id="src-53">CNBC. &quot;Musk&#x27;s xAI scores permit for gas-burning turbines.&quot;</li>
+<li id="src-54">Data Center Dynamics. &quot;Councillors in the dark over Elon Musk&#x27;s xAI Memphis data center.&quot; 2025. <a href="https://www.datacenterdynamics.com/en/news/we-dont-know-anything-councillors-in-the-dark-over-elon-musks-xai-memphis-data-center/" target="_blank" rel="noopener">https://www.datacenterdynamics.com/en/news/we-dont-know-anything-councillors-in-the-dark-over-elon-musks-xai-memphis-data-center/</a></li>
+</ol>
+
+<hr class="div">
+
+<div class="meta" style="margin-top:60px;">
+<b>本文档生成自：</b>Introl 博客原文全文抓取（未采样、未删节），英文段落逐段对照翻译<br>
+<b>体例：</b>英文原文（Georgia 衬线）在上 / 中文译文（米金虚线框）在下；术语首次出现处附中文释义卡片；54 条引用编号全部保留并可点击定位<br>
+<b>译者附注：</b>正文中的 <span style="font-style:normal;color:var(--accent);">THE CRUX</span> / <span style="font-style:normal;color:var(--accent-2);">ASIDE</span> / <span style="font-style:normal;color:var(--gold);">TIP</span> / 矛盾结构框为本对照本追加的阅读辅助，<em>非原文内容</em>，已用组件样式与原文正文明确区隔<br>
+<b>免责声明：</b>原文末尾声明——本内容仅供参考，不构成专业建议，信息可能未反映最新行业进展；文中所述结果为示例性质，取决于具体情况。<br>
+<b>生成日期：</b>2026-07-27
+</div>
+
+</div>
+</body>
+</html>
