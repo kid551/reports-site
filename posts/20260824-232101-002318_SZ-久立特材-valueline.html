@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>久立特材 (002318.SZ) · Value Line 一页式快照</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  :root {
+    --bg: #faf8f3;
+    --paper: #fffdf7;
+    --ink: #1f2330;
+    --ink-soft: #3b4252;
+    --muted: #6b7280;
+    --rule: #d9d2bf;
+    --accent: #8a3324;
+    --accent-soft: #b4533b;
+    --hi: #f3efe3;
+    --tag: #b09a55;
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); }
+  body {
+    color: var(--ink);
+    font-family: "Source Han Serif SC","Noto Serif CJK SC","Songti SC","STSong",Georgia,serif;
+    font-size: 20px;
+    line-height: 1.72;
+    margin: 0;
+  }
+  .wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 40px 36px 64px;
+    background: var(--paper);
+    border-left: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .eyebrow {
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    font-size: 16px;
+    font-family: ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  h1 { font-size: 40px; line-height: 1.2; margin: 6px 0 4px; }
+  h2 {
+    font-size: 32px; line-height: 1.3; margin: 36px 0 14px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+  }
+  h3 { font-size: 24px; margin: 24px 0 10px; }
+  .sub { color: var(--muted); font-size: 17px; font-family: ui-monospace,monospace; }
+
+  .top-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin: 24px 0 18px;
+    background: var(--hi);
+    border: 1px solid var(--rule);
+    padding: 16px 18px;
+    border-radius: 4px;
+  }
+  .kv { font-size: 18px; }
+  .kv .k { color: var(--muted); font-size: 14.5px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .kv .v { color: var(--ink); font-weight: 700; font-size: 21px; font-feature-settings: "tnum"; }
+
+  .rating-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 0 0 24px;
+  }
+  .rcard {
+    background: var(--hi);
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    border-radius: 4px;
+  }
+  .rcard .lab { font-size: 14.5px; letter-spacing: 0.05em; color: var(--muted); }
+  .rcard .rank {
+    font-size: 36px; font-weight: 800;
+    color: var(--accent);
+    font-family: ui-monospace,Menlo,monospace;
+    line-height: 1.1;
+  }
+  .rcard .val { font-size: 15.5px; color: var(--ink-soft); margin-top: 4px; }
+  .rcard .note { font-size: 14px; color: var(--muted); margin-top: 4px; font-style: italic; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 22px;
+    font-size: 17.5px;
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+  }
+  th, td {
+    border: 1px solid var(--rule);
+    padding: 7px 8px;
+    text-align: right;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  th {
+    background: #ede5d0;
+    text-align: center;
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+  td.lab, th.lab { text-align: left; background: #f7f2e2; font-weight: 600; }
+  .annual-array th { font-size: 15px; }
+  .annual-array td { font-size: 15.5px; padding: 6px 6px; }
+  .annual-array th.lab, .annual-array td.lab { font-size: 15.5px; }
+
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 900px) {
+    .top-grid { grid-template-columns: repeat(3, 1fr); }
+    .rating-bar { grid-template-columns: repeat(2, 1fr); }
+    .twocol { grid-template-columns: 1fr; }
+  }
+
+  .chart {
+    width: 100%;
+    height: 380px;
+    background: var(--hi);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    margin: 14px 0 28px;
+  }
+  .row-chart {
+    width: 100%;
+    height: 340px;
+    background: var(--hi);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    margin: 4px 0 28px;
+  }
+  .chart-hint {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin: 6px 0 0;
+    font-style: italic;
+  }
+  tbody tr.clickable-row { cursor: pointer; transition: background 0.12s ease; }
+  tbody tr.clickable-row:hover td { background: #efe6cf; }
+  tbody tr.clickable-row:hover td.lab { background: #ead9a8; }
+  tbody tr.clickable-row.active td { background: #f0d9a0; }
+  tbody tr.clickable-row.active td.lab {
+    background: #d9b766;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+  }
+
+  .summary {
+    background: #f6f1e3;
+    border-left: 4px solid var(--accent);
+    padding: 18px 24px;
+    margin: 12px 0 24px;
+    font-size: 19px;
+    line-height: 1.7;
+  }
+  .summary p { margin: 0 0 12px; }
+  .summary p:last-child { margin-bottom: 0; }
+
+  .commentary {
+    background: #fff5d6;
+    border-left: 4px solid var(--tag);
+    padding: 18px 24px;
+    margin: 12px 0 24px;
+    font-size: 19px;
+    line-height: 1.7;
+  }
+  .commentary p { margin: 0 0 12px; }
+  .commentary p:last-child { margin-bottom: 0; }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 16.5px;
+    line-height: 1.6;
+  }
+  .disclaimer { color: var(--accent-soft); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">VALUE LINE-STYLE ONE-PAGE SNAPSHOT · 本地推算版</div>
+<h1>久立特材</h1>
+<div class="sub">002318.SZ · 特种钢 · SZSE · 上市 20091211</div>
+
+<!-- 顶部信息条 -->
+<div class="top-grid">
+  <div class="kv"><div class="k">公司</div><div class="v">久立特材<br><span style='font-size:14px;color:#6b7280'>浙江久立特材科技股份有限公司</span></div></div><div class="kv"><div class="k">代码</div><div class="v">002318.SZ</div></div><div class="kv"><div class="k">行业</div><div class="v">特种钢</div></div><div class="kv"><div class="k">交易所</div><div class="v">SZSE</div></div><div class="kv"><div class="k">当前股价</div><div class="v">19.55 CNY</div></div><div class="kv"><div class="k">52 周高/低</div><div class="v">36.14 / 17.12</div></div><div class="kv"><div class="k">PE (TTM)</div><div class="v">12.61×</div></div><div class="kv"><div class="k">P/B</div><div class="v">2.10×</div></div><div class="kv"><div class="k">股息率</div><div class="v">4.82%</div></div><div class="kv"><div class="k">总市值</div><div class="v">191.0 亿元</div></div><div class="kv"><div class="k">总股本</div><div class="v">9.77 亿股</div></div><div class="kv"><div class="k">上市日期</div><div class="v">20091211</div></div>
+</div>
+
+<!-- 5 维等价评级 -->
+<h2>本地等价评级（项目推算，非 Value Line 原值）</h2>
+<div class="rating-bar">
+  <div class="rcard"><div class="lab">盈利稳定性</div><div class="rank">B</div><div class="val">近 10 年 EPS 同比波动 σ = 46.8pp; 年均增速 +32.6%</div><div class="note">EPS 区间 0.16–1.59 元 (用 YoY 增长率波动衡量节奏稳定性, 不惩罚高速增长)</div></div><div class="rcard"><div class="lab">财务实力</div><div class="rank">A</div><div class="val">资产负债率 31.7% (其它指标缺失)</div><div class="note">取三项最差档作为终级 (短板效应)</div></div><div class="rcard"><div class="lab">增长持久性</div><div class="rank">A++</div><div class="val">近 10 年 收入 CAGR 18.1% / EPS CAGR 25.9%</div><div class="note">过去 10 年中 0 年同比下滑</div></div><div class="rcard"><div class="lab">FCF 质量</div><div class="rank">D</div><div class="val">近 10 年 FCF/净利 均值 0.41</div><div class="note">其中 1 年 FCF 为负</div></div><div class="rcard"><div class="lab">ROE 持续性</div><div class="rank">A</div><div class="val">近 10 年 ROE 均值 15.4%, 最差 4.9%</div><div class="note">均值高 + 最差年份高 = 真护城河</div></div>
+</div>
+
+<!-- 股价 + 成交量图 -->
+<h2>历史股价 / 成交量（约 15）</h2>
+<div id="chart" class="chart"></div>
+<script>
+const priceData = [29.99, 29.36, 38.0, 30.99, 19.07, 17.72, 21.4, 22.95, 20.82, 22.25, 23.51, 20.02, 17.94, 19.76, 18.71, 17.7, 17.15, 17.97, 17.8, 17.15, 15.63, 17.21, 17.8, 17.1, 16.14, 17.25, 16.53, 11.2, 13.34, 12.05, 11.32, 12.32, 12.7, 12.58, 10.34, 11.9, 13.51, 13.12, 13.71, 14.81, 19.45, 17.13, 19.15, 21.7, 20.11, 18.44, 18.23, 17.9, 17.12, 18.76, 16.76, 16.37, 16.46, 17.71, 19.03, 20.2, 24.81, 26.94, 29.8, 29.88, 41.18, 43.7, 45.05, 49.17, 77.0, 52.38, 39.21, 32.85, 29.04, 14.14, 14.35, 15.3, 9.08, 8.88, 10.25, 9.75, 9.53, 11.57, 10.71, 10.82, 10.43, 10.75, 11.24, 10.0, 9.99, 10.25, 9.59, 8.62, 8.35, 8.18, 8.48, 8.48, 8.6, 8.15, 8.0, 7.09, 7.01, 6.15, 6.67, 6.98, 7.02, 6.02, 6.19, 6.26, 6.4, 6.17, 6.51, 6.34, 6.77, 7.61, 8.26, 7.42, 7.15, 7.31, 7.41, 7.33, 7.65, 8.16, 8.61, 9.38, 8.97, 8.59, 7.41, 7.08, 7.01, 7.3, 8.87, 8.85, 8.53, 10.21, 9.82, 10.9, 13.29, 12.7, 12.86, 13.39, 12.05, 12.02, 10.74, 17.27, 14.01, 12.63, 16.26, 17.88, 17.03, 17.33, 14.73, 15.18, 16.01, 15.99, 17.33, 16.9, 16.2, 16.91, 17.11, 16.64, 17.04, 17.65, 15.38, 15.94, 15.96, 17.03, 17.73, 17.75, 19.3, 20.31, 19.16, 19.88, 19.23, 22.43, 22.22, 24.97, 24.17, 23.33, 21.41, 19.25, 22.8, 22.58, 24.56, 23.41, 24.8, 22.5, 25.06, 23.4, 24.64, 23.39, 22.38, 22.52, 24.37, 25.52, 24.85, 28.95, 33.63, 34.56, 30.28, 30.12, 23.52, 23.9, 20.16];
+const volData = [5161.12, 1868.1, 8227.91, 5911.83, 3442.46, 4738.37, 4857.27, 5732.78, 5806.28, 5569.13, 11025.43, 5053.87, 2262.96, 2275.37, 3428.3, 1762.36, 854.51, 1088.34, 2324.7, 2385.75, 1212.44, 861.55, 2841.42, 1479.9, 929.15, 2246.66, 3313.88, 1294.12, 6606.21, 8024.52, 5002.01, 7858.91, 7463.82, 7193.22, 4207.65, 5144.93, 9209.97, 12888.35, 7636.0, 6338.24, 11089.42, 7826.62, 7528.24, 10006.47, 7685.89, 5725.39, 6843.95, 6023.63, 4135.48, 9740.34, 8104.21, 5436.77, 4386.39, 5538.97, 10029.6, 14212.37, 13508.47, 9940.77, 14265.77, 17062.01, 18548.2, 6176.58, 17200.38, 24424.83, 20411.7, 18107.24, 23832.7, 30248.72, 25160.49, 46930.89, 86748.2, 67097.24, 41948.53, 29353.86, 51832.21, 40275.79, 40273.54, 76325.99, 60753.51, 25070.45, 21643.53, 23341.15, 27356.65, 25857.79, 5860.25, 21487.86, 19890.01, 15970.19, 17551.43, 12217.24, 23379.5, 26499.23, 28781.99, 11437.97, 19340.64, 8933.99, 9532.81, 7103.93, 16371.5, 20546.92, 20108.6, 13790.98, 10446.97, 11724.17, 12732.47, 12444.96, 15729.24, 7898.88, 19566.96, 29203.98, 56408.85, 34649.97, 14121.03, 12660.42, 17485.02, 13702.71, 23346.25, 31334.79, 38779.32, 35240.16, 26864.86, 41101.16, 39752.5, 24114.79, 12908.76, 18672.43, 56369.76, 29609.75, 32418.49, 29444.58, 64057.39, 48556.85, 76206.77, 43639.35, 43850.54, 26200.6, 26823.56, 22014.4, 28341.43, 69476.35, 45123.99, 18608.36, 32363.83, 30582.58, 27979.27, 17693.57, 26153.81, 15051.38, 12973.47, 13677.69, 11244.33, 16569.19, 16945.47, 11390.35, 16086.26, 13160.42, 12494.28, 13776.9, 21621.15, 16710.68, 11386.58, 7351.52, 8014.29, 7932.8, 16161.59, 9312.19, 8191.5, 6740.84, 10793.17, 10991.55, 9670.72, 14406.88, 11009.5, 10375.77, 11411.7, 9555.51, 13601.52, 18635.88, 14598.87, 17351.46, 10832.17, 9170.28, 13905.04, 14913.66, 11574.83, 10122.06, 18132.61, 28841.94, 27537.51, 23577.73, 27574.98, 27807.53, 29138.49, 12690.83, 20823.84, 22180.08, 20931.39, 27354.51, 31863.13];
+const dates = ["20100129", "20100226", "20100331", "20100430", "20100531", "20100630", "20100730", "20100831", "20100930", "20101029", "20101130", "20101231", "20110131", "20110228", "20110331", "20110429", "20110531", "20110630", "20110729", "20110831", "20110930", "20111031", "20111130", "20111230", "20120131", "20120229", "20120330", "20120427", "20120531", "20120629", "20120731", "20120831", "20120928", "20121031", "20121130", "20121231", "20130131", "20130228", "20130329", "20130426", "20130531", "20130628", "20130731", "20130830", "20130930", "20131031", "20131129", "20131231", "20140130", "20140228", "20140331", "20140430", "20140530", "20140630", "20140731", "20140829", "20140930", "20141031", "20141128", "20141231", "20150130", "20150227", "20150331", "20150430", "20150529", "20150630", "20150731", "20150831", "20150930", "20151030", "20151130", "20151231", "20160129", "20160229", "20160331", "20160429", "20160531", "20160630", "20160729", "20160831", "20160930", "20161031", "20161130", "20161230", "20170126", "20170228", "20170331", "20170428", "20170531", "20170630", "20170731", "20170831", "20170929", "20171031", "20171130", "20171229", "20180131", "20180228", "20180330", "20180427", "20180531", "20180629", "20180731", "20180831", "20180928", "20181031", "20181130", "20181228", "20190131", "20190228", "20190329", "20190430", "20190531", "20190628", "20190731", "20190830", "20190930", "20191031", "20191129", "20191231", "20200123", "20200228", "20200331", "20200430", "20200529", "20200630", "20200731", "20200831", "20200930", "20201030", "20201130", "20201231", "20210129", "20210226", "20210331", "20210430", "20210531", "20210630", "20210730", "20210831", "20210930", "20211029", "20211130", "20211231", "20220128", "20220228", "20220331", "20220429", "20220531", "20220630", "20220729", "20220831", "20220930", "20221031", "20221130", "20221230", "20230131", "20230228", "20230331", "20230428", "20230531", "20230630", "20230731", "20230831", "20230928", "20231031", "20231130", "20231229", "20240131", "20240229", "20240329", "20240430", "20240531", "20240628", "20240731", "20240830", "20240930", "20241031", "20241129", "20241231", "20250127", "20250228", "20250331", "20250430", "20250530", "20250630", "20250731", "20250829", "20250930", "20251031", "20251128", "20251231", "20260130", "20260227", "20260331", "20260430", "20260529", "20260630", "20260731"];
+const chart = echarts.init(document.getElementById('chart'));
+chart.setOption({
+  grid: [
+    { left: 60, right: 60, top: 30, height: '60%' },
+    { left: 60, right: 60, top: '75%', height: '20%' }
+  ],
+  xAxis: [
+    { type: 'category', data: dates, gridIndex: 0, axisLabel: { fontSize: 12 } },
+    { type: 'category', data: dates, gridIndex: 1, axisLabel: { fontSize: 11 } }
+  ],
+  yAxis: [
+    { type: 'value', name: '收盘价', gridIndex: 0, axisLabel: { fontSize: 12 } },
+    { type: 'value', name: '成交量', gridIndex: 1, axisLabel: { fontSize: 11 } }
+  ],
+  tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
+  series: [
+    { name: '收盘价', type: 'line', data: priceData, xAxisIndex: 0, yAxisIndex: 0, color: '#8a3324', smooth: false, symbol: 'none' },
+    { name: '成交量', type: 'bar', data: volData, xAxisIndex: 1, yAxisIndex: 1, color: '#b4533b' }
+  ]
+});
+</script>
+
+<!-- 当前财务状态 + 资本结构 -->
+<div class="twocol">
+  <div>
+    <h3>当前财务状态（Current Position · 20260331）</h3>
+    <table>
+      <tbody>
+        <tr><td class="lab">现金 (千万元)</td><td>260.1</td></tr><tr><td class="lab">应收账款 (千万元)</td><td>160.9</td></tr><tr><td class="lab">存货 (千万元)</td><td>290.6</td></tr><tr><td class="lab">流动资产合计 (千万元)</td><td>845.0</td></tr><tr><td class="lab">应付账款 (千万元)</td><td>90.1</td></tr><tr><td class="lab">短期借款 (千万元)</td><td>30.5</td></tr><tr><td class="lab">流动负债合计 (千万元)</td><td>396.9</td></tr><tr><td class="lab">营运资本 (千万元)</td><td>448.2</td></tr><tr><td class="lab">流动比率</td><td>2.13×</td></tr><tr><td class="lab">速动比率</td><td>1.40×</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>资本结构盒（Capital Structure · 20260331）</h3>
+    <table>
+      <tbody>
+        <tr><td class="lab">短期借款 (千万元)</td><td>30.5</td></tr><tr><td class="lab">长期借款 (千万元)</td><td>0.5</td></tr><tr><td class="lab">应付债券 (千万元)</td><td>—</td></tr><tr><td class="lab">总负债 (千万元)</td><td>435.1</td></tr><tr><td class="lab">少数股东权益 (千万元)</td><td>25.8</td></tr><tr><td class="lab">归母股东权益 (千万元)</td><td>911.8</td></tr><tr><td class="lab">合计股东权益 (千万元)</td><td>937.6</td></tr><tr><td class="lab">总资产 (千万元)</td><td>1,372.7</td></tr><tr><td class="lab">负债 / 股东权益</td><td>0.46×</td></tr><tr><td class="lab">资产负债率</td><td>31.7%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 季度数据 -->
+<h2>最近 8 季度数据 <span style="font-size:15px;color:var(--muted);font-weight:400;">（Tushare 原始口径为 YTD 累计, 已差分为单季度独立值）</span></h2>
+<table id="quarterly-table">
+  <thead>
+    <tr><th>指标</th><th>2024Q2</th><th>2024Q3</th><th>2024Q4</th><th>2025Q1</th><th>2025Q2</th><th>2025Q3</th><th>2025Q4</th><th>2026Q1</th></tr>
+  </thead>
+  <tbody>
+    <tr class="clickable-row" data-series="q_revenue"><td class="lab">营业收入 千万元</td><td>—</td><td>231.3</td><td>377.5</td><td>288.3</td><td>322.3</td><td>364.2</td><td>231.2</td><td>202.4</td></tr><tr class="clickable-row" data-series="q_operate_profit"><td class="lab">营业利润 千万元</td><td>—</td><td>48.0</td><td>58.1</td><td>48.0</td><td>54.8</td><td>55.8</td><td>36.3</td><td>49.2</td></tr><tr class="clickable-row" data-series="q_n_income_attr_p"><td class="lab">归母净利润 千万元</td><td>—</td><td>40.1</td><td>44.5</td><td>38.9</td><td>43.8</td><td>43.4</td><td>24.8</td><td>39.5</td></tr><tr class="clickable-row" data-series="q_basic_eps"><td class="lab">基本 EPS (元)</td><td>—</td><td>0.42</td><td>0.46</td><td>0.41</td><td>0.46</td><td>0.46</td><td>0.26</td><td>0.41</td></tr>
+  </tbody>
+</table>
+<div id="quarterly-chart" class="row-chart"></div>
+<div class="chart-hint">点击上方表格任一行可在此查看该指标的季度走势。</div>
+
+<!-- 15 年纵向阵列 -->
+<h2>近 15 年纵向数据阵列（价值线核心区）</h2>
+<table id="annual-table" class="annual-array">
+  <thead>
+    <tr><th class="lab">字段</th><th>2011</th><th>2012</th><th>2013</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+  </thead>
+  <tbody>
+    <tr class="clickable-row" data-series="a_sales_ps"><td class="lab">每股销售收入 (元)</td><td>10.39</td><td>8.53</td><td>9.13</td><td>8.62</td><td>3.23</td><td>3.21</td><td>3.37</td><td>4.83</td><td>5.27</td><td>5.14</td><td>6.11</td><td>6.69</td><td>8.77</td><td>11.17</td><td>12.34</td></tr><tr class="clickable-row" data-series="a_cf_ps"><td class="lab">每股现金流 (元)</td><td>-0.40</td><td>1.11</td><td>1.27</td><td>0.75</td><td>0.41</td><td>0.36</td><td>-0.15</td><td>0.77</td><td>0.72</td><td>1.38</td><td>0.78</td><td>1.02</td><td>1.80</td><td>0.85</td><td>1.94</td></tr><tr class="clickable-row" data-series="a_eps"><td class="lab">每股 EPS (元)</td><td>0.54</td><td>0.50</td><td>0.70</td><td>0.61</td><td>0.15</td><td>0.20</td><td>0.16</td><td>0.36</td><td>0.59</td><td>0.91</td><td>0.83</td><td>1.34</td><td>1.53</td><td>1.55</td><td>1.59</td></tr><tr class="clickable-row" data-series="a_dps"><td class="lab">每股股息 (元)</td><td>0.10</td><td>0.10</td><td>0.20</td><td>0.20</td><td>0.02</td><td>0.06</td><td>0.15</td><td>0.30</td><td>0.30</td><td>0.38</td><td>0.40</td><td>0.43</td><td>0.48</td><td>0.97</td><td>1.00</td></tr><tr class="clickable-row" data-series="a_capex_ps"><td class="lab">每股 CapEx (元)</td><td>1.52</td><td>0.91</td><td>1.24</td><td>1.31</td><td>0.38</td><td>0.20</td><td>0.17</td><td>0.23</td><td>0.44</td><td>0.45</td><td>0.76</td><td>0.43</td><td>0.46</td><td>0.61</td><td>0.75</td></tr><tr class="clickable-row" data-series="a_bps"><td class="lab">每股账面价值 BVPS (元)</td><td>7.08</td><td>5.13</td><td>5.72</td><td>7.14</td><td>2.92</td><td>3.11</td><td>3.20</td><td>3.53</td><td>3.82</td><td>4.96</td><td>5.22</td><td>6.36</td><td>7.41</td><td>8.06</td><td>8.81</td></tr><tr class="clickable-row" data-series="a_total_share_y"><td class="lab">总股本 (亿股)</td><td>2.08</td><td>3.12</td><td>3.12</td><td>3.37</td><td>8.42</td><td>8.42</td><td>8.42</td><td>8.42</td><td>8.42</td><td>9.65</td><td>9.77</td><td>9.77</td><td>9.77</td><td>9.77</td><td>9.77</td></tr><tr class="clickable-row" data-series="a_pe_avg"><td class="lab">年末 PE (×)</td><td>32.3</td><td>25.7</td><td>27.7</td><td>47.4</td><td>90.0</td><td>74.5</td><td>35.4</td><td>22.1</td><td>16.6</td><td>15.3</td><td>20.9</td><td>15.4</td><td>12.8</td><td>16.0</td><td>16.6</td></tr><tr class="clickable-row" data-series="a_rel_pe"><td class="lab">相对 PE (vs 沪深300)</td><td>—</td><td>—</td><td>—</td><td>3.67</td><td>6.58</td><td>5.77</td><td>2.47</td><td>2.16</td><td>1.33</td><td>0.95</td><td>1.49</td><td>1.36</td><td>1.18</td><td>1.24</td><td>1.17</td></tr><tr class="clickable-row" data-series="a_dv"><td class="lab">股息率 (%)</td><td>0.58</td><td>0.56</td><td>0.56</td><td>0.67</td><td>0.52</td><td>0.20</td><td>0.85</td><td>2.37</td><td>3.20</td><td>2.49</td><td>2.09</td><td>2.36</td><td>2.16</td><td>2.02</td><td>3.25</td></tr><tr class="clickable-row" data-series="a_revenue_qy"><td class="lab">营业收入 (千万元)</td><td>216.2</td><td>266.0</td><td>284.9</td><td>290.2</td><td>272.1</td><td>269.8</td><td>283.3</td><td>406.3</td><td>443.7</td><td>495.5</td><td>597.4</td><td>653.7</td><td>856.8</td><td>1,091.8</td><td>1,205.9</td></tr><tr class="clickable-row" data-series="a_op_margin"><td class="lab">营业利润率 (%)</td><td>5.9</td><td>6.8</td><td>9.1</td><td>7.1</td><td>4.4</td><td>6.2</td><td>5.2</td><td>9.3</td><td>13.3</td><td>18.2</td><td>15.2</td><td>21.3</td><td>20.2</td><td>16.6</td><td>16.2</td></tr><tr class="clickable-row" data-series="a_depr_qy"><td class="lab">折旧 (千万元)</td><td>7.7</td><td>10.4</td><td>12.1</td><td>14.9</td><td>15.6</td><td>17.9</td><td>20.5</td><td>21.1</td><td>20.9</td><td>20.9</td><td>23.3</td><td>26.8</td><td>32.5</td><td>34.6</td><td>37.1</td></tr><tr class="clickable-row" data-series="a_net_profit_qy"><td class="lab">归母净利润 (千万元)</td><td>11.2</td><td>15.5</td><td>21.7</td><td>19.0</td><td>12.3</td><td>16.8</td><td>13.4</td><td>30.4</td><td>50.0</td><td>77.2</td><td>79.4</td><td>128.8</td><td>148.9</td><td>149.0</td><td>150.9</td></tr><tr class="clickable-row" data-series="a_tax_rate"><td class="lab">所得税率 (%)</td><td>10.2</td><td>14.1</td><td>15.8</td><td>16.5</td><td>17.2</td><td>17.1</td><td>12.7</td><td>18.6</td><td>14.4</td><td>14.1</td><td>11.4</td><td>6.3</td><td>14.4</td><td>16.1</td><td>21.3</td></tr><tr class="clickable-row" data-series="a_net_margin"><td class="lab">净利率 (%)</td><td>5.2</td><td>5.8</td><td>7.6</td><td>6.5</td><td>4.5</td><td>6.2</td><td>4.7</td><td>7.5</td><td>11.3</td><td>15.6</td><td>13.3</td><td>19.7</td><td>17.4</td><td>13.7</td><td>12.5</td></tr><tr class="clickable-row" data-series="a_wc_qy"><td class="lab">营运资本 (千万元)</td><td>53.5</td><td>51.8</td><td>50.0</td><td>91.7</td><td>80.5</td><td>93.4</td><td>201.8</td><td>238.0</td><td>195.4</td><td>222.8</td><td>187.8</td><td>251.6</td><td>348.0</td><td>254.8</td><td>381.1</td></tr><tr class="clickable-row" data-series="a_lt_debt_qy"><td class="lab">长期负债 (千万元)</td><td>2.5</td><td>5.0</td><td>10.6</td><td>10.6</td><td>6.4</td><td>6.1</td><td>83.2</td><td>86.8</td><td>90.9</td><td>4.8</td><td>4.0</td><td>20.0</td><td>6.8</td><td>0.0</td><td>0.2</td></tr><tr class="clickable-row" data-series="a_equity_qy"><td class="lab">股东权益 (千万元)</td><td>153.5</td><td>166.9</td><td>185.8</td><td>249.5</td><td>254.7</td><td>267.7</td><td>299.1</td><td>329.0</td><td>356.3</td><td>495.0</td><td>526.1</td><td>642.9</td><td>745.2</td><td>811.7</td><td>886.8</td></tr><tr class="clickable-row" data-series="a_roce"><td class="lab">ROCE (%)</td><td>11.4</td><td>15.9</td><td>15.9</td><td>11.1</td><td>5.9</td><td>6.6</td><td>4.8</td><td>10.8</td><td>18.4</td><td>23.1</td><td>19.9</td><td>17.0</td><td>19.5</td><td>32.6</td><td>24.1</td></tr><tr class="clickable-row" data-series="a_roe"><td class="lab">ROE (%)</td><td>7.6</td><td>10.1</td><td>12.8</td><td>9.1</td><td>5.0</td><td>6.6</td><td>4.9</td><td>10.0</td><td>15.2</td><td>18.8</td><td>16.0</td><td>22.8</td><td>22.1</td><td>19.7</td><td>18.3</td></tr><tr class="clickable-row" data-series="a_retained_to_equity"><td class="lab">留存对净资产贡献 (%)</td><td>6.2</td><td>8.1</td><td>9.2</td><td>6.1</td><td>4.4</td><td>4.6</td><td>0.3</td><td>1.7</td><td>7.5</td><td>10.9</td><td>8.3</td><td>15.5</td><td>15.2</td><td>7.4</td><td>6.8</td></tr><tr class="clickable-row" data-series="a_payout"><td class="lab">派息率 (%)</td><td>18.5</td><td>20.0</td><td>28.6</td><td>32.8</td><td>13.3</td><td>30.0</td><td>93.7</td><td>83.3</td><td>50.8</td><td>41.8</td><td>48.2</td><td>32.1</td><td>31.4</td><td>62.6</td><td>62.9</td></tr>
+  </tbody>
+</table>
+<div id="annual-chart" class="row-chart"></div>
+<div class="chart-hint">点击上方表格任一行可在此查看该指标的长期趋势。</div>
+
+<script>
+const Q_XAXIS = ["2024Q2", "2024Q3", "2024Q4", "2025Q1", "2025Q2", "2025Q3", "2025Q4", "2026Q1"];
+const Q_SERIES = {"q_revenue": {"label": "营业收入", "unit": "千万元", "values": [null, 231.3, 377.5, 288.3, 322.3, 364.2, 231.2, 202.4]}, "q_operate_profit": {"label": "营业利润", "unit": "千万元", "values": [null, 48.0, 58.1, 48.0, 54.8, 55.8, 36.3, 49.2]}, "q_n_income_attr_p": {"label": "归母净利润", "unit": "千万元", "values": [null, 40.1, 44.5, 38.9, 43.8, 43.4, 24.8, 39.5]}, "q_basic_eps": {"label": "基本 EPS", "unit": "元", "values": [null, 0.42, 0.46, 0.41, 0.46, 0.46, 0.26, 0.41]}};
+const ANN_XAXIS = ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
+const ANN_SERIES = {"a_sales_ps": {"label": "每股销售收入 (元)", "unit": "", "values": [10.3922, 8.5256, 9.1301, 8.6209, 3.2339, 3.2063, 3.3666, 4.8282, 5.2723, 5.1374, 6.1134, 6.6901, 8.7686, 11.1734, 12.3402]}, "a_cf_ps": {"label": "每股现金流 (元)", "unit": "", "values": [-0.3988, 1.1061, 1.2724, 0.7482, 0.4088, 0.3643, -0.1453, 0.7715, 0.7212, 1.3766, 0.7766, 1.0168, 1.8003, 0.8506, 1.9373]}, "a_eps": {"label": "每股 EPS (元)", "unit": "", "values": [0.54, 0.5, 0.7, 0.61, 0.15, 0.2, 0.16, 0.36, 0.59, 0.91, 0.83, 1.34, 1.53, 1.55, 1.59]}, "a_dps": {"label": "每股股息 (元)", "unit": "", "values": [0.1, 0.1, 0.2, 0.2, 0.02, 0.06, 0.15, 0.3, 0.3, 0.38, 0.4, 0.43, 0.48, 0.97, 1.0]}, "a_capex_ps": {"label": "每股 CapEx (元)", "unit": "", "values": [1.5248, 0.9142, 1.2398, 1.313, 0.3837, 0.2011, 0.1721, 0.2264, 0.4375, 0.4485, 0.7554, 0.4265, 0.458, 0.6073, 0.7511]}, "a_bps": {"label": "每股账面价值 BVPS (元)", "unit": "", "values": [7.0772, 5.1282, 5.7238, 7.1441, 2.9247, 3.1065, 3.2029, 3.5291, 3.824, 4.9609, 5.2156, 6.3634, 7.4137, 8.0636, 8.8124]}, "a_total_share_y": {"label": "总股本 (亿股)", "unit": "", "values": [2.08, 3.12, 3.12, 3.366, 8.4151, 8.4151, 8.4151, 8.4152, 8.4154, 9.6455, 9.7717, 9.7717, 9.7717, 9.7717, 9.7717]}, "a_pe_avg": {"label": "年末 PE (×)", "unit": "", "values": [32.2817, 25.7481, 27.712, 47.4421, 90.0055, 74.4829, 35.3574, 22.1022, 16.5848, 15.3423, 20.9326, 15.3502, 12.7954, 16.046, 16.572]}, "a_rel_pe": {"label": "相对 PE (vs 沪深300)", "unit": "", "values": [null, null, null, 3.6748, 6.5842, 5.7694, 2.4725, 2.1605, 1.3289, 0.9529, 1.4931, 1.356, 1.1793, 1.241, 1.1695]}, "a_dv": {"label": "股息率 (%)", "unit": "", "values": [0.5848, 0.5602, 0.5587, 0.6693, 0.5229, 0.2, 0.8463, 2.3659, 3.1983, 2.4883, 2.0887, 2.3625, 2.163, 2.0198, 3.2527]}, "a_revenue_qy": {"label": "营业收入 (千万元)", "unit": "", "values": [216.1576, 265.9984, 284.8582, 290.1823, 272.1325, 269.8104, 283.3003, 406.3057, 443.6861, 495.5247, 597.3834, 653.7322, 856.8415, 1091.8288, 1205.8509]}, "a_op_margin": {"label": "营业利润率 (%)", "unit": "", "values": [5.9389, 6.8377, 9.093, 7.1256, 4.3994, 6.2349, 5.2203, 9.3401, 13.3295, 18.2348, 15.1562, 21.259, 20.2351, 16.6047, 16.1662]}, "a_depr_qy": {"label": "折旧 (千万元)", "unit": "", "values": [7.7144, 10.4354, 12.1303, 14.8655, 15.6401, 17.9011, 20.4585, 21.0637, 20.928, 20.86, 23.2815, 26.8297, 32.4672, 34.6183, 37.0972]}, "a_net_profit_qy": {"label": "归母净利润 (千万元)", "unit": "", "values": [11.1977, 15.4896, 21.7195, 18.9944, 12.2799, 16.7767, 13.3824, 30.3636, 50.004, 77.1525, 79.4077, 128.7845, 148.8537, 149.0376, 150.9373]}, "a_tax_rate": {"label": "所得税率 (%)", "unit": "", "values": [10.2124, 14.0781, 15.836, 16.509, 17.2094, 17.1205, 12.6626, 18.5577, 14.4123, 14.1186, 11.3904, 6.2881, 14.4198, 16.0638, 21.3496]}, "a_net_margin": {"label": "净利率 (%)", "unit": "", "values": [5.1803, 5.8232, 7.6247, 6.5457, 4.5125, 6.2179, 4.7238, 7.4731, 11.2701, 15.5699, 13.2926, 19.6999, 17.3724, 13.6503, 12.5171]}, "a_wc_qy": {"label": "营运资本 (千万元)", "unit": "", "values": [53.5063, 51.8489, 50.0245, 91.6799, 80.5429, 93.4146, 201.7609, 238.0073, 195.3508, 222.8461, 187.8031, 251.5731, 347.9709, 254.7695, 381.0657]}, "a_lt_debt_qy": {"label": "长期负债 (千万元)", "unit": "", "values": [2.5, 4.998, 10.5777, 10.6, 6.4, 6.1247, 83.1766, 86.7565, 90.897, 4.8057, 4.0048, 20.0185, 6.7964, 0.0, 0.172]}, "a_equity_qy": {"label": "股东权益 (千万元)", "unit": "", "values": [153.5344, 166.8827, 185.8263, 249.4677, 254.7438, 267.6728, 299.0721, 328.997, 356.3467, 495.0053, 526.1102, 642.8865, 745.1878, 811.6766, 886.7592]}, "a_roce": {"label": "ROCE (%)", "unit": "", "values": [11.3516, 15.937, 15.8592, 11.1062, 5.9398, 6.5982, 4.7511, 10.7738, 18.3958, 23.106, 19.8502, 16.988, 19.5393, 32.5551, 24.1461]}, "a_roe": {"label": "ROE (%)", "unit": "", "values": [7.6069, 10.0842, 12.8296, 9.0653, 5.0473, 6.6111, 4.8561, 10.0054, 15.1707, 18.7602, 16.0395, 22.7642, 22.1138, 19.7089, 18.3058]}, "a_retained_to_equity": {"label": "留存对净资产贡献 (%)", "unit": "", "values": [6.1982, 8.0674, 9.164, 6.0931, 4.3743, 4.6278, 0.3035, 1.6676, 7.4568, 10.9263, 8.3096, 15.4593, 15.1761, 7.3749, 6.7927]}, "a_payout": {"label": "派息率 (%)", "unit": "", "values": [18.5185, 20.0, 28.5714, 32.7869, 13.3333, 30.0, 93.7494, 83.3333, 50.8475, 41.7582, 48.1928, 32.0896, 31.3725, 62.5806, 62.8931]}};
+
+function buildRowChartOption(xaxis, series) {
+  const accent = '#8a3324';
+  const accentSoft = '#b4533b';
+  return {
+    title: {
+      text: series.label + (series.unit ? '  (' + series.unit + ')' : ''),
+      left: 'center', top: 6,
+      textStyle: { fontSize: 16, color: '#1f2330', fontWeight: 700 }
+    },
+    grid: { left: 64, right: 36, top: 52, bottom: 44 },
+    tooltip: {
+      trigger: 'axis',
+      valueFormatter: v => (v === null || v === undefined) ? '—' : Number(v).toLocaleString('en-US', {maximumFractionDigits: 2}) + (series.unit ? ' ' + series.unit : '')
+    },
+    xAxis: { type: 'category', data: xaxis, axisLabel: { fontSize: 12 } },
+    yAxis: { type: 'value', scale: true, axisLabel: { fontSize: 12 } },
+    series: [{
+      name: series.label,
+      type: 'line',
+      data: series.values,
+      smooth: false,
+      symbol: 'circle',
+      symbolSize: 8,
+      lineStyle: { width: 2.5, color: accent },
+      itemStyle: { color: accent, borderColor: '#fff', borderWidth: 1.5 },
+      areaStyle: { color: 'rgba(180, 83, 59, 0.12)' },
+      label: {
+        show: true, position: 'top', fontSize: 11, color: accentSoft,
+        formatter: p => (p.value === null || p.value === undefined) ? '' : Number(p.value).toLocaleString('en-US', {maximumFractionDigits: 2})
+      },
+      connectNulls: false
+    }]
+  };
+}
+
+function wireRowChart(tableId, chartId, xaxis, seriesMap) {
+  const chartEl = document.getElementById(chartId);
+  if (!chartEl) return;
+  const chart = echarts.init(chartEl);
+  const table = document.getElementById(tableId);
+  if (!table) return;
+  const rows = table.querySelectorAll('tbody tr.clickable-row');
+  let activeKey = null;
+  function activate(key) {
+    const series = seriesMap[key];
+    if (!series) return;
+    activeKey = key;
+    rows.forEach(r => r.classList.toggle('active', r.dataset.series === key));
+    chart.setOption(buildRowChartOption(xaxis, series), true);
+  }
+  rows.forEach(r => {
+    r.addEventListener('click', () => activate(r.dataset.series));
+  });
+  // 默认渲染第一行
+  if (rows.length > 0) activate(rows[0].dataset.series);
+  window.addEventListener('resize', () => chart.resize());
+}
+
+wireRowChart('quarterly-table', 'quarterly-chart', Q_XAXIS, Q_SERIES);
+wireRowChart('annual-table', 'annual-chart', ANN_XAXIS, ANN_SERIES);
+</script>
+
+<!-- 业务摘要 -->
+<h2>业务摘要</h2>
+<div class="summary">
+  <p>浙江久立特材科技股份有限公司作为久立集团股份有限公司的控股子公司,创建于1987年,座落在“长三角”中心太湖南岸——浙江省湖州市,是一家专业生产工业用不锈钢及特种合金管材、双金属复合管材、管件的上市公司。【股票代码:002318】。公司建有世界先进水平的不锈钢、耐蚀合金、钛合金、高温合金无缝管(热挤压/穿孔+冷轧/冷拔)生产线和FFX成型、JCO成型等焊接管生产线,始终致力于为油气、电力、核电、LNG等能源装备及石化、化工、船舶制造等行业装备提供高性能、耐蚀、耐压、耐温的不锈钢管;不锈钢、镍基合金、碳钢、合金钢等材料法兰、管件等,管道产销量多年居国内首位。
+公司建有完善的质保体系,包括ISO9001质保体系,ISO14001环境管理体系认证、OHSAS18001职业健康安全管理体系认证,国家质量监督检验检疫总局颁发的《特种设备制造许可证》证书、国家核安全局颁发的《民用核安全机械设备制造许可证》证书、PED97/23/EC欧盟承压设备指令、美国机械工程师协会核质保体系认证(ASMESectionⅢNPT包含MO)、美国石油学会API5LC/5CT/5LD认证,CCS中国船级社、GL德国劳氏船级社、DNV挪威船级社、BV法国船级社、ABS美国船级社、LR英国劳氏船级社等主要船级社认证证书。
+公司一直认为对产品、材料的研发是核心竞争力水平提升的关键。公司是国家级高新技术企业,建立的“久立研究院”是国家认定企业技术中心、国家认可委员会CNAS认定的钢铁实验室。为油气、火电、核电、LNG等能源装备及化工、煤化工、船舶制造、造纸、机械制造、制药等行业装备提供优质可靠的产品。公司拥有各类授权专利50多项;由公司主导起草的国家标准、行业标准达10余项。</p><p><strong>主营业务：</strong>工业用不锈钢管及特种合金的管材、管件的研发、生产、销售。</p><p>注册地：浙江 · 湖州市 · 成立日期：20040108 · 董事长：李郑周 · 总经理：王长城 · 员工数：4,680 · 官网：www.jiuli.com</p>
+</div>
+
+<!-- 自动评论 -->
+<h2>基于数据的简短评述（程序化生成）</h2>
+<div class="commentary">
+  <p>过去 15 年里, 久立特材 的营业收入从 216.2 千万元增长到 1205.9 千万元, 对应年化复合增速约 13.1%。 归母净利润同期从 11.2 千万元到 150.9 千万元, 年化约 20.4%。</p><p>营业利润率在 4.4%–21.3% 区间内运行, 近 3 年均值 17.7%, 显示出 受周期/竞争波动影响较明显 的特征。 ROE 在最差年份为 4.9%, 近 10 年均值 15.4% (反映了稳定的资本配置能力)。</p><p>过去 10 年 CapEx 占经营现金流均值 33%, 属于自由现金流充裕、有自主分配权的轻资产生意。 项目本地等价评级: 盈利稳定性 B; 财务实力 A; 增长持久性 A++; FCF 质量 D; ROE 持续性 A。 以上为基于数据的程序化描述, 不构成任何投资建议。</p>
+</div>
+
+<footer>
+  <p>数据源：Tushare REST API（直连 <span style="font-family:ui-monospace,monospace;">api.tushare.pro</span>，TUSHARE_TOKEN 鉴权）。
+  本页字段口径见 <span style="font-family:ui-monospace,monospace;">.claude/skills/value-line-page/SKILL.md</span>。</p>
+  <p class="disclaimer">本页是数据可视化层，并非投资建议。所有评级是基于公开数据的本地推算，与 Value Line Investment Survey 的官方评级（Timeliness / Safety / Technical）无关。</p>
+  <p>生成时间：2026-08-24 23:21:01 · 本地脚本：build_valueline.py</p>
+</footer>
+
+</div>
+</body>
+</html>

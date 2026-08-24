@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>久立特材（002318.SZ）深度投研报告 — 2026 半年报「高基数论」独立核查</title>
+<style>
+:root {
+  --bg: #fbfaf7;
+  --bg-card: #ffffff;
+  --ink: #1f2328;
+  --ink-2: #3b4248;
+  --ink-3: #5a5a5a;
+  --accent: #8a3324;       /* CRUX 红（替代旧 #8b3a3a） */
+  --accent-2: #4c6c9c;      /* ASIDE 蓝（替代旧 #2c5282） */
+  --gold: #c79b2b;          /* TIP 金（替代旧 #b58900） */
+  --tip-bg: #fff5d6;
+  --tip-bd: #c79b2b;
+  --aside-bg: #eef3fb;
+  --aside-bd: #4c6c9c;
+  --crux-bg: #fde7e0;       /* CRUX 浅底 */
+  --crux-bd: #8a3324;
+  --maodun-bg: #f4e4e8;     /* DIVE 玫红浅底（由旧紫 #f3eef9） */
+  --maodun-bd: #944056;     /* DIVE 玫红（由旧紫 #7c539c） */
+  --term-bg: #f1ede0;       /* METRIC 米金浅底（由旧米黄 #f5f1e8） */
+  --term-bd: #b09a55;       /* METRIC 米金（由旧 #c8b88a） */
+  --rule: #c9c1ac;           /* 统一边框（由旧 #e3ddd0） */
+  --code: #f5f1e3;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  font-size: 18px;       /* body ≥ 18px (硬下限) */
+  line-height: 1.9;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 60px 36px 120px;
+}
+
+/* === 标题 === */
+h1 {
+  font-size: 40px;       /* h1 ≥ 34px (硬下限) */
+  line-height: 1.3;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+h1 .sub {
+  display: block;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 32px;       /* h2 ≥ 30px (硬下限) */
+  margin: 80px 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 3px double var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.4;
+}
+h2 .num {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 19px;
+  margin-right: 14px;
+  vertical-align: middle;
+  font-family: Georgia, serif;
+}
+h3 {
+  font-size: 25px;
+  margin: 48px 0 14px;
+  color: var(--accent-2);
+  font-weight: 700;
+  border-left: 6px solid var(--accent-2);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+h4 {
+  font-size: 20px;
+  margin: 32px 0 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+p { margin: 12px 0; }
+strong { color: var(--accent); font-weight: 700; }
+em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+
+/* === The Crux 红框：每章必有 === */
+.crux {
+  background: var(--crux-bg);
+  border-left: 8px solid var(--crux-bd);
+  border-radius: 4px;
+  padding: 22px 28px;
+  margin: 28px 0;
+  position: relative;
+}
+.crux::before {
+  content: "THE CRUX OF THE PROBLEM — 核心问题";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--crux-bd);
+  font-weight: 800;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 10px;
+}
+.crux p { margin: 4px 0; font-size: 19px; line-height: 1.75; }
+
+/* === 矛盾结构紫框：每章必有 === */
+.maodun {
+  background: var(--maodun-bg);
+  border: 2px solid var(--maodun-bd);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin: 24px 0;
+}
+.maodun .label {
+  display: inline-block;
+  background: var(--maodun-bd);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+.maodun h5 {
+  margin: 10px 0 4px;
+  font-size: 18px;
+  color: var(--maodun-bd);
+  font-weight: 700;
+}
+.maodun p { margin: 4px 0; font-size: 18px; }
+.maodun ul { padding-left: 22px; margin: 4px 0; }
+.maodun li { margin: 4px 0; font-size: 18px; }
+
+/* === TIP 黄框 === */
+.tip {
+  background: var(--tip-bg);
+  border: 1px dashed var(--tip-bd);
+  border-radius: 4px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.tip::before {
+  content: "TIP — 小贴士";
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tip p { display: inline; margin: 0; }
+
+/* === ASIDE 蓝框 === */
+.aside {
+  background: var(--aside-bg);
+  border-left: 5px solid var(--aside-bd);
+  padding: 18px 24px;
+  margin: 22px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 17px;
+}
+.aside::before {
+  content: "ASIDE — 旁注";
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--aside-bd);
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 6px;
+}
+.aside p { margin: 4px 0; }
+.aside strong { color: var(--aside-bd); }
+
+/* === 名词解释米黄卡片 === */
+.term {
+  background: var(--term-bg);
+  border: 1px solid var(--term-bd);
+  border-radius: 6px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.term::before {
+  content: attr(data-name);
+  display: block;
+  background: var(--term-bd);
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 14px;
+  margin: -16px -22px 12px;
+  border-radius: 6px 6px 0 0;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* === 表格：单元格 ≥ 16px（硬下限） === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 16px;
+  background: var(--bg-card);
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.65;
+}
+th {
+  background: #0c4a6e;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+}
+tr:nth-child(even) td { background: #f5f1e3; }
+
+ul, ol { padding-left: 28px; }
+li { margin: 6px 0; line-height: 1.8; }
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: #fff;
+  margin: 22px 0;
+  padding: 14px 24px;
+  color: var(--ink-2);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* === 目录 === */
+.toc {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px 30px;
+  margin: 32px 0 54px;
+  font-size: 17px;
+}
+.toc h4 { margin-top: 0; color: var(--accent); font-size: 19px; }
+.toc ol { padding-left: 22px; }
+.toc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-2);
+}
+.toc a:hover { color: var(--accent); border-bottom-style: solid; }
+
+/* === Meta 元数据条 === */
+.meta {
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 22px 0 38px;
+  padding: 16px 20px;
+  background: #f3eee2;
+  border-radius: 4px;
+  font-style: italic;
+}
+.meta b { color: var(--ink); font-style: normal; }
+
+/* === KPI 卡片 === */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin: 24px 0;
+}
+.kpi-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.kpi-card .label { font-size: 14px; color: var(--ink-3); }
+.kpi-card .value { font-size: 24px; font-weight: 800; color: var(--accent); margin-top: 4px; }
+.kpi-card .sub { font-size: 13px; color: var(--ink-3); margin-top: 2px; }
+
+/* === 公司卡片（投研报告用） === */
+.company {
+  background: #fffdf7;
+  border: 1px solid #c9c1ac;
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.company h4 {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 19px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 6px;
+}
+.company .tag {
+  display: inline-block;
+  background: var(--accent-2);
+  color: #fff;
+  font-size: 13px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+.company p { margin: 6px 0; line-height: 1.75; }
+
+/* === 待补占位样式 === */
+.pending {
+  background: #f8fafc;
+  border: 2px dashed #94a3b8;
+  border-radius: 6px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  color: #64748b;
+  font-size: 16px;
+}
+.pending::before {
+  content: "待补 — PENDING";
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: #64748b;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* === 来源脚注 === */
+ol.sources { font-size: 14px; color: var(--ink-3); }
+ol.sources li { margin: 4px 0; }
+
+hr.div {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 50px 0;
+}
+
+.num-hl {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+/* === §3.0 8 槽位 callout 色板（long-html-style-guide.md 单源） === */
+.callout{
+  border-radius:6px; padding:18px 22px 16px; margin:22px 0;
+  font-size:17px; line-height:1.85; color:#3a3a3a;
+}
+.callout > .label{
+  display:block; font-size:13px; font-weight:700;
+  letter-spacing:.18em; margin-bottom:6px;
+}
+.callout p { margin: 6px 0; }
+.callout.neutral{ background:#f0eee5; border-left:5px solid #999999; }
+.callout.neutral > .label{ color:#5a5a5a; }
+.callout.crux,
+.callout.pit    { background:#fde7e0; border-left:5px solid #8a3324; }
+.callout.crux > .label,
+.callout.pit  > .label{ color:#6e2519; }
+.callout.tip    { background:#fff5d6; border-left:5px solid #c79b2b; }
+.callout.tip   > .label{ color:#7a5e10; }
+.callout.aside  { background:#eef3fb; border-left:5px solid #4c6c9c; }
+.callout.aside > .label{ color:#2f4a73; }
+.callout.dive   { background:#f4e4e8; border-left:5px solid #944056; }
+.callout.dive  > .label{ color:#6a2a3d; }
+.callout.metric { background:#f1ede0; border-left:5px solid #b09a55; }
+.callout.metric > .label{ color:#6a5a20; }
+.callout.action { background:#ecfdf5; border-left:5px solid #047857; }
+.callout.action > .label{ color:#0a5c40; }
+.callout.fact   { background:#e6effa; border-left:5px solid #0c4a6e; }
+.callout.fact  > .label{ color:#0c4a6e; }
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .wrap { padding: 30px 20px 80px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 25px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  table { font-size: 15px; }
+  th, td { padding: 9px 10px; }
+  .crux p { font-size: 17px; }
+  .maodun h5, .maodun p, .maodun li { font-size: 16.5px; }
+}
+</style>
+<!-- MathJax v3（项目铁律：长 HTML 数学公式必须 LaTeX 渲染，禁止 ASCII 源码式公式） -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- ECharts（利润表 Sankey 流图，sankey-visualizer 数据骨架） -->
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ 主标题 ============ -->
+<h1>久立特材（002318.SZ）深度投研报告
+<span class="sub">— 2026 半年报归母净利同比 −52.55%：「大订单高基数」假说的独立核查与多视角推演</span>
+</h1>
+
+<div class="meta">
+<b>标的</b>：浙江久立特材科技股份有限公司（002318.SZ，深交所主板）<br>
+<b>财报基准期</b>：2026H1（2026-06-30，半年报，公告日 2026-08-25）；对照期 2024H1 / 2025H1；最新年报 FY2025（2026-04-28 披露）<br>
+<b>报告口径基准日</b>：2026-08-24 收盘（19.55 元，总市值 191.04 亿）<br>
+<b>核心关切</b>：市场普遍将 2026H1 归母净利 −52.55% 归因于「此前 ADNOC 中东管线钢管大订单交付完毕造成的高基数效应」，并据此推断「公司基本面并未改变，恐慌抛售即为买入机会」。本报告对该假说做独立、可证伪的核查，多视角并列呈现，不给出方向性买卖结论。<br>
+<b>立场声明</b>：本报告严格实事求是，数据均标注来源与口径；判断权交还读者。
+</div>
+
+<!-- ============ 全局矛盾框 ============ -->
+<h2><span class="num">0</span>导读：这份报告到底在论证什么？</h2>
+
+<div class="crux">
+<p>这份报告要回答的核心问题是：</p>
+<p style="font-size:19px;line-height:1.7;margin-top:14px;"><em>"2026H1 归母净利腰斩，是一次性大订单退潮的『基数幻觉』，还是不锈钢管行业与久立自身盈利能力正在发生实质性恶化？两者各自成立需要哪些证据，市场现在的定价里已经包含了什么？"</em></p>
+<p style="margin-top:14px;">已完成的独立核查给出的初步结论是：<strong>三个可证伪子命题里，一条（营收缺口的高基数归因）部分成立，两条（基本面未变、市场恐慌错杀）不成立</strong>——详见第二部分专题核查。但这只是营收/利润的算术核查，公司治理、竞争格局、估值定价、股东结构等维度需要在后续章节完整展开。</p>
+</div>
+
+<div class="maodun">
+<span class="label">全局矛盾结构</span>
+<h5>主要矛盾（贯穿全报告）</h5>
+<p>大订单退潮的<strong>一次性基数效应</strong> <strong>↔</strong> 常规产品盈利空间的<strong>持续性、结构性承压</strong></p>
+<h5>次要矛盾</h5>
+<ul>
+<li>营收下滑（成立约 63% 可归因大订单）与利润下滑（大订单无法解释，2026H1 扣非低于同样没有大订单的 2024H1）之间的矛盾</li>
+<li>股价已price in（预告当日几乎无反应、已反弹 8.49%）与行情软件 PE_TTM 12.61 倍「便宜假象」之间的矛盾——真实 TTM 归母 PE 为 17.79 倍、扣非 28.26 倍</li>
+<li>控股股东/管理层持续增持回购的正面信号，与经营性现金流骤降、存货逆势累库、5.1% 股息率不可持续之间的矛盾</li>
+</ul>
+<h5>矛盾的特殊性 — 为什么是现在？</h5>
+<p>2023–2025 年 ADNOC 46 亿元大单的完整生命周期（签约→放量→交付完毕）恰好与本轮半年报形成一次天然的「去掉大单之后，公司到底值多少钱」的压力测试；同时行业处于产能过剩、常规产品价格战阶段，使「基数效应」与「周期恶化」两种解释在同一份财报里同时存在证据，必须逐条拆解才能分辨。</p>
+</div>
+
+<!-- ============ TOC ============ -->
+<div class="toc">
+<h4>章节目录</h4>
+<ol>
+<li><a href="#business-qualitative">一、定性商业分析——行业结构 / 商业模式 / 运营机制 / 管理层质量 / 政经监管约束</a></li>
+<li><a href="#income-sankey">二、2026H1 利润表结构全景（Sankey）</a></li>
+<li><a href="#h1-2026-profit-shock">三、专题核查：2026 半年报利润腰斩——「大订单高基数」假说独立核查</a></li>
+<li><a href="#statement-exam">四、报表战略考察与排雷（张新民框架 + 快速排雷 + 操纵识别）</a></li>
+<li><a href="#valueline-snapshot">五、Value Line 历史纵向快照（15 年数据阵列）</a></li>
+<li><a href="#growth-fisher">六、成长性与费雪视角</a></li>
+<li><a href="#asset-structure">七、资产结构</a></li>
+<li><a href="#operating">八、运营效率</a></li>
+<li><a href="#solvency">九、偿债能力</a></li>
+<li><a href="#contradiction">十、主次矛盾梳理</a></li>
+<li><a href="#why-cheap">十一、便宜 vs 好生意——两道独立题</a></li>
+<li><a href="#management-dd">十二、控股股东 / 管理层尽职调查（久立集团持股 34.76%，触发必填）</a></li>
+<li><a href="#reverse-valuation">十三、反向估值审计</a></li>
+<li><a href="#market-pricing-multimodal">十四、市场估值多维审视</a></li>
+<li><a href="#event-driven">十五、事件驱动 / 对赌视角</a></li>
+<li><a href="#self-check-9">十六、添柏岚 9 条自检清单</a></li>
+<li><a href="#red-team">十七、红队挑刺</a></li>
+<li><a href="#postscript">十八、结语与信息缺口声明</a></li>
+</ol>
+</div>
+
+<!-- ============ 核心 KPI 速览 ============ -->
+<h3>核心 KPI 速览（2026H1 vs 2025H1，亿元）</h3>
+<div class="kpi-row">
+<div class="kpi-card"><div class="label">营业总收入</div><div class="value">38.84</div><div class="sub">YoY −36.38%</div></div>
+<div class="kpi-card"><div class="label">归母净利润</div><div class="value">3.93</div><div class="sub">YoY −52.54%</div></div>
+<div class="kpi-card"><div class="label">扣非净利润</div><div class="value">1.57</div><div class="sub">YoY −80.05%</div></div>
+<div class="kpi-card"><div class="label">销售毛利率</div><div class="value">21.23%</div><div class="sub">近 5 年半年报最低</div></div>
+<div class="kpi-card"><div class="label">Q2 单季扣非</div><div class="value">−0.21</div><div class="sub">单季亏损</div></div>
+<div class="kpi-card"><div class="label">真实 PE(TTM归母)</div><div class="value">17.79x</div><div class="sub">非行情软件显示的 12.61x</div></div>
+<div class="kpi-card"><div class="label">真实 PE(TTM扣非)</div><div class="value">28.26x</div><div class="sub">剔除一次性投资收益</div></div>
+<div class="kpi-card"><div class="label">资产负债率</div><div class="value">37.70%</div><div class="sub">有息负债极低</div></div>
+</div>
+
+<hr class="div">
+
+<!-- ============ 一、定性商业分析 ============ -->
+<section id="business-qualitative">
+<h2><span class="num">1</span>定性商业分析</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 阅读提示</span>
+<p>本节用费雪 15 问 + 波特五力 + Greenwald 竞争优势框架，把久立特材这门生意作为"机器"拆开看：它所在的棋盘（行业结构）、它如何把棋盘上的空间换成现金流（商业模式）、机器内部齿轮怎么转（运营机制）、谁在开车（管理层）、外部框架多大（政经监管）。5 节末各有一段信号灯，合并构成定性总评——后文的 Sankey / 报表排雷 / 反向估值都建立在这个骨架上。凡与"2026H1 归母净利 −52.55% 是否只是 ADNOC 大单高基数效应"这一核心关切相关处，本节正面回应，但判断权交还读者。</p>
+</div>
+
+<h3>1.1 行业结构</h3>
+<table>
+<tr><th style="width:26%">问题</th><th>回答</th></tr>
+<tr><td>行业总盘子（TAM）与增速</td><td>久立所在的工业用不锈钢及特种合金管材细分行业，没有权威机构给出统一的全球/全国 TAM 口径；可交叉验证的锚点是公司自身产能——年产 20 万吨成品管材（含不锈钢管、复合管、部分特殊碳钢管）+ 1.5 万吨管件 + 2.6 万吨合金材料<sup>[1]</sup>，以及行业研报口径"不锈钢管下游主要应用海洋工程（37%）与石油石化（32%）"<sup>[2]</sup>。**信息不足**：未取得独立第三方（如世界不锈钢协会 ISSF）的全球工业不锈钢管年产量与 CAGR 数据，需补。</td></tr>
+<tr><td>行业集中度（CR3/CR5）与演化方向</td><td>公开检索未获得权威口径的全国工业不锈钢管 CR3/CR5 数值；但可比公司财报显示行业呈"金字塔"结构——久立特材（营收/毛利率均领先）、常宝股份（营收规模相近但毛利率显著更低）、盛德鑫泰、武进不锈（2025H1 毛利率仅 14.41%）分处不同梯队<sup>[3]</sup>，暗示行业非高度集中的寡头格局，头部与腰部盈利能力差距悬殊。**信息不足**：无协会统计的精确 CR 值，需补中国特钢企业协会数据。</td></tr>
+<tr><td>企业规模分布（头部/腰部/长尾）</td><td>已识别的 A 股同业可比公司至少 4 家（常宝股份 002478、盛德鑫泰 300881、图南股份 300855、武进不锈 603878），加上非上市中小管企与进口替代压力方；久立的产品线覆盖不锈钢无缝管/复合管/焊接管/合金材料/管件 6 大类<sup>[4]</sup>，品类跨度大于多数腰部同业，是"多品类头部"而非"单一品类冠军"。</td></tr>
+<tr><td>进入门槛与壁垒（分级）</td><td>技术壁垒（中）：持有特种设备制造许可证、国家核安全局颁发的民用核安全机械设备制造许可证、ASME 核质保体系认证、API 5L/5CT/5LD 认证、CCS/GL/DNV/BV/ABS/LR 六大船级社认证<sup>[1]</sup>，牌照+认证组合构成实质性准入门槛，属中高等级；资本壁垒（中）：产线为热挤压/穿孔+冷轧/冷拔等资本密集型工艺，但非天量投资（对比钢铁主业）；品牌壁垒（低-中）：国内产销量多年居首<sup>[1]</sup>，但常规产品同质化竞争激烈（见业绩预告官方原因①）。</td></tr>
+<tr><td>产能利用率 / 库存 / 在手订单天数</td><td>公司层面：2026Q2 存货逆营收下滑逆势累库至 32.97 亿元（环比 +13.5%）<sup>[verified-facts]</sup>，指向公司产能利用率与出货节奏不匹配（要么是主动囤原料备产，要么是成品去化变慢）；行业层面无公开产能利用率数据，**信息不足**，需补中国钢铁工业协会月报。</td></tr>
+<tr><td>行业周期位置</td><td>官方业绩预告原因①明确表述"行业结构优化调整周期，下游需求阶段性偏弱、供给充足、市场竞争加剧，常规产品盈利空间承压"<sup>[verified-facts]</sup>——公司自身定性为"周期承压+结构调整"阶段而非纯衰退；佐证：久立毛利率在 FY2022–FY2024 是 25.28%→26.18%→27.63% 的上升期，FY2025 转为 24.66%，2026H1 进一步降至 21.23%<sup>[5]</sup>，即行业下行拐点先于 2026H1 大单退潮已经出现。</td></tr>
+<tr><td>上下游关系与议价权方向</td><td>上游为不锈钢板坯/热轧卷/镍基合金等原材料，价格随镍/铬期货波动，久立议价权偏弱（成本转嫁能力体现在毛利率对原料价格的敏感度上，需结合成本结构进一步验证）；下游为能源装备（油气/电力/核电/LNG）及化工/船舶制造业主，多为大型央国企或国际能源公司（如 ADNOC），采购多走招投标，久立在细分高端产品上有一定定价权，但常规产品面对下游集中采购方时议价权有限。</td></tr>
+<tr><td>行业内并购/结盟/自律</td><td>2025 年 7 月起，中国对原产于欧盟、英国、韩国、印尼的进口不锈钢钢坯与热轧板/卷征收反倾销税<sup>[6]</sup>，客观上保护了国内钢坯供应链，但对久立这类下游深加工企业是原材料成本的间接影响（若久立采购部分进口坯料，成本可能上升；若采购国产坯料，则受益于国内供给保护）。**信息不足**：未取得久立原材料进口占比，需补年报"主要供应商"附注。</td></tr>
+</table>
+<div class="callout tip">
+<span class="label">TIP · 行业结构信号</span>
+<p>久立所处的棋盘是"中等壁垒 + 分层竞争 + 结构性下行拐点已现"——不是高集中度寡头市场（企业自身能造成的超额空间有限），也不是完全无壁垒的红海（船级社认证+特种设备许可仍构成实质门槛）。关键证据是：毛利率下滑始于 FY2025（大单尚未完全退潮），2026H1 只是延续并加速了这一趋势，而非单一年份的孤立波动。这为后文判断"高基数论"是否成立提供了行业层面的背景支撑：至少部分承压是行业性的，与 ADNOC 大单退潮同时发生但机制不同。</p>
+</div>
+
+<h3>1.2 商业模式与战略</h3>
+<table>
+<tr><th style="width:26%">问题</th><th>回答</th></tr>
+<tr><td>谁付钱→买什么→为什么是久立</td><td>付钱方：油气/电力/核电/LNG 能源装备总包商与化工/船舶制造业主（境内 44.7% + 境外 55.3%，2025 年数据<sup>[7]</sup>）；买什么：耐蚀、耐压、耐温的不锈钢及特种合金无缝/焊接/复合管材、管件；为什么是久立：认证组合（核安全许可+六大船级社+API）形成的"合规通行证"，叠加国内产销量多年居首的规模与交付履历<sup>[1]</sup>——这条因果链清楚，但"为什么是久立而不是常宝/盛德鑫泰"在常规产品上未必成立，二者营收增速反超久立（见 1.1）。</td></tr>
+<tr><td>价值创造的核心动作</td><td>核心动作是"生产+研发"双轮：热挤压/穿孔+冷轧/冷拔无缝管产线与 FFX/JCO 焊接管产线是主导生产动作<sup>[1]</sup>；久立研究院（国家认定企业技术中心+CNAS 认可钢铁实验室，50+ 授权专利，主导起草 10+ 国家/行业标准<sup>[1]</sup>）是辅助但关键的动作，支撑高端认证与定制化产品——因果链：认证/标准制定权→客户为合规与可靠性付溢价，尤其体现在核电/LNG 等高技术壁垒场景。</td></tr>
+<tr><td>可识别的竞争优势归类</td><td>优势更接近"无形资产型"（认证+标准制定权+专利）而非纯"成本优势"：2026H1 毛利率 21.23% 仍显著高于常宝股份 13.63%、盛德鑫泰 10.93%<sup>[verified-facts]</sup>，说明相对同业有真实的产品结构/技术溢价，但落后于高温合金细分的图南股份（40.11%）——即优势是"行业内相对优势"而非"绝对定价权"。</td></tr>
+<tr><td>优势的持久性——5-10 年后还在吗</td><td>侵蚀机制识别到两个：① 常规产品同质化竞争（官方原因①，行业性、持续性）；② 大订单周期性退潮导致的收入/毛利波动放大（ADNOC 单笔占 2025 全年复合管收入 40.59 亿中的相当比例，具体占比未拆分，**信息不足**）。当前进度：毛利率已连续 2 期（FY2025、2026H1）下滑，尚未观察到止跌信号。</td></tr>
+<tr><td>2.3.1 差异化盈利深挖（DEEP DIVE 触发判定）</td><td>触发条件是"ROCE 持续超同业 +5pp ≥ 3 年"或"同业普遍亏损中它独自正增长"。久立 ROIC（Tushare 口径，非年化的期间累计值）为 FY2022 20.48%→FY2023 18.93%→FY2024 17.01%→FY2025 16.13%<sup>[5]</sup>，是**连续 4 年下滑**而非持续超同业扩大差距，且缺乏同业 ROCE 矩阵数据做横向对照——**本节判定不触发 DEEP DIVE**，不额外嵌入 `methodology-competitive-advantage.md` 子节；但这条 ROIC 连续 4 年下滑的曲线本身是本报告后续"为什么便宜"一节的重要输入，需在 §11 呼应。</td></tr>
+<tr><td>战略是否一致——嘴上说 vs capex/并购/招聘</td><td>研发费用绝对值逐年增长：FY2022 3.04 亿→FY2023 3.39 亿→FY2024 3.62 亿→FY2025 3.96 亿<sup>[5]</sup>（研发费用率 FY2025 约 3.29%，2026H1 因营收骤降机械性推高至 4.90%<sup>[计算]</sup>），与公司"产品高端化"表述方向一致；但 2026Q2 存货逆势累库 +13.5%<sup>[verified-facts]</sup>与"应对需求走弱"的表述存在张力，指向短期产销节奏管理仍有摩擦。</td></tr>
+<tr><td>反共识动作</td><td>行业普遍收缩订单预期下，管理层与实控人一致行动人在 2026 年 4-7 月连续增持+推出新回购方案（2~4 亿元，上限 32 元/股）<sup>[verified-facts]</sup>——这是"反共识"的资本市场动作，但回购用途为员工持股/股权激励/可转债转股而非注销<sup>[verified-facts]</sup>，对每股收益的直接增厚有限，不宜简单解读为"管理层用真金白银投票基本面见底"。</td></tr>
+<tr><td>战略护城河 vs 短期红利——谁贡献了当前业绩</td><td><strong>这是回应用户核心关切最直接的一问</strong>：把 2026H1 归母 3.93 亿拆解，非经常性损益占比 60.1%（2.36 亿），其中 Q1 出清永兴材料股权贡献 2.68 亿一次性投资收益<sup>[verified-facts]</sup>——这部分显然是"短期一次性"，与 ADNOC 大单本身无关，是另一层与"高基数论"无关的一次性因素，容易被市场混为一谈；而扣非净利润 1.57 亿（YoY −80.05%）里，用 2024H1（同样没有 ADNOC 集中确认收入）扣非净利 6.53 亿作为反证基准，2026H1 仍显著低于 2024H1，说明"扣掉大单基数"之后剩下的经常性盈利能力本身也在恶化，并非纯粹"退回常态"<sup>[verified-facts]</sup>。护城河（认证壁垒+研发投入）依然存在且投入未减，但当期业绩的"短期红利"成分（永兴材料处置收益）与"结构性承压"成分（常规产品毛利率降至近 5 年最低）同时在起作用，两者不能相互替代解释。</td></tr>
+<tr><td>3 年规划替代推演</td><td>若替代现任管理层，可考虑的"显而易见但未做"动作：① 披露大订单在手余额与后续管线（当前仅能靠合同负债曲线间接倒推，2026Q2 合同负债 13.16 亿仅为峰值 48.8%<sup>[verified-facts]</sup>，公司未主动给出量化的"订单可见度"指引）；② 分产品/分地区更细颗粒度的毛利率披露（当前主营构成仅公开到地区维度，见 1.2 与 3.1）。这类信息缺口更可能是"披露习惯"而非"体制约束"的指纹，需持续观察半年报全文（8/25 公告）是否补充。</td></tr>
+</table>
+<div class="callout dive">
+<span class="label">DIVE DEEP · 战略可持续性——正面回应用户核心关切</span>
+<p>把"高基数论"拆成两条独立的账：账一是 ADNOC/复合管的一次性放量退潮，账二是永兴材料股权处置的一次性投资收益。用户的假说只覆盖了账一（且账一本身按 verified-facts.md 的归因分解，只能解释营收缺口 22.21 亿中的 63.4% = 14.08 亿，其余 36.6% = 8.13 亿是"其余业务萎缩"、无法用大订单解释<sup>[verified-facts]</sup>）；账二（Q1 永兴材料 2.68 亿投资收益）与大订单完全无关，且是拉高归母、压低"真实盈利质量"感知的另一支力量——两条账同时存在，说明"净利腰斩只是大订单基数效应"这一单一归因是不完整的。同时用 2024H1（无大单集中确认）扣非净利 6.53 亿 vs 2026H1 扣非净利 1.57 亿做同期对照，剔除大单效应后的经常性盈利能力本身也出现了实质性下滑——这与"基本面并未改变"的假说存在张力。战略护城河（认证/研发）没有消失，但当期业绩的"含金量"下降是可验证的事实，两派各自的证据都摆在桌面上，是否构成"恐慌错杀"的买入机会，判断权交还读者。</p>
+</div>
+
+<h3>1.3 运营机制（产品 / 客户 / 供应链 / 技术 / 行业地位）</h3>
+<table>
+<tr><th style="width:26%">问题</th><th>回答</th></tr>
+<tr><td>主营产品分类、占比、毛利率、趋势</td><td>FY2025 六大品类（亿元，占比，毛利率）：无缝管 43.05（35.7%，31.4%）/ 复合管 40.59（33.7%，25.2%）/ 焊接管 18.81（15.6%，20.5%）/ 合金材料 6.75（5.6%，14.6%）/ 管件 3.92（3.2%，19.5%）/ 其他 7.47（6.2%，4.7%），合计 120.59 亿<sup>[verified-facts]</sup>——6 大类属正常范围（非业务失焦警报），但复合管占比 33.7% 且毛利率高于焊接管/合金材料，是 ADNOC 大单期间放量的主要载体（2024H1 6.42 亿→2025H1 20.50 亿+219%→2025 全年 40.59 亿<sup>[verified-facts]</sup>），单一品类对大订单的敏感度偏高。</td></tr>
+<tr><td>客户类型与需求强度</td><td>境外客户以 ADNOC 一类国际能源央企为代表，境内客户偏向电力/核电/化工装备总包商——两类客户的需求场景均属"工程刚需"（管道是能源装备的功能性组件，非可选消费），但订单节奏受项目招投标周期与地缘政治影响巨大（业绩预告官方原因②"受中东地缘环境影响，海外订单交付节奏延后"<sup>[verified-facts]</sup>）。</td></tr>
+<tr><td>价格弹性与定价权</td><td>2026Q2 单季毛利率 17.23%，同比 2025Q2 的 26.40% 大幅下滑<sup>[verified-facts]</sup>，指向常规产品在需求走弱期缺乏"提价守毛利"的能力，定价权更多体现在高端认证产品（核电/LNG）而非通用管材；缺乏公开的历史提价/降价记录做纵向验证，**信息不足**。</td></tr>
+<tr><td>替代品与切换成本</td><td>不锈钢管的替代材料包括碳钢管（成本更低但耐蚀性不足）、钛合金管（耐蚀性更强但成本显著更高，久立自身也生产钛合金管材<sup>[1]</sup>，某种程度上是自我替代/产品升级路径而非外部威胁）；客户切换成本主要来自认证周期（船级社/API 认证需重新申请）与工程验证周期，构成中等切换壁垒。</td></tr>
+<tr><td>品牌与品牌溢价</td><td>"久立"品牌为国内产销量多年居首<sup>[1]</sup>，但公开渠道未见第三方品牌估值报告，**信息不足**，仅能用毛利率相对同业的溢价（21.23% vs 常宝 13.63%/盛德鑫泰 10.93%<sup>[verified-facts]</sup>）做间接代理。</td></tr>
+<tr><td>客户集中度与账期</td><td>应收账款 15.21 亿（2026H1）<sup>[verified-facts]</sup>，占营收比例较高（38.9% = 15.21/38.84），但需注意分母是腰斩后的半年营收，比例被动放大；未取得前 5 大客户集中度 CR5 具体数值，**信息不足**，需补年报"主要客户"附注（8/25 半年报全文披露后核对）。</td></tr>
+<tr><td>生产流程关键环节</td><td>热挤压/穿孔+冷轧/冷拔（无缝管）、FFX/JCO 成型（焊接管）<sup>[1]</sup>，属资本密集型精密加工工艺，核心难度在于耐蚀合金材料的冷加工精度控制与热处理工艺，这也是国家核安全局许可证与船级社认证的技术门槛来源。</td></tr>
+<tr><td>渠道结构</td><td>境内 44.7% / 境外 55.3%（2025 年）<sup>[7]</sup>，境外毛利率（25.06%）略高于境内（24.16%）<sup>[计算]</sup>，说明出口业务并非"以价换量"的低毛利倾销，但海外收入占比过半，使公司对地缘政治与关税政策的敞口显著（见 1.5 政经监管）。**信息不足**：未取得直销/经销占比拆分。</td></tr>
+<tr><td>供应商集中度与原材料定价权</td><td>关键原材料为不锈钢板坯/合金原料，价格随镍/铬期货波动，公司对供应商定价权总体偏弱；**信息不足**：未取得供应商 CR5 与原材料进口占比，需补年报"主要供应商"附注。</td></tr>
+<tr><td>成本结构拆分</td><td>**信息不足**：Tushare 营业成本科目未细拆原材料/人工/折旧/能源/物流占比，需补年报成本构成表；可间接观察的是 2026H1 营业成本 30.59 亿对营收 38.84 亿的比例（78.8%），高于 2025H1 的 72.8%（=1-27.20%），验证毛利率下滑主因是成本刚性下收入体量收缩，而非原材料价格单边暴涨（原材料价格波动通常同时影响同业，2026H1 同业毛利率普遍承压印证了这一点，见 1.1）。</td></tr>
+<tr><td>规模经济曲线</td><td>2026Q2 营收 18.60 亿（-42.27% YoY）叠加毛利率骤降至 17.23%，符合"产能利用率下降→单位固定成本摊薄能力减弱→毛利率被动挤压"的规模不经济特征，但缺乏历年 capex 与单位成本的散点数据做严谨验证，**信息不足**。</td></tr>
+<tr><td>技术变革方向与速度</td><td>不锈钢/特种合金管材行业技术迭代相对缓慢（非颠覆性行业，5-10 年一代认证/工艺升级），久立以"高端化"（核电/LNG/钛合金/高温合金）为主线迭代方向<sup>[1]</sup>，与图南股份（高温合金/军工）等细分景气品类形成部分重叠，是潜在的产品结构升级空间。</td></tr>
+<tr><td>研发投入强度与方向</td><td>研发费用绝对值持续增长（FY2022 3.04 亿→FY2025 3.96 亿<sup>[5]</sup>），研发方向围绕久立研究院（国家认定企业技术中心）的钢铁材料实验室开展，具体项目清单**信息不足**，需补专利数据库检索。</td></tr>
+<tr><td>行业地位与市占率</td><td>国内产销量多年居首<sup>[1]</sup>，但仅为"数量份额"表述，缺乏"金额份额"（更能代表盈利能力）的第三方口径，**信息不足**；从毛利率相对同业的领先幅度看，久立的"金额份额"大概率也领先，但需以协会数据验证。</td></tr>
+<tr><td>与同业的关系</td><td>近 3 年未检索到久立与常宝股份/盛德鑫泰/武进不锈之间的并购或结盟事件，行业竞争以各自独立扩产/认证升级为主，未见价格自律协议的公开报道。</td></tr>
+</table>
+<div class="callout tip">
+<span class="label">TIP · 运营机制信号</span>
+<p>产品矩阵聚焦度合理（6 大类非失焦），但复合管这一单一品类对 ADNOC 大单的收入贡献弹性极高（2024H1→2025H1 +219%），是收入波动放大器；境外收入占比过半（55.3%）且与地缘政治直接挂钩（官方原因②）。定价权体现在高端认证产品而非通用管材，2026Q2 毛利率骤降印证了这一点。多个关键问题（客户集中度、供应商结构、成本细分）因半年报全文尚未完整解读而标注"信息不足"，建议 8/25 半年报全文披露后二次核对。</p>
+</div>
+
+<h3>1.4 管理层质量</h3>
+<table>
+<tr><th style="width:26%">问题</th><th>回答</th></tr>
+<tr><td>核心管理层任职年限与履历</td><td>董事长李郑周（1973 年生，博士学历）与总经理王长城（1966 年生，大专学历）均自 2009-09-03（or 2010-12-31）起任职，任期已逾 15 年<sup>[8]</sup>；实际控制人周志江（1950 年生，大专学历）同期起任董事会成员<sup>[8]</sup>——需要指出的是 Tushare 数据里周志江与李郑周在同一时间窗口都标注过"董事长"头衔，公司官网/公告口径以现任董事长李郑周为准<sup>[9]</sup>，周志江更可能是控股股东久立集团层面的实际控制人身份而非上市公司当前董事长，此为数据交叉核验中发现的口径歧义，**建议以最新年报"公司治理"章节核实**。</td></tr>
+<tr><td>企业家意识</td><td>长期持股：周志江直接持股 1.7021%，李郑周直接持股 1.0788%（2025-12-31 数据）<sup>[10]</sup>，叠加久立集团 34.7558% 的控股比例<sup>[10]</sup>，管理层与控股股东利益高度绑定；危机时加大投入的体现：2026 年 4-7 月（业绩预告发布前后）连续增持+推出新回购方案<sup>[verified-facts]</sup>，但增持金额相对总股本占比极小（一致行动人 7/15 增持仅占总股本 0.06%<sup>[verified-facts]</sup>），象征意义大于实质力度。</td></tr>
+<tr><td>对股东的重视程度</td><td>分红：FY2025 每股派息 1.00 元，占归母净利润 64.8%<sup>[verified-facts]</sup>，处于行业内偏高水平；但历史上 2020-2025 中期从未分红，仅年度分红<sup>[verified-facts]</sup>，与"每半年与股东共享现金流"的沟通习惯有差距；ROCE（用 ROIC 代理）连续 4 年下滑（FY2022 20.48%→FY2025 16.13%<sup>[5]</sup>），资本回报率对股东的兑现能力边际转弱。</td></tr>
+<tr><td>是否只考虑自身利益的记录</td><td>关联交易：久立电气材料（关联方）持股 1.2444%<sup>[10]</sup>，具体关联交易金额与方向**信息不足**，需补年报关联交易附注；高管薪酬增速 vs 业绩增速的对照**信息不足**；未检索到在职消费的负面媒体报道。整体上未发现明确的"侵蚀股东利益"证据，但部分数据缺口需半年报全文核实后补齐结论。</td></tr>
+<tr><td>股份支付计划对齐度</td><td>2025 年第一期员工持股计划持股 1.8424%<sup>[10]</sup>，具体行权条件、业绩考核指标**信息不足**，需补股权激励公告原文核实行权门槛是否"真实严格"。</td></tr>
+<tr><td>资本配置能力（历次重大决策的事后回报）</td><td>2026 年 Q1 出清永兴材料（002756）1.8911% 全部股权，一次性贡献投资收益 2.68 亿元<sup>[verified-facts]</sup>——这是一次已兑现的资本配置动作，从"落袋为安、优化资产负债表"的角度可视为正面；但该笔收益也是拉高 2026H1 归母净利润、降低"扣非"含金量感知的直接原因，是否代表管理层"提前预判周期下行、主动腾挪资产"，还是单纯"账上有浮盈就兑现"，缺乏管理层对该笔处置的公开解释文本，**信息不足**，两种解读均可能成立。</td></tr>
+<tr><td>控股股东角色独立验证——支撑、博弈还是抽血</td><td>久立集团持股 34.7558%<sup>[10]</sup>，触发本报告 Step 4 的 `management-dd` 必填条件（详见第十二节）；本节仅做初步信号：分红比例 64.8% 且集团为第一大股东，理论上集团从分红中获益最大，与中小股东利益方向一致（非典型"抽血"模式的直接反证）；但港股通（香港中央结算）在 2025Q4 减持 210.5 万股，基本养老保险 1501 组合同期减持 500 万股<sup>[10]</sup>，机构类股东同期净减持，与实控人一致行动人小幅增持形成方向性分歧——两派资金的投票结果不一致，需要在第十二节做更完整的独立验证。</td></tr>
+</table>
+<div class="callout aside">
+<span class="label">ASIDE · 管理层质量信号</span>
+<p>长期任职（15 年+）+ 高绑定持股（实控人+董事长合计约 2.8% 直接持股 + 集团 34.76% 控股）+ 分红比例偏高（64.8%），但 ROIC 连续 4 年下滑说明"资本配置能力"的长期成绩单正在走弱；2026 年的增持/回购动作象征意义强于实质力度（占总股本 0.06%~1.28% 区间），永兴材料股权处置的动机解释存在信息缺口。控股股东独立验证需要更完整的关联交易穿透，留给第十二节 `management-dd` 专节处理，本节不越界下结论。</p>
+</div>
+
+<h3>1.5 政经监管约束</h3>
+<table>
+<tr><th style="width:26%">问题</th><th>回答</th></tr>
+<tr><td>核心监管法规清单</td><td>特种设备安全法（对应特种设备制造许可证）、民用核安全设备监督管理条例（对应核安全局许可证）、进出口反倾销相关法规（中国商务部+海外贸易救济机构）、环保法（高耗能高排放行业约束）<sup>[1]</sup>——4 类构成主要监管框架。</td></tr>
+<tr><td>公司合规历史记录</td><td>公开检索未发现久立特材近 5 年被处罚/警告/整改的公开记录，**信息不足但倾向正面**（无负面记录本身是一种弱信号，需持续监测）。</td></tr>
+<tr><td>反垄断风险</td><td>久立市场份额未达到反垄断阈值（无并购触发反垄断申报的公开记录），风险等级低。</td></tr>
+<tr><td>跨境监管风险——直接回应官方原因②"中东地缘环境影响"</td><td>三条并行的跨境监管动态：① 欧盟已于 2025 年 6 月终止对中国无缝钢管的反倾销调查，未采取措施，对久立欧洲市场是正面事件<sup>[11]</sup>；② 美国商务部 2025 年 5 月对中国圆形焊接奥氏体不锈钢压力管的反倾销/反补贴措施做出日落复审终裁，维持高关税壁垒<sup>[12]</sup>，久立焊接管对美出口（如有）持续承压；③ 中国自 2025 年 7 月起对原产于欧盟/英国/韩国/印尼的进口不锈钢钢坯及热轧板/卷征收反倾销税<sup>[6]</sup>，理论上利好国产钢坯供应链但对久立而言是原材料侧的间接影响，方向取决于其采购结构（境内 vs 境外坯料占比，**信息不足**）。官方原因②所指"中东地缘环境影响，海外订单交付节奏延后"更贴近 ADNOC 所在地区（阿联酋/中东）的项目执行环境，而非上述贸易救济案件本身——两者是不同层面的跨境风险，不应混淆。</td></tr>
+<tr><td>环保/ESG 合规</td><td>不锈钢管深加工环节涉及热处理、酸洗等高能耗/高排放工序，双碳政策对该行业构成产能约束（落后产能出清），久立持有 ISO14001 环境管理体系认证<sup>[1]</sup>，处于合规状态，但具体碳排放数据与双碳路线图**信息不足**。</td></tr>
+<tr><td>劳动/用工合规</td><td>员工规模 4,680 人<sup>[1]</sup>；业绩预告官方原因③明确提及"员工薪酬特别是社保成本上升"<sup>[verified-facts]</sup>，是用工成本刚性上升对毛利率的直接侵蚀因素，与地缘/大单退潮无关的独立成本压力项。</td></tr>
+<tr><td>政治影响力/国资背景</td><td>久立特材为民营控股（久立集团为控股股东，实控人周志江），非国资背景；政府补助（其他收益）2026H1 为 0.79 亿元<sup>[verified-facts]</sup>，相对营收 38.84 亿占比约 2.0%，不构成利润的主要支撑，公司利润对政府补助依赖度低。</td></tr>
+<tr><td>监管约束的放松/加码方向</td><td>短期（1-2 年）方向：中美贸易摩擦背景下美国对华不锈钢管类关税大概率维持高位<sup>[12]</sup>；欧盟态度相对缓和（2025 年 6 月终止调查）<sup>[11]</sup>；国内层面双碳约束持续加码，利好头部合规产能、加速落后产能出清，中长期对久立这类持证头部企业偏正面。</td></tr>
+</table>
+<div class="callout fact">
+<span class="label">FACT CHECK · 政经监管信号——回应"中东地缘环境影响"表述</span>
+<p>官方业绩预告把"中东地缘环境影响，海外订单交付节奏延后"列为原因②，本节核查确认这是独立于欧美贸易救济案件的另一条风险线（前者指向 ADNOC/阿联酋所在地区的项目执行环境，后者指向美国的高关税壁垒与欧盟的调查终止）。境外收入占比 55.3% 使公司对多重跨境风险的敞口显著放大，且这些风险大多不受公司自身经营质量控制。欧盟态度转向正面、美国维持高压、国内双碳加速出清落后产能——三条监管线方向不一致，构成一组需要持续跟踪而非一次性判断的动态变量。</p>
+</div>
+
+<div class="callout crux">
+<span class="label">THE CRUX · 5 维定性综合</span>
+<p>把 5 节信号灯合并：行业结构处于"中等壁垒+结构性下行拐点已现"（🟡）；商业模式的护城河（认证/研发）真实存在但当期业绩含金量下降，且用户核心关切的"高基数论"经独立核查只能解释约 63% 的营收缺口、无法解释扣非利润相对 2024H1 同期基准仍走弱的部分（🟣 DIVE DEEP，已在 1.2 正面回应）；运营机制上产品聚焦合理但复合管对大单弹性过高、境外收入占比过半放大地缘敞口（🟡）；管理层长期任职+高绑定持股，但资本回报率连续 4 年下滑、增持回购象征意义大于实质（🔵）；政经监管呈现多空并存的跨境风险组合，公司自身合规记录清白（🔵/🔷）。综合来看，这是一家"生意本身仍有真实护城河、但当期正在经历行业性+订单性双重压力叠加"的公司——下文的报表数字（Sankey / 排雷 / 反向估值）应在此定性骨架上重新解读：净利腰斩不能简单归因为单一的"大订单高基数"，至少有三条独立的力量同时在起作用（大单退潮、常规产品结构性承压、一次性股权处置收益的反向掩盖效应），三者各自的权重需要读者结合后续量化章节自行称量。</p>
+</div>
+
+<div class="term" data-name="数据来源与口径说明">
+<p>[1] Tushare stock_company 接口，2026-08-24 取，公司官网/公开介绍口径。<br>
+[2] 烽火研报《2024不锈钢管行业报告》转引，https://www.fhyanbao.com/article/vG5u60hv，访问日期 2026-08-24。<br>
+[3] /tmp/claude/ir-久立特材/verified-facts.md「同业横向对照（2026H1）」表，主对话已核验。<br>
+[4] Tushare fina_mainbz 接口 + verified-facts.md「FY2025 分部」数据。<br>
+[5] Tushare fina_indicator 接口，2022Q1–2026Q2 各期末，2026-08-24 取，已用 Python 交叉验算。<br>
+[6] 中华人民共和国商务部公告 2025 年第 33 号，https://www.mofcom.gov.cn/zwgk/zcfb/art/2025/art_af1c6a37ef4349d89c1bf574b47a0ed1.html，访问日期 2026-08-24。<br>
+[7] Tushare fina_mainbz 接口（type=D 地区），period=2025-12-31，2026-08-24 取。<br>
+[8] Tushare stk_managers 接口，2026-08-24 取。<br>
+[9] Tushare stock_company 接口 chairman 字段（李郑周），与 stk_managers 存在口径差异，已在表内标注。<br>
+[10] Tushare top10_holders 接口，period=2025-12-31，ann_date=2026-04-28，2026-08-24 取。<br>
+[11] 中伦律师事务所《中伦助力中国无缝钢管行业应对欧盟反倾销调查案并取得...》，https://www.zhonglun.com/news/trade/54844.html，访问日期 2026-08-24；欧盟委员会 2025 年 6 月公告转引。<br>
+[12] 上海国际转运网《美国高关税壁垒延续，中国不锈钢压力管出口竞争力持续承压》，https://www.shtrans.cn/news/331.html，访问日期 2026-08-24；美国商务部 2025 年 5 月日落复审终裁转引。<br>
+[verified-facts] /tmp/claude/ir-久立特材/verified-facts.md，主对话已核验、已用 Python 逐条验算，禁止重算或改写。<br>
+[计算] 本节独立计算（Python Bash 验算，见附注），基于上述已核验/已取数数据推导。</p>
+</div>
+
+
+</section>
+<hr class="div">
+
+<!-- ============ 二、利润表 Sankey（待 sankey-visualizer 子 agent 填充） ============ -->
+<section id="income-sankey">
+<h2><span class="num">2</span>2026H1 利润表结构全景</h2>
+
+<div class="kpi-row">
+  <div class="kpi-card sk-kpi-card"><div class="label">营业总收入</div><div class="value">38.84 亿</div><div class="sub">YoY -36.38%</div></div>
+  <div class="kpi-card sk-kpi-card"><div class="label">综合毛利率</div><div class="value">21.23%</div><div class="sub">YoY -5.96pp</div></div>
+  <div class="kpi-card sk-kpi-card"><div class="label">营业利润</div><div class="value">4.81 亿</div><div class="sub">YoY -53.19%</div></div>
+  <div class="kpi-card sk-kpi-card"><div class="label">归母净利润</div><div class="value">3.93 亿</div><div class="sub">YoY -52.55%</div></div>
+  <div class="kpi-card sk-kpi-card"><div class="label">基本 EPS</div><div class="value">0.41 元</div><div class="sub">YoY -52.87%</div></div>
+</div>
+
+<div class="callout aside">
+<span class="label">ASIDE · 读图说明</span>
+<p>本图为久立特材 2026H1（2026-06-30）合并利润表 5 层流图：<b>分部营收 → 营业总收入 → 毛利 / 营业成本 → 资金运用池（毛利 + 投资收益 + 其他收益 + 营业外收入）→ 期间费用 / 减值 / 营业外支出 / 所得税 / 归母净利润 / 少数股东损益</b>。所有金额单位为亿元，数据源 choice-data <code>stock_financials</code>（2026-06-30 与 2025-06-30 各取一次，report_type=1 合并报表），分部数据源 choice-data <code>MBPRODUCTITEM/SALES/COST/PROFIT/GPRATIO</code>（2026H1，"其他主营业务"因原始接口未披露成本明细，已用营业成本总额倒挤，见分部表脚注）。</p>
+<p><b>占比 chip 读法（局部相邻分母，不是全图营收）：</b> <b>← X%</b> = 本节点 ÷ 左侧相邻节点；<b>→ Y%</b> = 本节点 ÷ 右侧相邻节点。毛利节点两边都有色带，同时显示 <b>← 21.2%</b>（占营业总收入）与 <b>→ 69.3%</b>（占资金运用池）两个 chip；期间费用/减值/所得税/归母净利润等 Layer 4 终端节点的分母是「资金运用池」（11.89 亿），不是营业总收入——同一笔归母净利润 3.93 亿，占资金运用池 33.0%，占营业总收入仅 10.1%，两个百分比服务于不同问题，不可混用。</p>
+</div>
+
+<div class="sk-chart-wrap" style="background:#fff;border:1px solid var(--rule);border-radius:8px;padding:8px;margin:24px 0;">
+  <div id="chart-sankey" style="width:100%;height:720px;"></div>
+</div>
+
+<h3>分部营收 + 毛利率（2026H1，亿元）</h3>
+<table class="sk-seg-table">
+<thead><tr><th>分部</th><th>营收</th><th>占比</th><th>毛利率</th><th>营收 YoY</th></tr></thead>
+<tbody>
+<tr><td>无缝管</td><td style='text-align:right'>18.42</td><td style='text-align:right'>47.4%</td><td style='text-align:right'>29.9%</td><td style='text-align:right'>-20.5%</td></tr>
+<tr><td>焊接管</td><td style='text-align:right'>7.23</td><td style='text-align:right'>18.6%</td><td style='text-align:right'>13.9%</td><td style='text-align:right'>-11.9%</td></tr>
+<tr><td>复合管</td><td style='text-align:right'>3.99</td><td style='text-align:right'>10.3%</td><td style='text-align:right'>6.0%</td><td style='text-align:right'>-80.5%</td></tr>
+<tr><td>管件及预制件</td><td style='text-align:right'>2.82</td><td style='text-align:right'>7.2%</td><td style='text-align:right'>32.7%</td><td style='text-align:right'>+42.9%</td></tr>
+<tr><td>合金材料</td><td style='text-align:right'>2.54</td><td style='text-align:right'>6.5%</td><td style='text-align:right'>12.5%</td><td style='text-align:right'>-33.5%</td></tr>
+<tr><td>其他主营业务 ¹</td><td style='text-align:right'>3.84</td><td style='text-align:right'>9.9%</td><td style='text-align:right'>6.6%</td><td style='text-align:right'>+13.5%</td></tr>
+</tbody>
+</table>
+<p style="font-size:15px;color:var(--ink-3);">¹ "其他主营业务"成本按营业成本总额（30.5930 亿）减去其余 5 个分部成本合计倒挤所得（choice-data 原始接口未披露该项成本明细）；毛利率由此倒挤值计算，非公司直接披露数字，仅供结构参考。复合管毛利率由 2025H1 约 25% 骤降至 2026H1 <b>6.0%</b>，与其营收 YoY -80.5% 同步——即 ADNOC 管线钢管订单（2023-060 公告，合同期至 2025 年 9 月）退坡不仅带走了收入规模，也带走了这块业务的高毛利定价权，二者需并列看待。</p>
+
+<h3>完整利润表：2026H1 vs 2025H1（亿元，除注明外）</h3>
+<table class="sk-pl-table">
+<thead><tr><th>科目</th><th>2026H1</th><th>2025H1</th><th>YoY</th></tr></thead>
+<tbody>
+<tr><td>营业总收入</td><td style='text-align:right'>38.84</td><td style='text-align:right'>61.05</td><td style='text-align:right'>-36.38%</td></tr>
+<tr><td>营业总成本</td><td style='text-align:right'>36.90</td><td style='text-align:right'>50.87</td><td style='text-align:right'>-27.45%</td></tr>
+<tr><td>营业成本</td><td style='text-align:right'>30.59</td><td style='text-align:right'>44.45</td><td style='text-align:right'>-31.17%</td></tr>
+<tr><td>毛利（收入-营业成本）</td><td style='text-align:right'>8.25</td><td style='text-align:right'>16.60</td><td style='text-align:right'>-50.33%</td></tr>
+<tr><td>毛利率</td><td style='text-align:right'>21.23</td><td style='text-align:right'>27.20</td><td style='text-align:right'>-5.97pp</td></tr>
+<tr><td>销售费用</td><td style='text-align:right'>1.98</td><td style='text-align:right'>2.57</td><td style='text-align:right'>-22.87%</td></tr>
+<tr><td>管理费用</td><td style='text-align:right'>1.93</td><td style='text-align:right'>1.88</td><td style='text-align:right'>+2.82%</td></tr>
+<tr><td>研发费用</td><td style='text-align:right'>1.90</td><td style='text-align:right'>2.12</td><td style='text-align:right'>-10.37%</td></tr>
+<tr><td>财务费用</td><td style='text-align:right'>0.21</td><td style='text-align:right'>-0.51</td><td style='text-align:right'>-141.51%</td></tr>
+<tr><td>税金及附加</td><td style='text-align:right'>0.28</td><td style='text-align:right'>0.35</td><td style='text-align:right'>-20.39%</td></tr>
+<tr><td>资产减值损失</td><td style='text-align:right'>-0.73</td><td style='text-align:right'>-0.66</td><td style='text-align:right'>+9.90%</td></tr>
+<tr><td>信用减值损失</td><td style='text-align:right'>-0.02</td><td style='text-align:right'>-0.45</td><td style='text-align:right'>-95.60%</td></tr>
+<tr><td>投资收益</td><td style='text-align:right'>2.85</td><td style='text-align:right'>0.09</td><td style='text-align:right'>+3216.65%</td></tr>
+<tr><td>公允价值变动收益</td><td style='text-align:right'>-0.01</td><td style='text-align:right'>0.38</td><td style='text-align:right'>-103.27%</td></tr>
+<tr><td>资产处置收益</td><td style='text-align:right'>0.00</td><td style='text-align:right'>-0.00</td><td style='text-align:right'>-103.70%</td></tr>
+<tr><td>其他收益</td><td style='text-align:right'>0.79</td><td style='text-align:right'>0.74</td><td style='text-align:right'>+5.65%</td></tr>
+<tr><td>营业利润</td><td style='text-align:right'>4.81</td><td style='text-align:right'>10.28</td><td style='text-align:right'>-53.19%</td></tr>
+<tr><td>营业外收入</td><td style='text-align:right'>0.02</td><td style='text-align:right'>0.01</td><td style='text-align:right'>+288.52%</td></tr>
+<tr><td>营业外支出</td><td style='text-align:right'>0.00</td><td style='text-align:right'>0.05</td><td style='text-align:right'>-96.91%</td></tr>
+<tr><td>利润总额</td><td style='text-align:right'>4.83</td><td style='text-align:right'>10.24</td><td style='text-align:right'>-52.77%</td></tr>
+<tr><td>所得税</td><td style='text-align:right'>0.90</td><td style='text-align:right'>1.86</td><td style='text-align:right'>-51.81%</td></tr>
+<tr><td>净利润</td><td style='text-align:right'>3.94</td><td style='text-align:right'>8.38</td><td style='text-align:right'>-52.98%</td></tr>
+<tr><td>归母净利润</td><td style='text-align:right'>3.93</td><td style='text-align:right'>8.28</td><td style='text-align:right'>-52.55%</td></tr>
+<tr><td>少数股东损益</td><td style='text-align:right'>0.01</td><td style='text-align:right'>0.10</td><td style='text-align:right'>-88.15%</td></tr>
+<tr><td>综合收益总额</td><td style='text-align:right'>3.05</td><td style='text-align:right'>9.10</td><td style='text-align:right'>-66.51%</td></tr>
+<tr><td>归母综合收益总额</td><td style='text-align:right'>3.04</td><td style='text-align:right'>9.00</td><td style='text-align:right'>-66.27%</td></tr>
+<tr><td>基本EPS(元)</td><td style='text-align:right'>0.41</td><td style='text-align:right'>0.87</td><td style='text-align:right'>-52.87%</td></tr>
+</tbody>
+</table>
+<p style="font-size:15px;color:var(--ink-3);">数据源：choice-data <code>stock_financials</code>（statement=income，report_date=2026-06-30 / 2025-06-30，report_type=1 合并报表），已用 Bash+Python 逐项验算资金运用池守恒（流入 11.8935 亿 = 流出 11.8937 亿，差 0.0002 亿，四舍五入误差）。</p>
+<h3>风险与展望</h3><ul>
+<li>2025H1 复合管（含 ADNOC 92 公里天然气输送管线钢管订单，2023-060 公告）收入 20.50 亿创收占比 33.6%，合同已于 2025 年 9 月到期、去年下半年完成全部交付；2026H1 复合管回落至 3.99 亿（占比 10.3%），YoY -80.5%，毛利率同步从约 25% 骤降至 6.0%，是营收缺口的最大贡献项（约占 22.21 亿缺口的 63.4%），但其余业务合计仍萎缩约 8.13 亿（36.6%），无法完全用"大订单退坡"单一因素解释。</li>
+<li>2026H1 归母净利润 3.93 亿中非经常性损益占 60.1%（2.36 亿），主因 Q1 一次性出清永兴材料(002756) 1.8911% 股权确认投资收益 2.68 亿；H2 不再有此类一次性收益，Sankey 中"投资收益 2.85 亿"这一节点含此高权重非经常项，不应线性外推至下半年。</li>
+<li>2026Q2 单季扣非净利润 -0.21 亿，为该口径下的单季亏损；本 Sankey 呈现的是 H1 半年累计数，掩盖了 Q1（盈利为主）与 Q2（转亏）的季度分化，读图时需结合报告正文的单季拆解表。</li>
+<li>经营性现金流 2026H1 仅 0.65 亿（同比 -73.6%），存货逆营收下滑而累库至 32.97 亿（Q2 环比 +13.5%）——净利润的"含金量"与现金流表现出现背离，需与后续「报表战略考察」章节的经营性现金流/净利润比对照阅读。</li>
+</ul>
+
+<script>
+(function() {
+  var chipColorMap = {
+    '#4c6c9c': 'chipBlue', '#2f4a73': 'chipBlue',
+    '#047857': 'chipGreen', '#0a5c40': 'chipGreen',
+    '#b09a55': 'chipMetric',
+    '#8a3324': 'chipRed',
+    '#c79b2b': 'chipTip',
+    '#944056': 'chipDive',
+    '#999999': 'chipMuted'
+  };
+  function pickChipKey(color) { return chipColorMap[color] || 'chipMuted'; }
+
+  var nodes = [{"name": "无缝管 · → 47.4%\n18.42 亿\nYoY -20.5% · 毛利率 29.9%\n无缝管 / 营业总收入 = 47.4%", "depth": 0, "itemStyle": {"color": "#4c6c9c"}}, {"name": "焊接管 · → 18.6%\n7.23 亿\nYoY -11.9% · 毛利率 13.9%\n焊接管 / 营业总收入 = 18.6%", "depth": 0, "itemStyle": {"color": "#4c6c9c"}}, {"name": "复合管 · → 10.3%\n3.99 亿\nYoY -80.5% · 毛利率 6.0%\n复合管 / 营业总收入 = 10.3%", "depth": 0, "itemStyle": {"color": "#4c6c9c"}}, {"name": "管件及预制件 · → 7.2%\n2.82 亿\nYoY +42.9% · 毛利率 32.7%\n管件及预制件 / 营业总收入 = 7.2%", "depth": 0, "itemStyle": {"color": "#4c6c9c"}}, {"name": "合金材料 · → 6.5%\n2.54 亿\nYoY -33.5% · 毛利率 12.5%\n合金材料 / 营业总收入 = 6.5%", "depth": 0, "itemStyle": {"color": "#4c6c9c"}}, {"name": "其他主营业务 · → 9.9%\n3.84 亿\nYoY +13.5% · 毛利率 6.6%\n其他主营业务 / 营业总收入 = 9.9%", "depth": 0, "itemStyle": {"color": "#4c6c9c"}}, {"name": "营业总收入\n38.84 亿\n2025H1 61.05 亿 → YoY -36.38%", "depth": 1, "itemStyle": {"color": "#2f4a73"}}, {"name": "毛利 · ← 21.2% · → 69.3%\n8.25 亿\n毛利率 21.2%（上期 27.2%，YoY -5.96pp）\n毛利 / 营业总收入 = 21.2%\n毛利 / 资金运用池 = 69.3%", "depth": 2, "itemStyle": {"color": "#047857"}}, {"name": "营业成本 · ← 78.8%\n30.59 亿\n营业成本 / 营业总收入 = 78.8%", "depth": 2, "itemStyle": {"color": "#8a3324"}}, {"name": "投资收益 · → 24.0%\n2.85 亿\n含 Q1 出清永兴材料(002756) 1.8911% 股权确认投资收益 2.68 亿（一次性，H2 不再有）\n投资收益 / 资金运用池 = 24.0%", "depth": 2, "itemStyle": {"color": "#047857"}}, {"name": "其他收益 · → 6.5%\n0.77 亿\n含其他收益(政府补助等) 0.7857 亿 + 公允价值变动收益 -0.0124 亿 + 资产处置收益 0.0001 亿\n其他收益 / 资金运用池 = 6.5%", "depth": 2, "itemStyle": {"color": "#047857"}}, {"name": "营业外收入 · → 0.2%\n0.02 亿\n营业外收入 / 资金运用池 = 0.2%", "depth": 2, "itemStyle": {"color": "#999999"}}, {"name": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "depth": 3, "itemStyle": {"color": "#2f4a73"}}, {"name": "销售费用 · ← 16.7%\n1.98 亿\n销售费用 / 资金运用池 = 16.7%", "depth": 4, "itemStyle": {"color": "#c79b2b"}}, {"name": "管理费用 · ← 16.3%\n1.93 亿\n管理费用 / 资金运用池 = 16.3%", "depth": 4, "itemStyle": {"color": "#c79b2b"}}, {"name": "研发费用 · ← 16.0%\n1.90 亿\n研发费用 / 资金运用池 = 16.0%", "depth": 4, "itemStyle": {"color": "#c79b2b"}}, {"name": "财务费用 · ← 1.8%\n0.21 亿\n财务费用 / 资金运用池 = 1.8%", "depth": 4, "itemStyle": {"color": "#c79b2b"}}, {"name": "税金及附加 · ← 2.3%\n0.28 亿\n税金及附加 / 资金运用池 = 2.3%", "depth": 4, "itemStyle": {"color": "#c79b2b"}}, {"name": "资产减值损失 · ← 6.1%\n0.73 亿\n资产减值损失 / 资金运用池 = 6.1%", "depth": 4, "itemStyle": {"color": "#8a3324"}}, {"name": "信用减值损失 · ← 0.2%\n0.02 亿\n信用减值损失 / 资金运用池 = 0.2%", "depth": 4, "itemStyle": {"color": "#8a3324"}}, {"name": "营业外支出 · ← 0.0%\n0.00 亿\n营业外支出 / 资金运用池 = 0.0%", "depth": 4, "itemStyle": {"color": "#999999"}}, {"name": "所得税 · ← 7.5%\n0.90 亿\n所得税 / 资金运用池 = 7.5%", "depth": 4, "itemStyle": {"color": "#b09a55"}}, {"name": "归母净利润 · ← 33.0%\n3.93 亿\n基本 EPS 0.41 元（上期 0.87 元，YoY -52.87%）\n归母净利润 / 资金运用池 = 33.0%", "depth": 4, "itemStyle": {"color": "#047857"}}, {"name": "少数股东损益 · ← 0.1%\n0.01 亿\n少数股东损益 / 资金运用池 = 0.1%", "depth": 4, "itemStyle": {"color": "#999999"}}];
+  var links = [{"source": "无缝管 · → 47.4%\n18.42 亿\nYoY -20.5% · 毛利率 29.9%\n无缝管 / 营业总收入 = 47.4%", "target": "营业总收入\n38.84 亿\n2025H1 61.05 亿 → YoY -36.38%", "value": 18.4235}, {"source": "焊接管 · → 18.6%\n7.23 亿\nYoY -11.9% · 毛利率 13.9%\n焊接管 / 营业总收入 = 18.6%", "target": "营业总收入\n38.84 亿\n2025H1 61.05 亿 → YoY -36.38%", "value": 7.2327}, {"source": "复合管 · → 10.3%\n3.99 亿\nYoY -80.5% · 毛利率 6.0%\n复合管 / 营业总收入 = 10.3%", "target": "营业总收入\n38.84 亿\n2025H1 61.05 亿 → YoY -36.38%", "value": 3.9892}, {"source": "管件及预制件 · → 7.2%\n2.82 亿\nYoY +42.9% · 毛利率 32.7%\n管件及预制件 / 营业总收入 = 7.2%", "target": "营业总收入\n38.84 亿\n2025H1 61.05 亿 → YoY -36.38%", "value": 2.8176}, {"source": "合金材料 · → 6.5%\n2.54 亿\nYoY -33.5% · 毛利率 12.5%\n合金材料 / 营业总收入 = 6.5%", "target": "营业总收入\n38.84 亿\n2025H1 61.05 亿 → YoY -36.38%", "value": 2.5377}, {"source": "其他主营业务 · → 9.9%\n3.84 亿\nYoY +13.5% · 毛利率 6.6%\n其他主营业务 / 营业总收入 = 9.9%", "target": "营业总收入\n38.84 亿\n2025H1 61.05 亿 → YoY -36.38%", "value": 3.8398}, {"source": "营业总收入\n38.84 亿\n2025H1 61.05 亿 → YoY -36.38%", "target": "毛利 · ← 21.2% · → 69.3%\n8.25 亿\n毛利率 21.2%（上期 27.2%，YoY -5.96pp）\n毛利 / 营业总收入 = 21.2%\n毛利 / 资金运用池 = 69.3%", "value": 8.2475}, {"source": "营业总收入\n38.84 亿\n2025H1 61.05 亿 → YoY -36.38%", "target": "营业成本 · ← 78.8%\n30.59 亿\n营业成本 / 营业总收入 = 78.8%", "value": 30.593}, {"source": "毛利 · ← 21.2% · → 69.3%\n8.25 亿\n毛利率 21.2%（上期 27.2%，YoY -5.96pp）\n毛利 / 营业总收入 = 21.2%\n毛利 / 资金运用池 = 69.3%", "target": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "value": 8.2475}, {"source": "投资收益 · → 24.0%\n2.85 亿\n含 Q1 出清永兴材料(002756) 1.8911% 股权确认投资收益 2.68 亿（一次性，H2 不再有）\n投资收益 / 资金运用池 = 24.0%", "target": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "value": 2.849}, {"source": "其他收益 · → 6.5%\n0.77 亿\n含其他收益(政府补助等) 0.7857 亿 + 公允价值变动收益 -0.0124 亿 + 资产处置收益 0.0001 亿\n其他收益 / 资金运用池 = 6.5%", "target": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "value": 0.7734}, {"source": "营业外收入 · → 0.2%\n0.02 亿\n营业外收入 / 资金运用池 = 0.2%", "target": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "value": 0.0237}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "销售费用 · ← 16.7%\n1.98 亿\n销售费用 / 资金运用池 = 16.7%", "value": 1.9832}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "管理费用 · ← 16.3%\n1.93 亿\n管理费用 / 资金运用池 = 16.3%", "value": 1.9333}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "研发费用 · ← 16.0%\n1.90 亿\n研发费用 / 资金运用池 = 16.0%", "value": 1.9024}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "财务费用 · ← 1.8%\n0.21 亿\n财务费用 / 资金运用池 = 1.8%", "value": 0.2101}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "税金及附加 · ← 2.3%\n0.28 亿\n税金及附加 / 资金运用池 = 2.3%", "value": 0.2783}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "资产减值损失 · ← 6.1%\n0.73 亿\n资产减值损失 / 资金运用池 = 6.1%", "value": 0.7305}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "信用减值损失 · ← 0.2%\n0.02 亿\n信用减值损失 / 资金运用池 = 0.2%", "value": 0.0196}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "营业外支出 · ← 0.0%\n0.00 亿\n营业外支出 / 资金运用池 = 0.0%", "value": 0.0016}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "所得税 · ← 7.5%\n0.90 亿\n所得税 / 资金运用池 = 7.5%", "value": 0.8964}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "归母净利润 · ← 33.0%\n3.93 亿\n基本 EPS 0.41 元（上期 0.87 元，YoY -52.87%）\n归母净利润 / 资金运用池 = 33.0%", "value": 3.9264}, {"source": "资金运用池\n11.89 亿（= 毛利 + 投资收益 + 其他收益 + 营业外收入）", "target": "少数股东损益 · ← 0.1%\n0.01 亿\n少数股东损益 / 资金运用池 = 0.1%", "value": 0.0119}];
+
+  var chartDom = document.getElementById('chart-sankey');
+  var myChart = echarts.init(chartDom);
+  var option = {
+    backgroundColor: 'transparent',
+    tooltip: {
+      trigger: 'item',
+      padding: [12, 16],
+      borderRadius: 8,
+      extraCssText: 'box-shadow:0 6px 20px rgba(0,0,0,0.22);max-width:380px;white-space:normal;',
+      textStyle: { fontSize: 14, lineHeight: 22 },
+      formatter: function(p) {
+        if (p.dataType === 'edge') {
+          var s = p.data.source.split('\n')[0].split(' · ')[0];
+          var t = p.data.target.split('\n')[0].split(' · ')[0];
+          return '<div style="font-size:15px;font-weight:600;">' + s + ' → ' + t + '</div>' +
+                 '<div style="font-size:17px;font-weight:700;color:#2f4a73;margin-top:4px;">' + p.data.value.toFixed(4) + ' 亿</div>' +
+                 '<div style="font-size:12px;color:#999;margin-top:2px;">流量金额</div>';
+        }
+        var allLines = p.name.split('\n');
+        var title = allLines[0].split(' · ')[0];
+        var detailLines = [], formulaLines = [];
+        for (var i = 1; i < allLines.length; i++) {
+          var s = allLines[i];
+          if (s.indexOf(' / ') >= 0 && s.indexOf('=') >= 0) { formulaLines.push(s); }
+          else if (s.trim() !== '') { detailLines.push(s); }
+        }
+        var html = '<div style="font-size:16px;font-weight:700;">' + title + '</div>';
+        detailLines.forEach(function(l) {
+          html += '<div style="font-size:13px;color:#888;margin-top:3px;">' + l + '</div>';
+        });
+        if (formulaLines.length) {
+          html += '<div style="border-top:1px dashed #ccc;margin-top:8px;padding-top:6px;">';
+          formulaLines.forEach(function(l) {
+            var parts = l.split('=');
+            html += '<div style="font-size:13px;color:#666;">' + parts[0] + '= <b style="font-size:15px;color:#2f4a73;">' + parts[1] + '</b></div>';
+          });
+          html += '</div>';
+        }
+        return html;
+      }
+    },
+    series: [{
+      type: 'sankey',
+      data: nodes,
+      links: links,
+      nodeWidth: 20,
+      nodeGap: 14,
+      nodeAlign: 'justify',
+      layoutIterations: 64,
+      lineStyle: { color: 'gradient', curveness: 0.5, opacity: 0.5 },
+      itemStyle: { borderWidth: 0 },
+      label: {
+        fontSize: 13,
+        fontWeight: 600,
+        fontFamily: '-apple-system,"PingFang SC","Inter",sans-serif',
+        color: '#1f2328',
+        formatter: function(p) {
+          var firstLine = p.name.split('\n')[0];
+          var dotIdx = firstLine.indexOf(' · ');
+          if (dotIdx < 0) return '{name|' + firstLine + '}';
+          var nodeName = firstLine.slice(0, dotIdx);
+          var chips = firstLine.slice(dotIdx + 3).split(' · ');
+          var ck = pickChipKey(p.color);
+          var r = '{name|' + nodeName + '}';
+          for (var i = 0; i < chips.length; i++) { r += '  {' + ck + '|' + chips[i] + '}'; }
+          return r;
+        },
+        rich: {
+          name: { fontSize: 13, fontWeight: 600, color: '#1f2328' },
+          chipBlue:   { fontSize: 11, fontWeight: 700, color: '#fff', backgroundColor: '#4c6c9c', padding: [3,9,3,9], borderRadius: 10, lineHeight: 14 },
+          chipGreen:  { fontSize: 11, fontWeight: 700, color: '#fff', backgroundColor: '#047857', padding: [3,9,3,9], borderRadius: 10, lineHeight: 14 },
+          chipMetric: { fontSize: 11, fontWeight: 700, color: '#fff', backgroundColor: '#b09a55', padding: [3,9,3,9], borderRadius: 10, lineHeight: 14 },
+          chipRed:    { fontSize: 11, fontWeight: 700, color: '#fff', backgroundColor: '#8a3324', padding: [3,9,3,9], borderRadius: 10, lineHeight: 14 },
+          chipTip:    { fontSize: 11, fontWeight: 700, color: '#fff', backgroundColor: '#c79b2b', padding: [3,9,3,9], borderRadius: 10, lineHeight: 14 },
+          chipDive:   { fontSize: 11, fontWeight: 700, color: '#fff', backgroundColor: '#944056', padding: [3,9,3,9], borderRadius: 10, lineHeight: 14 },
+          chipMuted:  { fontSize: 11, fontWeight: 700, color: '#fff', backgroundColor: '#999999', padding: [3,9,3,9], borderRadius: 10, lineHeight: 14 }
+        }
+      },
+      emphasis: {
+        focus: 'adjacency',
+        label: { fontSize: 14, fontWeight: 700, color: '#2f4a73' },
+        lineStyle: { opacity: 0.85 },
+        itemStyle: { borderColor: '#2f4a73', borderWidth: 2 }
+      }
+    }]
+  };
+  myChart.setOption(option);
+  window.addEventListener('resize', function() { myChart.resize(); });
+})();
+</script>
+
+</section>
+<hr class="div">
+
+<!-- ============ 三、专题核查：用户特别关注（原始素材，待后续 phase 校对整合） ============ -->
+<section id="h1-2026-profit-shock">
+<h2><span class="num">3</span>专题核查：2026 半年报利润腰斩——「大订单高基数」假说独立核查</h2>
+
+<p class="lede" style="font-size:19px;line-height:1.85;">
+本节回应一个具体假设：<strong>2026H1 利润同比大幅下降，是因为此前的大订单交付完毕导致的高基数效应，公司基本面并未改变，市场若因此恐慌抛售即构成买入机会。</strong>
+这个假设包含三个可以被独立证伪的子命题。下面逐条用数据检验，结论既不完全支持、也不完全否定它——三条里一条部分成立、两条不成立。
+</p>
+
+<p style="font-size:15px;color:var(--ink-3);">本节全部核心数据来源：主对话已核查文件 <code>/tmp/claude/ir-久立特材/verified-facts.md</code><sup>[verified-facts]</sup>（Tushare REST API 直连取数，已用 Python 逐条验算轧平；业绩预告、ADNOC 合同公告 2023-060、股权增减持等信息均来自公司公告，日期已在文中逐处标注）。</p>
+
+<div class="callout tip">
+<span class="label">TIP · 收入确认机制辨析</span>
+<p><strong>先修正一处机制表述。</strong>制造业不存在「大订单收益摊销结束」这一机制。久立特材的收入按《企业会计准则第 14 号——收入》在控制权转移时点（或按履约进度）确认，管线钢管/复合管合同交付完毕后，对应营收与毛利<strong>直接消失</strong>，而不是「摊销期满」。
+这个差别很关键：摊销停止意味着<em>账面费用/收益的时间分布结束、经营实体未变</em>；订单交付完毕意味着<em>一块真实的营收与利润没有了，必须由新订单补上</em>。后者是否「基本面未变」，取决于新订单能否接续，而不能由「基数效应」四个字自动推出。</p>
+</div>
+
+<h3>一、三个子命题的检验结论</h3>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">子命题</th><th style="text-align:center;">判定</th><th style="text-align:center;">决定性证据</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>① 业绩下滑主因是大订单交付完毕的高基数</td>
+<td style="text-align:center;color:#b45309;"><strong>部分成立</strong><br>（营收成立约 63%，利润不成立）</td>
+<td>营收缺口 22.21 亿中，复合管大订单回落可解释 14.08 亿（63.4%），剩余 8.13 亿（36.6%）无法解释；<br>利润端则完全解释不了，见命题 ②</td>
+</tr>
+<tr>
+<td>② 基本面并未改变</td>
+<td style="text-align:center;color:#b91c1c;"><strong>不成立</strong></td>
+<td>2026H1 扣非净利 1.57 亿，比<strong>同样没有大订单的 2024H1（6.53 亿）还低 76.0%</strong>；2026Q2 单季扣非 <strong>−0.21 亿（亏损）</strong></td>
+</tr>
+<tr>
+<td>③ 市场不明所以、正在恐慌抛售</td>
+<td style="text-align:center;color:#b91c1c;"><strong>不成立</strong></td>
+<td>7/15 已发预告（预减 50%~55%），实际 −52.55% 落在区间内；预告当日股价 −0.11%；股价 7 月上旬已跌 24.60%，此后<strong>反弹 8.49%</strong></td>
+</tr>
+</tbody>
+</table>
+
+<h3>二、业绩拆解：问题出在 Q2，且 Q2 已经亏损</h3>
+
+<p>市场讨论普遍停留在半年度口径。但把 Q1 倒挤出去之后，图景完全不同——<strong>Q1 的归母净利还是同比正增长的，全部的塌陷都发生在 Q2</strong>。</p>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">口径</th><th style="text-align:center;">2026</th><th style="text-align:center;">2025</th><th style="text-align:center;">同比</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>H1 营业总收入</strong></td><td style="text-align:right;">38.84 亿</td><td style="text-align:right;">61.05 亿</td><td style="text-align:right;color:#b91c1c;">−36.38%</td></tr>
+<tr><td><strong>H1 归母净利</strong></td><td style="text-align:right;">3.93 亿</td><td style="text-align:right;">8.28 亿</td><td style="text-align:right;color:#b91c1c;">−52.54%</td></tr>
+<tr><td><strong>H1 扣非净利</strong></td><td style="text-align:right;">1.57 亿</td><td style="text-align:right;">7.87 亿</td><td style="text-align:right;color:#b91c1c;">−80.05%</td></tr>
+<tr style="background:#f8fafc;"><td>Q1 营收</td><td style="text-align:right;">20.24 亿</td><td style="text-align:right;">28.83 亿</td><td style="text-align:right;">−29.79%</td></tr>
+<tr style="background:#f8fafc;"><td>Q1 归母净利</td><td style="text-align:right;">3.95 亿</td><td style="text-align:right;">3.89 亿</td><td style="text-align:right;color:#15803d;">+1.43%</td></tr>
+<tr style="background:#f8fafc;"><td>Q1 扣非净利</td><td style="text-align:right;">1.78 亿</td><td style="text-align:right;">3.94 亿</td><td style="text-align:right;color:#b91c1c;">−54.84%</td></tr>
+<tr style="background:#fef2f2;"><td><strong>Q2 营收</strong>（倒挤）</td><td style="text-align:right;">18.60 亿</td><td style="text-align:right;">32.22 亿</td><td style="text-align:right;color:#b91c1c;">−42.27%</td></tr>
+<tr style="background:#fef2f2;"><td><strong>Q2 归母净利</strong>（倒挤）</td><td style="text-align:right;">−0.02 亿</td><td style="text-align:right;">4.39 亿</td><td style="text-align:right;color:#b91c1c;">−100.46%</td></tr>
+<tr style="background:#fef2f2;"><td><strong>Q2 扣非净利</strong>（倒挤）</td><td style="text-align:right;">−0.21 亿</td><td style="text-align:right;">3.93 亿</td><td style="text-align:right;color:#b91c1c;">−105.34%</td></tr>
+</tbody>
+</table>
+
+<p class="note" style="font-size:16px;color:#64748b;">
+验算：Q1 20.24 + Q2 18.60 = 38.84 = H1 营收 ✓；Q1 3.95 + Q2 (−0.02) = 3.93 = H1 归母 ✓。
+倒挤出的 Q2 归母同比 −100.46%，与 Tushare 直接给出的单季指标 q_profit_yoy = −100.62% 一致（差异来自四舍五入）✓。
+</p>
+
+<div class="callout fact">
+<span class="label">FACT CHECK · 关键事实一</span>
+<p><strong>Q1 早已预警，只是被一次性收益盖住了。</strong>
+2026Q1 归母净利同比 +1.43%，看上去毫发无伤；但同期扣非净利已经 −54.84%。两者的差额来自当季 <strong>2.68 亿投资收益——公司在 2026Q1 出清了持有的永兴材料（002756）1.8911% 全部股权</strong>。
+也就是说，主营的恶化在 4 月 28 日披露一季报时就已经写在报表里了，市场有整整四个月时间消化，并非「半年报才突然爆雷」。</p>
+</div>
+
+<h3>三、决定性反证：拿它跟「同样没有大订单」的 2024H1 比</h3>
+
+<p>
+「大订单结束、基本面未变」这个说法有一个天然的检验方法：<strong>如果只是大订单退潮，那么业绩应该回落到大订单开始之前的水平，而不应低于它。</strong>
+复合管大订单指的是 <strong>2023 年 9 月德国全资孙公司 EBK（Eisenbau Krämer GmbH）与阿布扎比国家石油公司（ADNOC）签订的天然气输送管线钢管供应合同</strong>（公告编号 2023-060）：标的约 92 公里管线钢管，<strong>含税合同金额约 5.92 亿欧元，约合人民币 46 亿元</strong>，<strong>合同期限自签订日起至 2025 年 9 月</strong>。EBK 已于 2023 年 10 月收到 ADNOC 预付款约 1.77 亿欧元（约 13.8 亿元人民币）。
+该合同自 2024 年下半年起集中确认收入，2024H1 尚未放量——2024H1 复合管营收仅 6.42 亿，2025H1 暴增至 20.50 亿（+219%）。<strong>合同期限终点（2025 年 9 月）与业绩预告中「上述项目已于去年下半年完成全部交付」的表述完全吻合</strong>，可以确认这一大单已于 2025H2 走完生命周期。
+所以 <strong>2024H1 就是天然的「无大订单对照组」</strong>。
+</p>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">口径</th><th style="text-align:center;">2026H1<br>（大订单已结束）</th><th style="text-align:center;">2024H1<br>（大订单未放量）</th><th style="text-align:center;">2026H1 相对 2024H1</th></tr>
+</thead>
+<tbody>
+<tr><td>营业总收入</td><td style="text-align:right;">38.84 亿</td><td style="text-align:right;">48.31 亿</td><td style="text-align:right;color:#b91c1c;"><strong>−19.60%</strong></td></tr>
+<tr><td>归母净利</td><td style="text-align:right;">3.93 亿</td><td style="text-align:right;">6.44 亿</td><td style="text-align:right;color:#b91c1c;"><strong>−38.98%</strong></td></tr>
+<tr><td>扣非净利</td><td style="text-align:right;">1.57 亿</td><td style="text-align:right;">6.53 亿</td><td style="text-align:right;color:#b91c1c;"><strong>−75.96%</strong></td></tr>
+<tr><td>销售毛利率</td><td style="text-align:right;">21.23%</td><td style="text-align:right;">24.91%</td><td style="text-align:right;color:#b91c1c;"><strong>−3.68 pct</strong></td></tr>
+</tbody>
+</table>
+
+<div class="callout fact">
+<span class="label">FACT CHECK · 关键事实二</span>
+<p><strong>对原假设最有力的反驳：</strong>
+剔除大订单这一变量后，2026H1 的经营质量<strong>不是回到大订单之前的水平，而是显著低于它</strong>——营收比 2024H1 少近两成，扣非净利只有 2024H1 的四分之一，毛利率还低 3.68 个百分点。
+如果「基本面未变、只是大订单退潮」成立，这三个数字应当大致持平于 2024H1。它们没有。</p>
+</div>
+
+<h3>四、大订单到底能解释多少？——量化归因</h3>
+
+<p>把 22.21 亿的营收缺口做一次归因分解（以复合管分部为大订单载体）：</p>
+
+<div class="tex">$$\underbrace{22.21}_{\text{营收缺口}} = \underbrace{(20.50 - 6.42)}_{\text{复合管回落至 2024H1 水平}=14.08} + \underbrace{8.13}_{\text{其余业务萎缩}}$$</div>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">归因项</th><th style="text-align:center;">金额</th><th style="text-align:center;">占营收缺口</th><th style="text-align:center;">性质</th></tr>
+</thead>
+<tbody>
+<tr><td>复合管大订单退潮（基数效应）</td><td style="text-align:right;">14.08 亿</td><td style="text-align:right;"><strong>63.4%</strong></td><td>一次性 / 可由新订单接续</td></tr>
+<tr><td>其余业务（无缝管、焊接管、管件等）萎缩</td><td style="text-align:right;">8.13 亿</td><td style="text-align:right;"><strong>36.6%</strong></td><td>需求与竞争，持续性</td></tr>
+</tbody>
+</table>
+
+<p>
+<strong>所以在营收维度，你的判断有 63% 是对的</strong>：大订单确实是营收下滑的最大单一原因。
+但请注意公司自己在业绩预告中给出的四条原因的<strong>排序</strong>——大订单基数被放在<strong>第四条</strong>，前三条依次是：
+</p>
+<ol style="font-size:18px;line-height:1.9;">
+<li>行业处于结构优化调整周期，<strong>下游需求阶段性偏弱、供给充足、市场竞争加剧，常规产品盈利空间承压</strong>（持续性问题）</li>
+<li>受中东地缘环境影响，<strong>海外订单交付节奏延后</strong>（时点性问题，可恢复）</li>
+<li>物流运输、员工薪酬特别是<strong>社保成本上升</strong>，进一步压缩盈利空间（持续性问题）</li>
+<li>上年同期管线钢管项目（公告 2023-060）及复合管项目集中创收，形成较高基数，<strong>上述项目已于去年下半年完成全部交付</strong>（基数效应）</li>
+</ol>
+<p>
+上市公司的业绩说明通常倾向于把「一次性、非公司责任」的因素前置以缓和市场情绪。久立反其道而行，<strong>把最能安抚市场的「高基数」放在最后、把最难听的「竞争加剧、盈利空间承压」放在第一</strong>，这个排序本身是一个值得重视的信号。
+</p>
+
+<h4>4.1 合同负债曲线：这单 46 亿大单的完整生命周期，报表上是看得见的</h4>
+<p>
+ADNOC 合同的 1.77 亿欧元预付款进入报表后计入<strong>合同负债</strong>（已收客户对价但尚未确认收入的部分）。随着管材陆续交付、收入确认，这笔预收款被逐季结转释放。
+因此<strong>合同负债这条曲线，恰好完整刻画了这单大单从签约、放量到出清的全过程</strong>，并且它是少数几个能前瞻下一期收入的指标——它反映的是「已经收到钱、但还没确认成收入」的在手业务量。
+</p>
+<table>
+<thead>
+<tr><th style="text-align:center;">报告期</th><th style="text-align:center;">合同负债</th><th style="text-align:center;">环比</th><th style="text-align:center;">阶段</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center;">2023Q4</td><td style="text-align:right;">23.00 亿</td><td style="text-align:right;">—</td><td>预付款到账，蓄水</td></tr>
+<tr><td style="text-align:center;">2024Q2</td><td style="text-align:right;">23.76 亿</td><td style="text-align:right;">+7.5%</td><td>交付启动</td></tr>
+<tr style="background:#f0fdf4;"><td style="text-align:center;"><strong>2024Q3</strong></td><td style="text-align:right;"><strong>26.96 亿</strong></td><td style="text-align:right;color:#15803d;">+13.5%</td><td><strong>历史峰值</strong></td></tr>
+<tr><td style="text-align:center;">2024Q4</td><td style="text-align:right;">17.87 亿</td><td style="text-align:right;color:#b91c1c;">−33.7%</td><td rowspan="3" style="vertical-align:middle;">集中确认收入，预收款快速释放</td></tr>
+<tr><td style="text-align:center;">2025Q2</td><td style="text-align:right;">19.19 亿</td><td style="text-align:right;">+5.0%</td></tr>
+<tr><td style="text-align:center;">2025Q3</td><td style="text-align:right;">10.31 亿</td><td style="text-align:right;color:#b91c1c;">−46.3%</td></tr>
+<tr><td style="text-align:center;">2025Q4</td><td style="text-align:right;">11.20 亿</td><td style="text-align:right;">+8.6%</td><td>大单交付完毕（合同期止于 25 年 9 月）</td></tr>
+<tr style="background:#fef2f2;"><td style="text-align:center;"><strong>2026Q1</strong></td><td style="text-align:right;"><strong>9.96 亿</strong></td><td style="text-align:right;color:#b91c1c;">−11.1%</td><td><strong>谷底，仅为峰值的 36.9%</strong></td></tr>
+<tr style="background:#f0fdf4;"><td style="text-align:center;"><strong>2026Q2</strong></td><td style="text-align:right;"><strong>13.16 亿</strong></td><td style="text-align:right;color:#15803d;"><strong>+32.1%</strong></td><td><strong>触底回升 ← 关键观察点</strong></td></tr>
+</tbody>
+</table>
+<p class="note" style="font-size:16px;color:#64748b;">验算：26.96 → 9.96，降幅 63.1%；9.96 → 13.16，环比 +32.13%。峰谷比 9.96/26.96 = 36.9%。</p>
+<div class="callout tip">
+<span class="label">TIP · 合同负债的双重信号</span>
+<p><strong>这条曲线同时给出了本节最强的正面信号和最需要警惕的参照系：</strong><br>
+<span style="color:#15803d;"><strong>正面</strong></span>——2026Q2 合同负债环比 <strong>+32.1%</strong>，是三年来首次显著回升。在营收同比 −42% 的季度里预收款不降反增，说明<strong>有新订单的预付款正在进场</strong>，这是「订单接续」最早的报表证据，也是情形 A（周期底部）最有力的支撑。<br>
+<span style="color:#b91c1c;"><strong>警惕</strong></span>——13.16 亿仍<strong>只有 2024Q3 峰值的 48.8%</strong>，也低于 ADNOC 大单签约前的 2023Q4（23.00 亿）水平。回升的绝对量级，距离撑起 2025 年那样的收入体量还有相当距离。<strong>单季 +32% 的环比不足以推出「大单级别的新订单已经落地」</strong>，需要在 Q3 报告中看到这一趋势的延续、以及新的重大合同公告来印证。</p>
+</div>
+
+<h3>五、利润质量：这 3.93 亿里有 6 成不是主业赚的</h3>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">项目</th><th style="text-align:center;">2026H1</th><th style="text-align:center;">2025H1</th></tr>
+</thead>
+<tbody>
+<tr><td>归母净利润</td><td style="text-align:right;">3.93 亿</td><td style="text-align:right;">8.28 亿</td></tr>
+<tr><td>扣非净利润</td><td style="text-align:right;">1.57 亿</td><td style="text-align:right;">7.87 亿</td></tr>
+<tr><td><strong>非经常性损益</strong></td><td style="text-align:right;"><strong>2.36 亿</strong></td><td style="text-align:right;">0.41 亿</td></tr>
+<tr><td><strong>非经常性占归母比重</strong></td><td style="text-align:right;color:#b91c1c;"><strong>60.1%</strong></td><td style="text-align:right;">5.0%</td></tr>
+<tr><td>其中：投资收益</td><td style="text-align:right;">2.85 亿</td><td style="text-align:right;">0.09 亿</td></tr>
+<tr><td>其中：资产减值损失</td><td style="text-align:right;">−0.73 亿</td><td style="text-align:right;">−0.66 亿</td></tr>
+<tr><td>其中：其他收益（政府补助等）</td><td style="text-align:right;">0.79 亿</td><td style="text-align:right;">0.74 亿</td></tr>
+</tbody>
+</table>
+
+<p>
+2.85 亿投资收益中，2.68 亿来自 Q1 出售永兴材料全部股权。<strong>这是一次性的、且已经用完的筹码——2026H2 不会再有这笔收益。</strong>
+换言之，如果下半年主业不出现改善，H2 的归母净利将失去这层缓冲，届时报表会比 H1 更难看。这一点在评估「全年利润」时必须计入。
+</p>
+
+<h3>六、毛利率：跌到了近五年半年报最低</h3>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">报告期</th><th style="text-align:center;">2022H1</th><th style="text-align:center;">2023H1</th><th style="text-align:center;">2024H1</th><th style="text-align:center;">2025H1</th><th style="text-align:center;">2026H1</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center;">销售毛利率</td><td style="text-align:right;">24.43%</td><td style="text-align:right;">22.92%</td><td style="text-align:right;">24.91%</td><td style="text-align:right;">27.20%</td><td style="text-align:right;color:#b91c1c;"><strong>21.23%</strong></td></tr>
+<tr><td style="text-align:center;">Q2 单季毛利率</td><td style="text-align:right;">25.05%</td><td style="text-align:right;">22.31%</td><td style="text-align:right;">22.85%</td><td style="text-align:right;">26.40%</td><td style="text-align:right;color:#b91c1c;"><strong>17.23%</strong></td></tr>
+</tbody>
+</table>
+
+<p>
+毛利率是检验「基本面是否改变」最直接的指标，因为<strong>它不受订单规模大小影响，只反映单位产品的赚钱能力</strong>。
+2026H1 的 21.23% 低于过去五年任何一个半年度，Q2 单季 17.23% 更是断崖——比同样没有大订单的 2024Q2（22.85%）低 5.62 个百分点。
+一个「只是订单少了但产品竞争力没变」的公司，毛利率不应该出现这样的下移。
+</p>
+
+<h3>七、是行业问题还是公司问题？——同业横向对照</h3>
+
+<p>这是本节最需要审慎的一步。如果同行也在同步恶化，那么久立的问题就有相当部分应归于行业周期，而非自身竞争力流失。</p>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">公司</th><th style="text-align:center;">细分定位</th><th style="text-align:center;">2026H1 毛利率<br>（较 2025H1）</th><th style="text-align:center;">2026H1<br>营收 YoY</th><th style="text-align:center;">2026H1<br>扣非 YoY</th></tr>
+</thead>
+<tbody>
+<tr style="background:#fef2f2;"><td><strong>久立特材</strong></td><td>不锈钢管龙头</td><td style="text-align:right;">21.23%（−5.97 pct）</td><td style="text-align:right;color:#b91c1c;"><strong>−36.38%</strong></td><td style="text-align:right;color:#b91c1c;"><strong>−80.05%</strong></td></tr>
+<tr><td>常宝股份</td><td>油井管 / 电站管</td><td style="text-align:right;">13.63%（−1.94 pct）</td><td style="text-align:right;">+2.13%</td><td style="text-align:right;">−27.89%</td></tr>
+<tr><td>盛德鑫泰</td><td>电站锅炉管</td><td style="text-align:right;">10.93%（−5.15 pct）</td><td style="text-align:right;">+10.59%</td><td style="text-align:right;">−29.07%</td></tr>
+<tr><td>图南股份</td><td>高温合金（军工）</td><td style="text-align:right;color:#15803d;">40.11%（+12.19 pct）</td><td style="text-align:right;color:#15803d;">+70.90%</td><td style="text-align:right;color:#15803d;">+173.51%</td></tr>
+</tbody>
+</table>
+
+<p class="note" style="font-size:16px;color:#64748b;">武进不锈（603878）2026 半年报尚未披露，其 2025H1 毛利率 14.41%、扣非 −48.15%，2025 全年毛利率进一步降至 11.37%。</p>
+
+<p>这张表同时支持了正反两个方向的解读，必须都讲清楚：</p>
+
+<div class="callout action">
+<span class="label">ACTION · 有利于「错杀」假设的证据</span>
+<p><strong>对你的判断有利的部分：</strong>
+① 行业性压力是<strong>真实存在</strong>的——常宝、盛德鑫泰毛利率同步下滑，印证了公告里「竞争加剧、常规产品盈利空间承压」的说法，久立并非孤例；
+② 久立毛利率的下滑幅度（−5.97 pct）与盛德鑫泰（−5.15 pct）接近，<strong>属于行业共性区间</strong>；
+③ 更重要的是，<strong>久立 21.23% 的绝对毛利率仍显著高于常宝（13.63%）和盛德鑫泰（10.93%）</strong>，行业内的相对地位并未瓦解；
+④ 图南股份逆势 +173%，说明高端特材细分景气度仍在，<strong>行业并非全面塌方</strong>，久立的高端化路径未被证伪。</p>
+</div>
+
+<div class="callout pit">
+<span class="label">PIT · 不利于「错杀」假设的证据</span>
+<p><strong>对你的判断不利的部分：</strong>
+① 久立的营收降幅（−36.38%）与同行（+2.13%、+10.59%）<strong>方向相反</strong>，这部分超额跌幅确实来自大订单基数，但也意味着<strong>它没有像同行那样用新订单填上缺口</strong>；
+② 扣非降幅 −80.05% 是同业最深，接近同行（−28%、−29%）的三倍；
+③ 同行在营收正增长的情况下利润仍下滑近三成，说明<strong>行业价格战的烈度不低</strong>，久立即便新订单接上，也未必能拿回 2025 年的毛利率。</p>
+</div>
+
+<h3>八、估值真相：行情软件上的 12.6 倍 PE 是个假象</h3>
+
+<p>
+截至 2026-08-24 收盘 19.55 元，总市值 191.04 亿。行情软件显示 PE(TTM) 12.61 倍、股息率 5.10%——看起来确实便宜。<strong>但这个 PE 尚未纳入刚披露的半年报。</strong>
+</p>
+
+<div class="tex">$$\text{PE}_{\text{TTM}}^{\text{真实}} = \frac{191.04}{(15.09 - 8.28) + 3.93} = \frac{191.04}{10.74} = 17.79\ \text{倍}$$</div>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">口径</th><th style="text-align:center;">对应利润</th><th style="text-align:center;">PE</th><th style="text-align:center;">说明</th></tr>
+</thead>
+<tbody>
+<tr><td>行情软件显示</td><td style="text-align:right;">15.15 亿</td><td style="text-align:right;">12.61 倍</td><td>实为 2025 全年利润，未更新</td></tr>
+<tr><td><strong>真实 TTM（归母）</strong></td><td style="text-align:right;">10.74 亿</td><td style="text-align:right;color:#b45309;"><strong>17.79 倍</strong></td><td>2025H2 + 2026H1</td></tr>
+<tr><td><strong>真实 TTM（扣非）</strong></td><td style="text-align:right;">6.76 亿</td><td style="text-align:right;color:#b91c1c;"><strong>28.26 倍</strong></td><td>剔除卖永兴材料等一次性收益</td></tr>
+</tbody>
+</table>
+
+<p>
+<strong>这是本节最需要提醒的一点。</strong>「利润跌了但估值也跌到很便宜了」这个直觉，在这里要打折扣：股价从 23.90 跌到 19.55（−18.2%），而 TTM 利润从 15.09 亿降到 10.74 亿（−28.8%）——<strong>利润下滑得比股价更快，所以估值不是变便宜了，而是变贵了</strong>。若按扣非口径，28 倍 PE 对一家营收下滑、毛利率创五年新低的制造业公司而言，很难称为「深度低估」。
+</p>
+
+<h4>股息率 5.1% 的可持续性</h4>
+<p>2025 年度每股派息 1.00 元（含税），对应分红总额 9.77 亿，占 2025 年归母净利 15.09 亿的 <strong>64.8%</strong>。若 2026 年利润下台阶，维持同样派息所需的分红率为：</p>
+<table>
+<thead>
+<tr><th style="text-align:center;">2026 全年归母净利假设</th><th style="text-align:center;">8 亿</th><th style="text-align:center;">9 亿</th><th style="text-align:center;">10 亿</th><th style="text-align:center;">12 亿</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center;">维持 1.00 元派息所需分红率</td><td style="text-align:right;color:#b91c1c;">122%</td><td style="text-align:right;color:#b91c1c;">109%</td><td style="text-align:right;color:#b45309;">98%</td><td style="text-align:right;">81%</td></tr>
+</tbody>
+</table>
+<p>H1 已实现 3.93 亿且下半年失去投资收益缓冲，全年落在 8~10 亿区间的概率不低。<strong>这意味着当前 5.1% 的股息率大概率不可持续</strong>，「高股息安全垫」这一买入理由需要打折。</p>
+
+<h3>九、「不明所以的恐慌抛售」是否真的发生了？</h3>
+
+<p>这是三个子命题里最容易被证伪的一条。完整时间线：</p>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">日期</th><th style="text-align:center;">事件</th><th style="text-align:center;">收盘价</th><th style="text-align:center;">涨跌</th></tr>
+</thead>
+<tbody>
+<tr><td>2026-04-28</td><td>一季报披露：扣非 −54.84%（被投资收益掩盖）</td><td style="text-align:right;">—</td><td style="text-align:right;">—</td></tr>
+<tr><td>2026-06-30</td><td>—</td><td style="text-align:right;">23.90</td><td style="text-align:right;">+1.96%</td></tr>
+<tr><td>2026-07-07</td><td rowspan="4" style="vertical-align:middle;">预告前的连续下跌<br>（合计 −24.60%）</td><td style="text-align:right;">21.81</td><td style="text-align:right;color:#b91c1c;">−6.95%</td></tr>
+<tr><td>2026-07-08</td><td style="text-align:right;">20.95</td><td style="text-align:right;color:#b91c1c;">−3.94%</td></tr>
+<tr><td>2026-07-09</td><td style="text-align:right;">19.50</td><td style="text-align:right;color:#b91c1c;">−6.92%</td></tr>
+<tr><td>2026-07-13</td><td style="text-align:right;">18.02</td><td style="text-align:right;color:#b91c1c;">−4.20%</td></tr>
+<tr style="background:#fffbeb;"><td><strong>2026-07-15</strong></td><td><strong>发布业绩预告：预减 50%~55%</strong></td><td style="text-align:right;">18.16</td><td style="text-align:right;"><strong>−0.11%</strong></td></tr>
+<tr><td>2026-07-15</td><td>同日，实控人一致行动人增持 62.91 万股 @17.477 元</td><td style="text-align:right;">—</td><td style="text-align:right;">—</td></tr>
+<tr><td>2026-07-22</td><td>公告 2~4 亿元回购方案（价格上限 32 元）</td><td style="text-align:right;">18.88</td><td style="text-align:right;">+1.89%</td></tr>
+<tr style="background:#f0fdf4;"><td><strong>2026-08-24</strong></td><td>半年报披露前一日</td><td style="text-align:right;"><strong>19.55</strong></td><td style="text-align:right;color:#15803d;"><strong>+1.40%</strong></td></tr>
+</tbody>
+</table>
+
+<p>
+关键观察：<strong>① 主跌段发生在预告之前（7/7–7/13，−24.60%），而非之后；② 预告落地当日股价几乎无反应（−0.11%），说明信息已被price in；③ 实际半年报归母 −52.55% 精确落在预告的 −50%~−55% 区间内，不构成超预期利空；④ 自 7/13 低点 18.02 起，股价已反弹 8.49%。</strong>
+</p>
+<p>
+因此，「半年报公布后不明所以的人疯狂抛售」这个场景，<strong>在数据上目前没有发生</strong>。市场对这份财报的定价已经进行了一个半月。真正意义上「不明所以的抛售」若要出现，需要有<strong>超出预告口径的新增负面信息</strong>（例如分部数据显示核心业务恶化超预期、或下半年指引进一步下调），而这需要在 8/25 半年报全文披露后才能验证。
+</p>
+
+<h3>十、支持与反对的证据总账</h3>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0;">
+<div style="border:2px solid #15803d;border-radius:8px;padding:18px;background:#f0fdf4;">
+<h4 style="margin-top:0;color:#15803d;">支持「错杀、可考虑」的证据</h4>
+<ol style="font-size:16.5px;line-height:1.8;padding-left:20px;">
+<li>营收缺口的 <strong>63.4%</strong> 确由复合管大订单基数导致，属一次性因素</li>
+<li>毛利率绝对值 21.23% 仍<strong>显著高于</strong>常宝（13.63%）、盛德鑫泰（10.93%），龙头地位未瓦解</li>
+<li>毛利率降幅与同业接近，<strong>行业共性成分明确</strong></li>
+<li>合同负债 Q1 9.96 亿 → Q2 <strong>13.16 亿（环比 +32.1%）</strong>，订单出现回补迹象</li>
+<li>资产负债率仅 37.70%，短期借款 4.20 亿、长期借款 0.23 亿，<strong>几乎无有息负债压力</strong></li>
+<li>中东订单表述为「交付节奏延后」而非「取消」，具备恢复可能</li>
+<li>管理层持续行动：4 月起多轮回购、实控人 / 董事长 / 董秘 / 一致行动人先后增持，7 月新增 2~4 亿回购方案</li>
+<li>图南股份同期 +173% 证明高端特材细分景气仍在，久立高端化逻辑未被证伪</li>
+<li>利空已被市场消化一个半月，股价已自低点反弹 8.49%</li>
+</ol>
+</div>
+<div style="border:2px solid #b91c1c;border-radius:8px;padding:18px;background:#fef2f2;">
+<h4 style="margin-top:0;color:#b91c1c;">反对「基本面未变」的证据</h4>
+<ol style="font-size:16.5px;line-height:1.8;padding-left:20px;">
+<li><strong>2026H1 扣非（1.57 亿）比无大订单的 2024H1（6.53 亿）还低 76%</strong> ← 最关键反证</li>
+<li>2026H1 营收比 2024H1 还低 19.60%，基础盘本身在萎缩</li>
+<li><strong>Q2 单季扣非 −0.21 亿，已是亏损</strong></li>
+<li>毛利率 21.23% 为近五年半年报最低；Q2 单季 17.23% 断崖</li>
+<li>归母净利中 <strong>60.1% 为非经常性</strong>，核心是一次性出清永兴材料，H2 不再有</li>
+<li>营收缺口仍有 <strong>36.6%（8.13 亿）</strong>无法用大订单解释</li>
+<li>公司自身把「需求弱、竞争加剧、成本上升」列在高基数<strong>之前</strong></li>
+<li>真实 PE(TTM) 17.79 倍、扣非 28.26 倍，<strong>估值实际变贵而非变便宜</strong></li>
+<li>股息率 5.1% 大概率不可持续（需 109%~122% 分红率）</li>
+<li>经营性现金流仅 0.65 亿（−73.6%），自由现金流 <strong>−8.18 亿</strong></li>
+<li>存货逆势累库：Q1 29.06 亿 → Q2 32.97 亿（+13.5%）</li>
+<li>回购用途为员工持股 / 股权激励 / 可转债转股，<strong>并非注销</strong>，对 EPS 增厚有限；增持金额 1099.5 万元仅占市值 0.06%，象征意义大于实质</li>
+</ol>
+</div>
+</div>
+
+<h3>十一、多视角推演</h3>
+
+<p>以下三种情形并列呈现，不做概率加权，也不给出方向性结论——它们各自成立所需的条件是可以被后续数据检验的。</p>
+
+<table>
+<thead>
+<tr><th style="text-align:center;">情形</th><th style="text-align:center;">成立所需条件</th><th style="text-align:center;">可验证的观察点</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. 周期底部错杀</strong><br>大订单退潮 + 行业周期共振造成的阶段性低点，2027 年随中东订单恢复与新订单接续回升</td>
+<td>① 中东交付确实只是延后，H2 恢复；② 合同负债延续 Q2 的回补趋势；③ 毛利率在 2026H2 见底回升</td>
+<td>Q3 报告（10 月底）合同负债能否延续 Q2 的 +32.1% 回升（见 4.1）、毛利率环比是否止跌；半年报全文的在手订单披露；EBK 子公司新签重大合同公告</td>
+</tr>
+<tr>
+<td><strong>B. 竞争格局恶化</strong><br>不锈钢管行业产能过剩进入价格战，常规产品盈利中枢永久下移，久立利润中枢从 15 亿降至 8~10 亿</td>
+<td>① Q3、Q4 毛利率不回升；② 同业（武进、常宝）毛利率同步继续下滑；③ 存货继续累积</td>
+<td>2026Q3 毛利率是否止跌；武进不锈半年报毛利率；行业不锈钢管开工率与价格指数</td>
+</tr>
+<tr>
+<td><strong>C. 高端化转型阵痛</strong><br>常规产品让位、高端产品（核电、油气、航空合金）尚未放量，转型期利润承压但终局向好</td>
+<td>① 研发投入维持高位（H1 1.90 亿，占营收 4.89%）；② 高端产品收入占比提升；③ 图南式的细分景气传导至久立</td>
+<td>半年报全文的分产品毛利率结构；高端产品（合金材料 / 复合管）占比变化；新产能投产进度</td>
+</tr>
+</tbody>
+</table>
+
+<h3>十二、需要在 8/25 半年报全文中重点核对的三件事</h3>
+<ol style="font-size:18px;line-height:1.9;">
+<li><strong>分产品营收与毛利率明细</strong>——这是区分情形 A / B / C 的唯一直接证据。重点看：复合管 2026H1 究竟剩多少（若显著低于 2024H1 的 6.42 亿，说明不只是大订单退潮）；无缝管毛利率是否也在下滑（若是，则为行业性价格战，指向情形 B）。</li>
+<li><strong>在手订单 / 已签约未交付合同金额</strong>——直接决定 2026H2 与 2027 年的收入可见度，也是检验「中东订单只是延后」的关键。</li>
+<li><strong>中期分红预案</strong>——过往年份（2020–2025）中期均为 0 派息，若 2026 中期仍为 0 属常规；真正的观察点是 2026 年度分红能否维持 1.00 元，这将在 2027 年 4 月年报时揭晓。</li>
+</ol>
+
+<div class="callout neutral">
+<span class="label">NEUTRAL · 本节小结（不构成投资建议）</span>
+<p><strong>本节小结：</strong>
+你的判断在<strong>营收维度成立约六成</strong>——大订单退潮确实是营收下滑的最大单一原因，行业性压力也确实存在且同行共担。
+但在<strong>利润维度不成立</strong>：把 2026H1 与同样没有大订单的 2024H1 对照，扣非净利低 76%、毛利率低 3.68 个百分点、Q2 单季已经亏损，这不是「回到大订单之前」，而是低于大订单之前。
+同时，「市场恐慌抛售」的前提在数据上不成立——利空已在 7 月被充分定价，股价已反弹 8.49%；而剔除一次性收益后，真实估值（扣非 PE 28 倍）比下跌前更贵而非更便宜。
+最终判断权交还阅读者，但建议把决策锚点从「基数效应」移到<strong>「毛利率能否止跌」与「在手订单能否接续」</strong>这两个可验证的变量上。</p>
+</div>
+
+</section>
+<hr class="div">
+
+<!-- ============ 四、报表战略考察 ============ -->
+<section id="statement-exam">
+<h2><span class="num">4</span>报表战略考察与排雷</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 阅读提示</span>
+<p>本节按张新民「战略财务分析」框架（资产负债表=战略结构图，利润表=年度执行结果，现金流量表=真相检验），叠加「资产负债表优先」快速排雷体检与财务操纵识别（盈余管理反查）三条入口并行。数据源：合并报表取自 choice-data <code>stock_financials</code>（2026-06-30，report_type=1）；母公司报表同源（report_type=2）；多期序列取自 <code>stock_financial_series</code>（FY2020–FY2025）；均已用 Bash + Python 逐条验算。凡与用户「大订单高基数论」核心关切相关处正面回应，判断权交还读者。</p>
+</div>
+
+<div class="callout crux">
+<span class="label">THE CRUX · 一句话战略画像</span>
+<p>把资产负债表（长期结构）与利润表（当期结果）分开看，会得到两个不完全一致的判断：<strong>资产负债表层面，久立特材长期呈经营主导</strong>——经营性资产（应收账款+应收票据+存货+固定资产+在建工程+无形资产）占总资产 68.4%，投资性资产仅占 2.8%，不是"靠买买买长大"的公司；但<strong>2026H1 利润表层面，当期净利润构成出现明显的投资主导特征漂移</strong>——核心利润占净利润比从 FY2025 的 103.2%（超过 100%，说明核心利润独自覆盖净利润还有富余）骤降至 2026H1 的 49.3%，投资收益（含 Q1 出清永兴材料 2.68 亿）贡献占净利润 72.6%。资产负债表说的是"这门生意的长期底色是经营驱动"，利润表说的是"这一期的账面业绩有接近一半靠非经营性因素撑住"——两者不矛盾，但拼在一起才是完整的战略画像：<strong>结构没变，当期扰动很大</strong>。</p>
+</div>
+
+<h3>4.1 三表速读：利润从哪来 → 现金真相 → 资产结构定型</h3>
+<table>
+<tr><th style="width:16%">报表</th><th>速读结论（2026H1，合并口径）</th></tr>
+<tr><td><strong>利润表</strong><br>（战略执行结果）</td><td>营业收入 38.84 亿（YoY −36.38%），营业利润 4.81 亿。核心利润（毛利 8.25 亿 − 税金及附加 0.28 亿 − 销售 1.98 亿 − 管理 1.93 亿 − 研发 1.90 亿 − 财务 0.21 亿）= <strong>1.94 亿</strong>，仅占净利润 3.94 亿的 <strong>49.3%</strong>——即净利润中过半来自非核心经营（投资收益 2.85 亿含 Q1 永兴材料处置 2.68 亿、其他收益/政府补贴 0.79 亿），同期资产减值损失 −0.73 亿是拖累项。用 2024H1（同样无大单集中确认）做参照：2024H1 扣非净利 6.53 亿 vs 2026H1 扣非净利 1.57 亿，剔除大单效应后经常性盈利能力本身也在恶化，不是单纯"退回常态"。</td></tr>
+<tr><td><strong>现金流量表</strong><br>（利润真相检验）</td><td>经营活动现金流净额仅 0.65 亿，同比 −73.6%；<strong>利润质量比率（OCF÷净利润）= 0.166</strong>，远低于 FY2020–FY2025 任何一年（历史区间 0.55–1.71），是近 7 期最差值——"有利润、没有钱"特征明显，需追问应收/存货是否吞噬了现金（见 4.6）。投资活动现金流净额 +6.85 亿（主要是理财/一年内到期资产到期收回），筹资活动现金流净额 −10.89 亿（含分红派息 9.78 亿+偿债），三者相抵，现金及等价物期末较期初净减少 4.13 亿。</td></tr>
+<tr><td><strong>资产负债表</strong><br>（战略结构图）</td><td>总资产 132.97 亿，资产高度聚焦经营：经营性资产 90.91 亿（占比 68.4%），投资性资产仅 3.71 亿（占比 2.8%），货币资金 17.96 亿（13.5%），另有 12.14 亿"一年内到期的非流动资产"（理财/长期存款类，占 9.1%）。<strong>结论：久立不是"资产闲置在账上不投不分"的困惑型公司，也不是"靠无形资产/商誉堆起来"的并购型公司</strong>——是聚焦生产经营资产的传统制造业结构。</td></tr>
+</table>
+
+<h3>4.2 母公司报表 vs 合并报表对照（母合并对照）</h3>
+<div class="callout metric">
+<span class="label">METRIC · 母合并对照三个动作（2026H1，元）</span>
+<p><strong>①控制性投资规模</strong> = 母公司长期股权投资 7.47 亿 − 合并长期股权投资 0.10 亿 = <strong>7.36 亿</strong>。合并总资产 132.97 亿 − 母公司总资产 110.14 亿 = 22.83 亿，是子公司体系新增的净资产贡献，相对 7.36 亿控制性投资的杠杆倍数 ≈ 3.1 倍——子公司体系撬动效应中等偏温和，不属于"小马拉大车"式的激进并表扩张。<br>
+<strong>②隐性输血（其他应收款）</strong> = 母公司 0.67 亿 − 合并 0.17 亿 = <strong>0.50 亿</strong>，占母公司总资产（110.14 亿）仅 0.45%，量级不大。<br>
+<strong>③隐性输血（预付款项）</strong> = 母公司 1.77 亿 − 合并 0.90 亿 = <strong>0.87 亿</strong>，占母公司总资产 0.79%，同样量级不大，更接近集团内部采购/加工业务的正常资金往来痕迹，未观察到典型"预付款输血"红旗（红旗典型特征是占比达两位数百分比或持续快速膨胀）。<br>
+<strong>④权益差额</strong>：母公司股东权益 73.81 亿 vs 合并归母权益 80.26 亿，差额 6.45 亿是子公司体系尚未上收至母公司的留存收益贡献，方向正常（合并 > 母公司，说明子公司整体在赚钱而非拖累）。</p>
+</div>
+<p>综合 4.1 与 4.2：久立特材的母合并结构未见"母公司空心化、靠子公司输血度日"或"母公司通过其他应收款/预付款隐性抽血子公司"的典型异常模式，控制性投资撬动倍数处于中等水平——<strong>母合并对照未发现结构性风险信号</strong>，这条检验没有为"高基数论"提供新的证伪或证实证据，属于中性发现。</p>
+
+<h3>4.3 利润质量：核心利润拆解与三大支柱占比（经营主导 vs 投资主导判定）</h3>
+<table>
+<tr><th style="width:22%">口径</th><th style="width:26%">FY2025（全年，基准对照）</th><th style="width:26%">2026H1</th><th>变化</th></tr>
+<tr><td>毛利</td><td>29.73 亿</td><td>8.25 亿</td><td>—</td></tr>
+<tr><td>四费（销+管+研+财）</td><td>13.32 亿</td><td>6.03 亿</td><td>—</td></tr>
+<tr><td><strong>核心利润</strong>（毛利−税金及附加−四费）</td><td>15.77 亿</td><td>1.94 亿</td><td>—</td></tr>
+<tr><td><strong>核心利润 ÷ 净利润</strong></td><td><strong>103.2%</strong></td><td><strong>49.3%</strong></td><td><strong>骤降 53.9pct</strong></td></tr>
+<tr><td>投资收益+联营+公允价值变动 ÷ 净利润</td><td>21.2%</td><td>72.6%</td><td>+51.4pct</td></tr>
+<tr><td>其他收益（政府补贴）÷ 净利润</td><td>9.3%</td><td>19.9%</td><td>+10.6pct</td></tr>
+</table>
+<div class="callout dive">
+<span class="label">DIVE DEEP · 经营主导 vs 投资主导——本节对用户核心关切的量化裁决</span>
+<p>FY2025 全年核心利润占净利润比 103.2%（>100% 说明扣掉核心利润后其余各项对净利润是净拖累，是典型的"干出来"的<strong>经营主导</strong>公司，呼应格力/恒瑞式样板）；2026H1 这一比例骤降到 49.3%，是本报告独立核查（verified-facts.md 用扣非口径算出的"非经常性损益占归母 60.1%"）的另一个独立验证角度——两种口径（张新民核心利润法 vs 扣非净利润法）殊途同归，都指向同一个结论：<strong>2026H1 单期的净利润构成已经滑向"接近对半来自非核心、更接近投资主导特征"的区间</strong>，而这并非公司战略层面主动转向资本运作（4.4 的资产负债表结构完全没有变化），纯粹是当期一次性因素（Q1 永兴材料处置）与减值损失走高（4.6）共同作用的结果。这为"高基数论"提供了一条新证据：即便剥离 ADNOC 大单退潮的影响，H1 净利润本身的"含金量"也被一次性投资收益人为垫高——如果没有这笔 2.68 亿，实际经营性利润的下滑会比归母净利润表面呈现的 −52.55% 更陡峭。这既不支持"基本面完全未变"，也不支持"腰斩全部来自经营性恶化"，是两种简化叙事之外的第三条证据线，判断权交还读者。</p>
+</div>
+
+<h3>4.4 资产结构与战略结构图（资源配置形态）</h3>
+<table>
+<tr><th style="width:30%">资产类别</th><th style="width:20%">金额（亿元）</th><th style="width:16%">占总资产比</th><th>解读</th></tr>
+<tr><td><strong>经营性资产</strong>（应收账款+应收票据+存货+固定资产+在建工程+无形资产）</td><td>90.91</td><td>68.4%</td><td>高度聚焦经营，是判断"经营主导"型资产负债表结构的核心证据</td></tr>
+<tr><td><strong>投资性资产</strong>（交易性金融资产+其他权益工具投资+长期股权投资）</td><td>3.71</td><td>2.8%</td><td>占比极低，不是"靠买买买长大"或"资产闲置在账上不投不分"的公司</td></tr>
+<tr><td>货币资金</td><td>17.96</td><td>13.5%</td><td>健康的流动性缓冲，非过度囤积（对照 4.7 现金短债比 4.21 倍）</td></tr>
+<tr><td>一年内到期的非流动资产（理财/长期存款类）</td><td>12.14</td><td>9.1%</td><td>短期理财配置，量级中等，非资金闲置警报</td></tr>
+</table>
+<p>资源配置形态的结论与 4.1 一致：久立特材的资产负债表是一张典型的"制造业经营型"战略结构图，未观察到危险信号清单第 1 条（"固定资产原值增速远超营收增速"）中"融资推动的基建成了主旋律"的极端形态，但 4.6 会指出在建工程规模在营收腰斩期间仍维持高位，是需要持续观察的次要信号。</p>
+
+<h3>4.5 靠谁支撑（治理穿透）——右边的"名字"</h3>
+<table>
+<tr><th style="width:30%">支撑来源</th><th style="width:20%">金额（亿元）</th><th style="width:16%">占比</th><th>解读</th></tr>
+<tr><td>靠股东出资（实收资本+资本公积−库存股）</td><td>25.19</td><td>18.9%</td><td>常规水平</td></tr>
+<tr><td>靠历史利润（盈余公积+未分配利润+其他综合收益）</td><td>55.07</td><td>41.4%</td><td>占比最高的单一来源，说明企业发展主要靠自身多年经营积累，而非外部融资</td></tr>
+<tr><td><strong>靠经营负债</strong>（应付票据及账款+合同负债+应付职工薪酬+应交税费+其他流动负债+递延收益等非金融性负债）</td><td>45.64</td><td>34.3%</td><td>占比显著高于金融机构负债，说明在产业链中"有本事欠上游"，议价权尚可（与 1.1 行业结构对照相符）</td></tr>
+<tr><td><strong>靠金融机构</strong>（短期借款+长期借款+一年内到期非流动负债）</td><td>4.49</td><td>3.4%</td><td>极低，资产金融负债率仅 3.38%，远低于 50% 高度关注线，财务杠杆风险很低</td></tr>
+<tr><td>少数股东权益</td><td>2.58</td><td>1.9%</td><td>—</td></tr>
+</table>
+<div class="callout aside">
+<span class="label">ASIDE · 治理穿透初步信号</span>
+<p>右边结构显示久立特材"靠谁支撑"的答案主要是<strong>自身历史利润积累（41.4%）与经营性负债（34.3%）</strong>两条腿，金融机构负债占比仅 3.4%——这是一家不依赖高杠杆扩张、更多靠内生积累和产业链话语权支撑资产负债表的公司。治理层面的"谁的意志主导"（声音和形象归属）问题，因涉及久立集团 34.76% 控股比例的独立验证，触发本报告 §12 `management-dd` 必填条件，本节不越界展开，仅做结构性铺垫：右边"名字"结构本身未见异常集中或博弈痕迹。</p>
+</div>
+
+<h3>4.6 危险信号清单——命中项与未命中项</h3>
+<table>
+<tr><th style="width:8%">#</th><th style="width:34%">红线清单条目</th><th style="width:14%">是否命中</th><th>证据</th></tr>
+<tr><td>1</td><td>固定资产原值增速 ≫ 营收增速（融资推动基建成主旋律）</td><td>部分命中</td><td>在建工程（合并口径）6.13 亿，购建固定资产/无形资产支付现金（资本开支）2026H1 已达 3.89 亿，接近甚至可能超过全年常规水平，而同期营收 YoY −36.38%——产能建设节奏未随需求走弱同步收缩，值得在 Q3/Q4 数据中持续观察是否兑现为产能利用率下降后的减值风险；但整体固定资产占总资产比例（22.9%）未见极端失衡。</td></tr>
+<tr><td>2</td><td>债务融资"三高"（短期/长期借款高+财务费用高+货币资金高，专款专用或维系银行关系式融资）</td><td>未命中</td><td>资产金融负债率仅 3.38%，财务费用（净）0.21 亿处于极低水平，未见"账上趴钱同时大额付息"的典型组合。</td></tr>
+<tr><td>3</td><td>政府补贴白条（其他收益走高 + 其他应收款迅猛增长）</td><td>未命中</td><td>其他收益（补贴）0.79 亿，占营收比例约 2.0%，非利润主要支撑；其他应收款（合并口径）仅 0.17 亿，未见迅猛增长。</td></tr>
+<tr><td>4</td><td>利润表盈利但现金流量表常年无经营现金贡献</td><td>需要关注</td><td>2026H1 OCF 仅 0.65 亿，利润质量比率 0.166 是近 7 期最低值（历史区间 0.55–1.71），虽未到"常年为零"的乐视网式极端，但单期恶化幅度值得下一期验证是否为趋势。</td></tr>
+<tr><td>5</td><td>应收账款"减少"实为被资产减值损失吞噬</td><td>不适用（反向）</td><td>应收账款不降反升：2025-12-31 为 14.66 亿 → 2026H1 为 15.21 亿，营收腰斩期间应收账款逆势小幅增长，指向应收账款周转天数被动拉长（分母营收缩水），需在半年报全文披露客户回款情况后二次核实，而非"减值消化应收"的反向情形。</td></tr>
+<tr><td>6</td><td>不良资产（闲置货币资金/长期挂账其他应收款/长期不投产在建工程/减值风险高的商誉无形资产）</td><td>新发现，需标注</td><td><strong>商誉从 FY2020–FY2025 连续 6 期稳定在 0.02 亿（204.86 万元），2026H1 突然跳升至 0.23 亿（2281.74 万元）</strong>，新增约 2077 万元，对应期内发生了一笔尚未在本报告其他章节识别到的并购/控股行为（商誉占总资产比例仍极低，0.17%，非重大，但方向与历史 6 年零变化形成反差，建议 8/25 半年报全文披露后核实标的与对价，纳入 §12 或后续章节补充）。</td></tr>
+</table>
+
+<h3>4.7 快速排雷四比率工具箱</h3>
+<table>
+<tr><th style="width:22%">比率</th><th style="width:22%">2026H1 数值</th><th style="width:24%">历史区间（FY2020–FY2025）</th><th>判读</th></tr>
+<tr><td><strong>现金短债比</strong>（货币资金÷短期有息负债）</td><td>4.21 倍</td><td>—</td><td>货币资金 17.96 亿 ÷ 短期有息负债（短期借款0.42亿+一年内到期非流动负债0.06亿=0.43亿）= 4.21 倍，远高于 1，短期偿付能力充裕，与危险信号 #2 未命中相互印证。</td></tr>
+<tr><td><strong>利润质量</strong>（OCF÷净利润）</td><td><strong>0.166</strong></td><td>0.55（2024，最低）–1.71（2020，最高）</td><td>2026H1 是近 7 期最差值，利润"没有钱"的特征在本期显著加剧，是本节最值得持续跟踪的单一比率。</td></tr>
+<tr><td><strong>营收质量</strong>（销售商品收到现金÷营业收入）</td><td>116.0%</td><td>—</td><td>销售收现 45.06 亿 ÷ 营业收入 38.84 亿 = 116.0%，高于 100%（含增值税等税费的现金流入天然高于不含税营业收入），未见收现停滞或应收吞噬营收的红旗。</td></tr>
+<tr><td><strong>自由现金流</strong>（OCF−资本开支）</td><td>−3.24 亿（本节窄口径）</td><td>—</td><td>经营活动现金流净额 0.65 亿 − 购建固定资产/无形资产支付现金 3.89 亿 = −3.24 亿。<strong>口径差异声明</strong>：verified-facts.md 给出的自由现金流为 −8.18 亿，未注明是否含短期理财/一年内到期资产净流出等广义调整项；本节按最窄口径（OCF−资本开支）计算得 −3.24 亿。两者方向一致（均为负，自由现金流失血），量级不同，禁止在数字上二选一改写，此处并列标注供读者判断口径差异的成因。</td></tr>
+</table>
+
+<h3>4.8 财务操纵识别（盈余管理反查）</h3>
+<table>
+<tr><th style="width:26%">反查手法</th><th style="width:16%">是否发现痕迹</th><th>证据</th></tr>
+<tr><td>商誉"洗大澡"（突然巨额减值后虚增后续年度改善）</td><td>否，但发现反向新信号</td><td>商誉历史 6 期零变化后 2026H1 首次出现（详见 4.6 #6），不是"减值洗澡"而是"新增确认"，两者性质不同——本反查未发现洗大澡痕迹，但新增商誉本身是需要在下一份报表持续跟踪减值风险的新变量。</td></tr>
+<tr><td>费用资本化虚增利润（研发等支出违规资本化）</td><td>未发现明显痕迹</td><td>母公司资产负债表"开发支出"科目为空（null），无形资产账面 3.67 亿（合并）规模与研发费用持续投入（FY2022 3.04 亿→FY2025 3.96 亿）大体匹配，未见现金流量表"购建无形资产支付的现金"与利润表研发费用出现异常背离的直接证据；但完整的研发支出资本化/费用化拆分比例未获取，**信息不足**，建议半年报全文披露后核实。</td></tr>
+<tr><td>折旧与资本开支背离</td><td>需要关注</td><td>2026H1 资本开支（购建固定资产等支付现金）3.89 亿，处于历史相对高位，而营收同期 −36.38%——与危险信号 #1 呼应，折旧费用的具体拆分本节未单独取数，建议结合半年报"固定资产"附注核实折旧计提是否与产能利用率下降同步匹配。</td></tr>
+<tr><td>收入增长 vs 收现停滞</td><td>不适用（反向情形）</td><td>2026H1 收入是下降而非增长（−36.38%），该手法针对"收入增长但收现不同步"的场景不直接适用；但应收账款逆势小幅增长（4.6 #5）是同一逻辑下的另一种表现形式，已单独标注。</td></tr>
+</table>
+<p>综合 4.8：<strong>未发现典型的盈余管理（费用资本化虚增利润、商誉洗大澡式业绩粉饰）证据</strong>，2026H1 净利润构成的"投资主导"漂移（4.3）来自真实发生、已兑现的股权处置交易（永兴材料，公开可查），而非账面调节手法；商誉新增与资本开支维持高位是两条需要在后续报告期持续验证的新变量，而非本期已确认的操纵证据。</p>
+
+<h3>4.9 阈值堆积检验（§4）与本福特定律检验（§3）</h3>
+<div class="callout neutral">
+<span class="label">NEUTRAL · 触发条件核对</span>
+<p><strong>阈值堆积检验（§4）：不适用。</strong>触发条件逐条核对：① 归母/扣非净利润÷上年末（FY2025 末 139.17 亿）总资产——2026H1 归母 2.82%、扣非 1.13%，均显著高于微盈窄带 [0, 0.5%)（且为半年数、非年度口径，比较本身参考价值有限）；② 未出现连续两年亏损；③ 扣非与归母半年层面均为正（Q2 单季扣非为负是季度数据，不适用本检验的年度触发口径）；④ 基本每股收益 0.41 元，远超 [0, 0.02] 元的触发区间。四条触发条件均未命中，阈值堆积检验对本标的不适用，一句话带过，不强行展开。<br>
+<strong>本福特定律检验（§3）：本报告未做。</strong>按 SKILL.md 规则，§3 属"做了就写、没做不 FAIL"的非必做项，本节判断本福特检验的信息密度低于母合并对照、快速排雷等 6 类必做模块（本福特对少数科目大额调整不敏感，见 SKILL.md §3.6），且 4.6/4.7/4.8 已通过逻辑证据力更高的三表勾稽反查覆盖了主要排雷需求，故本节未额外运行本福特检验，此处如实声明未做及理由，不冒充已完成。</p>
+</div>
+
+<h3>4.10 留给读者的开放问题</h3>
+<ul>
+<li>2026H1 新增商誉约 2077 万元对应的并购/控股标的是什么？需等半年报全文披露后核实，这是本节唯一识别到的"账面结构新变量"。</li>
+<li>资本开支（3.89 亿）在营收腰斩期间维持高位，是管理层对行业周期底部的逆势布局（战略眼光），还是既定产能规划的机械执行（对需求变化反应滞后）？需要半年报"在建工程"明细与管理层表述交叉验证。</li>
+<li>利润质量比率骤降至历史最差值 0.166，是 Q1 永兴材料处置（投资活动而非经营活动现金流）导致的口径性扰动，还是经营性收现能力本身在恶化？需要下一期（Q3/年报）数据验证是否延续。</li>
+<li>应收账款逆势增长、存货逆势累库（verified-facts.md 已核实 +13.5%）同时发生，是否共同指向"库存与应收两端同时承压"的营运资本恶化趋势，还是单纯的季节性/结算节奏因素？留待运营效率章节（§8）与后续报告期继续验证。</li>
+</ul>
+
+</section>
+<hr class="div">
+
+<!-- ============ 五、Value Line 快照 ============ -->
+<section id="valueline-snapshot">
+<h2><span class="num">5</span>Value Line 历史纵向快照</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 阅读提示</span>
+<p>本节调用 value-line-page skill，基于 Tushare REST API 直连生成一份独立的「Value Line 一页式」快照 HTML（15 年纵向数据阵列 + 近 8 季度数据 + 5 维本地等价评级，行级可点击钻取），本节只摘抄最关键的信息并做交叉印证，完整数据请点击下方链接卡片查看原始交互页面。评级方法论与阈值定义见 <code>.claude/skills/value-line-page/SKILL.md</code>，五档评级均为「本项目基于公开数据的本地推算」，与 Value Line Investment Survey 官方评级无关，不构成任何投资建议。</p>
+</div>
+
+<div class="company">
+<h4>Value Line 独立快照 <span class="tag">行级可点击钻取</span></h4>
+<p><strong>文件：</strong><a href="20260824-232101-002318_SZ-久立特材-valueline.html" target="_blank">20260824-232101-002318_SZ-久立特材-valueline.html</a>（同目录下另存，2026-08-24 23:21:01 生成）<sup>[valueline]</sup></p>
+<p>页面核心交互：「近 8 季度数据」与「15 年纵向数据阵列」两张表格的<strong>每一行都可点击</strong>——点击后该行整体高亮（金黄色背景+左侧色带），表格下方的图表区即时切换为该指标的历史折线图（季度表联动 8 季度、年度表联动 15 年，缺值不连线），默认已激活「营业收入」行。这不是静态历史财务表，本节摘抄的数字只是入口，逐项钻取趋势请到原始页面操作。</p>
+</div>
+
+<div class="callout fact">
+<span class="label">FACT CHECK · valueline 页面顶部 PE(TTM) 12.61× 是本报告已识别的"估值假象"，不是脚本出错</span>
+<p>点开上方独立快照会看到顶部信息条显示「PE(TTM) 12.61×」——这个数字由 Tushare <code>daily_basic.pe_ttm</code> 字段直接读取，对应隐含净利润 191.04 亿市值 ÷ 12.61 = 15.15 亿元，实质就是 FY2025 全年归母净利润 15.09 亿（尚未扣除已经过去的 2025H1、叠加已披露的 2026H1），并非真正的"过去四个季度"净利润。本报告 §3 已用主对话核验数字重新计算：<strong>真实 PE(TTM归母) = 191.04 亿 ÷ 10.74 亿 = 17.79×，真实 PE(TTM扣非) = 191.04 亿 ÷ 6.76 亿 = 28.26×</strong>（10.74 亿 = FY2025 15.09 − 2025H1 8.28 + 2026H1 3.93，已验算）。12.61× 是 Tushare 数据库在这个时点对 <code>pe_ttm</code> 字段的真实取值，只是该字段的更新节奏落后于半年报实际业绩，直接引用会得出"股价便宜"的错误直觉。同理，页面顶部「股息率 4.82%」与本报告核验的 5.10%（1.00 元 ÷ 19.55 元）也存在小幅口径差异（likely 因 <code>dv_ratio</code> 与 <code>dv_ttm</code> 字段口径/取数交易日不同），正文估值判断一律以 verified-facts.md 数字为准，本页保留脚本原始输出不做人工改写。</p>
+</div>
+
+<h3>5.1 5 维本地等价评级条（全摘抄）</h3>
+<div class="kpi-row">
+<div class="kpi-card"><div class="label">盈利稳定性</div><div class="value">B</div><div class="sub">近10年EPS同比波动σ=46.8pp</div></div>
+<div class="kpi-card"><div class="label">财务实力</div><div class="value">A</div><div class="sub">资产负债率31.7%</div></div>
+<div class="kpi-card"><div class="label">增长持久性</div><div class="value">A++</div><div class="sub">收入CAGR 18.1%／EPS CAGR 25.9%</div></div>
+<div class="kpi-card"><div class="label">FCF 质量</div><div class="value">D</div><div class="sub">FCF/净利均值0.41</div></div>
+<div class="kpi-card"><div class="label">ROE 持续性</div><div class="value">A</div><div class="sub">10年均值15.4%／最差4.9%</div></div>
+</div>
+<table>
+<tr><th style="width:14%">维度</th><th style="width:8%">档位</th><th style="width:34%">量化依据（valueline 原文）</th><th>项目脚注（本节补充）</th></tr>
+<tr><td>盈利稳定性</td><td><strong>B</strong></td><td>近 10 年 EPS 同比波动 σ = 46.8pp；年均增速 +32.6%；EPS 区间 0.16–1.59 元</td><td>用 YoY 增长率波动衡量节奏稳定性，不惩罚高速增长本身，档位不代表利润绝对水平高低</td></tr>
+<tr><td>财务实力</td><td><strong>A</strong></td><td>资产负债率 31.7%（利息保障倍数、现金/短债两项因字段缺失未纳入本次计算，取已算出的一项为终级）</td><td>与 §4.7 独立算出的现金短债比 4.21 倍互为印证，财务杠杆风险确实很低</td></tr>
+<tr><td>增长持久性</td><td><strong>A++</strong></td><td>近 10 年（2016–2025，9 个同比区间）收入 CAGR 18.1%／EPS CAGR 25.9%，期间收入连续 9 年同比正增长，0 年下滑</td><td><strong>该"0 年下滑"统计对象是营业收入，不等同于净利润／EPS 从未下滑</strong>——本节独立验算显示 2016→2017 归母净利润曾同比下滑 −20.2%（EPS 同期 −20.0%），说明净利润的历史波动性显著高于营业收入的平滑增长曲线；2026H1 的 −52.55% 在净利润维度并非"史上首次下滑"，但下滑幅度是过去 15 年中最深的一次<sup>[1]</sup></td></tr>
+<tr><td>FCF 质量</td><td><strong>D</strong></td><td>过去 10 年自由现金流（OCF−CapEx）÷ 归母净利润 均值仅 0.41，其中 1 年 FCF 为负</td><td>与 §4.7 独立算出的 2026H1 自由现金流为负（窄口径 −3.24 亿／verified-facts 广义口径 −8.18 亿）属同一模式的历史延续，久立本身长期是"CapEx 强度较高、FCF 质量偏弱"的资本密集型制造业公司，不是本期新出现的现象</td></tr>
+<tr><td>ROE 持续性</td><td><strong>A</strong></td><td>近 10 年 ROE 均值 15.4%，最差年份（2017 年，4.9%）未转负</td><td>均值高 + 最差年份未转负，是"真护城河"的量化定义；2026H1 单期年化 ROE 是否会击穿 4.9% 这一 10 年最低点，取决于 H2 能否修复，属开放问题</td></tr>
+</table>
+
+<h3>5.2 三条最关键的纵向趋势</h3>
+<table>
+<tr><th style="width:26%">趋势</th><th>15 年数据支撑</th></tr>
+<tr><td><strong>① ROCE 已在 2026H1 冲击之前完成"均值回归"</strong></td><td>ROCE（EBIT÷运营资本+固定资产口径）2020–2025 依次为 23.1%→19.9%→17.0%→19.5%→<strong>32.6%（15 年峰值）</strong>→24.1%。2024 年 ROCE 峰值与 verified-facts.md 记录的复合管收入高速放量窗口（2024H1 6.42 亿 → 2025H1 20.50 亿）在时点上重叠<sup>[2]</sup>，但 <strong>FY2025 全年 ROCE 已从 32.6% 回落至 24.1%</strong>——即在 2026H1 财报公布之前，资本回报率的"均值回归"已在年度口径中出现，2026H1 是延续并加速了这个回落，而非从峰值状态骤然坠落。</td></tr>
+<tr><td><strong>② 年度营业利润率的下行拐点出现在 FY2023，早于大单退潮</strong></td><td>营业利润率 2022–2025 依次为 21.3%（15 年峰值）→20.2%→16.6%→16.2%，连续 3 年下滑，与 §1.1 定性分析识别的"行业下行拐点先于 2026H1 大单退潮已经出现"完全吻合<sup>[3]</sup>——2026H1 半年报口径毛利率 21.23% 是延续这条已运行 3 年的下行曲线的最新一段，不是一次孤立的断崖。</td></tr>
+<tr><td><strong>③ "增长持久性 A++"评级只对营业收入成立，净利润的历史波动性被"平滑"掉了</strong></td><td>见 5.1：营业收入 2016–2025 连续 9 年正增长，但归母净利润在 2016→2017 曾同比下滑 −20.2%。评级条"0 年下滑"的字面表述容易被误读为"这家公司业绩从未下滑过"，实际只对营业收入成立；净利润历史上出现过深度下滑先例，2026H1 −52.55% 的降幅是过去 15 年中最大的一次，但不是这家公司第一次经历净利润同比下滑。</td></tr>
+</table>
+
+<h3>5.3 近 8 季度走势 + 2026Q2 补充说明（脚本取数时点局限）</h3>
+<table>
+<tr><th>指标（亿元）</th><th>2025Q1</th><th>2025Q2</th><th>2025Q3</th><th>2025Q4</th><th>2026Q1</th><th>2026Q2<sup>[4]</sup></th></tr>
+<tr><td>营业收入</td><td>28.83</td><td>32.22</td><td>36.42</td><td>23.12</td><td>20.24</td><td><strong>18.60</strong></td></tr>
+<tr><td>归母净利润</td><td>3.89</td><td>4.39</td><td>4.34</td><td>2.48</td><td>3.95</td><td><strong>−0.02</strong></td></tr>
+<tr><td>扣非净利润</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1.78</td><td><strong>−0.21</strong></td></tr>
+</table>
+<div class="callout fact">
+<span class="label">FACT CHECK · 脚本取数时点局限，2026Q2 数据来自 verified-facts.md 而非 value-line-page 脚本自身抓取</span>
+<p>value-line-page 脚本 2026-08-24 23:21 现场直连 Tushare 拉取时，「近 8 季度数据」表最新一列止步于 2026Q1——脚本按 SKILL.md Rule 8 探测 <code>period=20260630</code> 时得到的是空表，因此独立生成的 valueline HTML 原始快照<strong>尚未反映 2026Q2 单季亏损</strong>（归母 −0.02 亿、扣非 −0.21 亿）。这是本节唯一发现的"脚本取数时点滞后于 verified-facts.md"的实例，处理方式与用户强制约束第 1 条一致：上表 2026Q2 列直接采用 verified-facts.md 已核验数字（不重算、不改写），且已交叉验算季度累计差分逻辑成立：2026Q1 20.24 亿 + 2026Q2 18.60 亿 = 38.84 亿，与半年报合并口径完全一致；2025 全年四季度加总营收 120.59 亿 / 净利润 15.10 亿，对齐年度表原始数值 120.585 亿 / 15.09 亿，差额 ≤0.01 亿，属千万元口径取整误差<sup>[5]</sup>。原始 valueline HTML 页面本身不做人工修改（保持脚本产出的可复现性与可审计性），2026Q2 缺口以本表格文字方式在主报告中补足。</p>
+</div>
+<p>把 2025Q1–2026Q2 六个季度连起来看：营收从 2025Q3 单季峰值 36.42 亿逐季回落至 2026Q2 的 18.60 亿（累计降幅 48.9%），归母净利润从 2025Q2 的 4.39 亿一路走到 2026Q2 的 −0.02 亿。这条曲线本身不能单独回答"是高基数退潮还是趋势恶化"，需要与 §3 专题核查的归因量化（大单退潮解释营收缺口的 63.4%、其余业务萎缩 36.6%）一起读。</p>
+
+<h3>5.4 与"高基数论"核心关切的交叉印证（多视角，不下判断）</h3>
+<div class="callout dive">
+<span class="label">DIVE DEEP · Value Line 15 年视角提供的三条独立证据线</span>
+<p><strong>支持"高基数效应"部分成立的证据：</strong>① ROCE 峰值精确落在 2024 年（32.6%，15 年最高），与 ADNOC 大单／复合管收入放量窗口时点重合；② FY2025 全年 ROCE 已回落至 24.1%，说明"退潮"在 2026H1 财报公布之前已在年度数据中显现，不是突然发生。<br>
+<strong>不支持"基本面完全未变"的证据：</strong>① 营业利润率的下行拐点出现在 FY2023（21.3%→20.2%），比 ADNOC 合同 2025 年 9 月到期还早两年，说明存在一条独立于大单周期的常规产品盈利能力下滑曲线；② "FCF 质量 D"评级本身建立在过去 10 年的数据上（并非 2026H1 新增特征），说明久立长期是资本开支强度较高、自由现金流质量偏弱的公司，2026H1 的现金流紧张是既有模式的延续而非新变量；③ 净利润历史上并非"从未大幅下滑"（2016→2017 曾 −20.2%），"增长持久性 A++"评级的"0 年下滑"字面表述仅对营业收入成立，容易被误读为对净利润的背书。<br>
+<strong>无法用 15 年纵向数据单独回答的问题：</strong>2026H1 归母净利润 −52.55% 的降幅是过去 15 年最大单期跌幅，历史数据本身不能告诉我们这次是"均值回归后触底反弹"还是"新一轮更深下行周期的开端"——这需要 Q3/Q4 数据验证毛利率与合同负债是否延续 §3 已识别的"触底回升"信号（2026Q2 合同负债环比 +32.1%，但仍仅为峰值的 48.8%<sup>[verified-facts]</sup>），判断权交还读者。</p>
+</div>
+
+<div class="term" data-name="数据来源与口径说明">
+<p>[1] 本节独立计算（Python Bash 验算）：a_net_profit_qy 2016=16.7767 千万元、2017=13.3824 千万元，YoY=(13.3824/16.7767−1)=−20.2%；a_eps 2016=0.20、2017=0.16，YoY=−20.0%。<br>
+[2] verified-facts.md「大订单：ADNOC 管线钢管合同」「载体分部=复合管」，主对话已核验。<br>
+[3] 本报告 §1.1「行业结构」信号灯，已引用 FY2022–FY2024 毛利率上升期与 FY2025 转折点数据。<br>
+[4] verified-facts.md「单季倒挤（关键）」表，2026Q2 归母 −0.02(−100.46%)／扣非 −0.21(−105.34%)，主对话已用 Python 逐条验算轧平（20.24+18.60=38.84；3.95+(−0.02)=3.93）。<br>
+[5] 本节独立计算（Python Bash 验算）：2025 全年四季度营收加总 28.83+32.22+36.42+23.12=120.59 亿，vs 年度表 1205.8509 千万元=120.585 亿，差额 0.005 亿；净利润加总 3.89+4.39+4.34+2.48=15.10 亿，vs 年度表 150.9373 千万元=15.094 亿，差额 0.006 亿，均属千万元口径显示位数取整误差。<br>
+[valueline] output/2026-08-24/20260824-232101-002318_SZ-久立特材-valueline.html，value-line-page skill 2026-08-24 23:21:01 生成，Tushare REST API 直连，脚本内部计算过程独立可复现，本节引用未做任何人工改写。<br>
+[verified-facts] /tmp/claude/ir-久立特材/verified-facts.md，主对话已核验、已用 Python 逐条验算，禁止重算或改写。</p>
+</div>
+
+</section>
+<hr class="div">
+
+<!-- ============ 六至十一、标准上市公司分析模块 ============ -->
+<section id="growth-fisher">
+<h2><span class="num">6</span>成长性与费雪视角</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 数据口径</span>
+<p>本节营收/净利年度序列取自 choice-data <code>stock_financial_series</code>（FY2021–FY2025 年报口径，report_type=1 合并报表）；5 年复合增速取官方口径 <code>raw_css CAGRGR/CAGRNI/CAGRPNI</code>（Year=2025, N=5，对应 FY2020→FY2025 五个区间，与下表 FY2021 起点不完全一致，已在表注区分）；H1 口径的研发费用序列取自 <code>stock_financial_series</code>（2021H1–2026H1）；2026H1 数据以 verified-facts.md 为准。</p>
+</div>
+
+<div class="callout crux">
+<span class="label">THE CRUX · 本节要回答什么</span>
+<p>用户的核心关切在成长性维度可以拆成一句具体的话：<strong>如果 2026H1 的净利腰斩纯粹是"退回常态"，那么退回的"常态"本身，增长质量是否健康？还是这门生意的净利率早在大单交付完毕之前就已经在走下坡路？</strong>本节用 FY2021–FY2025 的连续年度数据回答——答案不取决于 2026H1 单期数字，而取决于过去 5 年的斜率。</p>
+</div>
+
+<h3>6.1 五年营收 / 净利润 / 净利率趋势（FY2021–FY2025，年报口径）</h3>
+<table>
+<tr><th style="width:12%">报告期</th><th style="width:18%">营业总收入（亿元）</th><th style="width:14%">YoY</th><th style="width:18%">归母净利润（亿元）</th><th style="width:14%">YoY</th><th>归母净利率</th></tr>
+<tr><td>FY2021</td><td>59.74</td><td>—</td><td>7.94</td><td>—</td><td>13.29%</td></tr>
+<tr><td>FY2022</td><td>65.37</td><td>+9.4%</td><td>12.88</td><td>+62.2%</td><td><strong>19.70%（5 年峰值）</strong></td></tr>
+<tr><td>FY2023</td><td>85.68</td><td>+31.1%</td><td>14.89</td><td>+15.6%</td><td>17.37%</td></tr>
+<tr><td>FY2024</td><td>109.18</td><td>+27.4%</td><td>14.90</td><td>+0.1%</td><td>13.65%</td></tr>
+<tr><td>FY2025</td><td>120.59</td><td>+10.4%</td><td>15.09</td><td>+1.3%</td><td>12.52%（5 年谷值）</td></tr>
+</table>
+<p>官方 5 年复合增速（choice-data <code>CAGRGR/CAGRPNI</code>，Year=2025 · N=5，对应 FY2020→FY2025）：<strong>营收 CAGR 19.47%，归母净利 CAGR 14.36%</strong>。交叉验算 FY2021→FY2025（4 年区间，起点不同仅作趋势参照）：营收 CAGR 19.20%、归母净利 CAGR 17.42%——两组口径量级接近，互相印证。</p>
+
+<div class="callout dive">
+<span class="label">DIVE DEEP · 净利率拐点比 ADNOC 大单退潮更早出现</span>
+<p>把 FY2021–FY2025 净利率单独摘出来看：13.29% → <strong>19.70%（FY2022 峰值）</strong> → 17.37% → 13.65% → 12.52%。峰值出现在 FY2022，此后<strong>连续三年（FY2023、FY2024、FY2025）净利率逐年下滑</strong>，累计从峰值回落 7.18 个百分点——而 ADNOC 大单（2023 年 9 月签订）在 FY2023、FY2024、FY2025 恰恰都在放量贡献收入（复合管分部 2024H1 6.42 亿 → 2025H1 20.50 亿 → FY2025 全年 40.59 亿），也就是说：<strong>净利率下滑的三年，正是大单收入最丰厚的三年</strong>。这与"净利率下滑单纯是大单退潮导致"的简化归因方向相反——大单在放量期反而伴随净利率走低（可能是价格竞争加剧、成本结构变化，或大单本身毛利率低于常规产品所致，具体成因需公司分部毛利率数据佐证，本节未取得分产品毛利率的公开分部数据，标注信息不足）。这条证据不能单独证明"高基数论"不成立，但至少说明：<strong>把"净利率健康"完全寄托在"退回大单前的常态"上，需要先验证那个"常态"本身是否真的更健康</strong>——FY2021（大单前）净利率 13.29% 反而低于 FY2023–2024（大单放量期）的 17.37%/13.65%，2026H1 单季度归母净利率（3.93/38.84=10.12%）已跌破 FY2021 水平。判断权交还读者。</p>
+</div>
+
+<h3>6.2 利润增长的可重复性：剔除一次性损益后的经营利润增速</h3>
+<p>本节不重复 §4.3 已做的核心利润拆解（毛利-税金及附加-四费 ÷ 净利润，FY2025 103.2% → 2026H1 骤降至 49.3%），仅做交叉引用并延伸到"增长可重复性"这个费雪维度的专属问题：一家公司真正值得按照历史 CAGR 线性外推的，只有"经常性、可重复"的那部分利润增长。用扣非净利润口径看 FY2021–2026H1 的真实增长节奏（而非归母口径）：</p>
+<table>
+<tr><th style="width:16%">口径</th><th>2024H1</th><th>2025H1</th><th>2026H1</th></tr>
+<tr><td>扣非净利润（亿元）</td><td>6.53</td><td>7.87</td><td>1.57</td></tr>
+<tr><td>YoY</td><td>—</td><td>+20.5%</td><td>−80.05%</td></tr>
+</table>
+<p>用 2024H1（同样没有大单集中确认贡献超常收益的一期）作为"常态"基准对照 2026H1：扣非净利润从 6.53 亿降至 1.57 亿，降幅 76.0%，远超同期营收降幅（48.31 亿 → 38.84 亿，−19.6%）——即便完全剥离"高基数"这个变量（2024H1 本身就不含大单峰值），经常性盈利能力本身也出现了远超收入降幅的塌陷，说明"退回常态"不足以完整解释扣非利润的降幅，还叠加了毛利率下滑（21.23% vs 24.91%，−3.68pct）与减值损失走高等因素。</p>
+
+<h3>6.3 研发投入强度趋势（H1 口径，2021H1–2026H1）</h3>
+<table>
+<tr><th style="width:14%">报告期</th><th>研发费用（亿元）</th><th>研发费用率</th></tr>
+<tr><td>2021H1</td><td>1.11</td><td>3.77%</td></tr>
+<tr><td>2022H1</td><td>1.30</td><td>4.35%</td></tr>
+<tr><td>2023H1</td><td>1.55</td><td>4.11%</td></tr>
+<tr><td>2024H1</td><td>1.86</td><td>3.85%</td></tr>
+<tr><td>2025H1</td><td>2.12</td><td>3.48%（营收基数最大，比例被摊薄）</td></tr>
+<tr><td>2026H1</td><td>1.90</td><td><strong>4.90%（6 年最高）</strong></td></tr>
+</table>
+<p>研发费用绝对额 2026H1（1.90 亿）与 2025H1（2.12 亿）相比仅小幅下降 10.4%，降幅远小于营收降幅（−36.38%），使得研发费用率逆势升至 6 年最高的 4.90%——管理层没有在收入下滑期同步收缩研发投入，属于"逆周期维持产品迭代能力"的信号，与 §1 定性商业分析的护城河判断方向一致，但也意味着研发这项刚性支出在收入收缩期对短期利润率形成了额外挤压（费用率提高本身会拖累当期利润率，这是一枚硬币的两面）。</p>
+
+<h3>6.4 费雪其余维度速览（数据可得性受限，如实标注）</h3>
+<table>
+<tr><th style="width:22%">维度</th><th>观察 / 数据支持</th></tr>
+<tr><td>市场空间</td><td>下游为油气、电力（含核电）、LNG、石化、船舶制造装备用无缝管/复合管/焊接管/合金材料，属于工业原材料细分赛道；未来 3–5 年是否支撑双位数增长，取决于全球能源基建资本开支周期与公司在细分赛道的份额扩张——本节未获取第三方行业规模预测数据，<strong>信息不足</strong>，建议结合行业协会/海关出口数据补充。</td></tr>
+<tr><td>产品迭代</td><td>产品结构含无缝管/复合管/焊接管/合金材料/管件五大类（FY2025 分部占比见 §2 Sankey），复合管是近三年放量最快的品类；研发费用率见 6.3。</td></tr>
+<tr><td>销售组织</td><td>人均销售额、渠道结构、区域分布等未在公开取数范围内获取，<strong>信息不足</strong>。</td></tr>
+<tr><td>成本控制 / 规模效应</td><td>营收 FY2021→FY2025 增长 101.9%（59.74→120.59 亿），但净利率同期从 13.29% 降至 12.52%，规模效应未能兑现为净利率同步扩张（甚至走低）——不支持"规模做大后成本被摊薄、盈利能力自然提升"的简单叙事。</td></tr>
+<tr><td>劳资关系与管理深度</td><td>员工总数 4,680 人（公司基本信息，未获取分年度变化与高管离职率数据），<strong>信息不足</strong>。</td></tr>
+<tr><td>财务策略</td><td>2026H1 在营收腰斩期间维持研发费用（6.3）与资本开支高位（§4.6 已指出资本开支 3.89 亿处于历史相对高位），倾向于"不为短期利润牺牲长期投入"的策略取向，但需要观察这一策略在营收持续承压情形下能维持多久。</td></tr>
+</table>
+
+</section>
+<section id="asset-structure">
+<h2><span class="num">7</span>资产结构</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 数据口径</span>
+<p>本节资产负债表科目取自 choice-data <code>stock_financial_series</code>（FY2021-12-31 至 2026-06-30，report_type=1 合并报表），2026H1 明细取自 <code>stock_financials</code>（与主报告 §4 战略考察共用同一份底稿，不重复取数）。凡与 §4.4/§4.6 已做的结构分析重叠处，本节交叉引用而非重复罗列，聚焦"多年趋势"与费雪 §2 方法论要求的"未来结构演变"两个 §4 未展开的角度。</p>
+</div>
+
+<div class="crux">
+<p>本节回答：<strong>久立特材的资产结构在过去 5 年是怎样演变到今天这个"经营主导型"形态的？2026H1 的存货/应收/商誉异动，放在多年趋势里看是转折还是噪声？</strong></p>
+</div>
+
+<h3>7.1 资产结构演变（FY2021–2026H1）</h3>
+<table>
+<tr><th style="width:12%">报告期</th><th>总资产（亿元）</th><th>流动资产占比</th><th>存货占比</th><th>应收账款（亿元）</th><th>商誉（万元）</th></tr>
+<tr><td>FY2021</td><td>78.29</td><td>53.3%</td><td>19.0%</td><td>8.35</td><td>204.9</td></tr>
+<tr><td>FY2022</td><td>98.71</td><td>55.1%</td><td>20.3%</td><td>9.61</td><td>204.9</td></tr>
+<tr><td>FY2023</td><td>130.16</td><td>66.4%</td><td>18.8%</td><td>11.16</td><td>204.9</td></tr>
+<tr><td>FY2024</td><td>141.66</td><td>58.0%</td><td>24.1%</td><td>12.21</td><td>204.9</td></tr>
+<tr><td>FY2025</td><td>139.17</td><td>60.9%</td><td>20.6%</td><td>14.66</td><td>204.9</td></tr>
+<tr><td>2026H1</td><td>132.97</td><td>67.9%</td><td>24.8%</td><td>15.21</td><td><strong>2,281.7（跳升 10.1 倍）</strong></td></tr>
+</table>
+<p>总资产规模 5 年间从 78.29 亿扩张到 2026H1 的 132.97 亿（+69.9%），扩张节奏与营收扩张（FY2021→FY2025 +101.9%）大体同向但幅度更缓，说明资产周转效率整体在改善（详见 §8）而非单纯堆资产做大营收。</p>
+
+<h3>7.2 应收账款 / 存货增速 vs 营收增速匹配度（多年趋势，非单期）</h3>
+<table>
+<tr><th style="width:26%">指标</th><th style="width:22%">CAGR（FY2021→FY2025，4年区间）</th><th>与营收 CAGR（19.20%）对照</th></tr>
+<tr><td>应收账款</td><td>15.1%</td><td><strong>慢于</strong>营收增速，未见"应收增速远超营收"的经典红旗</td></tr>
+<tr><td>存货</td><td>17.8%</td><td>略慢于营收增速，同样未见结构性异常</td></tr>
+</table>
+<p>应收账款周转天数 5 年走势：FY2021 50.8 天 → FY2022 64.2 天（阶段性拉长）→ FY2023 55.9 天 → FY2024 51.2 天 → FY2025 51.3 天——过去 3 年稳定在 51–52 天区间，未见持续恶化趋势。<strong>2026H1 单点观察到的"应收账款逆势小幅增长"（§4.6 危险信号 #5 已标注，14.66 亿→15.21 亿）是当期营收分母骤降带来的周转天数被动拉长，放在 5 年趋势里看更接近"周期性扰动"而非"结构性恶化"</strong>——但这个判断需要 Q3/年报数据验证是否延续，本节不下最终结论。</p>
+
+<h3>7.3 商誉：6 年零变化后的首次跳升</h3>
+<div class="callout metric">
+<span class="label">METRIC · 商誉占比测算（补充 §4.6 #6 的量级校准）</span>
+<p>2026H1 商誉 2,281.74 万元，占归母权益（80.26 亿）比例 <strong>0.284%</strong>，占总资产比例 <strong>0.172%</strong>——即便对应标的未来发生 100% 减值，对净资产的冲击也不足 0.3 个百分点，量级本身不构成实质性减值风险。真正值得记录的不是"金额"而是"6 年零变化后首次出现变动"这个信号本身：FY2021–FY2025 商誉连续 6 期稳定在 204.86 万元，2026H1 新增约 2,076.88 万元，对应期内很可能发生了一笔此前未在本报告识别到的小型并购或新纳入合并范围的子公司。§4.6 已建议半年报全文披露后核实标的，本节不重复，仅做占比量级的补充校准：<strong>量级极小，不改变"经营主导型"资产结构的整体判断</strong>。</p>
+</div>
+
+<h3>7.4 未来结构演变：CapEx 与在建工程节奏</h3>
+<p>在建工程余额 5 年走势：FY2021 4.36 亿 → FY2022 1.86 亿（大幅转固）→ FY2023 2.48 亿 → FY2024 3.30 亿 → FY2025 6.61 亿 → 2026H1 6.13 亿——FY2025 在建工程较 FY2024 翻倍（+100.2%），2026H1 维持在高位（较 FY2025 末小幅回落 7.3%，仍是历史第二高点）。结合 §4.6 已指出的"资本开支 3.89 亿处于历史相对高位、同期营收 −36.38%"，在建工程转固节奏尚未显示出"长期挂账不投产"的危险信号特征（在建工程占非流动资产比例 2026H1 为 14.3%，非极端集中），但产能建设节奏与需求走弱不同步，是本报告 §4.10 已列出的开放问题之一，本节不重复展开，仅做多年趋势的量化背书。CapEx 计划、并购意图、剥离计划等前瞻性信息未在公开取数范围内获得管理层指引，<strong>信息不足</strong>。</p>
+
+<h3>7.5 "资产—收入—现金流"三角是否一致</h3>
+<div class="callout dive">
+<span class="label">DIVE DEEP · 三角校验结论</span>
+<p>资产端：5 年扩张 69.9%，结构未见异化（经营性资产占比稳定在 68% 上下，§4.4 已证）。收入端：5 年扩张 101.9%，但净利率同步走低（6.1 节已证）。现金流端：2026H1 经营性现金流骤降 −73.6%，利润质量比率跌至历史最差值 0.166（§4.7 已证）。三角关系目前呈现的状态是：<strong>资产扩张与收入扩张大体匹配（资产周转率反而改善，见 §8），但"收入—现金流"这一环在 2026H1 出现明显脱节</strong>——收入下滑幅度（−36.38%）小于经营性现金流下滑幅度（−73.6%），说明当期收现能力弱于收入本身的表现，这是三角中最值得跟踪的不一致点，而非资产端的问题。</p>
+</div>
+
+</section>
+<section id="operating">
+<h2><span class="num">8</span>运营效率</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 数据口径</span>
+<p>周转率取自 choice-data <code>stock_financial_series</code>（<code>INVTURNRATIO</code>/<code>ARTURNRATIO</code>/<code>ASSETTURNRATIO</code>，FY2021–FY2025 年报口径 + 2026H1）。<strong>硬性提示：2026H1 为半年口径（用半年营收/成本除以期末或平均资产），不能直接与年度口径数值对比高低，下表已做年化换算标注，年化仅为量级参照，非官方年化值。</strong>经营性现金流/自由现金流分析与 §4.1/§4.7 共用底稿，本节仅做交叉引用避免重复堆砌。</p>
+</div>
+
+<div class="crux">
+<p>本节回答：<strong>剔除半年报 vs 年报的口径陷阱后，久立特材的资产周转效率是在改善还是恶化？"有利润、没有钱"是 2026H1 的孤立现象，还是资产运营层面正在发生的结构性变化？</strong></p>
+</div>
+
+<h3>8.1 周转率五年趋势</h3>
+<table>
+<tr><th style="width:14%">报告期</th><th>存货周转率（次）</th><th>应收账款周转率（次）</th><th>总资产周转率（次）</th></tr>
+<tr><td>FY2021</td><td>3.12</td><td>7.18</td><td>0.816</td></tr>
+<tr><td>FY2022</td><td>2.80</td><td>5.69</td><td>0.739</td></tr>
+<tr><td>FY2023</td><td>2.85</td><td>6.53</td><td>0.749</td></tr>
+<tr><td>FY2024</td><td>2.70</td><td>7.13</td><td>0.803</td></tr>
+<tr><td>FY2025</td><td>2.89</td><td>7.11</td><td>0.859（5 年最高）</td></tr>
+<tr><td>2026H1（半年口径，未年化）</td><td>0.99</td><td>2.22</td><td>0.285</td></tr>
+</table>
+<p>把 2026H1 半年口径粗略 ×2 年化（仅作量级参照，忽略平均资产基数与半年/全年营收结构差异）：存货周转≈1.99 次、应收周转≈4.44 次、总资产周转≈0.571 次——三项年化估算值均明显低于 FY2025 全年（2.89/7.11/0.859），说明即便剔除半年口径的低估效应，2026H1 的资产周转效率相比 FY2025 全年仍在实质性走弱，与营收腰斩、存货逆势累库（§4.6 已证 Q1→Q2 环比 +13.5%）互为印证。但 FY2021–FY2025 的年度序列本身呈现的是<strong>总资产周转率温和改善（0.816→0.859）</strong>的长期趋势，2026H1 是否代表趋势反转还是单期扰动，需要 FY2026 全年数据才能判断。</p>
+
+<h3>8.2 现金流质量：交叉引用 §4 结论，不重复展开</h3>
+<p>经营性现金流 2026H1 仅 0.65 亿（YoY −73.6%），利润质量比率（OCF÷净利润）0.166 为近 7 期最差值（历史区间 0.55–1.71），自由现金流窄口径 −3.24 亿（与 verified-facts.md 的 −8.18 亿广义口径并列标注，差异成因见 §4.7）——完整拆解见本报告 §4.1/§4.7，本节仅做运营效率维度的落点：<strong>存货逆势累库（占用运营资金）+ 收现能力弱于收入表现（8.1 已证周转率年化后走弱）</strong>两者同向发生，共同构成了 2026H1 运营资本占用上升、现金转化周期拉长的具体机制,而非单一原因。</p>
+
+<h3>8.3 行业特定指标：产能利用率</h3>
+<div class="callout pit">
+<span class="label">PIT · 数据缺口</span>
+<p>制造业运营效率的核心行业指标——产能利用率、单位能耗、分产品线开工率——未在本报告公开取数范围内获得（公司未在定期报告摘要层面披露分产能数据）。<strong>信息不足</strong>，建议后续结合半年报"管理层讨论与分析"章节及行业协会（中国特钢企业协会等）产量数据交叉验证 2026H1 营收腰斩期间的实际开工率变化，这是判断"资本开支维持高位 vs 产能利用率下降"矛盾（§4.6 危险信号 #1）能否兑现为减值风险的关键缺失环节。</p>
+</div>
+
+<h3>8.4 未来运营效率改善的抓手与领先指标</h3>
+<p>公开材料中未获取管理层关于数字化、自动化、SKU 精简、组织扁平化等具体运营效率改善举措的披露，<strong>信息不足</strong>。可观测的领先指标建议：① 下一期存货周转天数是否延续 Q2 的累库趋势；② 合同负债环比是否延续 2026Q2 的触底回升（verified-facts.md 已标注 2026Q1 9.96 亿 → 2026Q2 13.16 亿，环比 +32.1%，但仍为峰值的 48.8%）；③ 应收账款周转天数是否突破 FY2023–FY2025 稳定的 51–56 天区间。三项均为公开季报可持续跟踪的数据点，非本节主观推测。</p>
+
+</section>
+<section id="solvency">
+<h2><span class="num">9</span>偿债能力</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 数据口径</span>
+<p>流动比率 / 资产负债率取自 choice-data <code>stock_financial_series</code>（<code>CURRENTTATIO</code>/<code>LIBILITYTOASSETRPT</code>，FY2021–FY2025 + 2026H1）；速动比率、有息负债、净现金为本节按资产负债表原始科目现算（Bash + Python 验算见下）；外币敞口结合主对话已核验的 ADNOC 合同（EBK/欧元计价）事实推断，标注为待半年报附注佐证的合理推测，不作为已证实结论。</p>
+</div>
+
+<div class="crux">
+<p>本节回答：<strong>久立特材的偿债能力指标是否支持"公司基本面未变"这个判断？管理层持续增持回购的信号，与经营性现金流骤降、有息负债结构之间是否存在张力？</strong></p>
+</div>
+
+<h3>9.1 短期偿债能力</h3>
+<table>
+<tr><th style="width:16%">报告期</th><th>流动比率</th><th>速动比率（2026H1 现算）</th><th>货币资金 / 短期有息负债</th></tr>
+<tr><td>FY2021</td><td>1.82</td><td>—</td><td>—</td></tr>
+<tr><td>FY2022</td><td>1.86</td><td>—</td><td>—</td></tr>
+<tr><td>FY2023</td><td>1.67</td><td>—</td><td>—</td></tr>
+<tr><td>FY2024</td><td>1.45（5 年最低）</td><td>—</td><td>—</td></tr>
+<tr><td>FY2025</td><td>1.82</td><td>—</td><td>—</td></tr>
+<tr><td>2026H1</td><td><strong>1.96（6 期最高）</strong></td><td><strong>1.24</strong></td><td><strong>4.21 倍</strong></td></tr>
+</table>
+<p>流动比率 5 年呈"U 型"走势——FY2024 触及低点 1.45 后，FY2025、2026H1 连续两期回升，2026H1 升至 1.96 为观察期内最高值；速动比率（剔除存货后）1.24，仍 &gt; 1，短期偿债能力充裕；现金短债比 4.21 倍（货币资金 17.96 亿 ÷ 短期有息负债 0.43 亿）远高于警戒线——短期偿债能力指标本身<strong>未显示出任何恶化迹象</strong>，这条证据与"公司基本面并未改变"的部分论点方向一致。</p>
+
+<h3>9.2 长期偿债能力：净现金状态从未改变</h3>
+<table>
+<tr><th style="width:14%">报告期</th><th>有息负债（亿元）</th><th>货币资金（亿元）</th><th>净现金（亿元）</th><th>资产负债率</th></tr>
+<tr><td>FY2021</td><td>2.15</td><td>12.73</td><td>+10.58</td><td>32.80%</td></tr>
+<tr><td>FY2022</td><td>5.94</td><td>19.81</td><td>+13.87</td><td>34.87%</td></tr>
+<tr><td>FY2023</td><td>7.74</td><td>43.13</td><td><strong>+35.39（5 年峰值）</strong></td><td>42.75%（5 年峰值，ADNOC 预付款并表推高负债率）</td></tr>
+<tr><td>FY2024</td><td>7.35</td><td>27.21</td><td>+19.86</td><td>42.70%</td></tr>
+<tr><td>FY2025</td><td>4.31</td><td>22.09</td><td>+17.78</td><td>36.28%</td></tr>
+<tr><td>2026H1</td><td>4.43</td><td>17.96</td><td>+13.53</td><td>37.70%</td></tr>
+</table>
+<p>久立特材过去 6 期<strong>始终处于净现金状态</strong>（货币资金持续覆盖全部有息负债），资产负债率区间 32.80%–42.75%，2026H1（37.70%）处于历史区间中段，并非扩张性加杠杆或收缩性去杠杆的极端值。归母权益从 FY2021 的 50.97 亿增长至 2026H1 的 80.26 亿（+57.5%），净资产的持续积累主要靠留存收益（§4.5 已证"靠历史利润"占比 41.4%），而非债务或股权融资驱动。<strong>长期偿债能力指标同样未显示出与"高基数论"矛盾的红旗</strong>，公司资产负债表的稳健性本身不构成看空理由。</p>
+
+<h3>9.3 利息保障倍数：一个不太寻常的观察</h3>
+<div class="callout fact">
+<span class="label">FACT · 净利息收入为正</span>
+<p>2026H1 利息支出 819.1 万元、利息收入 2,756.6 万元——公司利息收入已超过利息支出约 1,937.5 万元，即"财务费用"科目中的利息净额实际是净收益而非净支出。这意味着传统意义上的"利息保障倍数"（EBIT÷利息支出）在这里参考意义有限：即便营业利润归零，公司靠账上现金的理财/存款收益也足以覆盖借款利息。用简化口径测算（营业利润+利息支出）÷利息支出 ≈ 59.8 倍，量级远超警戒线，但这个高倍数更多反映"公司几乎不依赖财务杠杆经营"这一结构性特征，而非当期经营改善的信号——不应把这个数字读成"盈利能力很强"的证据，两者是不同的问题。</p>
+</div>
+
+<h3>9.4 表外风险与再融资能力</h3>
+<table>
+<tr><th style="width:22%">检查项</th><th>观察</th></tr>
+<tr><td>经营租赁负债</td><td>使用权资产 1,151.5 万元、租赁负债 754.1 万元（2026H1），量级很小（占总资产 &lt;0.1%），IFRS 16 已并表口径，非表外风险点。</td></tr>
+<tr><td>对外担保</td><td>未在本节公开取数范围内获取对外担保明细，<strong>信息不足</strong>。</td></tr>
+<tr><td>明股实债 / 永续债</td><td>资产负债表未见永续债、优先股等类科目，未观察到明股实债迹象；但本节未逐条核查附注条款，不排除表外安排未被识别的可能。</td></tr>
+<tr><td>信用评级 / 发债成本 / 银行授信使用率</td><td>未获取，<strong>信息不足</strong>，建议结合公司近年度报告"银行授信情况"章节及是否存在存续债券补充。</td></tr>
+<tr><td>股权融资可行性</td><td>公司过去以留存收益内生扩张为主（§4.5），近年未见大额定增/配股迹象（未逐年核查，如需精确结论建议查询募集说明书历史）；2026 年 4 月至 7 月的动作是回购而非融资（用途为员工持股/股权激励/可转债转股，非注销），方向与"股权融资"相反。</td></tr>
+</table>
+
+<h3>9.5 外币敞口：ADNOC 合同的欧元计价链条</h3>
+<div class="callout dive">
+<span class="label">DIVE DEEP · 外币敞口与用户核心关切的间接关联</span>
+<p>verified-facts.md 已核实：ADNOC 管线钢管合同由久立特材<strong>德国全资孙公司 EBK（Eisenbau Krämer GmbH）</strong>与阿布扎比国家石油公司签订，含税金额约 5.92 亿欧元，2023 年 10 月收到预付款约 1.77 亿欧元。这意味着该笔大单从签约到交付、回款的整条链条都存在<strong>欧元计价、欧元结算</strong>的外币敞口。2026H1 利润表"其他综合收益"为 −8,910.6 万元（资产负债表累计"其他综合收益"科目余额为 −5,794.2 万元），公司未披露该科目的具体构成拆分，<strong>本节推测其中可能包含 EBK 德国子公司外币报表折算差额，但缺乏附注层面的直接证据支持这一推测，不作为已证实结论</strong>，仅作为"这笔大单的外币属性可能通过其他综合收益渠道，而非直接计入当期利润表损益，对公司权益产生影响"的一个待验证观察点，建议结合半年报"外币报表折算差额"附注核实。这条观察间接说明：ADNOC 大单退潮对公司财务报表的影响路径，可能不止利润表收入/利润这一条明线，汇率因素是容易被忽略的暗线，但目前证据链尚不完整。</p>
+</div>
+
+</section>
+<section id="contradiction">
+<h2><span class="num">10</span>主次矛盾梳理</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 方法与口径</span>
+<p>本节按毛泽东《矛盾论》框架，把前九章（§3 专题核查、§4 报表战略考察、§6 成长性、§7 资产结构、§8 运营效率、§9 偿债能力）已经独立核验、彼此印证的证据线索收拢为一对<strong>主要矛盾</strong>与三条<strong>次要矛盾</strong>，并在主要矛盾内部进一步区分<strong>矛盾的主要方面与次要方面</strong>及其<strong>转化条件</strong>。所有数字沿用前文已核验结果或 verified-facts.md，不重算、不改写；本节新增的两处派生比率（扣非净利率对比）已用 Bash + Python 逐条验算，过程见下表脚注。本节不给出"该不该买"的方向性结论，主次矛盾的识别本身，就是把判断所需的证据结构交还给读者。</p>
+</div>
+
+<div class="callout crux">
+<span class="label">THE CRUX · 一句话锁定主要矛盾</span>
+<p>贯穿全篇的主要矛盾不是"大单退潮解释了多少营收缺口"（§3 已判定：解释力约 63%，属于<strong>次要矛盾</strong>层面的账面归因问题），而是：<strong>剥离"高基数"这个变量之后，久立特材的经常性盈利能力，究竟是站在一个正常的周期底部，还是已经进入一条比表面数字更早开始、也更难在短期内逆转的结构性下行通道？</strong>这个问题决定了 2026H2 及以后利润能否"自动修复"，是"高基数论"能否被稀释、以及市场当前定价（真实 PE 17.79x/扣非 28.26x，§3 已核验）是否合理的真正锚点。</p>
+</div>
+
+<h3>10.1 主要矛盾的锁定：从三命题判定收拢到一个更深的问题</h3>
+<p>§3 专题核查已经用三个可证伪子命题拆解了用户的核心关切，判定结果是"一条部分成立、两条不成立"：①"大单高基数解释业绩下滑"——营收端约 63% 成立、利润端不成立；②"基本面并未改变"——不成立（2026H1 扣非净利 1.57 亿甚至低于同样无大单的 2024H1 的 6.53 亿）；③"市场恐慌抛售"——不成立（预告已提前 6 周发布，7/15 当日几近无反应，股价已从 7 月低点反弹 8.49%）。这三条判定本身已经把讨论从"有没有高基数"推进到下一层：<strong>命题②的"不成立"，恰恰指向了本节要处理的主要矛盾——如果基本面确实已经改变，改变的是"暂时性的一次性因素"，还是"经常性盈利能力的趋势"？</strong>前者是周期问题，后者是结构问题，两者对应的证伪路径完全不同,这正是《矛盾论》里"事情的性质,主要地是由取得支配地位的矛盾的主要方面所规定的"这句话要求本节回答的问题。</p>
+
+<h3>10.2 主要矛盾：经常性盈利能力——周期底部 vs 结构性下行</h3>
+<table>
+<tr><th style="width:8%">立场</th><th style="width:46%">核心证据（均已在 §3/§4/§6/§7/§8/§9 独立核验）</th><th>指向</th></tr>
+<tr><td rowspan="6"><strong>支持"结构性下行"</strong></td><td>归母净利率 5 年走势：13.29%（FY2021）→ <strong>19.70%（FY2022 峰值）</strong> → 17.37% → 13.65% → 12.52%（FY2025 谷值），峰谷差 <strong>7.18pct</strong>；且下滑发生在 ADNOC 大单放量的 FY2023–FY2025 三年，与"大单退潮才导致利润下滑"的简化归因方向相反（§6.1）</td><td>净利率拐点比大单退潮更早出现</td></tr>
+<tr><td>用 2024H1（同样不含大单集中确认收益的对照期）测算，扣非净利率从 13.52% 降至 2026H1 的 4.04%，<strong>降幅 9.47pct</strong>；扣非净利润降幅 −76.0% 远超营收降幅 −19.6%（本节新算，见脚注①）——即便完全剔除高基数变量，经常性盈利能力本身也在塌陷</td><td>"退回常态"不足以解释扣非利润跌幅</td></tr>
+<tr><td>2026H1 毛利率 21.23%，近 5 年最低；2026Q2 单季毛利率 17.23%，Q2 单季扣非 <strong>−0.21 亿，首次出现单季亏损</strong>（verified-facts.md）</td><td>盈利能力恶化已兑现到单季亏损</td></tr>
+<tr><td>核心利润 ÷ 净利润从 FY2025 的 103.2% 骤降至 2026H1 的 49.3%（§4.3），OCF÷净利润 0.166 为近 7 期最差值（§4.7/§8.2）</td><td>利润"含金量"与"造血能力"同步走弱</td></tr>
+<tr><td>存货逆势累库（Q1→Q2 环比 +13.5%）、应收账款逆势小幅增长，资产周转率年化估算后仍明显低于 FY2025 全年（§7.2/§8.1）</td><td>运营资本占用上升，非单纯周期扰动</td></tr>
+<tr><td>同业横向对照：久立毛利率降幅（−5.97pct）与盛德鑫泰（−5.15pct）接近，行业性压力真实存在（verified-facts.md）</td><td>不是久立独有问题，是行业共性压力叠加公司自身趋势</td></tr>
+<tr><td rowspan="6"><strong>支持"周期底部暂时压力"</strong></td><td>资产负债表结构 5 年未发生质变：经营性资产占比稳定在 68% 上下（§4.4/§7.1），"经营主导"型战略结构未见任何漂移迹象</td><td>长期竞争地位的底层结构没有变</td></tr>
+<tr><td>研发费用率逆周期升至 6 年最高的 4.90%（2026H1 研发绝对额仅降 10.4%，远小于营收降幅 −36.38%），资本开支维持历史相对高位（§6.3/§4.6）</td><td>管理层未在下行期收缩长期投入</td></tr>
+<tr><td>合同负债 2026Q2 环比 +32.1%（9.96 亿→13.16 亿），触底回升信号已出现（verified-facts.md）</td><td>新订单接续能力出现改善迹象</td></tr>
+<tr><td>同业图南股份（高温合金/军工）2026H1 扣非 <strong>+173.51%</strong> 逆势大增，说明行业并非全面塌方，高端细分景气仍在（verified-facts.md）</td><td>行业分化而非行业性衰退</td></tr>
+<tr><td>净现金状态 6 期未变，资产金融负债率仅 3.38%（§9.2），杠杆结构极度稳健，具备穿越周期底部的财务弹性</td><td>不存在被迫收缩或流动性风险</td></tr>
+<tr><td>2026 年 4–7 月管理层持续增持回购（含预告当日一致行动人增持），传递内部人不认同"基本面恶化"的信号（verified-facts.md）</td><td>内部人行动与悲观叙事方向相反</td></tr>
+</table>
+<p style="font-size:14px;color:var(--ink-3);">脚注①：2024H1 扣非净利率 = 6.53/48.31 = 13.52%；2026H1 扣非净利率 = 1.57/38.84 = 4.04%；降幅 9.47pct；营收降幅 = 38.84/48.31−1 = −19.6%；扣非净利降幅 = 1.57/6.53−1 = −76.0%。Bash + Python 逐条验算，过程见本节交付记录。</p>
+
+<h3>10.3 主要矛盾内部：主要方面、次要方面及其转化条件</h3>
+<div class="callout dive">
+<span class="label">DIVE DEEP · 矛盾的主要方面目前是谁，会不会转化</span>
+<p>《矛盾论》讲"矛盾的主要方面和次要方面是互相转化的，事物的性质也就随着起变化"——用这个框架看 2026H1：<strong>当前主导报表表观数字的是"矛盾的主要方面"——非经常性因素</strong>（Q1 出清永兴材料 2.68 亿一次性投资收益，占归母净利润 60.1%；§4.3 已用张新民核心利润法交叉验证得出一致结论：核心利润仅占净利润 49.3%）。这是 2026H1 归母净利 −52.55% 里"看得见"的那部分，也是"高基数论"最容易抓住、最容易被误读为"公司基本面未变、只是账面数字失真"的部分。<br><br>但真正决定这对矛盾未来会不会转化、决定 2026H2/2027 利润能否修复的力量，蕴藏在目前处于"次要方面"却更根本的那条线——<strong>经常性盈利能力本身的趋势（10.2 已列证据）</strong>。如果 §10.2 支持"结构性下行"一侧的证据（净利率多年趋势、扣非利润塌陷幅度超营收、毛利率创新低）在 Q3/Q4 持续兑现，"矛盾的主要方面"将发生转化：从当前"非经常性因素主导表观数字"，转向"经常性盈利趋势主导公司真实价值判断"——届时"高基数论"作为解释框架的效力会被进一步稀释,越发不足以支撑"公司基本面未变"这个判断。反之，如果 Q3 扣非利润与毛利率企稳、合同负债延续 Q2 的回升趋势，则说明当前的经常性盈利下滑更接近"周期底部叠加大单退潮的双重冲击共振"，而非独立的结构性趋势，转化会朝相反方向发生。</p>
+</div>
+
+<h3>10.4 次要矛盾（三条，均已具备可观测证据）</h3>
+<table>
+<tr><th style="width:20%">次要矛盾</th><th style="width:40%">矛盾双方</th><th>证伪条件</th></tr>
+<tr><td><strong>次要矛盾①</strong><br>利润质量矛盾</td><td>账面净利润 3.93 亿 vs 经营性现金流仅 0.65 亿，OCF÷净利润 0.166 为近 7 期最差值（§4.7）——"有利润、没有钱"是一次性因素造成的时点错配（Q1 处置收益计入投资活动现金流而非经营活动），还是收现能力本身在持续弱化</td><td>若 Q3 单季 OCF÷净利润比率回升至历史区间（0.55–1.71）→ 支持"时点错配"一侧；若继续低于 0.3 → 支持"收现能力弱化"一侧</td></tr>
+<tr><td><strong>次要矛盾②</strong><br>治理信号矛盾</td><td>管理层持续增持回购（2026/4–7，含预告当日一致行动人增持）释放"内部人不悲观"的积极信号 vs 分红率 64.8%（FY2025）在利润腰斩情形下的不可持续性（verified-facts.md 已测算：全年若仅赚 8–9 亿，需要 109%–122% 的分红率才能维持每股 1.00 元）——两个同样来自管理层/公司行为的信号方向相反</td><td>若 2026 年度分红方案主动下调每股派息 → 证实"股息不可持续"判断，管理层用真金白银承认盈利中枢下移；若维持 1.00 元且以历史留存收益（41.4% 权益来源，§4.5）支付 → 说明账面净现金充裕度支撑一次性透支，需回到 §11"便宜 vs 好生意"框架单独评估</td></tr>
+<tr><td><strong>次要矛盾③</strong><br>资本配置矛盾</td><td>研发费用率逆周期升至 6 年最高（4.90%）+ 资本开支维持历史相对高位（3.89 亿）——是管理层对行业周期底部的逆势布局（长期主义、战略眼光），还是既定产能规划对需求走弱反应滞后（资源错配风险，§4.6 危险信号 #1 已标注"部分命中"）</td><td>若 2026H2/FY2026 资本开支同步收缩、产能利用率数据（§8.3 目前信息不足）显示新增产能被有效消化 → 支持"逆势布局"；若资本开支持续维持高位而营收、毛利率继续走弱 → 指向资源错配，需在下一期报告升级为观察红旗</td></tr>
+</table>
+
+<h3>10.5 三个核心监控变量</h3>
+<table>
+<tr><th style="width:20%">监控变量</th><th style="width:20%">当前值（2026H1/Q2）</th><th style="width:22%">支持"周期底部"的信号</th><th>支持"结构性下行"的信号</th></tr>
+<tr><td><strong>①毛利率 / 扣非净利润 Q3 单季走势</strong></td><td>2026Q2 毛利率 17.23%、扣非 −0.21 亿（单季亏损）</td><td>Q3 毛利率环比回升，扣非净利润转正</td><td>Q3 毛利率继续创新低，扣非亏损延续或扩大</td></tr>
+<tr><td><strong>②合同负债环比延续性</strong></td><td>2026Q2 13.16 亿，环比 +32.1%，但仅为峰值 26.96 亿的 48.8%（verified-facts.md）</td><td>Q3 合同负债延续环比正增长，逐步接近 2023Q4 签约前的 23.00 亿基准</td><td>Q3 合同负债重新走低，Q2 回升被证明是单季噪声而非趋势</td></tr>
+<tr><td><strong>③经营性现金流质量修复</strong></td><td>OCF 0.65 亿，OCF÷净利润 0.166（近 7 期最差）</td><td>Q3 单季 OCF÷净利润比率明显回升，接近历史区间下沿（0.55）</td><td>OCF÷净利润比率维持在 0.2 以下或进一步走低</td></tr>
+</table>
+<p>三个变量都是公开季报可持续跟踪的数据点，均已在 §3.11/§4.10/§8.4 分别以"开放问题"形式埋设，本节把它们收拢为判断"矛盾会朝哪个方向转化"的最小充分观测集。三者同时改善，指向"周期底部"一侧证据链条完整；三者同时恶化，指向"结构性下行"证据链条完整；更常见的情形是三者分化（例如合同负债回升但毛利率未企稳），此时矛盾仍处于胶着状态，需要更长的观测窗口。</p>
+
+<h3>10.6 留给读者</h3>
+<p>本节不判断"高基数论"作为一个整体是否成立——§3 已经用三命题拆解给出了"一条部分成立、两条不成立"的证伪结果，这个结果本身已经是一种回答。本节要强调的是：即便命题①（营收端高基数）成立度较高，也不能简单外推到"公司基本面未变、恐慌抛售即买入机会"这个更大的论断——因为决定这个论断成立与否的主要矛盾，不在"大单解释了多少营收缺口"这个已经有答案的问题上，而在"经常性盈利能力的趋势线到底朝哪个方向走"这个尚未有答案、需要 Q3/Q4 数据才能证伪的问题上。多空双方目前各自掌握着扎实的、可独立核验的证据（10.2 已并列列出），三个监控变量（10.5）提供了最小充分的后续观测清单，最终判断——无论是"这是周期底部的错杀机会"还是"这是盈利能力结构性下移的开始"——留给读者根据自己对这三个变量后续走向的判断来完成。</p>
+
+</section>
+<section id="why-cheap">
+<h2><span class="num">11</span>便宜 vs 好生意——两道独立题</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 数据口径与验算方式</span>
+<p>本节资产负债表 / 利润表科目取自 <code>/tmp/claude/ir-002318_SZ/balance_20260630.json</code>、<code>income_20260630.json</code>（choice-data <code>stock_financials</code>，2026-06-30 合并报表），与主报告 §4/§7/§9 共用同一份底稿，不重复取数。EBIT / ROIC 采用 Tushare <code>fina_indicator</code> 官方口径作第二信源交叉验证（区别于主对话 verified-facts.md 的核算范围，两者互补：verified-facts 覆盖利润表/合同负债/估值，本节新增 EBIT/ROCE/资产负债表清算测算）。同业对照沿用 verified-facts.md 已列的 4 家可比公司，ROIC 数据本节新取。所有关联计算（P/B、NCAV、清算价值、ROCE 投入资本调整）均已用 Bash + Python 逐条验算，过程见交付记录，不在正文重复罗列公式推导，仅呈现结果与关键中间值。</p>
+</div>
+
+<div class="callout crux">
+<span class="label">THE CRUX · 本节回答什么，不回答什么</span>
+<p>本节与 §13 反向估值审计是两个不同的问题：§13 问"当前价格已经把什么假设定价进去了"；本节问<strong>"抛开市场怎么想，久立特材本身'便宜'吗？久立特材本身是不是一门'好生意'？"</strong>——这是两道相互独立的题，答案不能互相论证。按 Hard Rule 6 的铁律：<strong>便宜题只回答下行风险</strong>（打光估值倍数、算到最坏情况值多少钱），<strong>好生意题只回答上行空间</strong>（这门生意剔除资本结构杠杆后，本身赚不赚钱、能不能持续）。禁止用"生意好"去反推"所以便宜"，也禁止用"便宜"去反推"所以是好生意"——两条论证线在下文严格分区呈现，§11.3 才把两个答案放到一起做象限定位，且不给出方向性买卖判断。</p>
+</div>
+
+<h3>11.1 便宜题：只回答下行风险</h3>
+
+<table>
+<tr><th style="width:26%">口径</th><th style="width:20%">数值</th><th>解读</th></tr>
+<tr><td>P/B（verified-facts 口径）</td><td><strong>2.095x</strong></td><td>Choice 数据源给定值，2026-08-24 收盘。</td></tr>
+<tr><td>P/B（本节自算，市值÷2026H1 期末归母权益）</td><td>2.380x</td><td>191.05 亿 ÷ 80.26 亿 = 2.380x，与 verified-facts 给定值存在 0.285x 差异，大概率是 Choice PB 字段口径（如平均权益基数 / 流通股本调整）与本节直接用期末归母权益静态计算的差异，未能定位精确成因，<strong>两个数字并列标注，方向性结论（"不便宜"）在两个口径下一致，不影响下文判断</strong>。</td></tr>
+<tr><td>运营资本（流动资产－流动负债）</td><td>44.08 亿</td><td>90.22 亿－46.15 亿；正值且规模不小，短期流动性无虞（与 §9.1 流动比率 1.96x 互相印证）。</td></tr>
+<tr><td>NCAV（净流动资产 = 流动资产－全部负债）</td><td>40.09 亿<br>≈ 4.10 元/股</td><td>90.22 亿－50.13 亿。对比现价 19.55 元，NCAV 每股仅占股价的 <strong>21.0%</strong>。</td></tr>
+<tr><td>P/NCAV（市值 ÷ NCAV）</td><td><strong>4.77x</strong></td><td>格雷厄姆经典 net-net 筛选标准是 P/NCAV ≤ 0.67x；久立特材 4.77x，<strong>远超该阈值一个数量级，不构成任何意义上的"烟蒂股"或资产折价买入</strong>。</td></tr>
+<tr><td>保守清算价值测算（严格情景）</td><td>15.65 亿<br>≈ 1.60 元/股</td><td>货币资金 100% + 交易性金融资产 100% + 应收账款 × 80% + 存货 × 67% + 其他流动资产 × 50% － 全部负债 100%，固定资产 / 非流动资产不计入（经典格雷厄姆清算折扣率）。较现价隐含降幅 <strong>91.8%</strong>。</td></tr>
+<tr><td>保守清算价值测算（温和情景）</td><td>30.90 亿<br>≈ 3.16 元/股</td><td>严格情景基础上，为固定资产净值追加 50% 信用（非极端清算假设）。较现价隐含降幅 <strong>83.8%</strong>。</td></tr>
+</table>
+
+<div class="callout dive">
+<span class="label">DIVE DEEP · 便宜题的答案：不便宜，且几乎没有资产端的下行缓冲</span>
+<p>三个独立算法（P/B、NCAV 占比、清算价值测算）指向同一个结论：<strong>久立特材当前 19.55 元的股价里，几乎全部是市场对未来盈利能力的定价，资产负债表本身能提供的"下行安全垫"极薄</strong>。P/B 在 2.1x–2.4x 区间（两个口径口径都不低，不是破净股，也远未到"深度价值"区间的 1x 以下）；NCAV 法完全不适用——即便把公司当下清盘、按格雷厄姆经典折扣率变卖流动资产偿还全部负债，每股也只值 1.60–3.16 元，只有现价的 8%–16%。这意味着：<strong>如果 §10 主次矛盾节列出的"结构性下行"一侧证据后续被证实（经常性盈利能力持续走弱），股价下跌的理论空间在资产端几乎没有天然止跌点</strong>——下行风险不是"跌到清算价值附近就该企稳"这种资产托底逻辑，而是完全取决于盈利能力预期能修复到什么程度。这条结论只回答"便宜不便宜"，不涉及"是不是好生意"（见 11.2），也不构成任何买卖判断。</p>
+</div>
+
+<h3>11.2 好生意题：只回答上行空间</h3>
+
+<p>净利润 / ROE 会被少数股东权益、非经常性损益、财务杠杆放大或扭曲（本报告 §4.3 已用张新民核心利润法证明：2026H1 核心利润仅占净利润 49.3%，Q1 处置永兴材料股权带来的 2.68 亿一次性投资收益是主因）。本节改用 EBIT 与 ROCE——剥离利息、税收与一次性损益，只看"这门生意本身"的资本回报能力。</p>
+
+<table>
+<tr><th style="width:16%">报告期</th><th>EBIT（亿元，官方口径）</th><th>ROIC（官方口径）</th><th>归母净利率（参照 §6.1）</th></tr>
+<tr><td>FY2021</td><td>8.99</td><td>14.90%</td><td>13.29%</td></tr>
+<tr><td>FY2022</td><td>13.70</td><td><strong>20.48%（5 年峰值）</strong></td><td>19.70%（峰值）</td></tr>
+<tr><td>FY2023</td><td>17.08</td><td>18.93%</td><td>17.37%</td></tr>
+<tr><td>FY2024</td><td>17.49</td><td>17.01%</td><td>13.65%</td></tr>
+<tr><td>FY2025</td><td>18.64</td><td>16.13%</td><td>12.52%（谷值）</td></tr>
+<tr><td>2026H1（半年，未年化）</td><td>4.64</td><td>4.19%</td><td>10.12%（3.93/38.84）</td></tr>
+<tr><td>2026H1 简单年化（×2，仅量级参照）</td><td>9.28</td><td>≈8.38%</td><td>—</td></tr>
+</table>
+<p style="font-size:14px;color:var(--ink-3);">数据来源：Tushare <code>fina_indicator</code> 官方 EBIT/ROIC 字段（本节实测复算 EBIT = 净利润+所得税+净利息支出，与接口返回值精确一致，误差为 0）；2026H1 简单年化仅作量级参照，未考虑季节性，不是官方年化值。</p>
+
+<div class="callout metric">
+<span class="label">METRIC · 一次性投资收益如何扭曲 EBIT，剔除后什么样</span>
+<p>2026H1 官方 EBIT 4.64 亿本身<strong>已经包含</strong> Q1 出清永兴材料 2.68 亿一次性投资收益（投资收益计入 EBIT 线以上）。剔除这笔一次性损益后：<strong>核心 EBIT ≈ 1.96 亿</strong>（4.64－2.68），核心 EBIT margin 从 headline 的 11.95% 降至 <strong>5.05%</strong>——不到 headline 数字的一半。用格林布拉特式投入资本（净营运资本剔除超额现金 13.04 亿 + 净固定资产 36.62 亿 = 投入资本 71.92 亿，测算过程见交付记录 Python 验算）测算：headline ROCE（H1×2 简单年化）12.91%，<strong>核心 ROCE（剔一次性，H1×2 简单年化）仅 5.45%</strong>，与 Tushare 官方 ROIC 年化估算值 8.38% 量级接近（两者投入资本口径不同，方向一致：核心资本回报率显著低于 headline 数字，也显著低于 FY2025 的 16.13%）。<strong>这条数字直接回应用户的核心关切</strong>：即便完全承认"2026H1 归母净利腰斩主因高基数 + 一次性投资收益消失"这个账面事实，剔除掉这个一次性因素之后剩下的"这门生意本身"的资本回报率（核心 ROCE 约 5%–8%），仍然远低于 FY2021–FY2025 期间 14.9%–20.5% 的历史区间——高基数论能解释账面数字的失真，<strong>但不能解释核心资本回报率本身为什么也在同步走弱</strong>，这与 §6.1/§10.2 已独立核验的"净利率拐点比大单退潮更早出现"结论方向一致，三处证据互相印证。</p>
+</div>
+
+<h4>同业横向对照（2026H1 ROIC，武进不锈未披露 2026H1 用 FY2025 年度值）</h4>
+<table>
+<tr><th style="width:20%">公司</th><th style="width:18%">毛利率</th><th style="width:20%">ROIC（H1，非年化）</th><th style="width:20%">ROIC（简单年化 ×2，武进不锈为 FY2025 实际年度值）</th><th>行业位置</th></tr>
+<tr><td><strong>久立特材 002318</strong></td><td>21.23%</td><td>4.19%</td><td><strong>≈8.38%</strong></td><td>5 家中排第 2</td></tr>
+<tr><td>常宝股份 002478</td><td>13.63%</td><td>1.50%</td><td>≈3.01%</td><td>第 4</td></tr>
+<tr><td>盛德鑫泰 300881</td><td>10.93%</td><td>2.77%</td><td>≈5.54%</td><td>第 3</td></tr>
+<tr><td>图南股份 300855</td><td>40.11%</td><td>9.63%</td><td><strong>≈19.26%（第 1，遥遥领先）</strong></td><td>第 1</td></tr>
+<tr><td>武进不锈 603878</td><td>11.37%（FY2025）</td><td>—</td><td>2.49%（FY2025 年度实际值，非年化推算）</td><td>第 5</td></tr>
+</table>
+
+<div class="callout dive">
+<span class="label">DIVE DEEP · 好生意题的答案：曾经是行业里较好的生意，2026H1 资本回报率明显走弱但仍未垫底</span>
+<p>把"好生意"拆成两层看：<strong>第一层，久立特材在这个赛道里的相对位置</strong>——同业 5 家里，久立的资本回报率仅次于图南股份（图南是军工高温合金赛道，与不锈钢管/复合管完全是不同壁垒的生意，毛利率 40.11% 远超其余 4 家，不构成可比口径的"同赛道竞争"，更像是"整个可比组里唯一的异类"）。剔除图南后，久立在常宝股份、盛德鑫泰、武进不锈这一组"真正同赛道"的钢管企业里，资本回报率明显领先（8.38% vs 5.54%/3.01%/2.49%），说明<strong>久立在不锈钢管/复合管这个细分赛道里，仍然是资本使用效率最高的公司</strong>，这与 §1 定性商业分析里判断的护城河仍在成立方向一致。<strong>第二层，久立特材自己的纵向趋势</strong>——ROIC 从 FY2022 峰值 20.48% 连续 4 期下滑到 2026H1 年化估算的 8.38%，降幅超过一半；核心 ROCE（剔一次性）估算仅 5%–6%，已经落到与盛德鑫泰、常宝股份接近的量级。<strong>这门生意本身，仍然"好于同业平均"，但"好"的程度正在收窄，护城河没有消失但正在变窄（§1 若已判断护城河"变窄"，此处提供量化印证；若尚未判断，本节提示需回补）。</strong>上行空间的答案，不取决于"公司过去是不是好生意"（过去确实是），而取决于 ROIC 8%左右这个新水平，是这门生意在剔除周期顶点/大单红利后的"真实中枢"，还是仍处在磨底、Q3/Q4 会向 FY2021 一线（14.9%）修复——这正是 §10.5 已列出的三个核心监控变量（毛利率/合同负债/现金流质量）最终要回答的问题，本节不重复推演，只交出"当前起点在哪"这个坐标。</p>
+</div>
+
+<h3>11.3 两道题的对撞：四象限定位</h3>
+
+<table>
+<tr><th style="width:22%">象限</th><th style="width:40%">定义</th><th>久立特材是否落在此处</th></tr>
+<tr><td><strong>价值陷阱</strong><br>（只过便宜题）</td><td>估值指标低、资产端有安全垫，但生意本身资本回报持续低于资本成本、缺乏护城河支撑</td><td><strong>不成立</strong>——§11.1 已证久立不满足"便宜"（P/B 2.1x–2.4x、P/NCAV 4.77x、清算价值仅为现价的 8%–16%），根本不存在"便宜"这个前提，谈不上落入这一象限。</td></tr>
+<tr><td><strong>高位接盘</strong><br>（只过好生意题）</td><td>生意质地确实优于同业（ROCE/EBIT margin 领先），但估值已经把这份优质提前定价完毕，缺乏资产端安全垫，一旦盈利不及预期没有下行缓冲</td><td><strong>与当前证据最贴近的象限</strong>——§11.2 已证久立在同赛道可比公司中资本回报率领先（仅次于跨赛道的图南），§1 定性分析支持的护城河判断部分成立；但 §11.1 已证资产端几乎无安全垫（清算价值仅现价 8%–16%），且 §11.2 也已证 ROIC 正从 20.5% 峰值向 8% 左右回落——如果这门生意的资本回报率继续向下（§10 主次矛盾节尚未证伪的"结构性下行"一侧），"好生意"这个前提本身也会被削弱，届时连"高位接盘"这个象限的立足点（生意质地优）都会动摇。</td></tr>
+<tr><td><strong>便宜的好生意</strong></td><td>估值端有安全垫 + 生意本身资本回报有竞争力</td><td>不成立——§11.1 已排除"便宜"这个前提。</td></tr>
+<tr><td><strong>都不过</strong></td><td>既不便宜，生意质地也在同业里不占优</td><td>不成立——§11.2 已证久立在同赛道里资本回报率排名靠前，不是"都不过"。</td></tr>
+</table>
+
+<div class="callout action">
+<span class="label">交还读者 · 本节不下最终判断</span>
+<p>两道独立题各自的答案是：<strong>便宜题——不便宜</strong>，P/B、NCAV、清算价值三个口径全部指向"资产端几乎没有下行缓冲"；<strong>好生意题——曾经是、现在仍是同赛道里资本回报率最高的公司之一，但这份"好"正在从 FY2022 的 20.5% 峰值向 2026H1 年化估算的 8% 左右收窄，且收窄的起点早于 ADNOC 大单退潮</strong>。两者叠加，落点最接近"高位接盘"象限——但这不是一个买卖判断，而是一个需要读者自己完成的权衡：<strong>是否相信 ROIC 8% 左右这个新水平只是磨底、大概率向历史中枢修复（那么当前"无资产安全垫"的风险可以被"生意仍在同业中领先"这个事实部分对冲）；还是相信 §10.2 列出的"结构性下行"证据链（净利率拐点早于大单退潮、扣非利润降幅远超营收降幅、毛利率创 5 年新低）会持续兑现，届时"好生意"这个前提本身也会被侵蚀，而资产端又没有任何缓冲——这个权衡交还给读者，本节和本报告全篇均不给出方向性结论。</strong></p>
+</div>
+
+<h3>11.4 与 §10（主次矛盾）、§13（反向估值审计）的分工</h3>
+<p>本节回答"久立特材本身便宜不便宜、是不是好生意"这两道独立的静态题，用的是公司自身的资产负债表 / 利润表数据和同业横向对照，不涉及市场当前定价隐含了什么假设。§10 主次矛盾节回答的是"决定这两道题答案会往哪个方向演变的主要矛盾是什么"（经常性盈利能力：周期底部 vs 结构性下行），本节 11.2 的 ROIC 走弱数据是 §10.2 论证的独立补充证据，两节互相印证但不重复展开各自的完整论证链条。§13 反向估值审计回答的是第三个不同的问题——"当前股价已经把多高的增长/盈利假设定价进去了，这个假设在历史分位里现实吗"，与本节的"资产端安全垫有多厚"和"生意本身资本回报率多高"是三个独立但互补的视角，合起来才能覆盖用户核心关切里"估值是否已经反映了基本面变化"这一整块问题。</p>
+
+</section>
+<hr class="div">
+
+<!-- ============ 十二、控股股东/管理层尽调（founder-led 触发） ============ -->
+<section id="management-dd">
+<h2><span class="num">12</span>控股股东 / 管理层尽职调查</h2>
+
+<div class="callout crux">
+<span class="label">THE CRUX · 触发依据 + 与用户核心关切的关系</span>
+<p>触发依据：控股股东久立集团股份有限公司持股 34.7558%（2025-12-31，top10_holders 口径）<sup>[MD1]</sup>，实际控制人周志江，满足"控股股东 ≥30%"的家族/创始人主导判定条件。本节按"调查记者式"方法论（自愿合作信源 + 公开档案 + 对抗式推理，而非侦探式强制取证）对管理层与控股股东做穿透尽调，核心任务是提供一条独立于财务数字的证据线：2026H1 业绩腰斩期间，"人"的行为（增持/减持/回购/分红）与账面数字的方向是否一致——这直接回应用户"基本面并未改变、恐慌抛售即买入机会"假说中"人怎么看"的部分，与前文（1.2、1.3、§3 专题核查）的财务归因互补而非替代，也不替代财务结论下任何买卖判断。</p>
+</div>
+
+<h3>12.1 多场景三角验证</h3>
+<p>下表按方法论 §3 的"多场景"框架，把久立管理层/控股股东在不同信息环境下的表现并列对照。受限于公开数据可得性，社区/家庭/招聘平台等"软"场景大多落入"信息不足"，本表选择显式标注盲区而非用财务数据的确定性掩盖它。</p>
+<table>
+<tr><th style="width:15%">场景</th><th style="width:42%">观察到的行为 / 数据</th><th style="width:11%">独立信源数</th><th>与官方基线 / 用户假说的关系</th></tr>
+<tr><td>IR / 业绩预告（官方基线）</td><td>2026-07-15 发布"预减"公告，预计归母净利 3.72~4.14 亿元，同比 −55%~−50%；实际 3.93 亿/−52.55%，落在预告区间内、无超预期<sup>[verified-facts]</sup>。四条官方原因排序为：①行业结构性承压 → ②中东地缘延迟 → ③成本上升 → ④大单高基数<sup>[verified-facts]</sup>——"大单高基数"被列在第 4 位而非第 1 位，与用户假说把它当作唯一/首要归因的权重分配存在错位。</td><td>1（公司自身）</td><td>基线本身，用作后续对照锚点。</td></tr>
+<tr><td>市场行为信源——增减持/回购时间线（脱离文本，看"钱"投票）</td><td>2026-03-25 首次回购预案 2 亿元（价格上限 49 元）→ 4/28-4/30 实施 170 万+270 万股，均价 29.03/29.46 元，合计 1.29 亿元<sup>[MD2][计算]</sup>；同期 4/29 周志江增持 50 万股（占总股本 0.0512%）、李郑周增持 37.5 万股（占总股本 0.0384%）<sup>[MD2][计算]</sup>；6/4 董秘寿昊添增持 1 万股 @22.386 元<sup>[MD2]</sup>；7/15 预告当日一致行动人湖州一亩田增持 62.91 万股 @17.477 元（占总股本 0.0644%）<sup>[MD2][计算]</sup>；7/22 推出新回购预案 2~4 亿元（价格上限 32 元），截至 7/31 已实施 825.17 万股/1.7964 亿元（均价 21.77 元）——已达 2 亿元下限的 89.8%<sup>[MD2][计算]</sup>；2026 年累计回购已花 3.09 亿元<sup>[计算]</sup>。</td><td>2（Tushare 回购公告接口 + 增减持公告接口，两组独立公告字段互相印证时间线）</td><td>方向上与"管理层用真金白银投票基本面见底"的解读一致，且新回购方案执行速度快（9 天内花掉下限的 90%）是比公告本身更硬的信号；但回购用途为员工持股/股权激励/可转债转股而非注销<sup>[verified-facts]</sup>，对 EPS 增厚有限；个人增持绝对金额（周志江+李郑周合计仅占总股本 0.09%）象征意义大于实质力度。</td></tr>
+<tr><td>机构投资者"用脚投票"（与管理层方向相反的独立信源）</td><td>2025Q4（截至 2025-12-31）：香港中央结算（港股通）减持 210.53 万股至 2,154.16 万股；基本养老保险基金一五零一一组合减持 500 万股至 1,103.70 万股；同期全国社保基金一零一组合逆势增持 34.96 万股<sup>[MD1]</sup>——机构阵营内部方向本身不一致，不能简单归为"聪明钱在提前跑"。</td><td>1（top10_holders，多家机构各自独立决策，可视为准独立信源集合）</td><td>与用户假说存在张力：若"基本面未改变"已是市场共识，理应观察到机构净增持而非分化减持；但这批减持发生于 2025Q4（预告发布前 7 个月），无法直接归因为"对本次预减的恐慌反应"，也可能是常规仓位再平衡，两种解读均成立。</td></tr>
+<tr><td>薪酬与持股结构（公开档案）</td><td>董事长李郑周 2025 年薪酬 239.9 万元、持股 1,054.14 万股（1.08%）；总经理王长城薪酬 219.0 万元、持股 58.69 万股（0.06%）；总工程师苏诚薪酬 121.9 万元；副总经理层级薪酬 69.6万~93.8 万元不等<sup>[MD3]</sup>——薪酬与持股比例不完全成正比（李郑周薪酬最高但非持股比例最集中者），未见异常畸高或畸低薪酬。</td><td>1（stk_rewards，无第二信源验证薪酬真实性）</td><td>无直接关系，作为"是否只考虑自身利益"判断的背景参照，未发现明确侵蚀股东利益的薪酬证据。</td></tr>
+<tr><td>治理数据交叉核验（公开档案互相校验，"两个独立信源铁律"的实践）</td><td>用 top10_holders(2025-12-31) 与 stk_holdertrade(2025-10-09 公告) 两个独立 Tushare 接口交叉核验久立集团持股：前者显示 339,623,823 股/34.7558%<sup>[MD1]</sup>，后者记录 2025-10-09 增持后 after_share=343,166,625 股，但其 after_ratio 字段标注 27.60%——反推该字段隐含分母约 12.43 亿股，与公司实际总股本 9.7723 亿不符<sup>[计算]</sup>；且两个时点的绝对股数（343.17M→339.62M）暗示 2025Q4 还发生过约 354 万股的减持，但 top10_holders 的 hold_change 字段却标注为 0——两个官方数据接口本身存在无法自洽的矛盾。</td><td>2（互相矛盾而非互相印证，反而是有价值的发现）</td><td>与用户假说无直接关系，但体现"默认所有正式说法都是过滤过的"原则——监管口径数据本身也需交叉验证，不能盲信单一接口；建议以 2026-08-25 已披露的半年报"股东情况"章节原文核实真实持股变动。</td></tr>
+<tr><td>股权质押现状（两个独立数据源印证一致）</td><td>Tushare pledge_stat 最新记录（截至 2023-08-04）质押比例 0.56%<sup>[MD4]</sup>；choice-data PLEDGERATIO 序列显示 2026-07-01 至 2026-08-24 期间质押比例持续为 0.56%，无变化<sup>[MD5]</sup>——两个独立数据源在不同取数时点得到相同数值，可信度较高：质押比例自 2014 年的 24.97%（10 笔质押）逐年下降至当前 0.56%，是历史上真实的去杠杆趋势，且当前状态大概率为"极低质押、无平仓风险"。</td><td>2（Tushare + choice-data 两个独立数据供应商）</td><td>无直接关系，作为控股股东财务健康度的正面背景信号——若控股股东存在高比例质押，则回购/增持行为的可信度会打折扣（可能是维持股价避免平仓的被动动作），但久立不存在这一情形。</td></tr>
+<tr><td>接班梯队（履历公开档案）</td><td>实际控制人周志江 1950 年生，2026 年已 76 岁，公开履历标注职务仍为"董事长/董事"且无 end_date<sup>[MD6]</sup>；现任董事长李郑周 1973 年生（53 岁，博士）与总经理王长城 1966 年生（60 岁，大专）均自 2009-2010 年起在任，任期均已逾 15 年<sup>[MD6]</sup>；董事/副总经理周宇宾（1976 年生，女性）与实际控制人同姓"周"，是否为家族二代成员，公开渠道未见公司官方确认或否认<sup>[MD6]</sup>。</td><td>1（stk_managers，无第二信源核实是否存在亲属关系）</td><td>无直接关系，但高龄实控人+无公开书面接班计划，是独立于本次业绩波动的长期治理变量，需持续跟踪而非本次报告下结论。</td></tr>
+<tr><td>社区/教会/兴趣圈、离职高管访谈、招聘 JD/Glassdoor 类"软"场景</td><td>公开检索未获得可用信源。</td><td>0——单一信源缺口/研究盲区</td><td>本报告在此类场景存在系统性盲区，需人工现场调研（走访工厂/经销商/离职员工访谈）补齐，属方法论 §2.7"现场"环节尚未执行的部分，不应被前述财务/公告数据的确定性掩盖。</td></tr>
+</table>
+
+<div class="callout dive">
+<span class="label">DIVE · "人"的行为证据与用户核心关切的对账</span>
+<p>把"人"的行为拆成两条独立的证据线：证据线一是管理层/实控人一致行动人的增持与回购，方向上支持"基本面并未根本恶化、管理层认为当前股价被低估"的解读，且新回购方案执行速度快（9 天内花掉 2 亿元下限的近 90%）是比单纯口头增持更硬的资本部署信号；证据线二是机构资金（港股通、基本养老保险）在 2025Q4 的净减持，方向上与证据线一相反，且发生时点早于本次预告，难以被解释为"对已知利空的确认"。两条证据线本身互相矛盾，说明"管理层用真金白银投票 = 市场恐慌错杀"这一常见推理链条不能简单成立——管理层增持的绝对金额相对总股本极小（合计不足 0.1%），象征意义大于实质力度；而机构减持也可能只是常规仓位调整而非对基本面的负面判断。控股股东股权质押比例长期维持在 0.56% 的极低水平，排除了"回购/增持是为维持股价避免平仓"的被动动机解释，这一点是相对干净的正面信号。综合来看，"人"的行为证据是混合信号而非单向证据，是否构成"管理层用行动确认基本面未变"的支撑，判断权交还读者。</p>
+</div>
+
+<h3>12.2 治理结构：代价 vs 红利</h3>
+<p>不简单写成"治理风险"标签，按方法论 §4 的二分判别表，把久立在四个维度上归位。</p>
+<table>
+<tr><th style="width:14%">维度</th><th style="width:38%">代价特征（家族不上心/当韭菜）</th><th style="width:38%">红利特征（家族当成长子）</th><th style="width:10%">久立归位</th></tr>
+<tr><td>资本配置</td><td>胡乱多元化、买豪宅、关联交易输送</td><td>极度保守、低杠杆、对资产质量负责</td><td>更接近红利列：资产负债率 37.70%<sup>[verified-facts]</sup>、有息负债极低、股权质押率长期 0.56%<sup>[MD4][MD5]</sup>；但 2026Q1 出清永兴材料股权（一次性变现 2.68 亿）与 2026 年内两轮回购（合计 3.09 亿）并行，属"落袋为安+回购"组合，非盲目多元化扩张，但也非纯粹的"再投资主业"。</td></tr>
+<tr><td>短期压力应对</td><td>无短期压力约束 → 治理松懈</td><td>无短期压力约束 → 可专注做长期对的事</td><td>混合：研发费用逐年增长（FY2022 3.04 亿→FY2025 3.96 亿）<sup>[已引用于1.2]</sup>体现长期投入未减；但业绩下滑期同步选择用一次性股权处置收益"美化"归母利润表观数字（非经常性损益占比 60.1%）<sup>[verified-facts]</sup>，是否构成"短期压力下的报表管理"存在解读空间，本节不下结论。</td></tr>
+<tr><td>透明度</td><td>低透明度 → 藏污纳垢</td><td>低透明度但经得起卷宗+调查核验</td><td>混合偏谨慎：本节交叉核验发现两个官方数据接口（top10_holders vs stk_holdertrade）对久立集团同期持股变动记录矛盾（12.1）；分产品/分地区毛利率、关联交易具体金额均未见细颗粒度公开披露（12.3）——这些是"信息不足"而非"确凿造假证据"，但确实降低了外部核验效率，需要读者自行判断落在哪一列。</td></tr>
+<tr><td>对小股东</td><td>当韭菜、利益输送</td><td>当合伙人但不讨好</td><td>更接近红利列：FY2025 分红率 64.8%<sup>[verified-facts]</sup>处于行业内偏高水平，控股股东久立集团作为第一大股东同比例受益于分红，与中小股东利益方向一致；但历史上 2020-2025 中期从未分红、仅年度分红<sup>[verified-facts]</sup>，与"高频与股东共享现金流"的沟通习惯有差距，且当前 5.10% 股息率按 verified-facts 测算大概率不可持续（§13 反向估值将展开）。</td></tr>
+</table>
+<div class="callout aside">
+<span class="label">归位小结（不下买卖判断）</span>
+<p>四个维度里三个（资本配置、短期压力、对小股东）观察到的证据方向都更接近"红利列"，只有"透明度"维度因本节独立发现的数据口径矛盾与披露颗粒度不足而偏向中性/需进一步核实。这一归位结果本身不构成"治理没有风险"的结论——它只说明：截至可获得的公开信息，久立特材的治理结构证据组合，尚未出现方法论 §4 所列"代价列"的典型特征（胡乱多元化、买豪宅、明确利益输送），但读者仍应结合 12.1 表格中标注为"信息不足/盲区"的场景（社区、离职高管、家庭接班）自行补足判断，不应仅凭本表下最终结论。</p>
+</div>
+
+<h3>12.3 股权质押 / 增减持 / 关联交易 / 接班——数据表</h3>
+<table>
+<tr><th style="width:20%">项目</th><th>数据与来源</th></tr>
+<tr><td>股权质押</td><td>最新质押比例 0.56%，两个独立数据源（Tushare pledge_stat 截至 2023-08-04<sup>[MD4]</sup>、choice-data PLEDGERATIO 序列截至 2026-08-24<sup>[MD5]</sup>）取值一致；历史趋势自 2014 年 24.97%（10 笔质押）逐年去杠杆至当前水平<sup>[MD4]</sup>，未发现任何近期新增质押或平仓风险公告。</td></tr>
+<tr><td>增减持全景（2026 年，含回购）</td><td>3/25 首次回购预案 2 亿元(上限49元) → 4/28-4/30 实施 1.29 亿元(均价 29.03/29.46元) → 4/29 周志江+李郑周合计增持 87.5万股(占总股本0.09%) → 6/4 董秘增持1万股 → 7/15 一致行动人湖州一亩田增持62.91万股(占总股本0.06%) → 7/22 新回购预案2~4亿元(上限32元) → 截至7/31已实施1.7964亿元/825.17万股(均价21.77元，达下限89.8%)<sup>[MD2][计算]</sup>；2026年累计回购金额3.09亿元<sup>[计算]</sup>，相对FY2025分红9.77亿元规模明显更小，是"分红为主、回购为辅"的资本返还结构。同期机构股东（港股通、基本养老保险）在2025Q4净减持，方向与管理层增持相反<sup>[MD1]</sup>。</td></tr>
+<tr><td>关联交易</td><td>已识别关联方持股主体：浙江久立电气材料有限公司持股1.2444%<sup>[MD1]</sup>；具体关联交易金额、方向、定价公允性**信息不足**，公开的 Tushare 接口清单中无独立的关联交易明细接口，需以2026-08-25 已披露半年报正文"关联交易"附注原文核实，本报告未能覆盖这一模块，是本节最大的单一信息缺口。</td></tr>
+<tr><td>接班安排</td><td>实控人周志江（1950年生，76岁，大专学历）<sup>[MD6]</sup>公开履历未见明确的书面接班计划或退休时间表；现任董事长李郑周（1973年生，53岁，博士，任期15+年）与总经理王长城（1966年生，60岁，大专，任期15+年）构成事实上的"二代经营层"，但两人任期已长，本身也存在年龄接续问题；董事/副总经理周宇宾（1976年生）与周志江同姓，是否为家族成员**信息不足**，未见官方确认。综合看，久立特材尚未发现公开披露的正式接班规划文本，这是本报告识别到的、独立于本次业绩波动的长期治理观察点。</td></tr>
+</table>
+
+<div class="term" data-name="数据来源与口径说明">
+<p>[MD1] Tushare top10_holders 接口，period=2025-12-31，ann_date=2026-04-28，2026-08-24/25 取。<br>
+[MD2] Tushare repurchase 接口（start_date=20260101, end_date=20260824）+ stk_holdertrade 接口（start_date=20250101, end_date=20260824），2026-08-25 取。<br>
+[MD3] Tushare stk_rewards 接口，end_date=2025-12-31，ann_date=2026-04-28，2026-08-25 取。<br>
+[MD4] Tushare pledge_stat 接口，2026-08-25 取，最新记录截至 2023-08-04（该接口此后无更新，非公司无质押数据，用 MD5 交叉验证当前状态）。<br>
+[MD5] choice-data raw_csd 接口，指标 PLEDGERATIO，2026-07-01 至 2026-08-24，2026-08-25 取；与 MD4 独立信源交叉验证一致。<br>
+[MD6] Tushare stk_managers 接口，2026-08-25 取，全量履历记录。<br>
+[verified-facts] /tmp/claude/ir-久立特材/verified-facts.md，主对话已核验、已用 Python 逐条验算，禁止重算或改写。<br>
+[计算] 本节独立计算（Python Bash 验算，见附注），基于上述已核验/已取数数据推导。</p>
+</div>
+
+</section>
+<hr class="div">
+
+<!-- ============ 十三、反向估值审计 ============ -->
+<section id="reverse-valuation">
+<h2><span class="num">13</span>反向估值审计：当前价格隐含了什么</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 方法与口径</span>
+<p>本节不预测未来，而是倒推当前 191.04 亿市值已经定价进去的未来盈利假设，再把这个假设拉回久立特材自身近 5 年估值分布与同业现价里对账。§3 已核验：行情软件口径 PE(TTM) 12.61x 是"假象"（对应 FY2025 全年利润、未纳入 2026H1），<strong>真实 PE(TTM归母) = 17.79x，真实 PE(TTM扣非) = 28.26x</strong>——本节的全部反推均以这两个真实值为起点，不使用软件显示的滞后 12.61x。所有反推数字由 13.2 的 Python 脚本求解，正文数字 = 脚本 print 输出，不做脑算；同业与自身历史 PE 数据源为 choice-data MCP（<code>raw_csd PETTM/PETTMDEDUCTED</code> 近 5 年日频序列、<code>raw_css</code> 2026-08-24 同业截面），FY 年度扣非净利润序列源自 <code>stock_financial_series DEDUCTEDINCOME</code>，5 年官方复合增速取 <code>raw_css CAGRPNIDEDUCTED</code>（Year=2025,N=5，对应 FY2020→FY2025）。同业现价 PE 字段存在与久立本身相同的"未及时纳入各自 2026H1"滞后风险，已在 13.3 明确标注为交叉核对项而非唯一锚。</p>
+</div>
+
+<div class="callout crux">
+<span class="label">THE CRUX · 一句话锁定问题</span>
+<p style="font-size:19px"><em>"剔除高基数效应之后，当前这个价格已经为久立特材的经常性盈利能力定价到了什么水平？历史上，久立自己或同业曾经在这个水平上待过几次？"</em></p>
+<p>本节采用<strong>视角 A（盈利反推）</strong>，理由：久立特材是已上市 15 年的传统工业材料制造商，盈利已有稳定的历史 PE 参照系（§3.6 已给出近 10 年估值分位），不属于缺乏稳态盈利锚的高估值成长股，不需要视角 B/C。固定参数为<strong>当前市值（M_target=191.04 亿，验证"当下"是否合理，而非未来目标价）</strong>，留 PE 锚为待求参数，倒推 E_required 与 g_required。</p>
+</div>
+
+<h3>13.1 锚定参数：不用当前值做锚，全部来自客观历史分布</h3>
+<div class="callout tip">
+<span class="label">TIP · 取参原则</span>
+<p>三档 PE 锚均取自久立特材<strong>自身近 5 年（2021-08-24～2026-08-24，1211 个交易日）</strong>的 PE(TTM) 历史分布 P25/P50/P75，<strong>不采用当前实际值（17.79x/28.26x）作锚</strong>——若用当前值做锚会让 E_required 恒等于当前值，属于同义反复，不构成检验。同业（常宝股份、盛德鑫泰）当前扣非 PE 作为独立交叉核对项，不作为主锚（原因见 13.3 表注）。本节使用默认自身历史分位锚，如需调整某一档具体数值，请反馈，将重跑该视角。</p>
+</div>
+<table>
+<tr><th style="width:16%">参数</th><th style="width:16%">悲观</th><th style="width:16%">中性</th><th style="width:16%">乐观</th><th>取值依据</th></tr>
+<tr><td>PE 锚（扣非口径，主视角）</td><td>14.81x</td><td>16.52x</td><td>18.64x</td><td>久立自身近 5 年 PE(TTM扣非) 分布 P25/P50/P75（choice-data <code>raw_csd PETTMDEDUCTED</code>，1211 个交易日，min 11.37x／max 27.31x）</td></tr>
+<tr><td>PE 锚（归母口径，对照视角）</td><td>13.20x</td><td>15.27x</td><td>16.93x</td><td>久立自身近 5 年 PE(TTM归母) 分布 P25/P50/P75（<code>raw_csd PETTM</code>，min 11.16x／max 22.31x）</td></tr>
+<tr><td>M_target（固定）</td><td colspan="3" style="text-align:center">191.04 亿元</td><td>2026-08-24 收盘总市值（19.55 元 × 9.7723 亿股）</td></tr>
+<tr><td>E_base（扣非，主视角）</td><td colspan="3" style="text-align:center">6.76 亿元</td><td>TTM扣非净利润，verified-facts.md 已核验，最保守的"经常性盈利"代理</td></tr>
+<tr><td>E_base（归母，对照）</td><td colspan="3" style="text-align:center">10.74 亿元</td><td>TTM归母净利润，含 Q1 永兴材料 2.68 亿一次性投资收益</td></tr>
+<tr><td>T（持有/修复年限）</td><td colspan="3" style="text-align:center">3 年</td><td>对应官方业绩预告"行业结构优化调整周期"表述；亦与 FY2022 净利率峰值→FY2025 谷值的实际跨度(3年)对称</td></tr>
+</table>
+
+<h3>13.2 计算脚本（可复用）</h3>
+<div class="callout tip">
+<span class="label">TIP · 脚本可复用</span>
+<p>所有反推数字均由下方 Python 脚本求解，正文数字 = 脚本 print 输出。用户可改参数后本地重跑（如替换持有年限 T、PE 锚、E_base）。</p>
+</div>
+<pre style="background:#292420;color:#e8e0d0;padding:16px 18px;border-radius:6px;overflow-x:auto;font-size:16px;line-height:1.6;font-family:'SFMono-Regular',Consolas,Menlo,monospace;"><code># -*- coding: utf-8 -*-
+# 久立特材(002318.SZ) 反向估值审计计算脚本
+# 单位：亿元人民币（除注明外）；g 以小数表示（0.1988 = 19.88%）；T 单位为年
+# 数据来源：choice-data MCP，2026-08-24/25 取
+
+P_now = 19.55                  # 当前股价（元），2026-08-24 收盘
+shares = 9.7723                # 总股本（亿股）
+M_target = 191.04              # 当前总市值（亿元）= 固定目标：验证"当前价格"本身是否合理，非未来目标价
+T = 3                          # 持有/修复年限（年）
+
+# 真实 TTM 口径（主对话已核验，verified-facts.md，禁止重算）
+E_base_gaap = 10.74            # TTM归母净利润
+E_base_deducted = 6.76         # TTM扣非净利润（主视角）
+PE_real_gaap = M_target / E_base_gaap
+PE_real_deducted = M_target / E_base_deducted
+print(f"真实PE(TTM归母)={PE_real_gaap:.2f}x  真实PE(TTM扣非)={PE_real_deducted:.2f}x")
+# 输出: 真实PE(TTM归母)=17.79x  真实PE(TTM扣非)=28.26x
+
+# 自身近5年PE(TTM扣非)历史分布 P25/P50/P75（raw_csd PETTMDEDUCTED，1211个交易日）
+anchors_deducted = {"悲观": 14.81, "中性": 16.52, "乐观": 18.64}
+# 近5年扣非净利润年度序列（DEDUCTEDINCOME，FY2021-FY2025，亿元）
+hist_deducted = {"FY2021": 7.32, "FY2022": 12.68, "FY2023": 12.21, "FY2024": 15.21, "FY2025": 13.06}
+CAGR_deducted_5y_official = 0.1462  # choice-data CAGRPNIDEDUCTED, Year=2025,N=5(FY2020→FY2025)
+
+for name, p in anchors_deducted.items():
+    E_req = M_target / p
+    g_req = (E_req / E_base_deducted) ** (1/T) - 1
+    hits = [y for y, v in hist_deducted.items() if v >= E_req]
+    gap = g_req - CAGR_deducted_5y_official
+    print(f"{name}(P={p}x): E_required={E_req:.2f}亿 g_required={g_req*100:.2f}%/年 "
+          f"历史命中{len(hits)}/5{hits} 差距实际CAGR{gap*100:+.2f}pct")
+# 悲观(P=14.81x): E_required=12.90亿 g_required=24.03%/年 历史命中2/5['FY2024','FY2025'] 差距+9.41pct
+# 中性(P=16.52x): E_required=11.56亿 g_required=19.60%/年 历史命中4/5[...]           差距+4.98pct
+# 乐观(P=18.64x): E_required=10.25亿 g_required=14.88%/年 历史命中4/5[...]           差距+0.26pct
+
+# 下行测算：若真实扣非PE(28.26x)回归各锚
+for name, p in anchors_deducted.items():
+    target_mv = E_base_deducted * p
+    target_price = target_mv / shares
+    chg = target_price / P_now - 1
+    print(f"回归{name}锚P={p}x: 目标市值={target_mv:.2f}亿 目标股价={target_price:.2f}元 跌幅={chg*100:.1f}%")
+# 回归悲观锚: 目标市值=100.12亿 目标股价=10.24元 跌幅=-47.6%
+# 回归中性锚: 目标市值=111.68亿 目标股价=11.43元 跌幅=-41.5%
+# 回归乐观锚: 目标市值=126.01亿 目标股价=12.89元 跌幅=-34.0%
+</code></pre>
+
+<h3>13.3 三档情景：隐含假设 vs 现实样本（扣非口径，主视角）</h3>
+<table>
+<tr><th style="width:8%">情景</th><th style="width:10%">PE 锚</th><th style="width:12%">隐含 E_required</th><th style="width:14%">隐含 g_required(3年)</th><th style="width:18%">历史频次（近5年 FY2021-FY2025）</th><th style="width:16%">同业分位/交叉核对</th><th>vs 自身实际5年CAGR(14.62%)</th></tr>
+<tr><td>悲观</td><td>14.81x（自身P25）</td><td>12.90 亿</td><td>24.03%/年</td><td>2/5 命中（FY2024、FY2025）</td><td>与常宝股份现价扣非PE 14.67x 高度吻合</td><td>+9.41pct（需明显快于历史实绩）</td></tr>
+<tr><td>中性</td><td>16.52x（自身P50）</td><td>11.56 亿</td><td>19.60%/年</td><td>4/5 命中</td><td>接近可比同业(常宝+盛德鑫泰)中位数19.12x的下沿</td><td>+4.98pct</td></tr>
+<tr><td>乐观</td><td>18.64x（自身P75）</td><td>10.25 亿</td><td>14.88%/年</td><td>4/5 命中</td><td>低于可比同业中位数19.12x</td><td>+0.26pct（基本吻合历史实绩）</td></tr>
+</table>
+<p style="font-size:14px;color:var(--ink-3);">表注：历史频次以"当年扣非净利润绝对值 ≥ E_required"为达标标准，分母为 FY2021-FY2025 共 5 个完整年度；同业分位取 002478/300881 当前扣非 PE 中位数 19.12x（choice-data 2026-08-24，字段口径存在与久立本身相同的"未及时纳入 2026H1"滞后风险，仅作交叉核对，不作主锚；图南股份 300855 扣非PE 43.84x 因军工景气叙事、武进不锈 603878 扣非PE 728.95x 因盈利趋零导致 PE 分母失真，均判定为不可比离群值，已剔除）。</p>
+
+<div class="callout dive">
+<span class="label">DIVE DEEP · 当前真实扣非 PE 已经站在自身 5 年历史区间之外</span>
+<p>把当前真实值摆进同一把尺子：<strong>真实 PE(TTM扣非) 28.26x，在久立自身近 5 年 1211 个交易日的扣非 PE 分布里排名第 100 百分位——即历史最高点</strong>（近 5 年区间 11.37x–27.31x，28.26x 已超出上限 3.5%）；真实 PE(TTM归母) 17.79x 排在第 82 百分位（近 5 年归母 PE 区间 11.16x–22.31x），同样处于历史高位区间，而非低位。作为对照，行情软件当前显示的 PE(TTM) 12.61x（未纳入 2026H1 的"假象"值）反而落在历史第 14 百分位——这正是本报告 §3 反复强调的陷阱：<strong>如果只看软件显示的滞后 PE，会得出"5年估值低位、越跌越便宜"的结论；换成核实后的真实 PE，结论恰好相反——当前价格对应的是久立特材自身历史上最贵而非最便宜的估值区间。</strong>股价 6/30 以来跌了 18.2%（23.90→19.55），但因为分母（TTM盈利）跌得比股价更快（真实TTM归母 -28.8%），估值倍数不但没有变便宜，反而变得比高基数放量期更贵了。</p>
+</div>
+
+<h3>13.4 对照视角：GAAP归母口径 / "从FY2025基数出发"的另一种读法</h3>
+<table>
+<tr><th style="width:10%">情景</th><th style="width:12%">PE 锚(归母)</th><th style="width:14%">隐含 E_required</th><th>隐含 g_required(3年，以TTM归母10.74亿为基)</th></tr>
+<tr><td>悲观</td><td>13.20x（自身P25）</td><td>14.47 亿</td><td>10.45%/年</td></tr>
+<tr><td>中性</td><td>15.27x（自身P50）</td><td>12.51 亿</td><td>5.22%/年</td></tr>
+<tr><td>乐观</td><td>16.93x（自身P75）</td><td>11.28 亿</td><td>1.66%/年</td></tr>
+</table>
+<p>归母口径的 g_required 明显低于扣非口径——这不是好消息的稀释，而是数字游戏的提醒：归母口径的 E_base（10.74 亿）本身已经含着 Q1 那笔 2.68 亿一次性投资收益，用一个"已经被垫高"的基数去算未来所需增速，天然显得容易达成。两种口径同时摆出来，是为了防止读者只看归母口径就得出"其实不难"的错误安全感。</p>
+<div class="callout fact">
+<span class="label">FACT CHECK · 另一种视角：如果 2026H2 只需要"回到"而非"超越"</span>
+<p>13.3 的 E_base 用的是 TTM扣非 6.76 亿——这是被 2026Q2 单季亏损（扣非 −0.21 亿）压到近年最低的一个起点。换一个不那么苛刻的参照系：<strong>FY2025 全年扣非净利润是 13.06 亿</strong>，本身已经超过 13.3 表中悲观档 E_required(12.90亿)、中性档(11.56亿)与乐观档(10.25亿)全部三档。也就是说，如果 2026H2 的经常性盈利能力能够简单"回到"（而非增长超越）FY2025 全年的运行水平——不需要恢复到 FY2024 的 15.21 亿峰值——当前市值在中性/乐观锚下已经站得住脚；只有在悲观锚下，仍需比 FY2025 略微多赚 0.32%（12.90 亿目标 vs 已实现的 13.06 亿其实已经够，这里的关键是 13.06 亿是"全年"而非"未来3年年化"，两者时间维度不同，不能直接等同于"已经达标"）。这条视角与 13.3 的"从谷底 TTM 起步需要 15%-24% 复合增速"是同一套数据的两种读法：一个强调"从当下最低点算起，路还很长"，一个强调"只要跌势止住、回到去年水平，缺口没有想象中大"。两者都成立，取决于 2026H2/2027 的经常性盈利是延续 Q2 的塌陷（此时13.3的谷底视角更贴近现实），还是止跌企稳回到 FY2025 run-rate（此时本框的视角更贴近现实）——这正是 §10.5 三个监控变量要回答的问题，本节不重复判断。</p>
+</div>
+
+<h3>13.5 EDS 式回本年限（信息性，真实 PE 均未触及 50x 强制阈值）</h3>
+<div class="callout aside">
+<span class="label">ASIDE · 把 PE 翻译成年限</span>
+<p>假设当前盈利水平永远不变，需要多少年的累计利润才等于当前市值：按 TTM归母(10.74亿/年)不变计算需 <strong>17.8 年</strong>，等价年化盈利收益率(1/PE)=5.62%；按 TTM扣非(6.76亿/年，剔除一次性投资收益后的经常性盈利)不变计算需 <strong>28.3 年</strong>，等价年化盈利收益率=3.54%。两个数字都低于 SKILL 规定的 50x/50年强制预警阈值，不构成"高得不需要分析"的极端案例，但 3.54%-5.62% 的隐含盈利收益率本身，是判断"当前价格是否已经透支未来"时的一个直观参照点，留给读者与其他资产的预期回报率做比较。</p>
+</div>
+
+<h3>13.6 下行测算：若真实扣非 PE 回归自身历史分位</h3>
+<table>
+<tr><th style="width:14%">回归目标</th><th style="width:12%">PE</th><th style="width:14%">目标市值</th><th style="width:14%">目标股价</th><th>较现价(19.55元)跌幅</th></tr>
+<tr><td>回归悲观锚(自身P25)</td><td>14.81x</td><td>100.12 亿</td><td>10.24 元</td><td>−47.6%</td></tr>
+<tr><td>回归中性锚(自身P50)</td><td>16.52x</td><td>111.68 亿</td><td>11.43 元</td><td>−41.5%</td></tr>
+<tr><td>回归乐观锚(自身P75)</td><td>18.64x</td><td>126.01 亿</td><td>12.89 元</td><td>−34.0%</td></tr>
+</table>
+<p>下行测算固定 E_base = TTM扣非 6.76 亿不变（即假设经常性盈利能力既不进一步恶化也不修复，只是估值倍数从当前历史高位 28.26x 回归自身历史正常区间），三档跌幅在 34.0%–47.6% 之间。这条测算与 13.3/13.4 的"上行所需假设"共同构成完整的对账：只列隐含假设不列估值回归风险，等于只讲故事不讲代价。</p>
+
+<div class="callout maodun">
+<span class="label">本节结论</span>
+<h5>当前价格隐含的主要矛盾</h5>
+<p>用真实口径（而非行情软件滞后显示的 12.61x）衡量，久立特材当前股价对应的不是"5 年估值低位的错杀机会"，而是<strong>自身近 5 年估值分布里的历史高位（真实归母PE分位P82）乃至历史新高（真实扣非PE分位P100，超出5年区间上限3.5%）</strong>。要证明当前 191.04 亿市值合理，扣非口径下需要经常性盈利在 3 年内以 14.88%–24.03%/年的速度复合增长（对照自身过去 5 年实际扣非 CAGR 14.62%，仅乐观档基本持平，中性/悲观档均需要"跑赢历史实绩"4.98–9.41 个百分点）；但若换一种更宽松的读法——2026H2 只需要"回到"FY2025 的经常性盈利运行水平而非持续增长——中性/乐观两档在这个更温和的假设下已经大致站得住脚。两种读法的分歧点，正是 §10 已经识别的主要矛盾：经常性盈利的下滑，是"周期底部叠加大单退潮的暂时性共振"，还是"已运行 3 年的结构性下行趋势的延续"。</p>
+<h5>矛盾的转化条件</h5>
+<p>若 Q3/Q4 扣非净利润与毛利率企稳回升、逐步向 FY2025 run-rate 靠拢 → 13.4 的"回到型"读法更贴近现实，当前估值虽仍处历史高位但有基本面支撑；若 Q3/Q4 延续 2026Q2 的塌陷（毛利率继续创新低、扣非利润维持在 TTM 谷底附近或进一步走低）→ 13.3 的"谷底起步型"读法更贴近现实，当前 28.26x 的历史新高估值将缺乏盈利支撑，13.6 的下行测算（34.0%–47.6%）转化为现实压力上升。当前价格本身没有告诉市场答案在哪一边——它只是提前把"乐观答案"计入了报价，判断权交还读者。</p>
+</div>
+
+</section>
+<hr class="div">
+
+<!-- ============ 十四、市场估值多维审视 ============ -->
+<section id="market-pricing-multimodal">
+<h2><span class="num">14</span>市场估值多维审视</h2>
+
+<div class="callout crux">
+<span class="label">THE CRUX · 一句话锁定问题</span>
+<p style="font-size:19px"><em>市场端正在对久立特材投什么票？把估值分位、技术动量、资金面、卖方一致、事件风险、情绪温度计六个独立维度拉到一起看，而不是只盯着"跌了多少"。</em></p>
+<p>本节所有数字来自 choice-data MCP（估值分位、技术动量，2026-08-24/25 取）与 Tushare REST 直连（资金面、卖方一致、事件风险，2026-08-24/25 取）。凡与 §13 已核验的口径重叠之处（真实 PE、市值、股价路径），一律沿用 verified-facts.md 数值，不重算不改写。本节只陈述事实，不给买卖判断，第 14.7 综合矩阵给的是"画像"而非方向。</p>
+</div>
+
+<h3>14.1 估值分位</h3>
+<div class="callout tip">
+<span class="label">TIP · 分位窗口为久立特材自身近 5 年（2021-08-24～2026-08-24，1211 个交易日）</span>
+<p>PE 口径与 §13 一致：行情软件当前显示 PE(TTM) 12.61x / PE(TTM扣非) 17.53x 是"假象"（对应未纳入 2026H1 的滞后利润基数）；下表统一使用已核验的<strong>真实 PE(TTM归母) 17.79x、真实 PE(TTM扣非) 28.26x</strong>。</p>
+</div>
+<table>
+<tr><th style="width:14%">指标</th><th style="width:14%">当前值</th><th style="width:22%">近5年区间(min–max)</th><th style="width:14%">近5年分位</th><th>解读</th></tr>
+<tr><td>PE(TTM归母，真实口径)</td><td>17.79x</td><td>11.16x – 22.31x</td><td><strong>P82</strong></td><td>历史高位区间</td></tr>
+<tr><td>PE(TTM扣非，真实口径)</td><td>28.26x</td><td>11.37x – 27.31x</td><td><strong>P100</strong></td><td>超出近5年区间上限3.5%，历史新高</td></tr>
+<tr><td>PB(MRQ)</td><td>2.380x*</td><td>1.918x – 4.258x</td><td><strong>P4.0</strong></td><td>历史低位区间</td></tr>
+<tr><td>PS(TTM)</td><td>1.706x</td><td>1.562x – 3.175x</td><td><strong>P1.3</strong></td><td>近5年最低区间</td></tr>
+</table>
+<p style="font-size:14px;color:var(--ink-3);">*PB 表注：choice-data <code>raw_css PBMRQ</code> 当前值为 2.380x（= 191.04 亿市值 ÷ 2026H1 归母权益 80.26 亿，与 verified-facts.md 内部自洽）；但行情软件/Tushare <code>daily_basic.pb</code> 常见显示值为 <strong>2.095x</strong>——反推其权益分母约 91.18 亿，明显高于 2026H1 实际的 80.26 亿，与 §13 揭示的"PE 滞后未纳入 2026H1"是<strong>同一类问题在净资产端的镜像</strong>：显示的 2.095x 大概率仍用 FY2025 年报口径的权益（分红/回购尚未反映减少），本表采用已用 2026H1 权益重算的 2.380x 作为主口径，5年分位按 2.380x 计算为 P4.0；若用未更新的 2.095x 计算，分位更低至 P1.3（与 PS 相近）——两种口径下 PB 都落在历史低位区间，结论方向一致，仅程度略有差异。</p>
+
+<div class="callout dive">
+<span class="label">DIVE DEEP · 同一只股票，PE 和 PB/PS 讲的是两个相反的估值故事</span>
+<p>这是本节最值得记录的客观分裂：用真实盈利衡量，久立特材当前 PE 处于自身近5年<strong>历史高位甚至历史新高</strong>；但用净资产和营收衡量，PB、PS 却处于近5年<strong>历史最低区间（P1.3–P4.0）</strong>。两者同时成立，因为分子（191.04亿市值）跌得比分母（净资产、营收）慢，但比另一个分母（经常性盈利）跌得快——TTM扣非净利润从崩盘前的高基数骤降，而净资产/营收的降幅远小于盈利降幅。这意味着：<strong>"这只票便宜不便宜"这个问题，取决于你选哪把尺子</strong>——看重净资产安全边际（格雷厄姆式 P/B）的视角会说"5年少见的低位"；看重当前盈利能力定价的视角（P/E）会说"5年少见的高位"。两种尺子的分歧点，与 §11"便宜 vs 好生意"一节讨论的分野同构，本节不重复裁决，只呈现这个分裂本身是真实存在的市场定价现象。</p>
+</div>
+
+<h3>14.2 技术动量</h3>
+<table>
+<tr><th style="width:16%">区间</th><th style="width:14%">起点日期/价</th><th style="width:14%">终点日期/价</th><th>涨跌幅</th></tr>
+<tr><td>近5日</td><td>2026-08-17 / 19.43</td><td rowspan="4" style="text-align:center">2026-08-24 / 19.55</td><td>+0.62%</td></tr>
+<tr><td>近20日</td><td>2026-07-27 / 20.40</td><td>−4.17%</td></tr>
+<tr><td>近60日</td><td>2026-05-29 / 23.52</td><td>−16.88%</td></tr>
+<tr><td>近120日</td><td>2026-03-02 / 35.09</td><td>−44.29%</td></tr>
+<tr><td>近242日（约1年）</td><td>2025-08-22 / 22.62</td><td style="text-align:center">同上</td><td>−13.57%</td></tr>
+</table>
+<p style="font-size:14px;color:var(--ink-3);">表注：120日起点(2026-03-02，35.09元)恰好卡在2026年初核聚变/高端化叙事推动下的阶段性高点附近，−44.29%这个数字本身包含基数效应，不宜脱离起点单独引用；242日(约1年)口径显示，若拉长到崩盘叙事发酵之前，全年实际跌幅是−13.57%，即"先冲高到36.14再回落"而非单边下跌。</p>
+
+<table>
+<tr><th style="width:20%">指标</th><th style="width:20%">当前读数</th><th>解读</th></tr>
+<tr><td>MA20 / 现价偏离</td><td>19.97 / −2.09%</td><td>现价略低于20日均线</td></tr>
+<tr><td>MA60 / 现价偏离</td><td>21.15 / −7.55%</td><td>现价明显低于60日均线</td></tr>
+<tr><td>MA120 / 现价偏离</td><td>25.58 / −23.56%</td><td>现价大幅低于120日均线</td></tr>
+<tr><td>MA242(约年线) / 现价偏离</td><td>26.27 / −25.59%</td><td>现价大幅低于年线</td></tr>
+<tr><td>均线排列</td><td>MA5(19.47) &lt; MA20(19.97) &lt; MA60(21.15)</td><td>空头排列（短期均线在长期均线下方）</td></tr>
+<tr><td>RSI(14)</td><td>45.3</td><td>中性区间，非超买也非超卖（&lt;30冷/&gt;70热的阈值均未触及）</td></tr>
+<tr><td>布林带(20,2)</td><td>上轨20.96 / 中轨19.97 / 下轨18.98；现价19.55位于区间第28.9%位置</td><td>价格运行在中轨下方、下轨上方的震荡区</td></tr>
+<tr><td>52周(约242日)高低</td><td>最高36.14 / 最低17.12；现价分位<strong>12.8%</strong></td><td>接近但未创52周新低（最低点在2026-07-15，17.12元）</td></tr>
+<tr><td>近14个月(301交易日)涨跌停频次</td><td><strong>0次</strong>（含7/7 −6.95%、7/9 −6.92%两个最大单日跌幅，均未触及±9.8%）</td><td>无涨跌停记录——是持续性、渐进式的抛压，不是单日踩踏式暴跌</td></tr>
+</table>
+
+<h3>14.3 资金面</h3>
+<table>
+<tr><th style="width:18%">维度</th><th style="width:28%">读数</th><th>解读</th></tr>
+<tr><td>融资余额(rzye)</td><td>2026-06-01 3.591亿 → 2026-08-21 2.651亿，累计<strong>−26.19%</strong>（58个交易日，覆盖7月崩盘全程）；近20日<strong>−11.52%</strong>；近5日<strong>−2.03%</strong></td><td>持续、单向去杠杆，未见逆势加仓迹象</td></tr>
+<tr><td>大单资金净流向(同花顺口径)</td><td>近20个交易日(7/28–8/24)累计净流出<strong>−2.95亿元</strong>；6/1–8/24全部58个交易日累计净流出<strong>−8.33亿元</strong></td><td>与融资余额去杠杆方向一致，资金面整体承压</td></tr>
+<tr><td>7/15预告当日资金动向</td><td>净流入+227.52万元（大单净买入+1263.16万元）</td><td>预告落地当日资金反而转为净流入，与股价当日几乎无反应（−0.11%）互相印证"利空已price in"</td></tr>
+<tr><td>7/9主跌段(−6.92%)当日资金</td><td>净流出仅−792.91万元（相对当日跌幅幅度，流出规模不算极端）</td><td>下跌更多由缺乏承接盘、而非放量恐慌性抛售驱动</td></tr>
+<tr><td>龙虎榜(top_list)</td><td>7/7(−6.95%)、7/9(−6.92%)、7/13(−4.20%，本轮最低点)均<strong>未上榜</strong></td><td>三个最大跌幅交易日均未触及交易所"日跌幅偏离值"等异常波动统计入选阈值，非游资爆炒或监管关注的异常交易标的</td></tr>
+<tr><td>北向持股(沪深港通)</td><td>可得数据仅 2026-06-30 单点快照：持股4,795.67万股，占比4.9%</td><td>数据源在该时间窗口内未提供更高频序列，<strong>信息不足</strong>，无法判断崩盘前后北向资金的增减方向</td></tr>
+</table>
+
+<h3>14.4 卖方一致</h3>
+<table>
+<tr><th style="width:12%">发布日期</th><th style="width:14%">机构</th><th style="width:10%">类型</th><th style="width:10%">评级</th><th style="width:14%">目标价</th><th>FY2026E EPS(GAAP)</th></tr>
+<tr><td>2026-01-28</td><td>华创证券</td><td>深度</td><td>强推</td><td>40–48元</td><td>1.38元</td></tr>
+<tr><td>2026-03-12</td><td>西部证券</td><td>首次覆盖</td><td>买入</td><td>≥42.85元</td><td>2.05元</td></tr>
+<tr><td>2026-04-28</td><td>国盛证券</td><td>点评</td><td>增持</td><td>未给出</td><td>1.55元</td></tr>
+<tr><td>2026-05-05</td><td>西部证券</td><td>点评</td><td>买入</td><td>未给出</td><td>1.36元</td></tr>
+<tr><td>2026-05-15</td><td>中信证券</td><td>点评</td><td>买入</td><td>≥36.0元</td><td>1.49元</td></tr>
+</table>
+<div class="callout fact">
+<span class="label">FACT CHECK · 现有覆盖全部停留在崩盘之前，且已被 H1 实际数字甩开</span>
+<p>2026年内可查到的5份针对久立特材的个股专题报告（强推1/买入3/增持1，零卖出减持）<strong>全部发布于7/7崩盘之前</strong>；7/15业绩预告及此后至今（8/24），数据源里<strong>没有出现任何一份针对该股的个股重新评级报告</strong>，只有3份行业周报（6/2、6/14、8/9）顺带列出EPS预测数字，行业评级仍标注"推荐"。给出目标价的3份报告，目标价区间36–48元，均远高于现价19.55元——但这些目标价形成于崩盘和H1业绩公布之前，未反映最新信息，不能视为"当前"的机构看法。用可验证的数字做交叉核对：崩盘前5份报告给出的FY2026E GAAP EPS预测区间是1.36–2.05元；而 2026H1 实际GAAP EPS = 3.93亿÷9.7723亿股 = <strong>0.4022元/股</strong>，H1实际扣非EPS = 1.57亿÷9.7723亿股 = <strong>0.1607元/股</strong>。若2026H2维持H1的经常性盈利运行水平（既不进一步恶化也不修复），全年GAAP EPS大致落在0.8元附近——仍明显低于崩盘前预测区间的下限1.36元。这不是说"分析师看错了"，而是说：<strong>现有5份报告形成的"目标价36–48元、买入/强推"这个共识画像，是一个尚未被H1实际数字更新过的旧共识</strong>，市场目前看不到任何一份基于最新信息的独立重新定价。</p>
+</div>
+
+<h3>14.5 事件风险</h3>
+<table>
+<tr><th style="width:20%">事项</th><th>状态</th></tr>
+<tr><td>未来6个月限售股解禁(2026-08-25至2027-02-28)</td><td><strong>无</strong>安排（数据源查询为空）</td></tr>
+<tr><td>存续可转债</td><td><strong>无</strong>——历史发行过2只可转债（2014年、2017年），均已到期/摘牌，余额均为0</td></tr>
+<tr><td>近期分红</td><td>FY2025年度分红（1.00元/股含税）已于2026-05-28除权、2026-05-28支付完毕；<strong>2020–2025年历次中期(H1)分红均为0</strong>，与本报告§12提到的"5.1%股息率可持续性存疑"相互印证——H2业绩即便走弱，也不会有中期分红去缓冲，市场要等到FY2026年报（预计2027年4-5月）才能看到公司对全年分红方案的实际选择</td></tr>
+<tr><td>下一次法定定期报告披露</td><td>2026年三季报，法定披露截止日<strong>2026-10-31</strong>（预约具体日期未在数据源中列出）</td></tr>
+<tr><td>股东大会等其他公司行为</td><td>数据源未覆盖，标注信息不足</td></tr>
+</table>
+
+<h3>14.6 情绪温度计</h3>
+<table>
+<tr><th style="width:22%">指标</th><th style="width:24%">读数</th><th style="width:16%">近5年分位</th><th>解读</th></tr>
+<tr><td>近20日均换手率</td><td>1.025%</td><td>P69.4</td><td>中等偏活跃，非冰点也非过热</td></tr>
+<tr><td>近5日均换手率</td><td>0.742%</td><td>P50.7</td><td>中性</td></tr>
+<tr><td>最新单日(8/24)换手率</td><td>0.962%</td><td>P66.6</td><td>中等偏活跃</td></tr>
+<tr><td>近20日均振幅</td><td>3.058%</td><td>P54.5</td><td>中性</td></tr>
+<tr><td>近14个月涨跌停频次</td><td>0次</td><td>—</td><td>无极端恐慌性单日事件</td></tr>
+</table>
+<p>综合来看，本轮下跌期间换手率、振幅均处于自身历史中位附近而非极端值，加上14.2已确认的"零涨跌停"，描绘出的是一种<strong>温和放量下的持续阴跌</strong>，而不是"无量阴跌无人问津"或"放量踩踏式崩盘"两个极端中的任何一个。</p>
+
+<h3>14.7 综合矩阵</h3>
+<table>
+<tr><th style="width:16%">维度</th><th style="width:12%">落档</th><th>依据</th></tr>
+<tr><td>估值——盈利视角(PE)</td><td style="color:#b02a2a"><strong>热</strong></td><td>真实PE(TTM归母)分位P82，真实PE(TTM扣非)分位P100(历史新高)</td></tr>
+<tr><td>估值——净资产/营收视角(PB/PS)</td><td style="color:#2a6ab0"><strong>冷</strong></td><td>PB分位P4.0，PS分位P1.3，均处近5年最低区间</td></tr>
+<tr><td>技术动量</td><td style="color:#2a6ab0"><strong>冷</strong></td><td>价格全线破MA20/60/120/242，空头排列，52周分位P12.8，RSI中性偏弱(45.3)</td></tr>
+<tr><td>资金面</td><td style="color:#2a6ab0"><strong>冷</strong></td><td>融资余额58日−26.19%持续去杠杆，大单近20日净流出2.95亿</td></tr>
+<tr><td>卖方一致(名义评级)</td><td style="color:#8a6d1a"><strong>失真，不纳入计分</strong></td><td>现有评级全部买入/强推、目标价远高于现价，但全部基于崩盘前旧信息，无一份反映H1实际，不能代表当前机构态度</td></tr>
+<tr><td>事件风险</td><td style="color:#6b6b6b"><strong>中性偏松</strong></td><td>无解禁、无转债压力；但中期从不分红，H2业绩若持续走弱，全年分红能力将在2027年报中受检验</td></tr>
+<tr><td>情绪温度计</td><td style="color:#6b6b6b"><strong>中性</strong></td><td>换手率/振幅处5年中位附近，零涨跌停，温和放量阴跌而非恐慌抛售</td></tr>
+</table>
+
+<div class="callout maodun">
+<span class="label">本节小结</span>
+<h5>市场端当前画像</h5>
+<p>六维落档为：估值[分裂：PE热(P82–P100) / PB-PS冷(P1.3–P4.0)]、技术[冷]、资金[冷]、卖方一致[失真，不纳入]、事件[中性偏松]、情绪[中性]。把这些画像拼在一起看：<strong>市场并没有对久立特材表现出恐慌式抛售的情绪特征</strong>（零涨跌停、换手率振幅居中、龙虎榜从未介入）——这更像是一次有节制、持续了近两个月的价值重估，期间融资资金和大单资金持续、单向地撤离，而非一次性的踩踏。但与此同时，<strong>用盈利定价的话，这次重估之后的股价反而比崩盘前的高基数期更贵</strong>（真实PE处于5年新高），<strong>用净资产/营收定价的话，股价却处于5年最低区间</strong>。这个分裂本身，恰好把用户在导读部分提出的"错杀买入机会"假设，从"便宜或不便宜"这样一个单一维度问题，还原成了"你用哪把尺子"这样一个更精确的问题——本节不替读者选择尺子，只确保两把尺子给出的读数都被如实摆在桌面上。</p>
+</div>
+
+</section>
+<hr class="div">
+
+<!-- ============ 十五、事件驱动视角 ============ -->
+<section id="event-driven">
+<h2><span class="num">15</span>事件驱动 / 对赌视角</h2>
+
+<div class="callout crux">
+<span class="label">THE CRUX OF THE PROBLEM · 核心问题</span>
+<p>把久立特材当前每一个关键数字都当作一份"赌约"（押注人 / 押注数字 / 偏差时谁受损），并把未来 6–12 个月所有确定时点会揭晓结果的事件列成日历——这是全篇报告最后一层穿透：前 14 节回答的是"数字说明了什么"，本节回答"接下来哪些日期会强制验证或证伪这些数字"。用户的核心关切（"高基数论 + 恐慌错杀"）本质上是一个关于<strong>未来验证节点</strong>的判断：如果基本面真的没变，Q3/Q4 数据和 2027 年分红方案会证实；如果结构性下滑在持续，同样是这几个日期会证伪。本节不预测点位，只标注触发情境与历史可比反应方向。</p>
+</div>
+
+<h3>15.1 对赌视角：把关键数字拆成三件套</h3>
+<p>每一份"赌约"都由押注人、押注数字、偏差时受损方三部分构成——这个框架的价值在于暴露"谁有动机让数字达成"，而不在于预测数字本身会不会达成。</p>
+<table>
+<tr><th style="width:20%">赌约</th><th style="width:16%">押注人</th><th style="width:26%">押注数字</th><th style="width:20%">偏差时谁受损</th><th style="width:18%">兑现情况（截至 2026-08-25）</th></tr>
+<tr><td>2026H1 业绩预告（"预减"）</td><td>公司管理层 / 董事会（信息披露责任人）</td><td>归母净利润 3.7239–4.1377 亿，同比 −55%~−50%<sup>[verified-facts]</sup></td><td>若实际值超出预告区间，构成信披不准确，损害管理层公信力与合规记录</td><td><strong>已兑现</strong>：实际 3.93 亿 / −52.55%，落在区间内，无需事后说明，无超预期<sup>[verified-facts]</sup></td></tr>
+<tr><td>ADNOC 管线钢管合同（2023-060 公告）</td><td>久立全资孙公司 EBK（对手方为 ADNOC）</td><td>92 公里天然气输送管线钢管，含税约 5.92 亿欧元，交付期至 2025 年 9 月<sup>[verified-facts]</sup></td><td>若 EBK/久立延误交付，承担违约金与信誉损失；若 ADNOC 延迟付款，久立承担现金流损失</td><td><strong>已完结</strong>：官方业绩预告原因④明确"已于去年下半年完成全部交付"<sup>[verified-facts]</sup>，合同生命周期已结束，不再构成 forward 风险，但其退潮效应正是 §3 专题核查拆解的对象</td></tr>
+<tr><td>2026-07-22 新回购方案</td><td>公司（资金使用方）/ 实控人及一致行动人（同期增持方）</td><td>2~4 亿元，价格上限 32 元/股，占总股本 0.63%~1.28%<sup>[verified-facts]</sup></td><td>若未完成规模下限或提前触及价格上限停止，市场或解读为"信心不足"，削弱回购对股价的支撑逻辑</td><td><strong>待验证</strong>：实施期限需回购公告原文核实（信息不足），截至 8/24 仅能确认方案已启动，回购用途为员工持股/股权激励/可转债转股而非注销，对 EPS 增厚有限<sup>[verified-facts]</sup></td></tr>
+<tr><td>隐性高股息承诺（1.00 元/股惯性预期）</td><td>公司 / 董事会（下一次分红决策方）</td><td>若维持 1.00 元/股，需全年归母净利润 ≥ <strong>约 9.77 亿</strong>（分红总额 9.77 亿 ÷ 净利润 = 100% 分红率的精确临界点<sup>[1]</sup>）</td><td>若下调派息，损害的是以"5.1% 高股息"为持股逻辑一部分的投资者预期收益</td><td><strong>待 2027 年 4-5 月验证</strong>，目前无中期分红缓冲——2020–2025 历次中期（H1）分红均为 0<sup>[verified-facts]</sup></td></tr>
+<tr><td>2025 年第一期员工持股计划（持股 1.8424%）</td><td>参与该计划的员工个人</td><td>具体归属/行权业绩考核门槛（本报告未核实原文）</td><td>未达标锁定的员工个人承担机会成本损失</td><td><strong>信息不足</strong>，需查计划公告原文核实行权条件是否与"经营性利润修复"挂钩</td></tr>
+</table>
+
+<h3>15.2 事件日历：未来 6–12 个月的关键验证节点</h3>
+<p>下表只标注触发情境与历史可比反应方向，不做点位预测——与本报告全篇"判断权交还读者"的立场一致。</p>
+<table>
+<tr><th style="width:16%">日期</th><th style="width:20%">事件</th><th style="width:26%">触发情境（具体阈值/条件）</th><th style="width:26%">历史可比事件市场反应方向</th><th style="width:12%">数据来源</th></tr>
+<tr><td><strong>2026-08-25</strong>（本报告撰写当日）</td><td>2026 年半年度报告正式披露</td><td>是否披露分产品/分部详细毛利率、在手订单余额、中期分红预案——本报告多处标注"信息不足"待此日核对</td><td>预告已于 7/15 提前 6 周发布并已被市场消化（当日 −0.11%，次日 −1.43%）<sup>[verified-facts]</sup>；正式报告若无超出预告的新增负面信息，增量反应或有限，但若首次披露的分部数据证实常规产品毛利率结构性下滑程度超预期，仍可能触发二次重估</td><td>公告</td></tr>
+<tr><td><strong>2026-10-31 前</strong>（法定截止）</td><td>2026 年三季度报告披露</td><td>Q3 扣非净利润是否延续 Q2 单季亏损（−0.21 亿），或转正；若同比/环比出现重大异动，公司或需先行发布业绩预告（具体触发阈值本报告未逐一核实，信息不足）</td><td>无同期先例可比（本报告仅覆盖至 H1）；需届时对照 §3 已识别的两项领先指标——Q2 毛利率 17.23%、合同负债 13.16 亿（环比 +32.1% 但仍仅为峰值 48.8%）<sup>[verified-facts]</sup>——是否延续"触底回升"信号</td><td>深交所规则 + verified-facts</td></tr>
+<tr><td>实施期限待核实</td><td>2~4 亿元回购方案完成或届满</td><td>完成规模是否达到 2 亿元下限、是否触及 32 元/股上限而提前停止</td><td>2026 年 4–7 月两轮回购+增持并未阻止股价在 7 月主跌段下跌 24.60%<sup>[verified-facts]</sup>，说明历史上回购的"托底"信号强度有限，不宜简单外推至这一轮</td><td>verified-facts</td></tr>
+<tr><td>至 2027-02-28</td><td>限售股解禁窗口</td><td>无安排</td><td>不构成风险点（数据源查询为空）</td><td>§13 已核实</td></tr>
+<tr><td><strong>2027 年 4-5 月</strong>（预计）</td><td>FY2026 年度报告 + 年度分红方案披露</td><td>每股派息是否维持 1.00 元（需全年归母净利润 ≥ 约 9.77 亿）</td><td>无久立自身先例可直接比对——近 6 年（2020–2025）年度派息从未下调；若首次下调，历史上高股息标的分红下调常伴随估值修正压力，但方向与幅度不做预测</td><td>verified-facts</td></tr>
+<tr><td>持续跟踪，无固定日期</td><td>中东地缘环境（ADNOC 所在区域）项目执行节奏变化</td><td>官方业绩预告原因②"受中东地缘环境影响，海外订单交付节奏延后"<sup>[verified-facts]</sup>，若局势缓解可能带动境外订单交付提速</td><td>方向无法预测——与已发生的两起跨境监管事件方向相反：欧盟 2025 年 6 月终止反倾销调查（正面）vs 美国 2025 年 5 月维持高关税日落复审终裁（负面）<sup>[2]</sup>，说明外部环境本身多空并存</td><td>§7.3 已核实</td></tr>
+</table>
+
+<h3>15.3 已结算对赌回顾：ADNOC 合同与业绩预告都"如约兑现"</h3>
+<div class="callout dive">
+<span class="label">DIVE DEEP · 两份已结算的赌约，都没有"意外"</span>
+<p>截至本报告撰写日，与用户核心关切直接相关的两份赌约都已进入"结算"状态，且结果都没有意外：<strong>ADNOC 合同</strong>按公告条款如期在 2025 年 9 月前完成全部交付（官方原因④），退潮本身是契约到期的自然结果，不是违约或提前终止；<strong>业绩预告</strong>提前 6 周发布、实际值落在预告区间内、股价在预告日几乎无反应——两者共同说明：<strong>市场（至少在预告发布层面）没有被"意外"打击</strong>，7 月的主跌段（累计 −24.60%）发生在预告披露<em>之前</em>，而非之后<sup>[verified-facts]</sup>。这与"预告落地引发恐慌抛售"的直觉叙事方向相反——真正驱动股价下跌的是 7/7–7/13 那五个交易日本身释放的市场预期，而非 7/15 的正式确认。把这一层与 §3 的归因分解并列：ADNOC 退潮能解释营收缺口的 63.4%，但解释不了扣非利润相对 2024H1（同样无大单）仍走弱的部分——赌约层面的"如约兑现"，不等于基本面层面的"如约不变"，两者是不同的问题。</p>
+</div>
+
+<div class="callout maodun">
+<span class="label">本节小结</span>
+<h5>事件驱动视角下的主要矛盾</h5>
+<p>把 15.1 和 15.2 拼在一起看：<strong>已经结算的赌约（ADNOC 合同、H1 预告）都指向"公司说到做到"</strong>——这是支持"管理层可信度未受损"的证据；但<strong>尚未结算的赌约（回购方案完成度、2027 年分红维持能力、Q3/Q4 经常性盈利能力修复）恰恰都是用来检验"高基数论"是否成立的下一层证据</strong>，而这些验证节点全部落在未来 6–12 个月内，本报告写作时点（2026-08-25）尚无法给出答案。这构成一个明确的时间结构：<strong>用户核心关切能否成立，不取决于今天能拿到的数据，而取决于 2026-10-31（Q3 报告）与 2027 年 4-5 月（年度分红方案）这两个日期揭晓的结果</strong>。在此之前，回购托底信号强度有限（历史已验证）、无中期分红可作缓冲、无解禁/转债压力——事件驱动层面的风险敞口总体可控，但也没有任何即将到来的"确定性利好"能在短期内单方面验证"错杀"假说。判断权交还读者。</p>
+</div>
+
+<div class="term" data-name="数据来源与口径说明">
+<p>[1] 本节独立计算（Python 验算）：分红总额 9.77 亿 ÷ 净利润 X = 100% 分红率临界点 X = 9.77 亿；交叉核对 verified-facts.md 已测算的 8 亿→122.1%、9 亿→108.6%（原文四舍五入为 109%）、10 亿→97.7%（原文 98%）三个锚点，验算结果与原文一致，本节仅补充精确临界值，不改写原始数字。<br>
+[2] 见本报告 §7.3「跨境监管风险」，已引用欧盟反倾销调查终止（2025-06）与美国日落复审终裁（2025-05）两项事实。<br>
+[verified-facts] /tmp/claude/ir-久立特材/verified-facts.md，主对话已核验、已用 Python 逐条验算，本节禁止重算或改写，直接引用。</p>
+</div>
+
+</section>
+<hr class="div">
+
+<!-- ============ 十六、九条自检 ============ -->
+<section id="self-check-9">
+<h2><span class="num">16</span>添柏岚 9.4 自检清单</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 原典与口径</span>
+<p>原典：李录《文明、现代化、价值投资与中国》添柏岚案例第 9.4 节。本节把 9 条逐条对久立特材作答，第 8/9 条已改写为视角中立版本（不下买卖判断）。数据全部沿用本报告 §1/§4/§5/§9/§10/§11/§12/§13/§14 已核验结果与 verified-facts.md，禁止重算或改写；第 2/3/6 条新增算式已用 Bash + Python 逐条验算，脚本贴于 16.1 之后。</p>
+</div>
+
+<h3>16.1 验算脚本（第 2/3/6 条）</h3>
+<pre style="background:#292420;color:#e8e0d0;padding:16px 18px;border-radius:6px;overflow-x:auto;font-size:15px;line-height:1.6;font-family:'SFMono-Regular',Consolas,Menlo,monospace;"><code># -*- coding: utf-8 -*-
+# 久立特材(002318.SZ) Self-Check 9 —— 第2/3/6条算式验算
+# 数据来源：主报告 §1/§4/§5/§11/§14 与 verified-facts.md（均已在主报告内独立核验）
+
+def percentile(data, p):
+    s = sorted(data); n = len(s)
+    if n == 1: return s[0]
+    k = (n-1)*(p/100); f = int(k); c = min(f+1, n-1)
+    return s[f] if f == c else s[f] + (s[c]-s[f])*(k-f)
+
+# --- 第2条：EBIT/营业利润率行业位置 ---
+op_margin_2026h1 = round(4.81/38.84*100, 2)              # 营业利润4.81亿/营业收入38.84亿
+op_margin_hist = [21.3, 20.2, 16.6, 16.2]                  # 久立FY2022-FY2025营业利润率
+p25,p50,p75 = [percentile(op_margin_hist,p) for p in (25,50,75)]
+# 输出: 2026H1=12.38%; 自身历史P25=16.50% P50=18.40% P75=20.48% -> 2026H1已跌破P25
+
+peer_gm_2026h1 = {"久立特材":21.23,"常宝股份":13.63,"盛德鑫泰":10.93,"图南股份":40.11,"武进不锈(FY2025代理)":11.37}
+p25g,p50g,p75g = [percentile(list(peer_gm_2026h1.values()),p) for p in (25,50,75)]
+# 输出: 同业毛利率(代理EBIT率) P25=11.37% P50=13.63% P75=21.23% -> 久立21.23%排第2/5，等于P75
+
+# --- 第3条：ROCE历史定位 ---
+roce_series = {"2020":23.1,"2021":19.9,"2022":17.0,"2023":19.5,"2024":32.6,"2025":24.1}  # 6期全部>15%=优秀档
+EBIT_H1_headline, EBIT_H1_core, invested_capital = 4.64, 4.64-2.68, 71.92  # 亿元
+roce_headline = EBIT_H1_headline*2/invested_capital*100   # =12.90% -> 良好档(10-15%)
+roce_core     = EBIT_H1_core*2/invested_capital*100       # =5.45%  -> 平庸档(5-10%)下沿
+
+# --- 第6条：宏观风险算式化(中东地缘环境，官方业绩预告原因②) ---
+gap_explained, total_gap = 14.08, 22.21                    # verified-facts.md 归因分解
+pct = gap_explained/total_gap*100                           # =63.4%，与verified-facts.md一致
+biz_share = 55.3                                             # 境外收入占比(FY2025)
+overseas_rev = 120.59*biz_share/100                          # =66.69亿
+adnoc_annualized = 46.0/2                                    # ADNOC合同46亿/2年签约期年化=23.00亿/年
+geo_share = adnoc_annualized/overseas_rev*100                 # =34.5%
+exposure = biz_share/100*geo_share/100*1.0*100                # 添柏岚公式(EBIT转化率简化=1.0)，=19.1%
+# 交叉验证(用毛利率代理EBIT转化率，不依赖1.0简化假设)
+ebit_impact = gap_explained*25.2/100                          # 复合管FY2025毛利率25.2%，=3.55亿
+impact_pct = ebit_impact/18.64*100                            # 占FY2025全年EBIT比例=19.0%
+# 两条独立算法收敛：19.1% vs 19.0%，互相印证
+</code></pre>
+<div class="callout fact">
+<span class="label">FACT CHECK · 脚本实测输出</span>
+<p>2026H1营业利润率=12.38%（自身FY2022-FY2025历史P25/P50/P75=16.50%/18.40%/20.48%，已跌破P25）；同业2026H1毛利率P25/P50/P75=11.37%/13.63%/21.23%，久立21.23%排5家第2，恰等于P75；久立ROCE 2020–2025六期全部>15%（优秀档），2026H1 headline ROCE年化12.90%（良好档），核心ROCE（剔一次性）年化5.45%（平庸档下沿）；宏观风险敞口两条独立算法分别得 19.1% 与 19.0%，互相收敛验证。</p>
+</div>
+
+<table class="checklist">
+<tr><th style="width:5%">#</th><th style="width:20%">问题</th><th style="width:63%">作答</th><th style="width:12%">状态</th></tr>
+
+<tr><td>1</td><td>账面价值质量</td><td>2026H1 合并总资产 132.97 亿中，经营性资产（应收+存货+固定资产+在建工程+无形资产）占 68.4%，投资性资产仅 2.8%（§4.4）——账面价值主要由"干净的"经营性资产撑住，不是靠地产、并购堆砌型商誉或金融资产堆起来的。现金端：净现金状态已连续 6 期未变（§9.2），现金短债比 4.21 倍，货币资金 17.96 亿全部覆盖 0.43 亿短期有息负债后仍有厚余。但流动性资产质量出现两处方向性走弱：应收账款逆势小幅增长（14.66→15.21 亿，营收腰斩期间周转天数被动拉长，§4.6#5）、存货 Q1→Q2 环比 +13.5%逆势累库（§4.6）；商誉从连续 6 期零变化（204.9万元）首次跳升至 2,281.7 万元（占总资产仅 0.17%，量级不大但方向异常，§4.6#6/§7.3）。<strong>结论：账面价值的底子干净，但应收/存货/商誉三处出现同期方向性、非结构性的质量松动信号，需 Q3 数据验证是否延续。</strong></td><td>⚠️</td></tr>
+
+<tr><td>2</td><td>EBIT 与行业位置</td><td>2026H1 营业利润率 4.81÷38.84=<strong>12.38%</strong>，已跌破久立自身 FY2022–FY2025 营业利润率历史分布的 P25（16.50%），处于自身观测区间最底部（脚本验算见 16.1）。横向看同业 2026H1 毛利率（代理 EBIT 率，缺分部 EBIT 数据）分布 P25=11.37%/P50=13.63%/P75=21.23%，久立 21.23% 在 5 家可比公司里排第 2（仅次于跨赛道的图南股份 40.11%），恰好等于同业 P75。<strong>纵向（自身历史）处于底部，横向（同业）仍居上游——这不矛盾：说明不是"久立变差了"这一单一叙事，而是"整个行业都在收缩，久立在收缩的行业里仍是相对最好的那一个"。</strong></td><td>⚠️</td></tr>
+
+<tr><td>3</td><td>ROCE 历史定位</td><td>久立 2020–2025 六年 ROCE（EBIT/投入资本口径，§5.2 valueline 独立第二信源交叉验证）依次为 23.1/19.9/17.0/19.5/32.6/24.1%，<strong>连续 6 年全部 >15%，属"优秀"档</strong>——能连续 6 年保持这一水平，放在更长的历史周期里看，属多数上市公司做不到的少数派表现（多数公司长期 ROCE 中枢落在"平庸"5–10% 档）。但 2026H1：headline ROCE（简单年化）12.90%，已滑落至"良好"档（10–15%）；剔除 Q1 永兴材料一次性投资收益后的<strong>核心 ROCE（简单年化）仅 5.45%，滑落至"平庸"档下沿，逼近 5% 这条"平庸/差"的分界线</strong>（脚本验算见 16.1，与主报告 §11.2 已披露数字一致）。<strong>结论：6 年"优秀"档的历史记录真实，但 2026H1（尤其剔一次性后）的资本回报率已跌出优秀区间整整两档——这正是"久立还配不配拿历史上那份估值溢价"这个争议的量化核心，不做买卖判断。</strong></td><td>⚠️</td></tr>
+
+<tr><td>4</td><td>为什么没人要</td><td>需先澄清前提：§11.1 已证久立<strong>不满足"便宜"</strong>（P/B 2.1–2.4x、清算价值仅现价 8%–16%），因此严格意义上的"便宜又赚钱却没人要"命题在久立身上不成立，本条改答一个更贴近现实的问题——"为什么当前（预告发布后至今）没有增量买盘承接"，列 3 条理由：①<strong>卖方研究覆盖真空</strong>——5 份专题研报全部发布于 7/7 崩盘之前，无一份基于 H1 实际数字重新评级（§14.4），市场目前拿不到任何"经过重新核实"的机构背书；②<strong>资金持续单向撤离</strong>——58 个交易日融资余额 −26.19%、大单资金净流出 8.33 亿（§14.3），去杠杆本身有自我强化的动量效应；③<strong>真实 PE 已处于自身 5 年历史新高（分位 P100）</strong>，而行情软件显示的滞后 PE(TTM) 12.61x 却在历史 P14（§13.3），只看软件数字的投资者会误判"便宜"，真正算过真实 PE 的投资者反而会判断"贵"。<strong>三条里哪条是真问题：③是真问题——这是本报告独立验算过的客观估值事实，不是情绪或数据滞后造成的假象，直接构成"理性买家现在不愿意进场"的合理理由（贵，不是错杀）；①更接近噪音——是信息滞后而非基本面判断，半年报全文+分析师重新覆盖后可能反转；②真假参半——既可能是理性的预期修正，也可能是动量驱动的自我强化抛压，本报告数据无法区分两者权重。</strong></td><td>✅</td></tr>
+
+<tr><td>5</td><td>控股股东独立验证</td><td>控股股东久立集团持股 34.7558%，实际控制人周志江（§12 已做完整尽调）。至少 3 个独立场景可交叉验证：①<strong>市场行为信源（回购/增持时间线）</strong>——2026 年两轮回购累计花费 3.09 亿元，新回购方案 9 天内已花掉 2 亿元下限的近 90%，执行速度快于口头承诺（§12.1）；②<strong>机构股东"用脚投票"（独立于管理层的反向信源）</strong>——港股通、基本养老保险同期净减持，方向与管理层增持相反，说明"内部人增持=市场共识见底"这条推理链条不能简单成立（§12.1）；③<strong>股权质押交叉验证</strong>——Tushare 与 choice-data 两个独立数据供应商在不同取数时点均给出 0.56% 的极低质押比例（§12.1/§12.3），排除了"回购是为避免平仓被动维稳"的动机解释。<strong>人品/动机判断：混合信号——资本部署速度与质押清洁度是相对干净的正面证据，但增持绝对金额相对总股本占比极小（合计不足 0.1%），象征意义大于实质力度；且本节独立发现两个官方数据接口（top10_holders vs stk_holdertrade）对久立集团同期持股记录互相矛盾（§12.1），需要以半年报原文核实。社区/离职员工/招聘评价等"软"场景公开检索为零，是本报告明确的盲区。</strong></td><td>⚠️</td></tr>
+
+<tr><td>6</td><td>宏观风险算式化</td><td>最大宏观风险：中东地缘环境影响海外订单交付节奏（官方业绩预告原因②）。用已完结的 ADNOC 大单做回溯性量级校准（脚本见 16.1）：<strong>敞口 = 境外收入占比(55.3%) × 该业务在风险地理占比(ADNOC年化收入/境外收入=34.5%) × EBIT转化率(简化1.0) = 19.1%</strong>；用另一条独立算法交叉验证——大单退潮可解释的营收缺口 14.08 亿 × 复合管毛利率 25.2% = 3.55 亿元 EBIT 影响，占 FY2025 全年 EBIT(18.64亿) 比例 = 19.0%。<strong>两条独立算法收敛到约 19% 量级，互相印证</strong>。需明确声明局限：这是用 ADNOC 合同历史峰值做的<strong>回溯性/已兑现</strong>校准（该合同已于 2025 年 9 月完结），不是当前 forward-looking 的风险敞口；当前在手订单的地区/客户结构未获取，前瞻性中东地缘风险<strong>信息不足</strong>，只能引用官方原因②定性佐证方向，无法精确算式化。</td><td>⚠️</td></tr>
+
+<tr><td>7</td><td>三年正反情景</td><td><strong>涨 5 倍（19.55→97.75元，目标市值955.2亿）所需前提</strong>：即便用 §13.3 乐观锚（自身 P75 扣非PE 18.64x）反推，需要 E=51.2 亿扣非净利润，是当前 TTM(6.76亿) 的 7.6 倍；用悲观锚(14.81x)则需 E=64.5 亿，是 TTM 的 9.5 倍——3 年内实现这一量级的复合增速（年化 95%+）在本报告已核验的历史数据（近 5 年实际扣非CAGR 14.62%，§13.3）中没有任何先例支撑，除非发生本报告完全未观察到的根本性重估（如被重新定义为热门赛道成长股、估值倍数扩张到远超自身历史区间）。<strong>跌 50%（19.55→9.78元，目标市值95.5亿）所需前提</strong>：§13.6 已测算"真实扣非PE回归自身历史悲观锚(14.81x)"对应目标股价 10.24 元、跌幅 −47.6%，已非常接近 −50% 这个量级——即只需要"经常性盈利能力延续 2026Q2 的塌陷趋势 + 估值倍数简单回归自身历史正常区间"两个条件同时发生，且这两个条件都已经是 §10.2/§13.6 已核验证据链的线性外推，<strong>不需要发生任何新的意外坏消息</strong>。<strong>两相对照：跌 50% 情景所需前提的"苛刻程度"明显小于涨 5 倍情景（前者是现有趋势的延伸，后者需要一次目前没有证据支持的根本性重估），在概率权重上前者更贴近现有证据链的自然演化方向；但这是基于已核验数据的技术性概率比较，不构成买卖判断，最终概率分配交还读者根据自己对 §10.5 三个监控变量走向的判断完成。</strong></td><td>✅</td></tr>
+
+<tr><td>8</td><td>研究深度阈值</td><td><strong>试探仓阈值</strong>：至少覆盖反向估值（隐含假设，§13）+ 市场画像（估值/技术/资金面冷热，§14）两道关——本研究已完整覆盖。<strong>标配仓阈值</strong>：叠加报表排雷确认无造假/操纵痕迹（§4.8 已明确排除商誉洗大澡、费用资本化虚增等典型盈余管理手法）+ 主次矛盾的最小充分监控变量集（§10.5 三个变量）——本研究已完整覆盖。<strong>重仓阈值</strong>：需要现场调研（走访工厂/经销商/离职员工访谈，§12.1 已标注为"软场景"盲区）、半年报全文关联交易附注核实（§12.3 已标注"本报告最大单一信息缺口"）、以及用 Q3/Q4 实际数据验证 §10.5 三个监控变量的真实走向——三者本研究均未覆盖或标注"信息不足/待验证"。<strong>本研究覆盖的关卡</strong>：14 个正文分析章节（定性商业分析、报表战略考察、Value Line 纵向快照、成长/资产/运营/偿债四大传统模块、主次矛盾、便宜vs好生意、控股股东尽调、反向估值审计、市场估值多维审视、事件驱动）已覆盖公开数据能触达的全部标准关卡，缺口集中且明确地落在"现场调研"与"半年报全文附注（8/25 已披露但本报告写作时点尚未逐条核对）"两类非公开取数渠道。</td><td>✅</td></tr>
+
+<tr><td>9</td><td>多空反转触发条件</td><td>直接复用 §10.5 已识别的三个监控变量与 §15.2 事件日历，改写为对称的两组触发条件（均为公开季报/公告可持续跟踪的数据点，非本节主观推测）：<br><strong>能让当前偏多论点反转（转向更悲观）的 3 条</strong>：① Q3 扣非净利润继续为负或毛利率继续创近年新低，延续 2026Q2 的塌陷（证伪 §10.5 变量①的"周期底部"一侧）；② 合同负债 Q3 再次转为环比下降，证伪 Q2 "9.96→13.16亿、+32.1%"的触底回升信号（§10.5 变量②）；③ 2027年FY2026年度分红方案主动下调每股派息，证实"5.1%股息率不可持续"的判断兑现（§10.4 次要矛盾②证伪条件）。<br><strong>能让当前偏空论点反转（转向更乐观）的 3 条</strong>：① Q3 毛利率环比回升、扣非净利润转正（§10.5 变量①改善侧）；② OCF÷净利润比率回升至历史区间下沿(0.55)以上，证明"有利润没有钱"是 Q1 处置的一次性时点错配而非收现能力持续弱化（§10.5 变量③改善侧）；③ 资本开支/产能利用率数据显示逆势投入被有效消化为新增订单，证明研发与资本开支维持高位是"战略眼光"而非"资源错配"（§10.4 次要矛盾③证伪条件）。</td><td>✅</td></tr>
+
+</table>
+
+<h3>段尾结语</h3>
+<p>本次 9 条中 <strong>9/9</strong> 条有实质回答（其中第 1/2/3/5/6 条标注 ⚠️ 是因为答案本身包含"信息不足/需进一步核实"的部分，而非未作答；第 4/7/8/9 条标注 ✅ 为完整闭合作答）。按添柏岚案例 9.4 段尾原则：能在 9 条里有 7 条以上有实质回答，本研究值得作为决策起点；否则更应当继续看材料而非动手。本次 9 条全部有实质回答，超过 7 条阈值——但"值得作为决策起点"不等于"应该买入或卖出"：第 3/4/6/7 条的答案本身揭示了久立特材当前面临的核心张力（历史优秀档 ROCE 正在向平庸档回落、真实估值处于历史高位而非低位、宏观风险敞口约 19% 量级已实质兑现而非纯粹预期、下行情景所需前提比上行情景更温和），这些张力是否构成买入或回避的理由，判断权交还读者。</p>
+
+</section>
+<hr class="div">
+
+<!-- ============ 十七、红队挑刺 ============ -->
+<section id="red-team">
+<h2><span class="num">17</span>红队挑刺与反方观点</h2>
+
+<div class="callout crux">
+<span class="label">CRUX · 如果我是 LP / 卖方分析师 / 做空者 / 监管层，会在哪里挑刺？</span>
+<p style="font-size:19px"><em>本节从前 16 章已核验的证据里反推 6 处可挑战面，LP / 做空者 / 监管层三个视角轮流站。每条挑刺给出主张、支撑事实、证伪条件三件套，不下空头判决——只列攻击面与可观测证伪条件，与本报告全篇"判断权交还读者"的立场一致。</em></p>
+</div>
+
+<ol class="red-team-list" style="padding-left:22px;">
+
+<li style="margin-bottom:22px;">
+<h4 style="margin-bottom:6px;">挑刺 1：<span class="persona" style="display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:1px 8px;border-radius:3px;margin-right:6px;">做空者</span>"错杀买入机会"论点在估值层面直接站不住——真实口径下，现价对应的是久立特材自身 5 年估值分布的历史新高，不是低位</h4>
+<p><strong>支撑事实</strong>：用真实 TTM 口径衡量（而非行情软件滞后显示的 12.61x），真实 PE(TTM扣非) = 28.26x，在久立自身近 5 年（2021-08-24～2026-08-24，1211 个交易日）扣非 PE 分布里排在<strong>第 100 百分位——历史最高点</strong>，已超出近 5 年区间上限（27.31x）3.5%；真实 PE(TTM归母) 17.79x 排在 P82，同样处于历史高位区间<sup>[13.3/14.1]</sup>。股价 6/30 以来跌了 18.2%（23.90→19.55 元），但因为分母（TTM 盈利）跌得比股价更快（真实 TTM 归母 −28.8%），估值倍数不但没有变便宜，反而比 ADNOC 高基数放量期还贵<sup>[13.3]</sup>。"恐慌错杀即买入机会"这个假说隐含的前提是"当前价格已经把利空过度定价、存在均值回归的估值折价"——但真实 PE 分位数据显示的恰恰相反：市场目前给的定价，比历史上大多数时候都更慷慨，而不是更悲观。</p>
+<p><strong>证伪条件</strong>：若 2026Q3 扣非净利润转正、毛利率环比回升至 20% 以上，同时真实扣非 PE 分位回落至 P50 以下（对应目标价区间可参照 §13.6 已测算的 11.43–12.89 元），则说明基本面修复速度快于估值消化速度，"当前估值已透支"这一挑刺证伪。</p>
+</li>
+
+<li style="margin-bottom:22px;">
+<h4 style="margin-bottom:6px;">挑刺 2：<span class="persona" style="display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:1px 8px;border-radius:3px;margin-right:6px;">做空者</span>公司自己的信息披露排序，已经把"大单高基数"排在了业绩下滑归因的最后一位——用户核心假说的权重分配与管理层自述口径相反</h4>
+<p><strong>支撑事实</strong>：2026-07-15 业绩预告"预减"公告给出四条官方原因，排序依次为：①行业结构优化调整周期、下游需求阶段性偏弱、供给充足、市场竞争加剧，常规产品盈利空间承压；②受中东地缘环境影响，海外订单交付节奏延后；③物流运输、员工薪酬特别是社保成本上升；④上年同期管线钢管项目及复合管项目集中创收形成高基数<sup>[verified-facts]</sup>——用户核心关切所依赖的"高基数"因素，被公司自己排在四条原因的<strong>最后一位</strong>，而非首位。若"大单高基数"真是解释业绩下滑的主导因素，公司信息披露通常会将其置于首位以争取市场理解（这是对公司更有利的叙事），管理层没有这样做，本身是一个值得警惕的信号权重错配。</p>
+<p><strong>证伪条件</strong>：若半年报（2026-08-25 已披露）或后续问询函回复中，公司对四条原因给出量化贡献占比，且"高基数"对应的量化占比显著高于①②③三条之和，则说明披露排序本身不代表权重，本挑刺证伪；若量化占比证实①②③（行业性、地缘、成本）合计权重更大，则挑刺进一步被坐实。</p>
+</li>
+
+<li style="margin-bottom:22px;">
+<h4 style="margin-bottom:6px;">挑刺 3：<span class="persona" style="display:inline-block;background:var(--accent-2);color:#fff;font-size:13px;padding:1px 8px;border-radius:3px;margin-right:6px;">LP</span>本报告自身已标注的最大单一信息缺口——关联交易金额与定价公允性未核实，而资产负债表异常稳健与经常性盈利持续走弱这组反差，恰恰是关联交易审查最该覆盖的场景</h4>
+<p><strong>支撑事实</strong>：本报告 §12.3 已明确自陈"具体关联交易金额、方向、定价公允性信息不足……本报告未能覆盖这一模块，是本节最大的单一信息缺口"<sup>[12.3]</sup>；已识别的关联方持股主体浙江久立电气材料有限公司持股 1.2444%<sup>[MD1]</sup>，但交易细节全部未核实。与此同时，§4.4/§7.1 显示资产负债表结构 5 年未发生质变、经营性资产占比稳定在 68% 上下<sup>[contradiction]</sup>，与 §10.2/§11.2 显示的经常性盈利能力（核心 ROCE 剔一次性后年化约 5.45%）持续走弱形成反差——如果这份"稳健"的资产负债表里存在未被定价的关联方利益输送或非公允定价交易，会同时解释"账面结构看似干净"与"经常性盈利质量走弱"两个看似矛盾的观察，而这条解释路径本报告完全没有验证过。</p>
+<p><strong>证伪条件</strong>：半年报（2026-08-25 已披露）关联交易附注若显示关联交易金额占营收比例低（如 &lt;1%）且定价参考市场公允价格、审计机构未出具保留意见，则该挑刺可被排除；若关联交易占比显著或审计意见存在保留/强调事项段，则挑刺坐实为需要升级的红旗。</p>
+</li>
+
+<li style="margin-bottom:22px;">
+<h4 style="margin-bottom:6px;">挑刺 4：<span class="persona" style="display:inline-block;background:#6b5a1e;color:#fff;font-size:13px;padding:1px 8px;border-radius:3px;margin-right:6px;">监管层</span>两个官方数据接口对控股股东同期持股变动记录互相矛盾，指向股权变动披露可能存在未及时/未准确更新的问题</h4>
+<p><strong>支撑事实</strong>：Tushare <code>top10_holders</code>（period=2025-12-31）显示久立集团持股 339,623,823 股/34.7558%<sup>[MD1]</sup>；同一接口体系下的 <code>stk_holdertrade</code> 记录 2025-10-09 公告的增持后持股 after_share=343,166,625 股，但该字段的 after_ratio 标注为 27.60%——用 343,166,625 ÷ 0.2760 反推隐含分母约 <strong>12.43 亿股</strong>（Python 验算，见本节脚注），与公司实际总股本 9.7723 亿股不符（差异约 27%）<sup>[计算]</sup>；两个时点的绝对股数（343.17M→339.62M）暗示 2025Q4 发生过约 354 万股的减持，但 top10_holders 的 hold_change 字段却标注为 0<sup>[12.1]</sup>——两个官方数据接口对同一控股股东同期持股变动的记录本身无法自洽。若这类数据不一致源于公司信息披露口径/时点本身存在瑕疵（而非仅是数据供应商的字段错误），可能触及《上市公司信息披露管理办法》对持股变动披露及时性、准确性的要求。</p>
+<p><strong>证伪条件</strong>：以 2026-08-25 已披露半年报"股东情况"章节原文核实久立集团 2025Q4 至 2026H1 期间的真实持股变动，若与两接口任一口径一致且无未披露的股权变动，则本挑刺证伪为数据源字段口径差异（如 after_ratio 分母误植），不涉及公司信披问题；若半年报原文披露的持股数与两接口均不一致，则需进一步升级为信披准确性问题。</p>
+</li>
+
+<li style="margin-bottom:22px;">
+<h4 style="margin-bottom:6px;">挑刺 5：<span class="persona" style="display:inline-block;background:var(--accent-2);color:#fff;font-size:13px;padding:1px 8px;border-radius:3px;margin-right:6px;">LP</span>存货逆势累库叠加毛利率创近 5 年新低，是典型的"渠道压货/需求确认滞后"组合信号，2026H2 存在补提存货跌价准备、进一步侵蚀本已脆弱的经常性盈利的风险</h4>
+<p><strong>支撑事实</strong>：2026Q2 存货逆营收下滑而环比累库至 32.97 亿元（Q1→Q2 +13.5%），同期营收同比 −36.38%、销售毛利率 21.23%（近 5 年最低，2026Q2 单季毛利率仅 17.23%）<sup>[verified-facts]</sup>；2026H1 资产减值损失已为 −0.73 亿元<sup>[verified-facts]</sup>，说明减值计提机制在本期已经启动。存货在需求走弱期逆势增长，通常对应两种情形之一：主动囤原料备产（若原材料价格预期上涨，属合理战略行为），或成品去化变慢、渠道库存积压（若持续到 Q3 仍未消化，构成存货跌价准备计提的触发条件）——本报告 §4.6 已将此列为"部分命中"的危险信号，但未能进一步区分两种情形的概率权重。</p>
+<p><strong>证伪条件</strong>：若 2026Q3 存货环比转为下降，或存货周转天数回落至接近 FY2025 全年年化水平，且当季资产减值损失未同比显著扩大，则说明是原材料备产而非渠道积压，挑刺证伪；若存货继续逆势累库且 Q3/Q4 出现大额存货跌价准备计提，则挑刺坐实。</p>
+</li>
+
+<li style="margin-bottom:22px;">
+<h4 style="margin-bottom:6px;">挑刺 6：<span class="persona" style="display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:1px 8px;border-radius:3px;margin-right:6px;">做空者</span>"管理层用真金白银投票基本面见底"这条常被用来支撑"错杀"叙事的证据链，历史已经证伪过一次——过去两轮回购+增持并未阻止股价下跌 24.60%，且回购不注销、对每股收益的实质增厚为零</h4>
+<p><strong>支撑事实</strong>：2026 年 4–7 月两轮回购+管理层/一致行动人增持并未阻止股价在 7 月主跌段下跌 <strong>24.60%</strong>（23.90 元 6/30 收盘 → 18.02 元 7/13 收盘，Python 验算与主报告一致<sup>[15.3]</sup>）；2026 年累计回购已花 3.09 亿元（1.29 亿 + 1.7964 亿，Python 验算<sup>[计算]</sup>），但回购用途明确为员工持股/股权激励/可转债转股而非注销<sup>[verified-facts]</sup>，对每股收益（EPS）的直接增厚为零——总股本不因回购而减少，与"注销式回购"传递的股东回报信号在实质上不同。与此同时，FY2025 分红率已达归母净利润的 64.8%，若 2026 全年归母净利润落在 8–9 亿区间，需要 109%–122% 的分红率才能维持每股 1.00 元派息<sup>[verified-facts]</sup>——即当前"高股息 + 持续回购"的资本市场姿态，在盈利下修的情形下，缺乏可持续的现金流覆盖，象征意义（释放信心信号）与实质力度（EPS 增厚、分红覆盖率）之间存在明显落差。</p>
+<p><strong>证伪条件</strong>：若新回购方案（2~4 亿元，上限 32 元）完成后触发股价企稳反弹且成交量/换手率同步放大（说明市场认可回购托底效力），或公司在后续公告中明确回购部分转注销，则"回购信号无效"这一挑刺证伪；若 2027 年度分红方案主动下调每股派息以匹配实际盈利水平，则"高股息不可持续"这一子命题被坐实而非证伪，但同时说明管理层没有选择"寅吃卯粮"硬撑股息，需分开评估。</p>
+</li>
+
+</ol>
+
+<div class="term" data-name="数据来源与口径说明">
+<p>本节全部数字沿用主报告 §3/§4/§10/§11/§12/§13/§14/§15 已核验结果与 <code>/tmp/claude/ir-久立特材/verified-facts.md</code>，标注 <sup>[verified-facts]</sup> 者直接引用该文件、禁止重算；标注章节号（如 <sup>[13.3]</sup>、<sup>[12.1]</sup>、<sup>[15.3]</sup>）者指向主报告对应小节的已披露数字；标注 <sup>[计算]</sup> 者为本节独立 Python 验算（after_ratio 隐含分母反推、7/13 累计跌幅、2026 年累计回购金额加总），验算脚本与结果：<br>
+<code>implied_denom = 343166625 / 0.2760 = 12.43 亿股</code>；<br>
+<code>累计跌幅 = 18.02/23.90 - 1 = -24.6%</code>；<br>
+<code>累计回购 = 1.29 + 1.7964 = 3.09 亿元</code>。<br>
+六条挑刺覆盖三个视角：做空者（挑刺 1/2/6）、LP（挑刺 3/5）、监管层（挑刺 4），均以本报告已核验数字与官方公告为支撑事实，证伪条件均为 2026 年 10 月底三季报、2027 年 4-5 月年报及分红方案披露前可观测的公开数据点。本节不构成做空判决，与本报告全篇一致，判断权交还读者。</p>
+</div>
+
+</section>
+<hr class="div">
+
+<!-- ============ 十八、结语 ============ -->
+<section id="postscript">
+<h2><span class="num">18</span>结语与信息缺口声明</h2>
+
+<div class="callout aside">
+<span class="label">ASIDE · 收尾核对（人工逐节核对，非自动化 gatekeeper 工具输出）</span>
+<p><strong>Section 完备性</strong>：全篇共 18 个 <code>&lt;section&gt;</code>，覆盖已上市标的全部基线必填模块（<code>business-qualitative</code> / <code>income-sankey</code> / <code>statement-exam</code> / <code>valueline-snapshot</code> / <code>growth-fisher</code> / <code>asset-structure</code> / <code>operating</code> / <code>solvency</code> / <code>contradiction</code> / <code>why-cheap</code> / <code>event-driven</code>）+ 条件必填 <code>management-dd</code>（家族控股触发）+ 附加模块 <code>h1-2026-profit-shock</code> / <code>reverse-valuation</code> / <code>market-pricing-multimodal</code> / <code>self-check-9</code> / <code>red-team</code> / <code>postscript</code>，逐节通读均有实质内容，无空节、无"待补"占位。<br>
+<strong>添柏岚 9.4 自检</strong>：§16 共 9/9 条有实质回答（段尾结语已自述：第 1/2/3/5/6 条标注 ⚠️ 是答案本身含"信息不足/需核实"的部分，非未作答；第 4/7/8/9 条 ✅ 为完整闭合作答）。<br>
+<strong>红队挑刺</strong>：§17 共 6 条三件套（论点+支撑事实+证伪条件），覆盖做空者（挑刺 1/2/6）、LP（挑刺 3/5）、监管层（挑刺 4）三个视角。<br>
+<strong>数字对账</strong>：核心业绩数字以 <code>/tmp/claude/ir-久立特材/verified-facts.md</code> 已核验结果为准；§16.1、§17 脚注另有独立 Python 验算（after_ratio 隐含分母反推、7/13 累计跌幅、2026 年累计回购金额加总等），验算脚本与结果已随文附出，未发现口径冲突。</p>
+</div>
+
+<div class="callout pit">
+<span class="label">PIT · 尚未闭合的信息缺口清单</span>
+<p>① <strong>关联交易金额、方向、定价公允性</strong>——§12.3 已明确标注为本报告最大单一信息缺口，公开 Tushare 接口无独立关联交易明细接口，需以半年报正文"关联交易"附注原文核实；② <strong>半年报全文细节</strong>（分产品毛利率明细、在手订单金额、中期分红预案、前 5 大客户集中度 CR5）——半年报已于 2026-08-25 披露，但本报告写作与本次收尾清理均未逐条核对全文原文，相关小节仍标注"信息不足"；③ <strong>控股股东同期持股记录矛盾</strong>（挑刺 4）——Tushare <code>top10_holders</code> 与 <code>stk_holdertrade</code> 两接口对久立集团 2025Q4 持股变动记录不能自洽，需半年报"股东情况"章节原文核实；④ <strong>现场调研类"软"信息</strong>——工厂/经销商走访、离职员工访谈、行业产能利用率、第三方品牌估值均公开检索为零，§12.1 已标注为盲区；⑤ <strong>管理层对永兴材料股权处置动机</strong>的公开解释文本缺失，"提前预判周期下行主动腾挪"与"账上有浮盈即兑现"两种解读均可能成立，未获证实。上述缺口的证伪/坐实窗口集中在 2026 年 10 月底三季报、2027 年 4-5 月年报及分红方案披露前。</p>
+</div>
+
+<p style="margin-top:14px;"><strong>说明</strong>：本节校验为收尾阶段的人工逐节核对，不等同于自动化 <code>investment-report-gatekeeper</code> 工具的程序化输出（本次收尾流程未调用该工具，故不作"PASS/FAIL"式声明）；上述完备性描述基于对本文件全文 grep 与逐节通读得出。本报告全篇为客观多视角投研分析，不构成任何投资建议、不包含买卖方向性判断，判断权交还读者。</p>
+
+</section>
+<hr class="div">
+
+<div class="meta" style="margin-top:60px;">
+<b>数据来源：</b> 东方财富 Choice（choice-data MCP，A 股三大报表/估值截面）+ Tushare REST API（公司基本信息/十大股东/股东户数），均已本地校验；核心业绩数字以 /tmp/claude/ir-久立特材/verified-facts.md 已核验数据为准<br>
+<b>报告状态：</b> 全部 18 个 section（含已上市标的基线必填全项 + 条件必填 management-dd + 附加模块）已完整交付，无待填充章节；详见 §18「结语与信息缺口声明」的收尾核对与剩余信息缺口清单<br>
+<b>Hard Gate 完备性声明（人工逐节核对，未调用自动化 investment-report-gatekeeper 工具，不作 PASS/FAIL 式程序化声明）：</b><br>
+① Section 完备性——全篇 18 个 section 全部有实质内容，覆盖已上市标的基线必填全项 + 条件必填 management-dd + 附加模块，无空节、无"待补"占位；<br>
+② 9 条自检——§16 添柏岚 9.4 自检 9/9 条有实质回答（第 1/2/3/5/6 条标注⚠️为答案含"信息不足/需核实"部分而非未作答，第 4/7/8/9 条✅为完整闭合作答）；<br>
+③ 红队挑刺——§17 共 6 条三件套（论点+支撑事实+证伪条件），覆盖做空者（挑刺 1/2/6）、LP（挑刺 3/5）、监管层（挑刺 4）三个视角；<br>
+④ 数字对账——核心业绩数字以 verified-facts.md 已核验结果为准；§16.1、§17 脚注另有独立 Python 逐条验算（营业利润率/ROCE/宏观风险敞口/after_ratio 隐含分母反推/累计跌幅/累计回购金额），未发现口径冲突；<br>
+⑤ 剩余信息缺口——关联交易金额与定价公允性未核实、半年报全文细节（分产品毛利率明细/在手订单金额/中期分红预案/CR5）虽已披露但本次收尾未逐条核对原文、控股股东 top10_holders 与 stk_holdertrade 两接口持股记录不能自洽、现场调研类"软"信息公开检索为零、管理层处置永兴材料股权的动机未获证实，详见 §18「尚未闭合的信息缺口清单」。<br>
+<b>免责声明：</b> 本报告为客观多视角投研分析，不构成任何投资建议、不包含任何买卖方向性判断，判断权交还读者。
+</div>
+
+</div>
+</body>
+</html>
