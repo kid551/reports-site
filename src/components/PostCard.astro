@@ -1,0 +1,29 @@
+---
+import { UNTAGGED, type PostMeta } from "../lib/types"
+
+interface Props {
+  post: PostMeta
+}
+const { post } = Astro.props
+// data-tags 是标签筛选用的；没有 keywords 的文章挂 UNTAGGED 占位
+const filterTags = post.keywords.length ? post.keywords : [UNTAGGED]
+---
+
+<li class="post-item" data-id={post.id} data-tags={`|${filterTags.join("|")}|`}>
+  <a href={post.href} class="post-card">
+    <h3 class="post-title">{post.title}</h3>
+    {post.description && <p class="post-desc">{post.description}</p>}
+    <div class="post-meta">
+      <time>{post.date}</time>
+      {
+        post.keywords.length > 0 && (
+          <span class="tags">
+            {post.keywords.map((k) => (
+              <span class="cat">{k}</span>
+            ))}
+          </span>
+        )
+      }
+    </div>
+  </a>
+</li>

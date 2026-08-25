@@ -36,10 +36,7 @@ function highlight(text: string, query: string): string {
 
 function snippet(body: string, query: string, radius = 80): string {
   if (!body) return ""
-  const terms = query
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
+  const terms = query.trim().split(/\s+/).filter(Boolean)
   if (!terms.length) return body.slice(0, radius * 2)
   const lower = body.toLowerCase()
   let pos = -1
@@ -196,6 +193,15 @@ export function initSearch() {
         // data-tags 形如 |芯片|半导体|，用分隔符包裹以避免子串误匹配
         const match = (li.dataset.tags || "").includes(`|${tag}|`)
         li.style.display = tag === "__all" || match ? "" : "none"
+      })
+      // 目录组本身没有 data-tags，跟着子文章的可见性走；筛选时自动展开，好让命中的子文章露出来
+      listDefault.querySelectorAll<HTMLLIElement>("li.folder-item").forEach((li) => {
+        const visible = Array.from(li.querySelectorAll<HTMLLIElement>("li[data-tags]")).some(
+          (child) => child.style.display !== "none",
+        )
+        li.style.display = visible ? "" : "none"
+        const details = li.querySelector("details")
+        if (details) details.open = tag !== "__all" && visible
       })
       listDefault.querySelectorAll<HTMLDivElement>("div[data-month]").forEach((div) => {
         const visible = Array.from(div.querySelectorAll<HTMLLIElement>("li[data-tags]")).some(

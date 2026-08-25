@@ -66,10 +66,15 @@ pnpm ship</code></pre>
 
 <h2>仓库结构</h2>
 <pre><code>reports-site/
-├── posts/                     ← ⭐ 你的 HTML 放在这里（扁平，分类靠标签）
-│   └── 2026-05-22-foo.html
+├── posts/                     ← ⭐ 你的 HTML 放在这里（分类靠标签）
+│   ├── 2026-05-22-foo.html
+│   └── 20260825-合集名/        ← 子目录 = 列表页上的一个折叠组
+│       ├── index.html         ← （可选）目录页，当作这一组的封面
+│       └── 20260825-第一篇.html
 ├── src/
 │   ├── pages/index.astro      ← 列表 / 搜索首页
+│   ├── components/
+│   │   └── PostCard.astro     ← 一张文章卡片（顶层与目录内共用）
 │   ├── lib/
 │   │   ├── search-client.ts   ← 浏览器端 FlexSearch
 │   │   ├── card-editor.ts     ← dev-only 首页就地编辑（标签 / 摘要 / 删除）
@@ -112,10 +117,21 @@ pnpm ship</code></pre>
   </tbody>
 </table>
 
-<h3>3. 搜索</h3>
+<h3>3. 目录 = 折叠组</h3>
+<p><code>posts/</code> 下的子目录在列表页折叠成一组，而不是把里面的文章平铺出来（一个 33 篇的合集会直接淹没同月的其他文章）。规则：</p>
+<ul>
+  <li><strong>按第一层目录分组</strong>。更深的层级一并平铺进同一组，不再往下嵌套。</li>
+  <li><strong>组头默认收起</strong>，显示「标题 + N 篇」；点开后子文章缩进列在下面。</li>
+  <li>目录里如果有 <code>index.html</code>，它的 <code>&lt;title&gt;</code> 成为组头标题、右侧给一个「目录页 →」链接，本身不再单独占一张卡；没有则退回目录名（去掉 <code>yyyymmdd-hhmmss-</code> 前缀）。</li>
+  <li>组落在哪个月份下，取<strong>组内最新一篇</strong>的日期。</li>
+  <li><strong>标签筛选</strong>时组跟着子文章走：还有可见子文章就显示并自动展开，一篇都没命中就整组隐藏；切回「全部」重新收起。</li>
+  <li><strong>搜索结果仍是平铺的</strong>——搜索本来就该跨目录，不受折叠影响。</li>
+</ul>
+
+<h3>4. 搜索</h3>
 <p>客户端用 <a href="https://github.com/nextapps-de/flexsearch">FlexSearch</a> 的 Document 索引，对 <code>title / description / keywords / body</code> 四个字段做前缀分词。索引文件懒加载，搜索匹配片段会在结果里高亮。正文为节省体积截断在 <code>20000</code> 字符（可改 <code>scripts/build-posts.ts</code> 顶部的 <code>MAX_BODY_CHARS</code>）。</p>
 
-<h3>4. 部署</h3>
+<h3>5. 部署</h3>
 <p>workflow <code>.github/workflows/deploy.yml</code> 监听 <code>main</code> 的 push，跑 <code>pnpm build</code> 后通过 <code>actions/deploy-pages</code> 发布到 GitHub Pages 的原生通道（不需要 gh-pages 分支）。</p>
 
 <h2>微妙处的考虑</h2>

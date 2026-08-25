@@ -3,6 +3,7 @@ import { promises as fs } from "node:fs"
 import path from "node:path"
 import "../styles/global.css"
 import { UNTAGGED, type PostMeta } from "../lib/types"
+import PostCard from "../components/PostCard.astro"
 
 const generatedPath = path.resolve(process.cwd(), ".generated/posts.json")
 let posts: PostMeta[] = []
@@ -25,9 +26,49 @@ const tags = Array.from(tagCounts.keys()).sort((a, b) => {
   return tagCounts.get(b)! - tagCounts.get(a)! || a.localeCompare(b, "zh")
 })
 
-const grouped = posts.reduce<Record<string, PostMeta[]>>((acc, p) => {
-  const ym = p.date.slice(0, 7)
-  ;(acc[ym] ||= []).push(p)
+// posts/ 下的子目录在列表页折叠成一组：目录名一行，子文章缩进在里面。
+// 只按第一层目录分组（更深的层级一并平铺进同一组），posts.json 已是新→旧顺序，遍历时保持。
+type Entry =
+  | { kind: "post"; date: string; post: PostMeta }
+  | {
+      kind: "folder"
+      date: string
+      dir: string
+      title: string
+      href: string | null
+      posts: PostMeta[]
+    }
+
+const folderTitle = (dir: string) => dir.replace(/^\d{8}(?:-\d{6})?-/, "")
+
+const entries: Entry[] = []
+const folders = new Map<string, Extract<Entry, { kind: "folder" }>>()
+for (const p of posts) {
+  const slash = p.id.indexOf("/")
+  if (slash < 0) {
+    entries.push({ kind: "post", date: p.date, post: p })
+    continue
+  }
+  const dir = p.id.slice(0, slash)
+  let f = folders.get(dir)
+  if (!f) {
+    // 组的日期取首个（最新的）子文章，决定它落在哪个月份分组下
+    f = { kind: "folder", date: p.date, dir, title: folderTitle(dir), href: null, posts: [] }
+    folders.set(dir, f)
+    entries.push(f)
+  }
+  // 目录自带的 index.html 当作这一组的封面：标题挂到组头上，不再单独占一张卡
+  if (p.id === `${dir}/index.html`) {
+    f.title = p.title
+    f.href = p.href
+  } else {
+    f.posts.push(p)
+  }
+}
+
+const grouped = entries.reduce<Record<string, Entry[]>>((acc, e) => {
+  const ym = e.date.slice(0, 7)
+  ;(acc[ym] ||= []).push(e)
   return acc
 }, {})
 const ymKeys = Object.keys(grouped).sort().reverse()
@@ -90,24 +131,30 @@ const siteTitle = "Reports"
               <div class="month-group" data-month={ym}>
                 <h2 class="month-label">{ym}</h2>
                 <ul class="post-list">
-                  {grouped[ym].map((p) => (
-                    <li class="post-item" data-id={p.id} data-tags={`|${tagsOf(p).join("|")}|`}>
-                      <a href={p.href} class="post-card">
-                        <h3 class="post-title">{p.title}</h3>
-                        {p.description && <p class="post-desc">{p.description}</p>}
-                        <div class="post-meta">
-                          <time>{p.date}</time>
-                          {p.keywords.length > 0 && (
-                            <span class="tags">
-                              {p.keywords.map((k) => (
-                                <span class="cat">{k}</span>
-                              ))}
-                            </span>
-                          )}
-                        </div>
-                      </a>
-                    </li>
-                  ))}
+                  {grouped[ym].map((e) =>
+                    e.kind === "post" ? (
+                      <PostCard post={e.post} />
+                    ) : (
+                      <li class="folder-item" data-folder={e.dir}>
+                        <details class="folder">
+                          <summary class="folder-head">
+                            <span class="folder-name">{e.title}</span>
+                            <span class="folder-count">{e.posts.length} 篇</span>
+                            {e.href && (
+                              <a class="folder-index" href={e.href}>
+                                目录页 →
+                              </a>
+                            )}
+                          </summary>
+                          <ul class="post-list folder-children">
+                            {e.posts.map((p) => (
+                              <PostCard post={p} />
+                            ))}
+                          </ul>
+                        </details>
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
             ))

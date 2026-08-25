@@ -314,7 +314,17 @@ async function removePost(li: HTMLLIElement) {
   if (!res.ok) throw new Error(json.error || res.statusText)
 
   const group = li.closest<HTMLElement>("div[data-month]")
+  const folder = li.closest<HTMLElement>("li.folder-item")
   li.remove()
+  // 目录组：更新「N 篇」计数，删空了就把整组收掉
+  if (folder) {
+    const left = folder.querySelectorAll("li[data-id]").length
+    if (left === 0) folder.remove()
+    else {
+      const counter = folder.querySelector(".folder-count")
+      if (counter) counter.textContent = `${left} 篇`
+    }
+  }
   // 该月份只剩这一篇时，把空的月份分组一并收掉
   if (group && !group.querySelector("li[data-id]")) group.remove()
 
