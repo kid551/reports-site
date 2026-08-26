@@ -39,7 +39,7 @@
   <li><strong>你的 HTML 即真相</strong>：详情页直接打开你扔进 <code>posts/</code> 的原文件，构建时只在 <code>&lt;/body&gt;</code> 前注入一个浮动的「← 返回列表」按钮，不改你的样式、不改你的结构。</li>
   <li><strong>零元数据维护</strong>：标题、描述、日期、标签，全部从 HTML 的 <code>&lt;title&gt;</code> / <code>&lt;meta&gt;</code> / 文件名自动提取。</li>
   <li><strong>标签而非目录</strong>：分类完全由 <code>&lt;meta name="keywords"&gt;</code> 决定，<code>posts/</code> 是扁平的。一篇文章可以同时属于多个标签，目录做不到这点。</li>
-  <li><strong>本地一键发布</strong>：<code>pnpm ship</code> 交互确认后 commit + push，GitHub Actions 自动构建并发布，无需登录服务器。</li>
+  <li><strong>本地一键发布</strong>：<code>pnpm ship</code> 一键 commit + push，GitHub Actions 自动构建并发布，无需登录服务器。</li>
 </ul>
 
 <h2>快速开始</h2>
@@ -140,7 +140,7 @@ pnpm ship</code></pre>
   <li><strong>搜索索引不打进 JS bundle</strong>：把 <code>search-index.json</code> 放在 <code>public/</code> 而不是 <code>import</code> 进客户端 bundle。这样首页打开很快，索引按需 fetch。</li>
   <li><strong>posts/ 是源、public/posts/ 是产物</strong>：<code>public/posts/</code> 和 <code>search-index.json</code> 都在 <code>.gitignore</code> 里，由 build 现成产出，不进 git 历史。</li>
   <li><strong>预构建钩子</strong>：用 npm 的 <code>predev</code> / <code>prebuild</code> 钩子串联，而不是写 Astro 插件，避免引入额外抽象。</li>
-  <li><strong>提交前确认</strong>：<code>pnpm ship</code> 默认会列出 diff 让你按 y 才提交，避免误推；CI/批处理场景可加 <code>-y</code> 跳过。</li>
+  <li><strong>提交前预览</strong>：<code>pnpm ship</code> 会先列出本次变更和 commit 信息再直接提交推送，不再二次确认。</li>
 </ul>
 
 <h2>使用方法</h2>
@@ -177,8 +177,7 @@ posts/2026-05-22-llm-eval.html</code></pre>
 <p><strong>并发写冲突</strong>：dev 就地编辑和批量脚本都会写 <code>posts/</code>。批量改 <code>posts/</code>（脚本、<code>git checkout</code> 等）之前先停掉 dev server，否则可能把一次就地编辑覆盖或回滚掉。</p>
 
 <h3>发布</h3>
-<pre><code>pnpm ship             # 默认会列出变更，输入 y 确认后提交并 push
-pnpm ship -y          # 跳过确认（脚本里用）
+<pre><code>pnpm ship             # 列出变更后直接提交并 push
 pnpm ship -m "msg"    # 自定义 commit 信息</code></pre>
 
 <h2>首次设置 GitHub Pages</h2>

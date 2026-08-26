@@ -1,6 +1,4 @@
 import { spawnSync } from "node:child_process"
-import readline from "node:readline/promises"
-import { stdin as input, stdout as output } from "node:process"
 
 const sh = (cmd: string, args: string[]): { code: number; stdout: string; stderr: string } => {
   const r = spawnSync(cmd, args, { encoding: "utf8" })
@@ -22,7 +20,6 @@ function fail(msg: string): never {
 }
 
 const args = process.argv.slice(2)
-const yes = args.includes("-y") || args.includes("--yes")
 const messageArgIdx = args.findIndex((a) => a === "-m" || a === "--message")
 const customMessage = messageArgIdx >= 0 ? args[messageArgIdx + 1] : null
 
@@ -70,18 +67,7 @@ const message = customMessage || defaultMessage
 
 console.log(`提交信息: ${message}`)
 
-// 5. confirm
-if (!yes) {
-  const rl = readline.createInterface({ input, output })
-  const ans = (await rl.question("继续发布？[y/N] ")).trim().toLowerCase()
-  rl.close()
-  if (ans !== "y" && ans !== "yes") {
-    console.log("已取消。")
-    process.exit(0)
-  }
-}
-
-// 6. add + commit + push
+// 5. add + commit + push
 let code = run("git", ["add", "-A"])
 if (code !== 0) fail("git add 失败")
 
