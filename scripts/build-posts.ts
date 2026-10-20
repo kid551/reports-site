@@ -130,6 +130,12 @@ async function main() {
   await fs.mkdir(PUBLIC_POSTS, { recursive: true })
   await fs.mkdir(GENERATED, { recursive: true })
 
+  // 文章引用的静态资源（如 xxx-assets/ 下的图片）原样复制；HTML 由 processPost 注入返回按钮后写入
+  await fs.cp(POSTS_SRC, PUBLIC_POSTS, {
+    recursive: true,
+    filter: (src) => !src.toLowerCase().endsWith(".html") && path.basename(src) !== ".DS_Store",
+  })
+
   const files = await walk(POSTS_SRC)
   const results = await Promise.all(files.map(processPost))
 

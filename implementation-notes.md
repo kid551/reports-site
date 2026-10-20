@@ -1,5 +1,24 @@
 # Implementation Notes
 
+## 2026-10-20 · 文章附带静态资源（-assets 目录）
+
+### 背景
+
+新增的《AI Agent Handbook 全书单页》用相对路径引用同级 `xxx-assets/` 目录下 204 张图（约 30 MB）。
+`build-posts.ts` 原先只把 `*.html` 写进 `public/posts/`，资源目录不会进构建产物，图片会全部 404。
+
+### 做了什么
+
+1. `scripts/build-posts.ts` — `main()` 清空 `public/posts/` 后先 `fs.cp` 整个 `posts/`，
+   过滤掉 `.html` 与 `.DS_Store`；HTML 仍由 `processPost` 注入返回按钮后写入。
+2. 新增文章：HTML + `-assets/` 并排放入 `posts/`，目录名不变；在复制件里补了
+   `description` 与 `keywords`（AI Agent, 阿里云, 架构白皮书）两个 meta，正文未改。
+
+### 偏差
+
+- **资源原样进 git**，未做压缩或转外链。两张 gif 各约 8 MB，单文件远低于 GitHub 100 MB 上限、
+  Pages 1 GB 站点上限，个人站点可接受；后续资源多了再考虑 LFS 或图床。
+
 ## 2026-08-25 · 目录在列表页折叠展示
 
 ### 背景

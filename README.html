@@ -97,7 +97,7 @@ pnpm ship</code></pre>
 <p>每次执行 <code>pnpm dev</code> 或 <code>pnpm build</code>，Astro 的 <code>predev</code> / <code>prebuild</code> 钩子都会先跑 <code>scripts/build-posts.ts</code>。这个脚本完成三件事：</p>
 <ol>
   <li>用 <a href="https://github.com/WebReflection/linkedom">linkedom</a> 解析 <code>posts/</code> 下每一个 <code>*.html</code>，抽出标题、描述、纯文本正文等。</li>
-  <li>把原 HTML <strong>原样复制</strong>到 <code>public/posts/</code>，只在 <code>&lt;/body&gt;</code> 前插入一个固定定位的浮动返回按钮（用 inline style，避免和你的 CSS 冲突）。</li>
+  <li>把原 HTML <strong>原样复制</strong>到 <code>public/posts/</code>，只在 <code>&lt;/body&gt;</code> 前插入一个固定定位的浮动返回按钮（用 inline style，避免和你的 CSS 冲突）。<code>posts/</code> 里的非 HTML 文件（如图片目录）按相同相对路径原样复制，保证文章里的相对引用不断。</li>
   <li>输出两个工件：
     <ul>
       <li><code>.generated/posts.json</code> ← 给 Astro 首页在构建时读，渲染成列表。</li>
@@ -150,6 +150,7 @@ pnpm ship</code></pre>
 <pre><code>posts/2026-05-22-q2-review.html
 posts/2026-05-22-llm-eval.html</code></pre>
 <p><code>posts/</code> 保持扁平——分类写在文件自己的 <code>&lt;meta name="keywords" content="投研, 芯片"&gt;</code> 里。构建器仍会递归扫描子目录，但子目录只会让 URL 变长，不产生任何分类语义。</p>
+<p><strong>带图片的文章</strong>：把 HTML 和它的资源目录并排放进 <code>posts/</code>，例如 <code>posts/20261019-xxx.html</code> + <code>posts/20261019-xxx-assets/</code>，目录名保持与 HTML 里的相对 <code>src</code> 一致即可。资源目录里没有 <code>.html</code>，不会在列表页形成折叠组。</p>
 
 <h3>添加一篇文章（用脚手架）</h3>
 <pre><code>pnpm new "Q2 复盘"
