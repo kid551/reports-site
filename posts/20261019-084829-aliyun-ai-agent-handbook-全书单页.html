@@ -3,9 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Agent Handbook 全书单页 — 阿里云《AI 原生应用架构白皮书》开源版</title>
 <meta name="description" content="aliyun/ai-agent-handbook 全部 53 篇（30 章 + 16 企业案例 + 调研报告）逐字合并为单页，附全书导读与逐篇核心问题/要点。来源：github.com/aliyun/ai-agent-handbook（Apache-2.0）。">
 <meta name="keywords" content="AI Agent, 阿里云, 架构白皮书">
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+                   chtml: { scale: 1.05 }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<title>AI Agent Handbook 全书单页 — 阿里云《AI 原生应用架构白皮书》开源版</title>
 <style>
 
 :root {
@@ -428,6 +433,7 @@ th { text-align: center; }
 pre { background: var(--code); border: 1px solid var(--rule); border-radius: 4px; padding: 14px 18px; overflow-x: auto; font-size: 15px; line-height: 1.6; }
 pre code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 15px; background: none; padding: 0; }
 :not(pre) > code { overflow-wrap: anywhere; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: .88em; background: var(--code); padding: 1px 6px; border-radius: 3px; color: #6e2519; }
+.tex { overflow-x: auto; overflow-y: hidden; margin: 22px 0; padding: 6px 0; text-align: center; font-size: 18px; }
 .mermaid-box { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 16px; margin: 24px 0; overflow-x: auto; text-align: center; }
 .mermaid-box pre.mermaid { background: none; border: none; margin: 0; font-size: 15px; }
 
@@ -10891,10 +10897,10 @@ register_if_pass(candidate)
 <h4 id="d28-h23">17.4.3 选择蒸馏路线：教师示范与学生自主交互</h4>
 <p>离线教师示范是最直接的起点。首先从真实业务分布中抽取任务，要求教师生成包含思考、动作、观察与最终结果的完整轨迹；随后用环境执行器、规则校验器或人工抽检验证轨迹，只保留成功且合规的示范；最后以监督微调学习教师的输出和动作。该路线实现简单、训练稳定，适合冷启动，但训练状态主要来自教师策略。学生一旦在部署时作出不同动作，就可能进入教师示范中从未出现的状态，后续误差因此持续累积。</p>
 <p>在线策略蒸馏（On-policy Distillation，OPD）针对这一分布偏移，让当前学生先在环境中生成行为，再由教师对学生实际到达的状态提供监督。与离线 SFT 相比，OPD 的状态来自学生；与在线强化学习相比，OPD 不只依赖任务结束后的稀疏奖励，而是在每个 token 或动作位置获得教师的稠密评价。这使训练能够集中处理学生“真正会犯的错”，而不是重复学习教师已经熟练覆盖的状态。</p>
-<p>设学生策略为$\pi_\theta$，教师策略为$\pi_T$，学生在前缀$s_t=x_{&lt;t}$上采样动作或 token$a_t$。OPD 可最小化学生到教师的反向 KL：</p>
-<p>$\mathcal{L}_{\mathrm{OPD}} = \mathbb{E}_{\tau\sim\pi_\theta} \left[ \sum_t D_{\mathrm{KL}} \left( \pi_\theta(\cdot\mid s_t) ,|, \pi_T(\cdot\mid s_t) \right) \right].$</p>
+<p>设学生策略为\(\pi_\theta\)，教师策略为\(\pi_T\)，学生在前缀\(s_t=x_{&lt;t}\)上采样动作或 token\(a_t\)。OPD 可最小化学生到教师的反向 KL：</p>
+<div class="tex">$$\mathcal{L}_{\mathrm{OPD}} = \mathbb{E}_{\tau\sim\pi_\theta} \left[ \sum_t D_{\mathrm{KL}} \left( \pi_\theta(\cdot\mid s_t) \,\|\, \pi_T(\cdot\mid s_t) \right) \right].$$</div>
 <p>对学生已采样的 token，可用下面的单样本量估计给定状态下的局部 KL 差异：</p>
-<p>$\hat d_t = \log \pi_\theta(a_t\mid s_t) - \log \pi_T(a_t\mid s_t).$</p>
+<div class="tex">$$\hat d_t = \log \pi_\theta(a_t\mid s_t) - \log \pi_T(a_t\mid s_t).$$</div>
 <p>该量是目标函数的蒙特卡洛估计项，并不等同于完整训练梯度；实际优化仍需结合策略梯度或等价的梯度估计方法。这意味着训练系统不一定需要保存教师的完整 logits。教师可以在 teacher forcing 下对学生已生成的序列打分，只返回每个已采样 token 的归一化 log-prob；但教师服务仍需支持对给定序列计算概率，只有文本生成接口而没有 log-prob 能力时无法直接采用该方案。不同 tokenizer 之间如何稳定对齐，也需要单独验证。</p>
 <p>在学生容量或可表达策略族受限时，反向 KL 常表现出“模式寻求”（mode-seeking）特性：当教师对某个行为赋予很低概率时，学生把概率放在该行为上会受到显著惩罚；而学生不必覆盖教师所有可能模式。对于 Agent，这有助于学生收敛到一条连贯的高概率决策路径，减少在互斥工具或参数方案之间平均化的倾向。但“教师高概率”不等同于“任务正确”。反向 KL 仍可能复制教师偏差、压低必要探索，甚至让学生固守一种局部最优策略，因此必须与任务成功验证和异常覆盖联合使用。</p>
 <figure class="fig"><img src="20261019-084829-aliyun-ai-agent-handbook-%E5%85%A8%E4%B9%A6%E5%8D%95%E9%A1%B5-assets/chapter-17/image-007.svg" alt="模型蒸馏训练路线对比.svg" loading="lazy" /></figure>
@@ -10955,22 +10961,22 @@ register_if_pass(candidate)
 <h4 id="d28-h25">17.4.5 验证蒸馏收益：质量保留与单位成功任务成本</h4>
 <p>蒸馏收益必须在同一任务集、同一工具环境、同一成功判定和同一流量条件下比较三类系统：教师模型、学生模型和原有线上模型。至少应记录任务成功率、一次通过率、平均与高分位行动步数、模型调用次数、工具调用次数、重试次数、教师兜底率、端到端 P50/P95/P99 时延以及全链路成本。只比较 token 单价，会忽略学生因规划能力下降而产生的额外步骤和失败重试。</p>
 <p>“单位成功任务成本”应按所有任务的实际总成本除以成功任务数定义：</p>
-<p>$C_{\mathrm{success}} = \frac{ \sum_{i=1}^{N} \sum_{a=1}^{A_i} \left( C_{\mathrm{student}} +C_{\mathrm{teacher}} +C_{\mathrm{verifier}} +C_{\mathrm{tool}} +C_{\mathrm{runtime}} \right)_{i,a} }{ \sum_{i=1}^{N}\mathbf{1}(\mathrm{task}_i;\mathrm{success}) }.$</p>
-<p>其中，$A_i$表示任务$i$实际发生的全部尝试，因而重试成本已经通过对各次尝试求和计入，无需另设一个可能重复计费的$C{\mathrm{retry}}$。教师兜底、验证器、工具服务和编排运行时都应按真实调用路径计入。只有当$\mathbb{E}[C{\mathrm{task}}]$已经完整包含这些条件成本时，才能简写为：</p>
-<p>$C_{\mathrm{success}} = \frac{\mathbb{E}[C_{\mathrm{task}}]}{P(\mathrm{success})}.$</p>
+<div class="tex">$$C_{\mathrm{success}} = \frac{ \sum_{i=1}^{N} \sum_{a=1}^{A_i} \left( C_{\mathrm{student}} +C_{\mathrm{teacher}} +C_{\mathrm{verifier}} +C_{\mathrm{tool}} +C_{\mathrm{runtime}} \right)_{i,a} }{ \sum_{i=1}^{N}\mathbf{1}(\mathrm{task}_i\;\mathrm{success}) }.$$</div>
+<p>其中，\(A_i\)表示任务\(i\)实际发生的全部尝试，因而重试成本已经通过对各次尝试求和计入，无需另设一个可能重复计费的\(C_{\mathrm{retry}}\)。教师兜底、验证器、工具服务和编排运行时都应按真实调用路径计入。只有当\(\mathbb{E}[C_{\mathrm{task}}]\)已经完整包含这些条件成本时，才能简写为：</p>
+<div class="tex">$$C_{\mathrm{success}} = \frac{\mathbb{E}[C_{\mathrm{task}}]}{P(\mathrm{success})}.$$</div>
 <p>因此，“单次推理成本 × 平均重试次数 ÷ 成功率”只能作为极简近似。它默认每次尝试成本相同、失败与成功路径长度相同，并忽略工具调用与教师兜底；在多模型、多工具 Agent 中通常不成立。</p>
 <p>质量保留可以用学生相对教师的成功率表示：</p>
-<p>$R_Q=\frac{P_{\mathrm{success,student}}}{P_{\mathrm{success,teacher}}}.$</p>
-<p>但部署决策不应只设一个平均$R_Q$阈值。对于高风险任务，应分别设置安全违规率、不可逆错误率和教师兜底召回率等门槛。若学生在低风险高频任务上达到质量要求，而在长程、开放域或高风险任务上不稳定，可以采用路由或级联：学生先执行，置信度、规则校验或多样本一致性不足时调用教师。</p>
+<div class="tex">$$R_Q=\frac{P_{\mathrm{success,student}}}{P_{\mathrm{success,teacher}}}.$$</div>
+<p>但部署决策不应只设一个平均\(R_Q\)阈值。对于高风险任务，应分别设置安全违规率、不可逆错误率和教师兜底召回率等门槛。若学生在低风险高频任务上达到质量要求，而在长程、开放域或高风险任务上不稳定，可以采用路由或级联：学生先执行，置信度、规则校验或多样本一致性不足时调用教师。</p>
 <p>推理期蒸馏研究展示了这种级联思路：学生多次采样结果一致时直接执行，否则调用教师。收益可以来自“减少教师调用”，而不一定要求一次训练后完全替代教师。</p>
 <p>Prodinit 的语音 AI 案例称，通过将大部分流量从 GPT-4.1 迁移到微调后的 GPT-4o-mini，并保留约 10% 教师流量，推理成本估算下降约 70%。该案例提供了灰度发布和持续监控的实践参考，但质量、时延、重试和运维成本缺少可审计的完整数据，应视为厂商案例，而不是普适收益基准。</p>
-<p>最终 ROI 还要加入一次性投入。设数据构建、训练、评测、部署与迁移的固定投入为$F$，新旧方案每个原始任务的全路径期望成本分别为$\bar C{\mathrm{new}}$<em>和</em> $\bar C{\mathrm{old}}$，若质量与业务价值近似不变，则盈亏平衡任务量为：</p>
-<p>$N^* = \frac{F}{\bar C_{\mathrm{old}}-\bar C_{\mathrm{new}}}.$</p>
-<p>若两种方案成功率不同，则应先把成功任务带来的价值和失败损失纳入单任务净收益。设成功价值为$V$、失败损失为$L$、成功率为$p$，单任务净收益为：</p>
-<p>$g=pV-(1-p)L-\bar C.$</p>
+<p>最终 ROI 还要加入一次性投入。设数据构建、训练、评测、部署与迁移的固定投入为\(F\)，新旧方案每个原始任务的全路径期望成本分别为\(\bar C_{\mathrm{new}}\) 和 \(\bar C_{\mathrm{old}}\)，若质量与业务价值近似不变，则盈亏平衡任务量为：</p>
+<div class="tex">$$N^* = \frac{F}{\bar C_{\mathrm{old}}-\bar C_{\mathrm{new}}}.$$</div>
+<p>若两种方案成功率不同，则应先把成功任务带来的价值和失败损失纳入单任务净收益。设成功价值为\(V\)、失败损失为\(L\)、成功率为\(p\)，单任务净收益为：</p>
+<div class="tex">$$g=pV-(1-p)L-\bar C.$$</div>
 <p>此时盈亏平衡任务量应写为：</p>
-<p>$N^*=\frac{F}{g_{\mathrm{new}}-g_{\mathrm{old}}}.$</p>
-<p>上述计算要求$F$、$V$、$L$与各类成本使用同一价值单位，且$g{\mathrm{new}}-g{\mathrm{old}}&gt;0$；若新方案的单任务净收益不高于旧方案，就不存在有限的正向盈亏平衡点。这一表达能够避免“成本下降但失败损失上升”的伪收益。对仍需教师兜底的系统，应把兜底看作目标架构的一部分，而不是蒸馏失败的例外。只要路由准确、兜底比例可控，并且单位成功任务成本与端到端时延优于原方案，部分替代同样可以形成可验证的商业价值。</p>
+<div class="tex">$$N^*=\frac{F}{g_{\mathrm{new}}-g_{\mathrm{old}}}.$$</div>
+<p>上述计算要求\(F\)、\(V\)、\(L\)与各类成本使用同一价值单位，且\(g_{\mathrm{new}}-g_{\mathrm{old}}&gt;0\)；若新方案的单任务净收益不高于旧方案，就不存在有限的正向盈亏平衡点。这一表达能够避免“成本下降但失败损失上升”的伪收益。对仍需教师兜底的系统，应把兜底看作目标架构的一部分，而不是蒸馏失败的例外。只要路由准确、兜底比例可控，并且单位成功任务成本与端到端时延优于原方案，部分替代同样可以形成可验证的商业价值。</p>
 <h4 id="d28-h26">17.4.6 工程实现：从数据管线到线上灰度</h4>
 <p>前五节回答的是“迁移什么、怎么训练、如何补强与核算”。但对工程团队而言，蒸馏能否落地往往取决于另一组问题：教师轨迹如何被批量生产并自动验证，训练与采样如何在有限 GPU 上高效解耦，教师概率如何作为在线服务稳定提供，学生模型又如何安全放量并持续监控。本节按数据、训练、推理、部署四个环节，梳理业界较成熟、可直接复用的工程做法。</p>
 <figure class="fig"><img src="20261019-084829-aliyun-ai-agent-handbook-%E5%85%A8%E4%B9%A6%E5%8D%95%E9%A1%B5-assets/chapter-17/image-008.svg" alt="模型蒸馏工程实现闭环.svg" loading="lazy" /></figure>
@@ -16776,6 +16782,7 @@ for question in body[&quot;questions&quot;].values():
 <div class="meta" style="margin-top:60px;">
 <b>来源：</b> <a href="https://github.com/aliyun/ai-agent-handbook">aliyun/ai-agent-handbook</a> 仓库 markdown 原文全量合并（53 篇，未采样），阅读顺序与官方阅读站一致<br>
 <b>本页新增：</b> 全书导读、逐篇速览表、每篇「核心问题」与「本篇要点」——均为整理者根据原文提炼，非原书内容<br>
+<b>公式：</b> 第 17 章的 LaTeX 公式由 MathJax 渲染；原文导出时丢失的 6 处下标下划线（如 <code>C{\mathrm{retry}}</code> → <code>C_{\mathrm{retry}}</code>）和 1 处错位的下划线已按上下文还原<br>
 <b>图片：</b> 大图已压缩为 WebP（最宽 1600px），存放于同目录的 assets 文件夹，移动本页时需一并移动<br>
 <b>声明：</b> 内容版权归原作者与阿里云，本页仅供个人学习阅读。
 </div>
