@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妈妈测试 · “你认为这是个好主意吗？” — 中英对照</title>
+<meta name="description" content="《妈妈测试》（The Mom Test）“好问题/坏问题”一节：逐条拆解 11 个客户访谈问题的好坏，以及每条的经验法则。中英对照。">
+<style>
+* { box-sizing: border-box; }
+:root {
+  --bg: #fbfaf7;
+  --bg-card: #ffffff;
+  --ink: #1f2328;
+  --ink-2: #3b4248;
+  --ink-3: #5a5a5a;
+  --accent: #8a3324;
+  --accent-2: #4c6c9c;
+  --gold: #c79b2b;
+  --tip-bg: #fff5d6;
+  --tip-bd: #c79b2b;
+  --aside-bg: #eef3fb;
+  --aside-bd: #4c6c9c;
+  --crux-bg: #fde7e0;
+  --crux-bd: #8a3324;
+  --maodun-bg: #f4e4e8;
+  --maodun-bd: #944056;
+  --term-bg: #f1ede0;
+  --term-bd: #b09a55;
+  --rule: #c9c1ac;
+  --code: #f5f1e3;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.9;
+}
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 60px 36px 120px;
+}
+h1 {
+  font-size: 40px;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+h1 .sub {
+  display: block;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+h3 {
+  font-size: 25px;
+  margin: 48px 0 14px;
+  color: var(--accent-2);
+  font-weight: 700;
+  border-left: 6px solid var(--accent-2);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+.tip {
+  background: var(--tip-bg);
+  border: 1px dashed var(--tip-bd);
+  border-radius: 4px;
+  padding: 16px 22px;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.tip::before {
+  content: "TIP — 小贴士";
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.meta {
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 22px 0 38px;
+  padding: 16px 20px;
+  background: #f3eee2;
+  border-radius: 4px;
+  font-style: italic;
+}
+.meta b { color: var(--ink); font-style: normal; }
+.meta a { color: var(--accent-2); }
+.toc {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px 30px;
+  margin: 32px 0 54px;
+  font-size: 17px;
+}
+.toc h4 { margin-top: 0; color: var(--accent); font-size: 19px; }
+.toc a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-2);
+}
+.toc a:hover { color: var(--accent); border-bottom-style: solid; }
+
+/* === 本篇补充样式 === */
+.tip::before { content: "经验法则 — Rule of thumb"; }
+.tip p { display: block; margin: 6px 0 0; }
+.tip p.en { color: var(--ink-3); font-size: 15px; font-style: italic; }
+.toc ol { list-style: none; padding-left: 0; }
+.toc li { margin: 8px 0; }
+.toc li > a b { color: var(--ink); }
+.toc .toc-en { display: block; padding-left: 2.2em; color: var(--ink-3); font-size: 14px; font-family: Georgia, serif; line-height: 1.5; }
+.vd { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 0 8px; border-radius: 3px; line-height: 1.8; vertical-align: middle; color: #fff; font-family: "Helvetica Neue", Arial, sans-serif; }
+.vd-awful { background: #8a3324; }
+.vd-bad { background: #b05a3c; }
+.vd-okay { background: #c79b2b; }
+.vd-good { background: #3f7d4f; }
+h3 { margin-top: 64px; }
+h3 .qn { font-family: Georgia, serif; color: var(--accent); margin-right: 10px; }
+h3 .h-en { display: block; font-size: 16px; font-weight: 400; color: var(--ink-3); font-family: Georgia, serif; margin-top: 4px; }
+.pair { margin: 18px 0; }
+.pair p { margin: 0; }
+.pair p.en { color: var(--ink-3); font-size: 16px; line-height: 1.7; font-family: Georgia, "Times New Roman", serif; }
+.pair p.zh { margin-top: 6px; }
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .wrap { padding: 30px 20px 80px; }
+  h1 { font-size: 30px; }
+  h3 { font-size: 20px; }
+  .toc { padding: 18px 18px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>“你认为这是个好主意吗？”
+<span class="sub">— 《妈妈测试》“好问题/坏问题”一节 · 11 个访谈问题逐条拆解 · 中英对照</span>
+</h1>
+
+<div class="meta">
+<b>原书</b>：Rob Fitzpatrick《The Mom Test》（中译《妈妈测试》），第 1 章“妈妈测试” › “好问题/坏问题” › “Do you think it's a good idea?”。<br>
+<b>怎么读</b>：每个小标题是一个常见的客户访谈问题，彩色标签是作者的判定（<span class="vd vd-awful">糟糕</span> <span class="vd vd-bad">坏问题</span> <span class="vd vd-okay">尚可</span> <span class="vd vd-good">好问题</span>）；灰色小字是英文原文，下方是中文译文，黄框是每条的经验法则。<br>
+<b>来源</b>：导出自本地书库阅读器页面，译文为阅读器自带的机器翻译，未经人工校对。
+</div>
+
+<div class="toc">
+<h4>目录</h4>
+<ol>
+<li><a href="#q1"><b>1　</b>“你认为这是个好主意吗？”</a> <span class="vd vd-awful">糟糕</span><span class="toc-en">"Do you think it's a good idea?"</span></li>
+<li><a href="#q2"><b>2　</b>“你会购买具有某种功能的产品吗？”</a> <span class="vd vd-bad">坏问题</span><span class="toc-en">"Would you buy a product which did X?"</span></li>
+<li><a href="#q3"><b>3　</b>“你愿意为 X 支付多少钱？”</a> <span class="vd vd-bad">坏问题</span><span class="toc-en">"How much would you pay for X?"</span></li>
+<li><a href="#q4"><b>4　</b>“你理想中的产品能实现什么功能呢？”</a> <span class="vd vd-okay">尚可</span><span class="toc-en">"What would your dream product do?"</span></li>
+<li><a href="#q5"><b>5　</b>“你何必费这个劲呢？”</a> <span class="vd vd-good">好问题</span><span class="toc-en">"Why do you bother?"</span></li>
+<li><a href="#q6"><b>6　</b>“那会带来什么后果呢？”</a> <span class="vd vd-good">好问题</span><span class="toc-en">"What are the implications of that?"</span></li>
+<li><a href="#q7"><b>7　</b>“请详细告诉我上一次发生这种情况的经过。”</a> <span class="vd vd-good">好问题</span><span class="toc-en">"Talk me through the last time that happened."</span></li>
+<li><a href="#q8"><b>8　</b>“你还试过什么办法吗？”</a> <span class="vd vd-good">好问题</span><span class="toc-en">"What else have you tried?"</span></li>
+<li><a href="#q9"><b>9　</b>“如果你知道某件产品具有某种功能，你愿意为它支付多少费用呢？”</a> <span class="vd vd-bad">坏问题</span><span class="toc-en">"Would you pay X for a product which did Y?"</span></li>
+<li><a href="#q10"><b>10　</b>“你现在是怎么应对这种情况的？”</a> <span class="vd vd-good">好问题</span><span class="toc-en">"How are you dealing with it now?"</span></li>
+<li><a href="#q11"><b>11　</b>“钱是从哪里来的？”</a> <span class="vd vd-good">好问题</span><span class="toc-en">"Where does the money come from?"</span></li>
+</ol>
+</div>
+
+<section>
+<h3 id="q1"><span class="qn">1</span>“你认为这是个好主意吗？” <span class="vd vd-awful">糟糕</span><span class="h-en">"Do you think it's a good idea?"</span></h3>
+<div class="pair"><p class="en">Awful question! Here’s the thing: only the market can tell if your idea is good. Everything else is just opinion. Unless you’re talking to a deep industry expert, this is self-indulgent noise with a high risk of false positives.</p><p class="zh">糟糕的问题！其实，只有市场才能判断你的想法是否可行。其他的一切都只是个人意见罢了。除非你正在与该领域的专家交谈，否则那些意见都不过是毫无根据的废话，而且很容易导致错误的判断。</p></div>
+<div class="pair"><p class="en">Let’s fix it: Say you’re building an app to help construction companies manage their suppliers. You might ask them to show you how they currently do it. Talk about which parts they love and hate. Ask which other tools and processes they tried before settling on this one. Are they actively searching for a replacement? If so, what’s the sticking point? If not, why not? Where are they losing money with their current tools? Is there a budget for better ones? Now, take all that information and decide for yourself whether it’s a good idea.</p><p class="zh">让我们来仔细分析一下：假设你正在开发一款应用程序，旨在帮助建筑公司更好地管理他们的供应商。你可以先请这些公司介绍一下他们目前的做法。了解他们喜欢或不喜欢哪些方面。再问问他们在选择当前这套方案之前，还尝试过哪些工具和流程。他们是否在积极寻找替代方案呢？如果是的话，究竟遇到了什么障碍？如果不是，原因又是什么？使用当前的工具时，他们在哪些方面付出了不必要的成本？是否有预算用于购买更优秀的工具呢？综合以上信息后，你自己来判断这是否是个好主意吧。</p></div>
+<div class="tip"><p class="zh">意见毫无价值。</p><p class="en">Opinions are worthless.</p></div>
+</section>
+<section>
+<h3 id="q2"><span class="qn">2</span>“你会购买具有某种功能的产品吗？” <span class="vd vd-bad">坏问题</span><span class="h-en">"Would you buy a product which did X?"</span></h3>
+<div class="pair"><p class="en">Bad question. You’re asking for opinions and hypotheticals from overly optimistic people who want to make you happy. The answer to a question like this is almost always “yes”, which makes it worthless.</p><p class="zh">这个问题问得不好。你得到的只是那些过于乐观的人给出的、想让你开心而说的意见或假设而已。对于这样的问题，答案几乎总是“是”，所以这样的问题毫无意义。</p></div>
+<div class="pair"><p class="en">Let’s fix it: Ask how they currently solve X and how much it costs them to do so. And how much time it takes. Ask them to talk you through what happened the last time X came up. If they haven’t solved the problem, ask why not. Have they tried searching for solutions and found them wanting? Or do they not even care enough to have Googled for it?</p><p class="zh">让我们来想办法解决这个问题吧：先问问他们目前是如何解决 X 这个问题的，这样做需要多少成本。另外，还需要知道解决这个问题需要多少时间。请他们详细讲述上一次遇到 X 这个问题时到底发生了什么。如果他们还没有解决这个问题，那就问问为什么。是他们没有尝试寻找解决方案，还是因为他们根本不愿意去搜索解决方案呢？</p></div>
+<div class="tip"><p class="zh">任何与未来相关的说法，多半都是过于乐观的谎言罢了。</p><p class="en">Anything involving the future is an over-optimistic lie.</p></div>
+</section>
+<section>
+<h3 id="q3"><span class="qn">3</span>“你愿意为 X 支付多少钱？” <span class="vd vd-bad">坏问题</span><span class="h-en">"How much would you pay for X?"</span></h3>
+<div class="pair"><p class="en">Bad question. This is exactly as bad as the last one, except it’s more likely to trick you because the number makes it feel rigorous and truthy.</p><p class="zh">糟糕的问题。这个问题和上一个一样糟糕，只不过因为数字的缘故，它更容易骗过人，让人觉得它似乎很有道理、很真实。</p></div>
+<div class="pair"><p class="en">How to fix it: Just like the others, fix it by asking about their life <i>as it already is</i>. How much does the problem cost them? How much do they currently pay to solve it? How big is the budget they’ve allocated? I hope you’re noticing a trend here.</p><p class="zh">解决方法：和其他情况一样，只需了解他们当前所面临的问题即可。这个问题给他们带来了多大的成本？他们目前为解决这个问题付出了多少代价？他们又拨出了多少预算来应对这个问题？希望你能从中发现某种规律。</p></div>
+<div class="tip"><p class="zh">如果人们觉得你说想听的话，他们就会对你撒谎。</p><p class="en">People will lie to you if they think it’s what you want to hear.</p></div>
+</section>
+<section>
+<h3 id="q4"><span class="qn">4</span>“你理想中的产品能实现什么功能呢？” <span class="vd vd-okay">尚可</span><span class="h-en">"What would your dream product do?"</span></h3>
+<div class="pair"><p class="en">Sort-of-okay question, but only if you ask good follow-ups. Otherwise it’s a bad question. A question like this is like the “set” before the spike in a volleyball game: not too helpful on its own, but it puts you in a good position as long as you’re ready to exploit it.</p><p class="zh">这个问题还算可以，但前提是你能提出恰当的后续问题。否则，这就算是个糟糕的问题。这样的问题就像排球比赛中的“发球”环节：单独来看没什么用处，但只要你能妥善利用它，就能为自己创造有利局面。</p></div>
+<div class="pair"><p class="en">Let’s improve it: The value comes from understanding why they want these features. You don’t want to just collect feature requests. You aren’t building the product by committee. But the motivations and constraints behind those requests are critical.</p><p class="zh">让我们改进一下：其价值在于理解用户为何需要这些功能。不能只是简单地收集用户的各种需求而已。毕竟，产品不是由一群人共同决定的。因此，了解用户提出这些需求的背后动机和限制条件非常重要。</p></div>
+<div class="tip"><p class="zh">人们清楚自己面临的问题是什么，但却不知道如何解决这些问题。</p><p class="en">People know what their problems are, but they don’t know how to solve those problems.</p></div>
+</section>
+<section>
+<h3 id="q5"><span class="qn">5</span>“你何必费这个劲呢？” <span class="vd vd-good">好问题</span><span class="h-en">"Why do you bother?"</span></h3>
+<div class="pair"><p class="en">Good question. I love this sort of question. It’s great for getting from the perceived problem to the real one.</p><p class="zh">好问题。我喜欢这类问题。它有助于让我们从表面上看到的问题，深入到问题的本质。</p></div>
+<div class="pair"><p class="en">For example, some founders I knew were talking to finance guys spending hours each day sending emails about their spreadsheets. The finance guys were asking for better messaging tools so they could save time. The “why do you bother” question led to “so we can be certain that we’re all working off the latest version.” Aha. The solution ended up being less like the requested messaging tool and more like Dropbox. A question like “why do you bother” points toward their motivations. It gives you the why.</p><p class="zh">例如，我认识的一些创业者，每天都要花好几个小时给财务人员发送关于电子表格的邮件。财务人员则希望有更好的沟通工具，以便节省时间。当被问到“何必这么麻烦呢？”时，他们的回答是：“这样我们就能确保大家都使用的是最新版本的文件了。”啊哈。最终的解决方案其实并不完全是人们所期望的那种沟通工具，而更像是 Dropbox 这样的工具。像“何必这么麻烦呢？”这样的问题，能帮助我们了解对方的真实动机。它让我们明白事情背后的原因。</p></div>
+<div class="tip"><p class="zh">在了解对方的目标之前，你的行动都是盲目的。</p><p class="en">You're shooting blind until you understand their goals.</p></div>
+</section>
+<section>
+<h3 id="q6"><span class="qn">6</span>“那会带来什么后果呢？” <span class="vd vd-good">好问题</span><span class="h-en">"What are the implications of that?"</span></h3>
+<div class="pair"><p class="en">Good question. This distinguishes between I-will-pay-to-solve-that problems and thats-kind-of-annoying-but-I-can-deal-with-it “problems”. Some problems have big, costly implications. Others exist but don’t actually matter. It behooves you to find out which is which. It also gives you a good pricing signal.</p><p class="zh">问得好。这有助于区分那些“必须花钱才能解决”的问题，和那些“虽然有点烦人，但可以自行处理”的问题。有些问题会带来巨大的、高昂的代价；而有些问题则无关紧要。你需要弄清楚到底属于哪一类问题。这也有助于你确定合适的定价。</p></div>
+<div class="pair"><p class="en">I once had someone keep describing the workflow we were fixing with emotionally loaded terms like “DISASTER”, accompanied by much yelling and arm waving. But when I asked him what the implications were, he sort of shrugged and said “Oh, we just ended up throwing a bunch of interns at the problem—it’s actually working pretty well.”</p><p class="zh">有一次，有人用“灾难”之类的激烈言辞来描述我们正在努力解决的问题，同时还大声喊叫、挥舞着手臂。但当我问他这样做会带来什么后果时，他只是耸耸肩说：“唉，我们只是让一些实习生去处理这个问题而已——其实效果还不错。”</p></div>
+<div class="tip"><p class="zh">有些问题其实并不重要。</p><p class="en">Some problems don’t actually matter.</p></div>
+</section>
+<section>
+<h3 id="q7"><span class="qn">7</span>“请详细告诉我上一次发生这种情况的经过。” <span class="vd vd-good">好问题</span><span class="h-en">"Talk me through the last time that happened."</span></h3>
+<div class="pair"><p class="en">Good question. Your high school writing teacher may have told you that good stories are meant to “show, not tell”. Whenever possible, you want to be shown, not told by your customers. Learn through their actions instead of their opinions. If you ran a burger joint, it would be stupid to survey your customers about whether they prefer cheeseburgers or hamburgers. Just watch what they buy (but if you’re trying to understand <i>why</i> they prefer one over the other, you’ll have to talk to them).</p><p class="zh">问得好。你的高中语文老师可能告诉过你：好的故事应该“通过画面来展现，而不是用文字来描述”。在可能的情况下，你应该让客户通过自己的行为来展现他们的需求，而不是直接告诉你。通过他们的行为来了解他们的想法。如果你经营一家汉堡店，那么去询问顾客更喜欢芝士汉堡还是普通汉堡是毫无意义的。只要观察他们到底买了什么就行了（不过，如果你想了解他们为什么更喜欢其中一种汉堡，那就需要直接与他们交谈了）。</p></div>
+<div class="pair"><p class="en">Folks can’t be wishy-washy when you’re watching them do the task in question. Get as close to the real action as you can. Seeing it first hand can provide unique insight into murky situations. But if you can’t get in there, asking them to talk you through the last time it happened still offers many of the benefits.</p><p class="zh">当观察别人执行某项任务时，他们不能表现得优柔寡断。尽量靠近现场，亲自目睹整个过程。亲眼所见能帮助我们更深入地理解那些复杂的状况。不过，如果无法亲自到场，让他们讲述上一次执行该任务的情况，也能带来同样的好处。</p></div>
+<div class="pair"><p class="en">Being walked through their full workflow answers many questions in one fell swoop: how do they spend their days, what tools do they use, and who do they talk to? What are the constraints of their day and life? How does your product fit into that day? Which other tools, products, software, and tasks does your product need to integrate with?</p><p class="zh">通过了解他们的完整工作流程，就能一次性解答许多问题：他们每天是如何度过的？使用哪些工具？与谁进行沟通？他们在工作和生活中面临哪些限制？您的产品如何融入他们的日常工作中？您的产品还需要与哪些其他工具、产品、软件或流程进行整合呢？</p></div>
+<div class="tip"><p class="zh">观察别人执行某项任务的过程，就能明白问题及效率低下的真正所在，而不是客户所认为的那些地方。</p><p class="en">Watching someone do a task will show you where the problems and inefficiencies really are, not where the customer thinks they are.</p></div>
+</section>
+<section>
+<h3 id="q8"><span class="qn">8</span>“你还试过什么办法吗？” <span class="vd vd-good">好问题</span><span class="h-en">"What else have you tried?"</span></h3>
+<div class="pair"><p class="en">Good question. What are they using now? How much does it cost and what do they love and hate about it? How much would those fixes be worth and how big of a pain would it be for them to switch to a new solution?</p><p class="zh">问得好。他们现在使用的是什么工具呢？使用成本是多少？他们对这些工具的优缺点又有什么看法呢？对那些需要改进的地方，进行修复的成本大概是多少？而他们要切换到新的解决方案，又会面临多大的麻烦呢？</p></div>
+<div class="pair"><p class="en">I was checking out an idea with a potential customer and they excitedly said, “Oh man, that happens all the time. I would <i>definitely</i> pay for something which solved that problem.”</p><p class="zh">我正在与一位潜在客户探讨某个想法。他兴奋地说：“哎呀，这种事情经常发生。如果有什么办法能解决那个问题，我肯定愿意付费购买。”</p></div>
+<div class="pair"><p class="en">That’s a future-promise statement without any commitment to back it up, so I needed to learn whether it was true or not. I asked, “When’s the last time this came up?” Turns out, it was pretty recent. That’s a great sign. To dig further, I asked, “Can you talk me through how you tried to fix it?” He looked at me blankly, so I nudged him further.</p><p class="zh">那不过是一种毫无实际承诺的空头承诺罢了。所以我需要弄清楚这是否属实。我问：“上一次提到这件事是什么时候？”结果发现，那是最近才发生的事。这是个好迹象。为了进一步了解情况，我又问：“你能详细说说你试图如何解决这个问题吗？”他茫然地看着我，于是我又进一步追问了他。</p></div>
+<div class="pair"><p class="en">“Did you google around for any other ways to solve it?” He seemed a little bit like he’d been caught stealing from the cookie jar and said, “No… I didn’t really think to. It’s something I’m used to dealing with, you know?”</p><p class="zh">“你有没有在谷歌上搜索过其他解决这个问题的方法呢？”他看起来有点像是个被抓到偷饼干的人，说道：“没有……我实在没想过这个问题。反正这是我惯于处理的事情而已。”</p></div>
+<div class="pair"><p class="en">In the abstract, it’s something he would “definitely” pay to solve. Once we got specific, he didn't even care enough to search for a solution (which do exist, incidentally).</p><p class="zh">从理论上来说，这绝对是他愿意花钱去解决的难题。但一旦我们具体说明了解决方案的内容，他甚至都懒得去寻找答案了（其实，解决方法是存在的）。</p></div>
+<div class="pair"><p class="en">It’s easy to get someone emotional about a problem if you lead them there. “Don’t you <i>hate</i> when your shoelaces come untied while you’re carrying groceries?” “Yeah, that’s the <i>worst</i>!” And then I go off and design my special never-come-untied laces without realising that if you actually cared, you would already be using a double-knot.</p><p class="zh">如果你引导别人去思考某个问题，那么很容易让他们情绪化。“你难道不讨厌在提着杂货时鞋带松开吗？”“是啊，那真是烦人！”然后我就开始设计那种绝对不会松开的鞋带。可我没意识到，如果你真的在乎的话，早就会用双结来固定鞋带了。</p></div>
+<div class="tip"><p class="zh">如果他们还没有想办法解决这个问题，那他们也不会去考虑或购买你的解决方案。</p><p class="en">If they haven't looked for ways of solving it already, they're not going to look for (or buy) yours.</p></div>
+</section>
+<section>
+<h3 id="q9"><span class="qn">9</span>“如果你知道某件产品具有某种功能，你愿意为它支付多少费用呢？” <span class="vd vd-bad">坏问题</span><span class="h-en">"Would you pay X for a product which did Y?"</span></h3>
+<div class="pair"><p class="en">Bad question. The fact that you’ve added a number doesn’t help. This is bad for the same reasons as the others: people are overly optimistic about what they would do and want to make you happy. Plus, it’s about your idea instead of their life.</p><p class="zh">这个问题问得不好。你加上了数字这一因素，反而让问题更糟糕了。原因和其他情况一样：人们总是过高估计自己能做的事情，也总想让你开心。而且，这终究是你的想法，而非他们的生活状况。</p></div>
+<div class="pair"><p class="en">Let’s fix it: As always, ask about what they currently do now, not what they believe they might do in the future. Common wisdom is that you price your product in terms of value to the customer rather than cost to you. That's true. And you can't quantify the value received without prodding their financial worldview.</p><p class="zh">让我们来纠正这个错误：一如既往，应该询问他们目前实际在做什么，而不是他们认为将来可能会做什么。常识告诉我们，产品的定价应该基于其对客户的价值，而非制造商的成本。这一点没错。不过，如果不深入了解客户的财务观念，就无法准确衡量产品所带来的价值。</p></div>
+<div class="pair"><p class="en">Another way to fix it, if you’re far enough along, is to literally ask for money. If you have the deposit or pre-order in hand, you know they were telling the truth.</p><p class="zh">如果已经到了可以解决问题的阶段，另一种办法就是直接开口要钱。如果你手里有定金或预付款，那就说明对方说的都是实话。</p></div>
+</section>
+<section>
+<h3 id="q10"><span class="qn">10</span>“你现在是怎么应对这种情况的？” <span class="vd vd-good">好问题</span><span class="h-en">"How are you dealing with it now?"</span></h3>
+<div class="pair"><p class="en">Good question. Beyond workflow information, this gives you a price anchor. If they’re paying £100/month for a duct-tape workaround, you know which ballpark you're playing in. On the other hand, they may have spent £120,000 this year on agency fees to maintain a site you're replacing. If that's the case, you don't want to be having the £100 conversation.</p><p class="zh">问得好。除了工作流程方面的信息外，这还能让你了解相关的成本参考。如果他们每月要花费 100 英镑来用胶带临时解决问题，那么你就能大致了解相关的成本范围了。不过，如果他们今年为了维护那个即将被取代的网站而支付了 12 万英镑的中介费用，那你就没必要再讨论 100 英镑这个数字了。</p></div>
+<div class="pair"><p class="en">Sometimes, both of the above will be happening simultaneously and you get to choose how you present yourself. Do you want to be a replacement for the web app at a yearly value of £1.2k or for the agency at 100x that?</p><p class="zh">有时候，上述两种情况会同时发生，这时就需要你自己来决定该如何展现自己。你是想以每年 1200 英镑的价格来取代网页应用，还是想以高出这个数字 100 倍的价钱来为某家机构服务呢？</p></div>
+<div class="tip"><p class="zh">虽然很少有人会明确告诉你他们愿意支付多少报酬，但他们通常会让你知道这笔报酬对他们来说有多重要。</p><p class="en">While it’s rare for someone to tell you precisely what they’ll pay you, they’ll often show you what it’s worth to them.</p></div>
+</section>
+<section>
+<h3 id="q11"><span class="qn">11</span>“钱是从哪里来的？” <span class="vd vd-good">好问题</span><span class="h-en">"Where does the money come from?"</span></h3>
+<div class="pair"><p class="en">Good question. This isn't something you would necessarily ask a consumer (though you might), but in a B2B context it’s a must-ask. It leads to a conversation about whose budget the purchase will come from and who else within their company holds the power to torpedo the deal.</p><p class="zh">问得好。这并不是那种一定会向消费者询问的问题（不过偶尔也会问到），但在 B2B 场景中，这是必须问的问题。通过这个问题，可以了解这笔采购的预算来自谁，以及公司内部还有谁有可能破坏这笔交易。</p></div>
+<div class="pair"><p class="en">Often, you'll find yourself talking to someone other than the budget owner. Your future pitches will hit unseen snags unless you learn who else matters and what they care about. This knowledge of their purchasing process will eventually turn into a repeatable sales roadmap.</p><p class="zh">通常，你会发现自己需要与预算审批人之外的人进行沟通。如果你不了解还有谁会参与决策、他们关心什么，那么你的后续推销工作就会遇到各种障碍。只要掌握了这些关于他们采购流程的信息，就能为未来的销售工作提供有效的指导。</p></div>
+</section>
+
+</div>
+</body>
+</html>
