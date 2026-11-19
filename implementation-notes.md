@@ -1,5 +1,28 @@
 # Implementation Notes
 
+## 2026-11-19 · 无日期文件取所在目录名的日期
+
+### 背景
+
+巴菲特合集一直排在首页最上面，看起来像置顶，其实是 bug：封面 `index.html` 文件名无日期，
+排序键退回 mtime；CI 每次 checkout 都把 mtime 刷成构建时刻，于是它永远「最新」。
+2026-11-18 当天先发《妈妈测试》（文件名 21:24 北京时间）再构建（22:39 北京 = 14:39 UTC），
+mtime 用 `toISOString()` 是 UTC，`212435 > 1439xx`，合集第一次被挤下去。
+
+### 做了什么
+
+1. 新增 `scripts/post-date.ts`：`dateFromPath(rel)` 先解析文件名，没有就逐级往上解析目录名，
+   都没有返回 null，由 `build-posts.ts` 退回 mtime。原来的两个解析函数合并进来，正则与旧逻辑一致。
+2. `scripts/post-date.test.ts` + `pnpm test`（`node --import tsx --test`，不加依赖；
+   不用 `tsx --test` 是因为它要建 IPC socket，在受限环境里会 EPERM）。
+
+结果：合集稳定落在 2026-08-25，不再置顶。已对比新旧两版构建：除 `index.html` 外 72 篇顺序与日期完全一致。
+
+### 偏差
+
+- **没有改文件名**。用户允许改名，但 `index.astro` 按固定名 `${dir}/index.html` 认目录封面，
+  改名会让它变成组里普通的一篇、丢掉「目录页 →」链接；从目录名取日期已经等价于「文档创建日期」。
+
 ## 2026-10-20 · 文章附带静态资源（-assets 目录）
 
 ### 背景

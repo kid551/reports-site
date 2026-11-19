@@ -13,7 +13,8 @@
     "admin": "tsx scripts/admin.ts",
     "ship": "tsx scripts/ship.ts",
     "format": "prettier --write .",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "node --import tsx --test scripts/*.test.ts"
   },
   "dependencies": {
     "astro": "^4.16.0",

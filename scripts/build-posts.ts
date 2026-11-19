@@ -3,6 +3,7 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { parseHTML } from "linkedom"
 import type { PostMeta, SearchDoc } from "../src/lib/types"
+import { dateFromPath } from "./post-date"
 
 const root = path.resolve(fileURLToPath(import.meta.url), "../..")
 const POSTS_SRC = path.join(root, "posts")
@@ -32,26 +33,6 @@ async function walk(dir: string, base = dir): Promise<string[]> {
     }
   }
   return out
-}
-
-function parseDateFromName(name: string): string | null {
-  // 2026-05-22-foo.html | 2026-05-22.html
-  const dashed = name.match(/^(\d{4})-(\d{2})-(\d{2})/)
-  if (dashed) return `${dashed[1]}-${dashed[2]}-${dashed[3]}`
-  // 20260522-foo.html
-  const compact = name.match(/^(\d{4})(\d{2})(\d{2})/)
-  if (compact) return `${compact[1]}-${compact[2]}-${compact[3]}`
-  return null
-}
-
-// 完整发布时间戳（14 位 yyyymmddhhmmss），用于同一天内的精确倒序。
-// 20260505-020039.html → 20260505020039；无 hhmmss 时补 000000；无日期返回 null。
-function parseTimestampFromName(name: string): string | null {
-  const withTime = name.match(/^(\d{4})-?(\d{2})-?(\d{2})[-_](\d{2})(\d{2})(\d{2})/)
-  if (withTime) return withTime.slice(1).join("")
-  const date = name.match(/^(\d{4})-?(\d{2})-?(\d{2})/)
-  if (date) return date.slice(1).join("") + "000000"
-  return null
 }
 
 function extractKeywords(content: string): string[] {
@@ -101,11 +82,12 @@ async function processPost(rel: string): Promise<{ meta: PostMeta; doc: SearchDo
   const keywordsAttr = document.querySelector('meta[name="keywords"]')?.getAttribute("content")
   const keywords = keywordsAttr ? extractKeywords(keywordsAttr) : []
 
-  const date = parseDateFromName(path.basename(rel)) || stat.mtime.toISOString().slice(0, 10)
-  // 排序用完整时间戳；文件名无法解析时退回文件 mtime（14 位）。
-  const sortKey =
-    parseTimestampFromName(path.basename(rel)) ||
-    stat.mtime.toISOString().replace(/\D/g, "").slice(0, 14)
+  // 日期取文件名，没有就取所在目录名（如目录封面 index.html）；都没有才退回 mtime。
+  // mtime 在 CI 里是 checkout 时间且为 UTC，会让文件每次构建都乱跳，只作最后兜底。
+  const { date, sortKey } = dateFromPath(rel) ?? {
+    date: stat.mtime.toISOString().slice(0, 10),
+    sortKey: stat.mtime.toISOString().replace(/\D/g, "").slice(0, 14),
+  }
 
   const id = rel.replace(/\\/g, "/")
   const href = `${BASE}posts/${id}`

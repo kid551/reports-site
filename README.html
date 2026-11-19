@@ -83,6 +83,7 @@ pnpm ship</code></pre>
 ├── scripts/
 │   ├── build-posts.ts         ← 预构建：扫 posts、提取元数据、生成索引
 │   ├── post-meta.ts           ← 读写文章 &lt;head&gt; 元信息的共享工具
+│   ├── post-date.ts           ← 从文件名 / 目录名解析发布日期（含 .test.ts）
 │   ├── dev-api.ts             ← dev-only 写接口（改标签 / 改摘要 / 删文章）
 │   ├── new.ts                 ← pnpm new
 │   ├── admin.ts               ← pnpm admin（本地元数据编辑 GUI）
@@ -112,7 +113,7 @@ pnpm ship</code></pre>
   <tbody>
     <tr><td>title</td><td><code>&lt;title&gt;</code> → <code>&lt;h1&gt;</code> → 文件名</td></tr>
     <tr><td>description</td><td><code>&lt;meta name="description"&gt;</code>（手写摘要完整保留、不截断） → 首个非空 <code>&lt;p&gt;</code>（自动预览，截断 200 字）</td></tr>
-    <tr><td>date</td><td>文件名前缀 <code>YYYY-MM-DD-</code> 或 <code>YYYYMMDD-</code> → 文件 mtime</td></tr>
+    <tr><td>date / 排序</td><td>文件名前缀 <code>YYYY-MM-DD-</code> 或 <code>YYYYMMDD[-hhmmss]-</code> → <strong>所在目录名</strong>的同款前缀（逐级往上，如目录封面 <code>index.html</code> 取目录的创建时间） → 文件 mtime。列表按 14 位 <code>yyyymmddhhmmss</code> 倒序。<br /><small>mtime 只作最后兜底：CI 每次 checkout 都会把它刷成构建时刻（且是 UTC，和文件名里的北京时间不可比），靠它排序的文件会随每次构建乱跳。逻辑在 <code>scripts/post-date.ts</code>，测试 <code>pnpm test</code>。</small></td></tr>
     <tr><td>keywords</td><td><code>&lt;meta name="keywords"&gt;</code>（逗号分隔）；为空则首页归入 <em>未分类</em></td></tr>
   </tbody>
 </table>
